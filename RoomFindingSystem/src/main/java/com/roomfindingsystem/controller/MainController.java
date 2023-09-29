@@ -1,4 +1,12 @@
 package com.roomfindingsystem.controller;
 
-public class MainController {
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+
+@SpringBootApplication
+public class  MainController {
+    public static void main(String[] args) {
+        SpringApplication.run(MainController.class, args);
+    }
 }
