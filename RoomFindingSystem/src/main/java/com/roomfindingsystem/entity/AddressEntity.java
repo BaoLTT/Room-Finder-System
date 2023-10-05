@@ -35,9 +35,7 @@ public class AddressEntity {
     @Basic
     @Column(name = "Ward_WardID")
     private int wardWardId;
-    @Basic
-    @Column(name = "Villages_VillagesID")
-    private int villagesVillagesId;
+
 
     public int getAddressId() {
         return addressId;
@@ -111,24 +109,17 @@ public class AddressEntity {
         this.wardWardId = wardWardId;
     }
 
-    public int getVillagesVillagesId() {
-        return villagesVillagesId;
-    }
-
-    public void setVillagesVillagesId(int villagesVillagesId) {
-        this.villagesVillagesId = villagesVillagesId;
-    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AddressEntity that = (AddressEntity) o;
-        return addressId == that.addressId && userUserId == that.userUserId && provinceProvinceId == that.provinceProvinceId && districtDistrictId == that.districtDistrictId && districtProvinceProvinceId == that.districtProvinceProvinceId && wardWardId == that.wardWardId && villagesVillagesId == that.villagesVillagesId && Objects.equals(name, that.name) && Objects.equals(prefix, that.prefix) && Objects.equals(addressDetails, that.addressDetails);
+        return addressId == that.addressId && userUserId == that.userUserId && provinceProvinceId == that.provinceProvinceId && districtDistrictId == that.districtDistrictId && districtProvinceProvinceId == that.districtProvinceProvinceId && wardWardId == that.wardWardId  && Objects.equals(name, that.name) && Objects.equals(prefix, that.prefix) && Objects.equals(addressDetails, that.addressDetails);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(addressId, name, prefix, addressDetails, userUserId, provinceProvinceId, districtDistrictId, districtProvinceProvinceId, wardWardId, villagesVillagesId);
+        return Objects.hash(addressId, name, prefix, addressDetails, userUserId, provinceProvinceId, districtDistrictId, districtProvinceProvinceId, wardWardId);
     }
 }

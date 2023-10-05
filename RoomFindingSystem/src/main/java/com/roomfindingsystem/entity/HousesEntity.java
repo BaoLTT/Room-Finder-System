@@ -19,17 +19,12 @@ public class HousesEntity {
     @Column(name = "Description")
     private String description;
     @Basic
-    @Column(name = "AddressID")
-    private Integer addressId;
-    @Basic
     @Column(name = "TypeHouseID")
     private Integer typeHouseId;
     @Basic
     @Column(name = "ServiceID")
     private Integer serviceId;
-    @Basic
-    @Column(name = "LandlordID")
-    private Integer landlordId;
+
     @Basic
     @Column(name = "CreatedDate")
     private Timestamp createdDate;
@@ -48,9 +43,7 @@ public class HousesEntity {
     @Basic
     @Column(name = "Address_AddressID")
     private int addressAddressId;
-    @Basic
-    @Column(name = "RoomType_RoomTYpeID")
-    private int roomTypeRoomTYpeId;
+
 
     public int getHouseId() {
         return houseId;
@@ -76,13 +69,7 @@ public class HousesEntity {
         this.description = description;
     }
 
-    public Integer getAddressId() {
-        return addressId;
-    }
 
-    public void setAddressId(Integer addressId) {
-        this.addressId = addressId;
-    }
 
     public Integer getTypeHouseId() {
         return typeHouseId;
@@ -100,13 +87,6 @@ public class HousesEntity {
         this.serviceId = serviceId;
     }
 
-    public Integer getLandlordId() {
-        return landlordId;
-    }
-
-    public void setLandlordId(Integer landlordId) {
-        this.landlordId = landlordId;
-    }
 
     public Timestamp getCreatedDate() {
         return createdDate;
@@ -156,24 +136,17 @@ public class HousesEntity {
         this.addressAddressId = addressAddressId;
     }
 
-    public int getRoomTypeRoomTYpeId() {
-        return roomTypeRoomTYpeId;
-    }
-
-    public void setRoomTypeRoomTYpeId(int roomTypeRoomTYpeId) {
-        this.roomTypeRoomTYpeId = roomTypeRoomTYpeId;
-    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         HousesEntity that = (HousesEntity) o;
-        return houseId == that.houseId && userUserId == that.userUserId && addressAddressId == that.addressAddressId && roomTypeRoomTYpeId == that.roomTypeRoomTYpeId && Objects.equals(houseName, that.houseName) && Objects.equals(description, that.description) && Objects.equals(addressId, that.addressId) && Objects.equals(typeHouseId, that.typeHouseId) && Objects.equals(serviceId, that.serviceId) && Objects.equals(landlordId, that.landlordId) && Objects.equals(createdDate, that.createdDate) && Objects.equals(createdBy, that.createdBy) && Objects.equals(lastModifiedDate, that.lastModifiedDate) && Objects.equals(lastModifiedBy, that.lastModifiedBy);
+        return houseId == that.houseId && userUserId == that.userUserId && addressAddressId == that.addressAddressId && Objects.equals(houseName, that.houseName) && Objects.equals(description, that.description)  && Objects.equals(typeHouseId, that.typeHouseId) && Objects.equals(serviceId, that.serviceId)  && Objects.equals(createdDate, that.createdDate) && Objects.equals(createdBy, that.createdBy) && Objects.equals(lastModifiedDate, that.lastModifiedDate) && Objects.equals(lastModifiedBy, that.lastModifiedBy);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(houseId, houseName, description, addressId, typeHouseId, serviceId, landlordId, createdDate, createdBy, lastModifiedDate, lastModifiedBy, userUserId, addressAddressId, roomTypeRoomTYpeId);
+        return Objects.hash(houseId, houseName, description,  typeHouseId, serviceId,  createdDate, createdBy, lastModifiedDate, lastModifiedBy, userUserId, addressAddressId);
     }
 }
