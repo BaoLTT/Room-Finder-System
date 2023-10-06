@@ -4,12 +4,12 @@ package com.roomfindingsystem.service;
 
 
 import com.roomfindingsystem.entity.HousesEntity;
-import com.roomfindingsystem.vo.HouseTypeVo;
+import com.roomfindingsystem.vo.HouseHomeVo;
 
 import java.util.List;
 
 public interface HouseService {
     List<HousesEntity> viewTop4();
 
-    List<HouseTypeVo> viewTop4Home();
+    List<HouseHomeVo> viewTop4Home();
 }

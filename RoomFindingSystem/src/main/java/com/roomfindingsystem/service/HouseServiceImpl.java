@@ -4,7 +4,7 @@ package com.roomfindingsystem.service;
 
 import com.roomfindingsystem.entity.HousesEntity;
 import com.roomfindingsystem.reponsitory.HouseRepository;
-import com.roomfindingsystem.vo.HouseTypeVo;
+import com.roomfindingsystem.vo.HouseHomeVo;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -24,8 +24,8 @@ public class HouseServiceImpl implements HouseService{
     }
 
     @Override
-    public List<HouseTypeVo> viewTop4Home() {
-        List<HouseTypeVo> list = new ArrayList<>();
+    public List<HouseHomeVo> viewTop4Home() {
+        List<HouseHomeVo> list = new ArrayList<>();
         if(!houseRepository.viewTop4Home().isEmpty()){
             for(int i = 0; i<4; i++){
                 list.add(houseRepository.viewTop4Home().get(i));
