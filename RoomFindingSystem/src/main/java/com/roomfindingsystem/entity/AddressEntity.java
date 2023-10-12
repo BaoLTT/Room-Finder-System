@@ -1,9 +1,17 @@
 package com.roomfindingsystem.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.Objects;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @jakarta.persistence.Table(name = "address", schema = "room_finding_system", catalog = "")
 public class AddressEntity {
@@ -12,73 +20,25 @@ public class AddressEntity {
     @jakarta.persistence.Column(name = "AddressID")
     private int addressId;
 
-    public int getAddressId() {
-        return addressId;
-    }
-
-    public void setAddressId(int addressId) {
-        this.addressId = addressId;
-    }
-
     @Basic
     @Column(name = "Name")
     private String name;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     @Basic
     @Column(name = "Address_Details")
     private String addressDetails;
 
-    public String getAddressDetails() {
-        return addressDetails;
-    }
-
-    public void setAddressDetails(String addressDetails) {
-        this.addressDetails = addressDetails;
-    }
-
     @Basic
     @Column(name = "ProvinceID")
     private int provinceId;
-
-    public int getProvinceId() {
-        return provinceId;
-    }
-
-    public void setProvinceId(int provinceId) {
-        this.provinceId = provinceId;
-    }
 
     @Basic
     @Column(name = "DistrictID")
     private int districtId;
 
-    public int getDistrictId() {
-        return districtId;
-    }
-
-    public void setDistrictId(int districtId) {
-        this.districtId = districtId;
-    }
-
     @Basic
     @Column(name = "WardID")
     private int wardId;
-
-    public int getWardId() {
-        return wardId;
-    }
-
-    public void setWardId(int wardId) {
-        this.wardId = wardId;
-    }
 
     @Override
     public boolean equals(Object o) {

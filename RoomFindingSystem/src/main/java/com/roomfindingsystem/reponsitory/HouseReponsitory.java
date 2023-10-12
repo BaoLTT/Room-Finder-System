@@ -1,6 +1,8 @@
 package com.roomfindingsystem.reponsitory;
 
 import com.roomfindingsystem.entity.HousesEntity;
+import com.roomfindingsystem.vo.HouseDto;
+import com.roomfindingsystem.vo.HouseImageLink;
 import com.roomfindingsystem.vo.HouseTypeVo;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -33,6 +35,16 @@ public interface HouseReponsitory extends JpaRepository<HousesEntity,Integer> {
             "group by h.houseId, h.houseName, t.typeName, a.addressDetails, w.name, p.name, h.lastModifiedDate")
     Page<HouseTypeVo> findHouse(int min,int max, String houseName,List<Integer> type, Pageable pageable);
 
-
+    @Query("SELECT new com.roomfindingsystem.vo.HouseDto( h.houseId, h.houseName,h.description,h.createdDate, u.lastName,u.firstName , u.phone, shd.serviceName,a.addressId, t.typeName )\n" +
+            "FROM HousesEntity as h \n" +
+            "left join UserEntity as u on h.userId = u.userId \n" +
+            "left join AddressEntity as a on h.addressId = a.addressId\n" +
+            " left join ServiceHouseEntity as sh on h.serviceId = sh.serviceId\n" +
+            "left join ServiceDetailEntity as shd on sh.serviceId= shd.serviceId\n" +
+            "left join TypeHouseEntity as t on t.typeId = h.typeHouseId\n" +
+            " where h.houseId=2")
+    List<HouseDto> findAllDetail();
+    @Query("SELECT new com.roomfindingsystem.vo.HouseImageLink(i.imageLink) FROM HouseImagesEntity i join HousesEntity h  on i.houseId = h.houseId where h.houseId=?1")
+    List<HouseImageLink> getByHouseImageid(int houseId);
 
 }
