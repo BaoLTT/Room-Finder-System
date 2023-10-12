@@ -1,107 +1,34 @@
 package com.roomfindingsystem.service;
 
-
-
-import com.roomfindingsystem.entity.*;
-import com.roomfindingsystem.reponsitory.HouseRepository;
-import com.roomfindingsystem.reponsitory.HouseTypeRepository;
-import com.roomfindingsystem.reponsitory.ServiceHouseRepository;
-import com.roomfindingsystem.vo.HouseHomeVo;
-import jakarta.persistence.EntityManager;
-
-import jakarta.persistence.Query;
-import jakarta.persistence.TypedQuery;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.roomfindingsystem.entity.HousesEntity;
+import com.roomfindingsystem.reponsitory.HouseReponsitory;
+import com.roomfindingsystem.vo.HouseTypeVo;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
 @Service("houseService")
-public class HouseServiceImpl implements HouseService{
+public class HouseServiceImpl implements HouseService {
+    private HouseReponsitory houseReponsitory;
 
-    private HouseRepository houseRepository;
-
-    private HouseTypeRepository houseTypeRepository;
-
-    private ServiceHouseRepository serviceHouseRepository;
-
-    @Autowired
-    private EntityManager entityManager;
-
-    public HouseServiceImpl(HouseRepository houseRepository, HouseTypeRepository houseTypeRepository,
-                            ServiceHouseRepository serviceHouseRepository){
+    public HouseServiceImpl(HouseReponsitory houseReponsitory){
         super();
-        this.houseRepository = houseRepository;
-        this.houseTypeRepository = houseTypeRepository;
-        this.serviceHouseRepository = serviceHouseRepository;
-    }
-    @Override
-    public List<HousesEntity> viewTop4() {
-        return houseRepository.viewTop4();
+        this.houseReponsitory = houseReponsitory;
     }
 
+
     @Override
-    public List<HouseHomeVo> viewTop4Home() {
-        List<HouseHomeVo> list = new ArrayList<>();
-
-        Set<Integer> set = new HashSet<>();
-        List<HouseHomeVo> filteredListB = new ArrayList<>();
-
-        for(HouseHomeVo houseHomeVo: houseRepository.viewTop4Home()){
-            int houseId = houseHomeVo.getHouseId();
-            if(!set.contains(houseId)){
-                set.add(houseId);
-                filteredListB.add(houseHomeVo);
-            }
-        }
-
-//        list.addAll(filteredListB);
-        for(int i=0;i<4;i++){
-            list.add(filteredListB.get(i));
-//            list.add(houseRepository.viewTop4Home().get(i));
-        }
-
-        return list;
+    public List<HouseTypeVo> getAllHouse() {
+        return houseReponsitory.getAllHouse();
     }
 
     @Override
-    public List<HouseTypeEntity> getHouseType() {
-        return houseTypeRepository.findAll();
+    public Page<HouseTypeVo> findHouse(int min,int max,String houseName,List<Integer> type, int pageIndex, int pageSize) {
+        Pageable pageable = PageRequest.of(pageIndex-1,pageSize);
+        return houseReponsitory.findHouse(min, max ,"%" + houseName + "%",type,pageable);
     }
-
-    @Override
-    public List<ServiceDetailEntity> getHouseService() {
-        return serviceHouseRepository.findAll() ;
-    }
-
-    @Override
-    public List<HouseHomeVo> search(String location, List<String> typeHouse) {
-        List<HouseHomeVo> list = new ArrayList<>();
-
-        Set<Integer> set = new HashSet<>();
-        List<HouseHomeVo> filteredListB = new ArrayList<>();
-
-        for(HouseHomeVo houseHomeVo: houseRepository.viewTop4HomeSearch(location, typeHouse)){
-            int houseId = houseHomeVo.getHouseId();
-            if(!set.contains(houseId)){
-                set.add(houseId);
-                filteredListB.add(houseHomeVo);
-            }
-        }
-
-//        list.addAll(filteredListB);
-        if(filteredListB.size()<4) return filteredListB;
-        else for(int i=0;i<4;i++){
-            list.add(filteredListB.get(i));
-//            list.add(houseRepository.viewTop4Home().get(i));
-        }
-        return list;
-
-    }
-
 
 
 }
