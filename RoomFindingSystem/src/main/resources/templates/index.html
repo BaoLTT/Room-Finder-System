@@ -92,7 +92,7 @@
 
     <div id="page-content">
         <div class="hero-section" data-height="600">
-            <form id="form-hero">
+            <form id="form-hero" th:action = "@{/search}">
                 <div class="hero-inner">
                     <div class="hero-wrapper" >
                         <div class="caption">
@@ -102,8 +102,8 @@
                                     <div class="row no-gutters">
                                         <div class="col-md-8 col-sm-8">
                                             <div class="form-group">
-                                                <label class="label-on-input" for="address-autocomplete">Vị trí</label>
-                                                <input type="text" class="form-control" id="address-autocomplete" name="location" placeholder="Nhập tên vị trí">
+                                                <label class="label-on-input" for="address-autocomplete">Vị trí, Tên trọ</label>
+                                                <input type="text" class="form-control" id="address-autocomplete" name="location" placeholder="Nhập tên trọ hoặc vị trí">
                                             </div>
                                         </div>
 
@@ -131,37 +131,31 @@
                         <!--end caption-->
                         <div class="options">
                             <div class="container">
-<!--                                <div class="wrapper">-->
-<!--                                    <h2>Further Options</h2>-->
-<!--                                    <div class="row">-->
-<!--                                        <div class="col-md-8 col-sm-7">-->
-<!--                                            <ul class="checkboxes inline list-unstyled">-->
-<!--                                                <li><label><input type="checkbox" name="hotel">Hotel</label></li>-->
-<!--                                                <li><label><input type="checkbox" name="apartment">Apartment</label></li>-->
-<!--                                                <li><label><input type="checkbox" name="breakfast-only">Breakfast Only</label></li>-->
-<!--                                                <li><label><input type="checkbox" name="spa-wellness">Spa & Wellness</label></li>-->
-<!--                                                <li><label><input type="checkbox" name="ski-center">Ski Center</label></li>-->
-<!--                                                <li><label><input type="checkbox" name="cottage">Cottage</label></li>-->
-<!--                                                <li><label><input type="checkbox" name="hostel">Hostel</label></li>-->
-<!--                                                <li><label><input type="checkbox" name="boat">Boat</label></li>-->
-<!--                                            </ul>-->
-<!--                                            &lt;!&ndash;end checkboxes&ndash;&gt;-->
-<!--                                        </div>-->
-<!--                                        &lt;!&ndash;end col-md-8&ndash;&gt;-->
-<!--                                        <div class="col-md-4 col-sm-5">-->
-<!--                                            <div class="row">-->
-<!--                                                <div class="col-md-6 col-sm-6">-->
-<!--                                                    <div class="form-group">-->
-<!--                                                        <label>Rate (per Night)</label>-->
-<!--                                                        <select class="form-control framed white">-->
-<!--                                                            <option value="">$0 - $100</option>-->
-<!--                                                            <option value="">$100 - $200</option>-->
-<!--                                                            <option value="">$200+</option>-->
-<!--                                                        </select>-->
-<!--                                                    </div>-->
-<!--                                                    &lt;!&ndash;end form-group&ndash;&gt;-->
-<!--                                                </div>-->
-<!--                                                &lt;!&ndash;end col-md-6&ndash;&gt;-->
+                                <div class="wrapper">
+                                    <h2>Further Options</h2>
+                                    <div class="row">
+                                        <div class="col-md-8 col-sm-7" >
+                                            <ul th:each = "housetype : ${housetypes}" class="checkboxes inline list-unstyled"  >
+                                                <li><label><input th:text = "${housetype.typeName}" type="checkbox" name="typeHouse" th:value = "${housetype.typeName}"></label></li>
+                                            </ul>
+                                            <!--end checkboxes-->
+                                        </div>
+                                        <!--end col-md-8-->
+                                        <div class="col-md-4 col-sm-5">
+                                            <div class="row">
+<!--                                                <div>-->
+                                                <div class="col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label>Rate (per Night)</label>
+                                                        <select class="form-control framed white">
+                                                            <option value="">0 - 1.500.000</option>
+                                                            <option value="">1.500.000 - 2.000.000</option>
+                                                            <option value="">2.000.000 -></option>
+                                                        </select>
+                                                    </div>
+                                                    <!--end form-group-->
+                                                </div>
+                                                <!--end col-md-6-->
 <!--                                                <div class="col-md-6 col-sm-6">-->
 <!--                                                    <div class="form-group">-->
 <!--                                                        <label>Star Rating</label>-->
@@ -175,14 +169,14 @@
 <!--                                                    </div>-->
 <!--                                                    &lt;!&ndash;end form-group&ndash;&gt;-->
 <!--                                                </div>-->
-<!--                                                &lt;!&ndash;end col-md-6&ndash;&gt;-->
-<!--                                            </div>-->
-<!--                                            &lt;!&ndash;end row&ndash;&gt;-->
-<!--                                        </div>-->
-<!--                                        &lt;!&ndash;end col-md-4&ndash;&gt;-->
-<!--                                    </div>-->
-<!--                                    &lt;!&ndash;end row&ndash;&gt;-->
-<!--                                </div>-->
+                                                <!--end col-md-6-->
+                                            </div>
+                                            <!--end row-->
+                                        </div>
+                                        <!--end col-md-4-->
+                                    </div>
+                                    <!--end row-->
+                                </div>
                                 <!--end wrapper-->
                             </div>
                             <!--end container-->
@@ -196,15 +190,9 @@
 <!--                                <h2>Facilities</h2>-->
 <!--                                <div class="row">-->
 <!--                                    <div class="col-md-8 col-sm-6">-->
-<!--                                        <ul class="checkboxes inline">-->
-<!--                                            <li><label><input type="checkbox" name="wi-fi">Wi-fi</label></li>-->
-<!--                                            <li><label><input type="checkbox" name="free-parking">Free Parking</label></li>-->
-<!--                                            <li><label><input type="checkbox" name="airport">Airport Shuttle</label></li>-->
-<!--                                            <li><label><input type="checkbox" name="family-rooms">Family Rooms</label></li>-->
-<!--                                            <li><label><input type="checkbox" name="pets">Pets Allowed</label></li>-->
-<!--                                            <li><label><input type="checkbox" name="restaurant">Restaurant</label></li>-->
-<!--                                            <li><label><input type="checkbox" name="indoor-pool">Indoor Pool</label></li>-->
-<!--                                            <li><label><input type="checkbox" name="brakfast-only">Breakfast Only</label></li>-->
+<!--                                        <ul class="checkboxes inline" th:each = "houseservice : ${houseservices}">-->
+<!--                                            <li><label><input type="checkbox" name="service_name" th:text = "${houseservice.serviceName}" th:id = "${houseservice.serviceId}"></label></li>-->
+
 <!--                                        </ul>-->
 <!--                                        &lt;!&ndash;end checkboxes&ndash;&gt;-->
 <!--                                    </div>-->
@@ -246,16 +234,19 @@
                     <div class="col-md-3 col-sm-6" th:each = "house : ${houses}">
                         <div class="item big equal-height" data-map-latitude="48.87" data-map-longitude="2.29" data-id="1">
                             <div class="item-wrapper">
-                                <div class="image">
+                                <div class="image" >
                                     <div class="mark-circle description" data-toggle="tooltip" data-placement="right" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis erat vel quam aliquet hendrerit semper eget elit. Aenean tincidunt ultrices bibendum. Proin nisi erat, iaculis non pulvinar a, scelerisque ut est. "><i class="fa fa-question"></i></div>
                                     <div class="mark-circle map" data-toggle="tooltip" data-placement="right" title="Show on map"><i class="fa fa-map-marker"></i></div>
                                     <div class="mark-circle top" data-toggle="tooltip" data-placement="right" title="Top accommodation"><i class="fa fa-thumbs-up"></i></div>
                                     <a href="" class="wrapper">
-                                        <div class="gallery">
-                                            <img src="" alt="" th:src = "${house.houseImageLink}">
-                                            <img src="#" class="owl-lazy" alt="" data-src="">
-                                            <img src="#" class="owl-lazy" alt="" data-src="">
+                                        <div class="gallery" >
+                                            <img style="width: 100%; height: 100%" src="" alt="" data-src="" th:src ="${house.houseImageLink}">
+
+
                                         </div>
+
+
+
                                     </a>
                                     <div class="owl-navigation"></div>
                                     <!--end owl-navigation-->
@@ -269,7 +260,7 @@
                                     <div class="info">
                                         <figure class="label label-info"  th:text = "${house.typeHouseName}" ></figure>
                                         <a href=""  ><h3 th:text = "${house.houseName}"></h3></a>
-                                        <figure class="" th:text = "${house.wardName+', '+house.districtName+', '+house.provinceName}"></figure>
+                                        <figure class="" th:text = "${house.addressName+', '+house.wardName+', '+house.districtName+', '+house.provinceName}"></figure>
                                     </div>
                                 </div>
                                 <!--end description-->
@@ -501,22 +492,22 @@
                 </div>
                 <!--end title-->
                 <div class="row">
-                    <div class="col-md-12 col-sm-8">
+                    <div class="col-md-12 col-sm-8" >
                         <div class="row">
-                            <div class="col-md-3 col-sm-6">
+                            <div class="col-md-3 col-sm-6" th:each = "room: ${rooms}">
                                 <a href="detail.html" class="item small">
                                     <div class="image">
                                         <div class="info">
-                                            <figure class="label label-info">Hotel</figure>
+                                            <figure class="label label-info" th:text = "${room.roomType}">Hotel</figure>
                                             <aside>
-                                                <h3>Celestial Hotel & Spa</h3>
-                                                <figure class="location">Norway</figure>
+                                                <h3 th:text = "${room.houseName}">Celestial Hotel & Spa</h3>
+                                                <figure class="location" th:text = "${room.addressName+', '+room.wardName+', '+room.districtName+', '+room.provinceName}" >Norway</figure>
                                             </aside>
                                         </div>
                                         <div class="wrapper">
-                                            <div class="gallery">
-                                                <img src="/assets/img/items/01.jpg" alt="">
-                                            </div>
+<!--                                            <div class="gallery">-->
+                                                <img src="/assets/img/items/01.jpg"  alt="">
+<!--                                            </div>-->
                                         </div>
                                     </div>
                                     <!--end image-->
@@ -525,33 +516,9 @@
                                             <span><i class="fa fa-star"></i>8.9</span>
                                             <span><i class="fa fa-square-o"></i>250</span>
                                         </div>
-                                    </div>
-                                    <!--end description-->
-                                </a>
-                                <!--end item-->
-                            </div>
-                            <!--end col-md-3-->
-                            <div class="col-md-3 col-sm-6">
-                                <a href="detail.html" class="item small">
-                                    <div class="image">
-                                        <div class="info">
-                                            <figure class="label label-info">Apartment</figure>
-                                            <aside>
-                                                <h3>Spring Hotel</h3>
-                                                <figure class="location">Austria</figure>
-                                            </aside>
-                                        </div>
-                                        <div class="wrapper">
-                                            <div class="gallery">
-                                                <img src="/assets/img/items/05.jpg" alt="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--end image-->
-                                    <div class="description">
                                         <div class="meta">
-                                            <span><i class="fa fa-star"></i>8.2</span>
-                                            <span><i class="fa fa-square-o"></i>82</span>
+                                            <span><i class="fa fa-star" th:text = "${room.price}"></i></span>
+
                                         </div>
                                     </div>
                                     <!--end description-->
@@ -559,61 +526,89 @@
                                 <!--end item-->
                             </div>
                             <!--end col-md-3-->
-                            <div class="col-md-3 col-sm-6">
-                                <a href="detail.html" class="item small">
-                                    <div class="image">
-                                        <div class="info">
-                                            <figure class="label label-info">Cottage</figure>
-                                            <aside>
-                                                <h3>Rose Brook Resort</h3>
-                                                <figure class="location">France</figure>
-                                            </aside>
-                                        </div>
-                                        <div class="wrapper">
-                                            <div class="gallery">
-                                                <img src="assets/img/items/07.jpg" alt="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--end image-->
-                                    <div class="description">
-                                        <div class="meta">
-                                            <span><i class="fa fa-star"></i>9.4</span>
-                                            <span><i class="fa fa-bed"></i>348</span>
-                                        </div>
-                                    </div>
-                                    <!--end description-->
-                                </a>
-                                <!--end item-->
-                            </div>
-                            <!--end col-md-3-->
-                            <div class="col-md-3 col-sm-6">
-                                <a href="detail.html" class="item small">
-                                    <div class="image">
-                                        <div class="info">
-                                            <figure class="label label-info">Hotel</figure>
-                                            <aside>
-                                                <h3>Secret Angel Hotel</h3>
-                                                <figure class="location">Switzerland</figure>
-                                            </aside>
-                                        </div>
-                                        <div class="wrapper">
-                                            <div class="gallery">
-                                                <img src="assets/img/items/08.jpg" alt="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--end image-->
-                                    <div class="description">
-                                        <div class="meta">
-                                            <span><i class="fa fa-star"></i>9.8</span>
-                                            <span><i class="fa fa-bed"></i>37</span>
-                                        </div>
-                                    </div>
-                                    <!--end description-->
-                                </a>
-                                <!--end item-->
-                            </div>
+<!--                            <div class="col-md-3 col-sm-6">-->
+<!--                                <a href="detail.html" class="item small">-->
+<!--                                    <div class="image">-->
+<!--                                        <div class="info">-->
+<!--                                            <figure class="label label-info">Apartment</figure>-->
+<!--                                            <aside>-->
+<!--                                                <h3>Spring Hotel</h3>-->
+<!--                                                <figure class="location">Austria</figure>-->
+<!--                                            </aside>-->
+<!--                                        </div>-->
+<!--                                        <div class="wrapper">-->
+<!--                                            <div class="gallery">-->
+<!--                                                <img src="/assets/img/items/05.jpg" alt="">-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    &lt;!&ndash;end image&ndash;&gt;-->
+<!--                                    <div class="description">-->
+<!--                                        <div class="meta">-->
+<!--                                            <span><i class="fa fa-star"></i>8.2</span>-->
+<!--                                            <span><i class="fa fa-square-o"></i>82</span>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    &lt;!&ndash;end description&ndash;&gt;-->
+<!--                                </a>-->
+<!--                                &lt;!&ndash;end item&ndash;&gt;-->
+<!--                            </div>-->
+<!--                            &lt;!&ndash;end col-md-3&ndash;&gt;-->
+<!--                            <div class="col-md-3 col-sm-6">-->
+<!--                                <a href="detail.html" class="item small">-->
+<!--                                    <div class="image">-->
+<!--                                        <div class="info">-->
+<!--                                            <figure class="label label-info">Cottage</figure>-->
+<!--                                            <aside>-->
+<!--                                                <h3>Rose Brook Resort</h3>-->
+<!--                                                <figure class="location">France</figure>-->
+<!--                                            </aside>-->
+<!--                                        </div>-->
+<!--                                        <div class="wrapper">-->
+<!--                                            <div class="gallery">-->
+<!--                                                <img src="assets/img/items/07.jpg" alt="">-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    &lt;!&ndash;end image&ndash;&gt;-->
+<!--                                    <div class="description">-->
+<!--                                        <div class="meta">-->
+<!--                                            <span><i class="fa fa-star"></i>9.4</span>-->
+<!--                                            <span><i class="fa fa-bed"></i>348</span>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    &lt;!&ndash;end description&ndash;&gt;-->
+<!--                                </a>-->
+<!--                                &lt;!&ndash;end item&ndash;&gt;-->
+<!--                            </div>-->
+<!--                            &lt;!&ndash;end col-md-3&ndash;&gt;-->
+<!--                            <div class="col-md-3 col-sm-6">-->
+<!--                                <a href="detail.html" class="item small">-->
+<!--                                    <div class="image">-->
+<!--                                        <div class="info">-->
+<!--                                            <figure class="label label-info">Hotel</figure>-->
+<!--                                            <aside>-->
+<!--                                                <h3>Secret Angel Hotel</h3>-->
+<!--                                                <figure class="location">Switzerland</figure>-->
+<!--                                            </aside>-->
+<!--                                        </div>-->
+<!--                                        <div class="wrapper">-->
+<!--                                            <div class="gallery">-->
+<!--                                                <img src="assets/img/items/08.jpg" alt="">-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    &lt;!&ndash;end image&ndash;&gt;-->
+<!--                                    <div class="description">-->
+<!--                                        <div class="meta">-->
+<!--                                            <span><i class="fa fa-star"></i>9.8</span>-->
+<!--                                            <span><i class="fa fa-bed"></i>37</span>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    &lt;!&ndash;end description&ndash;&gt;-->
+<!--                                </a>-->
+<!--                                &lt;!&ndash;end item&ndash;&gt;-->
+<!--                            </div>-->
                             <!--end col-md-3-->
 
 <!--                            <div class="col-md-3 col-sm-6">-->
@@ -805,66 +800,60 @@
                     <h2 class="center">Có thể bạn muốn xem</h2>
                 </div>
                 <!--end title-->
-                <div class="gallery-carousel">
-                    <div class="gallery-item">
-                        <a href="blog-detail.html"><div class="image"><img src="assets/img/items/tip-01.jpg" alt=""></div></a>
+                <div class="gallery-carousel" >
+                    <div class="gallery-item" th:each = "slider: ${sliders}">
+                        <a href="blog-detail.html"><div class="image"><img src="" alt=""></div></a>
                         <div class="description">
-                            <a href="blog-detail.html"><h3>Silver Peak Resort</h3></a>
-                            <figure>Austria</figure>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum luctus posuere mattis. Donec </p>
-                            <a href="blog-detail.html" class="btn btn-default btn-small btn-framed btn-rounded">More</a>
+<!--                            <a href=""><h3 th:text = "${slider.content}"></h3></a>-->
+<!--                            <figure th:text = "${slider.content}">Austria</figure>-->
+                            <p th:text = "${slider.content}"></p>
+                            <a href="" class="btn btn-default btn-small btn-framed btn-rounded">More</a>
                         </div>
                     </div>
                     <!--end gallery-item-->
-                    <div class="gallery-item">
-                        <a href="blog-detail.html"><div class="image"><img src="assets/img/items/tip-02.jpg" alt=""></div></a>
-                        <div class="description">
-                            <a href="blog-detail.html"><h3>Silver Peak Resort</h3></a>
-                            <figure>Austria</figure>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum luctus posuere mattis. Donec </p>
-                            <a href="blog-detail.html" class="btn btn-default btn-small btn-framed btn-rounded">More</a>
-                        </div>
-                    </div>
-                    <!--end gallery-item-->
-                    <div class="gallery-item">
-                        <a href="blog-detail.html"><div class="image"><img src="assets/img/items/tip-03.jpg" alt=""></div></a>
-                        <div class="description">
-                            <a href="blog-detail.html"><h3>Silver Peak Resort</h3></a>
-                            <figure>Austria</figure>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum luctus posuere mattis. Donec </p>
-                            <a href="blog-detail.html" class="btn btn-default btn-small btn-framed btn-rounded">More</a>
-                        </div>
-                    </div>
-                    <!--end gallery-item-->
-                    <div class="gallery-item">
-                        <a href="blog-detail.html"><div class="image"><img src="assets/img/items/tip-01.jpg" alt=""></div></a>
-                        <div class="description">
-                            <a href="blog-detail.html"><h3>Silver Peak Resort</h3></a>
-                            <figure>Austria</figure>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum luctus posuere mattis. Donec </p>
-                            <a href="blog-detail.html" class="btn btn-default btn-small btn-framed btn-rounded">More</a>
-                        </div>
-                    </div>
-                    <!--end gallery-item-->
-                    <div class="gallery-item">
-                        <a href="blog-detail.html"><div class="image"><img src="assets/img/items/tip-02.jpg" alt=""></div></a>
-                        <div class="description">
-                            <a href="blog-detail.html"><h3>Silver Peak Resort</h3></a>
-                            <figure>Austria</figure>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum luctus posuere mattis. Donec </p>
-                            <a href="blog-detail.html" class="btn btn-default btn-small btn-framed btn-rounded">More</a>
-                        </div>
-                    </div>
-                    <!--end gallery-item-->
-                    <div class="gallery-item">
-                        <a href="blog-detail.html"><div class="image"><img src="assets/img/items/tip-03.jpg" alt=""></div></a>
-                        <div class="description">
-                            <a href="blog-detail.html"><h3>Silver Peak Resort</h3></a>
-                            <figure>Austria</figure>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum luctus posuere mattis. Donec </p>
-                            <a href="blog-detail.html" class="btn btn-default btn-small btn-framed btn-rounded">More</a>
-                        </div>
-                    </div>
+<!--                    <div class="gallery-item">-->
+<!--                        -->
+<!--                    </div>-->
+<!--                    &lt;!&ndash;end gallery-item&ndash;&gt;-->
+<!--                    <div class="gallery-item">-->
+<!--                        <a href="blog-detail.html"><div class="image"><img src="assets/img/items/tip-03.jpg" alt=""></div></a>-->
+<!--                        <div class="description">-->
+<!--                            <a href="blog-detail.html"><h3>Silver Peak Resort</h3></a>-->
+<!--                            <figure>Austria</figure>-->
+<!--                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum luctus posuere mattis. Donec </p>-->
+<!--                            <a href="blog-detail.html" class="btn btn-default btn-small btn-framed btn-rounded">More</a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    &lt;!&ndash;end gallery-item&ndash;&gt;-->
+<!--                    <div class="gallery-item">-->
+<!--                        <a href="blog-detail.html"><div class="image"><img src="assets/img/items/tip-01.jpg" alt=""></div></a>-->
+<!--                        <div class="description">-->
+<!--                            <a href="blog-detail.html"><h3>Silver Peak Resort</h3></a>-->
+<!--                            <figure>Austria</figure>-->
+<!--                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum luctus posuere mattis. Donec </p>-->
+<!--                            <a href="blog-detail.html" class="btn btn-default btn-small btn-framed btn-rounded">More</a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    &lt;!&ndash;end gallery-item&ndash;&gt;-->
+<!--                    <div class="gallery-item">-->
+<!--                        <a href="blog-detail.html"><div class="image"><img src="assets/img/items/tip-02.jpg" alt=""></div></a>-->
+<!--                        <div class="description">-->
+<!--                            <a href="blog-detail.html"><h3>Silver Peak Resort</h3></a>-->
+<!--                            <figure>Austria</figure>-->
+<!--                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum luctus posuere mattis. Donec </p>-->
+<!--                            <a href="blog-detail.html" class="btn btn-default btn-small btn-framed btn-rounded">More</a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    &lt;!&ndash;end gallery-item&ndash;&gt;-->
+<!--                    <div class="gallery-item">-->
+<!--                        <a href="blog-detail.html"><div class="image"><img src="assets/img/items/tip-03.jpg" alt=""></div></a>-->
+<!--                        <div class="description">-->
+<!--                            <a href="blog-detail.html"><h3>Silver Peak Resort</h3></a>-->
+<!--                            <figure>Austria</figure>-->
+<!--                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum luctus posuere mattis. Donec </p>-->
+<!--                            <a href="blog-detail.html" class="btn btn-default btn-small btn-framed btn-rounded">More</a>-->
+<!--                        </div>-->
+<!--                    </div>-->
                     <!--end gallery-item-->
                 </div>
                 <!--end gallery-carousel-->
@@ -896,140 +885,86 @@
 <!--                <div class="bg color default"></div>-->
 <!--            </div>-->
 <!--        </div>-->
-<!--        &lt;!&ndash;end block&ndash;&gt;-->
+        <!--end block-->
 
-<!--        <div class="block">-->
-<!--            <div class="container">-->
-<!--                <div class="title">-->
-<!--                    <h2>Our Picks</h2>-->
-<!--                </div>-->
-<!--                &lt;!&ndash;end title&ndash;&gt;-->
-<!--                <div class="grid masonry">-->
+        <div class="block">
+            <div class="container">
+                <div class="title">
+                    <h2>Khu vực nổi bật</h2>
+                </div>
+                <!--end title-->
+                <div class="grid masonry">
 <!--                    <div class="grid-item">-->
 <!--                        <a href="#">-->
-<!--                            <h3>Switzerland</h3>-->
+<!--                            <h3>Thạch Hòa</h3>-->
 <!--                            <img src="assets/img/items/pick-01.jpg" alt="">-->
 <!--                        </a>-->
 <!--                    </div>-->
-<!--                    <div class="grid-item">-->
-<!--                        <a href="#">-->
-<!--                            <h3>Prague</h3>-->
-<!--                            <img src="assets/img/items/pick-02.jpg" alt="">-->
-<!--                        </a>-->
-<!--                    </div>-->
+                    <div class="grid-item">
+                        <a href="#">
+                            <h3>Tân Xã</h3>
+                            <img src="assets/img/items/pick-02.jpg" alt="">
+                        </a>
+                    </div>
+                    <div class="grid-item grid-item--width2">
+                        <a href="#">
+                            <h3>Thạch Hòa</h3>
+                            <img src="assets/img/items/pick-03.jpg" alt="">
+                        </a>
+                    </div>
 <!--                    <div class="grid-item grid-item&#45;&#45;width2">-->
 <!--                        <a href="#">-->
-<!--                            <h3>Norway</h3>-->
-<!--                            <img src="assets/img/items/pick-03.jpg" alt="">-->
-<!--                        </a>-->
-<!--                    </div>-->
-<!--                    <div class="grid-item grid-item&#45;&#45;width2">-->
-<!--                        <a href="#">-->
-<!--                            <h3>Machu Picchu</h3>-->
+<!--                            <h3></h3>-->
 <!--                            <img src="assets/img/items/pick-04.jpg" alt="">-->
 <!--                        </a>-->
 <!--                    </div>-->
-<!--                    <div class="grid-item">-->
-<!--                        <a href="#">-->
-<!--                            <h3>Tuscany</h3>-->
-<!--                            <img src="assets/img/items/pick-05.jpg" alt="">-->
-<!--                        </a>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        &lt;!&ndash;end block&ndash;&gt;-->
+                    <div class="grid-item">
+                        <a href="#">
+                            <h3>Tuscany</h3>
+                            <img src="assets/img/items/pick-05.jpg" alt="">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end block-->
 
-<!--        <div class="block">-->
-<!--            <div class="container">-->
-<!--                <div class="title">-->
-<!--                    <h2>Favorite Destinations</h2>-->
-<!--                </div>-->
-<!--                &lt;!&ndash;end title&ndash;&gt;-->
-<!--               <ul class="list-links">-->
-<!--                   <li><a href="#">Tenerife<span>23</span></a></li>-->
-<!--                   <li><a href="#">Al Madinah<span>12</span></a></li>-->
-<!--                   <li><a href="#">Koh Samui<span>76</span></a></li>-->
-<!--                   <li><a href="#">Cotswolds<span>52</span></a></li>-->
-<!--                   <li><a href="#">Lake District<span>63</span></a></li>-->
-<!--                   <li><a href="#">Cornwall<span>15</span></a></li>-->
-<!--                   <li><a href="#">Algarve<span>19</span></a></li>-->
-<!--                   <li><a href="#">Ibiza<span>90</span></a></li>-->
-<!--                   <li><a href="#">New Forest<span>57</span></a></li>-->
-<!--                   <li><a href="#">Phuket Province<span>82</span></a></li>-->
-<!--                   <li><a href="#">Loch Lomond<span>24</span></a></li>-->
-<!--                   <li><a href="#">Gran Canaria<span>23</span></a></li>-->
-<!--                   <li><a href="#">Majorca<span>33</span></a></li>-->
-<!--                   <li><a href="#">Isle of Wight<span>74</span></a></li>-->
-<!--                   <li><a href="#">Jersey<span>51</span></a></li>-->
-<!--                   <li><a href="#">Isle of Man<span>23</span></a></li>-->
-<!--                   <li><a href="#">Santoríni<span>36</span></a></li>-->
-<!--                   <li><a href="#">Mykonos<span>55</span></a></li>-->
-<!--                   <li><a href="#">Lanzarote<span>78</span></a></li>-->
-<!--                   <li><a href="#">Bali<span>17</span></a></li>-->
-<!--               </ul>-->
-<!--                &lt;!&ndash;end list-links&ndash;&gt;-->
-<!--            </div>-->
-<!--            &lt;!&ndash;end container&ndash;&gt;-->
-<!--        </div>-->
+        <div class="block">
+            <div class="container">
+                <div class="title">
+                    <h2>Thuê phòng trọ</h2>
+                </div>
+                <!--end title-->
+               <ul class="list-links">
+                   <li><a href="#">Tenerife<span>23</span></a></li>
+                   <li><a href="#">Al Madinah<span>12</span></a></li>
+                   <li><a href="#">Koh Samui<span>76</span></a></li>
+                   <li><a href="#">Cotswolds<span>52</span></a></li>
+
+               </ul>
+                <!--end list-links-->
+            </div>
+            <!--end container-->
+        </div>
         <!--end block-->
 
         <div class="container">
             <div class="block">
                 <div class="title">
                     <h2>Reviews</h2>
-                    <div class="row">
-                        <div class="col-md-3 col-sm-3">
+                    <div class="row" >
+                        <div class="col-md-3 col-sm-3" th:each = "feedback : ${feedbacks}">
                             <div class="review-single">
-                                <a href="detail.html#reviews"><h3>White Doe Inn</h3></a>
-                                <figure class="location">Austria</figure>
-                                <div class="rating"><i class="fa fa-star"></i>8.9</div>
-                                <p>Donec bibendum at neque pellentesque viverra. Fusce rhoncus elementum commodo.
-                                    In ac nibh nec turpis finibus eleme
+                                <a href="" th:text = "${feedback.houseName}"><h3>White Doe Inn</h3></a>
+                                <figure class="location" th:text = "${feedback.addressName+', '+feedback.wardName+', '+feedback.districtName+', '+feedback.provinceName}"></figure>
+                                <div class="rating"><i class="fa fa-user" th:text = "${' '+feedback.lastName+' '+feedback.firstName}"></i></div>
+                                <p th:text = "${feedback.content}">
                                 </p>
                                 <a href="detail.html#reviews" class="link icon">Full Review<i class="arrow_right"></i></a>
                             </div>
                             <!--end review-->
                         </div>
-                        <!--end col-md-3-->
-                        <div class="col-md-3 col-sm-3">
-                            <div class="review-single">
-                                <a href="detail.html#reviews"><h3>Mountain Valley Motel</h3></a>
-                                <figure class="location">Scotland</figure>
-                                <div class="rating"><i class="fa fa-star"></i>9.3</div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae odio ac dui
-                                    fermentum tempus. Phasellus sit amet
-                                </p>
-                                <a href="detail.html#reviews" class="link icon">Full Review<i class="arrow_right"></i></a>
-                            </div>
-                            <!--end review-->
-                        </div>
-                        <!--end col-md-3-->
-                        <div class="col-md-3 col-sm-3">
-                            <div class="review-single">
-                                <a href="detail.html#reviews"><h3>Camp Shoresh</h3></a>
-                                <figure class="location">France</figure>
-                                <div class="rating"><i class="fa fa-star"></i>9.6</div>
-                                <p>Sed posuere nunc sit amet arcu rutrum porttitor. Quisque ut ante lacus. Fusce a
-                                    lacus fermentum ante iaculis convallis
-                                </p>
-                                <a href="detail.html#reviews" class="link icon">Full Review<i class="arrow_right"></i></a>
-                            </div>
-                            <!--end review-->
-                        </div>
-                        <!--end col-md-3-->
-                        <div class="col-md-3 col-sm-3">
-                            <div class="review-single">
-                                <a href="detail.html#reviews"><h3>Primal Court Resort</h3></a>
-                                <figure class="location">Switzerland</figure>
-                                <div class="rating"><i class="fa fa-star"></i>9.4</div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae odio ac dui fermentum tempus.
-                                </p>
-                                <a href="detail.html#reviews" class="link icon">Full Review<i class="arrow_right"></i></a>
-                            </div>
-                            <!--end review-->
-                        </div>
-                        <!--end col-md-3-->
+
                     </div>
                     <!--end row-->
                 </div>
@@ -1114,8 +1049,8 @@
 <![endif]-->
 
 <script>
-    var _latitude = 48.47292127;
-    var _longitude = 4.28672791;
+    var _latitude = 21.013583;
+    var _longitude = 105.526772;
     var element = "map-item";
     var useAjax = true;
     bigMap(_latitude,_longitude, element, useAjax);
