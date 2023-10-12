@@ -57,14 +57,13 @@ public class HouseServiceImpl implements HouseService{
                 filteredListB.add(houseHomeVo);
             }
         }
-
-//        list.addAll(filteredListB);
-        for(int i=0;i<4;i++){
+        if(filteredListB.size()<8) return filteredListB;
+        else for(int i=0;i<8;i++){
             list.add(filteredListB.get(i));
-//            list.add(houseRepository.viewTop4Home().get(i));
+//
         }
-
         return list;
+
     }
 
     @Override
@@ -78,13 +77,13 @@ public class HouseServiceImpl implements HouseService{
     }
 
     @Override
-    public List<HouseHomeVo> search(String location, List<String> typeHouse) {
+    public List<HouseHomeVo> search(String location, List<String> typeHouse, List<String> services) {
         List<HouseHomeVo> list = new ArrayList<>();
 
         Set<Integer> set = new HashSet<>();
         List<HouseHomeVo> filteredListB = new ArrayList<>();
 
-        for(HouseHomeVo houseHomeVo: houseRepository.viewTop4HomeSearch(location, typeHouse)){
+        for(HouseHomeVo houseHomeVo: houseRepository.viewTop4HomeSearch(location, typeHouse, services)){
             int houseId = houseHomeVo.getHouseId();
             if(!set.contains(houseId)){
                 set.add(houseId);
@@ -93,8 +92,8 @@ public class HouseServiceImpl implements HouseService{
         }
 
 //        list.addAll(filteredListB);
-        if(filteredListB.size()<4) return filteredListB;
-        else for(int i=0;i<4;i++){
+        if(filteredListB.size()<8) return filteredListB;
+        else for(int i=0;i<8;i++){
             list.add(filteredListB.get(i));
 //            list.add(houseRepository.viewTop4Home().get(i));
         }

@@ -17,7 +17,7 @@ public interface HouseService {
 
     List<ServiceDetailEntity> getHouseService();
 
-    List<HouseHomeVo> search(String location, List<String> typeHouse);
+    List<HouseHomeVo> search(String location, List<String> typeHouse, List<String> services);
 
 
 
