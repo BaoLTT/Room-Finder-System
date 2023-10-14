@@ -14,8 +14,7 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserReponsitory userRepository;
-    @Autowired
-    private UserService userService;
+
 
     @Override
     public void saveUser(UserEntity user) {
@@ -32,6 +31,10 @@ public class UserServiceImpl implements UserService {
         userRepository.save(userDto);
     }
 
+    @Override
+    public UserEntity getUserByRoomId(int roomId) {
+        return userRepository.findUserByRoomId(roomId);
+    }
 
 
 }

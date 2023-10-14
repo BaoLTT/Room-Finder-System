@@ -47,4 +47,7 @@ public interface HouseReponsitory extends JpaRepository<HousesEntity,Integer> {
     @Query("SELECT new com.roomfindingsystem.vo.HouseImageLink(i.imageLink) FROM HouseImagesEntity i join HousesEntity h  on i.houseId = h.houseId where h.houseId=?1")
     List<HouseImageLink> getByHouseImageid(int houseId);
 
+    @Query("SELECT h from HousesEntity h join RoomEntity r on r.houseId = h.houseId where r.roomId=:roomid")
+    HousesEntity findHouseByRoomId(int roomid);
+
 }

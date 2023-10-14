@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+
+<html lang="en-US" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="ThemeStarz">
+    <link href="/assets/fonts/font-awesome.css" rel="stylesheet" type="text/css">
+    <link href="/assets/fonts/elegant-fonts.css" rel="stylesheet" type="text/css">
+    <link href="/assets/fonts/weather-icons.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700,900,400italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/zabuto_calendar.min.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/owl.carousel.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/jquery.datepick.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <title>Accommodo - Accommodation HTML Template Full of Useful Features</title>
+
+
+
+
+</head>
+<style>
+    .mySlides {display:none;}
+    .infor{
+        margin:30px;
+    }
+</style>
+<body>
+<div class="page-wrapper">
+    <div id="page-header">
+        <header>
+            <div class="container">
+                <div class="secondary-nav">
+                    <div class="nav-trigger"><a data-toggle="collapse" href="#secondary-nav" aria-expanded="false" aria-controls="secondary-nav"><i class="fa fa-user"></i></a></div>
+                    <div id="secondary-nav">
+                        <nav>
+                            <div class="left opacity-60">
+                                <a href=""><i class="fa fa-phone"></i>+1 781-903-1047</a>
+                                <a href="mailto:hello@example.com"><i class="fa fa-envelope"></i>hello@example.com</a>
+                            </div>
+                            <!--end left-->
+                            <div class="right">
+                                <div class="element">
+                                    <select>
+                                        <option>$</option>
+                                        <option>€</option>
+                                    </select>
+                                </div>
+                                <!--end element-->
+                                <div class="element">
+                                    <a href="#tab-sign-in" data-toggle="modal" data-tab="true" data-target="#sign-in-register-modal">Sign In</a>
+                                </div>
+                                <!--end element-->
+                                <div class="element">
+                                    <a href="#tab-register" data-toggle="modal" data-tab="true" data-target="#sign-in-register-modal">Register</a>
+                                </div>
+                                <!--end element-->
+                                <div class="element">
+                                    <select>
+                                        <option>EN</option>
+                                        <option>DE</option>
+                                        <option>RU</option>
+                                        <option>ES</option>
+                                    </select>
+                                </div>
+                                <!--end element-->
+                            </div>
+                            <!--end right-->
+                        </nav>
+                    </div>
+                </div>
+                <!--end secondary-nav-->
+            </div>
+            <!--end container-->
+            <hr>
+            <div class="container">
+                <div class="primary-nav">
+                    <div class="left">
+                        <a href="index.html" id="brand"><img src="/assets/img/logo.png" alt=""></a>
+                        <a class="nav-trigger" data-toggle="collapse" href="#primary-nav" aria-expanded="false" aria-controls="primary-nav"><i class="fa fa-navicon"></i></a>
+                    </div>
+                    <!--end left-->
+                    <div class="right" >
+                        <nav id="primary-nav">
+                            <ul>
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="about-us.html">About Us</a></li>
+                                <li>
+                                    <a href="#" class="has-child">Listing</a>
+                                    <ul class="child-nav">
+                                        <li><a href="listing.html">List Listing</a></li>
+                                        <li><a href="listing-matrix.html">Matrix Listing</a></li>
+                                    </ul>
+                                </li>
+                                <li class="active">
+                                    <a href="#" class="has-child">Pages</a>
+                                    <ul class="child-nav">
+                                        <li><a href="404.html">404</a></li>
+                                        <li>
+                                            <a href="#" class="has-child">Admin</a>
+                                            <ul class="child-nav">
+                                                <li><a href="edit.html">Edit Accommodation</a></li>
+                                                <li><a href="my-accommodations.html">My Accommodations</a></li>
+                                                <li><a href="profile.html">Profile</a></li>
+                                                <li><a href="reservations.html">Reservations</a></li>
+                                                <li><a href="reviews.html">Reviews</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="about-us.html">About Us</a></li>
+                                        <li><a href="detail.html">Accommodation Detail</a></li>
+                                        <li><a href="become-an-affiliate.html">Become an Affiliate</a></li>
+                                        <li>
+                                            <a href="#" class="has-child">Blog</a>
+                                            <ul class="child-nav">
+                                                <li><a href="blog.html">Blog Listing</a></li>
+                                                <li><a href="blog-detail.html">Blog Detail</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="faq.html">FAQ</a></li>
+                                        <li><a href="grid.html">Grid</a></li>
+                                        <li><a href="sticky-footer.html">Sticky Footer</a></li>
+                                        <li><a href="terms-and-conditions.html">Terms & Conditions</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="contact-us.html">Contact Us</a></li>
+                                <li class="submit"><a href="submit.html"><span>Submit</span><i data-toggle="tooltip" data-placement="top" title="Submit"><img src="/assets/img/plus.png" alt=""></i></a></li>
+                            </ul>
+                        </nav>
+                        <!--end nav-->
+                    </div>
+                    <!--end right-->
+                </div>
+                <!--end primary-nav-->
+            </div>
+            <!--end container-->
+        </header>
+        <!--end header-->
+    </div>
+    <!--end page-header-->
+
+    <div id="page-content">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">House</a></li>
+                <li class="active">Room</li>
+            </ol>
+            <!--end breadcrumb-->
+
+
+                    <div class="quick-navigation" data-fixed-after-touch="">
+<!--                        <div class="wrapper">-->
+<!--                            <ul>-->
+<!--                                <li><a href="#description" class="scroll">Description</a></li>-->
+<!--                                <li><a href="#map" class="scroll">Map</a></li>-->
+<!--                                <li><a href="#facilities" class="scroll">Facilities</a></li>-->
+<!--                                <li><a href="#additional-information" class="scroll">Additional Information</a></li>-->
+<!--                                <li><a href="#reviews" class="scroll">Reviews</a>(23)</li>-->
+<!--                            </ul>-->
+<!--                        </div>-->
+                    </div>
+                    <div class="main-content">
+                        <div class="title">
+                            <div class="left">
+                                <h1 th:text="${room.getRoomName()}"></h1>
+                                <h1>-</h1>
+                                <h1 th:text="${house.getHouseName()}"></h1>
+
+
+<!--                                <h3><a href="#">Adress</a></h3>-->
+                            </div>
+                            <div class="right">
+                                <a href="#map" class="icon scroll"><i class="fa fa-map-marker"></i>See on the map</a>
+                            </div>
+                        </div>
+                        <!--end title-->
+<!--                        Add vong lap-->
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="w3-content w3-display-container" >
+                                    <div th:each="image: ${roomImages}">
+                                        <img class="mySlides" th:src="${image.getImageLink()}" style="width:100%">
+
+                                    </div>
+
+
+
+                                    <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+                                    <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
+                                </div>
+                            </div>
+                            <!--slider-->
+
+
+                            <div class="col-md-6">
+                                <h2>Thông tin:</h2>
+                                <p class="infor">
+                                    <text>Diện tích: </text>
+                                    <span th:text="${room.getArea()}"></span><text> m2</text>
+                                </p>
+<!--                                <p class="infor">-->
+<!--                                    <text>Giá tiền nước: </text>-->
+<!--                                    <span th:text="${room.getWaterPrice()}"></span><text> VNĐ/m3</text>-->
+<!--                                </p>-->
+<!--                                <p class="infor">-->
+<!--                                    <text>Giá tiền điện: </text>-->
+<!--                                    <span th:text="${room.getElectricPrice()}"></span><text> VNĐ/KWh</text>-->
+<!--                                </p>-->
+                                <p class="infor">
+                                    <text>Giá phòng: </text>
+                                    <span th:text="${room.getPrice()}"></span><text> VNĐ/tháng</text>
+                                </p>
+                                <p class="infor">
+                                    <text>Dịch vụ:</text>
+                                    <span th:each="service, iterStat : ${roomServices}">
+                                        <span th:text="${service.getServiceName()}"></span>
+                                        <span th:if="${!iterStat.last}">,</span>
+                                    </span>
+                                </p>
+                                <p class="infor">
+                                    <text>Loại phòng: </text>
+                                    <text>Tối đa </text><span th:text="${room.getRoomType()}"></span><text> người</text>
+                                </p>
+                                <p class="infor">
+                                    <text>Chủ nhà trọ: </text>
+                                    <span th:text="${user.getFirstName()}"></span><span> </span><span th:text="${user.getLastName()}"></span>
+                                </p>
+                                <p class="infor">
+                                    <text>Liên hệ: </text>
+                                    <span th:text="${user.getPhone()}"></span>
+                                </p>
+
+
+                            </div>
+                        </div>
+
+
+<!-- end slider-->
+
+
+                        <h2 style="margin-top: 30px">Description</h2>
+                        <span th:text="${room.getDescription()}" style="font-size: 12px; font-style: italic"></span>
+
+
+                        <h2>Review</h2>
+                            <!--end info-->
+                        </section>
+
+
+                    <!--end main-content-->
+                </div>
+                <!--end col-md-9-->
+
+            <!--end row-->
+        </div>
+        <!--end container-->
+    </div>
+
+
+    <!--end page-content-->
+
+    <footer id="page-footer">
+        <!--end row-one-->
+        <div class="row-two clearfix">
+            <div class="container">
+                <div class="copyright pull-left">(C) 2016 Your Company, All Rights Reserved</div>
+                <div class="footer-nav pull-right">
+                    <a href="index.html">Home</a>
+                    <a href="about-us.html">About Us</a>
+                    <a href="listing.html">Listing</a>
+                    <a href="contact-us.html">Contact Us</a>
+                </div>
+            </div>
+            <div class="bg-transfer"><img src="/assets/img/footer-bg.jpg" alt=""></div>
+        </div>
+        <!--end row-two-->
+    </footer>
+    <!--end page-footer-->
+</div>
+<!--end page-wrapper-->
+<a href="#page-header" class="to-top scroll" data-show-after-scroll="600"><i class="arrow_up"></i></a>
+
+
+<div class="message-popup bottom-left" data-show-after-time="2000" data-close-after-time="5000">
+    <div class="close"><i class="fa fa-times"></i></div>
+    <p>15 people are watching this accommodation.</p>
+</div>
+
+<div class="message-popup bottom-left featured" data-show-after-time="4000" data-close-after-time="5000">
+    <div class="close"><i class="fa fa-times"></i></div>
+    <div class="title">Just Booked!</div>
+    <p>Hurry up! This accommodation was just booked. Don’t miss the chance!</p>
+</div>
+
+<div class="message-popup bottom-left" data-show-after-time="5000" data-close-after-time="5000">
+    <div class="close"><i class="fa fa-times"></i></div>
+    <p>Last booking was from <strong>France</strong></p>
+</div>
+
+<script type="text/javascript" src="/assets/js/jquery-2.2.1.min.js"></script>
+<script type="text/javascript" src="/assets/js/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js"></script>
+<script type="text/javascript" src="/assets/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/assets/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/assets/js/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="/assets/js/icheck.min.js"></script>
+<script type="text/javascript" src="/assets/js/markerwithlabel_packed.js"></script>
+<script type="text/javascript" src="/assets/js/owl.carousel.js"></script>
+<script type="text/javascript" src="/assets/js/masonry.pkgd.min.js"></script>
+<script type="text/javascript" src="/assets/js/jquery.simpleWeather.min.js"></script>
+
+<script type="text/javascript" src="/assets/js/maps.js"></script>
+<script type="text/javascript" src="/assets/js/custom.js"></script>
+
+<!--[if lte IE 9]>
+<script src="/assets/js/ie.js"></script>
+
+<![endif]-->
+<script>
+    var slideIndex = 1;
+    showDivs(slideIndex);
+
+    function plusDivs(n) {
+        showDivs(slideIndex += n);
+
+
+    }
+    function formatCurrency(number) {
+        return number.toLocaleString('vi-VN');
+    }
+
+    function showDivs(n) {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        if (n > x.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = x.length}
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        x[slideIndex-1].style.display = "block";
+    }
+
+</script>
+
+<script>
+    var _latitude = 48.47292127;
+    var _longitude = 4.28672791;
+    var element = "map-item";
+    simpleMap(_latitude,_longitude, element);
+</script>
+
+</body>
