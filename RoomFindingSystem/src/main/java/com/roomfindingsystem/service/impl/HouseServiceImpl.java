@@ -50,5 +50,10 @@ public class HouseServiceImpl implements HouseService {
         return  houseResponsitory.getByHouseImageid(id);
     }
 
+    @Override
+    public HousesEntity getHouseByRoomId(int roomId) {
+        return houseResponsitory.findHouseByRoomId(roomId);
+    }
+
 
 }

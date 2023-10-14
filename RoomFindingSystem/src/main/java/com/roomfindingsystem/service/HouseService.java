@@ -20,4 +20,5 @@ public interface HouseService {
     Optional<HousesEntity> findHouseById(Integer id);
     List<HouseDto> getHouseDetail(int id);
     List<HouseImageLink> getImageById(int id);
+    HousesEntity getHouseByRoomId(int roomId);
 }

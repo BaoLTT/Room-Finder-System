@@ -13,4 +13,7 @@ public interface UserService {
     Optional<UserEntity> findByEmail(String email);
     void registerUser(UserDto userDto);
 
+    UserEntity getUserByRoomId(int roomId);
+
+
 }
