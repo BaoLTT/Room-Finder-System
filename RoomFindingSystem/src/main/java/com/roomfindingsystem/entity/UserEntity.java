@@ -40,7 +40,7 @@ public class UserEntity {
     @Basic
     @NotNull(message = "Sorry, Gender cannot be blank.!")
     @Column(name = "Gender")
-    private String gender;
+    private Boolean gender;
     @Basic
     @Size(min = 10,message = "Sorry,phone has 10 character!")
     @Pattern(regexp = "(84|0[3|5|7|8|9])+([0-9]{8})\\b", message = "example: 098 765 4321")
