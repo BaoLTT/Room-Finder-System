@@ -4,6 +4,7 @@ import com.roomfindingsystem.entity.HousesEntity;
 import com.roomfindingsystem.vo.HouseDto;
 import com.roomfindingsystem.vo.HouseImageLink;
 import com.roomfindingsystem.vo.HouseTypeVo;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,6 +14,8 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 @Repository("houseRepository")
+
+@SpringBootApplication
 public interface HouseReponsitory extends JpaRepository<HousesEntity,Integer> {
 
     @Query("select new com.roomfindingsystem.vo.HouseTypeVo(h.houseId, h.houseName, t.typeName, a.addressDetails, w.name, d.name, p.name, MIN(r.price), h.lastModifiedDate) from HousesEntity h " +

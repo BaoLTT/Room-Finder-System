@@ -6,9 +6,11 @@ import com.roomfindingsystem.entity.ServiceDetailEntity;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 @SpringBootApplication
 public interface RoomRepository extends CrudRepository<RoomEntity, Long> {
     @Query("SELECT r FROM RoomEntity r WHERE r.roomId = :roomId")

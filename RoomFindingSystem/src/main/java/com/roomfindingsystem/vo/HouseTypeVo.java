@@ -2,6 +2,7 @@ package com.roomfindingsystem.vo;
 
 import lombok.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Setter
@@ -26,7 +27,7 @@ import java.util.Date;
 
         Integer price;
 
-        Date last_modified_date;
+        LocalDate last_modified_date;
     }
 
 
