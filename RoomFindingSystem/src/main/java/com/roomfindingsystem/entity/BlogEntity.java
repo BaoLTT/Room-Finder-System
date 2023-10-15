@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.Objects;
 
 @Getter
@@ -35,11 +36,11 @@ public class BlogEntity {
 
     @Basic
     @Column(name = "Created_Date")
-    private Timestamp createdDate;
+    private LocalDate createdDate;
 
     @Basic
     @Column(name = "Last_Modified_Date")
-    private Timestamp lastModifiedDate;
+    private LocalDate lastModifiedDate;
 
     @Basic
     @Column(name = "UserID")

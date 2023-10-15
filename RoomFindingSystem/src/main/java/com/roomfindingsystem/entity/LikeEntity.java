@@ -2,6 +2,7 @@ package com.roomfindingsystem.entity;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
@@ -42,6 +43,18 @@ public class LikeEntity {
 
     public void setHouseId(int houseId) {
         this.houseId = houseId;
+    }
+
+    @Basic
+    @Column(name = "Created_Date")
+    private LocalDate createdDate;
+
+    public LocalDate getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(LocalDate createdDate) {
+        this.createdDate = createdDate;
     }
 
     @Basic
