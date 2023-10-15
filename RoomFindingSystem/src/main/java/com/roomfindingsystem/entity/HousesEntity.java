@@ -33,11 +33,6 @@ public class HousesEntity {
     private String description;
 
     @Basic
-    @Column(name = "Service_ID")
-    private Integer serviceId;
-
-
-    @Basic
     @Column(name = "Created_Date")
     private LocalDate createdDate;
 
@@ -76,11 +71,11 @@ public class HousesEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         HousesEntity that = (HousesEntity) o;
-        return houseId == that.houseId && addressId == that.addressId && typeHouseId == that.typeHouseId && userId == that.userId && Objects.equals(houseName, that.houseName) && Objects.equals(description, that.description) && Objects.equals(serviceId, that.serviceId) && Objects.equals(createdDate, that.createdDate) && Objects.equals(createdBy, that.createdBy) && Objects.equals(lastModifiedDate, that.lastModifiedDate) && Objects.equals(lastModifiedBy, that.lastModifiedBy);
+        return houseId == that.houseId && addressId == that.addressId && typeHouseId == that.typeHouseId && userId == that.userId && Objects.equals(houseName, that.houseName) && Objects.equals(description, that.description) && Objects.equals(createdDate, that.createdDate) && Objects.equals(createdBy, that.createdBy) && Objects.equals(lastModifiedDate, that.lastModifiedDate) && Objects.equals(lastModifiedBy, that.lastModifiedBy);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(houseId, houseName, description, serviceId, createdDate, createdBy, lastModifiedDate, lastModifiedBy, addressId, typeHouseId, userId);
+        return Objects.hash(houseId, houseName, description, createdDate, createdBy, lastModifiedDate, lastModifiedBy, addressId, typeHouseId, userId);
     }
 }
