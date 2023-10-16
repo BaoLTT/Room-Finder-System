@@ -19,10 +19,20 @@
         .mySlides {
             display: none;
         }
-    </style>
-    <style>
-        .mySlides {
-            display: none;
+
+        .round-image {
+            width: 50px; /* Đặt kích thước bất kỳ tùy theo nhu cầu của bạn */
+            height: 50px; /* Đặt kích thước bất kỳ tùy theo nhu cầu của bạn */
+            border-radius: 50%; /* Đặt bán kính bo góc thành 50% (hình tròn) */
+            overflow: hidden; /* Ẩn các phần nằm ngoài phạm vi của hình tròn */
+        }
+
+        .round-image img {
+            width: 100%; /* Đảm bảo bức ảnh luôn kích thước bằng với phần bọc */
+            height: auto; /* Để tỷ lệ khung hình không bị thay đổi */
+        }
+        h4{
+            font-weight: bold
         }
     </style>
 
@@ -83,7 +93,7 @@
             <div class="container">
                 <div class="primary-nav">
                     <div class="left">
-<!--                        <a href="index.html" id="brand"><img src="assets/img/logo.png" alt=""></a>-->
+                        <!--                        <a href="index.html" id="brand"><img src="assets/img/logo.png" alt=""></a>-->
                         <a class="nav-trigger" data-toggle="collapse" href="#primary-nav" aria-expanded="false"
                            aria-controls="primary-nav"><i class="fa fa-navicon"></i></a>
                     </div>
@@ -305,7 +315,7 @@
                             <!-- Carousel container -->
                             <section id="gallery" th:each="HousesImages : ${HousesImages}">
                                 <div class="gallery-detail" >
-<!--                                    <div class="ribbon"><div class="offer-number">20%</div><figure>Off Today!</figure></div>-->
+                                    <!--                                    <div class="ribbon"><div class="offer-number">20%</div><figure>Off Today!</figure></div>-->
                                     <div class="one-item-carousel">
                                         <div class="image" >
                                             <a href="#reviews" class="review scroll">
@@ -326,7 +336,7 @@
                                     </div>
                                 </div>
                             </section>
-<!--                            end title-->
+                            <!--                            end title-->
 
                         </div>
                         <h2 th:text="${HousesEntity.houseName}">Description</h2>
@@ -629,127 +639,141 @@
                         </section>
                         <section id="reviews">
                             <div class="title">
-                                <h2 class="pull-left">Reviews</h2>
-                                <a href="#write-a-review" class="btn btn-primary btn-rounded pull-right scroll">Write a
-                                    Review</a>
+                                <h2 class="pull-left">Đánh giá</h2>
+                                <a href="#write-a-review" class="btn btn-primary btn-rounded pull-right scroll">Viết đánh giá</a>
                             </div>
-                            <h3>Overall Score</h3>
-                            <ul class="rating-score">
-                                <li class="overall"><i class="fa fa-star"></i>9.9</li>
-                                <li><span>9.6</span>
-                                    <figure>Cleanliness</figure>
-                                </li>
-                                <li><span>10</span>
-                                    <figure>Comfort</figure>
-                                </li>
-                                <li><span>9.4</span>
-                                    <figure>Location</figure>
-                                </li>
-                                <li><span>9.8</span>
-                                    <figure>Facilities</figure>
-                                </li>
-                                <li><span>10</span>
-                                    <figure>Staff</figure>
-                                </li>
-                                <li><span>10</span>
-                                    <figure>Value for money</figure>
-                                </li>
-                            </ul>
+                            <!--                            <h3>Overall Score</h3>-->
+                            <!--                            <ul class="rating-score">-->
+                            <!--                                <li class="overall"><i class="fa fa-star"></i>9.9</li>-->
+                            <!--                                <li><span>9.6</span>-->
+                            <!--                                    <figure>Cleanliness</figure>-->
+                            <!--                                </li>-->
+                            <!--                                <li><span>10</span>-->
+                            <!--                                    <figure>Comfort</figure>-->
+                            <!--                                </li>-->
+                            <!--                                <li><span>9.4</span>-->
+                            <!--                                    <figure>Location</figure>-->
+                            <!--                                </li>-->
+                            <!--                                <li><span>9.8</span>-->
+                            <!--                                    <figure>Facilities</figure>-->
+                            <!--                                </li>-->
+                            <!--                                <li><span>10</span>-->
+                            <!--                                    <figure>Staff</figure>-->
+                            <!--                                </li>-->
+                            <!--                                <li><span>10</span>-->
+                            <!--                                    <figure>Value for money</figure>-->
+                            <!--                                </li>-->
+                            <!--                            </ul>-->
                             <div class="reviews">
-                                <div class="review">
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <aside class="name">John Doe</aside>
-                                            <aside class="date">10.03.2015</aside>
-                                        </div>
-                                        <!--end col-md-3-->
-                                        <div class="col-md-9">
-                                            <div class="comment">
-                                                <div class="comment-title">
-                                                    <figure class="rating">9.5</figure>
-                                                    <h4>Beautiful Holiday</h4>
+                                <div th:each="feedback: ${feedbacks}">
+                                    <div class="review">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="row">
+                                                    <div class="col-md-3 col-xs-2">
+                                                        <img class="round-image" th:src="${feedback.getUserImage()}" style="margin-top: 15px; border-right: 10px">
+                                                    </div>
+                                                    <div class="col-md-9 col-xs-10" >
+                                                        <aside class="name" th:text="${feedback.getUserFistName()}+ ' ' +${feedback.getUserLastName()}"></aside>
+                                                        <aside class="date" th:text="${#dates.format(feedback.getCreatedDate(), 'yyyy-MM-dd')}"></aside>
+
+
+                                                    </div>
                                                 </div>
-                                                <!--end title-->
-                                                <p>Consectetur adipiscing elit. Vivamus nec augue ac dui sodales
-                                                    euismod.
-                                                    Suspendisse at dui sit amet felis commodo dictum. Class aptent
-                                                    taciti
-                                                    sociosqu ad litora torquent per conubia nostra, per inceptos
-                                                    himenaeos.
-                                                    Integer commodo eleifend erat, vitae tincidunt urna volutpat et.
-                                                    Mauris laoreet, sem ut sodales sodales, massa turpis posuere lectus,
-                                                    non
-                                                    aliquet massa nisl ac orci.
-                                                </p>
-                                                <div class="clearfix options">
+
+
+                                            </div>
+                                            <!--end col-md-3-->
+                                            <div class="col-md-9">
+                                                <div class="comment">
+                                                    <div class="comment-title">
+                                                        <h4 style="font-weight: bold" th:text="${feedback.getTitle()}"></h4>
+                                                    </div>
+                                                    <!--end title-->
+                                                    <p th:text="${feedback.getContent()}"></p>
+                                                    <div class="clearfix options">
                                                     <span class="pull-left"><a href=""
                                                                                class="btn btn-framed btn-default btn-rounded btn-small icon"><i
                                                             class="fa fa-thumbs-up font-color-default"></i>3</a>Helpful Review?</span>
-                                                    <span class="pull-right"><a href=""
-                                                                                class="link icon font-color-grey"><i
-                                                            class="fa fa-flag"></i>Report</a></span>
+                                                        <span class="pull-right"><a href=""
+                                                                                    class="link icon font-color-grey"><i
+                                                                class="fa fa-flag"></i>Report</a></span>
+                                                    </div>
+                                                    <!--end options-->
+<!--                                                    <div class="answer">-->
+<!--                                                        <h4>James Green, CEO of the Mountain Paradise Hotel</h4>-->
+<!--                                                        <p>Phasellus venenatis vel orci et lacinia. Duis sollicitudin arcu-->
+<!--                                                            et hendrerit-->
+<!--                                                            tempor. Aliquam at urna fringilla, auctor tellus eget, vehicula-->
+<!--                                                            lorem.-->
+<!--                                                            Pellentesque ornare faucibus sapien eget max-->
+<!--                                                        </p>-->
+<!--                                                    </div>-->
+                                                    <!--end answer-->
                                                 </div>
-                                                <!--end options-->
-                                                <div class="answer">
-                                                    <h4>James Green, CEO of the Mountain Paradise Hotel</h4>
-                                                    <p>Phasellus venenatis vel orci et lacinia. Duis sollicitudin arcu
-                                                        et hendrerit
-                                                        tempor. Aliquam at urna fringilla, auctor tellus eget, vehicula
-                                                        lorem.
-                                                        Pellentesque ornare faucibus sapien eget max
-                                                    </p>
-                                                </div>
-                                                <!--end answer-->
+                                                <!--end comment-->
                                             </div>
-                                            <!--end comment-->
+                                            <!--end col-md-9-->
                                         </div>
-                                        <!--end col-md-9-->
+                                        <!--end row-->
                                     </div>
-                                    <!--end row-->
                                 </div>
+
+
+
                                 <!--end review-->
-                                <div class="review">
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <aside class="name">Peter Green</aside>
-                                            <aside class="date">10.03.2015</aside>
-                                        </div>
-                                        <!--end col-md-3-->
-                                        <div class="col-md-9">
-                                            <div class="comment">
-                                                <div class="comment-title">
-                                                    <figure class="rating">9.8</figure>
-                                                    <h4>Very Good Hotel</h4>
-                                                </div>
-                                                <!--end title-->
-                                                <p>In eleifend odio vel augue mattis, et pharetra dolor ullamcorper.
-                                                    Nulla
-                                                    ut porttitor mauris. Sed tincidunt, urna non cursus suscipit, quam
-                                                    velit
-                                                    laoreet libero, sit amet tincidunt ex nunc eget eros.
-                                                </p>
-                                                <div class="clearfix options">
-                                                    <span class="pull-left"><a href=""
-                                                                               class="btn btn-framed btn-default btn-rounded btn-small icon"><i
-                                                            class="fa fa-thumbs-up font-color-default"></i>10</a>Helpful Review?</span>
-                                                    <span class="pull-right"><a href=""
-                                                                                class="link icon font-color-grey"><i
-                                                            class="fa fa-flag"></i>Report</a></span>
-                                                </div>
-                                                <!--end options-->
-                                            </div>
-                                            <!--end comment-->
-                                        </div>
-                                        <!--end col-md-9-->
-                                    </div>
-                                    <!--end row-->
-                                </div>
+<!--                                <div class="review">-->
+<!--                                    <div class="row">-->
+<!--                                        <div class="col-md-3">-->
+<!--                                            <div class="row">-->
+<!--                                                <div class="col-md-3 col-xs-2">-->
+<!--                                                    <img class="round-image" src="https://www.codewithrandom.com/wp-content/uploads/2022/09/Untitled-1200-%C3%97-720-px-6.png" style="margin-top: 15px; border-right: 10px">-->
+<!--                                                </div>-->
+<!--                                                <div class="col-md-9 col-xs-10" >-->
+<!--                                                    <aside class="name" >Peter Green</aside>-->
+<!--                                                    <aside class="date">10.03.2015</aside>-->
+<!--                                                </div>-->
+
+
+<!--                                            </div>-->
+
+<!--                                        </div>-->
+<!--                                        &lt;!&ndash;end col-md-3&ndash;&gt;-->
+<!--                                        <div class="col-md-9">-->
+<!--                                            <div class="comment">-->
+<!--                                                <div class="comment-title">-->
+<!--                                                    &lt;!&ndash;                                                    <figure class="rating">9.8</figure>&ndash;&gt;-->
+<!--                                                    <h4 style="font-weight: bold">Very Good Hotel</h4>-->
+<!--                                                </div>-->
+<!--                                                &lt;!&ndash;end title&ndash;&gt;-->
+<!--                                                <p>In eleifend odio vel augue mattis, et pharetra dolor ullamcorper.-->
+<!--                                                    Nulla-->
+<!--                                                    ut porttitor mauris. Sed tincidunt, urna non cursus suscipit, quam-->
+<!--                                                    velit-->
+<!--                                                    laoreet libero, sit amet tincidunt ex nunc eget eros.-->
+<!--                                                </p>-->
+<!--                                                <div class="clearfix options">-->
+<!--                                                    <span class="pull-left"><a href=""-->
+<!--                                                                               class="btn btn-framed btn-default btn-rounded btn-small icon"><i-->
+<!--                                                            class="fa fa-thumbs-up font-color-default"></i>10</a>Helpful Review?</span>-->
+<!--                                                    <span class="pull-right"><a href=""-->
+<!--                                                                                class="link icon font-color-grey"><i-->
+<!--                                                            class="fa fa-flag"></i>Report</a></span>-->
+<!--                                                </div>-->
+<!--                                                &lt;!&ndash;end options&ndash;&gt;-->
+<!--                                            </div>-->
+<!--                                            &lt;!&ndash;end comment&ndash;&gt;-->
+<!--                                        </div>-->
+<!--                                        &lt;!&ndash;end col-md-9&ndash;&gt;-->
+<!--                                    </div>-->
+<!--                                    &lt;!&ndash;end row&ndash;&gt;-->
+<!--                                </div>-->
                                 <!--end review-->
                             </div>
                             <!--end reviews-->
                         </section>
                         <section id="write-a-review">
-                            <h2>Write a Review</h2>
+                            <h2>Viết đánh giá</h2>
                             <form class="labels-uppercase clearfix" id="form_reply_1">
                                 <div class="alert alert-dark fade in center" role="alert">
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"
@@ -758,60 +782,47 @@
                                     </button>
                                     <span class="sr-only">Error:</span>
                                     <a href="#tab-sign-in" data-toggle="modal" data-tab="true"
-                                       data-target="#sign-in-register-modal">Please Sign in to write a review</a>
+                                       data-target="#sign-in-register-modal">Xin mời đăng nhập để đánh giá</a>
                                 </div>
                                 <div class="review write switch" id="review-write">
-                                    <aside class="name">John Doe</aside>
+                                    <aside class="name">Tên người dùng (chưa xử lý)</aside>
                                     <div class="comment">
-                                        <div class="row">
-                                            <div class="col-md-8">
+
+
                                                 <div class="comment-title">
-                                                    <h4>Review Your Stay</h4>
+                                                    <h4>Đánh giá về khu trọ</h4>
                                                 </div>
                                                 <!--end title-->
                                                 <div class="form-group">
-                                                    <label for="form_reply_1-name">Title of your
-                                                        review<em>*</em></label>
+                                                    <label for="form_reply_1-name">Tiêu đề đánh giá<em>*</em></label>
                                                     <input type="text" class="form-control" id="form_reply_1-name"
-                                                           name="name" placeholder="Beautiful holiday!" required="">
+                                                           name="name" placeholder="Viết tiêu đề ở đây" required="">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="form_reply_1-message">Your Answer<em>*</em></label>
+                                                    <label for="form_reply_1-message">Mô tả<em>*</em></label>
                                                     <textarea class="form-control" id="form_reply_1-message" rows="8"
                                                               name="answer" required=""
-                                                              placeholder="Describe your stay"></textarea>
+                                                              placeholder="Viết mô tả ở đây"></textarea>
                                                 </div>
-                                                <!--end form-group-->
-                                                <div class="form-group pull-right">
-                                                    <button type="submit" class="btn btn-primary btn-rounded">Send
-                                                        Review
-                                                    </button>
-                                                </div>
-                                                <!--end form-group-->
-                                            </div>
-                                            <!--end col-md-8-->
-                                            <div class="col-md-4">
                                                 <div class="comment-title">
-                                                    <h4>Rating</h4>
+                                                    <h4 >Đánh giá</h4>
                                                 </div>
                                                 <!--end title-->
                                                 <dl class="visitor-rating">
-                                                    <dt>Cleanliness</dt>
                                                     <dd class="star-rating active" data-name="cleanliness"></dd>
-                                                    <dt>Comfort</dt>
-                                                    <dd class="star-rating active" data-name="comfort"></dd>
-                                                    <dt>Location</dt>
-                                                    <dd class="star-rating active" data-name="location"></dd>
-                                                    <dt>Facilities</dt>
-                                                    <dd class="star-rating active" data-name="facilities"></dd>
-                                                    <dt>Staff</dt>
-                                                    <dd class="star-rating active" data-name="staff"></dd>
-                                                    <dt>Value for money</dt>
-                                                    <dd class="star-rating active" data-name="value"></dd>
                                                 </dl>
-                                            </div>
+                                                <!--end form-group-->
+                                                <div class="form-group pull-right">
+                                                    <button type="submit" class="btn btn-primary btn-rounded">Gửi đánh giá
+                                                    </button>
+                                                </div>
+                                                <!--end form-group-->
+
+
+
+
                                             <!--end col-md-4-->
-                                        </div>
+
                                         <!--end row-->
                                     </div>
                                     <!--end comment-->
@@ -926,3 +937,4 @@
 
 </script>
 </body>
+

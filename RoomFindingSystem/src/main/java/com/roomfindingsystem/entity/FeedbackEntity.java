@@ -34,6 +34,18 @@ public class FeedbackEntity {
     }
 
     @Basic
+    @Column(name = "Title")
+    private String title;
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    @Basic
     @Column(name = "Created_Date")
     private Timestamp createdDate;
 
