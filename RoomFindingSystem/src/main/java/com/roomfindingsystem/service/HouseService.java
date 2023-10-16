@@ -12,11 +12,9 @@ import java.util.List;
 import java.util.Optional;
 
 public interface HouseService {
-//    List<House1ListEntity> getAllHouse();
+    int countHouse();
 
-    List<HouseTypeVo> getAllHouse();
-
-    Page<HouseTypeVo> findHouse(int min, int max,String houseName,List<Integer> type, int pageIndex,int pageSize);
+    List<HouseTypeVo> findHouse1(int min, int max,String houseName,List<Integer> type, int pageIndex,int pageSize);
 
     Optional<HousesEntity> findHouseById(Integer id);
     List<HouseDto> getHouseDetail(int id);

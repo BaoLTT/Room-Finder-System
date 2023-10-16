@@ -4,6 +4,7 @@ import lombok.*;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 @Setter
     @Getter
@@ -26,6 +27,8 @@ import java.util.Date;
         String province;
 
         Integer price;
+
+        List<String> listImage;
 
         LocalDate last_modified_date;
     }
