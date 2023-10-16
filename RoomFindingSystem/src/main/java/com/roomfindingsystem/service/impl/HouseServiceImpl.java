@@ -6,6 +6,7 @@ import com.roomfindingsystem.service.HouseService;
 import com.roomfindingsystem.vo.HouseDto;
 import com.roomfindingsystem.vo.HouseImageLink;
 import com.roomfindingsystem.vo.HouseTypeVo;
+import com.roomfindingsystem.vo.ServiceDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -42,12 +43,17 @@ public class HouseServiceImpl implements HouseService {
 
     @Override
     public List<HouseDto> getHouseDetail(int id) {
-        return houseResponsitory.findAllDetail();
+        return houseResponsitory.findAllDetail(id);
     }
 
     @Override
     public List<HouseImageLink> getImageById(int id) {
         return  houseResponsitory.getByHouseImageid(id);
+    }
+
+    @Override
+    public List<ServiceDto> getServiceById(int id) {
+        return houseResponsitory.getServiceById(id);
     }
 
     @Override

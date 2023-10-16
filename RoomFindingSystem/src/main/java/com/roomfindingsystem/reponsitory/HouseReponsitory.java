@@ -4,6 +4,7 @@ import com.roomfindingsystem.entity.HousesEntity;
 import com.roomfindingsystem.vo.HouseDto;
 import com.roomfindingsystem.vo.HouseImageLink;
 import com.roomfindingsystem.vo.HouseTypeVo;
+import com.roomfindingsystem.vo.ServiceDto;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -38,17 +39,17 @@ public interface HouseReponsitory extends JpaRepository<HousesEntity,Integer> {
             "group by h.houseId, h.houseName, t.typeName, a.addressDetails, w.name, p.name, h.lastModifiedDate")
     Page<HouseTypeVo> findHouse(int min,int max, String houseName,List<Integer> type, Pageable pageable);
 
-    @Query("SELECT new com.roomfindingsystem.vo.HouseDto( h.houseId, h.houseName,h.description,h.createdDate, u.lastName,u.firstName , u.phone, shd.serviceName,a.addressId, t.typeName )\n" +
+    @Query("SELECT new com.roomfindingsystem.vo.HouseDto( h.houseId, h.houseName,h.description,h.createdDate, u.lastName,u.firstName , u.phone,a.addressId, t.typeName )\n" +
             "FROM HousesEntity as h \n" +
             "left join UserEntity as u on h.userId = u.userId \n" +
             "left join AddressEntity as a on h.addressId = a.addressId\n" +
-            " left join ServiceHouseEntity as sh on h.serviceId = sh.serviceId\n" +
-            "left join ServiceDetailEntity as shd on sh.serviceId= shd.serviceId\n" +
             "left join TypeHouseEntity as t on t.typeId = h.typeHouseId\n" +
-            " where h.houseId=2")
-    List<HouseDto> findAllDetail();
+            " where h.houseId=?1")
+    List<HouseDto> findAllDetail(int houseId);
     @Query("SELECT new com.roomfindingsystem.vo.HouseImageLink(i.imageLink) FROM HouseImagesEntity i join HousesEntity h  on i.houseId = h.houseId where h.houseId=?1")
     List<HouseImageLink> getByHouseImageid(int houseId);
+    @Query("select new com.roomfindingsystem.vo.ServiceDto(shd.serviceName) from ServiceHouseEntity sh join ServiceDetailEntity shd on sh.serviceId=shd.serviceId where sh.houseId=?1")
+    List<ServiceDto> getServiceById(int houseId);
 
     @Query("SELECT h from HousesEntity h join RoomEntity r on r.houseId = h.houseId where r.roomId=:roomid")
     HousesEntity findHouseByRoomId(int roomid);

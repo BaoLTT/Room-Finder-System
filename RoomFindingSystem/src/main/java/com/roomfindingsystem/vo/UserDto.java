@@ -14,7 +14,7 @@ public class UserDto {
     private int userId;
     private String firstName;
     private LocalDate dob;
-    private String gender;
+    private Boolean gender;
     private String phone;
     private String email;
     private String password;
