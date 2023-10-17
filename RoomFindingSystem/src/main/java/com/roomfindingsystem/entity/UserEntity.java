@@ -67,7 +67,11 @@ public class UserEntity {
     private String gmailId;
     @Basic
     @Column(name = "RoleID")
-    private String roleId;
+
+    private Integer roleId;
+
+//     private String roleId;
+
     @Basic
     @Column(name = "Created_Date")
     private LocalDate createdDate;
@@ -77,6 +81,7 @@ public class UserEntity {
     @Basic
     @Column(name = "User_StatusID")
     private Integer userStatusId;
+
     @Basic
     @NotEmpty(message = "Sorry, Last name cannot be blank.!")
     @NotBlank(message = "Sorry, Last name cannot be blank.!")
@@ -86,5 +91,18 @@ public class UserEntity {
     @Column(name = "AddressID")
     private int addressId;
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserEntity that = (UserEntity) o;
+        return userId == that.userId && addressId == that.addressId && Objects.equals(firstName, that.firstName) && Objects.equals(dob, that.dob) && Objects.equals(gender, that.gender) && Objects.equals(phone, that.phone) && Objects.equals(email, that.email) && Objects.equals(imageLink, that.imageLink) && Objects.equals(password, that.password) && Objects.equals(facebookId, that.facebookId) && Objects.equals(gmailId, that.gmailId) && Objects.equals(roleId, that.roleId) && Objects.equals(createdDate, that.createdDate) && Objects.equals(lastModifiedDate, that.lastModifiedDate) && Objects.equals(userStatusId, that.userStatusId) && Objects.equals(lastName, that.lastName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(userId, firstName, dob, gender, phone, email, imageLink, password, facebookId, gmailId, roleId, createdDate, lastModifiedDate, userStatusId,  lastName, addressId);
+    }
 
 }

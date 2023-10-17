@@ -1,5 +1,6 @@
 package com.roomfindingsystem.controller;
 
+
 import com.roomfindingsystem.config.Role;
 import com.roomfindingsystem.entity.UserEntity;
 import com.roomfindingsystem.service.UserService;
@@ -8,9 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
 
 import java.time.LocalDate;
 
@@ -22,12 +25,14 @@ public class OtpController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+
     @RequestMapping(value = "otp-check", method = RequestMethod.GET)
     public String indexOtp() {
         return "otpConfirm";
     }
 
     @RequestMapping(value = "confirm-otp", method = RequestMethod.POST)
+
     public String checkOtp(HttpSession session, @RequestParam("otp") String otp, Model model) {
         String otpRegister = (String) session.getAttribute("otp-register");
         if (otp.equals(otpRegister)) {
@@ -56,6 +61,7 @@ public class OtpController {
             return "edirect:/";
         }
         model.addAttribute("mess","OTP is not correct! Please check your email.");
+
         return "otpConfirm";
     }
 }

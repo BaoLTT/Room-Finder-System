@@ -1,15 +1,10 @@
 package com.roomfindingsystem.controller;
 
-import com.roomfindingsystem.entity.HousesEntity;
+
 import com.roomfindingsystem.service.HouseService;
 import com.roomfindingsystem.vo.HouseTypeVo;
-import jakarta.persistence.Index;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -50,6 +45,7 @@ public class HouseListController {
         if(price.equals("3")){
             page =houseService.findHouse1(4000000,6000000,houseName,listType,offset, pageSize);
         }
+
         model.addAttribute("houseName",houseName);
         model.addAttribute("currentPage",pageIndex);
         model.addAttribute("totalPage", totalPage);
@@ -58,6 +54,7 @@ public class HouseListController {
         return"listing";
     
     }
+
 
 
 }

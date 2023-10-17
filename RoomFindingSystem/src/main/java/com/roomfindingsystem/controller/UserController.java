@@ -1,7 +1,9 @@
 package com.roomfindingsystem.controller;
 
 
+
 import com.roomfindingsystem.config.Role;
+
 import com.roomfindingsystem.entity.UserEntity;
 import com.roomfindingsystem.service.EmailSenderService;
 import com.roomfindingsystem.service.UserService;
@@ -41,11 +43,13 @@ public class UserController {
 
     @RequestMapping(value = "save", method = RequestMethod.POST)
     public String save(@Valid @ModelAttribute("user") UserEntity user, BindingResult result, Model model,  HttpSession session) {
+
         // check confirm password
 //        model.addAttribute("user", user);
         if (result.hasErrors()) {
             return "register";
         }
+
         if(userService.findByEmail(user.getEmail()).isPresent()){
             model.addAttribute("mess","Email đã tồn tại. Hãy nhập Email mới!");
             return "register";
@@ -80,6 +84,7 @@ public class UserController {
     }
 
     public String otpCode() {
+
         int code = (int) Math.floor(((Math.random() * 899999) + 100000));
         return String.valueOf(code);
     }

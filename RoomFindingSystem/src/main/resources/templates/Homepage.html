@@ -33,17 +33,22 @@
                             </div>
                             <!--end left-->
                             <div class="right">
-
+                                <div th:if="${session.user != null}">
+                                    <!-- Hiển thị thông tin người dùng đã đăng nhập -->
+                                    <span>Xin chào, <span th:text="${session.user.name}"></span></span>
+                                    <a th:href="@{/logout}">Đăng xuất</a>
+                                </div>
                                 <!--end element-->
+                                <div th:unless="${session.user != null}">
                                 <div class="element">
                                     <a href="#tab-sign-in" data-toggle="modal" data-tab="true" data-target="#sign-in-register-modal">Đăng nhập</a>
                                 </div>
                                 <!--end element-->
                                 <div class="element">
-                                    <a href="#tab-register" data-toggle="modal" data-tab="true" data-target="#sign-in-register-modal">Đăng ký</a>
+                                    <a th:href="@{/register}" data-toggle="modal" data-tab="true" data-target="#sign-in-register-modal">Đăng ký</a>
                                 </div>
                                 <!--end element-->
-
+                                </div>
                                 <!--end element-->
                             </div>
                             <!--end right-->
@@ -57,7 +62,7 @@
             <div class="container">
                 <div class="primary-nav">
                     <div class="left">
-<!--                        <a href="index.html" id="brand"><img src="/assets/img/logo.png" alt=""></a>-->
+<!--                        <a href="Homepage.html" id="brand"><img src="/assets/img/logo.png" alt=""></a>-->
                         <a class="nav-trigger" data-toggle="collapse" href="#primary-nav" aria-expanded="false" aria-controls="primary-nav"><i class="fa fa-navicon"></i></a>
                     </div>
                     <!--end left-->
@@ -65,7 +70,7 @@
                         <nav id="primary-nav">
                             <ul>
                                 <li class="active"><a th:href="@{/}">Trang chủ</a></li>
-                                <li><a href="">Danh sách nhà trọ</a></li>
+                                <li><a th:href="@{/houselist/1}">Danh sách nhà trọ</a></li>
                                 <li>
                                     <a href="#" class="has-child">Danh sách phòng trọ</a>
 <!--                                    <ul class="child-nav">-->
@@ -92,7 +97,7 @@
 
     <div id="page-content">
         <div class="hero-section" data-height="600">
-            <form id="form-hero" th:action = "@{/search}">
+            <form id="form-hero" th:action = "@{/houselist/1}">
                 <div class="hero-inner">
                     <div class="hero-wrapper" >
                         <div class="caption">
@@ -103,7 +108,7 @@
                                         <div class="col-md-8 col-sm-8">
                                             <div class="form-group">
                                                 <label class="label-on-input" for="address-autocomplete">Vị trí, Tên trọ</label>
-                                                <input type="text" class="form-control" id="address-autocomplete" name="location" placeholder="Nhập tên trọ hoặc vị trí">
+                                                <input type="text" class="form-control" id="address-autocomplete" name="houseName" placeholder="Nhập tên trọ hoặc vị trí">
                                             </div>
                                         </div>
 
@@ -132,11 +137,11 @@
                         <div class="options">
                             <div class="container">
                                 <div class="wrapper">
-                                    <h2>Further Options</h2>
+                                    <h2>Thể loại phòng</h2>
                                     <div class="row">
                                         <div class="col-md-8 col-sm-7" >
                                             <ul th:each = "housetype : ${housetypes}" class="checkboxes inline list-unstyled"  >
-                                                <li><label><input th:text = "${housetype.typeName}" type="checkbox" name="typeHouse" th:value = "${housetype.typeName}"></label></li>
+                                                <li><label><input th:text = "${housetype.typeName}" type="checkbox" name="typeHouse" th:value = "${housetype.typeId}"></label></li>
                                             </ul>
                                             <!--end checkboxes-->
                                         </div>
@@ -146,11 +151,11 @@
 <!--                                                <div>-->
                                                 <div class="col-md-6 col-sm-6">
                                                     <div class="form-group">
-                                                        <label>Rate (per Night)</label>
+                                                        <label>Tiền phòng</label>
                                                         <select class="form-control framed white">
-                                                            <option value="">0 - 1.500.000</option>
-                                                            <option value="">1.500.000 - 2.000.000</option>
-                                                            <option value="">2.000.000 -></option>
+                                                            <option name="price" value="1">0 - 2.000.000</option>
+                                                            <option name="price" value="2">2.000.000 - 4.000.000</option>
+                                                            <option name="price" value="3">4.000.000 -></option>
                                                         </select>
                                                     </div>
                                                     <!--end form-group-->
@@ -191,7 +196,7 @@
                                 <div class="row">
                                     <div class="col-md-8 col-sm-6">
                                         <ul class="checkboxes inline" th:each = "houseservice : ${houseservices}">
-                                            <li><label><input type="checkbox" name="service_name" th:text = "${houseservice.serviceName}" th:id = "${houseservice.serviceId}"></label></li>
+                                            <li><label><input type="checkbox" name="service_name" th:text = "${houseservice.serviceName}" th:value= "${houseservice.serviceId}"></label></li>
 
                                         </ul>
                                         <!--end checkboxes-->
@@ -209,7 +214,7 @@
                 </div>
                 <!--end hero-inner-->
                 <div class="plate">
-                    <a data-toggle="collapse" href="#options-hidden" aria-expanded="false" aria-controls="options-hidden">Xem thêm lựa chọn</a>
+                    <a data-toggle="collapse" href="#options-hidden" aria-expanded="false" aria-controls="options-hidden">View Further Options</a>
                 </div>
                 <!--end plate-->
             </form>
@@ -239,8 +244,8 @@
                                     <div class="mark-circle map" data-toggle="tooltip" data-placement="right" title="Show on map"><i class="fa fa-map-marker"></i></div>
                                     <div class="mark-circle top" data-toggle="tooltip" data-placement="right" title="Top accommodation"><i class="fa fa-thumbs-up"></i></div>
                                     <a href="" class="wrapper">
-                                        <div  >
-                                            <img style="width: 100%; height: 100%" src="" alt="" data-src="" th:src ="${house.houseImageLink}">
+                                        <div class="gallery" >
+                                            <img style="width: 273px; height: 208px;" th:each = "image: ${house.listImage}" th:src="${image}" alt="">
 
 
                                         </div>
@@ -258,9 +263,9 @@
                                         <span><i class="fa fa-bed"></i>365</span>
                                     </div>
                                     <div class="info">
-                                        <figure class="label label-info"  th:text = "${house.typeHouseName}" ></figure>
+                                        <figure class="label label-info"  th:text = "${house.typeHouse}" ></figure>
                                         <a href=""  ><h3 th:text = "${house.houseName}"></h3></a>
-                                        <figure class="" th:text = "${house.addressName+', '+house.wardName+', '+house.districtName+', '+house.provinceName}"></figure>
+                                        <figure class="" th:text = "${house.addressDetail+', '+house.ward+', '+house.district+', '+house.province}"></figure>
                                     </div>
                                 </div>
                                 <!--end description-->
@@ -802,7 +807,7 @@
                 <!--end title-->
                 <div class="gallery-carousel" >
                     <div class="gallery-item" th:each = "slider: ${sliders}">
-                        <a href="blog-detail.html"><div class="image"><img style="height: 100%; width: 100%;" src="" alt="" th:src="${slider.imgLink}"></div></a>
+                        <a href=""><div class="image"><img th:src="${slider.imgLink}" alt=""></div></a>
                         <div class="description">
 <!--                            <a href=""><h3 th:text = "${slider.content}"></h3></a>-->
 <!--                            <figure th:text = "${slider.content}">Austria</figure>-->
@@ -903,13 +908,13 @@
                     <div class="grid-item">
                         <a href="#">
                             <h3>Tân Xã</h3>
-                            <img src="/assets/img/items/pick-02.jpg" alt="">
+                            <img src="assets/img/items/pick-02.jpg" alt="">
                         </a>
                     </div>
                     <div class="grid-item grid-item--width2">
                         <a href="#">
                             <h3>Thạch Hòa</h3>
-                            <img style="width: 100%; height: 100%;" src="/assets/img/xa-thach-hoa.jpg" alt="">
+                            <img src="assets/img/items/pick-03.jpg" alt="">
                         </a>
                     </div>
 <!--                    <div class="grid-item grid-item&#45;&#45;width2">-->
@@ -951,7 +956,7 @@
         <div class="container">
             <div class="block">
                 <div class="title">
-                    <h2>Bình luận gần đây nhất</h2>
+                    <h2>Reviews</h2>
                     <div class="row" >
                         <div class="col-md-3 col-sm-3" th:each = "feedback : ${feedbacks}">
                             <div class="review-single">
@@ -1008,9 +1013,9 @@
         <!--end row-one-->
         <div class="row-two clearfix">
             <div class="container">
-                <div class="copyright pull-left"></div>
+                <div class="copyright pull-left">(C) 2016 Your Company, All Rights Reserved</div>
                 <div class="footer-nav pull-right">
-                    <a href="index.html">Trang chủ</a>
+                    <a href="Homepage.html">Trang chủ</a>
                     <a href="about-us.html">Danh sách nhà trọ</a>
                     <a href="listing.html">Danh sách phòng trọ</a>
                     <a href="contact-us.html">Blog</a>
