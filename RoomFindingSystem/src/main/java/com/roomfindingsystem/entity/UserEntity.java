@@ -77,9 +77,7 @@ public class UserEntity {
     @Basic
     @Column(name = "User_StatusID")
     private Integer userStatusId;
-    @Basic
-    @Column(name = "Price")
-    private Integer price;
+
     @Basic
     @NotEmpty(message = "Sorry, Last name cannot be blank.!")
     @NotBlank(message = "Sorry, Last name cannot be blank.!")
