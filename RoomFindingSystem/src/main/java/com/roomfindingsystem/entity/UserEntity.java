@@ -68,9 +68,9 @@ public class UserEntity {
     @Basic
     @Column(name = "RoleID")
 
-    private Integer roleId;
+//    private Integer roleId;
 
-//     private String roleId;
+     private String roleId;
 
     @Basic
     @Column(name = "Created_Date")
