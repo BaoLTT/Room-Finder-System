@@ -5,29 +5,36 @@ import com.roomfindingsystem.entity.RoomImagesEntity;
 import com.roomfindingsystem.entity.ServiceDetailEntity;
 import com.roomfindingsystem.reponsitory.RoomRepository;
 import com.roomfindingsystem.service.RoomService;
+
 import com.roomfindingsystem.vo.RoomHomeVo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 @Service
 @AllArgsConstructor
 public class RoomServiceImpl implements RoomService {
+
     private RoomRepository roomRepository;
     @Override
     public RoomEntity getRoomById(int roomId) {
         return roomRepository.getRoomById(roomId);
+
     }
 
     @Override
     public List<RoomImagesEntity> roomImageByRoomId(int roomId) {
+
         return roomRepository.getImageByRoomId(roomId);
+
     }
 
     @Override
     public List<ServiceDetailEntity> getServiceByRoomId(int roomId) {
+
         return roomRepository.getServiceByRoomId(roomId);
     }
 
@@ -41,6 +48,7 @@ public class RoomServiceImpl implements RoomService {
             }
         }
         return list;
+
     }
 
 

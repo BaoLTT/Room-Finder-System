@@ -26,10 +26,12 @@
                     <div class="card-body p-4">
 
                         <div class="text-center w-75 m-auto">
+
                             <a href="Homepage.html">
                                 <span><img src="assets/img/logo.jpeg" alt="" height="98"></span>
                             </a>
-                            <h5 class="text-uppercase text-center font-bold mt-4">Enter your OTP</h5>
+                            <h5 class="text-uppercase text-center font-bold mt-4">Nhập OTP Của Bạn</h5>
+
                         </div>
 
                         <!-- form -->
@@ -39,21 +41,27 @@
                                 <input class="form-control" type="text"
                                        id="otp"
                                        name="otp"
-                                       placeholder="Enter your otp code" required/>
+
+                                       placeholder="Nhập OTP bao gồm 6 chữ số." required/>
                                 </div>
+
                             <div class="form-group mb-0 text-center">
-                                <button class="btn btn-gradient btn-block" type="submit"> Confirm OTP
+                                <button class="btn btn-gradient btn-block" type="submit"> Xác Nhận OTP
+
                                 </button>
                             </div>
 
 
                         </form>
 
+                        <p style="color: red" th:text="${mess}"></p>
                         <div class="row mt-4">
                             <div class="col-sm-12 text-center">
-                                <p class="text-muted mb-0">Already have an account? <a href="pages-login.html"
-                                                                                       class="text-dark ml-1"><b>Sign
-                                    In</b></a></p>
+                                <p class="text-muted mb-0">Bạn không nhận được email? <a href="re-send"
+                                                                                       class="text-dark ml-1"><b>Gửi Lại</b></a></p>
+                                <p class="text-muted mb-0">Bạn đã có tài khoản? <a href="pages-login.html"
+                                                                                       class="text-dark ml-1"><b>Đăng Nhập</b></a></p>
+
                             </div>
                         </div>
 

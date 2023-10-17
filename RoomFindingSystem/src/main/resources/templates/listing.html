@@ -9,10 +9,12 @@
     <link href="/assets/fonts/font-awesome.css" rel="stylesheet" type="text/css">
     <link href="/assets/fonts/elegant-fonts.css" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700,900,400italic' rel='stylesheet' type='text/css'>
+
     <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.css" type="text/css">
     <link rel="stylesheet" href="/assets/css/zabuto_calendar.min.css" type="text/css">
     <link rel="stylesheet" href="/assets/css/owl.carousel.css" type="text/css">
     <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
+
     <!-- jQuery CDN - Slim version (=without AJAX) -->
 
     <title>Danh sách nhà trọ</title>
@@ -66,8 +68,10 @@
                     <div class="right" >
                         <nav id="primary-nav">
                             <ul>
+
                                 <li><a th:href="@{/}">Trang chủ</a></li>
                                 <li class="active"><a th:href="@{/houselist/1}">Danh sách nhà trọ</a></li>
+
                                 <li>
                                     <a href="#" class="has-child">Danh sách phòng trọ</a>
                                     <!--                                    <ul class="child-nav">-->
@@ -193,9 +197,11 @@
                                 <div class="mark-circle map" data-toggle="tooltip" data-placement="right" title="Show on map"><i class="fa fa-map-marker"></i></div>
                                 <div class="mark-circle top" data-toggle="tooltip" data-placement="right" title="Top accommodation"><i class="fa fa-thumbs-up"></i></div>
                                 <div class="image">
+
                                     <a href="" class="wrapper">
                                         <div class="gallery" >
                                             <img style="width: 273px; height: 208px;" th:each = "image: ${houses.listImage}" th:src="${image}" alt="">
+
                                         </div>
                                     </a>
                                     <div class="map-item">
@@ -238,10 +244,12 @@
                             <ul class="pagination">
                                 <li class="prev" >
                                     <a th:href="@{/houselist/}+${pageIndex-1}" th:if = "${pageIndex!=1}? 'None'" ><i class="arrow_left"></i></a>
+
                                 </li>
                                 <li th:each = "pageIndex: ${#numbers.sequence(1,totalPage)} " th:class="${pageIndex == currentPage ? 'active' : ''}" >
                                     <a th:text = "${pageIndex}" class="page-number"    >1</a>
                                 </li>
+
                                 <li class="next" >
                                     <a th:href=" @{/houselist/}+${pageIndex+1}" th:if = "${pageIndex!=totalPage}? 'None'"><i class="arrow_right"></i></a>
                                 </li>

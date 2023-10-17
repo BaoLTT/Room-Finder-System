@@ -1,7 +1,9 @@
 package com.roomfindingsystem.service;
 
 import com.roomfindingsystem.entity.HousesEntity;
+
 import com.roomfindingsystem.entity.TypeHouseEntity;
+
 import com.roomfindingsystem.vo.HouseDto;
 import com.roomfindingsystem.vo.HouseImageLink;
 import com.roomfindingsystem.vo.HouseTypeVo;
@@ -15,6 +17,7 @@ import java.util.Optional;
 public interface HouseService {
     int countHouse();
 
+    List<HouseTypeVo> viewHouseInHome();
     List<HouseTypeVo> findHouse1(int min, int max,String houseName,List<Integer> type, int pageIndex,int pageSize);
 
     Optional<HousesEntity> findHouseById(Integer id);
@@ -22,8 +25,4 @@ public interface HouseService {
     List<HouseImageLink> getImageById(int id);
     List<ServiceDto> getServiceById(int id);
     HousesEntity getHouseByRoomId(int roomId);
-
-    List<HouseTypeVo> viewHouseInHome();
-
-
 }

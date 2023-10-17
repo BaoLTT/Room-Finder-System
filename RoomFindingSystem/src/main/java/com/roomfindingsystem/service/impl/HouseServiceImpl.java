@@ -1,9 +1,11 @@
 package com.roomfindingsystem.service.impl;
 
 import com.roomfindingsystem.entity.HousesEntity;
+
 import com.roomfindingsystem.entity.TypeHouseEntity;
 import com.roomfindingsystem.reponsitory.HouseRepository;
 import com.roomfindingsystem.reponsitory.HouseTypeRepository;
+
 import com.roomfindingsystem.service.HouseService;
 import com.roomfindingsystem.vo.HouseDto;
 import com.roomfindingsystem.vo.HouseImageLink;
@@ -23,9 +25,11 @@ public class HouseServiceImpl implements HouseService {
 
 
 
+
     public HouseServiceImpl(HouseRepository houseRepository){
         super();
         this.houseRepository = houseRepository;
+
 
     }
 
@@ -87,6 +91,7 @@ public class HouseServiceImpl implements HouseService {
     public HousesEntity getHouseByRoomId(int roomId) {
         return houseRepository.findHouseByRoomId(roomId);
     }
+
 
     @Override
     public List<HouseTypeVo> viewHouseInHome() {

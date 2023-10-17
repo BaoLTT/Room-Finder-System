@@ -1,8 +1,10 @@
 package com.roomfindingsystem.controller;
 
+
 import com.roomfindingsystem.service.HouseService;
 import com.roomfindingsystem.vo.HouseTypeVo;
 import jakarta.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -44,7 +46,6 @@ public class HouseListController {
             page =houseService.findHouse1(4000000,6000000,houseName,listType,offset, pageSize);
         }
 
-        System.out.println(page.toString());
         model.addAttribute("houseName",houseName);
         model.addAttribute("currentPage",pageIndex);
         model.addAttribute("totalPage", totalPage);

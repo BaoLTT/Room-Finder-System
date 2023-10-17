@@ -3,7 +3,9 @@ package com.roomfindingsystem.reponsitory;
 import com.roomfindingsystem.entity.RoomEntity;
 import com.roomfindingsystem.entity.RoomImagesEntity;
 import com.roomfindingsystem.entity.ServiceDetailEntity;
+
 import com.roomfindingsystem.vo.RoomHomeVo;
+
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -27,6 +29,7 @@ public interface RoomRepository extends CrudRepository<RoomEntity, Long> {
     List<ServiceDetailEntity> getServiceByRoomId(int roomId);
 
 
+
     //homepage
     @Query("select new com.roomfindingsystem.vo.RoomHomeVo(r.roomId, r.roomName, h.houseName,t.typeName, r.price ,p.name, d.name, w.name, a.name) from RoomEntity r join HousesEntity h on r.houseId = h.houseId " +
             "left join RoomTypeEntity t on t.typeId = r.roomType " +
@@ -36,4 +39,5 @@ public interface RoomRepository extends CrudRepository<RoomEntity, Long> {
             "left join WardEntity w on w.districtId= d.districtId " +
             "order by r.createdDate desc")
     List<RoomHomeVo> viewTop4Home();
+
 }

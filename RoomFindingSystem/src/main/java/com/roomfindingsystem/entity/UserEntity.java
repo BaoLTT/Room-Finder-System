@@ -67,7 +67,11 @@ public class UserEntity {
     private String gmailId;
     @Basic
     @Column(name = "RoleID")
+
     private Integer roleId;
+
+//     private String roleId;
+
     @Basic
     @Column(name = "Created_Date")
     private LocalDate createdDate;
@@ -87,6 +91,7 @@ public class UserEntity {
     @Column(name = "AddressID")
     private int addressId;
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -99,4 +104,5 @@ public class UserEntity {
     public int hashCode() {
         return Objects.hash(userId, firstName, dob, gender, phone, email, imageLink, password, facebookId, gmailId, roleId, createdDate, lastModifiedDate, userStatusId,  lastName, addressId);
     }
+
 }
