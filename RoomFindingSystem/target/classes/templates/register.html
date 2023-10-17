@@ -61,6 +61,7 @@
                                 <div class="alert alert-warning" th:if="${#fields.hasErrors('email')}"
                                      th:errors="*{email}">
                                 </div>
+                                <p style="color: red" th:text="${mess}"></p>
                             </div>
                             <div class="form-group">
                                 <label>Date of birth</label>
@@ -94,9 +95,23 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <script>
+var check = function() {
+  if (document.getElementById('password').value ==
+    document.getElementById('confirm_password').value) {
+    document.getElementById('message').style.color = 'green';
+    document.getElementById('message').innerHTML = 'Mật Khẩu Trùng Khớp!';
+  } else {
+    document.getElementById('message').style.color = 'red';
+    document.getElementById('message').innerHTML = 'Mật Khẩu Không Trùng Khớp!';
+  }
+}
+
+                                </script>
                                 <label for="password">Password</label>
                                 <input class="form-control" type="password" th:field="*{password}"
-                                       required id="password"
+                                       required id="password" name="password"
+                                       onkeyup='check();'
                                        placeholder="Enter your password">
                                 <div class="alert alert-warning" th:if="${#fields.hasErrors('password')}"
                                      th:errors="*{password}">
@@ -104,16 +119,17 @@
                             </div>
                             <div class="form-group">
                                 <label> Confirm Password</label>
-                                <input class="form-control" type="password" required id="repassword"
-                                       name="repassword"
+                                <input class="form-control" type="password" required id="confirm_password"
+                                       name="confirm_password"
                                        placeholder="Confirm your password">
+                                <span id='message'></span>
                             </div>
                             <div class="form-group">
                                 <div class="custom-control custom-checkbox">
-                                    <!--                                    <input type="checkbox" class="custom-control-input" id="checkbox-signup">-->
-                                    <!--                                    <label class="custom-control-label" for="checkbox-signup">I accept <a-->
-                                    <!--                                            href="javascript: void(0);" class="text-dark">Terms and-->
-                                    <!--                                        Conditions</a></label>-->
+                                    <input type="checkbox" class="custom-control-input" id="checkbox-signup"
+                                           name="role">
+                                    <label class="custom-control-label" for="checkbox-signup">BẠN LÀ <a
+                                            href="javascript: void(0);" class="text-dark">CHỦ TRỌ?</a></label>
                                 </div>
                             </div>
                             <div class="form-group mb-0 text-center">
@@ -123,6 +139,7 @@
 
 
                         </form>
+
 
                         <div class="row mt-4">
                             <div class="col-sm-12 text-center">

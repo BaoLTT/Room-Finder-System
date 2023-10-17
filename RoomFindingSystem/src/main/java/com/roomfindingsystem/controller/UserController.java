@@ -1,6 +1,7 @@
 package com.roomfindingsystem.controller;
 
 
+import com.roomfindingsystem.config.Role;
 import com.roomfindingsystem.entity.UserEntity;
 import com.roomfindingsystem.service.EmailSenderService;
 import com.roomfindingsystem.service.UserService;
@@ -38,41 +39,47 @@ public class UserController {
     }
 
 
-
-
     @RequestMapping(value = "save", method = RequestMethod.POST)
-    public String save(@Valid @ModelAttribute("user") UserEntity user, BindingResult result, Model model, @RequestParam("repassword") String repassword, HttpSession session) {
+    public String save(@Valid @ModelAttribute("user") UserEntity user, BindingResult result, Model model,  HttpSession session) {
         // check confirm password
 //        model.addAttribute("user", user);
         if (result.hasErrors()) {
             return "register";
         }
-        session.setAttribute("otp-register",otpCode());
+        if(userService.findByEmail(user.getEmail()).isPresent()){
+            model.addAttribute("mess","Email đã tồn tại. Hãy nhập Email mới!");
+            return "register";
+        }
+        session.setAttribute("otp-register", otpCode());
         session.setMaxInactiveInterval(360);
-        String mess = "Hi You@"+" \nDear "+user.getFirstName()+" "+ user.getLastName()+" "+"Here is your OTP Code: "+session.getAttribute("otp-register")+" Plaese input to form!"+"\n Thanks!";
-        this.emailSenderService.sendEmail(user.getEmail(), "emailMessage.getSubject()", mess);
+        String subject = "Hello Here Is Your Code OTP!";
+        String mess = "Hi You@" + " \nDear " + user.getFirstName() + " " + user.getLastName() + " " + "Here is your OTP Code: " + session.getAttribute("otp-register") + " Plaese input to form!" + "\n Thanks!";
+        this.emailSenderService.sendEmail(user.getEmail(), subject, mess);
 
-//        UserEntity userEntity = new UserEntity();
-//        userEntity.setUserId(user.getUserId());
-//        userEntity.setEmail(user.getEmail());
-//        userEntity.setFirstName(user.getFirstName());
-//        userEntity.setLastName(user.getLastName());
-//        userEntity.setDob(user.getDob());
-//        userEntity.setPhone(user.getPhone());
-//        userEntity.setGender(user.getGender());
-//        userEntity.setPassword(passwordEncoder.encode(user.getPassword()));
-//        userEntity.setCreatedDate(null);
-//        userEntity.setAddressId(1);
-//        userEntity.setFacebookId(null);
-//        userEntity.setGmailId(null);
-//        userEntity.setImageLink(null);
-//        userEntity.setLastModifiedDate(null);
-//        userEntity.setRoleId(1);
-//        userService.saveUser(user);
+        session.setAttribute("userid",user.getUserId());
+        session.setAttribute("email",user.getEmail());
+        session.setAttribute("firstname",user.getFirstName());
+        session.setAttribute("lastname",user.getLastName());
+        session.setAttribute("dob",user.getDob());
+        session.setAttribute("phone",user.getPhone());
+        session.setAttribute("gender",user.getGender());
+        session.setAttribute("password",user.getPassword());
+        return "redirect:/otp-check";
+
+    }
+    @RequestMapping(value = "re-send")
+    public String resend(HttpSession session) {
+        //
+        session.removeAttribute("otp-register");
+        session.setAttribute("otp-register", otpCode());
+        session.setMaxInactiveInterval(360);
+        String subject = "Hello Here Is Your Code OTP!";
+        String mess = "Hi You@" + " \nDear " + session.getAttribute("firstname") + " " + session.getAttribute("lastnamename") + " " + "Here is your OTP Code: " + session.getAttribute("otp-register") + " Plaese input to form!" + "\n Thanks!";
+        this.emailSenderService.sendEmail((String) session.getAttribute("email"), subject, mess);
         return "redirect:/otp-check";
     }
 
-    public String otpCode(){
+    public String otpCode() {
         int code = (int) Math.floor(((Math.random() * 899999) + 100000));
         return String.valueOf(code);
     }
