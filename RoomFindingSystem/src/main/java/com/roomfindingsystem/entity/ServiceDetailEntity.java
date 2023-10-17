@@ -3,6 +3,7 @@ package com.roomfindingsystem.entity;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
@@ -10,7 +11,7 @@ import java.util.Objects;
 public class ServiceDetailEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @jakarta.persistence.Column(name = "ServiceId")
+    @jakarta.persistence.Column(name = "ServiceID")
     private int serviceId;
 
     public int getServiceId() {
@@ -47,13 +48,13 @@ public class ServiceDetailEntity {
 
     @Basic
     @Column(name = "Create_Date")
-    private Timestamp createDate;
+    private LocalDate createDate;
 
-    public Timestamp getCreateDate() {
+    public LocalDate getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(Timestamp createDate) {
+    public void setCreateDate(LocalDate createDate) {
         this.createDate = createDate;
     }
 

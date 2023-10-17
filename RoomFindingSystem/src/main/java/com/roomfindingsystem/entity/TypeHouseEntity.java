@@ -3,6 +3,7 @@ package com.roomfindingsystem.entity;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
@@ -17,7 +18,7 @@ public class TypeHouseEntity {
     private String typeName;
     @Basic
     @Column(name = "Created_Date")
-    private Timestamp createdDate;
+    private LocalDate createdDate;
 
     public int getTypeId() {
         return typeId;
@@ -35,11 +36,11 @@ public class TypeHouseEntity {
         this.typeName = typeName;
     }
 
-    public Timestamp getCreatedDate() {
+    public LocalDate getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(Timestamp createdDate) {
+    public void setCreatedDate(LocalDate createdDate) {
         this.createdDate = createdDate;
     }
 

@@ -11,7 +11,9 @@ import java.util.Optional;
 
 @Repository
 @SpringBootApplication
+
 public interface UserReponsitory extends JpaRepository<UserEntity, Integer> {
+
     public UserEntity save(UserEntity user);
     Optional<UserEntity> findByEmail(String email);
     public UserDto save(UserDto userDto);

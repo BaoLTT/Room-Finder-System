@@ -6,6 +6,7 @@ import com.roomfindingsystem.service.HouseService;
 import com.roomfindingsystem.vo.FeedbackDto;
 import com.roomfindingsystem.vo.HouseDto;
 import com.roomfindingsystem.vo.HouseImageLink;
+import com.roomfindingsystem.vo.ServiceDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,25 +33,14 @@ public class HouseController {
 
     @RequestMapping(value = "detail", method = RequestMethod.GET)
     public String getAllHouse(@RequestParam("id") Integer houseId, ModelMap model) {
-//        Optional<HousesEntity> housesEntity = houseService.findHouseById(houseId);
-//        System.out.println("nsdnvkdnfjnvjdfnj");
-//        System.out.println(housesEntity.toString());
-//        housesEntity.ifPresent(HousesEntity -> model.addAttribute("HousesEntity", HousesEntity));
-
         List<HouseDto> houseDto = houseService.getHouseDetail(houseId);
         System.out.printf(houseDto.toString());
 
 
-//        System.out.println(Arrays.toString(houseDto.get().getHouseImagesEntities().split(",")));
-//        List<String> strings = new ArrayList<>();
-//        strings.add(Arrays.toString(houseDto.get().getHouseImagesEntities().split(",")));
-//        for (String s:strings
-//             ) {
-//            System.out.println("image");
-//            System.out.println(s);
-//        }
         model.addAttribute("HousesEntity", houseDto);
 
+        List<ServiceDto> listService= houseService.getServiceById(houseId);
+        model.addAttribute("HouseService", listService);
 //        houseDto.ifPresent(user -> model.addAttribute("HousesEntity", user));
         // get Image
         List<HouseImageLink> listsImage = houseService.getImageById(houseId);

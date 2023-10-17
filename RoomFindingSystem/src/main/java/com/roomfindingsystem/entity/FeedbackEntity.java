@@ -3,6 +3,7 @@ package com.roomfindingsystem.entity;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
@@ -47,25 +48,25 @@ public class FeedbackEntity {
 
     @Basic
     @Column(name = "Created_Date")
-    private Timestamp createdDate;
+    private LocalDate createdDate;
 
-    public Timestamp getCreatedDate() {
+    public LocalDate getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(Timestamp createdDate) {
+    public void setCreatedDate(LocalDate createdDate) {
         this.createdDate = createdDate;
     }
 
     @Basic
     @Column(name = "Last_Modified_Date")
-    private Timestamp lastModifiedDate;
+    private LocalDate lastModifiedDate;
 
-    public Timestamp getLastModifiedDate() {
+    public LocalDate getLastModifiedDate() {
         return lastModifiedDate;
     }
 
-    public void setLastModifiedDate(Timestamp lastModifiedDate) {
+    public void setLastModifiedDate(LocalDate lastModifiedDate) {
         this.lastModifiedDate = lastModifiedDate;
     }
 

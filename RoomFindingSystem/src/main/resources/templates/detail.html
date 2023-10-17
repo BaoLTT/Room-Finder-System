@@ -64,12 +64,12 @@
                                 <!--end element-->
                                 <div class="element">
                                     <a href="#tab-sign-in" data-toggle="modal" data-tab="true"
-                                       data-target="#sign-in-register-modal">Sign In</a>
+                                       data-target="#sign-in-register-modal">Đăng Nhập</a>
                                 </div>
                                 <!--end element-->
                                 <div class="element">
                                     <a href="#tab-register" data-toggle="modal" data-tab="true"
-                                       data-target="#sign-in-register-modal">Register</a>
+                                       data-target="#sign-in-register-modal">Đăng Kí</a>
                                 </div>
                                 <!--end element-->
                                 <div class="element">
@@ -93,7 +93,9 @@
             <div class="container">
                 <div class="primary-nav">
                     <div class="left">
+
                         <!--                        <a href="index.html" id="brand"><img src="assets/img/logo.png" alt=""></a>-->
+
                         <a class="nav-trigger" data-toggle="collapse" href="#primary-nav" aria-expanded="false"
                            aria-controls="primary-nav"><i class="fa fa-navicon"></i></a>
                     </div>
@@ -101,10 +103,12 @@
                     <div class="right">
                         <nav id="primary-nav">
                             <ul>
-                                <li><a href="index.html">Home</a></li>
+
+                                <li><a href="Homepage.html">Trang Chủ</a></li>
+
                                 <li><a href="about-us.html">About Us</a></li>
                                 <li>
-                                    <a href="#" class="has-child">Listing</a>
+                                    <a href="#" class="has-child">Danh Sách</a>
                                     <ul class="child-nav">
                                         <li><a href="listing.html">List Listing</a></li>
                                         <li><a href="listing-matrix.html">Matrix Listing</a></li>
@@ -158,19 +162,19 @@
     <div id="page-content">
         <div class="container" th:each="HousesEntity : ${HousesEntity}">
             <ol class="breadcrumb">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Listing</a></li>
-                <li class="active">Detail</li>
+                <li><a href="#">Trang Chủ</a></li>
+                <li><a href="#">Danh Sách</a></li>
+                <li class="active">Chi Tiết</li>
             </ol>
             <!--end breadcrumb-->
             <div class="row">
                 <div class="col-md-3 col-sm-4">
                     <div class="sidebar">
                         <div class="box filter">
-                            <h2>Search</h2>
+                            <h2>Tìm Kiếm</h2>
                             <form id="form-filter" class="labels-uppercase">
                                 <div class="form-group">
-                                    <label for="form-filter-destination">Destination</label>
+                                    <label for="form-filter-destination">Miêu tả chi tiết</label>
                                     <input type="text" class="form-control" id="form-filter-destination"
                                            name="destination" placeholder="Destination">
                                 </div>
@@ -287,11 +291,11 @@
                     <div class="quick-navigation" data-fixed-after-touch="">
                         <div class="wrapper">
                             <ul>
-                                <li><a href="#description" class="scroll">Description</a></li>
-                                <li><a href="#map" class="scroll">Map</a></li>
+                                <li><a href="#description" class="scroll">Miêu tả chi tiết</a></li>
+                                <li><a href="#map" class="scroll">Bản đồ</a></li>
                                 <li><a href="#facilities" class="scroll">Facilities</a></li>
-                                <li><a href="#additional-information" class="scroll">Additional Information</a></li>
-                                <li><a href="#reviews" class="scroll">Reviews</a>(23)</li>
+                                <li><a href="#additional-information" class="scroll">Thêm Thông Tin</a></li>
+                                <li><a href="#reviews" class="scroll">Bình Luận</a>(23)</li>
                                 <li></li>
                             </ul>
                         </div>
@@ -303,12 +307,12 @@
                             <div class="left">
                                 <!--                                <h1 th:text="*{houseName}" >Mountain Paradise<span class="rating"><i class="fa fa-star"></i>9.9</span></h1>-->
 
-                                <h3><strong>Created Date:</strong></h3>
+                                <h3><strong>Ngày Tạo:</strong></h3>
                                 <h3 th:text="${HousesEntity.createdDate}">(63 properties)</h3>
                             </div>
                             <div class="right">
-                                <a href="#map" class="icon scroll"><i class="fa fa-map-marker"></i>See on the map</a>
-                                <a href="#availability" class="btn btn-primary btn-rounded scroll">List Room</a>
+                                <a href="#map" class="icon scroll"><i class="fa fa-map-marker"></i>Tìm Trên Bản Đồ</a>
+                                <a href="#availability" class="btn btn-primary btn-rounded scroll">Danh sách Phòng</a>
                             </div>
                         </div>
                         <div class="one-item-carousel" >
@@ -339,7 +343,7 @@
                             <!--                            end title-->
 
                         </div>
-                        <h2 th:text="${HousesEntity.houseName}">Description</h2>
+                        <strong>  <h2 th:text="${HousesEntity.houseName}">Miêu tả chi tiết</h2></strong>
                         <!--                        <p th:text="${HousesEntity.houseImagesEntities}"></p>-->
                         <!--                        <img th:src="${HousesEntity.houseImagesEntities}" alt="">-->
                         <div class="row" th:object="${HousesEntity}">
@@ -348,18 +352,20 @@
                                     <h3 th:text="${HousesEntity.description}">Spend Great Time in Our Hotel!</h3>
                                 </section>
                                 <section id="facilities">
-                                    <h2>Service</h2>
-                                    <ul class="bullets half" th:text="${HousesEntity.serviceName}">
-                                        <li th:text="${HousesEntity.serviceName}">Sauna</li>
-                                        <li>Fireplace or fire pit</li>
-                                        <li>Outdoor Kitchen</li>
-                                        <li>
-                                            <div><img th:src="@{img/logo.jpeg}" alt=""></div>
-                                        </li>
-                                        <li>Trees and Landscaping</li>
-                                        <li>Sun Room</li>
-                                        <li>Family Room</li>
-                                        <li>Concrete Flooring</li>
+                                    <h2>Dịch Vụ</h2>
+                                    <ul class="bullets half" th:each="HouseService : ${HouseService}">
+<!--                                        th:text="${HousesEntity.serviceName}"-->
+<!--                                        th:text="${HousesEntity.serviceName}"-->
+                                        <li  th:text="${HouseService.serviceName}" >Sauna</li>
+<!--                                        <li>Fireplace or fire pit</li>-->
+<!--                                        <li>Outdoor Kitchen</li>-->
+<!--                                        <li>-->
+<!--                                            <div><img th:src="@{img/logo.jpeg}" alt=""></div>-->
+<!--                                        </li>-->
+<!--                                        <li>Trees and Landscaping</li>-->
+<!--                                        <li>Sun Room</li>-->
+<!--                                        <li>Family Room</li>-->
+<!--                                        <li>Concrete Flooring</li>-->
                                     </ul>
                                 </section>
                                 <!--                                <section id="map">-->
@@ -389,13 +395,13 @@
                                         </dl>
                                     </aside>
                                     <aside>
-                                        <h2>Contact LandLord</h2>
+                                        <h2>Liên Hệ Chủ Trọ</h2>
                                         <address>
-                                            <strong>Name LandLord</strong><br>
+                                            <strong>Tên Chủ Trọ</strong><br>
                                             <p th:text="${HousesEntity.firstName}"></p>
                                             <p th:text="${HousesEntity.lastName}"></p>
-                                            <strong>phone number:</strong>
-                                            <p th:text="${HousesEntity.phoneLandLord}"></p>
+                                            <strong>Điện Thoại Liên Hệ:</strong>
+                                            <p th:text="${HousesEntity.phone}"></p>
                                         </address>
                                     </aside>
                                 </div>
@@ -406,7 +412,7 @@
                         <!--end row-->
                         <section>
                             <div><h2>Why Choose</h2>
-                                <h2 th:text="${HousesEntity.houseName}"></h2></div>
+                              <strong> <h2 th:text="${HousesEntity.houseName}"></h2></strong> </div>
 
                             <div class="row">
                                 <div class="col-md-4 col-sm-4">
@@ -876,7 +882,7 @@
             <div class="container">
                 <div class="copyright pull-left">(C) 2016 Your Company, All Rights Reserved</div>
                 <div class="footer-nav pull-right">
-                    <a href="index.html">Home</a>
+                    <a href="Homepage.html">Home</a>
                     <a href="about-us.html">About Us</a>
                     <a href="listing.html">Listing</a>
                     <a href="contact-us.html">Contact Us</a>

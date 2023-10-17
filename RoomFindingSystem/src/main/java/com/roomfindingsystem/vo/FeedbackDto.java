@@ -3,6 +3,7 @@ import com.roomfindingsystem.entity.UserEntity;
 import lombok.*;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -13,7 +14,7 @@ public class FeedbackDto {
     private int feedbackId;
     private String title;
     private String content;
-    private Timestamp createdDate;
+    private LocalDate createdDate;
     private String userFistName;
     private String userLastName;
     private String userImage;

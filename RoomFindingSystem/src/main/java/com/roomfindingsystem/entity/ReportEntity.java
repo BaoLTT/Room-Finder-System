@@ -3,6 +3,7 @@ package com.roomfindingsystem.entity;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
@@ -23,25 +24,25 @@ public class ReportEntity {
 
     @Basic
     @Column(name = "Solved_Date")
-    private Timestamp solvedDate;
+    private LocalDate solvedDate;
 
-    public Timestamp getSolvedDate() {
+    public LocalDate getSolvedDate() {
         return solvedDate;
     }
 
-    public void setSolvedDate(Timestamp solvedDate) {
+    public void setSolvedDate(LocalDate solvedDate) {
         this.solvedDate = solvedDate;
     }
 
     @Basic
     @Column(name = "Created_Date")
-    private Timestamp createdDate;
+    private LocalDate createdDate;
 
-    public Timestamp getCreatedDate() {
+    public LocalDate getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(Timestamp createdDate) {
+    public void setCreatedDate(LocalDate createdDate) {
         this.createdDate = createdDate;
     }
 
