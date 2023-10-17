@@ -58,25 +58,26 @@ public class AuthController {
         GooglePojo googlePojo = googleUtils.getUserInfo(accessToken);
         // Kiểm tra xem tài khoản Google đã tồn tại trong bảng user chưa
         Optional<UserEntity> existingUser = userService.findByEmail(googlePojo.getEmail()); // Thay thế bằng phương thức phù hợp của userService
-        System.out.println(existingUser.isEmpty()); ///1
+//        System.out.println(existingUser.isEmpty()); ///1
         //TODO cật nhật thông tin ở đoạn này...
-        if (existingUser == null|| existingUser.isEmpty()) {
-            // Nếu tài khoản Google chưa có, thêm tài khoản mới vào bảng user
-            UserEntity newUser = new UserEntity();
-            newUser.setEmail(googlePojo.getEmail()); // Sử dụng email làm tên đăng nhập
-            newUser.setRoleId(1); // Gán vai trò mặc định (có thể thay đổi)
-            newUser.setPassword(null);
-            userService.save(newUser);
-        }
+//        if (existingUser == null|| existingUser.isEmpty()) {
+//            // Nếu tài khoản Google chưa có, thêm tài khoản mới vào bảng user
+//            UserEntity newUser = new UserEntity();
+//            newUser.setEmail(googlePojo.getEmail()); // Sử dụng email làm tên đăng nhập
+//            newUser.setRoleId(1); // Gán vai trò mặc định (có thể thay đổi)
+//            newUser.setPassword("aaaaaaa");
+//            userService.save(newUser);
+//        }
 
-
+//        System.out.println("ok");
         UserDetails userDetail = googleUtils.buildUser(googlePojo);
-        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetail, null,
-                userDetail.getAuthorities());
-        authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetail, null, userDetail.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(authentication);
         return "redirect:/";
     }
+
+
+
 //    @RequestMapping("/user")
 //    public String user() {
 //        return "user";

@@ -9,7 +9,7 @@
 <body>
 <h1>Welcome</h1>
 <p sec:authorize="isAuthenticated()">
-    Hi, <span th:text="${currentUserName}"></span>
+    Hi, <span th:text="${currentUserName}"></span>  <span th:text="${status}"></span>
 </p>
 <p sec:authorize="!isAuthenticated()">
     <a sec:authorize="!isAuthenticated()" th:href="@{/login}">Login</a>

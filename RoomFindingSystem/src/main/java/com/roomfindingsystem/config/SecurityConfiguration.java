@@ -1,6 +1,7 @@
 package com.roomfindingsystem.config;
 
 
+import com.roomfindingsystem.sbgooogle.GoogleUtils;
 import com.roomfindingsystem.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
@@ -22,6 +23,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 public class SecurityConfiguration {
     @Autowired
     private UserService userService;
+    @Autowired
+    private GoogleUtils googleUtils; // Inject your GoogleUtils
 
     @Bean
     public DaoAuthenticationProvider authenticationProvider(){
@@ -58,13 +61,14 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 //        http.csrf().disable();
         http
-            .authorizeHttpRequests(at ->at.requestMatchers("/login/**", "/login-google",
+            .formLogin(f->f.loginPage("/login")
+                    .usernameParameter("username")
+                    .passwordParameter("password"))
+            .authorizeHttpRequests(at ->at.requestMatchers("/login/**", "/login-google", "/home",
                             "/room/**", "/assets/**").permitAll()
                         .requestMatchers("/admin/**", "/test").hasRole("1")
-                        .anyRequest().authenticated())
-            .formLogin(f->f.loginPage("/login")
-                .usernameParameter("username")
-                .passwordParameter("password")).httpBasic();
+                        .anyRequest().authenticated());
+
         return http.build();
     }
 
