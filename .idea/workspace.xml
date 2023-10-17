@@ -28,24 +28,10 @@
       <list>
         <option value="Interface" />
         <option value="Class" />
-        <option value="Enum" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
-    <favorite-branches>
-      <branch-storage>
-        <map>
-          <entry type="REMOTE">
-            <value>
-              <list>
-                <branch-info repo="$PROJECT_DIR$" source="origin/BinhNH" />
-              </list>
-            </value>
-          </entry>
-        </map>
-      </branch-storage>
-    </favorite-branches>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="main" />
@@ -127,6 +113,8 @@
       <workItem from="1697444378721" duration="4072000" />
       <workItem from="1697462386816" duration="12695000" />
       <workItem from="1697508544796" duration="3293000" />
+      <workItem from="1697462386816" duration="6309000" />
+      <workItem from="1697484322714" duration="326000" />
     </task>
     <task id="LOCAL-00001" summary="fix register and boảding house detail and send mail future">
       <option name="closed" value="true" />

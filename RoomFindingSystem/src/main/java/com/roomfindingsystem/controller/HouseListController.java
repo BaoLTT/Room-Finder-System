@@ -28,20 +28,6 @@ public class HouseListController {
     public HouseListController(HouseService houseService){
         this.houseService = houseService;
     }
-
-//    @RequestMapping(value="", method = RequestMethod.GET)
-//    public String getAll(ModelMap modelMap){
-//    Iterable <House> houses = houseReponsitory.findAll();
-//    modelMap.addAttribute("houses",houses);
-//        return "listing";
-//    }
-    @GetMapping ("/view")
-    public String viewHomepage(final Model model, HttpSession httpSession){
-        System.out.println(houseService.getAllHouse().toString());
-        model.addAttribute("houses", houseService.getAllHouse());
-        return "listing";
-    }
-
     @GetMapping(value={"/{pageIndex}"})
     public String list(@PathVariable Integer pageIndex, @RequestParam(name = "houseName",required = false , defaultValue = "") String houseName,
                       @RequestParam(name = "price",required = false,defaultValue = "0") String price,
@@ -50,28 +36,27 @@ public class HouseListController {
         for(String type1: type){
             listType.add(Integer.parseInt(type1));
         }
-
-        Page<HouseTypeVo> page = houseService.findHouse(0,6000000,houseName,listType,pageIndex, 4);;
+        int pageSize =4;
+        int totalHouse = houseService.countHouse();
+        int offset = (pageIndex -1)*pageSize;
+        int totalPage = (int) Math.ceil((double) totalHouse / pageSize);
+        List<HouseTypeVo>  page= houseService.findHouse1(0,6000000,houseName,listType,offset, pageSize);;
         if(price.equals("1")){
-             page =houseService.findHouse(0,2000000,houseName,listType,pageIndex, 4);
+             page =houseService.findHouse1(0,2000000,houseName,listType,offset, pageSize);
         }
         if(price.equals("2")){
-            page =houseService.findHouse(2000000,4000000,houseName,listType,pageIndex, 4);
+            page =houseService.findHouse1(2000000,4000000,houseName,listType,offset, pageSize);
         }
         if(price.equals("3")){
-            page =houseService.findHouse(4000000,6000000,houseName,listType,pageIndex, 4);
+            page =houseService.findHouse1(4000000,6000000,houseName,listType,offset, pageSize);
         }
-
-
-
-
-        model.addAttribute("house1", houseService.getAllHouse());
         model.addAttribute("houseName",houseName);
         model.addAttribute("currentPage",pageIndex);
-        model.addAttribute("totalPage", page.getTotalPages());
-        model.addAttribute("houses", page.getContent());
+        model.addAttribute("totalPage", totalPage);
+        model.addAttribute("houses", page);
 
         return"listing";
+    
     }
 
 
