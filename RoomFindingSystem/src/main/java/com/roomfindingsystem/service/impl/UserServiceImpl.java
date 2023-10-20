@@ -79,5 +79,9 @@ public class UserServiceImpl implements UserService {
                 user.getFirstName(), user.getLastName(), user.getEmail());
     }
 
+    @Override
+    public int recoverPassword(String password, String email) {
+        return userRepository.updatePassword(password,email);
+    }
 
 }

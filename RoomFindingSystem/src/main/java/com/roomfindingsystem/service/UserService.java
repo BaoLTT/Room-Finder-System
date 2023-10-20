@@ -28,6 +28,7 @@ public interface UserService extends UserDetailsService {
     UserEntity getUserByRoomId(int roomId);
 
     UserEntity save(UserEntity user);
+    int recoverPassword(String password, String email);
 
 }
 
