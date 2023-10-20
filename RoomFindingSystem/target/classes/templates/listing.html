@@ -244,17 +244,30 @@
                             <ul class="pagination">
                                 <li class="prev" >
                                     <a th:href="@{/houselist/}+${pageIndex-1}" th:if = "${pageIndex!=1}? 'None'" ><i class="arrow_left"></i></a>
-
                                 </li>
-                                <li th:each = "pageIndex: ${#numbers.sequence(1,totalPage)} " th:class="${pageIndex == currentPage ? 'active' : ''}" >
-                                    <a th:text = "${pageIndex}" class="page-number"    >1</a>
+
+                                <li th:if="${currentPage > 2}">
+                                    <a th:text="1" th:href="@{/houselist/1}">1</a>
+                                </li>
+                                <li th:if="${currentPage > 3}">
+                                    <span>...</span>
+                                </li>
+
+                                <li  th:each="pageIndex: ${#numbers.sequence(currentPage - 1, currentPage + 2)}" th:unless="${pageIndex < 1 || pageIndex > totalPage}" th:class="${pageIndex == currentPage ? 'active' : ''}">
+                                    <a th:text="${pageIndex}" th:href="@{/houselist/}+${pageIndex}">${pageIndex}</a>
+                                </li>
+
+                                <li th:if="${currentPage < totalPage - 2}">
+                                    <span>...</span>
+                                </li>
+                                <li th:if="${currentPage < totalPage - 2}">
+                                    <a th:text="${totalPage}" th:href="@{/houselist/}+${totalPage}">${totalPage}</a>
                                 </li>
 
                                 <li class="next" >
                                     <a th:href=" @{/houselist/}+${pageIndex+1}" th:if = "${pageIndex!=totalPage}? 'None'"><i class="arrow_right"></i></a>
                                 </li>
                             </ul>
-                            <!-- end pagination-->
                         </div>
                         <!-- end center-->
                     </div>
