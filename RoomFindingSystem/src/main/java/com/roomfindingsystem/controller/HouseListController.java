@@ -20,7 +20,6 @@ import java.util.*;
 @RequestMapping("/houselist")
 public class HouseListController {
     private HouseService houseService;
-
     public HouseListController(HouseService houseService){
         this.houseService = houseService;
     }

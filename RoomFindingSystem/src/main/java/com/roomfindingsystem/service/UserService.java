@@ -21,6 +21,7 @@ public interface UserService extends UserDetailsService {
     void registerUser(UserDto userDto);
 
     UserEntity getUserByRoomId(int roomId);
+    int recoverPassword(String password, String email);
 
     UserDto findById(int id);
 
