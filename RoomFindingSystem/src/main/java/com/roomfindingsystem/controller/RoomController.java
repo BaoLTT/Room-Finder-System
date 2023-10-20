@@ -4,7 +4,6 @@ package com.roomfindingsystem.controller;
 import com.roomfindingsystem.entity.RoomEntity;
 import com.roomfindingsystem.entity.RoomImagesEntity;
 import com.roomfindingsystem.service.HouseService;
-import com.roomfindingsystem.service.RoomService;
 import com.roomfindingsystem.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
