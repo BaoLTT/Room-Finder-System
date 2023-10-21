@@ -205,4 +205,8 @@ public class UserServiceImpl implements UserService {
         saveUser.setUserStatusId(user.getUserStatusId());
         userRepository.save(saveUser);
     }
+    @Override
+    public int recoverPassword(String password, String email) {
+        return userRepository.updatePassword(password,email);
+    }
 }
