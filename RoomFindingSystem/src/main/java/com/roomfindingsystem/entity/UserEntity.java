@@ -23,73 +23,60 @@ import java.util.Set;
 public class UserEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "UserID")
+    @Column(name = "UserID", nullable = false)
     private int userId;
     @Basic
-    @NotEmpty(message = "Sorry, First name cannot be blank.!")
-    @NotBlank(message = "Sorry, First name cannot be blank.!")
-    @NotNull(message = "Sorry, First name cannot be blank.!")
-    @Column(name = "First_Name")
+    @Column(name = "First_Name", nullable = true, length = 255)
     private String firstName;
     @Basic
-    @NotNull(message = "Please enter birth date")
-    @Past(message = "Birth date should be less than current date!!")
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    @Column(name = "Dob")
+    @Column(name = "Dob", nullable = true)
     private LocalDate dob;
     @Basic
-    @NotNull(message = "Sorry, Gender cannot be blank.!")
-    @Column(name = "Gender")
+    @Column(name = "Gender", nullable = true)
+
     private Boolean gender;
     @Basic
-    @Size(min = 10,message = "Sorry,phone has 10 character!")
-    @Pattern(regexp = "(84|0[3|5|7|8|9])+([0-9]{8})\\b", message = "example: 098 765 4321")
-    @Column(name = "Phone")
+    @Column(name = "Phone", nullable = true, length = 45)
     private String phone;
     @Basic
-    @Email(message = "Sorry, please enter a valid Email")
-    @Column(name = "Email")
+    @Column(name = "Email", nullable = true, length = 45)
     private String email;
     @Basic
-    @Column(name = "Image_Link")
+    @Column(name = "Image_Link", nullable = true, length = 255)
     private String imageLink;
     @Basic
-    @NotEmpty(message = "Sorry, Password cannot be blank.!")
-    @NotBlank(message = "Sorry, Password cannot be blank.!")
-    @Min(value = 8, message = "Password must be 8 characters or more!")
-    @Column(name = "Password")
+    @Column(name = "Password", nullable = true, length = 255)
     private String password;
     @Basic
-    @Column(name = "FacebookID")
+    @Column(name = "FacebookID", nullable = true, length = 255)
     private String facebookId;
     @Basic
-    @Column(name = "GmailID")
+    @Column(name = "GmailID", nullable = true, length = 255)
     private String gmailId;
     @Basic
     @Column(name = "RoleID")
 
-//    private Integer roleId;
 
      private String roleId;
 
     @Basic
-    @Column(name = "Created_Date")
-    private LocalDate createdDate;
+    @Column(name = "Created_Date", nullable = true)
+    private Timestamp createdDate;
     @Basic
-    @Column(name = "Last_Modified_Date")
-    private LocalDate lastModifiedDate;
+    @Column(name = "Last_Modified_Date", nullable = true)
+    private Timestamp lastModifiedDate;
     @Basic
-    @Column(name = "User_StatusID")
+    @Column(name = "User_StatusID", nullable = true)
     private Integer userStatusId;
 
+
     @Basic
-    @NotEmpty(message = "Sorry, Last name cannot be blank.!")
-    @NotBlank(message = "Sorry, Last name cannot be blank.!")
-    @Column(name = "Last_Name")
+    @Column(name = "Last_Name", nullable = true, length = 255)
     private String lastName;
     @Basic
-    @Column(name = "AddressID")
+    @Column(name = "AddressID", nullable = false)
     private int addressId;
+
 
 
     @Override

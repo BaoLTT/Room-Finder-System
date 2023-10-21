@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
+
 public interface RoomService {
     RoomEntity getRoomById(int roomId);
     List<RoomImagesEntity> roomImageByRoomId (int roomId);

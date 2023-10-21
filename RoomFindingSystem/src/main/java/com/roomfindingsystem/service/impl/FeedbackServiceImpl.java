@@ -1,19 +1,24 @@
 package com.roomfindingsystem.service.impl;
 
+
 import com.roomfindingsystem.reponsitory.FeedbackRepository;
 import com.roomfindingsystem.service.FeedbackService;
+import com.roomfindingsystem.vo.FeedbackDto;
 import com.roomfindingsystem.vo.FeedbackHomeVo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-@Service("feedbackService")
+@Service
 public class FeedbackServiceImpl implements FeedbackService {
-    private FeedbackRepository feedbackRepository;
+    @Autowired
+    FeedbackRepository feedbackRepository;
 
-    public FeedbackServiceImpl(FeedbackRepository feedbackRepository){
-        super();
-        this.feedbackRepository = feedbackRepository;
+
+    @Override
+    public List<FeedbackDto> getFeedbackByHouseId(int houseId) {
+        return feedbackRepository.findFeedbackDtosByHouseId(houseId);
     }
     @Override
     public List<FeedbackHomeVo> viewTop4Home() {

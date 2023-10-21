@@ -27,9 +27,7 @@ import java.util.List;
         String province;
 
         Integer price;
-
         List<String> listImage;
-
         LocalDate last_modified_date;
     }
 

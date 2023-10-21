@@ -1,19 +1,18 @@
 package com.roomfindingsystem.controller;
 
-
+import com.roomfindingsystem.config.Contants;
 import com.roomfindingsystem.config.Role;
 import com.roomfindingsystem.entity.UserEntity;
+import com.roomfindingsystem.service.EmailSenderService;
 import com.roomfindingsystem.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
 
 import java.time.LocalDate;
 
@@ -24,7 +23,13 @@ public class OtpController {
     private UserService userService;
     @Autowired
     private PasswordEncoder passwordEncoder;
+    private final EmailSenderService emailSenderService;
+    Contants contants= new Contants();
 
+
+    public OtpController(EmailSenderService emailSenderService) {
+        this.emailSenderService = emailSenderService;
+    }
 
     @RequestMapping(value = "otp-check", method = RequestMethod.GET)
     public String indexOtp() {
@@ -32,7 +37,6 @@ public class OtpController {
     }
 
     @RequestMapping(value = "confirm-otp", method = RequestMethod.POST)
-
     public String checkOtp(HttpSession session, @RequestParam("otp") String otp, Model model) {
         String otpRegister = (String) session.getAttribute("otp-register");
         if (otp.equals(otpRegister)) {
@@ -47,9 +51,9 @@ public class OtpController {
             userEntity.setPassword(passwordEncoder.encode((String) session.getAttribute("password")));
             String role = (String) session.getAttribute("role");
             if (role != null) {
-                userEntity.setRoleId(String.valueOf(Role.LANDLORD));
-            } else {
                 userEntity.setRoleId(String.valueOf(Role.USER));
+            } else {
+                userEntity.setRoleId(String.valueOf(Role.LANDLORD));
             }
             userEntity.setCreatedDate(null);
             userEntity.setAddressId(1);
@@ -58,10 +62,46 @@ public class OtpController {
             userEntity.setImageLink(null);
             userEntity.setLastModifiedDate(null);
             userService.saveUser(userEntity);
-            return "edirect:/";
+            return "redirect:/home";
         }
         model.addAttribute("mess","OTP is not correct! Please check your email.");
-
         return "otpConfirm";
     }
+    @RequestMapping(value = "send-otp-recover", method = RequestMethod.POST)
+    public String getMail( @RequestParam("emailaddress") String email, HttpSession session) {
+        session.setAttribute("emailToReset",email);
+        String otpCode=contants.otpCode();
+        String subject = "Hello Here Is Your Code OTP!";
+        String mess = "Hi You@" + " " + "Here is your OTP Code: " + otpCode + " Plaese input to form!" + "\n Thanks!";
+        this.emailSenderService.sendEmail(email, subject, mess);
+        session.setAttribute("recoverOtp",otpCode);
+        session.setMaxInactiveInterval(360);
+        return "confirmOtpRecover";
+    }
+
+    @RequestMapping(value = "confirm-otp-recover", method = RequestMethod.POST)
+    public String recover( @RequestParam("otp") String otp, Model model,HttpSession session) {
+        System.out.println(otp);
+        System.out.println(session.getAttribute("recoverOtp"));
+        if (session.getAttribute("recoverOtp").equals(otp)){
+            //
+            return "confirmNewPassword";
+        }
+        model.addAttribute("mess","OTP is not correct! Please check your email.");
+        return "confirmOtpRecover";
+    }
+
+    @RequestMapping(value = "save-new-password", method = RequestMethod.POST)
+    public String saveNewPassword(@RequestParam("password") String password, HttpSession session) {
+
+        // from getMail
+        String email = (String) session.getAttribute("emailToReset");
+        if (userService.recoverPassword(passwordEncoder.encode(password),email)==1){
+            return "confirmNewPassword";
+        }
+
+        return "confirmNewPassword";
+    }
+
+
 }
