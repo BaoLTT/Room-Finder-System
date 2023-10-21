@@ -180,13 +180,17 @@
                                             <div class="col-md-6 col-sm-6">
                                                 <div class="form-group">
                                                     <label for="firstName">First Name</label>
-                                                    <input type="text" class="form-control" id="firstName" name="firstName"
+                                                    <input type="text" class="form-control" id="firstName"
+                                                           name="firstName" pattern="^[a-zA-Z]+$"
                                                            placeholder="Jane" th:value="*{firstName}" required>
+                                                    <small class="text-danger error-firstName"></small>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="lastName">Last Name</label>
-                                                    <input type="text" class="form-control" id="lastName" name="lastName"
+                                                    <input type="text" class="form-control" id="lastName"
+                                                           name="lastName" pattern="^[a-zA-Z]+$"
                                                            placeholder="Doe" th:value="*{lastName}" required>
+                                                    <small class="text-danger error-lastName"></small>
                                                 </div>
                                                 <!--end form-group-->
                                             </div>
@@ -196,7 +200,9 @@
                                                 <div class="form-group">
                                                     <label for="email">Email</label>
                                                     <input type="email" class="form-control" id="email" name="email"
+                                                           pattern="^\w+([\.]?\w+)*@\w+([\.]?\w+)*(\.\w{2,3})+$"
                                                            placeholder="janedoe@gmail.com" th:value="*{email}">
+                                                    <small class="text-danger error-email"></small>
                                                 </div>
                                                 <!--end form-group-->
                                             </div>
@@ -205,8 +211,9 @@
                                                 <div class="form-group">
                                                     <label for="phone">Phone(10)</label>
                                                     <input type="text" class="form-control" id="phone" name="phone"
-                                                           pattern="[0-9]{10}" placeholder="(0)123 456 7890"
+                                                           pattern="(84|0[3|5|7|8|9])+([0-9]{8})\b" placeholder="(0)123 456 7890"
                                                            th:value="*{phone}" required>
+                                                    <small class="text-danger error-phone"></small>
                                                 </div>
                                                 <!--end form-group-->
                                             </div>
@@ -214,7 +221,8 @@
                                             <div class="col-md-6 col-sm-6">
                                                 <div class="form-group">
                                                     <label for="gender">Gender</label>
-                                                    <select class="form-control" id="gender" name="gender" th:field="*{gender}" required>
+                                                    <select class="form-control" id="gender" name="gender"
+                                                            th:field="*{gender}">
                                                         <option value="MALE" th:selected="${user.gender == 'MALE'}">MALE</option>
                                                         <option value="FEMALE" th:selected="${user.gender == 'FEMALE'}">FEMALE</option>
                                                     </select>
@@ -224,9 +232,11 @@
                                             <div class="col-md-6 col-sm-6">
                                                 <div class="form-group">
                                                     <label for="dob">Date Of Birth</label>
-                                                    <input style="height: 36px" type="date" class="form-control" id="dob" name="dob"
-                                                           placeholder="Enter your age (ex: 18)" th:value="*{dob}" required
-                                                           onchange="" >
+                                                    <input style="height: 36px" type="date" class="form-control"
+                                                           id="dob" name="dob"
+                                                           placeholder="Enter your age (ex: 18)" th:value="*{dob}"
+                                                           required
+                                                           onchange="">
                                                 </div>
                                                 <!--end form-group-->
                                             </div>
@@ -534,6 +544,66 @@
         document.getElementById('province').style.display = "block";
         document.getElementById('district').style.display = "block";
         document.getElementById('ward').style.display = "block";
+    });
+
+    // Lấy phần tử input và small số đt
+    const inputPhone = document.getElementById('phone');
+    const errorPhone = inputPhone.nextElementSibling;
+
+    // Sự kiện blur khỏi input
+    inputPhone.addEventListener('blur', () => {
+
+        // Nếu không thỏa mãn pattern
+        if (!inputPhone.value.match(inputPhone.pattern)) {
+            errorPhone.textContent = 'Số điện thoại gồm 10 số';
+        } else {
+            errorPhone.textContent = ''; // Clear message
+        }
+    });
+
+    // Lấy phần tử input và small email
+    const inputMail = document.getElementById('email');
+    const errorMail = inputMail.nextElementSibling;
+
+    // Sự kiện blur khỏi input
+    inputMail.addEventListener('blur', () => {
+
+        // Nếu không thỏa mãn pattern
+        if (!inputMail.value.match(inputMail.pattern)) {
+            errorMail.textContent = 'Email có dạng "manhhd@gmail.com"';
+        } else {
+            errorMail.textContent = ''; // Clear message
+        }
+    });
+
+    // Lấy phần tử input và small firstName
+    const inputFirstName = document.getElementById('firstName');
+    const errorFirstName = inputFirstName.nextElementSibling;
+
+    // Sự kiện blur khỏi input
+    inputFirstName.addEventListener('blur', () => {
+
+        // Nếu không thỏa mãn pattern
+        if (!inputFirstName.value.match(inputFirstName.pattern)) {
+            errorFirstName.textContent = 'tên không chứa số và kí tự đặc biệt';
+        } else {
+            errorFirstName.textContent = ''; // Clear message
+        }
+    });
+
+    // Lấy phần tử input và small lastName
+    const inputLastName = document.getElementById('lastName');
+    const errorLastName = inputLastName.nextElementSibling;
+
+    // Sự kiện blur khỏi input
+    inputLastName.addEventListener('blur', () => {
+
+        // Nếu không thỏa mãn pattern
+        if (!inputLastName.value.match(inputLastName.pattern)) {
+            errorLastName.textContent = 'tên không chứa số và kí tự đặc biệt';
+        } else {
+            errorLastName.textContent = ''; // Clear message
+        }
     });
 </script>
 
