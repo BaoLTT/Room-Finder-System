@@ -40,7 +40,7 @@
 
                                 <!--end element-->
                                 <div class="element">
-                                    <a  data-toggle="modal" data-tab="true" data-target="#sign-in-register-modal">Đăng nhập</a>
+                                    <a th:href="@{/login}" data-toggle="modal" data-tab="true" data-target="#sign-in-register-modal">Đăng nhập</a>
                                 </div>
                                 <!--end element-->
                                 <div class="element">
@@ -74,10 +74,7 @@
 
                                 <li>
                                     <a href="#" class="has-child">Danh sách phòng trọ</a>
-                                    <!--                                    <ul class="child-nav">-->
-                                    <!--                                        <li><a href="listing.html">List Listing</a></li>-->
-                                    <!--                                        <li><a href="listing-matrix.html">Matrix Listing</a></li>-->
-                                    <!--                                    </ul>-->
+
                                 </li>
 
                                 <li><a href="">Blog</a></li>
@@ -99,7 +96,7 @@
     <div id="page-content">
         <div class="container">
             <ol class="breadcrumb">
-                <li><a href="#">Home</a></li>
+                <li><a th:href="@{/}">Trang chủ</a></li>
                 <li class="active">Danh sách trọ</li>
             </ol>
             <!--end breadcrumb-->
@@ -221,7 +218,7 @@
                                 </div>
                                 <!--end meta-->
                                 <div class="info">
-                                    <a href="detail.html"><h3 style="display: block" th:text = "${houses.houseName}">Spring Hotel</h3></a>
+                                    <a th:href = "@{/detail?id=}+${houses.houseID}"><h3 style="display: block" th:text = "${houses.houseName}">Spring Hotel</h3></a>
 
                                     <figure class="label label-info" th:text = "${houses.typeHouse}"><a th:href="@{/detail?id={id}(id=${houses.houseId})}"></a></figure>
                                     <figure class="location">Montenegro</figure>
@@ -232,7 +229,7 @@
                                         litora torquent per conubia nostra,
                                     </p>
                                     <div class="price-info">From<span class="price" th:text = "${houses.price}"></span>Triệu <span class="appendix">/tháng</span></div>
-                                    <a href="detail.html" class="btn btn-rounded btn-default btn-framed btn-small">View detail</a>
+                                    <a th:href = "@{/detail?id=}+${houses.houseID}" class="btn btn-rounded btn-default btn-framed btn-small">View detail</a>
                                 </div>
                                 <!--end info-->
                             </div>
