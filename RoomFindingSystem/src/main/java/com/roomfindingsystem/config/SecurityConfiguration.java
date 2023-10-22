@@ -64,10 +64,10 @@ public class SecurityConfiguration {
             .formLogin(f->f.loginPage("/login")
                     .usernameParameter("username")
                     .passwordParameter("password"))
-            .authorizeHttpRequests(at ->at.requestMatchers("/login/**", "/login-google", "/home","/register","/save","re-send",
+            .authorizeHttpRequests(at ->at.requestMatchers("/login/**", "/login-google", "/","/register","/save","re-send",
                             "recover","send-otp-recover","otp-check","confirm-otp","send-otp-recover","confirm-otp-recover",
                             "save-new-password",
-                            "/room/**", "/assets/**").permitAll()
+                            "/room/**", "/assets/**","houselist/**","detail/**").permitAll()
                         .requestMatchers("/admin/**", "/test").hasRole("1")
                         .anyRequest().authenticated());
 
