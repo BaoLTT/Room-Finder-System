@@ -84,4 +84,9 @@ public class UserServiceImpl implements UserService {
         return userRepository.updatePassword(password,email);
     }
 
+    @Override
+    public String getUserForChangePass(String email) {
+        return userRepository.getUserEntitiesByUserId(email);
+    }
+
 }

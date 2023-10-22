@@ -42,16 +42,15 @@ public class UserController {
         return "register";
     }
 
+    //register
 
     @RequestMapping(value = "save", method = RequestMethod.POST)
     public String save(@Valid @ModelAttribute("user") UserEntity user, BindingResult result, Model model, Smsrequest smsrequest, HttpSession session) {
-        // check confirm password
-//        model.addAttribute("user", user);
         if (result.hasErrors()) {
             return "register";
         }
-        if(userService.findByEmail(user.getEmail()).isPresent()){
-            model.addAttribute("mess","Email đã tồn tại. Hãy nhập Email mới!");
+        if (userService.findByEmail(user.getEmail()).isPresent()) {
+            model.addAttribute("mess", "Email đã tồn tại. Hãy nhập Email mới!");
             return "register";
         }
         session.setAttribute("otp-register", otpCode());
@@ -65,17 +64,18 @@ public class UserController {
 //        smsrequest.setMessage(mess);
 //        smsservice.sendsms(smsrequest);
 
-        session.setAttribute("userid",user.getUserId());
-        session.setAttribute("email",user.getEmail());
-        session.setAttribute("firstname",user.getFirstName());
-        session.setAttribute("lastname",user.getLastName());
-        session.setAttribute("dob",user.getDob());
-        session.setAttribute("phone",user.getPhone());
-        session.setAttribute("gender",user.getGender());
-        session.setAttribute("password",user.getPassword());
+        session.setAttribute("userid", user.getUserId());
+        session.setAttribute("email", user.getEmail());
+        session.setAttribute("firstname", user.getFirstName());
+        session.setAttribute("lastname", user.getLastName());
+        session.setAttribute("dob", user.getDob());
+        session.setAttribute("phone", user.getPhone());
+        session.setAttribute("gender", user.getGender());
+        session.setAttribute("password", user.getPassword());
         return "redirect:/otp-check";
 
     }
+
     @RequestMapping(value = "re-send")
     public String resend(HttpSession session) {
         //
@@ -98,16 +98,36 @@ public class UserController {
     public String forgotPass() {
         return "recoverPage";
     }
+
     @RequestMapping(value = "send-otp-recover")
     public String sendMailForgotPass(@RequestParam("emailaddress") String email, HttpSession session) {
         String subject = "Hello Here Is Your Code OTP!";
         String mess = "Hi You@" + " " + "Here is your OTP Code: " + otpCode() + " Plaese input to form!" + "\n Thanks!";
         this.emailSenderService.sendEmail(email, subject, mess);
-        session.setAttribute("recoverOtp",otpCode());
+        session.setAttribute("recoverOtp", otpCode());
         session.setMaxInactiveInterval(360);
         return "recoverPage";
     }
 
+    // change password
+    @RequestMapping(value = "change-password")
+    public String changePass() {
+        return "change-password-form";
+    }
+
+    @RequestMapping(value = "save-change-password")
+    public String saveChangePass(@RequestParam("old_password") String oldPassword, @RequestParam("confirm_password") String newPassword, Model model) {
+//        passwordEncoder.encode(oldPassword).equals(userService.getUserForChangePass("binhnhhe153478@fpt.edu.vn").toString());
+        System.out.println(passwordEncoder.matches(oldPassword, userService.getUserForChangePass("binhnhhe153478@fpt.edu.vn").toString()));
+        System.out.println(passwordEncoder.encode(oldPassword));
+        if (passwordEncoder.matches(oldPassword, userService.getUserForChangePass("binhnhhe153478@fpt.edu.vn"))) {
+            userService.recoverPassword(newPassword,"binhnhhe153478@fpt.edu.vn");
+            model.addAttribute("mess", "Mật Khẩu đã được đổi thành công");
+            return "change-password-form";
+        }
+        model.addAttribute("mess", "Mật Khẩu cũ Không Trùng");
+        return "change-password-form";
+    }
 
 
 }
