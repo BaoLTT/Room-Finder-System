@@ -27,6 +27,7 @@ public interface UserService extends UserDetailsService {
     UserEntity save(UserEntity user);
 
     int recoverPassword(String password, String email);
+    String getUserForChangePass(String email);
 
 }
 

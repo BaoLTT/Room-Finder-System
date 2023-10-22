@@ -209,4 +209,10 @@ public class UserServiceImpl implements UserService {
     public int recoverPassword(String password, String email) {
         return userRepository.updatePassword(password,email);
     }
+
+    @Override
+    public String getUserForChangePass(String email) {
+        return userRepository.getUserEntitiesByUserId(email);
+    }
+
 }

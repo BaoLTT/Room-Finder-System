@@ -97,7 +97,7 @@ public class OtpController {
         // from getMail
         String email = (String) session.getAttribute("emailToReset");
         if (userService.recoverPassword(passwordEncoder.encode(password),email)==1){
-            return "confirmNewPassword";
+            return "redirect:/login";
         }
 
         return "confirmNewPassword";
