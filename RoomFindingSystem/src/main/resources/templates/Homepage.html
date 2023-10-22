@@ -33,13 +33,13 @@
                             </div>
                             <!--end left-->
                             <div class="right">
-                                <div th:if="${session.user != null}">
+                                <div th:if="${session!= null}">
                                     <!-- Hiển thị thông tin người dùng đã đăng nhập -->
-                                    <span>Xin chào, <span th:text="${session.user.name}"></span></span>
+                                    <a th:href="@{/profile}"><span>Xin chào, <span th:text="${session.firstname+' '}+${session.lastname}"></span></span></a>
                                     <a th:href="@{/logout}">Đăng xuất</a>
                                 </div>
                                 <!--end element-->
-                                <div th:unless="${session.user != null}">
+                                <div th:unless="${session!= null}">
                                 <div class="element">
                                     <a th:href="@{/login}" href="#tab-sign-in" data-toggle="modal" data-tab="true" data-target="#sign-in-register-modal">Đăng nhập</a>
                                 </div>

@@ -39,23 +39,27 @@
                     <div id="secondary-nav">
                         <nav>
                             <div class="left opacity-60">
-                                <!--                                <a href=""><i class="fa fa-phone"></i>+1 781-903-1047</a>-->
+                                <a href=""><i class="fa fa-phone"></i>+1 781-903-1047</a>
                                 <a href="mailto:hello@example.com"><i class="fa fa-envelope"></i>hello@example.com</a>
                             </div>
                             <!--end left-->
-
                             <div class="right">
-
-                                <!--end element-->
-                                <div class="element">
-                                    <a th:href="@{/login}" data-toggle="modal" data-tab="true" data-target="#sign-in-register-modal">Đăng nhập</a>
+                                <div th:if="${session!= null}">
+                                    <!-- Hiển thị thông tin người dùng đã đăng nhập -->
+                                    <a th:href="@{/profile}"><span>Xin chào, <span th:text="${session.firstname+' '}+${session.lastname}"></span></span></a>
+                                    <a th:href="@{/logout}">Đăng xuất</a>
                                 </div>
                                 <!--end element-->
-                                <div class="element">
-                                    <a th:href="@{/register}" >Đăng ký</a>
+                                <div th:unless="${session!= null}">
+                                    <div class="element">
+                                        <a th:href="@{/login}" href="#tab-sign-in" data-toggle="modal" data-tab="true" data-target="#sign-in-register-modal">Đăng nhập</a>
+                                    </div>
+                                    <!--end element-->
+                                    <div class="element">
+                                        <a th:href="@{/register}" data-toggle="modal" data-tab="true" data-target="#sign-in-register-modal">Đăng ký</a>
+                                    </div>
+                                    <!--end element-->
                                 </div>
-                                <!--end element-->
-
                                 <!--end element-->
                             </div>
                             <!--end right-->
@@ -76,13 +80,14 @@
                     <div class="right" >
                         <nav id="primary-nav">
                             <ul>
-
-                                <li><a th:href="@{/}">Trang chủ</a></li>
-                                <li class="active"><a th:href="@{/houselist/1}">Danh sách nhà trọ</a></li>
-
+                                <li class="active"><a th:href="@{/}">Trang chủ</a></li>
+                                <li><a th:href="@{/houselist/1}">Danh sách nhà trọ</a></li>
                                 <li>
                                     <a href="#" class="has-child">Danh sách phòng trọ</a>
-
+                                    <!--                                    <ul class="child-nav">-->
+                                    <!--                                        <li><a href="listing.html">List Listing</a></li>-->
+                                    <!--                                        <li><a href="listing-matrix.html">Matrix Listing</a></li>-->
+                                    <!--                                    </ul>-->
                                 </li>
 
                                 <li><a href="">Blog</a></li>
