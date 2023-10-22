@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
-    <title>Xem chi tiết phòng trọ</title>
+    <title>Accommodo - Accommodation HTML Template Full of Useful Features</title>
 
 
 
@@ -30,6 +30,7 @@
 </style>
 <body>
 <div class="page-wrapper">
+
     <div id="page-header">
         <header>
             <div class="container">
@@ -38,27 +39,23 @@
                     <div id="secondary-nav">
                         <nav>
                             <div class="left opacity-60">
-                                <a href=""><i class="fa fa-phone"></i>+1 781-903-1047</a>
+                                <!--                                <a href=""><i class="fa fa-phone"></i>+1 781-903-1047</a>-->
                                 <a href="mailto:hello@example.com"><i class="fa fa-envelope"></i>hello@example.com</a>
                             </div>
                             <!--end left-->
+
                             <div class="right">
-                                <div th:if="${session.user != null}">
-                                    <!-- Hiển thị thông tin người dùng đã đăng nhập -->
-                                    <span>Xin chào, <span th:text="${session.user.name}"></span></span>
-                                    <a th:href="@{/logout}">Đăng xuất</a>
+
+                                <!--end element-->
+                                <div class="element">
+                                    <a th:href="@{/login}" data-toggle="modal" data-tab="true" data-target="#sign-in-register-modal">Đăng nhập</a>
                                 </div>
                                 <!--end element-->
-                                <div th:unless="${session.user != null}">
-                                    <div class="element">
-                                        <a th:href="@{/login}" data-toggle="modal" data-tab="true" data-target="#sign-in-register-modal">Đăng nhập</a>
-                                    </div>
-                                    <!--end element-->
-                                    <div class="element">
-                                        <a th:href="@{/register}" data-toggle="modal" data-tab="true" data-target="#sign-in-register-modal">Đăng ký</a>
-                                    </div>
-                                    <!--end element-->
+                                <div class="element">
+                                    <a th:href="@{/register}" >Đăng ký</a>
                                 </div>
+                                <!--end element-->
+
                                 <!--end element-->
                             </div>
                             <!--end right-->
@@ -79,14 +76,13 @@
                     <div class="right" >
                         <nav id="primary-nav">
                             <ul>
-                                <li class="active"><a th:href="@{/}">Trang chủ</a></li>
-                                <li><a th:href="@{/houselist/1}">Danh sách nhà trọ</a></li>
+
+                                <li><a th:href="@{/}">Trang chủ</a></li>
+                                <li class="active"><a th:href="@{/houselist/1}">Danh sách nhà trọ</a></li>
+
                                 <li>
                                     <a href="#" class="has-child">Danh sách phòng trọ</a>
-                                    <!--                                    <ul class="child-nav">-->
-                                    <!--                                        <li><a href="listing.html">List Listing</a></li>-->
-                                    <!--                                        <li><a href="listing-matrix.html">Matrix Listing</a></li>-->
-                                    <!--                                    </ul>-->
+
                                 </li>
 
                                 <li><a href="">Blog</a></li>
@@ -103,14 +99,15 @@
         </header>
         <!--end header-->
     </div>
+
     <!--end page-header-->
 
     <div id="page-content">
         <div class="container">
             <ol class="breadcrumb">
-                <li><a href="#">Trang chủ</a></li>
-                <li><a href="#">Nhà trọ</a></li>
-                <li class="active">Phòng</li>
+                <li><a th:href="@{/}">Trang chủ</a></li>
+                <li><a th:href="@{/detail?id=}+${house.houseId}">Nhà trọ</a></li>
+                <li class="active">Phòng trọ</li>
             </ol>
             <!--end breadcrumb-->
 

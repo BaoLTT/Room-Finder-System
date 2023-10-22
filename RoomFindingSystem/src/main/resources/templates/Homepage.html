@@ -41,7 +41,7 @@
                                 <!--end element-->
                                 <div th:unless="${session.user != null}">
                                 <div class="element">
-                                    <a th:href="@{/login}" data-toggle="modal" data-tab="true" data-target="#sign-in-register-modal">Đăng nhập</a>
+                                    <a th:href="@{/login}" href="#tab-sign-in" data-toggle="modal" data-tab="true" data-target="#sign-in-register-modal">Đăng nhập</a>
                                 </div>
                                 <!--end element-->
                                 <div class="element">
@@ -214,7 +214,7 @@
                 </div>
                 <!--end hero-inner-->
                 <div class="plate">
-                    <a data-toggle="collapse" href="#options-hidden" aria-expanded="false" aria-controls="options-hidden">View Further Options</a>
+                    <a data-toggle="collapse" href="#options-hidden" aria-expanded="false" aria-controls="options-hidden">Xem thêm lựa chọn</a>
                 </div>
                 <!--end plate-->
             </form>
@@ -264,7 +264,7 @@
                                     </div>
                                     <div class="info">
                                         <figure class="label label-info"  th:text = "${house.typeHouse}" ></figure>
-                                        <a th:href = "@{/houselist/detail?id=}+${house.houseID}" ><h3 th:text = "${house.houseName}"></h3></a>
+                                        <a th:href = "@{/detail?id=}+${house.houseID}" ><h3 th:text = "${house.houseName}"></h3></a>
                                         <figure class="" th:text = "${house.addressDetail+', '+house.ward+', '+house.district+', '+house.province}"></figure>
                                     </div>
                                 </div>

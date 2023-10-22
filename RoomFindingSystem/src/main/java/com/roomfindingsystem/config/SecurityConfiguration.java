@@ -67,7 +67,7 @@ public class SecurityConfiguration {
             .authorizeHttpRequests(at ->at.requestMatchers("/login/**", "/login-google", "/","/register","/save","re-send",
                             "recover","send-otp-recover","otp-check","confirm-otp","send-otp-recover","confirm-otp-recover",
                             "save-new-password",
-                            "/room/**", "/assets/**", "/houselist/**").permitAll()
+                            "/room/**", "/assets/**","houselist/**","detail/**").permitAll()
                         .requestMatchers("/admin/**", "/test").hasRole("1")
                         .anyRequest().authenticated());
 
