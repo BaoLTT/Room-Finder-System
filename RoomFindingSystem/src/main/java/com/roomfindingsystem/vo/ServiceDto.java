@@ -10,5 +10,4 @@ import lombok.*;
 @ToString
 public class ServiceDto {
    private String serviceName;
-   private String description;
 }

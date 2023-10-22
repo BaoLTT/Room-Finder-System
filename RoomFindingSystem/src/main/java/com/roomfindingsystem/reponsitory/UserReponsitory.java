@@ -1,5 +1,4 @@
 package com.roomfindingsystem.reponsitory;
-
 import com.roomfindingsystem.entity.UserEntity;
 import com.roomfindingsystem.vo.UserDto;
 import jakarta.transaction.Transactional;
@@ -17,11 +16,8 @@ import java.util.Optional;
 public interface UserReponsitory extends JpaRepository<UserEntity, Integer> {
 
     public UserEntity save(UserEntity user);
-
     Optional<UserEntity> findByEmail(String email);
-
     public UserDto save(UserDto userDto);
-
     @Query("SELECT u FROM UserEntity u " +
             "JOIN HousesEntity h " +
             "on h.userId = u.userId " +
@@ -34,8 +30,4 @@ public interface UserReponsitory extends JpaRepository<UserEntity, Integer> {
     @Transactional
     @Query("UPDATE UserEntity as u set u.password =?1 where u.email=?2")
     int updatePassword(String password, String email);
-
-    @Query("select u.password from UserEntity u where u.email=?1")
-    String getUserEntitiesByUserId(String email);
-
 }

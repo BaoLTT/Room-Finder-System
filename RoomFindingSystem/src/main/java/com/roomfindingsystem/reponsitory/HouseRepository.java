@@ -40,7 +40,7 @@ public interface HouseRepository extends JpaRepository<HousesEntity,Integer> {
     List<HouseDto> findAllDetail(int houseId);
     @Query("SELECT new com.roomfindingsystem.vo.HouseImageLink(i.imageLink) FROM HouseImagesEntity i join HousesEntity h  on i.houseId = h.houseId where h.houseId=?1")
     List<HouseImageLink> getByHouseImageid(int houseId);
-    @Query("select new com.roomfindingsystem.vo.ServiceDto(shd.serviceName,shd.description) from ServiceHouseEntity sh join ServiceDetailEntity shd on sh.serviceId=shd.serviceId where sh.houseId=?1")
+    @Query("select new com.roomfindingsystem.vo.ServiceDto(shd.serviceName) from ServiceHouseEntity sh join ServiceDetailEntity shd on sh.serviceId=shd.serviceId where sh.houseId=?1")
     List<ServiceDto> getServiceById(int houseId);
 
     @Query("SELECT h from HousesEntity h join RoomEntity r on r.houseId = h.houseId where r.roomId=:roomid")
