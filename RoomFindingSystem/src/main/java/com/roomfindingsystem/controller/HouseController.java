@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
+@RequestMapping("/houselist")
 public class HouseController {
     @Autowired
     HouseService houseService;

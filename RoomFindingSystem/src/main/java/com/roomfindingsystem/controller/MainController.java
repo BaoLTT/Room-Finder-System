@@ -46,9 +46,4 @@ public class  MainController {
         model.addAttribute("sliders", sliderService.viewTop4Home());
         return "Homepage";
     }
-
-    @GetMapping("/header")
-    String viewHeader(){
-        return "header";
-    }
 }

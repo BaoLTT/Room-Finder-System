@@ -23,15 +23,80 @@
 
 <body>
 <div class="page-wrapper">
-    <div class="row" th:replace="~{header::headerSection}">
+    <div id="page-header">
+        <header>
+            <div class="container">
+                <div class="secondary-nav">
+                    <div class="nav-trigger"><a data-toggle="collapse" href="#secondary-nav" aria-expanded="false" aria-controls="secondary-nav"><i class="fa fa-user"></i></a></div>
+                    <div id="secondary-nav">
+                        <nav>
+                            <div class="left opacity-60">
+                                <!--                                <a href=""><i class="fa fa-phone"></i>+1 781-903-1047</a>-->
+                                <a href="mailto:hello@example.com"><i class="fa fa-envelope"></i>hello@example.com</a>
+                            </div>
+                            <!--end left-->
 
+                            <div class="right">
+
+                                <!--end element-->
+                                <div class="element">
+                                    <a th:href="@{/login}" data-toggle="modal" data-tab="true" data-target="#sign-in-register-modal">Đăng nhập</a>
+                                </div>
+                                <!--end element-->
+                                <div class="element">
+                                    <a th:href="@{/register}" >Đăng ký</a>
+                                </div>
+                                <!--end element-->
+
+                                <!--end element-->
+                            </div>
+                            <!--end right-->
+                        </nav>
+                    </div>
+                </div>
+                <!--end secondary-nav-->
+            </div>
+            <!--end container-->
+            <hr>
+            <div class="container">
+                <div class="primary-nav">
+                    <div class="left">
+                        <!--                        <a href="Homepage.html" id="brand"><img src="/assets/img/logo.png" alt=""></a>-->
+                        <a class="nav-trigger" data-toggle="collapse" href="#primary-nav" aria-expanded="false" aria-controls="primary-nav"><i class="fa fa-navicon"></i></a>
+                    </div>
+                    <!--end left-->
+                    <div class="right" >
+                        <nav id="primary-nav">
+                            <ul>
+
+                                <li><a th:href="@{/}">Trang chủ</a></li>
+                                <li class="active"><a th:href="@{/houselist/1}">Danh sách nhà trọ</a></li>
+
+                                <li>
+                                    <a href="#" class="has-child">Danh sách phòng trọ</a>
+
+                                </li>
+
+                                <li><a href="">Blog</a></li>
+
+                            </ul>
+                        </nav>
+                        <!--end nav-->
+                    </div>
+                    <!--end right-->
+                </div>
+                <!--end primary-nav-->
+            </div>
+            <!--end container-->
+        </header>
+        <!--end header-->
     </div>
     <!--end page-header-->
 
     <div id="page-content">
         <div class="container">
             <ol class="breadcrumb">
-                <li><a href="#">Home</a></li>
+                <li><a th:href="@{/}">Trang chủ</a></li>
                 <li class="active">Danh sách trọ</li>
             </ol>
             <!--end breadcrumb-->
@@ -153,7 +218,7 @@
                                 </div>
                                 <!--end meta-->
                                 <div class="info">
-                                    <a th:href = "@{/detail?id=}+${houses.houseID}"><h3 style="display: block" th:text = "${houses.houseName}">Spring Hotel</h3></a>
+                                    <a th:href = "@{/houselist/detail?id=}+${houses.houseID}"><h3 style="display: block" th:text = "${houses.houseName}">Spring Hotel</h3></a>
 
                                     <figure class="label label-info" th:text = "${houses.typeHouse}">Hotel</figure>
                                     <figure class="location">Montenegro</figure>
@@ -164,7 +229,7 @@
                                         litora torquent per conubia nostra,
                                     </p>
                                     <div class="price-info">From<span class="price" th:text = "${houses.price}"></span>Triệu <span class="appendix">/tháng</span></div>
-                                    <a href="detail.html" class="btn btn-rounded btn-default btn-framed btn-small">View detail</a>
+                                    <a th:href = "@{/houselist/detail?id=}+${houses.houseID}" class="btn btn-rounded btn-default btn-framed btn-small">View detail</a>
                                 </div>
                                 <!--end info-->
                             </div>
