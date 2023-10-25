@@ -2,6 +2,7 @@ package com.roomfindingsystem;
 
 import com.roomfindingsystem.controller.MainController;
 import com.roomfindingsystem.reponsitory.FeedbackRepository;
+import com.roomfindingsystem.reponsitory.RoomRepository;
 import com.roomfindingsystem.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -13,6 +14,9 @@ public class Main  implements CommandLineRunner {
 
     @Autowired
     private FeedbackRepository feedbackRepository;
+
+    @Autowired
+    private RoomRepository roomRepository;
 //    @Autowired
 //    private UserService userService;
     public static void main(String[] args) {
@@ -21,6 +25,6 @@ public class Main  implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        System.out.println(feedbackRepository.findFeedbackDtosByHouseId(2).get(0).getTitle());
+//        System.out.println(roomRepository.getRoomList().size());
     }
 }

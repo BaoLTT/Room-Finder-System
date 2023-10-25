@@ -3,6 +3,9 @@ package com.roomfindingsystem.config;
 
 import com.roomfindingsystem.sbgooogle.GoogleUtils;
 import com.roomfindingsystem.service.UserService;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Bean;
@@ -11,20 +14,26 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.authentication.event.AuthenticationFailureBadCredentialsEvent;
 import org.springframework.security.authentication.event.AuthenticationSuccessEvent;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+
+import java.io.IOException;
+
+import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration {
     @Autowired
     private UserService userService;
-    @Autowired
-    private GoogleUtils googleUtils; // Inject your GoogleUtils
 
     @Bean
     public DaoAuthenticationProvider authenticationProvider(){
@@ -33,6 +42,11 @@ public class SecurityConfiguration {
         authenticationProvider.setPasswordEncoder(passwordEncoder());
         return authenticationProvider;
     }
+
+
+
+
+
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
@@ -57,6 +71,7 @@ public class SecurityConfiguration {
             System.err.println("Bad Credentials Login " + event.getAuthentication().getClass().getSimpleName() + " - " + event.getAuthentication().getName());
         };
     }
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 //        http.csrf().disable();
@@ -65,13 +80,13 @@ public class SecurityConfiguration {
                     .usernameParameter("username")
                     .passwordParameter("password"))
             .authorizeHttpRequests(at ->at.requestMatchers("/login/**", "/login-google", "/home",
-                            "/room/**", "/assets/**").permitAll()
-                        .requestMatchers("/admin/**", "/test").hasRole("1")
-                        .anyRequest().authenticated());
+                            "/room/**", "/assets/**", "/", "/houselist", "/houselist/**").permitAll()
+//                    .and().oauth2Login()
+                        .requestMatchers("/admin/**").hasRole("1")
+                        .anyRequest().authenticated()
+            );
 
         return http.build();
     }
-
-
 }
 
