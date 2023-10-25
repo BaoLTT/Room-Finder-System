@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
-
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,15 +10,16 @@
     <link href="/assets/fonts/font-awesome.css" rel="stylesheet" type="text/css">
     <link href="/assets/fonts/elegant-fonts.css" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700,900,400italic' rel='stylesheet' type='text/css'>
-
     <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.css" type="text/css">
     <link rel="stylesheet" href="/assets/css/zabuto_calendar.min.css" type="text/css">
     <link rel="stylesheet" href="/assets/css/owl.carousel.css" type="text/css">
     <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
-
     <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
 
-    <title>Danh sách nhà trọ</title>
+    <title>Accommodo - Accommodation HTML Template Full of Useful Features</title>
 
 </head>
 
@@ -72,8 +74,8 @@
                     <div class="right" >
                         <nav id="primary-nav">
                             <ul>
-                                <li class="active"><a th:href="@{/}">Trang chủ</a></li>
-                                <li><a th:href="@{/houselist/1}">Danh sách nhà trọ</a></li>
+                                <li ><a th:href="@{/}">Trang chủ</a></li>
+                                <li class="active"><a th:href="@{/houselist}">Danh sách nhà trọ</a></li>
                                 <li>
                                     <a href="#" class="has-child">Danh sách phòng trọ</a>
                                     <!--                                    <ul class="child-nav">-->
@@ -101,7 +103,7 @@
     <div id="page-content">
         <div class="container">
             <ol class="breadcrumb">
-                <li><a th:href="@{/}">Trang chủ</a></li>
+                <li><a href="#">Home</a></li>
                 <li class="active">Danh sách trọ</li>
             </ol>
             <!--end breadcrumb-->
@@ -110,7 +112,7 @@
                     <div class="sidebar">
                         <div class="box filter">
                             <h2>Tìm kiếm</h2>
-                            <form id="form-filter" class="labels-uppercase" method="get" th:action = "@{/houselist/1}">
+                            <form id="form-filter" class="labels-uppercase" method="get" th:action = "@{/houselist(page=1, houseName=${houseName})}">
                                 <div class="form-group">
                                     <label >Tên trọ</label>
                                     <input type="text" class="form-control"  name="houseName" th:value ="${houseName}" id="houseName" placeholder="Tên trọ">
@@ -126,9 +128,9 @@
                                         <section>
                                             <h3>Giá</h3>
                                             <ul class="checkboxes list-unstyled">
-                                                <li><label><input type="checkbox" name="price" value="1">0 - 2.000.000 Triệu<span>12</span></label></li>
-                                                <li><label><input type="checkbox" name="price" value="2">2.000.000 - 4.000.000 Triệu<span>48</span></label></li>
-                                                <li><label><input type="checkbox" name="price" value="3">4.000.000 - 6.000.000<span>36</span></label></li>
+                                                <li><label><input type="checkbox" id="price" name="price" value="1">0 - 2.000.000 Triệu<span>12</span></label></li>
+                                                <li><label><input type="checkbox" id="price-2" name="price" value="2">2.000.000 - 4.000.000 Triệu<span>48</span></label></li>
+                                                <li><label><input type="checkbox" id="price-3" name="price" value="3">4.000.000 - 6.000.000<span>36</span></label></li>
                                             </ul>
                                             <!--end checkboxes-->
                                         </section>
@@ -199,11 +201,9 @@
                                 <div class="mark-circle map" data-toggle="tooltip" data-placement="right" title="Show on map"><i class="fa fa-map-marker"></i></div>
                                 <div class="mark-circle top" data-toggle="tooltip" data-placement="right" title="Top accommodation"><i class="fa fa-thumbs-up"></i></div>
                                 <div class="image">
-
-                                    <a href="" class="wrapper">
+                                    <a href="detail.html" class="wrapper">
                                         <div class="gallery" >
-                                            <img style="width: 273px; height: 208px;" th:each = "image: ${houses.listImage}" th:src="${image}" alt="">
-
+                                            <img th:each = "image: ${houses.listImage}" th:src="${image}" alt="">
                                         </div>
                                     </a>
                                     <div class="map-item">
@@ -223,10 +223,12 @@
                                 </div>
                                 <!--end meta-->
                                 <div class="info">
-                                    <a th:href = "@{/detail?id=}+${houses.houseID}"><h3 style="display: block" th:text = "${houses.houseName}">Spring Hotel</h3></a>
+                                    <a href="detail.html"><h3 style="display: block" th:text = "${houses.houseName}">Spring Hotel</h3></a>
 
-                                    <figure class="label label-info" th:text = "${houses.typeHouse}"><a th:href="@{/detail?id={id}(id=${houses.houseId})}"></a></figure>
-                                    <figure class="location">Montenegro</figure>
+                                    <figure class="label label-info" th:text = "${houses.typeHouse}">Hotel</figure>
+                                    <figure class="label label-info" th:text = "${houses.last_modified_date}" style="position: absolute;right: 0;margin-top: 7px;margin-right: 30px" >Hotel</figure>
+                                    <figure class="location" >Montenegro</figure>
+
 <!--                                    <figure class="live-info">3 Persons watching now!</figure>-->
                                     <p th:text = "${houses.addressDetail+', '+'xã '+houses.ward+', '+'huyện '+houses.district+', '+'tỉnh '+houses.province}">
                                         Consectetur adipiscing elit. Vivamus nec augue ac dui sodales euismod. Suspendisse
@@ -234,7 +236,7 @@
                                         litora torquent per conubia nostra,
                                     </p>
                                     <div class="price-info">From<span class="price" th:text = "${houses.price}"></span>Triệu <span class="appendix">/tháng</span></div>
-                                    <a th:href = "@{/detail?id=}+${houses.houseID}" class="btn btn-rounded btn-default btn-framed btn-small">View detail</a>
+                                    <a href="detail.html" class="btn btn-rounded btn-default btn-framed btn-small">View detail</a>
                                 </div>
                                 <!--end info-->
                             </div>
@@ -245,32 +247,34 @@
                         <div class="center">
                             <ul class="pagination">
                                 <li class="prev" >
-                                    <a th:href="@{/houselist/}+${pageIndex-1}" th:if = "${pageIndex!=1}? 'None'" ><i class="arrow_left"></i></a>
+                                    <a th:href="@{/houselist(page=${currentPage-1}, houseName=${houseName})}" th:if="${currentPage != 1}"><i class="arrow_left"></i></a>
                                 </li>
 
                                 <li th:if="${currentPage > 2}">
-                                    <a th:text="1" th:href="@{/houselist/1}">1</a>
+                                    <a th:text="1" th:href="@{/houselist(page=1, houseName=${houseName})}">1</a>
                                 </li>
                                 <li th:if="${currentPage > 3}">
                                     <span>...</span>
                                 </li>
 
-                                <li  th:each="pageIndex: ${#numbers.sequence(currentPage - 1, currentPage + 2)}" th:unless="${pageIndex < 1 || pageIndex > totalPage}" th:class="${pageIndex == currentPage ? 'active' : ''}">
-                                    <a th:text="${pageIndex}" th:href="@{/houselist/}+${pageIndex}">${pageIndex}</a>
+                                <li th:each="pageIndex: ${#numbers.sequence(currentPage - 1, currentPage + 1)}" th:unless="${pageIndex < 1 || pageIndex > totalPage}" th:class="${pageIndex == currentPage ? 'active' : ''}">
+                                    <a th:text="${pageIndex}" th:href="@{/houselist(page=${pageIndex}, houseName=${houseName})}" class="page-number">${pageIndex}</a>
                                 </li>
 
                                 <li th:if="${currentPage < totalPage - 2}">
                                     <span>...</span>
                                 </li>
-                                <li th:if="${currentPage < totalPage - 2}">
-                                    <a th:text="${totalPage}" th:href="@{/houselist/}+${totalPage}">${totalPage}</a>
+                                <li th:if="${currentPage <= totalPage - 2}">
+                                    <a th:text="${totalPage}" th:href="@{/houselist(page=${totalPage}, houseName=${houseName})}" class="page-number">${totalPage}</a>
                                 </li>
 
                                 <li class="next" >
-                                    <a th:href=" @{/houselist/}+${pageIndex+1}" th:if = "${pageIndex!=totalPage}? 'None'"><i class="arrow_right"></i></a>
+                                    <a th:href="@{/houselist(page=${currentPage+1}, houseName=${houseName})}" th:if="${currentPage != totalPage}"><i class="arrow_right"></i></a>
                                 </li>
                             </ul>
                         </div>
+
+
                         <!-- end center-->
                     </div>
                     <!--end main-content-->
@@ -316,13 +320,13 @@
             <div class="container">
                 <div class="copyright pull-left">(C) 2016 Your Company, All Rights Reserved</div>
                 <div class="footer-nav pull-right">
-                    <a href="Homepage.html">Home</a>
+                    <a href="index.html">Home</a>
                     <a href="about-us.html">About Us</a>
                     <a href="listing.html">Listing</a>
                     <a href="contact-us.html">Contact Us</a>
                 </div>
             </div>
-            <div class="bg-transfer"><img src="assets/img/footer-bg.jpg" alt=""></div>
+            <div class="bg-transfer"><img src="/assets/img/footer-bg.jpg" alt=""></div>
         </div>
         <!--end row-two-->
     </footer>

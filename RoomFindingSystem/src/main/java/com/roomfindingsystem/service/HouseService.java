@@ -15,11 +15,12 @@ import java.util.List;
 import java.util.Optional;
 
 public interface HouseService {
-    int countHouse();
+    //Th
+    int countHouse(int min, int max, String houseName, List<Integer> type);
 
+    List<HouseTypeVo> findHouse(int min, int max,String houseName,List<Integer> type, int pageIndex,int pageSize);
+    //
     List<HouseTypeVo> viewHouseInHome();
-    List<HouseTypeVo> findHouse1(int min, int max,String houseName,List<Integer> type, int pageIndex,int pageSize);
-
     Optional<HousesEntity> findHouseById(Integer id);
     List<HouseDto> getHouseDetail(int id);
     List<HouseImageLink> getImageById(int id);

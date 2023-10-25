@@ -2110,7 +2110,7 @@ ul.half li {
 }
 .item .image .wrapper img, .item .image-wrapper .wrapper img {
   height: 100%;
-  width: auto;
+  width: 100%;
 }
 .item .image.show-nav .owl-navigation, .item .image-wrapper.show-nav .owl-navigation {
   filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
