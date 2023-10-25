@@ -31,23 +31,27 @@
                     <div id="secondary-nav">
                         <nav>
                             <div class="left opacity-60">
-                                <!--                                <a href=""><i class="fa fa-phone"></i>+1 781-903-1047</a>-->
+                                <a href=""><i class="fa fa-phone"></i>+1 781-903-1047</a>
                                 <a href="mailto:hello@example.com"><i class="fa fa-envelope"></i>hello@example.com</a>
                             </div>
                             <!--end left-->
-
                             <div class="right">
-
-                                <!--end element-->
-                                <div class="element">
-                                    <a  data-toggle="modal" data-tab="true" data-target="#sign-in-register-modal">Đăng nhập</a>
+                                <div th:if="${session!= null}">
+                                    <!-- Hiển thị thông tin người dùng đã đăng nhập -->
+                                    <a th:href="@{/profile}"><span>Xin chào, <span th:text="${session.firstname+' '}+${session.lastname}"></span></span></a>
+                                    <a th:href="@{/logout}">Đăng xuất</a>
                                 </div>
                                 <!--end element-->
-                                <div class="element">
-                                    <a th:href="@{/register}" >Đăng ký</a>
+                                <div th:unless="${session!= null}">
+                                    <div class="element">
+                                        <a th:href="@{/login}" href="#tab-sign-in" data-toggle="modal" data-tab="true" data-target="#sign-in-register-modal">Đăng nhập</a>
+                                    </div>
+                                    <!--end element-->
+                                    <div class="element">
+                                        <a th:href="@{/register}" data-toggle="modal" data-tab="true" data-target="#sign-in-register-modal">Đăng ký</a>
+                                    </div>
+                                    <!--end element-->
                                 </div>
-                                <!--end element-->
-
                                 <!--end element-->
                             </div>
                             <!--end right-->
@@ -68,10 +72,8 @@
                     <div class="right" >
                         <nav id="primary-nav">
                             <ul>
-
-                                <li><a th:href="@{/}">Trang chủ</a></li>
-                                <li class="active"><a th:href="@{/houselist/1}">Danh sách nhà trọ</a></li>
-
+                                <li class="active"><a th:href="@{/}">Trang chủ</a></li>
+                                <li><a th:href="@{/houselist/1}">Danh sách nhà trọ</a></li>
                                 <li>
                                     <a href="#" class="has-child">Danh sách phòng trọ</a>
                                     <!--                                    <ul class="child-nav">-->
@@ -99,7 +101,7 @@
     <div id="page-content">
         <div class="container">
             <ol class="breadcrumb">
-                <li><a href="#">Home</a></li>
+                <li><a th:href="@{/}">Trang chủ</a></li>
                 <li class="active">Danh sách trọ</li>
             </ol>
             <!--end breadcrumb-->
@@ -221,9 +223,9 @@
                                 </div>
                                 <!--end meta-->
                                 <div class="info">
-                                    <a href="detail.html"><h3 style="display: block" th:text = "${houses.houseName}">Spring Hotel</h3></a>
+                                    <a th:href = "@{/detail?id=}+${houses.houseID}"><h3 style="display: block" th:text = "${houses.houseName}">Spring Hotel</h3></a>
 
-                                    <figure class="label label-info" th:text = "${houses.typeHouse}">Hotel</figure>
+                                    <figure class="label label-info" th:text = "${houses.typeHouse}"><a th:href="@{/detail?id={id}(id=${houses.houseId})}"></a></figure>
                                     <figure class="location">Montenegro</figure>
 <!--                                    <figure class="live-info">3 Persons watching now!</figure>-->
                                     <p th:text = "${houses.addressDetail+', '+'xã '+houses.ward+', '+'huyện '+houses.district+', '+'tỉnh '+houses.province}">
@@ -232,7 +234,7 @@
                                         litora torquent per conubia nostra,
                                     </p>
                                     <div class="price-info">From<span class="price" th:text = "${houses.price}"></span>Triệu <span class="appendix">/tháng</span></div>
-                                    <a href="detail.html" class="btn btn-rounded btn-default btn-framed btn-small">View detail</a>
+                                    <a th:href = "@{/detail?id=}+${houses.houseID}" class="btn btn-rounded btn-default btn-framed btn-small">View detail</a>
                                 </div>
                                 <!--end info-->
                             </div>
@@ -244,17 +246,30 @@
                             <ul class="pagination">
                                 <li class="prev" >
                                     <a th:href="@{/houselist/}+${pageIndex-1}" th:if = "${pageIndex!=1}? 'None'" ><i class="arrow_left"></i></a>
-
                                 </li>
-                                <li th:each = "pageIndex: ${#numbers.sequence(1,totalPage)} " th:class="${pageIndex == currentPage ? 'active' : ''}" >
-                                    <a th:text = "${pageIndex}" class="page-number"    >1</a>
+
+                                <li th:if="${currentPage > 2}">
+                                    <a th:text="1" th:href="@{/houselist/1}">1</a>
+                                </li>
+                                <li th:if="${currentPage > 3}">
+                                    <span>...</span>
+                                </li>
+
+                                <li  th:each="pageIndex: ${#numbers.sequence(currentPage - 1, currentPage + 2)}" th:unless="${pageIndex < 1 || pageIndex > totalPage}" th:class="${pageIndex == currentPage ? 'active' : ''}">
+                                    <a th:text="${pageIndex}" th:href="@{/houselist/}+${pageIndex}">${pageIndex}</a>
+                                </li>
+
+                                <li th:if="${currentPage < totalPage - 2}">
+                                    <span>...</span>
+                                </li>
+                                <li th:if="${currentPage < totalPage - 2}">
+                                    <a th:text="${totalPage}" th:href="@{/houselist/}+${totalPage}">${totalPage}</a>
                                 </li>
 
                                 <li class="next" >
                                     <a th:href=" @{/houselist/}+${pageIndex+1}" th:if = "${pageIndex!=totalPage}? 'None'"><i class="arrow_right"></i></a>
                                 </li>
                             </ul>
-                            <!-- end pagination-->
                         </div>
                         <!-- end center-->
                     </div>

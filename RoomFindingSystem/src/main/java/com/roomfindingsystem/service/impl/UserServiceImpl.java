@@ -1,30 +1,46 @@
 package com.roomfindingsystem.service.impl;
 
 import com.roomfindingsystem.config.SecurityUser;
-import com.roomfindingsystem.entity.UserEntity;
-import com.roomfindingsystem.reponsitory.UserReponsitory;
+import com.roomfindingsystem.entity.*;
+import com.roomfindingsystem.reponsitory.*;
 import com.roomfindingsystem.service.UserService;
 import com.roomfindingsystem.vo.UserDto;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.sql.Timestamp;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.util.*;
 
 
 @Service
 public class UserServiceImpl implements UserService {
+    private final UserReponsitory userRepository;
+    private final AddressRepository addressRepository;
+    private final ProvinceRepository provinceRepository;
+    private final DistrictRepository districtRepository;
+    private final WardRepository wardRepository;
+    private final ModelMapper modelMapper;
 
-    @Autowired
-    private UserReponsitory userRepository;
-
+    public UserServiceImpl(UserReponsitory userRepository, AddressRepository addressRepository, ProvinceRepository provinceRepository, DistrictRepository districtRepository, WardRepository wardRepository, ModelMapper modelMapper) {
+        this.userRepository = userRepository;
+        this.addressRepository = addressRepository;
+        this.provinceRepository = provinceRepository;
+        this.districtRepository = districtRepository;
+        this.wardRepository = wardRepository;
+        this.modelMapper = modelMapper;
+    }
 
     @Autowired
     @Lazy
@@ -58,10 +74,8 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(user);
     }
 
-
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
         Optional<UserEntity> userByUsername = userRepository.findByEmail(username);
         if (!userByUsername.isPresent()) {
             System.out.println("Could not find user with that username: {}");
@@ -70,14 +84,135 @@ public class UserServiceImpl implements UserService {
         UserEntity user = userByUsername.get();
         if (user == null || !user.getEmail().equals(username)) {
             System.out.println("Could not find user with that username: {}");
-            throw new UsernameNotFoundException("Invalid credentials!");
-        }
+            throw new UsernameNotFoundException("Invalid credentials!");        }
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
         grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_" + user.getRoleId())); // Ví dụ, user.getRoleName() trả về tên của vai trò
 
         return new SecurityUser(user.getEmail(), user.getPassword(), true, true, true, true, grantedAuthorities,
                 user.getFirstName(), user.getLastName(), user.getEmail());
     }
+    @Override
+    public UserDto findById(int id) {
+        Optional<UserEntity> optionalUser = userRepository.findById(id);
+        UserEntity user = optionalUser.get();
+        UserDto userDto = modelMapper.map(user, UserDto.class);
 
+        AddressEntity address = addressRepository.findById(user.getAddressId()).get();
+
+        ProvinceEntity province = provinceRepository.findById(address.getProvinceId()).get();
+        DistrictEntity district = districtRepository.findById(address.getDistrictId()).get();
+        WardEntity ward = wardRepository.findById(address.getWardId()).get();
+
+        userDto.setProvince(province.getName());
+        userDto.setDistrict(district.getName());
+        userDto.setWard(ward.getName());
+        userDto.setProvinceId(province.getProvinceId());
+        userDto.setDistrictId(district.getDistrictId());
+        userDto.setWardId(ward.getWardId());
+        userDto.setAddressDetails(address.getAddressDetails());
+
+        if(user.getGender()) {
+            userDto.setGender("MALE");
+        }
+        else {
+            userDto.setGender("FEMALE");
+        }
+
+        userDto.setDob(user.getDob().toString());
+
+        System.out.println(userDto);
+
+        return userDto;
+    }
+
+    @Override
+    public void updateProfile(UserDto userDto, MultipartFile file) throws IOException {
+        UserEntity user = userRepository.findById(userDto.getUserId()).get();
+
+        UserEntity saveUser = new UserEntity();
+        if (!file.isEmpty()) {
+            //        Handle Image
+            byte[] imageData = Base64.getEncoder().encode(file.getBytes());
+            String imageLink = new String(imageData, StandardCharsets.UTF_8);
+            saveUser.setImageLink(imageLink);
+        } else {
+            saveUser.setImageLink(user.getImageLink());
+        }
+//        Handle gender
+        if (Objects.equals(userDto.getGender(), "MALE")) {
+            saveUser.setGender(true);
+        } else {
+            saveUser.setGender(false);
+        }
+//            Handle when not edit address
+        if (userDto.getProvinceId() != null && userDto.getDistrictId() != null && userDto.getWardId() != null) {
+            //       Begin Handle Address
+            Optional<AddressEntity> optionalAddress = addressRepository.findByProvinceIdAndDistrictIdAndWardId(userDto.getProvinceId(), userDto.getDistrictId(), userDto.getWardId());
+            AddressEntity address = new AddressEntity();
+            if (optionalAddress.isEmpty()) {
+//                Update toan bo
+                address.setProvinceId(userDto.getProvinceId());
+                address.setDistrictId(userDto.getDistrictId());
+                address.setWardId(userDto.getWardId());
+                address.setAddressDetails(userDto.getAddressDetails());
+
+            } else {
+//                Chi update detail
+                address = optionalAddress.get();
+                address.setAddressDetails(userDto.getAddressDetails());
+            }
+            addressRepository.save(address);
+            AddressEntity saveAddress = addressRepository.findByProvinceIdAndDistrictIdAndWardId(userDto.getProvinceId(), userDto.getDistrictId(), userDto.getWardId()).get();
+
+            saveUser.setAddressId(saveAddress.getAddressId());
+        }
+        else {
+            AddressEntity findAddress = addressRepository.findById(user.getAddressId()).get();
+            Optional<AddressEntity> optionalAddress = addressRepository.findByProvinceIdAndDistrictIdAndWardIdAndAddressDetails(findAddress.getProvinceId(), findAddress.getDistrictId(), findAddress.getWardId(), userDto.getAddressDetails());
+            if(optionalAddress.isEmpty()) {
+                AddressEntity newAddress = new AddressEntity();
+
+                newAddress.setProvinceId(findAddress.getProvinceId());
+                newAddress.setDistrictId(findAddress.getDistrictId());
+                newAddress.setWardId(findAddress.getWardId());
+                newAddress.setAddressDetails(userDto.getAddressDetails());
+                addressRepository.save(newAddress);
+                newAddress = addressRepository.findByProvinceIdAndDistrictIdAndWardIdAndAddressDetails(findAddress.getProvinceId(), findAddress.getDistrictId(), findAddress.getWardId(), userDto.getAddressDetails()).get();
+                saveUser.setAddressId(newAddress.getAddressId());
+
+            }
+            else {
+                saveUser.setAddressId(user.getAddressId());
+            }
+        }
+
+//            Begin Mapping
+//            UserDto:
+        saveUser.setDob(LocalDate.parse(userDto.getDob()));
+        saveUser.setEmail(userDto.getEmail());
+        saveUser.setFirstName(userDto.getFirstName());
+        saveUser.setLastName(userDto.getLastName());
+        saveUser.setLastModifiedDate(Timestamp.from(Instant.now()));
+        saveUser.setPhone(userDto.getPhone());
+
+//        User:
+        saveUser.setUserId(user.getUserId());
+        saveUser.setCreatedDate(user.getCreatedDate());
+        saveUser.setFacebookId(user.getFacebookId());
+        saveUser.setGmailId(user.getGmailId());
+        saveUser.setPassword(user.getPassword());
+        saveUser.setRoleId(user.getRoleId());
+        saveUser.setUserStatusId(user.getUserStatusId());
+        userRepository.save(saveUser);
+    }
+    @Override
+    public int recoverPassword(String password, String email) {
+        return userRepository.updatePassword(password,email);
+    }
+
+    @Override
+    public String getUserForChangePass(String email) {
+        return userRepository.getUserEntitiesByUserId(email);
+    }
 
 }
