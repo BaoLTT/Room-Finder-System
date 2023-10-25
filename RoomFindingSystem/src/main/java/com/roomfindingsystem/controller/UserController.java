@@ -16,10 +16,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @Controller
 public class UserController {
@@ -129,6 +129,19 @@ public class UserController {
         return "change-password-form";
     }
 
+    @GetMapping("/profile")
+    public String getProfilePage(Model model) {
+        UserDto userDto = userService.findById(1);
+        model.addAttribute("user", userDto);
+        return "profile";
+    }
+
+    @PostMapping("/user/update")
+    public String updateUser(@ModelAttribute(name = "user") UserDto userDto, @RequestParam("file") MultipartFile file) throws IOException {
+        userDto.setUserId(1);
+        userService.updateProfile(userDto, file);
+        return "redirect:/profile";
+    }
 
 }
 

@@ -84,7 +84,7 @@ public class AuthController {
         SecurityContext securityContext = SecurityContextHolder.getContext();
         session.setAttribute("SPRING_SECURITY_CONTEXT", securityContext);
         System.out.println("DEBUG");
-        return "redirect:/test";
+        return "redirect:/";
     }
 
 
@@ -102,5 +102,10 @@ public class AuthController {
 //        return "403";
 //    }
 
+    @GetMapping("/logout")
+    public String logoutPage() {
+        SecurityContextHolder.getContext().setAuthentication(null); // Đăng xuất người dùng
+        return "redirect:/?logout"; // Chuyển hướng đến trang đăng nhập sau khi đăng xuất
+    }
 
 }
