@@ -209,7 +209,10 @@
 
 
                         <h2 style="margin-top: 30px">Description</h2>
-                        <span th:text="${room.getDescription()}" style="font-size: 12px; font-style: italic"></span>
+                        <p>dòng 1</p>
+                        <p>dòng 1</p>
+
+                        <p th:utext="${room.getDescription().replaceAll('\n', '<p/>')}" style="font-size: 12px; font-style: italic"></p>
 
 
                         <h2>Review</h2>

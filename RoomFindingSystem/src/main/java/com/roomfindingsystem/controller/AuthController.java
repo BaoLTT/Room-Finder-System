@@ -7,9 +7,11 @@ import com.roomfindingsystem.sbgooogle.GoogleUtils;
 import com.roomfindingsystem.service.UserService;
 
 
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
@@ -54,26 +56,35 @@ public class AuthController {
         if (code == null || code.isEmpty()) {
             return "redirect:/login?google=error";
         }
-        String accessToken = googleUtils.getToken(code);
-        GooglePojo googlePojo = googleUtils.getUserInfo(accessToken);
+
         // Kiểm tra xem tài khoản Google đã tồn tại trong bảng user chưa
-        Optional<UserEntity> existingUser = userService.findByEmail(googlePojo.getEmail()); // Thay thế bằng phương thức phù hợp của userService
+//        Optional<UserEntity> existingUser = userService.findByEmail(googlePojo.getEmail()); // Thay thế bằng phương thức phù hợp của userService
 //        System.out.println(existingUser.isEmpty()); ///1
         //TODO cật nhật thông tin ở đoạn này...
 //        if (existingUser == null|| existingUser.isEmpty()) {
 //            // Nếu tài khoản Google chưa có, thêm tài khoản mới vào bảng user
 //            UserEntity newUser = new UserEntity();
 //            newUser.setEmail(googlePojo.getEmail()); // Sử dụng email làm tên đăng nhập
-//            newUser.setRoleId(1); // Gán vai trò mặc định (có thể thay đổi)
+////            newUser.setRoleId(1); // Gán vai trò mặc định (có thể thay đổi)
 //            newUser.setPassword("aaaaaaa");
 //            userService.save(newUser);
 //        }
 
 //        System.out.println("ok");
+
+        String accessToken = googleUtils.getToken(code);
+
+        GooglePojo googlePojo = googleUtils.getUserInfo(accessToken);
         UserDetails userDetail = googleUtils.buildUser(googlePojo);
-        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetail, null, userDetail.getAuthorities());
+        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetail, null,
+                userDetail.getAuthorities());
+        authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        return "redirect:/";
+        HttpSession session = request.getSession(true);
+        SecurityContext securityContext = SecurityContextHolder.getContext();
+        session.setAttribute("SPRING_SECURITY_CONTEXT", securityContext);
+        System.out.println("DEBUG");
+        return "redirect:/test";
     }
 
 
