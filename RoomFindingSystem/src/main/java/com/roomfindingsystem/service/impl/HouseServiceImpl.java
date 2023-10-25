@@ -14,10 +14,8 @@ import com.roomfindingsystem.vo.ServiceDto;
 import jakarta.persistence.Tuple;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.time.LocalDate;
+import java.util.*;
 
 @Service("houseService")
 public class HouseServiceImpl implements HouseService {
@@ -34,13 +32,13 @@ public class HouseServiceImpl implements HouseService {
     }
 
     @Override
-    public int countHouse() {
-        return houseRepository.countHouse();
+    public int countHouse(int min, int max, String houseName, List<Integer> type) {
+        return houseRepository.countHouse(min,max,houseName,type);
     }
 
     @Override
-    public List<HouseTypeVo> findHouse1(int min, int max, String houseName, List<Integer> type, int pageIndex, int pageSize) {
-            List<Tuple> tuples = houseRepository.findHouse1(min, max , houseName,type,pageIndex, pageSize);
+    public List<HouseTypeVo> findHouse(int min, int max, String houseName, List<Integer> type, int pageIndex, int pageSize) {
+            List<Tuple> tuples = houseRepository.findHouse(min, max , houseName,type,pageIndex, pageSize);
             List<HouseTypeVo> houseTypeVos = new ArrayList<>();
             List<String> imageLinks ;
 
@@ -50,6 +48,10 @@ public class HouseServiceImpl implements HouseService {
                 houseTypeVo.setHouseName(tuple.get("House_Name", String.class));
                 houseTypeVo.setTypeHouse(tuple.get("Type_Name", String.class));
                 houseTypeVo.setAddressDetail(tuple.get("Address_Details", String.class));
+                java.sql.Date sqlDate = (java.sql.Date) tuple.get("last_modified_date", Date.class);
+                LocalDate localDate = sqlDate.toLocalDate();
+                houseTypeVo.setLast_modified_date(localDate);
+
                 String imageLink = (tuple.get("Image_Link", String.class));
                 if(imageLink == null)
                 {houseTypeVo.setListImage(null);}

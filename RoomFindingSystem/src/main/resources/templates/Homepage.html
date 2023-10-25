@@ -70,7 +70,7 @@
                         <nav id="primary-nav">
                             <ul>
                                 <li class="active"><a th:href="@{/}">Trang chủ</a></li>
-                                <li><a th:href="@{/houselist/1}">Danh sách nhà trọ</a></li>
+                                <li><a th:href="@{/houselist}">Danh sách nhà trọ</a></li>
                                 <li>
                                     <a href="#" class="has-child">Danh sách phòng trọ</a>
 <!--                                    <ul class="child-nav">-->
@@ -97,7 +97,7 @@
 
     <div id="page-content">
         <div class="hero-section" data-height="600">
-            <form id="form-hero" th:action = "@{/houselist/1}">
+            <form id="form-hero" th:action = "@{/houselist}">
                 <div class="hero-inner">
                     <div class="hero-wrapper" >
                         <div class="caption">
@@ -141,7 +141,7 @@
                                     <div class="row">
                                         <div class="col-md-8 col-sm-7" >
                                             <ul th:each = "housetype : ${housetypes}" class="checkboxes inline list-unstyled"  >
-                                                <li><label><input th:text = "${housetype.typeName}" type="checkbox" name="typeHouse" th:value = "${housetype.typeId}"></label></li>
+                                                <li><label><input th:text = "${housetype.typeName}" type="checkbox" name="type" th:value = "${housetype.typeId}"></label></li>
                                             </ul>
                                             <!--end checkboxes-->
                                         </div>
