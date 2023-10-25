@@ -225,7 +225,7 @@
                                 <div class="info">
                                     <a th:href = "@{/detail?id=}+${houses.houseID}"><h3 style="display: block" th:text = "${houses.houseName}">Spring Hotel</h3></a>
 
-                                    <figure class="label label-info" th:text = "${houses.typeHouse}">Hotel</figure>
+                                    <figure class="label label-info" th:text = "${houses.typeHouse}"><a th:href="@{/detail?id={id}(id=${houses.houseId})}"></a></figure>
                                     <figure class="location">Montenegro</figure>
 <!--                                    <figure class="live-info">3 Persons watching now!</figure>-->
                                     <p th:text = "${houses.addressDetail+', '+'xã '+houses.ward+', '+'huyện '+houses.district+', '+'tỉnh '+houses.province}">
