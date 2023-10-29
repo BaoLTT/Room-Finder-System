@@ -4,10 +4,7 @@ import com.roomfindingsystem.entity.FeedbackEntity;
 import com.roomfindingsystem.dto.*;
 import com.roomfindingsystem.service.FeedbackService;
 import com.roomfindingsystem.service.HouseService;
-import com.roomfindingsystem.vo.FeedbackDto;
-import com.roomfindingsystem.vo.HouseDto;
-import com.roomfindingsystem.vo.HouseImageLink;
-import com.roomfindingsystem.vo.ServiceDto;
+
 import com.roomfindingsystem.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -62,7 +59,7 @@ public class HouseController {
         model.addAttribute("roomList", roomHouseDetailDtos);
 
 
-        return "detail";
+
         return "housedetail";
     }
 }
