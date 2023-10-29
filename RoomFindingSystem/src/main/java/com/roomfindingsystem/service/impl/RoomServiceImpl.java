@@ -11,6 +11,7 @@ import com.roomfindingsystem.service.RoomService;
 import com.roomfindingsystem.vo.HouseTypeVo;
 import com.roomfindingsystem.vo.RoomDto;
 import com.roomfindingsystem.vo.RoomHomeVo;
+
 import com.roomfindingsystem.dto.RoomDto;
 import com.roomfindingsystem.dto.RoomHomeVo;
 import jakarta.persistence.Tuple;
@@ -55,6 +56,7 @@ public class RoomServiceImpl implements RoomService {
             else for(int i = 0; i<8; i++){
                 list.add(roomRepository.viewTop4Home().get(i));
             }
+
     public List<RoomHomeDto> viewRoomInHome() {
         List<Tuple> tuples = roomRepository.viewRoomInHome();
         List<RoomHomeDto> roomHomeDtos = new ArrayList<>();
@@ -81,6 +83,7 @@ public class RoomServiceImpl implements RoomService {
             roomHomeDtos.add(roomHomeDto);
         }
         return list;
+
         return roomHomeDtos;
 
     }
