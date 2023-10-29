@@ -4,15 +4,11 @@ import com.roomfindingsystem.entity.FeedbackEntity;
 
 
 import com.roomfindingsystem.vo.FeedbackDto;
-import com.roomfindingsystem.vo.FeedbackHomeVo;
 
-import com.roomfindingsystem.dto.FeedbackDto;
 import com.roomfindingsystem.dto.FeedbackHomeVo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 
 @Repository
