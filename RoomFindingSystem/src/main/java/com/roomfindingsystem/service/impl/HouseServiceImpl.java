@@ -1,10 +1,9 @@
 package com.roomfindingsystem.service.impl;
 
+import com.roomfindingsystem.dto.*;
 import com.roomfindingsystem.entity.HousesEntity;
 
-import com.roomfindingsystem.entity.TypeHouseEntity;
 import com.roomfindingsystem.reponsitory.HouseRepository;
-import com.roomfindingsystem.reponsitory.HouseTypeRepository;
 
 import com.roomfindingsystem.service.HouseService;
 import com.roomfindingsystem.vo.HouseDto;
@@ -112,8 +111,10 @@ public class HouseServiceImpl implements HouseService {
 
     @Override
     public List<HouseTypeVo> viewHouseInHome() {
+    public List<HouseHomeDto> viewHouseInHome() {
         List<Tuple> tuples = houseRepository.viewHouseInHome();
         List<HouseTypeVo> houseTypeVos = new ArrayList<>();
+        List<HouseHomeDto> houseHomeDtos = new ArrayList<>();
         List<String> imageLinks ;
 
         for (Tuple tuple : tuples) {
@@ -122,20 +123,41 @@ public class HouseServiceImpl implements HouseService {
             houseTypeVo.setHouseName(tuple.get("House_Name", String.class));
             houseTypeVo.setTypeHouse(tuple.get("Type_Name", String.class));
             houseTypeVo.setAddressDetail(tuple.get("Address_Details", String.class));
+            HouseHomeDto houseHomeDto = new HouseHomeDto();
+            houseHomeDto.setHouseID(tuple.get("HouseID", Integer.class));
+            houseHomeDto.setHouseName(tuple.get("House_Name", String.class));
+            houseHomeDto.setTypeHouse(tuple.get("Type_Name", String.class));
+            houseHomeDto.setAddressDetail(tuple.get("Address_Details", String.class));
             String imageLink = (tuple.get("Image_Link", String.class));
             if(imageLink == null)
             {houseTypeVo.setListImage(null);}
+            {houseHomeDto.setListImage(null);}
             else {imageLinks = Arrays.asList(imageLink.split(","));
                 houseTypeVo.setListImage(imageLinks);}
             houseTypeVo.setProvince(tuple.get("province_name", String.class));
             houseTypeVo.setDistrict(tuple.get("district_name", String.class));
             houseTypeVo.setWard(tuple.get("ward_name", String.class));
             houseTypeVo.setPrice(tuple.get("minPrice", Integer.class));
+                houseHomeDto.setListImage(imageLinks);}
+            houseHomeDto.setProvince(tuple.get("province_name", String.class));
+            houseHomeDto.setDistrict(tuple.get("district_name", String.class));
+            houseHomeDto.setWard(tuple.get("ward_name", String.class));
+            java.sql.Date sqlDate = (java.sql.Date) tuple.get("last_modified_date", Date.class);
+            if(sqlDate == null)
+            {houseHomeDto.setLast_modified_date(null);}
+            else {
+                LocalDate localDate = sqlDate.toLocalDate();
+                houseHomeDto.setLast_modified_date(localDate);
+            }
+
+            houseHomeDto.setCountRooms(tuple.get("count_Rooms", Long.class));
 
 
             houseTypeVos.add(houseTypeVo);
+            houseHomeDtos.add(houseHomeDto);
         }
         return houseTypeVos;
+        return houseHomeDtos;
     }
 
 

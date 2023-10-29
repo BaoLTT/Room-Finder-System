@@ -2,6 +2,7 @@ package com.roomfindingsystem.service;
 
 import com.roomfindingsystem.entity.UserEntity;
 import com.roomfindingsystem.vo.UserDto;
+import com.roomfindingsystem.dto.UserDto;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;

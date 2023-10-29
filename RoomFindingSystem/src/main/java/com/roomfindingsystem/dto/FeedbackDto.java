@@ -1,8 +1,7 @@
 package com.roomfindingsystem.vo;
-import com.roomfindingsystem.entity.UserEntity;
+package com.roomfindingsystem.dto;
 import lombok.*;
 
-import java.sql.Timestamp;
 import java.time.LocalDate;
 
 @Getter

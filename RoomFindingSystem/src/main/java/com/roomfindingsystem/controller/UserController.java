@@ -1,16 +1,16 @@
 package com.roomfindingsystem.controller;
 
 
-import com.roomfindingsystem.config.Role;
 import com.roomfindingsystem.entity.UserEntity;
 import com.roomfindingsystem.service.EmailSenderService;
 import com.roomfindingsystem.service.UserService;
 import com.roomfindingsystem.service.impl.Smsservice;
 import com.roomfindingsystem.vo.Smsrequest;
 import com.roomfindingsystem.vo.UserDto;
+import com.roomfindingsystem.dto.Smsrequest;
+import com.roomfindingsystem.dto.UserDto;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
