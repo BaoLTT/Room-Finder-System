@@ -16,9 +16,9 @@ import java.util.Optional;
 
 public interface HouseService {
     //Th
-    int countHouse(int min, int max, String houseName, List<Integer> type);
+    int countHouse(int min, int max, String houseName, List<Integer> type, List<Integer> service);
 
-    List<HouseTypeVo> findHouse(int min, int max,String houseName,List<Integer> type, int pageIndex,int pageSize);
+    List<HouseTypeVo> findHouse(int min, int max,String houseName,List<Integer> type, List<Integer> service, int pageIndex,int pageSize);
     //
     List<HouseTypeVo> viewHouseInHome();
     Optional<HousesEntity> findHouseById(Integer id);
