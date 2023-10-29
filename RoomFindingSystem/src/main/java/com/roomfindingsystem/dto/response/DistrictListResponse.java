@@ -1,4 +1,5 @@
 package com.roomfindingsystem.vo.response;
+
 package com.roomfindingsystem.dto.response;
 
 import com.roomfindingsystem.entity.DistrictEntity;
