@@ -8,9 +8,7 @@ import com.roomfindingsystem.entity.ServiceDetailEntity;
 import com.roomfindingsystem.reponsitory.RoomRepository;
 import com.roomfindingsystem.service.RoomService;
 
-import com.roomfindingsystem.vo.HouseTypeVo;
-import com.roomfindingsystem.vo.RoomDto;
-import com.roomfindingsystem.vo.RoomHomeVo;
+
 
 import com.roomfindingsystem.dto.RoomDto;
 import com.roomfindingsystem.dto.RoomHomeVo;
@@ -49,14 +47,6 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public List<RoomHomeVo> viewRoomInHome() {
-        List<RoomHomeVo> list = new ArrayList<>();
-        if(!roomRepository.viewTop4Home().isEmpty()){
-            if(roomRepository.viewTop4Home().size()<8) list = roomRepository.viewTop4Home();
-            else for(int i = 0; i<8; i++){
-                list.add(roomRepository.viewTop4Home().get(i));
-            }
-
     public List<RoomHomeDto> viewRoomInHome() {
         List<Tuple> tuples = roomRepository.viewRoomInHome();
         List<RoomHomeDto> roomHomeDtos = new ArrayList<>();
@@ -82,7 +72,7 @@ public class RoomServiceImpl implements RoomService {
 
             roomHomeDtos.add(roomHomeDto);
         }
-        return list;
+
 
         return roomHomeDtos;
 

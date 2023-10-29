@@ -4,8 +4,7 @@ import com.roomfindingsystem.entity.RoomEntity;
 import com.roomfindingsystem.entity.RoomImagesEntity;
 import com.roomfindingsystem.entity.ServiceDetailEntity;
 
-import com.roomfindingsystem.vo.RoomDto;
-import com.roomfindingsystem.vo.RoomHomeVo;
+
 
 import com.roomfindingsystem.dto.RoomHomeVo;
 
@@ -35,14 +34,7 @@ public interface RoomRepository extends JpaRepository<RoomEntity, Integer> {
 
 
     //homepage
-    @Query("select new com.roomfindingsystem.vo.RoomHomeVo(r.roomId, r.roomName, h.houseName,t.typeName, r.price ,p.name, d.name, w.name, a.name) from RoomEntity r join HousesEntity h on r.houseId = h.houseId " +
-            "left join RoomTypeEntity t on t.typeId = r.roomType " +
-            "left join AddressEntity a on h.addressId = a.addressId " +
-            "left join ProvinceEntity p on a.provinceId = p.provinceId " +
-            "left join DistrictEntity d on d.provinceId= p.provinceId " +
-            "left join WardEntity w on w.districtId= d.districtId " +
-            "order by r.createdDate desc")
-    List<RoomHomeVo> viewTop4Home();
+    
     @Query(value = "SELECT r.roomid, r.room_name, h.house_name , t.type_name, r.price, (SELECT GROUP_CONCAT(i.image_link) FROM room_images i WHERE i.roomid = r.roomid) AS Image_Link, a.address_details, w.name AS ward_name, d.name AS district_name, p.name AS province_name, r.area\n" +
             "            FROM room r\n" +
             "            LEFT JOIN room_type t on r.room_type = t.typeid\n" +
