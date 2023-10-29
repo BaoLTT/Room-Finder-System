@@ -1,8 +1,6 @@
 package com.roomfindingsystem.controller;
 
 import com.roomfindingsystem.service.*;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -45,5 +43,6 @@ public class  MainController {
         model.addAttribute("feedbacks", feedbackService.viewTop4Home());
         model.addAttribute("sliders", sliderService.viewTop4Home());
         return "Homepage";
+        return "homepage";
     }
 }

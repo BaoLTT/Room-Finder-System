@@ -3,6 +3,7 @@ package com.roomfindingsystem.controller;
 import com.roomfindingsystem.service.RoomService;
 import com.roomfindingsystem.vo.HouseTypeVo;
 import com.roomfindingsystem.vo.RoomDto;
+import com.roomfindingsystem.dto.RoomDto;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

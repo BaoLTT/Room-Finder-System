@@ -1,4 +1,3 @@
-package com.roomfindingsystem.vo.response;
 
 import com.roomfindingsystem.entity.WardEntity;
 import lombok.Data;

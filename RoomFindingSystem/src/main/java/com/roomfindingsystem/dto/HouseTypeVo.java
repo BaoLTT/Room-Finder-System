@@ -1,9 +1,9 @@
 package com.roomfindingsystem.vo;
+package com.roomfindingsystem.dto;
 
 import lombok.*;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @Setter
@@ -27,8 +27,16 @@ import java.util.List;
         String province;
 
         Integer price;
+
         List<String> listImage;
+
+        List<String> service;
+
         LocalDate last_modified_date;
+
+        Integer count_room;
+
+        Integer like;
     }
 
 

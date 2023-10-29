@@ -3,6 +3,7 @@ package com.roomfindingsystem.service.impl;
 
 import com.roomfindingsystem.config.Twilioproperties;
 import com.roomfindingsystem.vo.Smsrequest;
+import com.roomfindingsystem.dto.Smsrequest;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
 import org.springframework.beans.factory.annotation.Autowired;
