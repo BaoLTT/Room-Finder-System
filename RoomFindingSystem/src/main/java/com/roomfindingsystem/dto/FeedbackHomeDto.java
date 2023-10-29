@@ -1,5 +1,3 @@
-package com.roomfindingsystem.vo;
-
 package com.roomfindingsystem.dto;
 
 import lombok.*;
@@ -9,7 +7,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class FeedbackHomeVo {
+public class FeedbackHomeDto {
     String firstName;
 
     String lastName;

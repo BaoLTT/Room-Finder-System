@@ -42,7 +42,7 @@ public class  MainController {
         model.addAttribute("rooms", roomService.viewRoomInHome());
         model.addAttribute("feedbacks", feedbackService.viewTop4Home());
         model.addAttribute("sliders", sliderService.viewTop4Home());
-        return "Homepage";
+
         return "homepage";
     }
 }

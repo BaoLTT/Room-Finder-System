@@ -17,6 +17,7 @@ public interface HouseService {
     List<HouseTypeVo> findHouse(int min, int max,String houseName,List<Integer> type, List<Integer> service, int pageIndex,int pageSize);
     //
     List<HouseTypeVo> viewHouseInHome();
+
     List<HouseHomeDto> viewHouseInHome();
     Optional<HousesEntity> findHouseById(Integer id);
     List<HouseDto> getHouseDetail(int id);

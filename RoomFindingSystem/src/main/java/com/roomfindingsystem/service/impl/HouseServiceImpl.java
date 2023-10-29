@@ -10,6 +10,7 @@ import com.roomfindingsystem.vo.HouseDto;
 import com.roomfindingsystem.vo.HouseImageLink;
 import com.roomfindingsystem.vo.HouseTypeVo;
 import com.roomfindingsystem.vo.ServiceDto;
+
 import jakarta.persistence.Tuple;
 import org.springframework.stereotype.Service;
 
@@ -111,6 +112,7 @@ public class HouseServiceImpl implements HouseService {
 
     @Override
     public List<HouseTypeVo> viewHouseInHome() {
+
     public List<HouseHomeDto> viewHouseInHome() {
         List<Tuple> tuples = houseRepository.viewHouseInHome();
         List<HouseTypeVo> houseTypeVos = new ArrayList<>();
@@ -123,6 +125,7 @@ public class HouseServiceImpl implements HouseService {
             houseTypeVo.setHouseName(tuple.get("House_Name", String.class));
             houseTypeVo.setTypeHouse(tuple.get("Type_Name", String.class));
             houseTypeVo.setAddressDetail(tuple.get("Address_Details", String.class));
+
             HouseHomeDto houseHomeDto = new HouseHomeDto();
             houseHomeDto.setHouseID(tuple.get("HouseID", Integer.class));
             houseHomeDto.setHouseName(tuple.get("House_Name", String.class));
@@ -131,6 +134,7 @@ public class HouseServiceImpl implements HouseService {
             String imageLink = (tuple.get("Image_Link", String.class));
             if(imageLink == null)
             {houseTypeVo.setListImage(null);}
+
             {houseHomeDto.setListImage(null);}
             else {imageLinks = Arrays.asList(imageLink.split(","));
                 houseTypeVo.setListImage(imageLinks);}
@@ -154,9 +158,11 @@ public class HouseServiceImpl implements HouseService {
 
 
             houseTypeVos.add(houseTypeVo);
+
             houseHomeDtos.add(houseHomeDto);
         }
         return houseTypeVos;
+
         return houseHomeDtos;
     }
 

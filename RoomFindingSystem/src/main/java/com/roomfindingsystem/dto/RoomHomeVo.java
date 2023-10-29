@@ -1,4 +1,5 @@
 package com.roomfindingsystem.vo;
+
 package com.roomfindingsystem.dto;
 
 import lombok.*;

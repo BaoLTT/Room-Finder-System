@@ -1,3 +1,4 @@
+package com.roomfindingsystem.dto.response;
 
 import com.roomfindingsystem.entity.WardEntity;
 import lombok.Data;
