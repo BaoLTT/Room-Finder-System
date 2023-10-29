@@ -30,7 +30,13 @@ import java.util.List;
 
         List<String> listImage;
 
+        List<String> service;
+
         LocalDate last_modified_date;
+
+        Integer count_room;
+
+        Integer like;
     }
 
 

@@ -32,15 +32,16 @@ public class HouseServiceImpl implements HouseService {
     }
 
     @Override
-    public int countHouse(int min, int max, String houseName, List<Integer> type) {
-        return houseRepository.countHouse(min,max,houseName,type);
+    public int countHouse(int min, int max, String houseName, List<Integer> type, List<Integer> service) {
+        return houseRepository.countHouse(min,max,houseName,type,service);
     }
 
     @Override
-    public List<HouseTypeVo> findHouse(int min, int max, String houseName, List<Integer> type, int pageIndex, int pageSize) {
-            List<Tuple> tuples = houseRepository.findHouse(min, max , houseName,type,pageIndex, pageSize);
+    public List<HouseTypeVo> findHouse(int min, int max, String houseName, List<Integer> type, List<Integer> service, int pageIndex, int pageSize) {
+            List<Tuple> tuples = houseRepository.findHouse(min, max , houseName,type,service,pageIndex, pageSize);
             List<HouseTypeVo> houseTypeVos = new ArrayList<>();
             List<String> imageLinks ;
+            List<String> services;
 
             for (Tuple tuple : tuples) {
                 HouseTypeVo houseTypeVo = new HouseTypeVo();
@@ -51,12 +52,26 @@ public class HouseServiceImpl implements HouseService {
                 java.sql.Date sqlDate = (java.sql.Date) tuple.get("last_modified_date", Date.class);
                 LocalDate localDate = sqlDate.toLocalDate();
                 houseTypeVo.setLast_modified_date(localDate);
-
+                Long count = (tuple.get("count_room",Long.class));
+                houseTypeVo.setCount_room(count.intValue());
+                Long like = (tuple.get("like_house",Long.class));
+                if(like == null){
+                    houseTypeVo.setLike(0);
+                }else{
+                    houseTypeVo.setLike(like.intValue());
+                }
                 String imageLink = (tuple.get("Image_Link", String.class));
                 if(imageLink == null)
                 {houseTypeVo.setListImage(null);}
                 else {imageLinks = Arrays.asList(imageLink.split(","));
                     houseTypeVo.setListImage(imageLinks);}
+
+                String service1 = (tuple.get("Service_Name",String.class));
+                if(service1.isEmpty())
+                {houseTypeVo.setService(null);}
+                else {services = Arrays.asList(service1.split(","));
+                    houseTypeVo.setService(services);}
+
                 houseTypeVo.setProvince(tuple.get("province_name", String.class));
                 houseTypeVo.setDistrict(tuple.get("district_name", String.class));
                 houseTypeVo.setWard(tuple.get("ward_name", String.class));

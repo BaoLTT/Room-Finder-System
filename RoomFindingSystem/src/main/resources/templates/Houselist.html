@@ -136,7 +136,7 @@
                                         </section>
                                         <!--end section-->
                                         <section>
-                                            <h3>Property Type </h3>
+                                            <h3>Thể loại phòng </h3>
                                             <ul class="checkboxes">
                                                 <li><label><input type="checkbox" name="type" value="1">Chung cư<span>67</span></label></li>
                                                 <li><label><input type="checkbox" name="type" value="2">Phòng cho thuê<span>31</span></label></li>
@@ -157,11 +157,9 @@
                                         <!--end section-->
                                         <section>
                                             <h3>Tiện ích</h3>
-                                            <ul class="checkboxes no-bottom-margin">
-                                                <li><label><input type="checkbox" name="wi-fi">Wi-fi<span>12</span></label></li>
-                                                <li><label><input type="checkbox" name="free-parking">Free Parking<span>48</span></label></li>
-                                                <li><label><input type="checkbox" name="airport">Airport Shuttle<span>36</span></label></li>
-                                                <li><label><input type="checkbox" name="family-rooms">Family Rooms<span>56</span></label></li>
+                                            <ul class="checkboxes no-bottom-margin" th:each = "listService: ${listAllService}">
+                                                <li><label><input type="checkbox" name="service" th:text = "${listService.getServiceName()}" th:value = "${listService.getServiceId()}"></label></li>
+
                                             </ul>
                                             <!--end checkboxes-->
                                         </section>
@@ -185,11 +183,6 @@
                     <div class="main-content">
                         <div class="title">
                             <h1>Danh sách</h1>
-                            <div class="display-selector">
-                                <span>Display:</span>
-                                <a href="listing.html" class="active" data-toggle="tooltip" data-placement="left" title="Display list"><i class="fa fa-th-list"></i></a>
-                                <a href="listing-matrix.html" data-toggle="tooltip" data-placement="left" title="Display matrix"><i class="fa fa-th"></i></a>
-                            </div>
                         </div>
                         <!--end title-->
 <!--                        <div class="item list" data-map-latitude="48.87" data-map-longitude="2.29" data-id="1" th:each = "house1: ${house1}">-->
@@ -218,8 +211,8 @@
                             <!--end image-->
                             <div class="description">
                                 <div class="meta">
-                                    <span><i class="fa fa-star"></i>8.9</span>
-                                    <span><i class="fa fa-bed"></i>365</span>
+                                    <span ><i class="fa fa-star" ></i><h th:text = "${houses.getLike()}">a</h></span>
+                                    <span><i class="fa fa-bed"></i><h th:text = "${houses.getCount_room()}"></h></span>
                                 </div>
                                 <!--end meta-->
                                 <div class="info">
@@ -227,7 +220,7 @@
 
                                     <figure class="label label-info" th:text = "${houses.typeHouse}">Hotel</figure>
                                     <figure class="label label-info" th:text = "${houses.last_modified_date}" style="position: absolute;right: 0;margin-top: 7px;margin-right: 30px" >Hotel</figure>
-                                    <figure class="location" >Montenegro</figure>
+                                    <figure class="location" th:text = "${houses.getService()}">Montenegro</figure>
 
 <!--                                    <figure class="live-info">3 Persons watching now!</figure>-->
                                     <p th:text = "${houses.addressDetail+', '+'xã '+houses.ward+', '+'huyện '+houses.district+', '+'tỉnh '+houses.province}">
