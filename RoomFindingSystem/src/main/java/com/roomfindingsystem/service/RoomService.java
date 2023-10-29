@@ -7,9 +7,7 @@ import com.roomfindingsystem.entity.RoomEntity;
 import com.roomfindingsystem.entity.RoomImagesEntity;
 import com.roomfindingsystem.entity.ServiceDetailEntity;
 
-import com.roomfindingsystem.vo.HouseTypeVo;
-import com.roomfindingsystem.vo.RoomDto;
-import com.roomfindingsystem.vo.RoomHomeVo;
+
 
 import org.springframework.stereotype.Repository;
 import com.roomfindingsystem.dto.RoomDto;
@@ -29,7 +27,7 @@ public interface RoomService {
 
 
     //Homepage
-    List<RoomHomeVo> viewRoomInHome();
+
 
     List<RoomHomeDto> viewRoomInHome();
 

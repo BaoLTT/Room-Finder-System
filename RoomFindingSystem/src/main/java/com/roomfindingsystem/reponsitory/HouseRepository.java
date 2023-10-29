@@ -1,9 +1,7 @@
 package com.roomfindingsystem.reponsitory;
 
 import com.roomfindingsystem.entity.HousesEntity;
-import com.roomfindingsystem.vo.HouseDto;
-import com.roomfindingsystem.vo.HouseImageLink;
-import com.roomfindingsystem.vo.ServiceDto;
+
 
 import com.roomfindingsystem.dto.HouseDto;
 import com.roomfindingsystem.dto.HouseImageLink;
@@ -67,7 +65,6 @@ public interface HouseRepository extends JpaRepository<HousesEntity,Integer> {
             "GROUP BY h.houseid, h.house_name, t.type_name, a.address_details, ward_name, district_name, province_name, h.last_modified_date) as subquery",nativeQuery=true )
     int countHouse(int min, int max, String houseName, List<Integer> type, List<Integer> service);
 
-    @Query("SELECT new com.roomfindingsystem.vo.HouseDto( h.houseId, h.houseName,h.description,h.createdDate, u.lastName,u.firstName , u.phone,a.addressId, t.typeName )\n" +
     @Query("SELECT new com.roomfindingsystem.dto.HouseDto( h.houseId, h.houseName,h.description,h.createdDate, u.lastName,u.firstName , u.phone,a.addressId, t.typeName )\n" +
             "FROM HousesEntity as h \n" +
             "left join UserEntity as u on h.userId = u.userId \n" +
@@ -75,10 +72,8 @@ public interface HouseRepository extends JpaRepository<HousesEntity,Integer> {
             "left join TypeHouseEntity as t on t.typeId = h.typeHouseId\n" +
             " where h.houseId=?1")
     List<HouseDto> findAllDetail(int houseId);
-    @Query("SELECT new com.roomfindingsystem.vo.HouseImageLink(i.imageLink) FROM HouseImagesEntity i join HousesEntity h  on i.houseId = h.houseId where h.houseId=?1")
     @Query("SELECT new com.roomfindingsystem.dto.HouseImageLink(i.imageLink) FROM HouseImagesEntity i join HousesEntity h  on i.houseId = h.houseId where h.houseId=?1")
     List<HouseImageLink> getByHouseImageid(int houseId);
-    @Query("select new com.roomfindingsystem.vo.ServiceDto(shd.serviceName,shd.description) from ServiceHouseEntity sh join ServiceDetailEntity shd on sh.serviceId=shd.serviceId where sh.houseId=?1")
     @Query("select new com.roomfindingsystem.dto.ServiceDto(shd.serviceName,shd.description) from ServiceHouseEntity sh join ServiceDetailEntity shd on sh.serviceId=shd.serviceId where sh.houseId=?1")
     List<ServiceDto> getServiceById(int houseId);
 
@@ -88,7 +83,6 @@ public interface HouseRepository extends JpaRepository<HousesEntity,Integer> {
 
 
     //homepage
-    @Query(value = "SELECT h.houseid, h.house_name, t.type_name, a.address_details, w.name AS ward_name, d.name AS district_name, p.name AS province_name, MIN(r.price) AS minPrice, (SELECT GROUP_CONCAT(i.image_link) FROM house_images i WHERE i.houseid = h.houseid) AS Image_Link, h.last_modified_by " +
     @Query(value = "SELECT h.houseid, h.house_name, t.type_name, a.address_details, w.name AS ward_name, d.name AS district_name, p.name AS province_name, (SELECT GROUP_CONCAT(i.image_link) FROM house_images i WHERE i.houseid = h.houseid) AS Image_Link, h.last_modified_date, (select count(roomid) from room r where r.houseid = h.houseid group by r.houseid)  as count_Rooms " +
             "FROM houses h " +
             "JOIN type_house t ON h.type_houseid = t.typeid " +

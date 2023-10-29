@@ -1,7 +1,7 @@
 package com.roomfindingsystem.reponsitory;
 
 import com.roomfindingsystem.entity.UserEntity;
-import com.roomfindingsystem.vo.UserDto;
+
 
 import com.roomfindingsystem.dto.UserDto;
 import jakarta.transaction.Transactional;

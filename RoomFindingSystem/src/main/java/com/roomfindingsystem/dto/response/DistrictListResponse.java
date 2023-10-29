@@ -1,4 +1,4 @@
-package com.roomfindingsystem.vo.response;
+
 
 package com.roomfindingsystem.dto.response;
 

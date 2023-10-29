@@ -1,13 +1,13 @@
 package com.roomfindingsystem.service.impl;
 
 
+import com.roomfindingsystem.dto.FeedbackHomeDto;
 import com.roomfindingsystem.reponsitory.FeedbackRepository;
 import com.roomfindingsystem.service.FeedbackService;
-import com.roomfindingsystem.vo.FeedbackDto;
-import com.roomfindingsystem.vo.FeedbackHomeVo;
+
 
 import com.roomfindingsystem.dto.FeedbackDto;
-import com.roomfindingsystem.dto.FeedbackHomeVo;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,8 +24,8 @@ public class FeedbackServiceImpl implements FeedbackService {
         return feedbackRepository.findFeedbackDtosByHouseId(houseId);
     }
     @Override
-    public List<FeedbackHomeVo> viewTop4Home() {
-        List<FeedbackHomeVo> list = new ArrayList<>();
+    public List<FeedbackHomeDto> viewTop4Home() {
+        List<FeedbackHomeDto> list = new ArrayList<>();
         if(!feedbackRepository.viewTop4Home().isEmpty()){
             if(feedbackRepository.viewTop4Home().size()>4){
                 for(int i = 0; i<4; i++){
