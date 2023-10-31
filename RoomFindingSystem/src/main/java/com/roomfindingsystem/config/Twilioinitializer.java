@@ -1,8 +1,9 @@
 package com.roomfindingsystem.config;
 
 
-import com.twilio.Twilio;
 import org.springframework.context.annotation.Configuration;
+
+import com.twilio.Twilio;
 
 @Configuration
 public class Twilioinitializer {
