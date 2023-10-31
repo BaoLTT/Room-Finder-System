@@ -26,5 +26,6 @@ public class HouseHomeDto {
 
     List<String> listImage;
     LocalDate last_modified_date;
+    Long countEmptyRooms;
     Long countRooms;
 }

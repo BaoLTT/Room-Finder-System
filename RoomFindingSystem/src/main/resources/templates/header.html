@@ -22,18 +22,19 @@
               <div id="secondary-nav">
                 <nav>
                   <div class="left opacity-60">
-                    <a href=""><i class="fa fa-phone"></i>+1 781-903-1047</a>
-                    <a href="mailto:hello@example.com"><i class="fa fa-envelope"></i>hello@example.com</a>
+                    <a href=""><i class="fa fa-phone"></i>+84 366 225 436</a>
+                    <a href="mailto:hello@example.com"><i class="fa fa-envelope"></i>
+                      offftrick@gmail.com</a>
                   </div>
                   <!--end left-->
                   <div class="right">
-                    <div th:if="${session.userid != null}">
+                    <div th:if="${session.username != null}">
                       <!-- Hiển thị thông tin người dùng đã đăng nhập -->
                       <a th:href="@{/profile}"><span>Xin chào, <span th:text="${session.userid}"></span></span></a>
                       <a th:href="@{/logout}">Đăng xuất</a>
                     </div>
                     <!--end element-->
-                    <div th:unless="${session.userid!= null}">
+                    <div th:unless="${session.username!= null}">
                       <div class="element">
                         <a th:href="@{/login}" data-toggle="modal" data-tab="true" data-target="#sign-in-register-modal">Đăng nhập</a>
                       </div>

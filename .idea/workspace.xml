@@ -213,182 +213,229 @@
         &quot;state&quot;: &quot;OPEN&quot;
         }
         }</component>
-  <component name="GithubPullRequestsUISettings">
-    <option name="selectedUrlAndAccountId">
-      <UrlAndAccount>
-        <option name="accountId" value="308da7a5-fa36-4d2d-9865-e3817f4ef29a" />
-        <option name="url" value="https://github.com/BaoLTT/Room-Finding-System.git" />
-      </UrlAndAccount>
-    </option>
-  </component>
-  <component name="ProjectColorInfo">{
+    <component name="GithubPullRequestsUISettings">
+        <option name="selectedUrlAndAccountId">
+            <UrlAndAccount>
+                <option name="accountId" value="308da7a5-fa36-4d2d-9865-e3817f4ef29a" />
+                <option name="url" value="https://github.com/BaoLTT/Room-Finding-System.git" />
+            </UrlAndAccount>
+        </option>
+    </component>
+    <component name="ProjectColorInfo">{
         &quot;associatedIndex&quot;: 2
         }</component>
-  <component name="ProjectId" id="2WhfuNxnMuI6Ta7g9GMxDXYmyRX" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showLibraryContents" value="true" />
-  </component>
-  <component name="PropertiesComponent"><![CDATA[{
+    <component name="ProjectId" id="2WhfuNxnMuI6Ta7g9GMxDXYmyRX" />
+    <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+        <ConfirmationsSetting value="2" id="Add" />
+    </component>
+    <component name="ProjectViewState">
+        <option name="hideEmptyMiddlePackages" value="true" />
+        <option name="showLibraryContents" value="true" />
+    </component>
+    <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "dart.analysis.tool.window.visible": "false"
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "BaoLTT",
+    "last_opened_file_path": "D:/Intellij project/Room-Finding-System/RoomFindingSystem/src/main/resources/templates",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "project.propVCSSupport.CommitDialog",
+    "show.migrate.to.gradle.popup": "false",
+    "spring.configuration.checksum": "cba14e4d5d8ebaea272e92fbdfce9e02",
+    "vue.rearranger.settings.migration": "true"
+
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/nguyenhuubinh/Documents/DATN/Room-Finding-System/RoomFindingSystem/src/main/resources/templates&quot;,
+
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+
+    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;cba14e4d5d8ebaea272e92fbdfce9e02&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
+    ]
   }
+
 }]]></component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Intellij project\Room-Finding-System\RoomFindingSystem\src\main\resources\templates" />
-      <recent name="D:\Intellij project\Room-Finding-System\RoomFindingSystem\src\main\java\com\roomfindingsystem\dto" />
-      <recent name="D:\Intellij project\Room-Finding-System\RoomFindingSystem\src\main\resources" />
-      <recent name="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/config" />
-      <recent name="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\Intellij project\Room-Finding-System\RoomFindingSystem\src\main\resources\templates" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/RoomFindingSystem/src/main/resources" />
-      <recent name="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.roomfindingsystem.service.impl" />
-      <recent name="com.roomfindingsystem.vo" />
-      <recent name="com.roomfindingsystem.controller" />
-      <recent name="com.roomfindingsystem.config" />
-    </key>
-  </component>
-  <component name="RunManager">
-    <configuration name="Main" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
-      <module name="RoomFindingSystem" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.roomfindingsystem.Main" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-  </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
-  <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="ec34e655-ee0a-4be9-8773-96fceb50fb67" name="Changes" comment="" />
-      <created>1697189953889</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1697189953889</updated>
-      <workItem from="1697189954921" duration="21729000" />
-      <workItem from="1697284419576" duration="5046000" />
-      <workItem from="1697443910148" duration="418000" />
-      <workItem from="1697444378721" duration="4072000" />
-      <workItem from="1697462386816" duration="12695000" />
-      <workItem from="1697508544796" duration="3293000" />
-      <workItem from="1697462386816" duration="6309000" />
-      <workItem from="1697484322714" duration="326000" />
-      <workItem from="1697549182873" duration="31000" />
-      <workItem from="1697549322762" duration="653000" />
-      <workItem from="1697877632559" duration="2053000" />
-      <workItem from="1697896548058" duration="2566000" />
-      <workItem from="1697899990177" duration="172000" />
-      <workItem from="1697900297133" duration="2004000" />
-      <workItem from="1697903846520" duration="836000" />
-      <workItem from="1697964698545" duration="874000" />
-      <workItem from="1697968836286" duration="2713000" />
-      <workItem from="1697983426123" duration="6267000" />
-      <workItem from="1698243493796" duration="2373000" />
-      <workItem from="1698608849773" duration="5856000" />
-      <workItem from="1697523905801" duration="2947000" />
-      <workItem from="1697565040657" duration="1251000" />
-      <workItem from="1697598397515" duration="3276000" />
-      <workItem from="1697636278749" duration="8424000" />
-      <workItem from="1697709171739" duration="2714000" />
-      <workItem from="1697725559599" duration="3867000" />
-    </task>
-    <task id="LOCAL-00001" summary="fix register and boảding house detail and send mail future">
-      <option name="closed" value="true" />
-      <created>1697468926424</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1697468926424</updated>
-    </task>
-    <task id="LOCAL-00002" summary="fix register and boảding house detail and send mail future">
-      <option name="closed" value="true" />
-      <created>1697468973685</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1697468973685</updated>
-    </task>
-    <task id="LOCAL-00003" summary="send SMS and reset fix">
-      <option name="closed" value="true" />
-      <created>1697820290590</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1697820290590</updated>
-    </task>
-    <task id="LOCAL-00004" summary="check lai lan 1">
-      <option name="closed" value="true" />
-      <created>1698620936143</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1698620936144</updated>
-    </task>
-    <task id="LOCAL-00005" summary="check lai file dto">
-      <option name="closed" value="true" />
-      <created>1698621138729</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1698621138729</updated>
-    </task>
-    <task id="LOCAL-00006" summary="fix register">
-      <option name="closed" value="true" />
-      <created>1698724573595</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1698724573595</updated>
-    </task>
-    <option name="localTasksCounter" value="7" />
-    <servers />
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
+    <component name="RecentsManager">
+        <key name="CopyFile.RECENT_KEYS">
+            <recent name="D:\Intellij project\Room-Finding-System\RoomFindingSystem\src\main\resources\templates" />
+            <recent name="D:\Intellij project\Room-Finding-System\RoomFindingSystem\src\main\java\com\roomfindingsystem\dto" />
+            <recent name="D:\Intellij project\Room-Finding-System\RoomFindingSystem\src\main\resources" />
+            <recent name="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/config" />
+            <recent name="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates" />
+        </key>
+        <key name="MoveFile.RECENT_KEYS">
+            <recent name="D:\Intellij project\Room-Finding-System\RoomFindingSystem\src\main\resources\templates" />
+        </key>
+        <key name="MoveFile.RECENT_KEYS">
+            <recent name="$PROJECT_DIR$/RoomFindingSystem/src/main/resources" />
+            <recent name="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates" />
+        </key>
+        <key name="CopyClassDialog.RECENTS_KEY">
+            <recent name="com.roomfindingsystem.service.impl" />
+            <recent name="com.roomfindingsystem.vo" />
+            <recent name="com.roomfindingsystem.controller" />
+            <recent name="com.roomfindingsystem.config" />
+        </key>
+    </component>
+    <component name="RunManager">
+        <configuration name="Main" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+            <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+            <module name="RoomFindingSystem" />
+            <option name="SPRING_BOOT_MAIN_CLASS" value="com.roomfindingsystem.Main" />
+            <method v="2">
+                <option name="Make" enabled="true" />
+            </method>
+        </configuration>
+    </component>
+    <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+    <component name="TaskManager">
+        <task active="true" id="Default" summary="Default task">
+            <changelist id="ec34e655-ee0a-4be9-8773-96fceb50fb67" name="Changes" comment="" />
+            <created>1697189953889</created>
+            <option name="number" value="Default" />
+            <option name="presentableId" value="Default" />
+            <updated>1697189953889</updated>
+            <workItem from="1697189954921" duration="21729000" />
+            <workItem from="1697284419576" duration="5046000" />
+            <workItem from="1697443910148" duration="418000" />
+            <workItem from="1697444378721" duration="4072000" />
+            <workItem from="1697462386816" duration="12695000" />
+            <workItem from="1697508544796" duration="3293000" />
+            <workItem from="1697462386816" duration="6309000" />
+            <workItem from="1697484322714" duration="326000" />
+            <workItem from="1697549182873" duration="31000" />
+            <workItem from="1697549322762" duration="653000" />
+            <workItem from="1697877632559" duration="2053000" />
+            <workItem from="1697896548058" duration="2566000" />
+            <workItem from="1697899990177" duration="172000" />
+            <workItem from="1697900297133" duration="2004000" />
+            <workItem from="1697903846520" duration="836000" />
+            <workItem from="1697964698545" duration="874000" />
+            <workItem from="1697968836286" duration="2713000" />
+            <workItem from="1697983426123" duration="6267000" />
+            <workItem from="1698243493796" duration="2373000" />
+            <workItem from="1698608849773" duration="5856000" />
+            <workItem from="1697523905801" duration="2947000" />
+            <workItem from="1697565040657" duration="1251000" />
+            <workItem from="1697598397515" duration="3276000" />
+            <workItem from="1697636278749" duration="8424000" />
+            <workItem from="1697709171739" duration="2714000" />
+            <workItem from="1697725559599" duration="3867000" />
+        </task>
+        <task id="LOCAL-00001" summary="fix register and boảding house detail and send mail future">
+            <option name="closed" value="true" />
+            <created>1697468926424</created>
+            <option name="number" value="00001" />
+            <option name="presentableId" value="LOCAL-00001" />
+            <option name="project" value="LOCAL" />
+            <updated>1697468926424</updated>
+        </task>
+        <task id="LOCAL-00002" summary="fix register and boảding house detail and send mail future">
+            <option name="closed" value="true" />
+            <created>1697468973685</created>
+            <option name="number" value="00002" />
+            <option name="presentableId" value="LOCAL-00002" />
+            <option name="project" value="LOCAL" />
+            <updated>1697468973685</updated>
+        </task>
+        <task id="LOCAL-00003" summary="send SMS and reset fix">
+            <option name="closed" value="true" />
+            <created>1697820290590</created>
+            <option name="number" value="00003" />
+            <option name="presentableId" value="LOCAL-00003" />
+            <option name="project" value="LOCAL" />
+            <updated>1697820290590</updated>
+        </task>
+        <task id="LOCAL-00004" summary="check lai lan 1">
+            <option name="closed" value="true" />
+            <created>1698620936143</created>
+            <option name="number" value="00004" />
+            <option name="presentableId" value="LOCAL-00004" />
+            <option name="project" value="LOCAL" />
+            <updated>1698620936144</updated>
+        </task>
+        <task id="LOCAL-00005" summary="check lai file dto">
+            <option name="closed" value="true" />
+            <created>1698621138729</created>
+            <option name="number" value="00005" />
+            <option name="presentableId" value="LOCAL-00005" />
+            <option name="project" value="LOCAL" />
+            <updated>1698621138729</updated>
+        </task>
+        <option name="localTasksCounter" value="6" />
+        <servers />
+    </component>
+    <component name="TypeScriptGeneratedFilesManager">
+        <option name="version" value="3" />
+    </component>
+    <component name="Vcs.Log.Tabs.Properties">
+        <option name="TAB_STATES">
+            <map>
+                <entry key="MAIN">
                     <value>
-                      <list>
-                        <option value="origin/BinhNH" />
-                      </list>
+                        <State>
+                            <option name="FILTERS">
+                                <map>
+                                    <entry key="branch">
+                                        <value>
+                                            <list>
+                                                <option value="origin/BinhNH" />
+                                            </list>
+                                        </value>
+                                    </entry>
+                                </map>
+                            </option>
+                        </State>
                     </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix register and boảding house detail and send mail future" />
-    <MESSAGE value="xoa price trong user" />
-    <MESSAGE value="send SMS and reset fix" />
-    <MESSAGE value="check lai lan 1" />
-    <MESSAGE value="check lai file dto" />
-    <MESSAGE value="check lai repo va service" />
-    <MESSAGE value="fix register" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix register" />
-  </component>
+                </entry>
+            </map>
+        </option>
+    </component>
+    <component name="VcsManagerConfiguration">
+        <MESSAGE value="fix register and boảding house detail and send mail future" />
+        <MESSAGE value="xoa price trong user" />
+        <MESSAGE value="send SMS and reset fix" />
+        <MESSAGE value="check lai lan 1" />
+        <MESSAGE value="check lai file dto" />
+        <MESSAGE value="check lai repo va service" />
+        <option name="LAST_COMMIT_MESSAGE" value="check lai repo va service" />
+    </component>
 </project>
