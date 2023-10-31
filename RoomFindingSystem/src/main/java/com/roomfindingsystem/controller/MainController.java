@@ -36,6 +36,8 @@ public class  MainController {
     public String viewHomepage(
             final Model model){
 
+
+
         model.addAttribute("houses", houseService.viewHouseInHome() );
         model.addAttribute("housetypes", houseTypeService.findAll() );
         model.addAttribute("houseservices", serviceHouseService.findAll());

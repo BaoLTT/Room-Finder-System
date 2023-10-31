@@ -63,7 +63,7 @@ public class RoomServiceImpl implements RoomService {
             if(imageLink == null)
             {roomHomeDto.setRoomImageLink(null);}
             else {imageLinks = Arrays.asList(imageLink.split(","));
-                roomHomeDto.setRoomImageLink(imageLinks);}
+                roomHomeDto.setRoomImageLink(imageLinks.get(0));}
             roomHomeDto.setProvince(tuple.get("province_name", String.class));
             roomHomeDto.setDistrict(tuple.get("district_name", String.class));
             roomHomeDto.setWard(tuple.get("ward_name", String.class));
@@ -148,4 +148,6 @@ public class RoomServiceImpl implements RoomService {
 
         return roomDtos;
     }
+
+
 }
