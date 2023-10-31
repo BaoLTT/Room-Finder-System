@@ -82,7 +82,7 @@ public class SecurityConfiguration {
 
             .authorizeHttpRequests(at ->at.requestMatchers("/login/**", "/login-google", "/","/register","/save","re-send",
                             "recover","send-otp-recover","otp-check","confirm-otp","send-otp-recover","confirm-otp-recover",
-                            "save-new-password","detail","change-password","save-change-password",
+                            "save-new-password","detail","change-password","save-change-password","feedback-list",
                             "/room/**", "/assets/**", "/houselist","/RoomList/**").permitAll()
                         .requestMatchers("/admin/**", "/test").hasAnyRole("3,4")
 //                        .requestMatchers("/profile").hasAnyRole("1,2")

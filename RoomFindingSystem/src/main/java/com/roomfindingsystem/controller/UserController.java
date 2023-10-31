@@ -144,19 +144,6 @@ public class UserController {
         return "redirect:/profile";
     }
 
-    @GetMapping("/profile")
-    public String getProfilePage(Model model) {
-        UserDto userDto = userService.findById(1);
-        model.addAttribute("user", userDto);
-        return "profile";
-    }
-
-    @PostMapping("/user/update")
-    public String updateUser(@ModelAttribute(name = "user") UserDto userDto, @RequestParam("file") MultipartFile file) throws IOException {
-        userDto.setUserId(1);
-        userService.updateProfile(userDto, file);
-        return "redirect:/profile";
-    }
 
 }
 

@@ -65,7 +65,7 @@ public interface HouseRepository extends JpaRepository<HousesEntity,Integer> {
             "GROUP BY h.houseid, h.house_name, t.type_name, a.address_details, ward_name, district_name, province_name, h.last_modified_date) as subquery",nativeQuery=true )
     int countHouse(int min, int max, String houseName, List<Integer> type, List<Integer> service);
 
-    @Query("SELECT new com.roomfindingsystem.dto.HouseDto( h.houseId, h.houseName,h.description,h.createdDate, u.lastName,u.firstName , u.phone,a.addressId, t.typeName )\n" +
+    @Query("SELECT new com.roomfindingsystem.dto.HouseDto( h.houseId, h.houseName,h.description,h.createdDate, u.lastName,u.firstName , u.phone,a.addressDetails, t.typeName ,p.name,d.name,w.name)\n" +
             "FROM HousesEntity as h \n" +
             "left join UserEntity as u on h.userId = u.userId \n" +
             "left join AddressEntity as a on h.addressId = a.addressId\n" +
