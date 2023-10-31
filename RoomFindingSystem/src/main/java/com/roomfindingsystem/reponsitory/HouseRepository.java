@@ -31,10 +31,13 @@ public interface HouseRepository extends JpaRepository<HousesEntity,Integer> {
     @Query(value = "SELECT COUNT(*) from houses",nativeQuery = true)
     int countHouse();
 
-    @Query("SELECT new com.roomfindingsystem.vo.HouseDto( h.houseId, h.houseName,h.description,h.createdDate, u.lastName,u.firstName , u.phone,a.addressId, t.typeName )\n" +
+    @Query("SELECT new com.roomfindingsystem.vo.HouseDto( h.houseId, h.houseName,h.description,h.createdDate, u.lastName,u.firstName , u.phone,a.addressDetails, t.typeName,p.name,d.name,w.name )\n" +
             "FROM HousesEntity as h \n" +
             "left join UserEntity as u on h.userId = u.userId \n" +
             "left join AddressEntity as a on h.addressId = a.addressId\n" +
+            "LEFT JOIN ProvinceEntity p ON a.provinceId = p.provinceId " +
+            "LEFT JOIN DistrictEntity d ON a.districtId = d.districtId " +
+            "LEFT JOIN WardEntity w ON a.wardId = w.wardId " +
             "left join TypeHouseEntity as t on t.typeId = h.typeHouseId\n" +
             " where h.houseId=?1")
     List<HouseDto> findAllDetail(int houseId);

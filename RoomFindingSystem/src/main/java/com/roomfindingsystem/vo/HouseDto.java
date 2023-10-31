@@ -11,15 +11,18 @@ import java.time.LocalDate;
 @Data
 @ToString
 public class HouseDto {
-    private Integer  houseId;
+    private Integer houseId;
     private String houseName;
     private String description;
     private LocalDate createdDate;
     private String lastName;
     private String firstName;
     private String phone;
-    private Integer addressId;
+    private String addressDetail;
     private String typeName;
+    private String province;
+    private String district;
+    private String ward;
 
 
 }

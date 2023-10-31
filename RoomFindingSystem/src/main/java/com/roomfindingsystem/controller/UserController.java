@@ -16,10 +16,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @Controller
 public class UserController {
@@ -59,10 +59,11 @@ public class UserController {
         String mess = "Hi You@" + " \nDear " + user.getFirstName() + " " + user.getLastName() + " " + "Here is your OTP Code: " + session.getAttribute("otp-register") + " Plaese input to form!" + "\n Thanks!";
         this.emailSenderService.sendEmail(user.getEmail(), subject, mess);
 // comment phần sms lúc nào cần send thì mở ra
-//        String phone = "+84".concat(user.getPhone().substring(1,10));
-//        smsrequest.setNumber(phone);
-//        smsrequest.setMessage(mess);
-//        smsservice.sendsms(smsrequest);
+        String phone = "+84".concat(user.getPhone().substring(1,10));
+        System.out.println(phone);
+        smsrequest.setNumber(phone);
+        smsrequest.setMessage(mess);
+        smsservice.sendsms(smsrequest);
 
         session.setAttribute("userid", user.getUserId());
         session.setAttribute("email", user.getEmail());
@@ -121,12 +122,27 @@ public class UserController {
         System.out.println(passwordEncoder.matches(oldPassword, userService.getUserForChangePass("binhnhhe153478@fpt.edu.vn").toString()));
         System.out.println(passwordEncoder.encode(oldPassword));
         if (passwordEncoder.matches(oldPassword, userService.getUserForChangePass("binhnhhe153478@fpt.edu.vn"))) {
-            userService.recoverPassword(newPassword,"binhnhhe153478@fpt.edu.vn");
+            userService.recoverPassword(passwordEncoder.encode(newPassword),"binhnhhe153478@fpt.edu.vn");
             model.addAttribute("mess", "Mật Khẩu đã được đổi thành công");
+            System.out.println("Remove success");
             return "change-password-form";
         }
         model.addAttribute("mess", "Mật Khẩu cũ Không Trùng");
+        System.out.println("Remove faild");
         return "change-password-form";
+    }
+    @GetMapping("/profile")
+    public String getProfilePage(Model model) {
+        UserDto userDto = userService.findById(2);
+        model.addAttribute("user", userDto);
+        return "profile";
+    }
+
+    @PostMapping("/user/update")
+    public String updateUser(@ModelAttribute(name = "user") UserDto userDto, @RequestParam("file") MultipartFile file) throws IOException {
+        userDto.setUserId(1);
+        userService.updateProfile(userDto, file);
+        return "redirect:/profile";
     }
 
 

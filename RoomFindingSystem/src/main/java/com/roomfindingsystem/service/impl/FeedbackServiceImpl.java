@@ -1,11 +1,15 @@
 package com.roomfindingsystem.service.impl;
 
 
+import com.roomfindingsystem.entity.FeedbackEntity;
 import com.roomfindingsystem.reponsitory.FeedbackRepository;
 import com.roomfindingsystem.service.FeedbackService;
 import com.roomfindingsystem.vo.FeedbackDto;
 import com.roomfindingsystem.vo.FeedbackHomeVo;
+import com.roomfindingsystem.vo.FeedbackListVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,6 +18,8 @@ import java.util.List;
 public class FeedbackServiceImpl implements FeedbackService {
     @Autowired
     FeedbackRepository feedbackRepository;
+
+
 
 
     @Override
@@ -32,5 +38,10 @@ public class FeedbackServiceImpl implements FeedbackService {
 
         }
         return list;
+    }
+
+    @Override
+    public Page<FeedbackEntity> getListFeedback(Pageable pageable) {
+        return feedbackRepository.findAll(pageable);
     }
 }

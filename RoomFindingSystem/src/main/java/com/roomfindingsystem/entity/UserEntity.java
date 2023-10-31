@@ -45,7 +45,6 @@ public class UserEntity {
     @Column(name = "Image_Link", nullable = true, length = 255)
     private String imageLink;
     @Basic
-    @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$", message = "Mật khẩu bao gồm chữ hoa, chữ thường, số và kí tự đặc biệt")
     @Column(name = "Password", nullable = true, length = 255)
     private String password;
     @Basic
