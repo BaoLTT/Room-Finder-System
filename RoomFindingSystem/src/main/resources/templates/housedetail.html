@@ -48,6 +48,7 @@
         <div class="container" th:each="HousesEntity : ${HousesEntity}">
             <ol class="breadcrumb">
                 <li><a th:href="@{/}">Trang chủ</a></li>
+
                 <li><a th:href="@{houselist}">Danh sách trọ</a></li>
                 <li class="active">Chi Tiết</li>
             </ol>
@@ -132,6 +133,7 @@
 <!--                                        </section>-->
                                         <!--end section-->
                                     </div>
+
                                     <!--end filter-advanced-search-->
                                 </div>
                                 <!--end collapse-->
@@ -238,6 +240,11 @@
                                         <!--                                        <li>Concrete Flooring</li>-->
                                     </ul>
                                 </section>
+
+                                <!--                                                                <section id="map">-->
+                                <!--                                                                    <h2>Map</h2>-->
+                                <!--                                                                    <div id="map-item" class="map height-300 box"></div>-->
+
 <!--                                                                <section id="map">-->
 <!--                                                                    <h2>Map</h2>-->
 <!--                                                                    <div id="map-item" class="map height-300 box"></div>-->
@@ -256,10 +263,26 @@
 <!--                                        <h5>Thông tin liên hệ với chủ trọ</h5>-->
 <!--                                        <address>-->
 <!--                                            <strong >Tên Chủ Trọ</strong><br>-->
+
+                                    <!--                                    <aside>-->
+                                    <!--                                        <h5>Thông tin liên hệ với chủ trọ</h5>-->
+                                    <!--                                        <address>-->
+                                    <!--                                            <strong >Tên Chủ Trọ</strong><br>-->
+                                    <!--                                            <div >-->
+                                    <!--                                                <p style="display: inline-block"th:text="${HousesEntity.firstName}" ></p>-->
+                                    <!--                                                <p style="display: inline-block" th:text="${HousesEntity.lastName}"></p>-->
+                                    <!--                                            </div>-->
+
 <!--                                            <div >-->
 <!--                                                <p style="display: inline-block"th:text="${HousesEntity.firstName}" ></p>-->
 <!--                                                <p style="display: inline-block" th:text="${HousesEntity.lastName}"></p>-->
 <!--                                            </div>-->
+
+
+                                    <!--                                            <strong>Điện Thoại Liên Hệ:</strong>-->
+                                    <!--                                            <p th:text="${HousesEntity.phone}"></p>-->
+                                    <!--                                        </address>-->
+                                    <!--                                    </aside>-->
 
 <!--                                            <strong>Điện Thoại Liên Hệ:</strong>-->
 <!--                                            <p th:text="${HousesEntity.phone}"></p>-->
@@ -314,6 +337,7 @@
                             <!--end row-->
                         </section>
                         <section id="availability">
+
 <!--                            <h2>Availability</h2>-->
 <!--                            <form class="labels-uppercase" id="form-availability">-->
 <!--                                <div class="row">-->
@@ -353,6 +377,7 @@
                                         <thead>
                                         <tr>
                                             <th>Room Type</th>
+
 <!--                                            <th>Persons</th>-->
                                             <th>Price</th>
                                             <th>Rooms</th>
@@ -367,6 +392,7 @@
                                         <tr class="room">
                                             <td class="room-type">
                                                 <a href="" th:text="${room.typeName}"><h3></h3>
+
 <!--                                                    <figure class="label label-danger">1 Room Left!</figure>-->
                                                 </a>
                                                 <p>Consectetur adipiscing elit. Vivamus nec augue ac dui sodales
@@ -378,6 +404,7 @@
                                                     <li>VAT Included</li>
                                                 </ul>
                                             </td>
+
 <!--                                            <td class="persons">2<i class="fa fa-user"></i></td>-->
                                             <td th:text="${room.price}" ></td>
                                             <td class="rooms">
@@ -457,6 +484,7 @@
                                                     </div>
                                                     <div class="col-md-9 col-xs-10" >
                                                         <aside class="name" th:text="${feedback.getUserFistName()}+ ' ' +${feedback.getUserLastName()}"></aside>
+
 <!--                                                        <aside class="date" th:text="${#dates.format(feedback.getCreatedDate(), 'yyyy-MM-dd')}"></aside>-->
                                                         <aside class="date" th:text="${#temporals.format(feedback.getCreatedDate(), 'dd-MM-yyyy')}"></aside>
 
