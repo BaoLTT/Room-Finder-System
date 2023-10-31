@@ -35,12 +35,12 @@ public class AuthController {
 //        return "login";
     }
 
-//    @RequestMapping("/n")
-//    public String dinhvan(Model model){
+    @RequestMapping("/")
+    public String dinhvan(Model model){
 //        final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
 //        model.addAttribute("currentUserName", currentUserName);
-//        return "home";
-//    }
+        return "redirect:/home";
+    }
 
 
     @Autowired
@@ -83,6 +83,7 @@ public class AuthController {
         HttpSession session = request.getSession(true);
         SecurityContext securityContext = SecurityContextHolder.getContext();
         session.setAttribute("SPRING_SECURITY_CONTEXT", securityContext);
+
         System.out.println("DEBUG");
         return "redirect:/";
     }

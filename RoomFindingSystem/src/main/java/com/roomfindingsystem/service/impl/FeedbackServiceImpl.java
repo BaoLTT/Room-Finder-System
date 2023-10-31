@@ -1,6 +1,7 @@
 package com.roomfindingsystem.service.impl;
 
 
+import com.roomfindingsystem.entity.FeedbackEntity;
 import com.roomfindingsystem.reponsitory.FeedbackRepository;
 import com.roomfindingsystem.service.FeedbackService;
 import com.roomfindingsystem.vo.FeedbackDto;
@@ -32,5 +33,20 @@ public class FeedbackServiceImpl implements FeedbackService {
 
         }
         return list;
+    }
+
+    @Override
+    public FeedbackEntity save(FeedbackEntity feedbackEntity) {
+        return feedbackRepository.save(feedbackEntity);
+    }
+
+    @Override
+    public List <FeedbackEntity> getFeedbackEntityByUid(int houseId, int memberId) {
+        return feedbackRepository.getFeedbackEntityByUid(houseId, memberId);
+    }
+
+    @Override
+    public void deleteByHouseIdAndMemberId(int houseId, int memberId) {
+        feedbackRepository.deleteByHouseIdAndMemberId(houseId, memberId);
     }
 }
