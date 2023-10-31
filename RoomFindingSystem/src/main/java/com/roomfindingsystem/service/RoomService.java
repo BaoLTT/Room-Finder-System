@@ -39,4 +39,6 @@ public interface RoomService {
     List<RoomHouseDetailDto> viewRoomInHouse(int houseId);
 
 
+
+
 }

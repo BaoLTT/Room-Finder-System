@@ -45,7 +45,9 @@ public class UserEntity {
     @Column(name = "Image_Link", nullable = true, length = 255)
     private String imageLink;
     @Basic
-    @Column(name = "Password")
+
+    @Column(name = "Password", nullable = true, length = 255)
+
     private String password;
     @Basic
     @Column(name = "FacebookID", nullable = true, length = 255)

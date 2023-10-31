@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+
     <component name="AutoImportSettings">
         <option name="autoReloadType" value="SELECTIVE" />
     </component>
@@ -256,6 +257,7 @@
     "show.migrate.to.gradle.popup": "false",
     "spring.configuration.checksum": "cba14e4d5d8ebaea272e92fbdfce9e02",
     "vue.rearranger.settings.migration": "true"
+
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
@@ -267,8 +269,10 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;last_opened_file_path&quot;: &quot;/Users/nguyenhuubinh/Documents/DATN/Room-Finding-System/RoomFindingSystem/src/main/resources/templates&quot;,
+
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -276,16 +280,19 @@
     &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+
     &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;,
     &quot;spring.configuration.checksum&quot;: &quot;cba14e4d5d8ebaea272e92fbdfce9e02&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
+
 }]]></component>
     <component name="RecentsManager">
         <key name="CopyFile.RECENT_KEYS">
@@ -404,6 +411,7 @@
         <option name="TAB_STATES">
             <map>
                 <entry key="MAIN">
+
                     <value>
                         <State>
                             <option name="FILTERS">
@@ -419,17 +427,37 @@
                             </option>
                         </State>
                     </value>
-                </entry>
-            </map>
-        </option>
-    </component>
-    <component name="VcsManagerConfiguration">
-        <MESSAGE value="fix register and boảding house detail and send mail future" />
-        <MESSAGE value="xoa price trong user" />
-        <MESSAGE value="send SMS and reset fix" />
-        <MESSAGE value="check lai lan 1" />
-        <MESSAGE value="check lai file dto" />
-        <MESSAGE value="check lai repo va service" />
-        <option name="LAST_COMMIT_MESSAGE" value="check lai repo va service" />
-    </component>
+
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="fix register and boảding house detail and send mail future" />
+    <MESSAGE value="xoa price trong user" />
+    <MESSAGE value="send SMS and reset fix" />
+    <MESSAGE value="check lai lan 1" />
+    <MESSAGE value="check lai file dto" />
+    <MESSAGE value="check lai repo va service" />
+    <MESSAGE value="update lai 1 so thu" />
+    <MESSAGE value="xoa validate mk o user" />
+    <option name="LAST_COMMIT_MESSAGE" value="xoa validate mk o user" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/RoomFindingSystem/src/main/resources/static/assets/js/owl.carousel.js</url>
+          <line>1891</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+
 </project>

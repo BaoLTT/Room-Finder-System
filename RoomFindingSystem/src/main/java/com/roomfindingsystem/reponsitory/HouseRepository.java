@@ -83,7 +83,7 @@ public interface HouseRepository extends JpaRepository<HousesEntity,Integer> {
 
 
     //homepage
-    @Query(value = "SELECT h.houseid, h.house_name, t.type_name, a.address_details, w.name AS ward_name, d.name AS district_name, p.name AS province_name, (SELECT GROUP_CONCAT(i.image_link) FROM house_images i WHERE i.houseid = h.houseid) AS Image_Link, h.last_modified_date, (select count(roomid) from room r where r.houseid = h.houseid group by r.houseid)  as count_Rooms " +
+    @Query(value = "SELECT h.houseid, h.house_name, t.type_name, a.address_details, w.name AS ward_name, d.name AS district_name, p.name AS province_name, (SELECT GROUP_CONCAT(i.image_link) FROM house_images i WHERE i.houseid = h.houseid) AS Image_Link, h.last_modified_date, (select count(roomid) from room r where r.houseid = h.houseid and r.statusid = 1 group by r.houseid)  as count_Empty_Rooms, (select count(roomid) from room r where r.houseid = h.houseid group by r.houseid)  as count_Rooms " +
             "FROM houses h " +
             "JOIN type_house t ON h.type_houseid = t.typeid " +
             "LEFT JOIN room r ON r.houseid = h.houseid " +
@@ -92,7 +92,7 @@ public interface HouseRepository extends JpaRepository<HousesEntity,Integer> {
             "LEFT JOIN province p ON a.provinceid = p.provinceid " +
             "LEFT JOIN district d ON a.districtid = d.districtid " +
             "LEFT JOIN ward w ON a.wardid = w.wardid " +
-            "GROUP BY h.houseid, h.house_name, t.type_name, a.address_details, ward_name, district_name, province_name, h.last_modified_by LIMIT 8 OFFSET 0 ",nativeQuery=true )
+            "GROUP BY h.houseid, h.house_name, t.type_name, a.address_details, ward_name, district_name, province_name, h.last_modified_by LIMIT 6 OFFSET 0 ",nativeQuery=true )
     List<Tuple> viewHouseInHome();
 
 

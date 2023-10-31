@@ -34,7 +34,7 @@ public interface RoomRepository extends JpaRepository<RoomEntity, Integer> {
 
 
     //homepage
-    
+
     @Query(value = "SELECT r.roomid, r.room_name, h.house_name , t.type_name, r.price, (SELECT GROUP_CONCAT(i.image_link) FROM room_images i WHERE i.roomid = r.roomid) AS Image_Link, a.address_details, w.name AS ward_name, d.name AS district_name, p.name AS province_name, r.area\n" +
             "            FROM room r\n" +
             "            LEFT JOIN room_type t on r.room_type = t.typeid\n" +

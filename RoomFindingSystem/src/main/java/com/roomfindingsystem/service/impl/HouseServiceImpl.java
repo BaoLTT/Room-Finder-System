@@ -112,7 +112,7 @@ public class HouseServiceImpl implements HouseService {
 
     public List<HouseHomeDto> viewHouseInHome() {
         List<Tuple> tuples = houseRepository.viewHouseInHome();
-        List<HouseTypeVo> houseTypeVos = new ArrayList<>();
+
         List<HouseHomeDto> houseHomeDtos = new ArrayList<>();
         List<String> imageLinks ;
 
@@ -123,10 +123,13 @@ public class HouseServiceImpl implements HouseService {
             houseHomeDto.setHouseID(tuple.get("HouseID", Integer.class));
             houseHomeDto.setHouseName(tuple.get("House_Name", String.class));
             houseHomeDto.setTypeHouse(tuple.get("Type_Name", String.class));
-            houseHomeDto.setAddressDetail(tuple.get("Address_Details", String.class));
+            String addressDetail = tuple.get("Address_Details", String.class);
+            if(addressDetail == null){
+                houseHomeDto.setAddressDetail("");
+            } else houseHomeDto.setAddressDetail(addressDetail);
+
             String imageLink = (tuple.get("Image_Link", String.class));
             if(imageLink == null)
-
 
             {houseHomeDto.setListImage(null);}
             else {imageLinks = Arrays.asList(imageLink.split(","));
@@ -143,9 +146,9 @@ public class HouseServiceImpl implements HouseService {
             }
 
             houseHomeDto.setCountRooms(tuple.get("count_Rooms", Long.class));
-
-
-
+            if(tuple.get("count_Empty_Rooms", Long.class)==null){
+                houseHomeDto.setCountEmptyRooms(0L);
+            } else houseHomeDto.setCountEmptyRooms(tuple.get("count_Empty_Rooms", Long.class));
 
             houseHomeDtos.add(houseHomeDto);
         }

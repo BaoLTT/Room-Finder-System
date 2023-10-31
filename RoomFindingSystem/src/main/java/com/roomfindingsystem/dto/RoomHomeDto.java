@@ -19,8 +19,8 @@ public class RoomHomeDto {
 
     Integer price;
 
-    private List<String> roomImageLink;
-
+//    private List<String> roomImageLink;
+    private String roomImageLink;
 
     String ward;
 
