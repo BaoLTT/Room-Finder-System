@@ -2324,7 +2324,7 @@ ul.half li {
 }
 .item.small .image .gallery img {
   height: auto;
-  width: 100%;
+  max-width: 100%;
 }
 .item.small .image .wrapper:before {
   -moz-transition: 0.3s ease;
@@ -4189,19 +4189,19 @@ input[type="number"] {
 }
 
 #form-hero {
-  -moz-transform: translateY(-110%);
-  -ms-transform: translateY(-110%);
-  -webkit-transform: translateY(-110%);
-  transform: translateY(-110%);
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  -webkit-transform: translateY(0);
+  transform: translateY(0);
   -moz-transition: 0.8s ease;
   -webkit-transition: 0.8s ease;
   transition: 0.8s ease;
 }
 #form-hero.switch {
-  -moz-transform: translateY(0);
-  -ms-transform: translateY(0);
-  -webkit-transform: translateY(0);
-  transform: translateY(0);
+  -moz-transform: translateY(-110%);
+  -ms-transform: translateY(-110%);
+  -webkit-transform: translateY(-110%);
+  transform: translateY(-110%);
 }
 
 .form-group-inline {
@@ -5294,4 +5294,5 @@ body::before {
     position: relative;
     text-align: center;
   }
+
 }

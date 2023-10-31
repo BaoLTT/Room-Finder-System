@@ -156,12 +156,12 @@
                             <div class="item-wrapper">
                                 <div class="image" >
 <!--                                    <div class="mark-circle description" data-toggle="tooltip" data-placement="right" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis erat vel quam aliquet hendrerit semper eget elit. Aenean tincidunt ultrices bibendum. Proin nisi erat, iaculis non pulvinar a, scelerisque ut est. "><i class="fa fa-question"></i></div>-->
-                                    <div class="mark-circle map" data-toggle="tooltip" data-placement="right" title="Show on map"><i class="fa fa-map-marker"></i></div>
-                                    <div class="mark-circle top" data-toggle="tooltip" data-placement="right" title="Top accommodation"><i class="fa fa-thumbs-up"></i></div>
+<!--                                    <div class="mark-circle map" data-toggle="tooltip" data-placement="right" title="Show on map"><i class="fa fa-map-marker"></i></div>-->
+<!--                                    <div class="mark-circle top" data-toggle="tooltip" data-placement="right" title="Top accommodation"><i class="fa fa-thumbs-up"></i></div>-->
                                     <a href="" class="wrapper">
                                         <div class="gallery" >
 <!--                                            <img style="width: 273px; height: 208px;" th:src="${house.listImage[0]}">-->
-                                            <img  th:each = "image: ${house.listImage}" th:src="${image}" alt="">
+                                            <img  style="width: 273px; height: 208px;"  th:each = "image: ${house.listImage}" th:src="${image}" alt="">
 
                                         </div>
 
@@ -228,7 +228,7 @@
                                         </div>
                                         <div class="wrapper">
 <!--                                            <div class="gallery">-->
-                                            <img  th:each = "image : ${room.roomImageLink}" th:src="${image}" alt="">
+                                            <img style="" th:each = "image : ${room.roomImageLink}" th:src="${image}" alt="">
 <!--                                            </div>-->
                                         </div>
                                     </div>
@@ -236,7 +236,7 @@
                                     <div class="description">
                                         <div class="meta">
                                             <span th:text="${'Giá tiền: '+room.price+'d'}"></span>
-                                            <span><i class="fa fa-square-o"></i>250</span>
+                                            <span th:text="${room.area}+'m2'"></span>
                                         </div>
 
                                     </div>
@@ -455,51 +455,7 @@
     </div>
     <!--end page-content-->
 
-    <footer id="page-footer">
-<!--        <div class="row-one">-->
-<!--            <div class="container">-->
-<!--                <div class="logos">-->
-<!--                    <div class="logo">-->
-<!--                        <a href="#"><img src="assets/img/logo-1.png" alt=""></a>-->
-<!--                    </div>-->
-<!--                    &lt;!&ndash;/ .logo&ndash;&gt;-->
-<!--                    <div class="logo">-->
-<!--                        <a href="#"><img src="assets/img/logo-2.png" alt=""></a>-->
-<!--                    </div>-->
-<!--                    &lt;!&ndash;/ .logo&ndash;&gt;-->
-<!--                    <div class="logo">-->
-<!--                        <a href="#"><img src="assets/img/logo-3.png" alt=""></a>-->
-<!--                    </div>-->
-<!--                    &lt;!&ndash;/ .logo&ndash;&gt;-->
-<!--                    <div class="logo">-->
-<!--                        <a href="#"><img src="assets/img/logo-4.png" alt=""></a>-->
-<!--                    </div>-->
-<!--                    &lt;!&ndash;/ .logo&ndash;&gt;-->
-<!--                    <div class="logo">-->
-<!--                        <a href="#"><img src="assets/img/logo-5.png" alt=""></a>-->
-<!--                    </div>-->
-<!--                    &lt;!&ndash;/ .logo&ndash;&gt;-->
-<!--                </div>-->
-<!--                &lt;!&ndash;/ .logos&ndash;&gt;-->
-<!--            </div>-->
-<!--        </div>-->
-        <!--end row-one-->
-        <div class="row-two clearfix">
-            <div class="container">
-                <div class="copyright pull-left">Room Finding System</div>
-                <div class="footer-nav pull-right">
-                    <a href="Homepage.html">Trang chủ</a>
-                    <a href="about-us.html">Danh sách nhà trọ</a>
-                    <a href="listing.html">Danh sách phòng trọ</a>
-                    <a href="contact-us.html">Blog</a>
-                </div>
-            </div>
-            <div class="bg-transfer"><img src="assets/img/footer-bg.jpg" alt=""></div>
-        </div>
-        <!--end row-two-->
-    </footer>
-    <!--end page-footer-->
-</div>
+<div th:replace="~{footer :: footerSection}"></div>
 <!--end page-wrapper-->
 <a href="#page-header" class="to-top scroll" data-show-after-scroll="600"><i class="arrow_up"></i></a>
 
