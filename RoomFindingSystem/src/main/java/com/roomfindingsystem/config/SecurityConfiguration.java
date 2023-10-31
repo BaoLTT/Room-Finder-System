@@ -88,8 +88,9 @@ public class SecurityConfiguration {
 //                        .requestMatchers("/profile").hasAnyRole("1,2")
                             .anyRequest().authenticated());
 
-
         return http.build();
     }
+
+
 }
 
