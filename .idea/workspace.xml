@@ -5,7 +5,6 @@
     </component>
     <component name="ChangeListManager">
         <list default="true" id="ec34e655-ee0a-4be9-8773-96fceb50fb67" name="Changes" comment="" />
-        <list default="true" id="ec34e655-ee0a-4be9-8773-96fceb50fb67" name="Changes" comment="">
         <change afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/config/Contants.java" afterDir="false" />
         <change afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/config/Twilioinitializer.java" afterDir="false" />
         <change afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/config/Twilioproperties.java" afterDir="false" />
