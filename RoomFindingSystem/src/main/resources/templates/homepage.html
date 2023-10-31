@@ -161,7 +161,7 @@
                                     <a href="" class="wrapper">
                                         <div class="gallery" >
 <!--                                            <img style="width: 273px; height: 208px;" th:src="${house.listImage[0]}">-->
-                                            <img  style="width: 345px; height: 208px;" th:each = "image: ${house.listImage}" th:src="${image}" alt="">
+                                            <img  th:each = "image: ${house.listImage}" th:src="${image}" alt="">
 
                                         </div>
 
@@ -228,7 +228,7 @@
                                         </div>
                                         <div class="wrapper">
 <!--                                            <div class="gallery">-->
-                                            <img style="width: 345.2px; height: 263px;" th:each = "image : ${room.roomImageLink}" th:src="${image}" alt="">
+                                            <img  th:each = "image : ${room.roomImageLink}" th:src="${image}" alt="">
 <!--                                            </div>-->
                                         </div>
                                     </div>
