@@ -123,10 +123,13 @@ public class HouseServiceImpl implements HouseService {
             houseHomeDto.setHouseID(tuple.get("HouseID", Integer.class));
             houseHomeDto.setHouseName(tuple.get("House_Name", String.class));
             houseHomeDto.setTypeHouse(tuple.get("Type_Name", String.class));
-            houseHomeDto.setAddressDetail(tuple.get("Address_Details", String.class));
+            String addressDetail = tuple.get("Address_Details", String.class);
+            if(addressDetail == null){
+                houseHomeDto.setAddressDetail("");
+            } else houseHomeDto.setAddressDetail(addressDetail);
+
             String imageLink = (tuple.get("Image_Link", String.class));
             if(imageLink == null)
-
 
             {houseHomeDto.setListImage(null);}
             else {imageLinks = Arrays.asList(imageLink.split(","));
