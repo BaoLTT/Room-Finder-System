@@ -13,4 +13,9 @@ public interface FeedbackService {
     List<FeedbackDto> getFeedbackByHouseId(int houseId);
 
     List<FeedbackHomeVo> viewTop4Home();
+    FeedbackEntity save(FeedbackEntity feedbackEntity);
+
+    List <FeedbackEntity> getFeedbackEntityByUid(int houseId, int memberId);
+
+    void deleteByHouseIdAndMemberId (int houseId, int memberId);
 }
