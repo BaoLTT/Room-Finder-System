@@ -10,12 +10,8 @@ import java.util.Objects;
 
 public class ServiceRoomEntityPK implements Serializable {
     @Column(name = "ServiceID")
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int serviceId;
     @Column(name = "RoomID")
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int roomId;
 
     public int getServiceId() {

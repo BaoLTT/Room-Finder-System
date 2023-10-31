@@ -21,14 +21,18 @@ public interface RoomService {
     List<ServiceDetailEntity> getServiceByRoomId(int roomId);
 //    RoomImagesEntity get
 
-
+    List<RoomDto> getAll();
 
     //Homepage
     List<RoomHomeVo> viewRoomInHome();
+    RoomDto findById(Integer id);
+    void update(RoomDto roomDto);
 
-    List<RoomDto> findRoom1(int min, int max, String roomName, List<Integer> type, int pageIndex, int pageSize);
+    void deleteById(Integer id);
+
+    void save(RoomDto roomDto);
 
     int countRoom();
 
-
+    List<RoomDto> findRoom1(int i, int i1, String roomName, List<Integer> listType, int offset, int pageSize);
 }
