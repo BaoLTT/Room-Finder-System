@@ -6,8 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="ec34e655-ee0a-4be9-8773-96fceb50fb67" name="Changes" comment="chinh sua part 2">
       <change afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/footer.html" afterDir="false" />
+    <list default="true" id="ec34e655-ee0a-4be9-8773-96fceb50fb67" name="Changes" comment="chinh sua part 3">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/static/assets/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/static/assets/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/reponsitory/FeedbackRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/reponsitory/FeedbackRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/header.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/homepage.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/homepage.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/houselist.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/houselist.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RoomFindingSystem/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/target/classes/application.properties" afterDir="false" />
@@ -157,6 +160,9 @@
       <workItem from="1698718106402" duration="9076000" />
       <workItem from="1698732778657" duration="3143000" />
       <workItem from="1698739342793" duration="823000" />
+      <workItem from="1698739342793" duration="2522000" />
+      <workItem from="1698768924464" duration="2018000" />
+      <workItem from="1698805529421" duration="1006000" />
     </task>
     <task id="LOCAL-00001" summary="fix register and boảding house detail and send mail future">
       <option name="closed" value="true" />
@@ -247,6 +253,15 @@
       <updated>1698726747686</updated>
     </task>
     <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="chinh sua part 3">
+      <option name="closed" value="true" />
+      <created>1698740178848</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1698740178848</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -287,6 +302,8 @@
     <MESSAGE value="chinh sua" />
     <MESSAGE value="chinh sua part 2" />
     <option name="LAST_COMMIT_MESSAGE" value="chinh sua part 2" />
+    <MESSAGE value="chinh sua part 3" />
+    <option name="LAST_COMMIT_MESSAGE" value="chinh sua part 3" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
