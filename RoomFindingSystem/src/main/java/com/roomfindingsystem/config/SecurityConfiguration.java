@@ -84,7 +84,7 @@ public class SecurityConfiguration {
                             "recover","send-otp-recover","otp-check","confirm-otp","send-otp-recover","confirm-otp-recover",
                             "save-new-password","detail","change-password","save-change-password",
                             "/room/**", "/assets/**").permitAll()
-                        .requestMatchers("/admin/**", "/test").hasRole("1")
+                        .requestMatchers("/admin/**", "/test").hasRole("admin")
                         .anyRequest().authenticated());
 
 

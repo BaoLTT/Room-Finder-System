@@ -87,9 +87,9 @@ public class HouseController {
         return "detail";
     }
 
-    // add feedback
+    // add/edit feedback
     @PostMapping(value="detail")
-    public String addFeedback(@Valid @ModelAttribute("feedback") FeedbackEntity feedbackEntity, BindingResult bindingResult){
+    public String addFeedback(@Valid @ModelAttribute("feedbackEntity") FeedbackEntity feedbackEntity, BindingResult bindingResult){
         LocalDate currentDate = LocalDate.now();
         feedbackEntity.setCreatedDate(currentDate);
         int houseId = feedbackEntity.getHouseId();
