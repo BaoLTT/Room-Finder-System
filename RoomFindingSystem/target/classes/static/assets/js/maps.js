@@ -163,7 +163,7 @@ function bigMap( element,useAjax){
     if (document.getElementById(element) != null) {
         // Thay đổi nội dung hiển thị
         var bannerContent = document.createElement('div');
-        bannerContent.innerHTML = '<img src="/assets/img/items/03.jpg"" alt="Banner Image">';
+        bannerContent.innerHTML = '<img style="height: 660px; width: 1519px" src="/assets/img/banner.jpg" alt="Banner Image">';
 
         // Tìm phần tử HTML với id "map-item" và thay thế nó bằng hình ảnh banner
         var mapItemElement = document.getElementById(element);
