@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="unnamed" />
+    </artifacts-to-build>
+  </component>
+
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+
     <list default="true" id="ec34e655-ee0a-4be9-8773-96fceb50fb67" name="Changes" comment="chinh sua part 3">
       <change afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/admin/AdminDashboardController.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/static/assets_admin/css/app-rtl.css" afterDir="false" />
@@ -227,6 +235,7 @@
       <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/homepage.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/homepage.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RoomFindingSystem/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/target/classes/application.properties" afterDir="false" />
     </list>
+
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -262,14 +271,18 @@
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
+
         <option name="accountId" value="0529ad2d-eeed-486a-850b-8ece12e2d188" />
+
         <option name="url" value="https://github.com/BaoLTT/Room-Finding-System.git" />
       </UrlAndAccount>
     </option>
   </component>
+
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
 }</component>
+
   <component name="ProjectId" id="2WhfuNxnMuI6Ta7g9GMxDXYmyRX" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -289,24 +302,25 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "BaoLTT",
-    "last_opened_file_path": "D:/Intellij project/Room-Finding-System/RoomFindingSystem/src/main/resources/templates/admin",
+
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Libraries",
+
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "project.propVCSSupport.CommitDialog",
     "show.migrate.to.gradle.popup": "false",
     "spring.configuration.checksum": "cba14e4d5d8ebaea272e92fbdfce9e02",
     "vue.rearranger.settings.migration": "true"
+
   },
   "keyToStringList": {
     "DatabaseDriversLRU": [
       "mysql"
     ]
+
   }
 }]]></component>
   <component name="RecentsManager">
@@ -321,6 +335,7 @@
       <recent name="D:\Intellij project\Room-Finding-System\RoomFindingSystem\src\main\resources\static" />
       <recent name="D:\Intellij project\Room-Finding-System\RoomFindingSystem\src\main\resources\templates" />
     </key>
+
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.roomfindingsystem.service.impl" />
       <recent name="com.roomfindingsystem.vo" />
@@ -328,7 +343,9 @@
       <recent name="com.roomfindingsystem.config" />
     </key>
   </component>
-  <component name="RunManager">
+
+  <component name="RunManager" selected="Spring Boot.Main">
+
     <configuration name="Main" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="RoomFindingSystem" />
@@ -337,6 +354,97 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+
+    <configuration name="Tomcat 9.0.69" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.69" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+      <option name="UPDATING_POLICY" value="restart-server" />
+      <deployment>
+        <file path="$PROJECT_DIR$/RoomFindingSystem/target/ROOT.war">
+          <settings>
+            <option name="CONTEXT_PATH" value="/ROOT_war" />
+          </settings>
+        </file>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="8d50a486-1c4b-4955-948d-14a2cd78a878" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="51852" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Profile">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="false" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Spring Boot.Main" />
+      <item itemvalue="Tomcat Server.Tomcat 9.0.69" />
+    </list>
+
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -366,6 +474,7 @@
       <workItem from="1697983426123" duration="6267000" />
       <workItem from="1698243493796" duration="2373000" />
       <workItem from="1698608849773" duration="5856000" />
+
       <workItem from="1698654450667" duration="971000" />
       <workItem from="1698682463545" duration="6882000" />
       <workItem from="1698697415707" duration="6404000" />
@@ -376,6 +485,7 @@
       <workItem from="1698805529421" duration="1006000" />
       <workItem from="1698807586664" duration="828000" />
       <workItem from="1698808448110" duration="1500000" />
+
     </task>
     <task id="LOCAL-00001" summary="fix register and boảding house detail and send mail future">
       <option name="closed" value="true" />
@@ -417,6 +527,7 @@
       <option name="project" value="LOCAL" />
       <updated>1698621138729</updated>
     </task>
+
     <task id="LOCAL-00006" summary="check lai repo va service">
       <option name="closed" value="true" />
       <created>1698621597006</created>
@@ -474,6 +585,7 @@
       <updated>1698740178848</updated>
     </task>
     <option name="localTasksCounter" value="13" />
+
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -509,6 +621,7 @@
     <MESSAGE value="check lai lan 1" />
     <MESSAGE value="check lai file dto" />
     <MESSAGE value="check lai repo va service" />
+
     <MESSAGE value="update lai 1 so thu" />
     <MESSAGE value="xoa validate mk o user" />
     <MESSAGE value="chinh sua" />
@@ -526,5 +639,6 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+
   </component>
 </project>

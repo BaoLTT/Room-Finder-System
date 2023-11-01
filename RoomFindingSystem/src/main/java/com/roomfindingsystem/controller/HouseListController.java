@@ -40,6 +40,8 @@ public class HouseListController {
                        @RequestParam(name = "type", required = false,defaultValue = "1,2,3,4") List<String> type,
                        @RequestParam(name = "service", required = false,defaultValue = "1,2,3,4,5") List<String> service,Model model, HttpSession httpSession){
         List<Integer> listType = new ArrayList<>();
+        List<String> listPrice = new ArrayList<>();
+        listPrice.add(price);
         List<ServiceDetailEntity> listAllService = new ArrayList<>();
         for(String type1: type){
             listType.add(Integer.parseInt(type1));
@@ -68,6 +70,9 @@ public class HouseListController {
         }
         int totalPage = (int) Math.ceil((double) totalHouse / pageSize);
         model.addAttribute("houseName",houseName);
+        model.addAttribute("listPrice",listPrice);
+        model.addAttribute("listType",listType);
+        model.addAttribute("listService",listService);
         model.addAttribute("currentPage",pageIndex);
         model.addAttribute("totalPage", totalPage);
         model.addAttribute("houses", list);
