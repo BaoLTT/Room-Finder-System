@@ -2,7 +2,7 @@ package com.roomfindingsystem.service.impl;
 
 import com.roomfindingsystem.config.SecurityUser;
 import com.roomfindingsystem.entity.*;
-import com.roomfindingsystem.reponsitory.*;
+import com.roomfindingsystem.repository.*;
 import com.roomfindingsystem.service.UserService;
 
 
@@ -215,6 +215,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public String getUserForChangePass(String email) {
         return userRepository.getUserEntitiesByUserId(email);
+    }
+
+    @Override
+    public int countUserInAdmin() {
+        return userRepository.countUserInAdmin();
     }
 
 }

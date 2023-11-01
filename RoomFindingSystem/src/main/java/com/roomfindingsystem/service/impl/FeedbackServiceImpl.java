@@ -3,7 +3,7 @@ package com.roomfindingsystem.service.impl;
 
 import com.roomfindingsystem.dto.FeedbackHomeDto;
 import com.roomfindingsystem.entity.FeedbackEntity;
-import com.roomfindingsystem.reponsitory.FeedbackRepository;
+import com.roomfindingsystem.repository.FeedbackRepository;
 import com.roomfindingsystem.service.FeedbackService;
 
 

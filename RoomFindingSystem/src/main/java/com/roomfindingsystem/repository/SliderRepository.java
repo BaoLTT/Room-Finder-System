@@ -1,4 +1,4 @@
-package com.roomfindingsystem.reponsitory;
+package com.roomfindingsystem.repository;
 
 import com.roomfindingsystem.entity.SliderEntity;
 import org.springframework.data.jpa.repository.JpaRepository;

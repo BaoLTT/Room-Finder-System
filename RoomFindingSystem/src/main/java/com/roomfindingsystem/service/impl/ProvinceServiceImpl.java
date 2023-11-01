@@ -1,7 +1,7 @@
 package com.roomfindingsystem.service.impl;
 
 import com.roomfindingsystem.entity.ProvinceEntity;
-import com.roomfindingsystem.reponsitory.ProvinceRepository;
+import com.roomfindingsystem.repository.ProvinceRepository;
 import com.roomfindingsystem.service.ProvinceService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;

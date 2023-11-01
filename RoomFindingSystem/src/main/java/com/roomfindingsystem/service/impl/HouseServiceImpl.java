@@ -3,7 +3,7 @@ package com.roomfindingsystem.service.impl;
 import com.roomfindingsystem.dto.*;
 import com.roomfindingsystem.entity.HousesEntity;
 
-import com.roomfindingsystem.reponsitory.HouseRepository;
+import com.roomfindingsystem.repository.HouseRepository;
 
 import com.roomfindingsystem.service.HouseService;
 
@@ -106,9 +106,13 @@ public class HouseServiceImpl implements HouseService {
         return houseRepository.findHouseByRoomId(roomId);
     }
 
+    @Override
+    public int countHousesInAdmin() {
+        return houseRepository.countHouses();
+    }
+
 
     @Override
-
 
     public List<HouseHomeDto> viewHouseInHome() {
         List<Tuple> tuples = houseRepository.viewHouseInHome();

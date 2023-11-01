@@ -5,13 +5,12 @@ import com.roomfindingsystem.dto.RoomHouseDetailDto;
 import com.roomfindingsystem.entity.RoomEntity;
 import com.roomfindingsystem.entity.RoomImagesEntity;
 import com.roomfindingsystem.entity.ServiceDetailEntity;
-import com.roomfindingsystem.reponsitory.RoomRepository;
+import com.roomfindingsystem.repository.RoomRepository;
 import com.roomfindingsystem.service.RoomService;
 
 
 
 import com.roomfindingsystem.dto.RoomDto;
-import com.roomfindingsystem.dto.RoomHomeVo;
 import jakarta.persistence.Tuple;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

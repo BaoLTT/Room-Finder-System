@@ -1,7 +1,7 @@
 package com.roomfindingsystem.service.impl;
 
 import com.roomfindingsystem.entity.WardEntity;
-import com.roomfindingsystem.reponsitory.WardRepository;
+import com.roomfindingsystem.repository.WardRepository;
 import com.roomfindingsystem.service.WardService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;

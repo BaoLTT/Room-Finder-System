@@ -1,7 +1,7 @@
 package com.roomfindingsystem.service.impl;
 
 import com.roomfindingsystem.entity.SliderEntity;
-import com.roomfindingsystem.reponsitory.SliderRepository;
+import com.roomfindingsystem.repository.SliderRepository;
 import com.roomfindingsystem.service.SliderService;
 import org.springframework.stereotype.Service;
 
