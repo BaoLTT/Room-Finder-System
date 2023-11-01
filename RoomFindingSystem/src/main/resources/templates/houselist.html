@@ -172,29 +172,29 @@
                         <div class="center">
                             <ul class="pagination">
                                 <li class="prev" >
-                                    <a th:href="@{/houselist(page=${currentPage-1}, houseName=${houseName})}" th:if="${currentPage != 1}"><i class="arrow_left"></i></a>
+                                    <a th:href="@{/houselist(page=${currentPage-1}, houseName=${houseName}, price=${listPrice}, type=${listType}, service=${listService})}" th:if="${currentPage != 1}"><i class="arrow_left"></i></a>
                                 </li>
 
                                 <li th:if="${currentPage > 2}">
-                                    <a th:text="1" th:href="@{/houselist(page=1, houseName=${houseName})}">1</a>
+                                    <a th:text="1" th:href="@{/houselist(page=1, houseName=${houseName}, price=${listPrice}, type=${listType}, service=${listService})}">1</a>
                                 </li>
                                 <li th:if="${currentPage > 3}">
                                     <span>...</span>
                                 </li>
 
                                 <li th:each="pageIndex: ${#numbers.sequence(currentPage - 1, currentPage + 1)}" th:unless="${pageIndex < 1 || pageIndex > totalPage}" th:class="${pageIndex == currentPage ? 'active' : ''}">
-                                    <a th:text="${pageIndex}" th:href="@{/houselist(page=${pageIndex}, houseName=${houseName})}" class="page-number">${pageIndex}</a>
+                                    <a th:text="${pageIndex}" th:href="@{/houselist(page=${pageIndex}, houseName=${houseName}, price=${listPrice}, type=${listType}, service=${listService})}" class="page-number">${pageIndex}</a>
                                 </li>
 
                                 <li th:if="${currentPage < totalPage - 2}">
                                     <span>...</span>
                                 </li>
                                 <li th:if="${currentPage <= totalPage - 2}">
-                                    <a th:text="${totalPage}" th:href="@{/houselist(page=${totalPage}, houseName=${houseName})}" class="page-number">${totalPage}</a>
+                                    <a th:text="${totalPage}" th:href="@{/houselist(page=${totalPage}, houseName=${houseName}, price=${listPrice}, type=${listType}, service=${listService})}" class="page-number">${totalPage}</a>
                                 </li>
 
                                 <li class="next" >
-                                    <a th:href="@{/houselist(page=${currentPage+1}, houseName=${houseName})}" th:if="${currentPage != totalPage}"><i class="arrow_right"></i></a>
+                                    <a th:href="@{/houselist(page=${currentPage+1}, houseName=${houseName}, price=${listPrice}, type=${listType}, service=${listService})}" th:if="${currentPage != totalPage}"><i class="arrow_right"></i></a>
                                 </li>
                             </ul>
                         </div>

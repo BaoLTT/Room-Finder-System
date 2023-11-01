@@ -1,39 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
       <artifact name="unnamed" />
     </artifacts-to-build>
   </component>
-
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-
-    <list default="true" id="ec34e655-ee0a-4be9-8773-96fceb50fb67" name="Changes" comment="fix register 2">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/unnamed.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/config/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/config/SecurityConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/config/WebSecurityConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/FeebackController.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/FeebackController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/reponsitory/HouseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/reponsitory/HouseRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/impl/Smsservice.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/impl/Smsservice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/vo/FeedbackListVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/dto/FeedbackListVo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/vo/Smsrequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/housedetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/housedetail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/target/classes/com/roomfindingsystem/controller/OtpController.class" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/target/classes/com/roomfindingsystem/controller/OtpController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/target/classes/com/roomfindingsystem/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/target/classes/com/roomfindingsystem/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/target/classes/com/roomfindingsystem/reponsitory/UserReponsitory.class" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/target/classes/com/roomfindingsystem/reponsitory/UserReponsitory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/target/classes/com/roomfindingsystem/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/target/classes/com/roomfindingsystem/service/UserService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/target/classes/templates/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/target/classes/templates/detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/target/classes/templates/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/target/classes/templates/profile.html" afterDir="false" />
-
-    </list>
+    <list default="true" id="ec34e655-ee0a-4be9-8773-96fceb50fb67" name="Changes" comment="fix register 2" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -43,10 +19,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-
         <option value="HTML File" />
         <option value="Class" />
-
       </list>
     </option>
   </component>
@@ -68,12 +42,10 @@
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
         <option name="accountId" value="308da7a5-fa36-4d2d-9865-e3817f4ef29a" />
-
         <option name="url" value="https://github.com/BaoLTT/Room-Finding-System.git" />
       </UrlAndAccount>
     </option>
   </component>
-
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
     <option name="FILTER_WARNINGS" value="false" />
@@ -84,7 +56,6 @@
   <component name="ProjectColorInfo">{
         &quot;associatedIndex&quot;: 2
         }</component>
-
   <component name="ProjectId" id="2WhfuNxnMuI6Ta7g9GMxDXYmyRX" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -93,7 +64,6 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RequestMappingsPanelOrder0": "0",
@@ -103,14 +73,18 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "dart.analysis.tool.window.visible": "false",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
     "show.migrate.to.gradle.popup": "false",
-    "spring.configuration.checksum": "cba14e4d5d8ebaea272e92fbdfce9e02"
+    "spring.configuration.checksum": "cba14e4d5d8ebaea272e92fbdfce9e02",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Intellij project\Room-Finding-System\RoomFindingSystem\src\main\resources\templates" />
@@ -122,12 +96,10 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Intellij project\Room-Finding-System\RoomFindingSystem\src\main\resources\templates" />
     </key>
-
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/RoomFindingSystem/src/main/resources" />
       <recent name="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates" />
     </key>
-
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.roomfindingsystem.service.impl" />
       <recent name="com.roomfindingsystem.vo" />
@@ -135,9 +107,7 @@
       <recent name="com.roomfindingsystem.config" />
     </key>
   </component>
-
   <component name="RunManager" selected="Spring Boot.Main">
-
     <configuration name="Main" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="RoomFindingSystem" />
@@ -146,7 +116,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-
     <configuration name="Tomcat 9.0.69" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.69" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
@@ -236,7 +205,6 @@
       <item itemvalue="Spring Boot.Main" />
       <item itemvalue="Tomcat Server.Tomcat 9.0.69" />
     </list>
-
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -266,7 +234,6 @@
       <workItem from="1697983426123" duration="6267000" />
       <workItem from="1698243493796" duration="2373000" />
       <workItem from="1698608849773" duration="5856000" />
-
       <workItem from="1697523905801" duration="2947000" />
       <workItem from="1697565040657" duration="1251000" />
       <workItem from="1697598397515" duration="3276000" />
@@ -275,7 +242,7 @@
       <workItem from="1697725559599" duration="3867000" />
       <workItem from="1698741335548" duration="3275000" />
       <workItem from="1698768997026" duration="1751000" />
-
+      <workItem from="1698807738002" duration="1733000" />
     </task>
     <task id="LOCAL-00001" summary="fix register and boảding house detail and send mail future">
       <option name="closed" value="true" />
@@ -317,10 +284,7 @@
       <option name="project" value="LOCAL" />
       <updated>1698621138729</updated>
     </task>
-
     <option name="localTasksCounter" value="6" />
-
-
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -356,8 +320,6 @@
     <MESSAGE value="check lai lan 1" />
     <MESSAGE value="check lai file dto" />
     <MESSAGE value="check lai repo va service" />
-
     <option name="LAST_COMMIT_MESSAGE" value="check lai repo va service" />
-
   </component>
 </project>
