@@ -26,7 +26,6 @@ public interface FeedbackRepository extends JpaRepository<FeedbackEntity,Integer
 
 
 
-    @Query("select new com.roomfindingsystem.dto.FeedbackHomeDto(u.firstName, u.lastName, h.houseName, f.content, h.houseId,  p.name, d.name, w.name, a.name) from FeedbackEntity f left join HousesEntity h on f.houseId = h.houseId " +
     @Query("select new com.roomfindingsystem.dto.FeedbackHomeDto(u.firstName, u.lastName, h.houseName, f.content, h.houseId,  p.name, d.name, w.name, a.addressDetails) from FeedbackEntity f left join HousesEntity h on f.houseId = h.houseId " +
             "left join UserEntity u on f.memberId = u.userId " +
             "left join AddressEntity a on h.addressId = a.addressId " +

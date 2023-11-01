@@ -23,7 +23,6 @@
                 <nav>
                   <div class="left opacity-60">
                     <a href=""><i class="fa fa-phone"></i>+84 366 225 436</a>
-                    <a href="mailto:hello@example.com"><i class="fa fa-envelope"></i>
                     <a href="mailto:offftrick@gmail.com"><i class="fa fa-envelope"></i>
                       offftrick@gmail.com</a>
                   </div>
@@ -84,12 +83,6 @@
 
 
       <script>
-        document.addEventListener("DOMContentLoaded", function () {
-          var navItems = document.querySelectorAll("#primary-nav ul li");
-          navItems.forEach(function (item) {
-            item.addEventListener("click", function () {
-              // Xóa lớp "active" khỏi tất cả các phần tử li
-              navItems.forEach(function (navItem) {
         document.addEventListener("DOMContentLoaded", function() {
           // Lấy tất cả các phần tử li trong danh sách
           var navItems = document.querySelectorAll(".primary-nav ul li");
@@ -101,8 +94,6 @@
               navItems.forEach(function(navItem) {
                 navItem.classList.remove("active");
               });
-              // Thêm lớp "active" vào phần tử li hiện tại
-              this.classList.add("active");
 
               // Thêm lớp 'active' cho phần tử li đã được nhấp
               item.classList.add("active");
