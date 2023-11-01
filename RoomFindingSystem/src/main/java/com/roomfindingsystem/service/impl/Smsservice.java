@@ -2,7 +2,7 @@ package com.roomfindingsystem.service.impl;
 
 
 import com.roomfindingsystem.config.Twilioproperties;
-import com.roomfindingsystem.vo.Smsrequest;
+import com.roomfindingsystem.dto.Smsrequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

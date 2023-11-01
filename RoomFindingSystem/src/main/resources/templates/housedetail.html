@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
@@ -82,7 +82,7 @@
                                         <section th:each="HouseService : ${HouseService}">
 
                                             <ul class="checkboxes list-unstyled">
-                                                <li th:text="${HouseService.serviceName}"></li>
+                                                <li th:text="${HouseService.description}"></li>
                                             </ul>
                                             <!--end checkboxes-->
                                         </section>
@@ -258,6 +258,14 @@
                                         <dl th:text="${HousesEntity.typeName}">
 
                                         </dl>
+                                    </aside>
+                                    <aside class="box">
+                                        <h3><strong> Địa Chỉ Nhà Trọ:</strong></h3>
+                                        <p>cụ thể: </p> <dl th:text="${HousesEntity.addressDetail}"></dl>
+                                        <p>Xã: </p>  <dl th:text="${HousesEntity.ward}"></dl>
+                                        <p>Huyện: </p>  <dl th:text="${HousesEntity.district}"></dl>
+                                        <p>(Thành Phố / Tỉnh)</p> <dl th:text="${HousesEntity.province}">
+                                    </dl>
                                     </aside>
 <!--                                    <aside>-->
 <!--                                        <h5>Thông tin liên hệ với chủ trọ</h5>-->

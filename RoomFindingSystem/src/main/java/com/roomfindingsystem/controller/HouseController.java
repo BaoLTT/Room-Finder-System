@@ -39,6 +39,7 @@ public class HouseController {
 
 
         model.addAttribute("HousesEntity", houseDto);
+        System.out.println(houseDto);
 
         List<ServiceDto> listService= houseService.getServiceById(houseId);
         model.addAttribute("HouseService", listService);
