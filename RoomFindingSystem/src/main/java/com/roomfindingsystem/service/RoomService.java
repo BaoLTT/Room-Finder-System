@@ -5,9 +5,7 @@ import com.roomfindingsystem.entity.RoomEntity;
 import com.roomfindingsystem.entity.RoomImagesEntity;
 import com.roomfindingsystem.entity.ServiceDetailEntity;
 
-import com.roomfindingsystem.vo.HouseTypeVo;
-import com.roomfindingsystem.vo.RoomDto;
-import com.roomfindingsystem.vo.RoomHomeVo;
+import com.roomfindingsystem.dto.*;
 
 import org.springframework.stereotype.Repository;
 
@@ -21,14 +19,27 @@ public interface RoomService {
     List<ServiceDetailEntity> getServiceByRoomId(int roomId);
 //    RoomImagesEntity get
 
-
+    List<RoomDto> getAll();
 
     //Homepage
-    List<RoomHomeVo> viewRoomInHome();
 
-    List<RoomDto> findRoom1(int min, int max, String roomName, List<Integer> type, int pageIndex, int pageSize);
+
+    List<RoomHomeDto> viewRoomInHome();
+    RoomDto findById(Integer id);
+//    void update(RoomDto roomDto);
+
+    void deleteById(Integer id);
+
+//    void save(RoomDto roomDto);
 
     int countRoom();
+
+    //room type list in house detail
+    List<RoomHouseDetailDto> viewRoomInHouse(int houseId);
+
+    List<RoomDtoN> findRoom1(int min, int max, String roomName, List<Integer> type, int pageIndex, int pageSize);
+
+
 
 
 }

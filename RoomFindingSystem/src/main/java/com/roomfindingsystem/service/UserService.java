@@ -1,7 +1,9 @@
 package com.roomfindingsystem.service;
 
 import com.roomfindingsystem.entity.UserEntity;
-import com.roomfindingsystem.vo.UserDto;
+
+
+import com.roomfindingsystem.dto.UserDto;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -19,6 +21,7 @@ public interface UserService extends UserDetailsService {
     void registerUser(UserDto userDto);
 
     UserEntity getUserByRoomId(int roomId);
+    int recoverPassword(String password, String email);
 
     UserDto findById(int id);
 
@@ -26,7 +29,6 @@ public interface UserService extends UserDetailsService {
 
     UserEntity save(UserEntity user);
 
-    int recoverPassword(String password, String email);
     String getUserForChangePass(String email);
 
 }

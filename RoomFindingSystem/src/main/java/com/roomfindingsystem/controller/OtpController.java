@@ -62,7 +62,7 @@ public class OtpController {
             userEntity.setImageLink(null);
             userEntity.setLastModifiedDate(null);
             userService.saveUser(userEntity);
-            return "redirect:/home";
+            return "redirect:/";
         }
         model.addAttribute("mess","OTP is not correct! Please check your email.");
         return "otpConfirm";

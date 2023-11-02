@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-
-<html lang="en-US">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,7 +38,7 @@
                                 </div>
                                 <!--end element-->
                                 <div class="element">
-                                    <a href="#tab-register" data-toggle="modal" data-tab="true" data-target="#sign-in-register-modal">Đăng ký</a>
+                                    <a th:href="register" data-toggle="modal" data-tab="true" data-target="#sign-in-register-modal">Đăng ký</a>
                                 </div>
                                 <!--end element-->
 

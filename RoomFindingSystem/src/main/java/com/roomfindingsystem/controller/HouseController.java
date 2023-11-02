@@ -5,11 +5,12 @@ import com.roomfindingsystem.entity.UserEntity;
 import com.roomfindingsystem.service.FeedbackService;
 import com.roomfindingsystem.service.HouseService;
 import com.roomfindingsystem.service.UserService;
-import com.roomfindingsystem.vo.FeedbackDto;
-import com.roomfindingsystem.vo.HouseDto;
-import com.roomfindingsystem.vo.HouseImageLink;
-import com.roomfindingsystem.vo.ServiceDto;
 import jakarta.validation.Valid;
+import com.roomfindingsystem.dto.*;
+import com.roomfindingsystem.service.FeedbackService;
+import com.roomfindingsystem.service.HouseService;
+
+import com.roomfindingsystem.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -31,6 +33,9 @@ public class HouseController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    RoomService roomService;
+
     @RequestMapping(value = "houseDetail")
     public String index(Model model) {
 //        model.addAttribute("User", new UserEntity());
@@ -44,6 +49,7 @@ public class HouseController {
 
 
         model.addAttribute("HousesEntity", houseDto);
+        System.out.println(houseDto);
 
         List<ServiceDto> listService= houseService.getServiceById(houseId);
         model.addAttribute("HouseService", listService);
@@ -58,6 +64,7 @@ public class HouseController {
         //nghia code
         List<FeedbackDto> feedbacks = feedbackService.getFeedbackByHouseId(houseId);
         model.addAttribute("feedbacks", feedbacks);
+
 
         //lấy ra tên của user hiện tại -> lấy ra user hiện tại
         String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -82,9 +89,13 @@ public class HouseController {
         model.addAttribute("feedbackEntity", feedbackEntity);
         model.addAttribute("user", user);
         model.addAttribute("count", count);
+        //baoltt code
+        List<RoomHouseDetailDto> roomHouseDetailDtos = roomService.viewRoomInHouse(houseId);
+        model.addAttribute("roomList", roomHouseDetailDtos);
 
 
-        return "detail";
+
+        return "housedetail";
     }
 
     // add feedback

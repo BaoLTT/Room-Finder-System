@@ -50,31 +50,42 @@ public class AuthController {
     private UserService userService;
 
     @RequestMapping("/login-google")
-    public String loginGoogle(HttpServletRequest request) throws Exception {
+    public String loginGoogle(HttpServletRequest request, Model model) throws Exception {
         String code = request.getParameter("code");
         System.out.println("-----CALL TO THIS-----");
         if (code == null || code.isEmpty()) {
             return "redirect:/login?google=error";
         }
 
-        // Kiểm tra xem tài khoản Google đã tồn tại trong bảng user chưa
-//        Optional<UserEntity> existingUser = userService.findByEmail(googlePojo.getEmail()); // Thay thế bằng phương thức phù hợp của userService
-//        System.out.println(existingUser.isEmpty()); ///1
-        //TODO cật nhật thông tin ở đoạn này...
-//        if (existingUser == null|| existingUser.isEmpty()) {
-//            // Nếu tài khoản Google chưa có, thêm tài khoản mới vào bảng user
-//            UserEntity newUser = new UserEntity();
-//            newUser.setEmail(googlePojo.getEmail()); // Sử dụng email làm tên đăng nhập
-////            newUser.setRoleId(1); // Gán vai trò mặc định (có thể thay đổi)
-//            newUser.setPassword("aaaaaaa");
-//            userService.save(newUser);
-//        }
-
-//        System.out.println("ok");
-
         String accessToken = googleUtils.getToken(code);
 
         GooglePojo googlePojo = googleUtils.getUserInfo(accessToken);
+
+
+
+
+//         Kiểm tra xem tài khoản Google đã tồn tại trong bảng user chưa
+        Optional<UserEntity> existingUser = userService.findByEmail(googlePojo.getEmail()); // Thay thế bằng phương thức phù hợp của userService
+//        System.out.println(existingUser.isEmpty()); ///1
+
+//        TODO cật nhật thông tin ở đoạn này...
+        if (existingUser.isEmpty()) {
+            // Nếu tài khoản Google chưa có, thêm tài khoản mới vào bảng user
+            UserEntity newUser = new UserEntity();
+            newUser.setEmail(googlePojo.getEmail());
+            newUser.setFirstName(googlePojo.getFamily_name());
+            newUser.setLastName(googlePojo.getGiven_name());
+            newUser.setImageLink(googlePojo.getPicture());
+            newUser.setFacebookId(accessToken);
+            //setStatus == 0
+            newUser.setUserStatusId(0);
+            model.addAttribute("newUser", newUser);
+
+            userService.save(newUser);
+//            return "auth/addInfoGoogle";
+        }
+
+
         UserDetails userDetail = googleUtils.buildUser(googlePojo);
         UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetail, null,
                 userDetail.getAuthorities());
