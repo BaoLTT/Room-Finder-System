@@ -1,18 +1,13 @@
 package com.roomfindingsystem.service;
 
 
-import com.roomfindingsystem.dto.RoomHomeDto;
-import com.roomfindingsystem.dto.RoomHouseDetailDto;
 import com.roomfindingsystem.entity.RoomEntity;
 import com.roomfindingsystem.entity.RoomImagesEntity;
 import com.roomfindingsystem.entity.ServiceDetailEntity;
 
-
+import com.roomfindingsystem.dto.*;
 
 import org.springframework.stereotype.Repository;
-import com.roomfindingsystem.dto.RoomDto;
-import com.roomfindingsystem.dto.RoomHomeVo;
-
 
 import java.util.List;
 
@@ -24,14 +19,18 @@ public interface RoomService {
     List<ServiceDetailEntity> getServiceByRoomId(int roomId);
 //    RoomImagesEntity get
 
-
+    List<RoomDto> getAll();
 
     //Homepage
 
 
     List<RoomHomeDto> viewRoomInHome();
+    RoomDto findById(Integer id);
+    void update(RoomDto roomDto);
 
-    List<RoomDto> findRoom1(int min, int max, String roomName, List<Integer> type, int pageIndex, int pageSize);
+    void deleteById(Integer id);
+
+    void save(RoomDto roomDto);
 
     int countRoom();
 
