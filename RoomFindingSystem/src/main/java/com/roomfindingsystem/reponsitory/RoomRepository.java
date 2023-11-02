@@ -4,14 +4,14 @@ import com.roomfindingsystem.entity.RoomEntity;
 import com.roomfindingsystem.entity.RoomImagesEntity;
 import com.roomfindingsystem.entity.ServiceDetailEntity;
 
-import com.roomfindingsystem.vo.RoomDto;
-import com.roomfindingsystem.vo.RoomHomeVo;
+
+
+import com.roomfindingsystem.dto.RoomHomeVo;
 
 import jakarta.persistence.Tuple;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -38,14 +38,28 @@ public interface RoomRepository extends JpaRepository<RoomEntity, Integer> {
 
 
     //homepage
-    @Query("select new com.roomfindingsystem.vo.RoomHomeVo(r.roomId, r.roomName, h.houseName,t.typeName, r.price ,p.name, d.name, w.name, a.name) from RoomEntity r join HousesEntity h on r.houseId = h.houseId " +
-            "left join RoomTypeEntity t on t.typeId = r.roomType " +
-            "left join AddressEntity a on h.addressId = a.addressId " +
-            "left join ProvinceEntity p on a.provinceId = p.provinceId " +
-            "left join DistrictEntity d on d.provinceId= p.provinceId " +
-            "left join WardEntity w on w.districtId= d.districtId " +
-            "order by r.createdDate desc")
-    List<RoomHomeVo> viewTop4Home();
+
+    @Query(value = "SELECT r.roomid, r.room_name, h.house_name , t.type_name, r.price, (SELECT GROUP_CONCAT(i.image_link) FROM room_images i WHERE i.roomid = r.roomid) AS Image_Link, a.address_details, w.name AS ward_name, d.name AS district_name, p.name AS province_name, r.area\n" +
+            "            FROM room r\n" +
+            "            LEFT JOIN room_type t on r.room_type = t.typeid\n" +
+            "            LEFT JOIN houses h ON r.houseid = h.houseid \n" +
+            "            LEFT JOIN address a ON h.addressid = a.addressid \n" +
+            "            LEFT JOIN province p ON a.provinceid = p.provinceid \n" +
+            "            LEFT JOIN district d ON a.districtid = d.districtid \n" +
+            "            LEFT JOIN ward w ON a.wardid = w.wardid \n" +
+            "\t\t\tGROUP BY r.roomid, r.room_name, h.house_name , t.type_name, r.price, a.address_details, r.area LIMIT 8 OFFSET 0", nativeQuery = true)
+    List<Tuple> viewRoomInHome();
+
+
+    //room_type list trong boarding house details
+    @Query(value = "SELECT r.roomid, t.typeid, t.type_name,(select group_concat(r1.room_name) from room r1 where r1.houseid = h.houseid and r1.room_type = r.room_type\n" +
+            "group by h.houseid, r.room_type) as room_list, h.houseid, h.house_name,r.price \n" +
+            "from room r \n" +
+            "join room_type t on r.room_type = t.typeid \n" +
+            "left join houses h on r.houseid = h.houseid\n" +
+            "where r.houseid = ?1 \n" +
+            "group by r.roomid, t.typeid, t.type_name, h.houseid, h.house_name ; \n ", nativeQuery = true)
+    List<Tuple> viewRoomInHouseDetail(int houseId);
 
     @Query(value = "select r.roomid, r.room_name,h.house_name,r.price,rt.type_name,\n" +
             "            (select group_concat(i.image_link) from room_images i where i.roomid=r.roomid) as images from room r join houses h \n" +

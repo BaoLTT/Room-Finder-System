@@ -82,13 +82,15 @@ public class SecurityConfiguration {
 
             .authorizeHttpRequests(at ->at.requestMatchers("/login/**", "/login-google", "/","/register","/save","re-send",
                             "recover","send-otp-recover","otp-check","confirm-otp","send-otp-recover","confirm-otp-recover",
-                            "save-new-password","detail","change-password","save-change-password",
-                            "/room/**", "/assets/**").permitAll()
-                        .requestMatchers("/admin/**", "/test").hasRole("1")
-                        .anyRequest().authenticated());
-
+                            "save-new-password","detail","change-password","save-change-password","feedback-list",
+                            "/room/**", "/assets/**", "/houselist","/RoomList/**").permitAll()
+                    .requestMatchers("/admin/**", "/test").hasAnyRole("ADMIN", "SUPER_ADMIN")
+//                        .requestMatchers("/profile").hasAnyRole("1,2")
+                            .anyRequest().authenticated());
 
         return http.build();
     }
+
+
 }
 

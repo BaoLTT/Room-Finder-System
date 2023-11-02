@@ -1,9 +1,13 @@
 package com.roomfindingsystem.service;
 
+
+
+import com.roomfindingsystem.dto.FeedbackDto;
+import com.roomfindingsystem.dto.FeedbackHomeDto;
 import com.roomfindingsystem.entity.FeedbackEntity;
-import com.roomfindingsystem.entity.UserEntity;
-import com.roomfindingsystem.vo.FeedbackDto;
-import com.roomfindingsystem.vo.FeedbackHomeVo;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 
 import java.util.List;
 
@@ -12,5 +16,7 @@ public interface FeedbackService {
 
     List<FeedbackDto> getFeedbackByHouseId(int houseId);
 
-    List<FeedbackHomeVo> viewTop4Home();
+    List<FeedbackHomeDto> viewTop4Home();
+
+    Page<FeedbackEntity> getListFeedback(Pageable pageable);
 }

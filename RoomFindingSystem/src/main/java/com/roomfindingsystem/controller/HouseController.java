@@ -1,12 +1,11 @@
 package com.roomfindingsystem.controller;
 
 import com.roomfindingsystem.entity.FeedbackEntity;
+import com.roomfindingsystem.dto.*;
 import com.roomfindingsystem.service.FeedbackService;
 import com.roomfindingsystem.service.HouseService;
-import com.roomfindingsystem.vo.FeedbackDto;
-import com.roomfindingsystem.vo.HouseDto;
-import com.roomfindingsystem.vo.HouseImageLink;
-import com.roomfindingsystem.vo.ServiceDto;
+
+import com.roomfindingsystem.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -24,6 +22,9 @@ public class HouseController {
     HouseService houseService;
     @Autowired
     FeedbackService feedbackService;
+
+    @Autowired
+    RoomService roomService;
 
     @RequestMapping(value = "houseDetail")
     public String index(Model model) {
@@ -38,6 +39,7 @@ public class HouseController {
 
 
         model.addAttribute("HousesEntity", houseDto);
+        System.out.println(houseDto);
 
         List<ServiceDto> listService= houseService.getServiceById(houseId);
         model.addAttribute("HouseService", listService);
@@ -53,7 +55,12 @@ public class HouseController {
         List<FeedbackDto> feedbacks = feedbackService.getFeedbackByHouseId(houseId);
         model.addAttribute("feedbacks", feedbacks);
 
+        //baoltt code
+        List<RoomHouseDetailDto> roomHouseDetailDtos = roomService.viewRoomInHouse(houseId);
+        model.addAttribute("roomList", roomHouseDetailDtos);
 
-        return "detail";
+
+
+        return "housedetail";
     }
 }

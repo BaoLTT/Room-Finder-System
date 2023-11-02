@@ -2324,7 +2324,7 @@ ul.half li {
 }
 .item.small .image .gallery img {
   height: auto;
-  width: 100%;
+  max-width: 100%;
 }
 .item.small .image .wrapper:before {
   -moz-transition: 0.3s ease;
@@ -5294,4 +5294,5 @@ body::before {
     position: relative;
     text-align: center;
   }
+
 }

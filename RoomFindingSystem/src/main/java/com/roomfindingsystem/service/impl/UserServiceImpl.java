@@ -4,7 +4,9 @@ import com.roomfindingsystem.config.SecurityUser;
 import com.roomfindingsystem.entity.*;
 import com.roomfindingsystem.reponsitory.*;
 import com.roomfindingsystem.service.UserService;
-import com.roomfindingsystem.vo.UserDto;
+
+
+import com.roomfindingsystem.dto.UserDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;

@@ -4,18 +4,14 @@ import com.roomfindingsystem.entity.*;
 import com.roomfindingsystem.reponsitory.*;
 import com.roomfindingsystem.service.RoomService;
 
-import com.roomfindingsystem.vo.*;
+import com.roomfindingsystem.dto.*;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @AllArgsConstructor
@@ -27,7 +23,7 @@ public class RoomServiceImpl implements RoomService {
     private final ModelMapper modelMapper;
     private final ServiceRoomRepository serviceRoomRepository;
     private final ServiceDetailRepository serviceDetailRepository;
-        
+
     @Override
     public RoomEntity getRoomById(int roomId) {
         return roomRepository.getRoomById(roomId);
@@ -76,15 +72,34 @@ public class RoomServiceImpl implements RoomService {
         }
 
     @Override
-    public List<RoomHomeVo> viewRoomInHome() {
-        List<RoomHomeVo> list = new ArrayList<>();
-        if(!roomRepository.viewTop4Home().isEmpty()){
-            if(roomRepository.viewTop4Home().size()<8) list = roomRepository.viewTop4Home();
-            else for(int i = 0; i<8; i++){
-                list.add(roomRepository.viewTop4Home().get(i));
-            }
+    public List<RoomHomeDto> viewRoomInHome() {
+        List<Tuple> tuples = roomRepository.viewRoomInHome();
+        List<RoomHomeDto> roomHomeDtos = new ArrayList<>();
+        List<String> imageLinks ;
+
+        for (Tuple tuple : tuples) {
+            RoomHomeDto roomHomeDto = new RoomHomeDto();
+            roomHomeDto.setRoomId(tuple.get("RoomID", Integer.class));
+            roomHomeDto.setRoomName(tuple.get("Room_Name", String.class));
+            roomHomeDto.setHouseName(tuple.get("House_Name", String.class));
+            roomHomeDto.setRoomType(tuple.get("Type_Name", String.class));
+            roomHomeDto.setAddressDetail(tuple.get("Address_Details", String.class));
+            String imageLink = (tuple.get("Image_Link", String.class));
+            if(imageLink == null)
+            {roomHomeDto.setRoomImageLink(null);}
+            else {imageLinks = Arrays.asList(imageLink.split(","));
+                roomHomeDto.setRoomImageLink(imageLinks.get(0));}
+            roomHomeDto.setProvince(tuple.get("province_name", String.class));
+            roomHomeDto.setDistrict(tuple.get("district_name", String.class));
+            roomHomeDto.setWard(tuple.get("ward_name", String.class));
+            roomHomeDto.setArea(tuple.get("area", Double.class));
+            roomHomeDto.setPrice(tuple.get("price",Integer.class));
+
+            roomHomeDtos.add(roomHomeDto);
         }
-        return list;
+
+
+        return roomHomeDtos;
 
     }
 
@@ -199,11 +214,49 @@ public class RoomServiceImpl implements RoomService {
 
     @Override
     public int countRoom() {
-        return 0;
+        return roomRepository.countRoom();
     }
 
+
     @Override
-    public List<RoomDto> findRoom1(int i, int i1, String roomName, List<Integer> listType, int offset, int pageSize) {
-        return null;
+    public List<RoomHouseDetailDto> viewRoomInHouse(int houseId) {
+        List<Tuple> tuples = roomRepository.viewRoomInHouseDetail(houseId);
+        List<RoomHouseDetailDto> roomDtos = new ArrayList<>();
+        List<String> roomList ;
+        Set<String> uniquePairs = new HashSet<>();
+
+        for (Tuple tuple : tuples) {
+//            int houseId = tuple.get("HouseID", Integer.class);
+            int typeId = tuple.get("TypeID", Integer.class);
+            String pair = houseId + "-" + typeId;
+
+            // Kiểm tra xem cặp (HouseID, TypeID) đã xuất hiện chưa
+            if (!uniquePairs.contains(pair)) {
+                RoomHouseDetailDto roomDto = new RoomHouseDetailDto();
+                roomDto.setRoomId(tuple.get("RoomID", Integer.class));
+                roomDto.setTypeId(typeId);
+                roomDto.setTypeName(tuple.get("type_name", String.class));
+                roomDto.setHouseId(houseId);
+                roomDto.setHouseName(tuple.get("house_name", String.class));
+                roomDto.setPrice(tuple.get("price", Integer.class));
+
+                String roomName = tuple.get("room_list", String.class);
+                if (roomName == null) {
+                    roomDto.setRoomList(null);
+                } else {
+                    roomList = Arrays.asList(roomName.split(","));
+                    roomDto.setRoomList(roomList);
+                }
+
+                roomDtos.add(roomDto);
+
+                // Đánh dấu cặp (HouseID, TypeID) đã xuất hiện
+                uniquePairs.add(pair);
+            }
+        }
+
+        return roomDtos;
     }
+
+
 }
