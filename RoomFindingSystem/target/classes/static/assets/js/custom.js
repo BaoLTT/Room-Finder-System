@@ -200,7 +200,7 @@ $(document).ready(function($) {
     if( $(".gallery-carousel").length ){
         $(".gallery-carousel").owlCarousel({
             margin:10,
-            items: 4,
+            items: 10,
             navText: [],
             nav: true,
             dots: false,

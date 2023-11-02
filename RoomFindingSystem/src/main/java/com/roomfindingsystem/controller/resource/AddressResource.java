@@ -6,9 +6,10 @@ import com.roomfindingsystem.entity.WardEntity;
 import com.roomfindingsystem.service.DistrictService;
 import com.roomfindingsystem.service.ProvinceService;
 import com.roomfindingsystem.service.WardService;
-import com.roomfindingsystem.vo.response.DistrictListResponse;
-import com.roomfindingsystem.vo.response.ProvinceListResponse;
-import com.roomfindingsystem.vo.response.WardListResponse;
+
+import com.roomfindingsystem.dto.response.DistrictListResponse;
+import com.roomfindingsystem.dto.response.ProvinceListResponse;
+import com.roomfindingsystem.dto.response.WardListResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

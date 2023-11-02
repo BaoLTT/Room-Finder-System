@@ -1,12 +1,19 @@
 package com.roomfindingsystem.service.impl;
 
 
+
+import com.roomfindingsystem.dto.FeedbackHomeDto;
 import com.roomfindingsystem.entity.FeedbackEntity;
 import com.roomfindingsystem.reponsitory.FeedbackRepository;
 import com.roomfindingsystem.service.FeedbackService;
-import com.roomfindingsystem.vo.FeedbackDto;
-import com.roomfindingsystem.vo.FeedbackHomeVo;
+
+
+import com.roomfindingsystem.dto.FeedbackDto;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -17,13 +24,15 @@ public class FeedbackServiceImpl implements FeedbackService {
     FeedbackRepository feedbackRepository;
 
 
+
+
     @Override
     public List<FeedbackDto> getFeedbackByHouseId(int houseId) {
         return feedbackRepository.findFeedbackDtosByHouseId(houseId);
     }
     @Override
-    public List<FeedbackHomeVo> viewTop4Home() {
-        List<FeedbackHomeVo> list = new ArrayList<>();
+    public List<FeedbackHomeDto> viewTop4Home() {
+        List<FeedbackHomeDto> list = new ArrayList<>();
         if(!feedbackRepository.viewTop4Home().isEmpty()){
             if(feedbackRepository.viewTop4Home().size()>4){
                 for(int i = 0; i<4; i++){
@@ -36,6 +45,7 @@ public class FeedbackServiceImpl implements FeedbackService {
     }
 
     @Override
+
     public FeedbackEntity save(FeedbackEntity feedbackEntity) {
         return feedbackRepository.save(feedbackEntity);
     }
@@ -48,5 +58,9 @@ public class FeedbackServiceImpl implements FeedbackService {
     @Override
     public void deleteByHouseIdAndMemberId(int houseId, int memberId) {
         feedbackRepository.deleteByHouseIdAndMemberId(houseId, memberId);
+    }
+
+    public Page<FeedbackEntity> getListFeedback(Pageable pageable) {
+        return feedbackRepository.findAll(pageable);
     }
 }
