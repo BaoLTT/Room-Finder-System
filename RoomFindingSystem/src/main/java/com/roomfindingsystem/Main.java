@@ -1,12 +1,7 @@
 package com.roomfindingsystem;
 
-import com.roomfindingsystem.controller.MainController;
-import com.roomfindingsystem.entity.FeedbackEntity;
-import com.roomfindingsystem.reponsitory.FeedbackRepository;
-import com.roomfindingsystem.reponsitory.RoomRepository;
-import com.roomfindingsystem.service.UserService;
+import com.roomfindingsystem.repository.FeedbackRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

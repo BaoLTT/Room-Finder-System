@@ -1,4 +1,4 @@
-package com.roomfindingsystem.reponsitory;
+package com.roomfindingsystem.repository;
 
 import com.roomfindingsystem.entity.HousesEntity;
 
@@ -65,9 +65,13 @@ public interface HouseRepository extends JpaRepository<HousesEntity,Integer> {
             "GROUP BY h.houseid, h.house_name, t.type_name, a.address_details, ward_name, district_name, province_name, h.last_modified_date) as subquery",nativeQuery=true )
     int countHouse(int min, int max, String houseName, List<Integer> type, List<Integer> service);
 
+    @Query("SELECT new com.roomfindingsystem.dto.HouseDto( h.houseId, h.houseName,h.description,h.createdDate, u.lastName,u.firstName , u.phone,a.addressDetails, t.typeName ,p.name,d.name,w.name)\n" +
             "FROM HousesEntity as h \n" +
             "left join UserEntity as u on h.userId = u.userId \n" +
             "left join AddressEntity as a on h.addressId = a.addressId\n" +
+            "LEFT JOIN ProvinceEntity p ON a.provinceId = p.provinceId " +
+            "LEFT JOIN DistrictEntity d ON a.districtId = d.districtId " +
+            "LEFT JOIN WardEntity w ON a.wardId = w.wardId " +
             "left join TypeHouseEntity as t on t.typeId = h.typeHouseId\n" +
             " where h.houseId=?1")
     List<HouseDto> findAllDetail(int houseId);
@@ -82,6 +86,7 @@ public interface HouseRepository extends JpaRepository<HousesEntity,Integer> {
 
 
     //homepage
+    @Query(value = "SELECT h.houseid, h.house_name, t.type_name, a.address_details, w.name AS ward_name, d.name AS district_name, p.name AS province_name, (SELECT GROUP_CONCAT(i.image_link) FROM house_images i WHERE i.houseid = h.houseid) AS Image_Link, h.last_modified_date, (select count(roomid) from room r where r.houseid = h.houseid and r.statusid = 1 group by r.houseid)  as count_Empty_Rooms, (select count(roomid) from room r where r.houseid = h.houseid group by r.houseid)  as count_Rooms " +
             "FROM houses h " +
             "JOIN type_house t ON h.type_houseid = t.typeid " +
             "LEFT JOIN room r ON r.houseid = h.houseid " +
@@ -90,7 +95,12 @@ public interface HouseRepository extends JpaRepository<HousesEntity,Integer> {
             "LEFT JOIN province p ON a.provinceid = p.provinceid " +
             "LEFT JOIN district d ON a.districtid = d.districtid " +
             "LEFT JOIN ward w ON a.wardid = w.wardid " +
+            "GROUP BY h.houseid, h.house_name, t.type_name, a.address_details, ward_name, district_name, province_name, h.last_modified_by LIMIT 6 OFFSET 0 ",nativeQuery=true )
     List<Tuple> viewHouseInHome();
+
+    //admin
+    @Query("select count(*) from HousesEntity")
+    int countHouses();
 
 
 }

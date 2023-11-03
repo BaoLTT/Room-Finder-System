@@ -80,9 +80,13 @@ public class SecurityConfiguration {
                     .usernameParameter("username")
                     .passwordParameter("password"))
 
-            .authorizeHttpRequests(at ->at.requestMatchers("/login/**", "/login-google", "/","/register","/save","re-send",
-                            "recover","send-otp-recover","otp-check","confirm-otp","send-otp-recover","confirm-otp-recover",
-                            "/room/**", "/assets/**", "/houselist","/RoomList/**").permitAll()
+                .authorizeHttpRequests(at ->at.requestMatchers("/login/**", "/login-google", "/","/register","/save","re-send",
+                                "recover","send-otp-recover","otp-check","confirm-otp","send-otp-recover","confirm-otp-recover",
+                                "save-new-password","detail","change-password","save-change-password","feedback-list",
+                                "/room/**", "/assets/**", "/houselist","/RoomList/**").permitAll()
+                        .requestMatchers("/admin/**", "/test").hasAnyRole("ADMIN", "SUPER_ADMIN")
+//                        .requestMatchers("/profile").hasAnyRole("1,2")
+                        .anyRequest().authenticated());
 
         return http.build();
     }

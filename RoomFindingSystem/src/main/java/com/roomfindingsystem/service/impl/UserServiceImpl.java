@@ -2,7 +2,7 @@ package com.roomfindingsystem.service.impl;
 
 import com.roomfindingsystem.config.SecurityUser;
 import com.roomfindingsystem.entity.*;
-import com.roomfindingsystem.reponsitory.*;
+import com.roomfindingsystem.repository.*;
 import com.roomfindingsystem.service.UserService;
 
 

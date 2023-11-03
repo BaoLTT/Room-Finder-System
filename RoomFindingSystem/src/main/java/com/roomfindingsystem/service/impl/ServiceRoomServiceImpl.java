@@ -1,6 +1,6 @@
 package com.roomfindingsystem.service.impl;
 
-import com.roomfindingsystem.reponsitory.ServiceRoomRepository;
+import com.roomfindingsystem.repository.ServiceRoomRepository;
 import com.roomfindingsystem.service.ServiceRoomService;
 import com.roomfindingsystem.dto.ServiceDto;
 import org.modelmapper.ModelMapper;

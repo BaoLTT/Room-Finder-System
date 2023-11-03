@@ -1,7 +1,7 @@
 package com.roomfindingsystem.service.impl;
 
 import com.roomfindingsystem.entity.TypeHouseEntity;
-import com.roomfindingsystem.reponsitory.HouseTypeRepository;
+import com.roomfindingsystem.repository.HouseTypeRepository;
 import com.roomfindingsystem.service.HouseTypeService;
 import org.springframework.stereotype.Repository;
 

@@ -1,10 +1,9 @@
-package com.roomfindingsystem.reponsitory;
+package com.roomfindingsystem.repository;
 
 import com.roomfindingsystem.entity.UserEntity;
 
 
 import com.roomfindingsystem.dto.UserDto;
-import jakarta.transaction.Transactional;
 import jakarta.transaction.Transactional;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.JpaRepository;

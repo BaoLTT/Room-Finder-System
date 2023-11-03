@@ -2,6 +2,7 @@ package com.roomfindingsystem.controller;
 
 
 import com.roomfindingsystem.dto.RoomDto;
+import com.roomfindingsystem.dto.RoomDtoN;
 import com.roomfindingsystem.dto.ServiceDto;
 import com.roomfindingsystem.entity.RoomEntity;
 import com.roomfindingsystem.entity.RoomImagesEntity;
