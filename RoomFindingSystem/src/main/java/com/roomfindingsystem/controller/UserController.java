@@ -132,7 +132,7 @@ public class UserController {
     }
     @GetMapping("/profile")
     public String getProfilePage(Model model) {
-        UserDto userDto = userService.findById(2);
+        UserDto userDto = userService.findById(1);
         model.addAttribute("user", userDto);
         return "profile";
     }
