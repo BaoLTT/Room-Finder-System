@@ -18,7 +18,6 @@ public class FeedbackDto {
     private String userFistName;
     private String userLastName;
     private String userImage;
-    private int userId;
 
 
 }

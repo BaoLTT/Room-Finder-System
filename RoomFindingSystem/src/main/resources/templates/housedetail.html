@@ -1,4 +1,3 @@
-<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
@@ -48,7 +47,6 @@
         <div class="container" th:each="HousesEntity : ${HousesEntity}">
             <ol class="breadcrumb">
                 <li><a th:href="@{/}">Trang chủ</a></li>
-
                 <li><a th:href="@{houselist}">Danh sách trọ</a></li>
                 <li class="active">Chi Tiết</li>
             </ol>
@@ -82,7 +80,6 @@
                                         <section th:each="HouseService : ${HouseService}">
 
                                             <ul class="checkboxes list-unstyled">
-                                                <li th:text="${HouseService.description}"></li>
                                             </ul>
                                             <!--end checkboxes-->
                                         </section>
@@ -133,7 +130,6 @@
 <!--                                        </section>-->
                                         <!--end section-->
                                     </div>
-
                                     <!--end filter-advanced-search-->
                                 </div>
                                 <!--end collapse-->
@@ -240,11 +236,6 @@
                                         <!--                                        <li>Concrete Flooring</li>-->
                                     </ul>
                                 </section>
-
-                                <!--                                                                <section id="map">-->
-                                <!--                                                                    <h2>Map</h2>-->
-                                <!--                                                                    <div id="map-item" class="map height-300 box"></div>-->
-
 <!--                                                                <section id="map">-->
 <!--                                                                    <h2>Map</h2>-->
 <!--                                                                    <div id="map-item" class="map height-300 box"></div>-->
@@ -259,38 +250,14 @@
 
                                         </dl>
                                     </aside>
-                                    <aside class="box">
-                                        <h3><strong> Địa Chỉ Nhà Trọ:</strong></h3>
-                                        <p>cụ thể: </p> <dl th:text="${HousesEntity.addressDetail}"></dl>
-                                        <p>Xã: </p>  <dl th:text="${HousesEntity.ward}"></dl>
-                                        <p>Huyện: </p>  <dl th:text="${HousesEntity.district}"></dl>
-                                        <p>(Thành Phố / Tỉnh)</p> <dl th:text="${HousesEntity.province}">
-                                    </dl>
-                                    </aside>
 <!--                                    <aside>-->
 <!--                                        <h5>Thông tin liên hệ với chủ trọ</h5>-->
 <!--                                        <address>-->
 <!--                                            <strong >Tên Chủ Trọ</strong><br>-->
-
-                                    <!--                                    <aside>-->
-                                    <!--                                        <h5>Thông tin liên hệ với chủ trọ</h5>-->
-                                    <!--                                        <address>-->
-                                    <!--                                            <strong >Tên Chủ Trọ</strong><br>-->
-                                    <!--                                            <div >-->
-                                    <!--                                                <p style="display: inline-block"th:text="${HousesEntity.firstName}" ></p>-->
-                                    <!--                                                <p style="display: inline-block" th:text="${HousesEntity.lastName}"></p>-->
-                                    <!--                                            </div>-->
-
 <!--                                            <div >-->
 <!--                                                <p style="display: inline-block"th:text="${HousesEntity.firstName}" ></p>-->
 <!--                                                <p style="display: inline-block" th:text="${HousesEntity.lastName}"></p>-->
 <!--                                            </div>-->
-
-
-                                    <!--                                            <strong>Điện Thoại Liên Hệ:</strong>-->
-                                    <!--                                            <p th:text="${HousesEntity.phone}"></p>-->
-                                    <!--                                        </address>-->
-                                    <!--                                    </aside>-->
 
 <!--                                            <strong>Điện Thoại Liên Hệ:</strong>-->
 <!--                                            <p th:text="${HousesEntity.phone}"></p>-->
@@ -345,7 +312,6 @@
                             <!--end row-->
                         </section>
                         <section id="availability">
-
 <!--                            <h2>Availability</h2>-->
 <!--                            <form class="labels-uppercase" id="form-availability">-->
 <!--                                <div class="row">-->
@@ -385,7 +351,6 @@
                                         <thead>
                                         <tr>
                                             <th>Room Type</th>
-
 <!--                                            <th>Persons</th>-->
                                             <th>Price</th>
                                             <th>Rooms</th>
@@ -400,7 +365,6 @@
                                         <tr class="room">
                                             <td class="room-type">
                                                 <a href="" th:text="${room.typeName}"><h3></h3>
-
 <!--                                                    <figure class="label label-danger">1 Room Left!</figure>-->
                                                 </a>
                                                 <p>Consectetur adipiscing elit. Vivamus nec augue ac dui sodales
@@ -412,7 +376,6 @@
                                                     <li>VAT Included</li>
                                                 </ul>
                                             </td>
-
 <!--                                            <td class="persons">2<i class="fa fa-user"></i></td>-->
                                             <td th:text="${room.price}" ></td>
                                             <td class="rooms">
@@ -457,7 +420,6 @@
                         <section id="reviews">
                             <div class="title">
                                 <h2 class="pull-left">Đánh giá</h2>
-                                <a href="#write-a-review" class="btn btn-primary btn-rounded pull-right scroll" th:if="${count == 0}">Viết đánh giá</a>
                             </div>
                             <!--                            <h3>Overall Score</h3>-->
                             <!--                            <ul class="rating-score">-->
@@ -482,7 +444,6 @@
                             <!--                                </li>-->
                             <!--                            </ul>-->
                             <div class="reviews">
-
                                 <div th:each="feedback: ${feedbacks}">
                                     <div class="review">
                                         <div class="row">
@@ -493,7 +454,6 @@
                                                     </div>
                                                     <div class="col-md-9 col-xs-10" >
                                                         <aside class="name" th:text="${feedback.getUserFistName()}+ ' ' +${feedback.getUserLastName()}"></aside>
-                                                        <!--                                                        <aside class="date" th:text="${#dates.format(feedback.getCreatedDate(), 'yyyy-MM-dd')}"></aside>-->
                                                         <aside class="date" th:text="${#temporals.format(feedback.getCreatedDate(), 'dd-MM-yyyy')}"></aside>
 
 
@@ -504,86 +464,8 @@
                                             <!--end col-md-3-->
                                             <div class="col-md-9">
                                                 <div class="comment">
-                                                    <div class="comment-title" style="display: flex; justify-content: space-between; align-items: center; ">
                                                         <h4 style="font-weight: bold" th:text="${feedback.getTitle()}"></h4>
-
-                                                        <!-- Trong ví dụ này, chúng tôi sử dụng Thymeleaf để hiển thị hoặc ẩn nút dựa trên điều kiện -->
-                                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="background-color: #FFFFFF" th:if="${feedback.getUserId()} == ${user.getUserId()}">
-                                                            <i class="fa fa-edit" style="margin-bottom: 16px; font-size: 21px; color: #0f0f0f"></i>
-                                                        </button>
-
                                                     </div>
-                                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                        <div class="modal-dialog" role="document">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title" id="exampleModalLabel">Chỉnh sửa đánh giá</h5>
-                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                    </button>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    <form class="labels-uppercase clearfix"  th:object="${feedbackEntity}" th:action="@{/detail}" method="post">
-                                                                        <!--                                <div class="alert alert-dark fade in center" role="alert">-->
-                                                                        <!--                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"-->
-                                                                        <!--                                            data-switch="#review-write">-->
-                                                                        <!--                                        <span aria-hidden="true">&times;</span>-->
-                                                                        <!--                                    </button>-->
-                                                                        <!--                                    <span class="sr-only">Error:</span>-->
-                                                                        <!--                                    <a href="#tab-sign-in" data-toggle="modal" data-tab="true"-->
-                                                                        <!--                                       data-target="#sign-in-register-modal">Xin mời đăng nhập để đánh giá</a>-->
-                                                                        <!--                                </div>-->
-                                                                        <div class="review write" >
-                                                                            <span class="name">Tên người dùng: </span><span th:text="${user.getFirstName()}"></span><span> </span><span th:text="${user.getLastName()}"></span>
-
-
-                                                                            <div class="comment" style="margin-top: 10px">
-                                                                                <div class="comment-title">
-                                                                                    <h4>Đánh giá về khu trọ</h4>
-                                                                                </div>
-                                                                                <!--end title-->
-                                                                                <div class="form-group">
-                                                                                    <label for="form_reply_1-name">Tiêu đề đánh giá<em>*</em></label>
-                                                                                    <input type="text" class="form-control"
-                                                                                           name="name" placeholder="Viết tiêu đề ở đây" required=""
-                                                                                           th:field="*{title}" pattern=".{2,}" title="Yêu cầu ít nhất 2 ký tự">
-                                                                                </div>
-                                                                                <div class="form-group">
-                                                                                    <label for="form_reply_1-message">Mô tả<em>*</em></label>
-                                                                                    <textarea class="form-control"  rows="8"
-                                                                                              name="answer" required="" placeholder="Viết mô tả ở đây"
-                                                                                              th:field="*{content}" pattern=".{20,}" title="Yêu cầu ít nhất 20 ký tự"></textarea>
-                                                                                </div>
-                                                                                <div class="comment-title">
-                                                                                    <h4 >Đánh giá</h4>
-                                                                                </div>
-                                                                                <!--end title-->
-                                                                                <dl class="visitor-rating">
-                                                                                    <dd class="star-rating active" data-name="cleanliness"></dd>
-                                                                                </dl>
-                                                                                <!--end form-group-->
-                                                                                <div class="form-group pull-right">
-                                                                                    <button type="submit" class="btn btn-primary btn-rounded">Gửi đánh giá
-                                                                                    </button>
-                                                                                    <a th:href="@{deleteHouseCmt(houseId=*{houseId})}"><button class="btn btn-primary btn-rounded" type="button" style="background-color: red">Xóa
-                                                                                    </button></a>
-                                                                                </div>
-
-                                                                                <!--end form-group-->
-                                                                                <!--end col-md-4-->
-                                                                                <!--end row-->
-                                                                            </div>
-                                                                            <!--end comment-->
-                                                                        </div>
-                                                                        <input type="hidden" th:field="*{memberId}">
-                                                                        <input type="hidden" th:field="*{houseId}">
-                                                                        <!--end review-->
-                                                                    </form>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
                                                     <!--end title-->
                                                     <p th:text="${feedback.getContent()}"></p>
                                                     <div class="clearfix options">
@@ -661,23 +543,7 @@
                             </div>
                             <!--end reviews-->
                         </section>
-                        <section id="write-a-review" th:if="${count == 0}">
                             <h2>Viết đánh giá</h2>
-                            <form class="labels-uppercase clearfix" id="form_reply_1" th:object="${feedbackEntity}" th:action="@{/detail}" method="post">
-                                <!--                                <div class="alert alert-dark fade in center" role="alert">-->
-                                <!--                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"-->
-                                <!--                                            data-switch="#review-write">-->
-                                <!--                                        <span aria-hidden="true">&times;</span>-->
-                                <!--                                    </button>-->
-                                <!--                                    <span class="sr-only">Error:</span>-->
-                                <!--                                    <a href="#tab-sign-in" data-toggle="modal" data-tab="true"-->
-                                <!--                                       data-target="#sign-in-register-modal">Xin mời đăng nhập để đánh giá</a>-->
-                                <!--                                </div>-->
-                                <div class="review write" id="review-write">
-                                    <span class="name">Tên người dùng: </span><span th:text="${user.getFirstName()}"></span><span> </span><span th:text="${user.getLastName()}"></span>
-
-
-                                    <div class="comment" style="margin-top: 10px">
                                         <div class="comment-title">
                                             <h4>Đánh giá về khu trọ</h4>
                                         </div>
@@ -685,14 +551,10 @@
                                         <div class="form-group">
                                             <label for="form_reply_1-name">Tiêu đề đánh giá<em>*</em></label>
                                             <input type="text" class="form-control" id="form_reply_1-name"
-                                                   name="name" placeholder="Viết tiêu đề ở đây" required=""
-                                                   th:field="*{title}" pattern=".{20,}" title="Yêu cầu ít nhất 20 ký tự">
                                         </div>
                                         <div class="form-group">
                                             <label for="form_reply_1-message">Mô tả<em>*</em></label>
                                             <textarea class="form-control" id="form_reply_1-message" rows="8"
-                                                      name="answer" required="" placeholder="Viết mô tả ở đây"
-                                                      th:field="*{content}" pattern=".{20,}" title="Yêu cầu ít nhất 20 ký tự"></textarea>
                                         </div>
                                         <div class="comment-title">
                                             <h4 >Đánh giá</h4>
@@ -706,15 +568,12 @@
                                             <button type="submit" class="btn btn-primary btn-rounded">Gửi đánh giá
                                             </button>
                                         </div>
-
                                         <!--end form-group-->
                                         <!--end col-md-4-->
                                         <!--end row-->
                                     </div>
                                     <!--end comment-->
                                 </div>
-                                <input type="hidden" th:field="*{memberId}">
-                                <input type="hidden" th:field="*{houseId}">
                                 <!--end review-->
                             </form>
                             <!--end form-->

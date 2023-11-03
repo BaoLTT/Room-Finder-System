@@ -7,7 +7,6 @@ import com.roomfindingsystem.reponsitory.HouseRepository;
 
 import com.roomfindingsystem.service.HouseService;
 
-
 import jakarta.persistence.Tuple;
 import org.springframework.stereotype.Service;
 
@@ -108,29 +107,18 @@ public class HouseServiceImpl implements HouseService {
 
 
     @Override
-
-
     public List<HouseHomeDto> viewHouseInHome() {
         List<Tuple> tuples = houseRepository.viewHouseInHome();
-
         List<HouseHomeDto> houseHomeDtos = new ArrayList<>();
         List<String> imageLinks ;
 
         for (Tuple tuple : tuples) {
-
-
             HouseHomeDto houseHomeDto = new HouseHomeDto();
             houseHomeDto.setHouseID(tuple.get("HouseID", Integer.class));
             houseHomeDto.setHouseName(tuple.get("House_Name", String.class));
             houseHomeDto.setTypeHouse(tuple.get("Type_Name", String.class));
-            String addressDetail = tuple.get("Address_Details", String.class);
-            if(addressDetail == null){
-                houseHomeDto.setAddressDetail("");
-            } else houseHomeDto.setAddressDetail(addressDetail);
-
             String imageLink = (tuple.get("Image_Link", String.class));
             if(imageLink == null)
-
             {houseHomeDto.setListImage(null);}
             else {imageLinks = Arrays.asList(imageLink.split(","));
                 houseHomeDto.setListImage(imageLinks);}
@@ -146,13 +134,9 @@ public class HouseServiceImpl implements HouseService {
             }
 
             houseHomeDto.setCountRooms(tuple.get("count_Rooms", Long.class));
-            if(tuple.get("count_Empty_Rooms", Long.class)==null){
-                houseHomeDto.setCountEmptyRooms(0L);
-            } else houseHomeDto.setCountEmptyRooms(tuple.get("count_Empty_Rooms", Long.class));
 
             houseHomeDtos.add(houseHomeDto);
         }
-
 
         return houseHomeDtos;
     }

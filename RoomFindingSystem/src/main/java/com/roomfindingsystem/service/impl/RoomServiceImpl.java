@@ -1,29 +1,16 @@
 package com.roomfindingsystem.service.impl;
 
-import com.roomfindingsystem.entity.*;
-import com.roomfindingsystem.reponsitory.*;
 import com.roomfindingsystem.service.RoomService;
 
-import com.roomfindingsystem.dto.*;
 import jakarta.persistence.Tuple;
-import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.*;
 
 @Service
 @AllArgsConstructor
-@Transactional
 public class RoomServiceImpl implements RoomService {
-
-    private final RoomRepository roomRepository;
-    private final RoomTypeRepository roomTypeRepository;
-    private final ModelMapper modelMapper;
-    private final ServiceRoomRepository serviceRoomRepository;
-    private final ServiceDetailRepository serviceDetailRepository;
 
     @Override
     public RoomEntity getRoomById(int roomId) {
@@ -40,39 +27,10 @@ public class RoomServiceImpl implements RoomService {
 
     @Override
     public List<ServiceDetailEntity> getServiceByRoomId(int roomId) {
-		return roomRepository.getServiceByRoomId(roomId);
     }
 
     @Override
-    public List<RoomDto> getAll() {
-        List<RoomEntity> roomEntities = roomRepository.findAllRooms();
 
-        List<RoomDto> roomDtos = roomEntities.stream().map(roomEntity -> {
-            RoomDto roomDto = modelMapper.map(roomEntity, RoomDto.class);
-            roomDto.setTypeName(roomTypeRepository.findById(roomEntity.getRoomType()).get().getTypeName());
-            if (roomEntity.getStatusId() == 1) {
-                roomDto.setStatus("ACTIVE");
-            } else {
-                roomDto.setStatus("INACTIVE");
-            }
-            List<ServiceDetailEntity> serviceDetailEntities = roomRepository.getServiceByRoomId(roomDto.getRoomId());
-
-            StringBuilder servicesBuilder = new StringBuilder();
-
-            for (ServiceDetailEntity serviceDetailEntity : serviceDetailEntities) {
-                if (!servicesBuilder.isEmpty()) {
-                    servicesBuilder.append(", ");
-                }
-                servicesBuilder.append(serviceDetailEntity.getServiceName());
-            }
-            roomDto.setServices(servicesBuilder.toString());
-
-            return roomDto;
-        }).toList();
-        return roomDtos;
-        }
-
-    @Override
     public List<RoomHomeDto> viewRoomInHome() {
         List<Tuple> tuples = roomRepository.viewRoomInHome();
         List<RoomHomeDto> roomHomeDtos = new ArrayList<>();
@@ -99,46 +57,12 @@ public class RoomServiceImpl implements RoomService {
             roomHomeDtos.add(roomHomeDto);
         }
 
-
         return roomHomeDtos;
 
     }
 
     @Override
-    public RoomDto findById(Integer id) {
-        Optional<RoomEntity> room = roomRepository.findById(id);
-        if (room.isEmpty()) {
-            return null;
-        }
-        RoomEntity roomEntity = room.get();
-        RoomDto roomDto = modelMapper.map(roomEntity, RoomDto.class);
-        roomDto.setTypeName(roomTypeRepository.findById(roomEntity.getRoomType()).get().getTypeName());
-        roomDto.setTypeId(roomEntity.getRoomType());
-        if (roomEntity.getStatusId() == 1) {
-            roomDto.setStatus("ACTIVE");
-        } else {
-            roomDto.setStatus("INACTIVE");
-        }
-        List<ServiceDetailEntity> serviceDetailEntities = roomRepository.getServiceByRoomId(roomDto.getRoomId());
 
-        StringBuilder servicesBuilder = new StringBuilder();
-        List<String> serviceNames = new ArrayList<>();
-
-        for (ServiceDetailEntity serviceDetailEntity : serviceDetailEntities) {
-            if (!servicesBuilder.isEmpty()) {
-                servicesBuilder.append(", ");
-            }
-            servicesBuilder.append(serviceDetailEntity.getServiceName());
-            serviceNames.add(serviceDetailEntity.getServiceName());
-        }
-        roomDto.setServices(servicesBuilder.toString());
-        List<ServiceDto> serviceDtos = serviceDetailEntities.stream().map(serviceDetailEntity -> {
-            return modelMapper.map(serviceDetailEntity, ServiceDto.class);
-        }).toList();
-        roomDto.setServiceDtos(serviceDtos);
-        roomDto.setServiceNames(serviceNames);
-        return roomDto;
-    }
 
 //    @Override
 //    public void update(RoomDto roomDto) {
@@ -175,13 +99,9 @@ public class RoomServiceImpl implements RoomService {
 //        roomRepository.save(saveRoom);
 //    }
 
-    @Override
-    public void deleteById(Integer id) {
-        List<ServiceRoomEntity> serviceRoomEntities = serviceRoomRepository.findAllByRoomId(Math.toIntExact(id));
-        for (ServiceRoomEntity serviceRoomEntity : serviceRoomEntities) {
-            serviceRoomRepository.deleteByRoomIdAndServiceId(Math.toIntExact(id), serviceRoomEntity.getServiceId());
         }
         roomRepository.deleteById(id);
+        return roomDtos;
     }
 
 //    @Override
@@ -258,31 +178,4 @@ public class RoomServiceImpl implements RoomService {
 
         return roomDtos;
     }
-
-    @Override
-    public List<RoomDtoN> findRoom1(int min, int max, String roomName, List<Integer> type, int pageIndex, int pageSize) {
-        List<Tuple> tuples = roomRepository.getRoomList(min, max, roomName, type, pageIndex, pageSize);
-        List<RoomDtoN> roomDtos = new ArrayList<>();
-        List<String> imageLinks ;
-
-        for (Tuple tuple : tuples) {
-            RoomDtoN roomDto = new RoomDtoN();
-            roomDto.setRoomId(tuple.get("roomid", Integer.class));
-            roomDto.setRoomName(tuple.get("room_name", String.class));
-            roomDto.setHouseName(tuple.get("house_name", String.class));
-            roomDto.setPrice(tuple.get("price", Integer.class));
-            roomDto.setRoomType(tuple.get("type_name", String.class));
-            String imageLink = (tuple.get("images", String.class));
-            if(imageLink == null)
-            {roomDto.setRoomImages(null);}
-            else {imageLinks = Arrays.asList(imageLink.split(","));
-                roomDto.setRoomImages(imageLinks);}
-
-
-            roomDtos.add(roomDto);
-        }
-        return roomDtos;
-    }
-
-
 }

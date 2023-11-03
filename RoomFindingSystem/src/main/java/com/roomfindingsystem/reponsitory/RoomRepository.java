@@ -19,10 +19,6 @@ import java.util.List;
 @Repository
 @SpringBootApplication
 public interface RoomRepository extends JpaRepository<RoomEntity, Integer> {
-
-    @Query("select r from RoomEntity r")
-    List<RoomEntity> findAllRooms();
-
     @Query("SELECT r FROM RoomEntity r WHERE r.roomId = :roomId")
     RoomEntity getRoomById(int roomId);
 

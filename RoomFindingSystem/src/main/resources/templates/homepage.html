@@ -49,8 +49,6 @@
                                     </div>
                                     <div class="favorite-search">
                                         <span>Vị trí nổi bật</span>
-                                        <a th:href="@{/houselist(houseName='Thach That')}">Thạch Thất</a>
-                                        <a th:href="@{/houselist(houseName='Tan Xa')}">Tân Xã</a>
 
                                     </div>
 
@@ -77,7 +75,6 @@
                                         <!--end col-md-8-->
                                         <div class="col-md-4 col-sm-5">
                                             <div class="row">
-<!--                                                <div>-->
                                                 <div class="col-md-6 col-sm-6">
                                                     <div class="form-group">
                                                         <label>Tiền phòng</label>
@@ -140,7 +137,6 @@
                 </div>
                 <!--end plate-->
                 <div id="map-item" class="map height-100"></div>
-<!--                <img src="/assets/img/map.jpg" alt="">-->
             </div>
         </div>
         <!--end hero-section-->
@@ -156,12 +152,8 @@
                             <div class="item-wrapper">
                                 <div class="image" >
 <!--                                    <div class="mark-circle description" data-toggle="tooltip" data-placement="right" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis erat vel quam aliquet hendrerit semper eget elit. Aenean tincidunt ultrices bibendum. Proin nisi erat, iaculis non pulvinar a, scelerisque ut est. "><i class="fa fa-question"></i></div>-->
-<!--                                    <div class="mark-circle map" data-toggle="tooltip" data-placement="right" title="Show on map"><i class="fa fa-map-marker"></i></div>-->
-<!--                                    <div class="mark-circle top" data-toggle="tooltip" data-placement="right" title="Top accommodation"><i class="fa fa-thumbs-up"></i></div>-->
                                     <a href="" class="wrapper">
                                         <div class="gallery" >
-<!--                                            <img style="width: 273px; height: 208px;" th:src="${house.listImage[0]}">-->
-                                            <img  style="width: 273px; height: 208px;"  th:each = "image: ${house.listImage}" th:src="${image}" alt="">
 
                                         </div>
 
@@ -172,8 +164,6 @@
                                 <!--end image-->
                                 <div class="description">
                                     <div class="meta">
-<!--                                        <span><i class="fa fa-star"></i>8.9</span>-->
-                                        <span ><i class="fa fa-bed"></i><span th:text="${'Còn '+house.countEmptyRooms+'/'+house.countRooms+' phòng'}"></span></span>
                                     </div>
                                     <div class="info">
                                         <figure class="label label-info"  th:text = "${house.typeHouse}" ></figure>
@@ -191,271 +181,39 @@
                         </div>
                         <!--end item-->
                     </div>
-                    <div class="col-md-6 col-sm-12">
-                        <a href="#" class="advertising-banner equal-height">
-                            <span class="banner-badge">Advertising</span>
-                            <img src="/assets/img/ad-banner-01.jpg" alt="">
-                        </a>
-                    </div>
-                    </div>
-                <a th:href="@{/houselist}" class="pull-right">View All</a>
 
                 </div>
-                <!--end row-->
             </div>
-            <!--end container-->
         </div>
-        <!--end block-->
-
-        <div class="block">
-            <div class="container">
-                <div class="title">
-                    <h2 class="pull-left">Phòng trọ nổi bật</h2>
-                </div>
-                <!--end title-->
-                <div class="row">
-                    <div class="col-md-9 col-sm-8" >
-                        <div class="row">
-                            <div class="col-md-3 col-sm-6" th:each = "room: ${rooms}">
-                                <a th:href = "@{/room/}+${room.roomId}" class="item small">
-                                    <div class="image">
-                                        <div class="info">
-                                            <figure class="label label-info" th:text = "${room.roomType}">Hotel</figure>
-                                            <aside>
-                                                <h3 th:text = "${room.houseName}">Celestial Hotel & Spa</h3>
-                                                <figure class="location" th:text = "${room.addressDetail+', '+room.ward+', '+room.district+', '+room.province}" ></figure>
-                                            </aside>
-                                        </div>
-                                        <div class="wrapper">
-<!--                                            <div class="gallery">-->
-                                            <img style="" th:each = "image : ${room.roomImageLink}" th:src="${image}" alt="">
-<!--                                            </div>-->
-                                        </div>
-                                    </div>
-                                    <!--end image-->
-                                    <div class="description">
-                                        <div class="meta">
-                                            <span th:text="${'Giá tiền: '+room.price+'d'}"></span>
-                                            <span th:text="${room.area}+'m2'"></span>
-                                        </div>
 
                                     </div>
-                                    <!--end description-->
-                                </a>
-                                <!--end item-->
-                            </div>
+                                    </div>
 
+                                    </div>
                         </div>
-                        <!--end row-->
-                        <a th:href="@{/RoomList}" class="pull-right">View All</a>
-                    </div>
-                    <div class="col-md-3 col-sm-4">
-                        <a href="#" class="advertising-banner">
-                            <img src="assets/img/ad-banner-02.jpg" alt="">
-                        </a>
                     </div>
                 </div>
-            </div>
-            <!--end container-->
-        </div>
-        <!--end block-->
-
-        <div class="block">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-4 col-sm-4">
-                        <div class="feature">
-                            <aside class="circle">
-                                <i class="icon_house_alt"></i>
-                            </aside>
-                            <figure>
-                                <h3>200+ Accommodations</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum luctus posuere mattis.
-                                    Donec id nulla nisl.
-                                </p>
-                            </figure>
-                        </div>
-                        <!--end feature-->
-                    </div>
-                    <!--end col-md-4-->
-                    <div class="col-md-4 col-sm-4">
-                        <div class="feature">
-                            <aside class="circle">
-                                <i class="icon_box-checked"></i>
-                            </aside>
-                            <figure>
-                                <h3>Easy Booking System</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum luctus posuere mattis.
-                                    Donec id nulla nisl.
-                                </p>
-                            </figure>
-                        </div>
-                        <!--end feature-->
-                    </div>
-                    <!--end col-md-4-->
-                    <div class="col-md-4 col-sm-4">
-                        <div class="feature">
-                            <aside class="circle">
-                                <i class="icon_headphones"></i>
-                            </aside>
-                            <figure>
-                                <h3>Great Support</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum luctus posuere mattis.
-                                    Donec id nulla nisl.
-                                </p>
-                            </figure>
-                        </div>
-                        <!--end feature-->
-                    </div>
-                    <!--end col-md-4-->
-                </div>
-                <!--end row-->
-            </div>
-            <!--end container-->
-            <div class="space"></div>
-        </div>
-        <!--end block-->
-
-        <div class="block">
-            <div class="container">
-                <div class="title">
-                    <h2 class="center">Có thể bạn muốn xem</h2>
-                </div>
-                <!--end title-->
-                <div class="gallery-carousel" >
-                    <div class="gallery-item" th:each = "slider: ${sliders}">
-                        <a href=""><div class="image"><img th:src="${slider.imgLink}" alt=""></div></a>
-                        <div class="description">
-<!--                            <a href=""><h3 th:text = "${slider.content}"></h3></a>-->
-<!--                            <figure th:text = "${slider.content}">Austria</figure>-->
-                            <p th:text = "${slider.title}"></p>
-                            <a href="" class="btn btn-default btn-small btn-framed btn-rounded">More</a>
-                        </div>
-                    </div>
-
-                </div>
-                <!--end gallery-carousel-->
-            </div>
-            <!--end container-->
-            <div class="bg opacity-30">
-                <img src="/assets/img/bg-map.jpg" alt="">
             </div>
         </div>
-        <!--end block-->
 
-<!--        <div class="container">-->
-<!--            <div class="block">-->
-<!--                <form class="marketing-form">-->
-<!--                    <div class="row">-->
-<!--                        <div class="col-md-10 col-md-offset-1">-->
-<!--                            <div class="form-group-inline vertical-align-middle no-margin">-->
-<!--                                <div class="form-group">-->
-<!--                                    <h3 class="font-color-white no-margin"> Save up to 50% off your next trip</h3>-->
-<!--                                    <p class="font-color-white no-margin">Secret Deals – for our subscribers only</p>-->
-<!--                                </div>-->
-<!--                                <div class="form-group width-50">-->
-<!--                                    <input type="email" class="form-control input-dark" name="location" placeholder="Your email">-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </form>-->
-<!--                <div class="bg color default"></div>-->
-<!--            </div>-->
-<!--        </div>-->
-        <!--end block-->
+                    </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-<!--        <div class="block">-->
-<!--            <div class="container">-->
-<!--                <div class="title">-->
-<!--                    <h2>Khu vực nổi bật</h2>-->
-<!--                </div>-->
-<!--                &lt;!&ndash;end title&ndash;&gt;-->
-<!--                <div class="grid masonry">-->
-<!--&lt;!&ndash;                    <div class="grid-item">&ndash;&gt;-->
-<!--&lt;!&ndash;                        <a href="#">&ndash;&gt;-->
-<!--&lt;!&ndash;                            <h3>Thạch Hòa</h3>&ndash;&gt;-->
-<!--&lt;!&ndash;                            <img src="assets/img/items/pick-01.jpg" alt="">&ndash;&gt;-->
-<!--&lt;!&ndash;                        </a>&ndash;&gt;-->
-<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
-<!--                    <div class="grid-item">-->
-<!--                        <a href="#">-->
-<!--                            <h3>Tân Xã</h3>-->
-<!--                            <img src="assets/img/items/pick-02.jpg" alt="">-->
-<!--                        </a>-->
-<!--                    </div>-->
-<!--                    <div class="grid-item grid-item&#45;&#45;width2">-->
-<!--                        <a href="#">-->
-<!--                            <h3>Thạch Hòa</h3>-->
-<!--                            <img src="assets/img/items/pick-03.jpg" alt="">-->
-<!--                        </a>-->
-<!--                    </div>-->
-<!--&lt;!&ndash;                    <div class="grid-item grid-item&#45;&#45;width2">&ndash;&gt;-->
-<!--&lt;!&ndash;                        <a href="#">&ndash;&gt;-->
-<!--&lt;!&ndash;                            <h3></h3>&ndash;&gt;-->
-<!--&lt;!&ndash;                            <img src="assets/img/items/pick-04.jpg" alt="">&ndash;&gt;-->
-<!--&lt;!&ndash;                        </a>&ndash;&gt;-->
-<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
-<!--                    <div class="grid-item">-->
-<!--                        <a href="#">-->
-<!--                            <h3>Tuscany</h3>-->
-<!--                            <img src="assets/img/items/pick-05.jpg" alt="">-->
-<!--                        </a>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-        <!--end block-->
+                </div>
+                        </div>
+                    </div>
 
-<!--        <div class="block">-->
-<!--            <div class="container">-->
-<!--                <div class="title">-->
-<!--                    <h2>Thuê phòng trọ</h2>-->
-<!--                </div>-->
-<!--                &lt;!&ndash;end title&ndash;&gt;-->
-<!--               <ul class="list-links">-->
-<!--                   <li><a href="#">Tenerife<span>23</span></a></li>-->
-<!--                   <li><a href="#">Al Madinah<span>12</span></a></li>-->
-<!--                   <li><a href="#">Koh Samui<span>76</span></a></li>-->
-<!--                   <li><a href="#">Cotswolds<span>52</span></a></li>-->
-
-<!--               </ul>-->
-<!--                &lt;!&ndash;end list-links&ndash;&gt;-->
-<!--            </div>-->
-<!--            &lt;!&ndash;end container&ndash;&gt;-->
-<!--        </div>-->
-        <!--end block-->
-
+                </div>
+            </div>
+        </div>
         <div class="container">
-            <div class="block">
-                <div class="title">
-                    <h2>Reviews</h2>
-                    <div class="row" >
-                        <div class="col-md-3 col-sm-3" th:each = "feedback : ${feedbacks}">
-                            <div class="review-single">
-                                <a href="" th:text = "${feedback.houseName}"><h3>White Doe Inn</h3></a>
-                                <figure class="location" th:text = "${feedback.addressName+', '+feedback.wardName+', '+feedback.districtName+', '+feedback.provinceName}"></figure>
-                                <div class="rating"><i class="fa fa-user" th:text = "${' '+feedback.lastName+' '+feedback.firstName}"></i></div>
-                                <p th:text = "${feedback.content}">
-                                </p>
-                                <a href="housedetail.html#reviews" class="link icon">Full Review<i class="arrow_right"></i></a>
-                            </div>
-                            <!--end review-->
-                        </div>
-
-                    </div>
-                    <!--end row-->
-                </div>
-                <!--end title-->
-                <div class="bg color white"></div>
             </div>
-            <!--end container-->
         </div>
-        <!--end block-->
     </div>
-    <!--end page-content-->
-
-<div th:replace="~{footer :: footerSection}"></div>
 <!--end page-wrapper-->
 <a href="#page-header" class="to-top scroll" data-show-after-scroll="600"><i class="arrow_up"></i></a>
 
@@ -483,9 +241,7 @@
 <![endif]-->
 
 <script>
-
     var element = "map-item";
     var useAjax = true;
-    bigMap( element, useAjax);
 </script>
 </body>

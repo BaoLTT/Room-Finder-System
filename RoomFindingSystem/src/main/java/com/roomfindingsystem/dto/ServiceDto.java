@@ -10,7 +10,6 @@ import lombok.*;
 @AllArgsConstructor
 @Data
 @ToString
-@Builder
 public class ServiceDto {
    private String serviceName;
    private String description;
