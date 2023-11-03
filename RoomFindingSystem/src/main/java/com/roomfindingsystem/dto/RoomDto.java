@@ -1,7 +1,5 @@
 package com.roomfindingsystem.dto;
 
-import com.roomfindingsystem.entity.RoomImagesEntity;
-import com.roomfindingsystem.entity.ServiceDetailEntity;
 import lombok.*;
 
 import java.util.List;

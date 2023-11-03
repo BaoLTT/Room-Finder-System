@@ -1,12 +1,9 @@
-package com.roomfindingsystem.reponsitory;
+package com.roomfindingsystem.repository;
 
 import com.roomfindingsystem.entity.RoomEntity;
 import com.roomfindingsystem.entity.RoomImagesEntity;
 import com.roomfindingsystem.entity.ServiceDetailEntity;
 
-
-
-import com.roomfindingsystem.dto.RoomHomeVo;
 
 import jakarta.persistence.Tuple;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -19,7 +16,6 @@ import java.util.List;
 @Repository
 @SpringBootApplication
 public interface RoomRepository extends JpaRepository<RoomEntity, Integer> {
-
     @Query("select r from RoomEntity r")
     List<RoomEntity> findAllRooms();
 

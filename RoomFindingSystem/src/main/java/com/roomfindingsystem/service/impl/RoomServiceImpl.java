@@ -1,21 +1,25 @@
 package com.roomfindingsystem.service.impl;
 
-import com.roomfindingsystem.entity.*;
-import com.roomfindingsystem.reponsitory.*;
+import com.roomfindingsystem.dto.*;
+import com.roomfindingsystem.entity.RoomEntity;
+import com.roomfindingsystem.entity.RoomImagesEntity;
+import com.roomfindingsystem.entity.ServiceDetailEntity;
+import com.roomfindingsystem.entity.ServiceRoomEntity;
+import com.roomfindingsystem.repository.RoomRepository;
+import com.roomfindingsystem.repository.RoomTypeRepository;
+import com.roomfindingsystem.repository.ServiceDetailRepository;
+import com.roomfindingsystem.repository.ServiceRoomRepository;
 import com.roomfindingsystem.service.RoomService;
 
-import com.roomfindingsystem.dto.*;
-import jakarta.transaction.Transactional;
+import jakarta.persistence.Tuple;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.*;
 
 @Service
 @AllArgsConstructor
-@Transactional
 public class RoomServiceImpl implements RoomService {
 
     private final RoomRepository roomRepository;
@@ -39,7 +43,7 @@ public class RoomServiceImpl implements RoomService {
 
     @Override
     public List<ServiceDetailEntity> getServiceByRoomId(int roomId) {
-		return roomRepository.getServiceByRoomId(roomId);
+        return roomRepository.getServiceByRoomId(roomId);
     }
 
     @Override
@@ -69,7 +73,7 @@ public class RoomServiceImpl implements RoomService {
             return roomDto;
         }).toList();
         return roomDtos;
-        }
+    }
 
     @Override
     public List<RoomHomeDto> viewRoomInHome() {
@@ -139,40 +143,40 @@ public class RoomServiceImpl implements RoomService {
         return roomDto;
     }
 
-    @Override
-    public void update(RoomDto roomDto) {
-        RoomEntity room = roomRepository.findById(roomDto.getRoomId()).get();
-
-        RoomEntity saveRoom = new RoomEntity();
-
-        saveRoom.setRoomId(room.getRoomId());
-        saveRoom.setArea(roomDto.getArea());
-        saveRoom.setCreatedDate(room.getCreatedDate());
-        saveRoom.setCreatedBy(room.getCreatedBy());
-        saveRoom.setDescription(roomDto.getDescription());
-        saveRoom.setHouseId(room.getHouseId());
-        saveRoom.setLastModifiedBy(room.getLastModifiedBy());
-        saveRoom.setLastModifiedDate(LocalDate.now());
-        saveRoom.setPrice(roomDto.getPrice());
-        saveRoom.setRoomName(roomDto.getRoomName());
-        saveRoom.setRoomType(room.getRoomType());
-        if (Objects.equals(roomDto.getStatus(), "ACTIVE")) {
-            saveRoom.setStatusId(1);
-        } else {
-            saveRoom.setStatusId(0);
-        }
-        List<ServiceRoomEntity> serviceRoomEntities = serviceRoomRepository.findAllByRoomId(roomDto.getRoomId());
-        for (ServiceRoomEntity serviceRoomEntity : serviceRoomEntities) {
-            serviceRoomRepository.deleteByRoomIdAndServiceId(roomDto.getRoomId(), serviceRoomEntity.getServiceId());
-        }
-        for (ServiceDto serviceDto : roomDto.getServiceDtos()) {
-            ServiceRoomEntity serviceRoomEntity = new ServiceRoomEntity();
-            serviceRoomEntity.setServiceId(serviceDto.getServiceId());
-            serviceRoomEntity.setRoomId(saveRoom.getRoomId());
-            serviceRoomRepository.save(serviceRoomEntity);
-        }
-        roomRepository.save(saveRoom);
-    }
+//    @Override
+//    public void update(RoomDto roomDto) {
+//        RoomEntity room = roomRepository.findById(roomDto.getRoomId()).get();
+//
+//        RoomEntity saveRoom = new RoomEntity();
+//
+//        saveRoom.setRoomId(room.getRoomId());
+//        saveRoom.setArea(roomDto.getArea());
+//        saveRoom.setCreatedDate(room.getCreatedDate());
+//        saveRoom.setCreatedBy(room.getCreatedBy());
+//        saveRoom.setDescription(roomDto.getDescription());
+//        saveRoom.setHouseId(room.getHouseId());
+//        saveRoom.setLastModifiedBy(room.getLastModifiedBy());
+//        saveRoom.setLastModifiedDate(LocalDate.now());
+//        saveRoom.setPrice(roomDto.getPrice());
+//        saveRoom.setRoomName(roomDto.getRoomName());
+//        saveRoom.setRoomType(room.getRoomType());
+//        if (Objects.equals(roomDto.getStatus(), "ACTIVE")) {
+//            saveRoom.setStatusId(1);
+//        } else {
+//            saveRoom.setStatusId(0);
+//        }
+//        List<ServiceRoomEntity> serviceRoomEntities = serviceRoomRepository.findAllByRoomId(roomDto.getRoomId());
+//        for (ServiceRoomEntity serviceRoomEntity : serviceRoomEntities) {
+//            serviceRoomRepository.deleteByRoomIdAndServiceId(roomDto.getRoomId(), serviceRoomEntity.getServiceId());
+//        }
+//        for (ServiceDto serviceDto : roomDto.getServiceDtos()) {
+//            ServiceRoomEntity serviceRoomEntity = new ServiceRoomEntity();
+//            serviceRoomEntity.setServiceId(serviceDto.getServiceId());
+//            serviceRoomEntity.setRoomId(saveRoom.getRoomId());
+//            serviceRoomRepository.save(serviceRoomEntity);
+//        }
+//        roomRepository.save(saveRoom);
+//    }
 
     @Override
     public void deleteById(Integer id) {
@@ -183,34 +187,34 @@ public class RoomServiceImpl implements RoomService {
         roomRepository.deleteById(id);
     }
 
-    @Override
-    public void save(RoomDto roomDto) {
-        RoomEntity saveRoom = new RoomEntity();
-        saveRoom.setArea(roomDto.getArea());
-        saveRoom.setCreatedDate(LocalDate.now());
-        saveRoom.setCreatedBy(1);
-        saveRoom.setDescription(roomDto.getDescription());
-        saveRoom.setHouseId(1);
-        saveRoom.setLastModifiedBy(1);
-        saveRoom.setLastModifiedDate(LocalDate.now());
-        saveRoom.setPrice(roomDto.getPrice());
-        saveRoom.setRoomName(roomDto.getRoomName());
-        saveRoom.setRoomType(roomDto.getTypeId());
-        if (Objects.equals(roomDto.getStatus(), "ACTIVE")) {
-            saveRoom.setStatusId(1);
-        } else {
-            saveRoom.setStatusId(0);
-        }
-
-        roomRepository.save(saveRoom);
-
-        for (ServiceDto serviceDto : roomDto.getServiceDtos()) {
-            ServiceRoomEntity serviceRoomEntity = new ServiceRoomEntity();
-            serviceRoomEntity.setServiceId(serviceDto.getServiceId());
-            serviceRoomEntity.setRoomId(saveRoom.getRoomId());
-            serviceRoomRepository.save(serviceRoomEntity);
-        }
-    }
+//    @Override
+//    public void save(RoomDto roomDto) {
+//        RoomEntity saveRoom = new RoomEntity();
+//        saveRoom.setArea(roomDto.getArea());
+//        saveRoom.setCreatedDate(LocalDate.now());
+//        saveRoom.setCreatedBy(1);
+//        saveRoom.setDescription(roomDto.getDescription());
+//        saveRoom.setHouseId(1);
+//        saveRoom.setLastModifiedBy(1);
+//        saveRoom.setLastModifiedDate(LocalDate.now());
+//        saveRoom.setPrice(roomDto.getPrice());
+//        saveRoom.setRoomName(roomDto.getRoomName());
+//        saveRoom.setRoomType(roomDto.getTypeId());
+//        if (Objects.equals(roomDto.getStatus(), "ACTIVE")) {
+//            saveRoom.setStatusId(1);
+//        } else {
+//            saveRoom.setStatusId(0);
+//        }
+//
+//        roomRepository.save(saveRoom);
+//
+//        for (ServiceDto serviceDto : roomDto.getServiceDtos()) {
+//            ServiceRoomEntity serviceRoomEntity = new ServiceRoomEntity();
+//            serviceRoomEntity.setServiceId(serviceDto.getServiceId());
+//            serviceRoomEntity.setRoomId(saveRoom.getRoomId());
+//            serviceRoomRepository.save(serviceRoomEntity);
+//        }
+//    }
 
     @Override
     public int countRoom() {
@@ -258,5 +262,28 @@ public class RoomServiceImpl implements RoomService {
         return roomDtos;
     }
 
+    @Override
+    public List<RoomDtoN> findRoom1(int min, int max, String roomName, List<Integer> type, int pageIndex, int pageSize) {
+        List<Tuple> tuples = roomRepository.getRoomList(min, max, roomName, type, pageIndex, pageSize);
+        List<RoomDtoN> roomDtos = new ArrayList<>();
+        List<String> imageLinks ;
 
+        for (Tuple tuple : tuples) {
+            RoomDtoN roomDto = new RoomDtoN();
+            roomDto.setRoomId(tuple.get("roomid", Integer.class));
+            roomDto.setRoomName(tuple.get("room_name", String.class));
+            roomDto.setHouseName(tuple.get("house_name", String.class));
+            roomDto.setPrice(tuple.get("price", Integer.class));
+            roomDto.setRoomType(tuple.get("type_name", String.class));
+            String imageLink = (tuple.get("images", String.class));
+            if(imageLink == null)
+            {roomDto.setRoomImages(null);}
+            else {imageLinks = Arrays.asList(imageLink.split(","));
+                roomDto.setRoomImages(imageLinks);}
+
+
+            roomDtos.add(roomDto);
+        }
+        return roomDtos;
+    }
 }

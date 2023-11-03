@@ -1,5 +1,6 @@
 package com.roomfindingsystem.controller;
 
+import com.roomfindingsystem.dto.RoomDtoN;
 import com.roomfindingsystem.service.RoomService;
 
 import com.roomfindingsystem.dto.RoomDto;
@@ -32,7 +33,7 @@ public class RoomListController {
         int totalRoom = roomService.countRoom();
         int offset = (pageIndex -1)*pageSize;
         int totalPage = (int) Math.ceil((double) totalRoom / pageSize);
-        List<RoomDto>  page= roomService.findRoom1(0,6000000,roomName,listType,offset, pageSize);
+        List<RoomDtoN>  page= roomService.findRoom1(0,6000000,roomName,listType,offset, pageSize);
         if(price.equals("1")){
             page =roomService.findRoom1(0,2000000,roomName,listType,offset, pageSize);
         }

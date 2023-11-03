@@ -1,11 +1,12 @@
 package com.roomfindingsystem.controller;
 
 
+import com.roomfindingsystem.dto.RoomDto;
+import com.roomfindingsystem.dto.RoomDtoN;
+import com.roomfindingsystem.dto.ServiceDto;
 import com.roomfindingsystem.entity.RoomEntity;
 import com.roomfindingsystem.entity.RoomImagesEntity;
 import com.roomfindingsystem.service.*;
-import com.roomfindingsystem.vo.RoomDto;
-import com.roomfindingsystem.vo.ServiceDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -57,22 +58,22 @@ public class RoomController {
         return "edit-room";
     }
 
-    @PostMapping("/update")
-    public String update(@ModelAttribute(name = "room") RoomDto roomDto) {
-        List<ServiceDto> serviceDtos = new ArrayList<>();
-        List<String> selects = roomDto.getServiceNames();
-        for (String serviceName : selects) {
-            ServiceDto serviceDto = new ServiceDto();
-            serviceDto.setServiceName(serviceName);
-            System.out.println(serviceName);
-            serviceDto.setServiceId(serviceDetailService.findByName(serviceName).getServiceId());
-            serviceDtos.add(serviceDto);
-        }
-        System.out.println(serviceDtos);
-        roomDto.setServiceDtos(serviceDtos);
-        roomService.update(roomDto);
-        return "redirect:/room/listRoomPage";
-    }
+//    @PostMapping("/update")
+//    public String update(@ModelAttribute(name = "room") RoomDto roomDto) {
+//        List<ServiceDto> serviceDtos = new ArrayList<>();
+//        List<String> selects = roomDto.getServiceNames();
+//        for (String serviceName : selects) {
+//            ServiceDto serviceDto = new ServiceDto();
+//            serviceDto.setServiceName(serviceName);
+//            System.out.println(serviceName);
+//            serviceDto.setServiceId(serviceDetailService.findByName(serviceName).getServiceId());
+//            serviceDtos.add(serviceDto);
+//        }
+//        System.out.println(serviceDtos);
+//        roomDto.setServiceDtos(serviceDtos);
+//        roomService.update(roomDto);
+//        return "redirect:/room/listRoomPage";
+//    }
 
     @GetMapping("/deleteRoom/{id}")
     public String delete(@PathVariable("id") Integer id, Model model){
@@ -88,20 +89,20 @@ public class RoomController {
         return "insert-room";
     }
 
-    @PostMapping("/save")
-    public String save(@ModelAttribute(name = "room") RoomDto roomDto) {
-        List<ServiceDto> serviceDtos = new ArrayList<>();
-        List<String> selects = roomDto.getServiceNames();
-        for (String serviceName : selects) {
-            ServiceDto serviceDto = new ServiceDto();
-            serviceDto.setServiceName(serviceName);
-            System.out.println(serviceName);
-            serviceDto.setServiceId(serviceDetailService.findByName(serviceName).getServiceId());
-            serviceDtos.add(serviceDto);
-        }
-        System.out.println(serviceDtos);
-        roomDto.setServiceDtos(serviceDtos);
-        roomService.save(roomDto);
-        return "redirect:/room/listRoomPage";
-            }
+//    @PostMapping("/save")
+//    public String save(@ModelAttribute(name = "room") RoomDto roomDto) {
+//        List<ServiceDto> serviceDtos = new ArrayList<>();
+//        List<String> selects = roomDto.getServiceNames();
+//        for (String serviceName : selects) {
+//            ServiceDto serviceDto = new ServiceDto();
+//            serviceDto.setServiceName(serviceName);
+//            System.out.println(serviceName);
+//            serviceDto.setServiceId(serviceDetailService.findByName(serviceName).getServiceId());
+//            serviceDtos.add(serviceDto);
+//        }
+//        System.out.println(serviceDtos);
+//        roomDto.setServiceDtos(serviceDtos);
+//        roomService.save(roomDto);
+//        return "redirect:/room/listRoomPage";
+//            }
 }

@@ -1,8 +1,8 @@
 package com.roomfindingsystem.service.impl;
 
-import com.roomfindingsystem.reponsitory.ServiceRoomRepository;
+import com.roomfindingsystem.repository.ServiceRoomRepository;
 import com.roomfindingsystem.service.ServiceRoomService;
-import com.roomfindingsystem.vo.ServiceDto;
+import com.roomfindingsystem.dto.ServiceDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
