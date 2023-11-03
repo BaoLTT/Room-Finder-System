@@ -11,4 +11,11 @@ public interface ReportRepository extends JpaRepository<ReportEntity, Integer> {
     //admin_dashboard
     @Query("select count(*) from ReportEntity ")
     int countReports();
+
+    @Query("select count(*) from ReportEntity r where r.reportStatusid=1")
+    int countProcessingReports();
+
+    @Query("select count(*) from ReportEntity r where r.reportStatusid=2")
+    int countProcessedReports();
+
 }

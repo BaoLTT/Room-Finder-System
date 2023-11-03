@@ -2,72 +2,78 @@ package com.roomfindingsystem.entity;
 
 import jakarta.persistence.*;
 
-import java.sql.Timestamp;
-import java.time.LocalDate;
+import java.sql.Date;
 import java.util.Objects;
 
 @Entity
-@jakarta.persistence.Table(name = "report", schema = "room_finding_system", catalog = "")
+@Table(name = "report", schema = "room_finding_system", catalog = "")
 public class ReportEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @jakarta.persistence.Column(name = "ReportID")
-    private int reportId;
-
-    public int getReportId() {
-        return reportId;
-    }
-
-    public void setReportId(int reportId) {
-        this.reportId = reportId;
-    }
-
+    @Column(name = "reportid")
+    private int reportid;
     @Basic
-    @Column(name = "Solved_Date")
-    private LocalDate solvedDate;
-
-    public LocalDate getSolvedDate() {
-        return solvedDate;
-    }
-
-    public void setSolvedDate(LocalDate solvedDate) {
-        this.solvedDate = solvedDate;
-    }
-
+    @Column(name = "report_description")
+    private String reportDescription;
     @Basic
-    @Column(name = "Created_Date")
-    private LocalDate createdDate;
+    @Column(name = "created_date")
+    private Date createdDate;
+    @Basic
+    @Column(name = "report_statusid")
+    private Integer reportStatusid;
+    @Basic
+    @Column(name = "solved_date")
+    private Date solvedDate;
+    @Basic
+    @Column(name = "userid")
+    private Integer userid;
 
-    public LocalDate getCreatedDate() {
+    public int getReportid() {
+        return reportid;
+    }
+
+    public void setReportid(int reportid) {
+        this.reportid = reportid;
+    }
+
+    public String getReportDescription() {
+        return reportDescription;
+    }
+
+    public void setReportDescription(String reportDescription) {
+        this.reportDescription = reportDescription;
+    }
+
+    public Date getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(LocalDate createdDate) {
+    public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
     }
 
-    @Basic
-    @Column(name = "Report_StatusID")
-    private Integer reportStatusId;
-
-    public Integer getReportStatusId() {
-        return reportStatusId;
+    public Integer getReportStatusid() {
+        return reportStatusid;
     }
 
-    public void setReportStatusId(Integer reportStatusId) {
-        this.reportStatusId = reportStatusId;
+    public void setReportStatusid(Integer reportStatusid) {
+        this.reportStatusid = reportStatusid;
     }
 
-    @Basic
-    @Column(name = "UserID")
-    private int userId;
-
-    public int getUserId() {
-        return userId;
+    public Date getSolvedDate() {
+        return solvedDate;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setSolvedDate(Date solvedDate) {
+        this.solvedDate = solvedDate;
+    }
+
+    public Integer getUserid() {
+        return userid;
+    }
+
+    public void setUserid(Integer userid) {
+        this.userid = userid;
     }
 
     @Override
@@ -75,11 +81,11 @@ public class ReportEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ReportEntity that = (ReportEntity) o;
-        return reportId == that.reportId && userId == that.userId && Objects.equals(solvedDate, that.solvedDate) && Objects.equals(createdDate, that.createdDate) && Objects.equals(reportStatusId, that.reportStatusId);
+        return reportid == that.reportid && Objects.equals(reportDescription, that.reportDescription) && Objects.equals(createdDate, that.createdDate) && Objects.equals(reportStatusid, that.reportStatusid) && Objects.equals(solvedDate, that.solvedDate) && Objects.equals(userid, that.userid);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(reportId, solvedDate, createdDate, reportStatusId, userId);
+        return Objects.hash(reportid, reportDescription, createdDate, reportStatusid, solvedDate, userid);
     }
 }

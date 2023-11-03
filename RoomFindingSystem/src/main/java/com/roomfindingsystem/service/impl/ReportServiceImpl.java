@@ -16,4 +16,14 @@ public class ReportServiceImpl implements ReportService {
     public int countReports() {
         return reportRepository.countReports();
     }
+
+    @Override
+    public int countProcessingReports() {
+        return reportRepository.countProcessingReports();
+    }
+
+    @Override
+    public int countProcessedReports() {
+        return reportRepository.countProcessedReports();
+    }
 }
