@@ -142,7 +142,7 @@ public class RoomEntity {
         return statusId;
     }
 
-    public void setStatusid(Integer statusid) {
+    public void setStatusId(Integer statusid) {
         this.statusId = statusid;
     }
 

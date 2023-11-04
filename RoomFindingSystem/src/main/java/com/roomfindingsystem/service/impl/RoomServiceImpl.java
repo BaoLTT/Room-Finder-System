@@ -63,7 +63,7 @@ public class RoomServiceImpl implements RoomService {
         List<RoomDto> roomDtos = roomEntities.stream().map(roomEntity -> {
             RoomDto roomDto = modelMapper.map(roomEntity, RoomDto.class);
             roomDto.setTypeName(roomTypeRepository.findById(roomEntity.getRoomType()).get().getTypeName());
-            if (roomEntity.getStatusId() == 1) {
+            if (roomEntity.getStatusid() == 1) {
                 roomDto.setStatus("ACTIVE");
             } else {
                 roomDto.setStatus("INACTIVE");
@@ -128,7 +128,7 @@ public class RoomServiceImpl implements RoomService {
         RoomDto roomDto = modelMapper.map(roomEntity, RoomDto.class);
         roomDto.setTypeName(roomTypeRepository.findById(roomEntity.getRoomType()).get().getTypeName());
         roomDto.setTypeId(roomEntity.getRoomType());
-        if (roomEntity.getStatusId() == 1) {
+        if (roomEntity.getStatusid() == 1) {
             roomDto.setStatus("ACTIVE");
         } else {
             roomDto.setStatus("INACTIVE");
@@ -310,7 +310,7 @@ public class RoomServiceImpl implements RoomService {
         RoomEntity room = roomRepository.findById(roomId).orElse(null); // Thay YourEntity và yourRepository bằng entity và repository thực tế của bạn
         if (room != null) {
             room.setStatusUpdateDate(LocalDate.now());
-            room.setStatusid(statusId);
+            room.setStatusId(statusId);
             roomRepository.save(room);
         }
     }
