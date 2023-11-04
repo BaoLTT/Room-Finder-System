@@ -105,8 +105,16 @@ public class HouseServiceImpl implements HouseService {
         return houseRepository.findHouseByRoomId(roomId);
     }
 
+    @Override
+
+    public int countHousesInAdmin() {
+        return houseRepository.countHouses();
+    }
+
 
     @Override
+
+
     public List<HouseHomeDto> viewHouseInHome() {
         List<Tuple> tuples = houseRepository.viewHouseInHome();
 

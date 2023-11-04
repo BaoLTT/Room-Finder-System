@@ -4,6 +4,7 @@ import com.roomfindingsystem.dto.*;
 import com.roomfindingsystem.entity.RoomEntity;
 import com.roomfindingsystem.entity.RoomImagesEntity;
 import com.roomfindingsystem.entity.ServiceDetailEntity;
+
 import com.roomfindingsystem.entity.ServiceRoomEntity;
 import com.roomfindingsystem.repository.RoomRepository;
 import com.roomfindingsystem.repository.RoomTypeRepository;
@@ -11,10 +12,19 @@ import com.roomfindingsystem.repository.ServiceDetailRepository;
 import com.roomfindingsystem.repository.ServiceRoomRepository;
 import com.roomfindingsystem.service.RoomService;
 
+
 import jakarta.persistence.Tuple;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+
+import java.util.Arrays;
+import java.util.List;
 
 import java.util.*;
 
@@ -108,6 +118,7 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
+
     public RoomDto findById(Integer id) {
         Optional<RoomEntity> room = roomRepository.findById(id);
         if (room.isEmpty()) {
@@ -142,6 +153,8 @@ public class RoomServiceImpl implements RoomService {
         roomDto.setServiceNames(serviceNames);
         return roomDto;
     }
+
+
 
 //    @Override
 //    public void update(RoomDto roomDto) {
@@ -187,34 +200,6 @@ public class RoomServiceImpl implements RoomService {
         roomRepository.deleteById(id);
     }
 
-//    @Override
-//    public void save(RoomDto roomDto) {
-//        RoomEntity saveRoom = new RoomEntity();
-//        saveRoom.setArea(roomDto.getArea());
-//        saveRoom.setCreatedDate(LocalDate.now());
-//        saveRoom.setCreatedBy(1);
-//        saveRoom.setDescription(roomDto.getDescription());
-//        saveRoom.setHouseId(1);
-//        saveRoom.setLastModifiedBy(1);
-//        saveRoom.setLastModifiedDate(LocalDate.now());
-//        saveRoom.setPrice(roomDto.getPrice());
-//        saveRoom.setRoomName(roomDto.getRoomName());
-//        saveRoom.setRoomType(roomDto.getTypeId());
-//        if (Objects.equals(roomDto.getStatus(), "ACTIVE")) {
-//            saveRoom.setStatusId(1);
-//        } else {
-//            saveRoom.setStatusId(0);
-//        }
-//
-//        roomRepository.save(saveRoom);
-//
-//        for (ServiceDto serviceDto : roomDto.getServiceDtos()) {
-//            ServiceRoomEntity serviceRoomEntity = new ServiceRoomEntity();
-//            serviceRoomEntity.setServiceId(serviceDto.getServiceId());
-//            serviceRoomEntity.setRoomId(saveRoom.getRoomId());
-//            serviceRoomRepository.save(serviceRoomEntity);
-//        }
-//    }
 
     @Override
     public int countRoom() {
@@ -263,12 +248,12 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
+
     public List<RoomDtoN> findRoom1(int min, int max, String roomName, List<Integer> type, int pageIndex, int pageSize) {
         List<Tuple> tuples = roomRepository.getRoomList(min, max, roomName, type, pageIndex, pageSize);
         List<RoomDtoN> roomDtos = new ArrayList<>();
         List<String> imageLinks ;
-
-        for (Tuple tuple : tuples) {
+       for (Tuple tuple : tuples) {
             RoomDtoN roomDto = new RoomDtoN();
             roomDto.setRoomId(tuple.get("roomid", Integer.class));
             roomDto.setRoomName(tuple.get("room_name", String.class));
@@ -286,4 +271,50 @@ public class RoomServiceImpl implements RoomService {
         }
         return roomDtos;
     }
+
+    public List<RoomAdminDashboardDto> getRoomStatusInAdminDashboard() {
+        List<Tuple> tuples = roomRepository.getRoomStatusInAdminDashboard();
+        List<RoomAdminDashboardDto> list = new ArrayList<>();
+        for(Tuple tuple: tuples){
+            RoomAdminDashboardDto roomAdminDashboardDto = new RoomAdminDashboardDto();
+            roomAdminDashboardDto.setRoomId(tuple.get("RoomId", Integer.class));
+            roomAdminDashboardDto.setHouseName(tuple.get("House_Name", String.class));
+            roomAdminDashboardDto.setRoomName(tuple.get("Room_Name", String.class));
+            roomAdminDashboardDto.setFullName(tuple.get("full_Name", String.class));
+            int statusIDint = tuple.get("statusId", Integer.class);
+            if(statusIDint == 1){
+                roomAdminDashboardDto.setStatus("Còn trống");
+            } else if(statusIDint == 2){
+                roomAdminDashboardDto.setStatus("Đã có người ở");
+            } else roomAdminDashboardDto.setStatus("Tìm người ở ghép");
+            java.sql.Date sqlDate = (java.sql.Date) tuple.get("status_update_date", Date.class);
+            if(sqlDate == null)
+            {roomAdminDashboardDto.setStatusUpdateDate(null);}
+            else {
+                LocalDate localDate = sqlDate.toLocalDate();
+                roomAdminDashboardDto.setStatusUpdateDate(localDate);
+            }
+            list.add(roomAdminDashboardDto);
+        }
+        list.sort((room1, room2) -> {
+            LocalDate currentDate = LocalDate.now();
+            LocalDate date1 = room1.getStatusUpdateDate() != null ? room1.getStatusUpdateDate() : currentDate;
+            LocalDate date2 = room2.getStatusUpdateDate() != null ? room2.getStatusUpdateDate() : currentDate;
+            return currentDate.compareTo(date1) - currentDate.compareTo(date2);
+        });
+        return list;
+    }
+
+    @Transactional
+    public void updateStatusDate(int roomId, int statusId) {
+        RoomEntity room = roomRepository.findById(roomId).orElse(null); // Thay YourEntity và yourRepository bằng entity và repository thực tế của bạn
+        if (room != null) {
+            room.setStatusUpdateDate(LocalDate.now());
+            room.setStatusid(statusId);
+            roomRepository.save(room);
+        }
+    }
+
+
+       
 }

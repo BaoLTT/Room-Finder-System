@@ -217,4 +217,9 @@ public class UserServiceImpl implements UserService {
         return userRepository.getUserEntitiesByUserId(email);
     }
 
+    @Override
+    public int countUserInAdmin() {
+        return userRepository.countUserInAdmin();
+    }
+
 }

@@ -16,8 +16,10 @@ import java.util.List;
 @Repository
 @SpringBootApplication
 public interface RoomRepository extends JpaRepository<RoomEntity, Integer> {
+
     @Query("select r from RoomEntity r")
     List<RoomEntity> findAllRooms();
+
 
     @Query("SELECT r FROM RoomEntity r WHERE r.roomId = :roomId")
     RoomEntity getRoomById(int roomId);
@@ -68,6 +70,10 @@ public interface RoomRepository extends JpaRepository<RoomEntity, Integer> {
     int countRoom();
 
 
+
+    @Query(value = "select r.roomId ,h.house_name ,r.room_name, concat(u.last_name,' ',u.first_name) as full_name, r.statusid, r.status_update_date from room r join houses h on h.houseid = r.houseid\n" +
+            "left join user u on h.userid = u.userid", nativeQuery = true)
+    List<Tuple> getRoomStatusInAdminDashboard();
 
 
 

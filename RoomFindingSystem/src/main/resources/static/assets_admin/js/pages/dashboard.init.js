@@ -36,28 +36,55 @@
     };
   
     ChartHandler.prototype.init = function () {
-        this.respChart($("#pie1"), "Pie", {
-            labels: ["Đang xử lý", "Đã xử lý"],
-            datasets: [{
-                data: [80, 50],
-                backgroundColor: ["#5d6dc3", "#3ec396"],
-                hoverBackgroundColor: ["#5d6dc3", "#3ec396"],
-                hoverBorderColor: "#fff"
-            }]
+        // this.respChart($("#pie1"), "Pie", {
+        //     labels: ["Đang xử lý", "Đã xử lý"],
+        //     datasets: [{
+        //         data: [80, 50],
+        //         backgroundColor: ["#5d6dc3", "#3ec396"],
+        //         hoverBackgroundColor: ["#5d6dc3", "#3ec396"],
+        //         hoverBorderColor: "#fff"
+        //     }]
+        // });
+
+        $.ajax({
+            url: '/admin/data/pie',
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                $.ChartJs.respChart($("#pie1"), "Pie", data);
+            },
+            error: function (error) {
+                console.error('Lỗi khi tải dữ liệu biểu đồ: ' + error);
+            }
+        });
+
+        $.ajax({
+            url: '/admin/data/bar',
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                var options = {
+                    scales: {
+                        yAxes: [
+                            {
+                                ticks: {
+                                    min: 0,      // Giá trị tối thiểu trên trục y
+                                    max: 10,    // Giá trị tối đa trên trục y
+                                    stepSize: 2  // Khoảng cách giữa hai giá trị
+                                }
+                            }
+                        ]
+                    }
+                };
+
+                $.ChartJs.respChart($("#bar"), "Bar", data, options);
+            },
+            error: function (error) {
+                console.error('Lỗi khi tải dữ liệu biểu đồ: ' + error);
+            }
         });
   
-        this.respChart($("#bar"), "Bar", {
-            labels: ["January", "February", "March", "April", "May", "June", "July"],
-            datasets: [{
-                label: "Số bài đăng",
-                backgroundColor: "rgba(60, 134, 216, 0.3",
-                borderColor: "#3c86d8",
-                borderWidth: 2,
-                hoverBackgroundColor: "rgba(60, 134, 216, 0.7)",
-                hoverBorderColor: "#3c86d8",
-                data: [65, 59, 80, 81, 56, 55, 40, 20]
-            }]
-        });
+
     };
   
     $.ChartJs = new ChartHandler;
@@ -68,12 +95,18 @@
   
     // Khởi tạo DataTable cho bảng có id "datatable"
     $("#datatable").DataTable();
-  
-  
+
+    $("#datatable-buttons").DataTable({
+        lengthChange: false,
+        buttons: ["copy", "excel", "pdf"],
+    });
     // Di chuyển nút xuất và sao chép vào vị trí mong muốn
     $("#datatable-buttons_wrapper .col-md-6:eq(0)").append(
       $("#datatable-buttons_wrapper .dt-buttons")
     );
-  
-  })(window.jQuery);
-  
+
+
+
+
+
+})(window.jQuery);

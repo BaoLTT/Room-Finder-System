@@ -1,10 +1,9 @@
 package com.roomfindingsystem.service;
 
 
-import com.roomfindingsystem.dto.RoomDto;
-import com.roomfindingsystem.dto.RoomDtoN;
-import com.roomfindingsystem.dto.RoomHomeDto;
-import com.roomfindingsystem.dto.RoomHouseDetailDto;
+
+import com.roomfindingsystem.dto.*;
+
 import com.roomfindingsystem.entity.RoomEntity;
 import com.roomfindingsystem.entity.RoomImagesEntity;
 import com.roomfindingsystem.entity.ServiceDetailEntity;
@@ -32,14 +31,19 @@ public interface RoomService {
 
     void deleteById(Integer id);
 
-//    void save(RoomDto roomDto);
+
+    List<RoomDtoN> findRoom1(int min, int max, String roomName, List<Integer> type, int pageIndex, int pageSize);
+
 
     int countRoom();
 
     //room type list in house detail
     List<RoomHouseDetailDto> viewRoomInHouse(int houseId);
 
-    List<RoomDtoN> findRoom1(int min, int max, String roomName, List<Integer> type, int pageIndex, int pageSize);
+
+    List<RoomAdminDashboardDto> getRoomStatusInAdminDashboard();
+
+    void updateStatusDate(int roomId, int statusId);
 
 
 }
