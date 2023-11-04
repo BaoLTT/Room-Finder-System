@@ -138,7 +138,7 @@
                  <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.6</version> <!-- cần update version này -->
+         
                           <configuration>
     <release>17</release>
   </configuration>
