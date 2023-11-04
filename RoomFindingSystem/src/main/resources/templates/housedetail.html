@@ -58,89 +58,89 @@
                     <div class="sidebar">
                         <div class="box filter">
 
-                                <aside>
-                                    <address>
-                                        <strong >Tên Chủ Trọ</strong><br>
-                                        <div >
-                                            <p style="display: inline-block"th:text="${HousesEntity.firstName}" ></p>
-                                            <p style="display: inline-block" th:text="${HousesEntity.lastName}"></p>
-                                        </div>
-
-                                        <strong>Điện Thoại Liên Hệ:</strong>
-                                        <p th:text="${HousesEntity.phone}"></p>
-                                    </address>
-                                </aside>
-                                <!--end form-group-inline-->
-                                <div class="center">
-                                    <a href="#filter-advanced-search" class="link icon" data-toggle="collapse"
-                                       aria-expanded="false" aria-controls="filter-advanced-search">Xem Chi Tiết Dịch Vụ<i
-                                            class="fa fa-plus"></i></a>
-                                </div>
-                                <div class="collapse" id="filter-advanced-search">
-                                    <div class="wrapper">
-                                        <h3>Dịch vụ Trọ bao gồm:</h3>
-                                        <section th:each="HouseService : ${HouseService}">
-
-                                            <ul class="checkboxes list-unstyled">
-                                                <li th:text="${HouseService.description}"></li>
-                                            </ul>
-                                            <!--end checkboxes-->
-                                        </section>
-                                        <!--end section-->
-<!--                                        <section>-->
-<!--                                            <h3>Property Type </h3>-->
-<!--                                            <ul class="checkboxes">-->
-<!--                                                <li><label><input type="checkbox" name="hotel">Apartmets<span>67</span></label>-->
-<!--                                                </li>-->
-<!--                                                <li><label><input type="checkbox" name="apartment">Hotels<span>31</span></label>-->
-<!--                                                </li>-->
-<!--                                                <li><label><input type="checkbox"-->
-<!--                                                                  name="breakfast-only">Boats<span>68</span></label>-->
-<!--                                                </li>-->
-<!--                                                <li><label><input type="checkbox"-->
-<!--                                                                  name="spa-wellness">Villas<span>52</span></label></li>-->
-<!--                                            </ul>-->
-<!--                                            <div class="collapse" id="all-property-types">-->
-<!--                                                <ul class="checkboxes">-->
-<!--                                                    <li><label><input type="checkbox" name="ski-center">Ski Center<span>67</span></label>-->
-<!--                                                    </li>-->
-<!--                                                    <li><label><input type="checkbox"-->
-<!--                                                                      name="cottage">Cottage<span>31</span></label></li>-->
-<!--                                                    <li><label><input type="checkbox"-->
-<!--                                                                      name="hostel">Hostel<span>68</span></label></li>-->
-<!--                                                    <li><label><input type="checkbox"-->
-<!--                                                                      name="boat">Boat<span>52</span></label></li>-->
-<!--                                                </ul>-->
-<!--                                            </div>-->
-<!--                                            &lt;!&ndash;end checkboxes&ndash;&gt;-->
-<!--                                            <a href="#all-property-types" class="link" data-toggle="collapse"-->
-<!--                                               aria-expanded="false" aria-controls="all-property-types">Show all</a>-->
-<!--                                        </section>-->
-                                        <!--end section-->
-<!--                                        <section>-->
-<!--                                            <h3>Property Facility</h3>-->
-<!--                                            <ul class="checkboxes no-bottom-margin">-->
-<!--                                                <li><label><input type="checkbox"-->
-<!--                                                                  name="wi-fi">Wi-fi<span>12</span></label></li>-->
-<!--                                                <li><label><input type="checkbox" name="free-parking">Free Parking<span>48</span></label>-->
-<!--                                                </li>-->
-<!--                                                <li><label><input type="checkbox" name="airport">Airport-->
-<!--                                                    Shuttle<span>36</span></label></li>-->
-<!--                                                <li><label><input type="checkbox" name="family-rooms">Family Rooms<span>56</span></label>-->
-<!--                                                </li>-->
-<!--                                            </ul>-->
-<!--                                            &lt;!&ndash;end checkboxes&ndash;&gt;-->
-<!--                                        </section>-->
-                                        <!--end section-->
+                            <aside>
+                                <address>
+                                    <strong >Tên Chủ Trọ</strong><br>
+                                    <div >
+                                        <p style="display: inline-block"th:text="${HousesEntity.firstName}" ></p>
+                                        <p style="display: inline-block" th:text="${HousesEntity.lastName}"></p>
                                     </div>
 
-                                    <!--end filter-advanced-search-->
+                                    <strong>Điện Thoại Liên Hệ:</strong>
+                                    <p th:text="${HousesEntity.phone}"></p>
+                                </address>
+                            </aside>
+                            <!--end form-group-inline-->
+                            <div class="center">
+                                <a href="#filter-advanced-search" class="link icon" data-toggle="collapse"
+                                   aria-expanded="false" aria-controls="filter-advanced-search">Xem Chi Tiết Dịch Vụ<i
+                                        class="fa fa-plus"></i></a>
+                            </div>
+                            <div class="collapse" id="filter-advanced-search">
+                                <div class="wrapper">
+                                    <h3>Dịch vụ Trọ bao gồm:</h3>
+                                    <section th:each="HouseService : ${HouseService}">
+
+                                        <ul class="checkboxes list-unstyled">
+                                            <li th:text="${HouseService.description}"></li>
+                                        </ul>
+                                        <!--end checkboxes-->
+                                    </section>
+                                    <!--end section-->
+                                    <!--                                        <section>-->
+                                    <!--                                            <h3>Property Type </h3>-->
+                                    <!--                                            <ul class="checkboxes">-->
+                                    <!--                                                <li><label><input type="checkbox" name="hotel">Apartmets<span>67</span></label>-->
+                                    <!--                                                </li>-->
+                                    <!--                                                <li><label><input type="checkbox" name="apartment">Hotels<span>31</span></label>-->
+                                    <!--                                                </li>-->
+                                    <!--                                                <li><label><input type="checkbox"-->
+                                    <!--                                                                  name="breakfast-only">Boats<span>68</span></label>-->
+                                    <!--                                                </li>-->
+                                    <!--                                                <li><label><input type="checkbox"-->
+                                    <!--                                                                  name="spa-wellness">Villas<span>52</span></label></li>-->
+                                    <!--                                            </ul>-->
+                                    <!--                                            <div class="collapse" id="all-property-types">-->
+                                    <!--                                                <ul class="checkboxes">-->
+                                    <!--                                                    <li><label><input type="checkbox" name="ski-center">Ski Center<span>67</span></label>-->
+                                    <!--                                                    </li>-->
+                                    <!--                                                    <li><label><input type="checkbox"-->
+                                    <!--                                                                      name="cottage">Cottage<span>31</span></label></li>-->
+                                    <!--                                                    <li><label><input type="checkbox"-->
+                                    <!--                                                                      name="hostel">Hostel<span>68</span></label></li>-->
+                                    <!--                                                    <li><label><input type="checkbox"-->
+                                    <!--                                                                      name="boat">Boat<span>52</span></label></li>-->
+                                    <!--                                                </ul>-->
+                                    <!--                                            </div>-->
+                                    <!--                                            &lt;!&ndash;end checkboxes&ndash;&gt;-->
+                                    <!--                                            <a href="#all-property-types" class="link" data-toggle="collapse"-->
+                                    <!--                                               aria-expanded="false" aria-controls="all-property-types">Show all</a>-->
+                                    <!--                                        </section>-->
+                                    <!--end section-->
+                                    <!--                                        <section>-->
+                                    <!--                                            <h3>Property Facility</h3>-->
+                                    <!--                                            <ul class="checkboxes no-bottom-margin">-->
+                                    <!--                                                <li><label><input type="checkbox"-->
+                                    <!--                                                                  name="wi-fi">Wi-fi<span>12</span></label></li>-->
+                                    <!--                                                <li><label><input type="checkbox" name="free-parking">Free Parking<span>48</span></label>-->
+                                    <!--                                                </li>-->
+                                    <!--                                                <li><label><input type="checkbox" name="airport">Airport-->
+                                    <!--                                                    Shuttle<span>36</span></label></li>-->
+                                    <!--                                                <li><label><input type="checkbox" name="family-rooms">Family Rooms<span>56</span></label>-->
+                                    <!--                                                </li>-->
+                                    <!--                                            </ul>-->
+                                    <!--                                            &lt;!&ndash;end checkboxes&ndash;&gt;-->
+                                    <!--                                        </section>-->
+                                    <!--end section-->
                                 </div>
-                                <!--end collapse-->
-                                <div class="form-group center">
-                                    <button type="submit" class="btn btn-primary btn-rounded form-control">Liên Hệ
-                                    </button>
-                                </div>
+
+                                <!--end filter-advanced-search-->
+                            </div>
+                            <!--end collapse-->
+                            <div class="form-group center">
+                                <button type="submit" class="btn btn-primary btn-rounded form-control">Liên Hệ
+                                </button>
+                            </div>
                             </form>
                             <!--end form-filter-->
                         </div>
@@ -245,10 +245,10 @@
                                 <!--                                                                    <h2>Map</h2>-->
                                 <!--                                                                    <div id="map-item" class="map height-300 box"></div>-->
 
-<!--                                                                <section id="map">-->
-<!--                                                                    <h2>Map</h2>-->
-<!--                                                                    <div id="map-item" class="map height-300 box"></div>-->
-<!--                                                                     </section>-->
+                                <!--                                                                <section id="map">-->
+                                <!--                                                                    <h2>Map</h2>-->
+                                <!--                                                                    <div id="map-item" class="map height-300 box"></div>-->
+                                <!--                                                                     </section>-->
                             </div>
                             <!--end col-md-8-->
                             <div class="col-md-4">
@@ -267,10 +267,10 @@
                                         <p>(Thành Phố / Tỉnh)</p> <dl th:text="${HousesEntity.province}">
                                     </dl>
                                     </aside>
-<!--                                    <aside>-->
-<!--                                        <h5>Thông tin liên hệ với chủ trọ</h5>-->
-<!--                                        <address>-->
-<!--                                            <strong >Tên Chủ Trọ</strong><br>-->
+                                    <!--                                    <aside>-->
+                                    <!--                                        <h5>Thông tin liên hệ với chủ trọ</h5>-->
+                                    <!--                                        <address>-->
+                                    <!--                                            <strong >Tên Chủ Trọ</strong><br>-->
 
                                     <!--                                    <aside>-->
                                     <!--                                        <h5>Thông tin liên hệ với chủ trọ</h5>-->
@@ -281,10 +281,10 @@
                                     <!--                                                <p style="display: inline-block" th:text="${HousesEntity.lastName}"></p>-->
                                     <!--                                            </div>-->
 
-<!--                                            <div >-->
-<!--                                                <p style="display: inline-block"th:text="${HousesEntity.firstName}" ></p>-->
-<!--                                                <p style="display: inline-block" th:text="${HousesEntity.lastName}"></p>-->
-<!--                                            </div>-->
+                                    <!--                                            <div >-->
+                                    <!--                                                <p style="display: inline-block"th:text="${HousesEntity.firstName}" ></p>-->
+                                    <!--                                                <p style="display: inline-block" th:text="${HousesEntity.lastName}"></p>-->
+                                    <!--                                            </div>-->
 
 
                                     <!--                                            <strong>Điện Thoại Liên Hệ:</strong>-->
@@ -292,10 +292,10 @@
                                     <!--                                        </address>-->
                                     <!--                                    </aside>-->
 
-<!--                                            <strong>Điện Thoại Liên Hệ:</strong>-->
-<!--                                            <p th:text="${HousesEntity.phone}"></p>-->
-<!--                                        </address>-->
-<!--                                    </aside>-->
+                                    <!--                                            <strong>Điện Thoại Liên Hệ:</strong>-->
+                                    <!--                                            <p th:text="${HousesEntity.phone}"></p>-->
+                                    <!--                                        </address>-->
+                                    <!--                                    </aside>-->
                                 </div>
                                 <!--end sidebar-->
                             </div>
@@ -346,38 +346,38 @@
                         </section>
                         <section id="availability">
 
-<!--                            <h2>Availability</h2>-->
-<!--                            <form class="labels-uppercase" id="form-availability">-->
-<!--                                <div class="row">-->
-<!--                                    <div class="col-md-3">-->
-<!--                                        <div class="form-group">-->
-<!--                                            <label for="form-availability-check-in">Check In</label>-->
-<!--                                            <input type="text" class="form-control date" id="form-availability-check-in"-->
-<!--                                                   name="check-in" placeholder="Check In">-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                    &lt;!&ndash;end col-md-3&ndash;&gt;-->
-<!--                                    <div class="col-md-3">-->
-<!--                                        <div class="form-group">-->
-<!--                                            <label for="form-availability-check-out">Check In</label>-->
-<!--                                            <input type="text" class="form-control date"-->
-<!--                                                   id="form-availability-check-out" name="check-out"-->
-<!--                                                   placeholder="Check In">-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                    &lt;!&ndash;end col-md-3&ndash;&gt;-->
-<!--                                    <div class="col-md-3">-->
-<!--                                        <div class="form-group">-->
-<!--                                            <label class="invisible">Hidden label</label>-->
-<!--                                            <button type="submit"-->
-<!--                                                    class="btn btn-primary btn-rounded btn-framed form-control">Search-->
-<!--                                            </button>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                    &lt;!&ndash;end col-md-3&ndash;&gt;-->
-<!--                                </div>-->
-<!--                                &lt;!&ndash;end row&ndash;&gt;-->
-<!--                            </form>-->
+                            <!--                            <h2>Availability</h2>-->
+                            <!--                            <form class="labels-uppercase" id="form-availability">-->
+                            <!--                                <div class="row">-->
+                            <!--                                    <div class="col-md-3">-->
+                            <!--                                        <div class="form-group">-->
+                            <!--                                            <label for="form-availability-check-in">Check In</label>-->
+                            <!--                                            <input type="text" class="form-control date" id="form-availability-check-in"-->
+                            <!--                                                   name="check-in" placeholder="Check In">-->
+                            <!--                                        </div>-->
+                            <!--                                    </div>-->
+                            <!--                                    &lt;!&ndash;end col-md-3&ndash;&gt;-->
+                            <!--                                    <div class="col-md-3">-->
+                            <!--                                        <div class="form-group">-->
+                            <!--                                            <label for="form-availability-check-out">Check In</label>-->
+                            <!--                                            <input type="text" class="form-control date"-->
+                            <!--                                                   id="form-availability-check-out" name="check-out"-->
+                            <!--                                                   placeholder="Check In">-->
+                            <!--                                        </div>-->
+                            <!--                                    </div>-->
+                            <!--                                    &lt;!&ndash;end col-md-3&ndash;&gt;-->
+                            <!--                                    <div class="col-md-3">-->
+                            <!--                                        <div class="form-group">-->
+                            <!--                                            <label class="invisible">Hidden label</label>-->
+                            <!--                                            <button type="submit"-->
+                            <!--                                                    class="btn btn-primary btn-rounded btn-framed form-control">Search-->
+                            <!--                                            </button>-->
+                            <!--                                        </div>-->
+                            <!--                                    </div>-->
+                            <!--                                    &lt;!&ndash;end col-md-3&ndash;&gt;-->
+                            <!--                                </div>-->
+                            <!--                                &lt;!&ndash;end row&ndash;&gt;-->
+                            <!--                            </form>-->
 
                             <div class="form-reservations">
                                 <div class="table-responsive">
@@ -386,7 +386,7 @@
                                         <tr>
                                             <th>Room Type</th>
 
-<!--                                            <th>Persons</th>-->
+                                            <!--                                            <th>Persons</th>-->
                                             <th>Price</th>
                                             <th>Rooms</th>
                                             <th></th>
@@ -401,7 +401,7 @@
                                             <td class="room-type">
                                                 <a href="" th:text="${room.typeName}"><h3></h3>
 
-<!--                                                    <figure class="label label-danger">1 Room Left!</figure>-->
+                                                    <!--                                                    <figure class="label label-danger">1 Room Left!</figure>-->
                                                 </a>
                                                 <p>Consectetur adipiscing elit. Vivamus nec augue ac dui sodales
                                                     euismod.
@@ -413,7 +413,7 @@
                                                 </ul>
                                             </td>
 
-<!--                                            <td class="persons">2<i class="fa fa-user"></i></td>-->
+                                            <!--                                            <td class="persons">2<i class="fa fa-user"></i></td>-->
                                             <td th:text="${room.price}" ></td>
                                             <td class="rooms">
                                                 <select class="framed">
@@ -457,7 +457,7 @@
                         <section id="reviews">
                             <div class="title">
                                 <h2 class="pull-left">Đánh giá</h2>
-                                <a href="#write-a-review" class="btn btn-primary btn-rounded pull-right scroll">Viết đánh giá</a>
+                                <a href="#write-a-review" class="btn btn-primary btn-rounded pull-right scroll" th:if="${count == 0}">Viết đánh giá</a>
                             </div>
                             <!--                            <h3>Overall Score</h3>-->
                             <!--                            <ul class="rating-score">-->
@@ -482,6 +482,7 @@
                             <!--                                </li>-->
                             <!--                            </ul>-->
                             <div class="reviews">
+
                                 <div th:each="feedback: ${feedbacks}">
                                     <div class="review">
                                         <div class="row">
@@ -492,8 +493,7 @@
                                                     </div>
                                                     <div class="col-md-9 col-xs-10" >
                                                         <aside class="name" th:text="${feedback.getUserFistName()}+ ' ' +${feedback.getUserLastName()}"></aside>
-
-<!--                                                        <aside class="date" th:text="${#dates.format(feedback.getCreatedDate(), 'yyyy-MM-dd')}"></aside>-->
+                                                        <!--                                                        <aside class="date" th:text="${#dates.format(feedback.getCreatedDate(), 'yyyy-MM-dd')}"></aside>-->
                                                         <aside class="date" th:text="${#temporals.format(feedback.getCreatedDate(), 'dd-MM-yyyy')}"></aside>
 
 
@@ -504,9 +504,86 @@
                                             <!--end col-md-3-->
                                             <div class="col-md-9">
                                                 <div class="comment">
-                                                    <div class="comment-title">
+                                                    <div class="comment-title" style="display: flex; justify-content: space-between; align-items: center; ">
                                                         <h4 style="font-weight: bold" th:text="${feedback.getTitle()}"></h4>
+
+                                                        <!-- Trong ví dụ này, chúng tôi sử dụng Thymeleaf để hiển thị hoặc ẩn nút dựa trên điều kiện -->
+                                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="background-color: #FFFFFF" th:if="${feedback.getUserId()} == ${user.getUserId()}">
+                                                            <i class="fa fa-edit" style="margin-bottom: 16px; font-size: 21px; color: #0f0f0f"></i>
+                                                        </button>
+
                                                     </div>
+                                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalLabel">Chỉnh sửa đánh giá</h5>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <form class="labels-uppercase clearfix"  th:object="${feedbackEntity}" th:action="@{/detail}" method="post">
+                                                                        <!--                                <div class="alert alert-dark fade in center" role="alert">-->
+                                                                        <!--                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"-->
+                                                                        <!--                                            data-switch="#review-write">-->
+                                                                        <!--                                        <span aria-hidden="true">&times;</span>-->
+                                                                        <!--                                    </button>-->
+                                                                        <!--                                    <span class="sr-only">Error:</span>-->
+                                                                        <!--                                    <a href="#tab-sign-in" data-toggle="modal" data-tab="true"-->
+                                                                        <!--                                       data-target="#sign-in-register-modal">Xin mời đăng nhập để đánh giá</a>-->
+                                                                        <!--                                </div>-->
+                                                                        <div class="review write" >
+                                                                            <span class="name">Tên người dùng: </span><span th:text="${user.getFirstName()}"></span><span> </span><span th:text="${user.getLastName()}"></span>
+
+
+                                                                            <div class="comment" style="margin-top: 10px">
+                                                                                <div class="comment-title">
+                                                                                    <h4>Đánh giá về khu trọ</h4>
+                                                                                </div>
+                                                                                <!--end title-->
+                                                                                <div class="form-group">
+                                                                                    <label for="form_reply_1-name">Tiêu đề đánh giá<em>*</em></label>
+                                                                                    <input type="text" class="form-control"
+                                                                                           name="name" placeholder="Viết tiêu đề ở đây" required=""
+                                                                                           th:field="*{title}" pattern=".{2,}" title="Yêu cầu ít nhất 2 ký tự">
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label for="form_reply_1-message">Mô tả<em>*</em></label>
+                                                                                    <textarea class="form-control"  rows="8"
+                                                                                              name="answer" required="" placeholder="Viết mô tả ở đây"
+                                                                                              th:field="*{content}" pattern=".{20,}" title="Yêu cầu ít nhất 20 ký tự"></textarea>
+                                                                                </div>
+                                                                                <div class="comment-title">
+                                                                                    <h4 >Đánh giá</h4>
+                                                                                </div>
+                                                                                <!--end title-->
+                                                                                <dl class="visitor-rating">
+                                                                                    <dd class="star-rating active" data-name="cleanliness"></dd>
+                                                                                </dl>
+                                                                                <!--end form-group-->
+                                                                                <div class="form-group pull-right">
+                                                                                    <button type="submit" class="btn btn-primary btn-rounded">Gửi đánh giá
+                                                                                    </button>
+                                                                                    <a th:href="@{deleteHouseCmt(houseId=*{houseId})}"><button class="btn btn-primary btn-rounded" type="button" style="background-color: red">Xóa
+                                                                                    </button></a>
+                                                                                </div>
+
+                                                                                <!--end form-group-->
+                                                                                <!--end col-md-4-->
+                                                                                <!--end row-->
+                                                                            </div>
+                                                                            <!--end comment-->
+                                                                        </div>
+                                                                        <input type="hidden" th:field="*{memberId}">
+                                                                        <input type="hidden" th:field="*{houseId}">
+                                                                        <!--end review-->
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
                                                     <!--end title-->
                                                     <p th:text="${feedback.getContent()}"></p>
                                                     <div class="clearfix options">
@@ -584,21 +661,23 @@
                             </div>
                             <!--end reviews-->
                         </section>
-                        <section id="write-a-review">
+                        <section id="write-a-review" th:if="${count == 0}">
                             <h2>Viết đánh giá</h2>
-                            <form class="labels-uppercase clearfix" id="form_reply_1">
-                                <div class="alert alert-dark fade in center" role="alert">
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"
-                                            data-switch="#review-write">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                    <span class="sr-only">Error:</span>
-                                    <a href="#tab-sign-in" data-toggle="modal" data-tab="true"
-                                       data-target="#sign-in-register-modal">Xin mời đăng nhập để đánh giá</a>
-                                </div>
-                                <div class="review write switch" id="review-write">
-                                    <aside class="name">Tên người dùng (chưa xử lý)</aside>
-                                    <div class="comment">
+                            <form class="labels-uppercase clearfix" id="form_reply_1" th:object="${feedbackEntity}" th:action="@{/detail}" method="post">
+                                <!--                                <div class="alert alert-dark fade in center" role="alert">-->
+                                <!--                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"-->
+                                <!--                                            data-switch="#review-write">-->
+                                <!--                                        <span aria-hidden="true">&times;</span>-->
+                                <!--                                    </button>-->
+                                <!--                                    <span class="sr-only">Error:</span>-->
+                                <!--                                    <a href="#tab-sign-in" data-toggle="modal" data-tab="true"-->
+                                <!--                                       data-target="#sign-in-register-modal">Xin mời đăng nhập để đánh giá</a>-->
+                                <!--                                </div>-->
+                                <div class="review write" id="review-write">
+                                    <span class="name">Tên người dùng: </span><span th:text="${user.getFirstName()}"></span><span> </span><span th:text="${user.getLastName()}"></span>
+
+
+                                    <div class="comment" style="margin-top: 10px">
                                         <div class="comment-title">
                                             <h4>Đánh giá về khu trọ</h4>
                                         </div>
@@ -606,13 +685,14 @@
                                         <div class="form-group">
                                             <label for="form_reply_1-name">Tiêu đề đánh giá<em>*</em></label>
                                             <input type="text" class="form-control" id="form_reply_1-name"
-                                                   name="name" placeholder="Viết tiêu đề ở đây" required="">
+                                                   name="name" placeholder="Viết tiêu đề ở đây" required=""
+                                                   th:field="*{title}" pattern=".{20,}" title="Yêu cầu ít nhất 20 ký tự">
                                         </div>
                                         <div class="form-group">
                                             <label for="form_reply_1-message">Mô tả<em>*</em></label>
                                             <textarea class="form-control" id="form_reply_1-message" rows="8"
-                                                      name="answer" required=""
-                                                      placeholder="Viết mô tả ở đây"></textarea>
+                                                      name="answer" required="" placeholder="Viết mô tả ở đây"
+                                                      th:field="*{content}" pattern=".{20,}" title="Yêu cầu ít nhất 20 ký tự"></textarea>
                                         </div>
                                         <div class="comment-title">
                                             <h4 >Đánh giá</h4>
@@ -626,12 +706,15 @@
                                             <button type="submit" class="btn btn-primary btn-rounded">Gửi đánh giá
                                             </button>
                                         </div>
+
                                         <!--end form-group-->
                                         <!--end col-md-4-->
                                         <!--end row-->
                                     </div>
                                     <!--end comment-->
                                 </div>
+                                <input type="hidden" th:field="*{memberId}">
+                                <input type="hidden" th:field="*{houseId}">
                                 <!--end review-->
                             </form>
                             <!--end form-->
