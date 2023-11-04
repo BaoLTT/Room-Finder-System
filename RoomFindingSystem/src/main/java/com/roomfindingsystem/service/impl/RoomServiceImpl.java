@@ -1,7 +1,6 @@
 package com.roomfindingsystem.service.impl;
 
-import com.roomfindingsystem.dto.RoomHomeDto;
-import com.roomfindingsystem.dto.RoomHouseDetailDto;
+import com.roomfindingsystem.dto.*;
 import com.roomfindingsystem.entity.RoomEntity;
 import com.roomfindingsystem.entity.RoomImagesEntity;
 import com.roomfindingsystem.entity.ServiceDetailEntity;
@@ -9,12 +8,12 @@ import com.roomfindingsystem.repository.RoomRepository;
 import com.roomfindingsystem.service.RoomService;
 
 
-
-import com.roomfindingsystem.dto.RoomDto;
 import jakarta.persistence.Tuple;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import java.util.Arrays;
@@ -78,13 +77,13 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public List<RoomDto> findRoom1(int min, int max, String roomName, List<Integer> type, int pageIndex, int pageSize) {
+    public List<RoomDtoN> findRoom1(int min, int max, String roomName, List<Integer> type, int pageIndex, int pageSize) {
         List<Tuple> tuples = roomRepository.getRoomList(min, max, roomName, type, pageIndex, pageSize);
-        List<RoomDto> roomDtos = new ArrayList<>();
+        List<RoomDtoN> roomDtos = new ArrayList<>();
         List<String> imageLinks ;
 
         for (Tuple tuple : tuples) {
-            RoomDto roomDto = new RoomDto();
+            RoomDtoN roomDto = new RoomDtoN();
             roomDto.setRoomId(tuple.get("roomid", Integer.class));
             roomDto.setRoomName(tuple.get("room_name", String.class));
             roomDto.setHouseName(tuple.get("house_name", String.class));
@@ -101,6 +100,7 @@ public class RoomServiceImpl implements RoomService {
         }
         return roomDtos;
     }
+
 
     @Override
     public int countRoom() {
@@ -148,5 +148,48 @@ public class RoomServiceImpl implements RoomService {
         return roomDtos;
     }
 
+    @Override
+    public List<RoomAdminDashboardDto> getRoomStatusInAdminDashboard() {
+        List<Tuple> tuples = roomRepository.getRoomStatusInAdminDashboard();
+        List<RoomAdminDashboardDto> list = new ArrayList<>();
+        for(Tuple tuple: tuples){
+            RoomAdminDashboardDto roomAdminDashboardDto = new RoomAdminDashboardDto();
+            roomAdminDashboardDto.setRoomId(tuple.get("RoomId", Integer.class));
+            roomAdminDashboardDto.setHouseName(tuple.get("House_Name", String.class));
+            roomAdminDashboardDto.setRoomName(tuple.get("Room_Name", String.class));
+            roomAdminDashboardDto.setFullName(tuple.get("full_Name", String.class));
+            int statusIDint = tuple.get("statusId", Integer.class);
+            if(statusIDint == 1){
+                roomAdminDashboardDto.setStatus("Còn trống");
+            } else if(statusIDint == 2){
+                roomAdminDashboardDto.setStatus("Đã có người ở");
+            } else roomAdminDashboardDto.setStatus("Tìm người ở ghép");
+            java.sql.Date sqlDate = (java.sql.Date) tuple.get("status_update_date", Date.class);
+            if(sqlDate == null)
+            {roomAdminDashboardDto.setStatusUpdateDate(null);}
+            else {
+                LocalDate localDate = sqlDate.toLocalDate();
+                roomAdminDashboardDto.setStatusUpdateDate(localDate);
+            }
+            list.add(roomAdminDashboardDto);
+        }
+        list.sort((room1, room2) -> {
+            LocalDate currentDate = LocalDate.now();
+            LocalDate date1 = room1.getStatusUpdateDate() != null ? room1.getStatusUpdateDate() : currentDate;
+            LocalDate date2 = room2.getStatusUpdateDate() != null ? room2.getStatusUpdateDate() : currentDate;
+            return currentDate.compareTo(date1) - currentDate.compareTo(date2);
+        });
+        return list;
+    }
+
+    @Transactional
+    public void updateStatusDate(int roomId, int statusId) {
+        RoomEntity room = roomRepository.findById(roomId).orElse(null); // Thay YourEntity và yourRepository bằng entity và repository thực tế của bạn
+        if (room != null) {
+            room.setStatusUpdateDate(LocalDate.now());
+            room.setStatusid(statusId);
+            roomRepository.save(room);
+        }
+    }
 
 }
