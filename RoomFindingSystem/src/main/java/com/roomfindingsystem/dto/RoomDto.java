@@ -1,5 +1,3 @@
-
-
 package com.roomfindingsystem.dto;
 
 import lombok.*;
@@ -11,13 +9,15 @@ import java.util.List;
 @AllArgsConstructor
 @ToString
 public class RoomDto {
-    int roomId;
-    String roomName;
-    String houseName;
-    Integer price;
-    String roomType;
-    List<String> roomImages;
-
-
-
+    private Integer roomId;
+    private Integer typeId;
+    private String roomName;
+    private String typeName;
+    private String description;
+    private Integer price;
+    private Double area;
+    private String services;
+    private String status;
+    private List<ServiceDto> serviceDtos;
+    private List<String> serviceNames;
 }

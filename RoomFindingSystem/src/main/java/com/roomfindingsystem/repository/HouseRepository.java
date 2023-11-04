@@ -102,4 +102,5 @@ public interface HouseRepository extends JpaRepository<HousesEntity,Integer> {
     @Query("select count(*) from HousesEntity")
     int countHouses();
 
+
 }

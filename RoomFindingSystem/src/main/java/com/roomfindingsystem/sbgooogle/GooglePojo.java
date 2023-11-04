@@ -11,6 +11,16 @@ public class GooglePojo {
     // getter-setter
     private String hd;
 
+    private String locale;
+
+    public String getLocale() {
+        return locale;
+    }
+
+    public void setLocale(String locale) {
+        this.locale = locale;
+    }
+
     public String getId() {
         return id;
     }
@@ -82,4 +92,6 @@ public class GooglePojo {
     public void setHd(String hd) {
         this.hd = hd;
     }
+
+
 }

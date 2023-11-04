@@ -9,6 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+
     <list default="true" id="ec34e655-ee0a-4be9-8773-96fceb50fb67" name="Changes" comment="update test">
       <change afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/dto/RoomAdminDashboardDto.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/dto/RoomDtoN.java" afterDir="false" />
@@ -20,6 +21,7 @@
       <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/RoomService.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/RoomService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/impl/RoomServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/impl/RoomServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/admin/adminDashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/admin/adminDashboard.html" afterDir="false" />
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +40,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="BaoLTT" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -84,7 +86,9 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "dart.analysis.tool.window.visible": "false",
+
     "git-widget-placeholder": "BaoLTT",
+
     "last_opened_file_path": "D:/Intellij project/Room-Finding-System/RoomFindingSystem/src/main/resources/templates",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -109,8 +113,6 @@
       <recent name="D:\Intellij project\Room-Finding-System\RoomFindingSystem\src\main\resources" />
       <recent name="D:\Intellij project\Room-Finding-System\RoomFindingSystem\src\main\resources\templates\admin" />
       <recent name="D:\Intellij project\Room-Finding-System\RoomFindingSystem\src\main\resources\static" />
-      <recent name="D:\Intellij project\Room-Finding-System\RoomFindingSystem\src\main\resources" />
-      <recent name="D:\Intellij project\Room-Finding-System\RoomFindingSystem\src\main\resources\templates" />
       <recent name="D:\Intellij project\Room-Finding-System\RoomFindingSystem\src\main\java\com\roomfindingsystem\dto" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -264,7 +266,9 @@
       <workItem from="1698805529421" duration="1006000" />
       <workItem from="1698807586664" duration="828000" />
       <workItem from="1698808448110" duration="1500000" />
+
       <workItem from="1698992591353" duration="1840000" />
+
     </task>
     <task id="LOCAL-00001" summary="fix register and boảding house detail and send mail future">
       <option name="closed" value="true" />
@@ -370,6 +374,7 @@
       <option name="project" value="LOCAL" />
       <updated>1698984322748</updated>
     </task>
+
     <task id="LOCAL-00014" summary="update tiep">
       <option name="closed" value="true" />
       <created>1698985457429</created>
@@ -387,6 +392,7 @@
       <updated>1698992947120</updated>
     </task>
     <option name="localTasksCounter" value="16" />
+
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -428,9 +434,11 @@
     <MESSAGE value="chinh sua part 2" />
     <MESSAGE value="chinh sua part 3" />
     <MESSAGE value="chinh sua lai code Nghia" />
+
     <MESSAGE value="update tiep" />
     <MESSAGE value="update" />
     <MESSAGE value="update test" />
     <option name="LAST_COMMIT_MESSAGE" value="update test" />
+
   </component>
 </project>

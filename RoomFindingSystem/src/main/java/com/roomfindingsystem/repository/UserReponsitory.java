@@ -40,7 +40,9 @@ public interface UserReponsitory extends JpaRepository<UserEntity, Integer> {
     @Query("select u.password from UserEntity u where u.email=?1")
     String getUserEntitiesByUserId(String email);
 
+
     @Query("select count(*) from UserEntity u where u.roleId = 'Landlord' or u.roleId = 'User'")
     int countUserInAdmin();
+
 
 }

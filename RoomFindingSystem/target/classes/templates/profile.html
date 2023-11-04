@@ -24,7 +24,8 @@
         <header>
             <div class="container">
                 <div class="secondary-nav">
-                    <div class="nav-trigger"><a data-toggle="collapse" href="#secondary-nav" aria-expanded="false" aria-controls="secondary-nav"><i class="fa fa-user"></i></a></div>
+                    <div class="nav-trigger"><a data-toggle="collapse" href="#secondary-nav" aria-expanded="false"
+                                                aria-controls="secondary-nav"><i class="fa fa-user"></i></a></div>
                     <div id="secondary-nav">
                         <nav>
                             <div class="left opacity-60">
@@ -35,17 +36,20 @@
                             <div class="right">
                                 <div th:if="${session!= null}">
                                     <!-- Hiển thị thông tin người dùng đã đăng nhập -->
-                                    <a th:href="@{/profile}"><span>Xin chào, <span th:text="${session.firstname+' '}+${session.lastname}"></span></span></a>
+                                    <a th:href="@{/profile}"><span>Xin chào, <span
+                                            th:text="${session.firstname+' '}+${session.lastname}"></span></span></a>
                                     <a th:href="@{/logout}">Đăng xuất</a>
                                 </div>
                                 <!--end element-->
                                 <div th:unless="${session!= null}">
                                     <div class="element">
-                                        <a th:href="@{/login}" href="#tab-sign-in" data-toggle="modal" data-tab="true" data-target="#sign-in-register-modal">Đăng nhập</a>
+                                        <a th:href="@{/login}" href="#tab-sign-in" data-toggle="modal" data-tab="true"
+                                           data-target="#sign-in-register-modal">Đăng nhập</a>
                                     </div>
                                     <!--end element-->
                                     <div class="element">
-                                        <a th:href="@{/register}" data-toggle="modal" data-tab="true" data-target="#sign-in-register-modal">Đăng ký</a>
+                                        <a th:href="@{/register}" data-toggle="modal" data-tab="true"
+                                           data-target="#sign-in-register-modal">Đăng ký</a>
                                     </div>
                                     <!--end element-->
                                 </div>
@@ -63,15 +67,16 @@
                 <div class="primary-nav">
                     <div class="left">
                         <!--                        <a href="Homepage.html" id="brand"><img src="/assets/img/logo.png" alt=""></a>-->
-                        <!--                        <a href="homepage.html" id="brand"><img src="/assets/img/logo.png" alt=""></a>-->
-                        <a class="nav-trigger" data-toggle="collapse" href="#primary-nav" aria-expanded="false" aria-controls="primary-nav"><i class="fa fa-navicon"></i></a>
+                     <a href="homepage.html" id="brand"><img src="/assets/img/logo.png" alt=""></a>-->
+                        <a class="nav-trigger" data-toggle="collapse" href="#primary-nav" aria-expanded="false"
+                           aria-controls="primary-nav"><i class="fa fa-navicon"></i></a>
                     </div>
                     <!--end left-->
-                    <div class="right" >
+                    <div class="right">
                         <nav id="primary-nav">
                             <ul>
                                 <li class="active"><a th:href="@{/}">Trang chủ</a></li>
-                                <li><a th:href="@{/houselist}">Danh sách nhà trọ</a></li>
+                                <li><a th:href="@{/houselist/1}">Danh sách nhà trọ</a></li>
                                 <li>
                                     <a href="#" class="has-child">Danh sách phòng trọ</a>
                                     <!--                                    <ul class="child-nav">-->
@@ -111,140 +116,144 @@
                 </div>
                 <!--end title-->
                 <div class="row">
-                    <div class="col-md-9">
-                        <form id="form-profile" class="labels-uppercase" method="post" action="#"
-                              th:action="@{/user/update}" th:object="${user}" enctype="multipart/form-data">
-                            <div class="row">
-                                <!--Profile Picture-->
-                                <div class="col-md-3 col-sm-3">
-                                    <section>
-                                        <h3>Profile Picture</h3>
-                                        <div id="profile-picture" class="profile-picture single-file-preview">
-                                            <img th:src="*{'data:image/jpeg;base64,' + imageLink}" alt="" class="image">
-                                            <div class="input">
-                                                <input name="file" type="file" class="">
-                                                <span>Click to upload a picture</span>
-                                            </div>
+                    <form id="form-profile" class="labels-uppercase" method="post" action="#"
+                          th:action="@{/user/update}" th:object="${user}" enctype="multipart/form-data">
+                        <div class="row">
+                            <!--Profile Picture-->
+                            <div class="col-md-3 col-sm-3">
+                                <section>
+                                    <h3>Profile Picture</h3>
+                                    <div id="profile-picture" class="profile-picture single-file-preview">
+                                        <img th:src="*{'data:image/jpeg;base64,' + imageLink}" alt="" class="image" height="300">
+                                        <div class="input">
+                                            <input name="file" type="file" class="">
+                                            <span>Click to upload a picture</span>
                                         </div>
-                                    </section>
-                                </div>
-                                <!--end col-md-3-->
-
-                                <!--Contact Info-->
-                                <div class="col-md-9 col-sm-9">
-                                    <section>
-                                        <h3>Personal Info</h3>
-                                        <div class="row">
-                                            <div class="col-md-6 col-sm-6">
-                                                <div class="form-group">
-                                                    <label for="firstName">First Name</label>
-                                                    <input type="text" class="form-control" id="firstName"
-                                                           name="firstName" pattern="^[a-zA-ZxyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđÁÂ ]+$"
-                                                           placeholder="Jane" th:value="*{firstName}" required>
-                                                    <small class="text-danger error-firstName"></small>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="lastName">Last Name</label>
-                                                    <input type="text" class="form-control" id="lastName"
-                                                           name="lastName" pattern="^[a-zA-ZxyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđÁÂ]+$"
-                                                           placeholder="Doe" th:value="*{lastName}" required>
-                                                    <small class="text-danger error-lastName"></small>
-                                                </div>
-                                                <!--end form-group-->
-                                            </div>
-                                            <!--end col-md-6-->
-
-                                            <div class="col-md-6 col-sm-6">
-                                                <div class="form-group">
-                                                    <label for="email">Email</label>
-                                                    <input type="email" class="form-control" id="email" name="email"
-                                                           pattern="^\w+([\.]?\w+)*@\w+([\.]?\w+)*(\.\w{2,3})+$"
-                                                           placeholder="janedoe@gmail.com" th:value="*{email}">
-                                                    <small class="text-danger error-email"></small>
-                                                </div>
-                                                <!--end form-group-->
-                                            </div>
-                                            <!--end col-md-6-->
-                                            <div class="col-md-6 col-sm-6">
-                                                <div class="form-group">
-                                                    <label for="phone">Phone(10)</label>
-                                                    <input type="text" class="form-control" id="phone" name="phone"
-                                                           pattern="(84|0[3|5|7|8|9])+([0-9]{8})\b" placeholder="(0)123 456 7890"
-                                                           th:value="*{phone}" required>
-                                                    <small class="text-danger error-phone"></small>
-                                                </div>
-                                                <!--end form-group-->
-                                            </div>
-
-                                            <div class="col-md-6 col-sm-6">
-                                                <div class="form-group">
-                                                    <label for="gender">Gender</label>
-                                                    <select class="form-control" id="gender" name="gender"
-                                                            th:field="*{gender}">
-                                                        <option value="MALE" th:selected="${user.gender == 'MALE'}">MALE</option>
-                                                        <option value="FEMALE" th:selected="${user.gender == 'FEMALE'}">FEMALE</option>
-                                                    </select>
-                                                </div>
-                                                <!--end form-group-->
-                                            </div>
-                                            <div class="col-md-6 col-sm-6">
-                                                <div class="form-group">
-                                                    <label for="dob">Date Of Birth</label>
-                                                    <input style="height: 36px" type="date" class="form-control"
-                                                           id="dob" name="dob"
-                                                           placeholder="Enter your age (ex: 18)" th:value="*{dob}"
-                                                           required
-                                                           onchange="">
-                                                </div>
-                                                <!--end form-group-->
-                                            </div>
-                                        </div>
-                                    </section>
-                                    <section>
-                                        <h3>Address</h3>
-                                        <div class="form-group">
-                                            <label for="province">Province</label>
-                                            <select class="form-control" name="" id="province" th:text="*{province}"
-                                                    th:field="*{provinceId}" style="display: none;">
-                                            </select>
-                                            <input class="form-control" th:id="provinceName" th:field="*{province}">
-                                        </div>
-                                        <!--end form-group-->
-                                        <div class="form-group">
-                                            <label for="district">District</label>
-                                            <select class="form-control" name="" id="district" th:text="*{district}"
-                                                    th:field="*{districtId}" style="display: none;">
-                                            </select>
-                                            <input class="form-control" th:id="districtName" th:field="*{district}">
-                                        </div>
-                                        <!--end form-group-->
-                                        <div class="form-group">
-                                            <label for="ward">Ward</label>
-                                            <select class="form-control" name="" id="ward" th:text="*{ward}"
-                                                    th:field="*{wardId}" style="display: none;">
-                                            </select>
-                                            <input class="form-control" th:id="wardName" th:field="*{ward}">
-                                        </div>
-                                        <!--end col-md-3-->
-
-                                        <div class="form-group">
-                                            <label for="addressDetails">Additional Address Line</label>
-                                            <input type="text" class="form-control" id="addressDetails"
-                                                   name="addressDetails" th:value="*{addressDetails}">
-                                        </div>
-                                        <!--end form-group-->
-                                    </section>
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-large btn-primary btn-rounded" id="submit">
-                                            Save Changes
-                                        </button>
                                     </div>
-                                    <!-- end form-group -->
-                                </div>
-                                <!--end col-md-6-->
+                                </section>
                             </div>
-                        </form>
-                    </div>
+                            <!--end col-md-3-->
+
+                            <!--Contact Info-->
+                            <div class="col-md-9 col-sm-9">
+                                <section>
+                                    <h3>Personal Info</h3>
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="form-group">
+                                                <label for="firstName">First Name</label>
+                                                <input type="text" class="form-control" id="firstName"
+                                                       name="firstName"
+                                                       pattern="^[a-zA-ZxyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđÁÂĐ ]+$"
+                                                       placeholder="Jane" th:value="*{firstName}" required>
+                                                <small class="text-danger error-firstName"></small>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="lastName">Last Name</label>
+                                                <input type="text" class="form-control" id="lastName"
+                                                       name="lastName"
+                                                       pattern="^[a-zA-ZxyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđÁÂĐ ]+$"
+                                                       placeholder="Doe" th:value="*{lastName}" required>
+                                                <small class="text-danger error-lastName"></small>
+                                            </div>
+                                            <!--end form-group-->
+                                        </div>
+                                        <!--end col-md-6-->
+
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="form-group">
+                                                <label for="email">Email</label>
+                                                <input type="email" class="form-control" id="email" name="email"
+                                                       pattern="^\w+([\.]?\w+)*@\w+([\.]?\w+)*(\.\w{2,3})+$"
+                                                       placeholder="janedoe@gmail.com" th:value="*{email}">
+                                                <small class="text-danger error-email"></small>
+                                            </div>
+                                            <!--end form-group-->
+                                        </div>
+                                        <!--end col-md-6-->
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="form-group">
+                                                <label for="phone">Phone(10)</label>
+                                                <input type="text" class="form-control" id="phone" name="phone"
+                                                       pattern="(84|0[3|5|7|8|9])+([0-9]{8})\b"
+                                                       placeholder="(0)123 456 7890"
+                                                       th:value="*{phone}" required>
+                                                <small class="text-danger error-phone"></small>
+                                            </div>
+                                            <!--end form-group-->
+                                        </div>
+
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="form-group">
+                                                <label for="gender">Gender</label>
+                                                <select class="form-control" id="gender" name="gender"
+                                                        th:field="*{gender}">
+                                                    <option value="MALE" th:selected="${user.gender == 'MALE'}">MALE
+                                                    </option>
+                                                    <option value="FEMALE" th:selected="${user.gender == 'FEMALE'}">
+                                                        FEMALE
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <!--end form-group-->
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="form-group">
+                                                <label for="dob">Date Of Birth</label>
+                                                <input style="height: 36px" type="date" class="form-control"
+                                                       id="dob" name="dob"
+                                                       placeholder="Enter your age (ex: 18)" th:value="*{dob}"
+                                                       required
+                                                       onchange="">
+                                            </div>
+                                            <!--end form-group-->
+                                        </div>
+                                    </div>
+                                </section>
+                                <section>
+                                    <h3>Address</h3>
+                                    <div class="form-group">
+                                        <label for="province">Province</label>
+                                        <select class="form-control" name="" id="province" th:text="*{province}"
+                                                th:field="*{provinceId}" style="display: none;">
+                                        </select>
+                                        <input class="form-control" th:id="provinceName" th:field="*{province}">
+                                    </div>
+                                    <!--end form-group-->
+                                    <div class="form-group">
+                                        <label for="district">District</label>
+                                        <select class="form-control" name="" id="district" th:text="*{district}"
+                                                th:field="*{districtId}" style="display: none;">
+                                        </select>
+                                        <input class="form-control" th:id="districtName" th:field="*{district}">
+                                    </div>
+                                    <!--end form-group-->
+                                    <div class="form-group">
+                                        <label for="ward">Ward</label>
+                                        <select class="form-control" name="" id="ward" th:text="*{ward}"
+                                                th:field="*{wardId}" style="display: none;">
+                                        </select>
+                                        <input class="form-control" th:id="wardName" th:field="*{ward}">
+                                    </div>
+                                    <!--end col-md-3-->
+
+                                    <div class="form-group">
+                                        <label for="addressDetails">Additional Address Line</label>
+                                        <input type="text" class="form-control" id="addressDetails"
+                                               name="addressDetails" th:value="*{addressDetails}">
+                                    </div>
+                                    <!--end form-group-->
+                                </section>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-large btn-primary btn-rounded" id="submit">
+                                        Save Changes
+                                    </button>
+                                </div>
+                                <!-- end form-group -->
+                            </div>
+                            <!--end col-md-6-->
+                        </div>
+                    </form>
                 </div>
             </div>
             <!--end main-content-->
@@ -561,6 +570,21 @@
             errorLastName.textContent = 'tên không chứa số và kí tự đặc biệt';
         } else {
             errorLastName.textContent = ''; // Clear message
+        }
+    });
+
+    document.getElementById("dob").addEventListener("change", function () {
+        var dob = new Date(this.value);
+
+        var today = new Date();
+
+        var age = today.getFullYear() - dob.getFullYear();
+
+        if (age >= 18) {
+            document.querySelector('form').removeAttribute("onsubmit");
+        } else {
+            document.querySelector('form').setAttribute("onsubmit", "return false;");
+            alert("You must be 18 or older to enter!");
         }
     });
 </script>

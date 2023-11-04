@@ -29,6 +29,7 @@ public interface UserService extends UserDetailsService {
 
     UserEntity save(UserEntity user);
 
+
     String getUserForChangePass(String email);
 
     int countUserInAdmin();
