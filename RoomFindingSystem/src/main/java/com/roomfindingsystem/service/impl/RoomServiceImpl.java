@@ -34,6 +34,7 @@ public class RoomServiceImpl implements RoomService {
     private final ServiceRoomRepository serviceRoomRepository;
     private final ServiceDetailRepository serviceDetailRepository;
     private final HouseRepository houseRepository;
+
     @Override
     public RoomEntity getRoomById(int roomId) {
         return roomRepository.getRoomById(roomId);
@@ -49,7 +50,7 @@ public class RoomServiceImpl implements RoomService {
 
     @Override
     public List<ServiceDetailEntity> getServiceByRoomId(int roomId) {
-		return roomRepository.getServiceByRoomId(roomId);
+        return roomRepository.getServiceByRoomId(roomId);
     }
 
     @Override
@@ -59,7 +60,7 @@ public class RoomServiceImpl implements RoomService {
         List<RoomDto> roomDtos = roomEntities.stream().map(roomEntity -> {
             RoomDto roomDto = modelMapper.map(roomEntity, RoomDto.class);
             roomDto.setTypeName(roomTypeRepository.findById(roomEntity.getRoomType()).get().getTypeName());
-            if (roomEntity.getStatusId() == 1) {
+            if (roomEntity.getStatusid() == 1) {
                 roomDto.setStatus("ACTIVE");
             } else {
                 roomDto.setStatus("INACTIVE");
@@ -79,13 +80,13 @@ public class RoomServiceImpl implements RoomService {
             return roomDto;
         }).toList();
         return roomDtos;
-        }
+    }
 
     @Override
     public List<RoomHomeDto> viewRoomInHome() {
         List<Tuple> tuples = roomRepository.viewRoomInHome();
         List<RoomHomeDto> roomHomeDtos = new ArrayList<>();
-        List<String> imageLinks ;
+        List<String> imageLinks;
 
         for (Tuple tuple : tuples) {
             RoomHomeDto roomHomeDto = new RoomHomeDto();
@@ -95,15 +96,17 @@ public class RoomServiceImpl implements RoomService {
             roomHomeDto.setRoomType(tuple.get("Type_Name", String.class));
             roomHomeDto.setAddressDetail(tuple.get("Address_Details", String.class));
             String imageLink = (tuple.get("Image_Link", String.class));
-            if(imageLink == null)
-            {roomHomeDto.setRoomImageLink(null);}
-            else {imageLinks = Arrays.asList(imageLink.split(","));
-                roomHomeDto.setRoomImageLink(imageLinks.get(0));}
+            if (imageLink == null) {
+                roomHomeDto.setRoomImageLink(null);
+            } else {
+                imageLinks = Arrays.asList(imageLink.split(","));
+                roomHomeDto.setRoomImageLink(imageLinks.get(0));
+            }
             roomHomeDto.setProvince(tuple.get("province_name", String.class));
             roomHomeDto.setDistrict(tuple.get("district_name", String.class));
             roomHomeDto.setWard(tuple.get("ward_name", String.class));
             roomHomeDto.setArea(tuple.get("area", Double.class));
-            roomHomeDto.setPrice(tuple.get("price",Integer.class));
+            roomHomeDto.setPrice(tuple.get("price", Integer.class));
 
             roomHomeDtos.add(roomHomeDto);
         }
@@ -123,7 +126,7 @@ public class RoomServiceImpl implements RoomService {
         RoomDto roomDto = modelMapper.map(roomEntity, RoomDto.class);
         roomDto.setTypeName(roomTypeRepository.findById(roomEntity.getRoomType()).get().getTypeName());
         roomDto.setTypeId(roomEntity.getRoomType());
-        if (roomEntity.getStatusId() == 1) {
+        if (roomEntity.getStatusid() == 1) {
             roomDto.setStatus("ACTIVE");
         } else {
             roomDto.setStatus("INACTIVE");
@@ -232,7 +235,7 @@ public class RoomServiceImpl implements RoomService {
     public List<RoomHouseDetailDto> viewRoomInHouse(int houseId) {
         List<Tuple> tuples = roomRepository.viewRoomInHouseDetail(houseId);
         List<RoomHouseDetailDto> roomDtos = new ArrayList<>();
-        List<String> roomList ;
+        List<String> roomList;
         Set<String> uniquePairs = new HashSet<>();
 
         for (Tuple tuple : tuples) {
@@ -272,9 +275,8 @@ public class RoomServiceImpl implements RoomService {
     public List<RoomDtoN> findRoom1(int min, int max, String roomName, List<Integer> type, int pageIndex, int pageSize) {
         List<Tuple> tuples = roomRepository.getRoomList(min, max, roomName, type, pageIndex, pageSize);
         List<RoomDtoN> roomDtos = new ArrayList<>();
-        List<String> imageLinks ;
-
-        for (Tuple tuple : tuples) {
+        List<String> imageLinks;
+       for (Tuple tuple : tuples) {
             RoomDtoN roomDto = new RoomDtoN();
             roomDto.setRoomId(tuple.get("roomid", Integer.class));
             roomDto.setRoomName(tuple.get("room_name", String.class));
@@ -282,10 +284,12 @@ public class RoomServiceImpl implements RoomService {
             roomDto.setPrice(tuple.get("price", Integer.class));
             roomDto.setRoomType(tuple.get("type_name", String.class));
             String imageLink = (tuple.get("images", String.class));
-            if(imageLink == null)
-            {roomDto.setRoomImages(null);}
-            else {imageLinks = Arrays.asList(imageLink.split(","));
-                roomDto.setRoomImages(imageLinks);}
+            if (imageLink == null) {
+                roomDto.setRoomImages(null);
+            } else {
+                imageLinks = Arrays.asList(imageLink.split(","));
+                roomDto.setRoomImages(imageLinks);
+            }
 
 
             roomDtos.add(roomDto);
@@ -326,7 +330,7 @@ public class RoomServiceImpl implements RoomService {
                 Cell cellType = row.getCell(2);
                 int typeId = (int) cellType.getNumericCellValue();
                 room.setRoomType(typeId);
-
+                
                 Cell cellArea = row.getCell(3);
                 Double area = cellArea.getNumericCellValue();
                 room.setArea(area);
@@ -353,5 +357,49 @@ public class RoomServiceImpl implements RoomService {
             }
         }
         roomRepository.saveAll(rooms);
+    }
+
+    @Override
+    public List<RoomAdminDashboardDto> getRoomStatusInAdminDashboard() {
+        List<Tuple> tuples = roomRepository.getRoomStatusInAdminDashboard();
+        List<RoomAdminDashboardDto> list = new ArrayList<>();
+        for(Tuple tuple: tuples){
+            RoomAdminDashboardDto roomAdminDashboardDto = new RoomAdminDashboardDto();
+            roomAdminDashboardDto.setRoomId(tuple.get("RoomId", Integer.class));
+            roomAdminDashboardDto.setHouseName(tuple.get("House_Name", String.class));
+            roomAdminDashboardDto.setRoomName(tuple.get("Room_Name", String.class));
+            roomAdminDashboardDto.setFullName(tuple.get("full_Name", String.class));
+            int statusIDint = tuple.get("statusId", Integer.class);
+            if(statusIDint == 1){
+                roomAdminDashboardDto.setStatus("Còn trống");
+            } else if(statusIDint == 2){
+                roomAdminDashboardDto.setStatus("Đã có người ở");
+            } else roomAdminDashboardDto.setStatus("Tìm người ở ghép");
+            java.sql.Date sqlDate = (java.sql.Date) tuple.get("status_update_date", Date.class);
+            if(sqlDate == null)
+            {roomAdminDashboardDto.setStatusUpdateDate(null);}
+            else {
+                LocalDate localDate = sqlDate.toLocalDate();
+                roomAdminDashboardDto.setStatusUpdateDate(localDate);
+            }
+            list.add(roomAdminDashboardDto);
+        }
+        list.sort((room1, room2) -> {
+            LocalDate currentDate = LocalDate.now();
+            LocalDate date1 = room1.getStatusUpdateDate() != null ? room1.getStatusUpdateDate() : currentDate;
+            LocalDate date2 = room2.getStatusUpdateDate() != null ? room2.getStatusUpdateDate() : currentDate;
+            return currentDate.compareTo(date1) - currentDate.compareTo(date2);
+        });
+        return list;
+    }
+
+    @Transactional
+    public void updateStatusDate(int roomId, int statusId) {
+        RoomEntity room = roomRepository.findById(roomId).orElse(null); // Thay YourEntity và yourRepository bằng entity và repository thực tế của bạn
+        if (room != null) {
+            room.setStatusUpdateDate(LocalDate.now());
+            room.setStatusId(statusId);
+            roomRepository.save(room);
+        }
     }
 }

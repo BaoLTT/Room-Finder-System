@@ -1,4 +1,4 @@
-package com.roomfindingsystem.reponsitory;
+package com.roomfindingsystem.repository;
 
 import com.roomfindingsystem.entity.HousesEntity;
 
@@ -99,6 +99,10 @@ public interface HouseRepository extends JpaRepository<HousesEntity,Integer> {
             "LEFT JOIN ward w ON a.wardid = w.wardid " +
             "GROUP BY h.houseid, h.house_name, t.type_name, a.address_details, ward_name, district_name, province_name, h.last_modified_by LIMIT 6 OFFSET 0 ",nativeQuery=true )
     List<Tuple> viewHouseInHome();
+
+    //admin
+    @Query("select count(*) from HousesEntity")
+    int countHouses();
 
 
 }

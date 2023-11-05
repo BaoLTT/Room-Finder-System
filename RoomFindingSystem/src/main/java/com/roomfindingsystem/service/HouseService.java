@@ -20,4 +20,7 @@ public interface HouseService {
     List<HouseImageLink> getImageById(int id);
     List<ServiceDto> getServiceById(int id);
     HousesEntity getHouseByRoomId(int roomId);
+
+    //admin
+    int countHousesInAdmin();
 }

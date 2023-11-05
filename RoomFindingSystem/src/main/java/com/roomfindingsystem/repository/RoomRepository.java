@@ -1,12 +1,9 @@
-package com.roomfindingsystem.reponsitory;
+package com.roomfindingsystem.repository;
 
 import com.roomfindingsystem.entity.RoomEntity;
 import com.roomfindingsystem.entity.RoomImagesEntity;
 import com.roomfindingsystem.entity.ServiceDetailEntity;
 
-
-
-import com.roomfindingsystem.dto.RoomHomeVo;
 
 import jakarta.persistence.Tuple;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -22,6 +19,7 @@ public interface RoomRepository extends JpaRepository<RoomEntity, Integer> {
 
     @Query("select r from RoomEntity r")
     List<RoomEntity> findAllRooms();
+
 
     @Query("SELECT r FROM RoomEntity r WHERE r.roomId = :roomId")
     RoomEntity getRoomById(int roomId);
@@ -72,6 +70,10 @@ public interface RoomRepository extends JpaRepository<RoomEntity, Integer> {
     int countRoom();
 
 
+
+    @Query(value = "select r.roomId ,h.house_name ,r.room_name, concat(u.last_name,' ',u.first_name) as full_name, r.statusid, r.status_update_date from room r join houses h on h.houseid = r.houseid\n" +
+            "left join user u on h.userid = u.userid", nativeQuery = true)
+    List<Tuple> getRoomStatusInAdminDashboard();
 
 
 

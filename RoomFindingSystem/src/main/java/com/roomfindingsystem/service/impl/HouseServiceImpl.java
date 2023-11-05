@@ -3,10 +3,9 @@ package com.roomfindingsystem.service.impl;
 import com.roomfindingsystem.dto.*;
 import com.roomfindingsystem.entity.HousesEntity;
 
-import com.roomfindingsystem.reponsitory.HouseRepository;
+import com.roomfindingsystem.repository.HouseRepository;
 
 import com.roomfindingsystem.service.HouseService;
-
 
 import jakarta.persistence.Tuple;
 import org.springframework.stereotype.Service;
@@ -104,6 +103,12 @@ public class HouseServiceImpl implements HouseService {
     @Override
     public HousesEntity getHouseByRoomId(int roomId) {
         return houseRepository.findHouseByRoomId(roomId);
+    }
+
+    @Override
+
+    public int countHousesInAdmin() {
+        return houseRepository.countHouses();
     }
 
 

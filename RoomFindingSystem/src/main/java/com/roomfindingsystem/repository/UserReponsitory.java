@@ -1,12 +1,10 @@
-package com.roomfindingsystem.reponsitory;
+package com.roomfindingsystem.repository;
 
 import com.roomfindingsystem.entity.UserEntity;
 
 
 import com.roomfindingsystem.dto.UserDto;
 import jakarta.transaction.Transactional;
-import jakarta.transaction.Transactional;
-import org.hibernate.sql.Update;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -41,5 +39,10 @@ public interface UserReponsitory extends JpaRepository<UserEntity, Integer> {
 
     @Query("select u.password from UserEntity u where u.email=?1")
     String getUserEntitiesByUserId(String email);
+
+
+    @Query("select count(*) from UserEntity u where u.roleId = 'Landlord' or u.roleId = 'User'")
+    int countUserInAdmin();
+
 
 }

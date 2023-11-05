@@ -1,17 +1,17 @@
-package com.roomfindingsystem.reponsitory;
+package com.roomfindingsystem.repository;
 
-import com.roomfindingsystem.dto.FeedbackDto;
+
 import com.roomfindingsystem.dto.FeedbackHomeDto;
 import com.roomfindingsystem.entity.FeedbackEntity;
 
 
 
-import com.roomfindingsystem.entity.RoomImagesEntity;
 import jakarta.transaction.Transactional;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import com.roomfindingsystem.dto.FeedbackDto;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
+
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -39,6 +39,7 @@ public interface FeedbackRepository extends JpaRepository<FeedbackEntity,Integer
 
 //    @Query("UPDATE FeedbackEntity f SET f.someField = :newValue WHERE f.houseId = :houseId AND f.memberId = :memberId")
 //    void updateFeedbackEntity(int houseId, int memberId, String newValue);
+
 
 
 

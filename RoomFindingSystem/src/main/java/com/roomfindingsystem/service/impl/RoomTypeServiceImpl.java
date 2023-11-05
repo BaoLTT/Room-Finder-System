@@ -1,7 +1,7 @@
 package com.roomfindingsystem.service.impl;
 
 import com.roomfindingsystem.entity.RoomTypeEntity;
-import com.roomfindingsystem.reponsitory.RoomTypeRepository;
+import com.roomfindingsystem.repository.RoomTypeRepository;
 import com.roomfindingsystem.service.RoomTypeService;
 import com.roomfindingsystem.vo.RoomTypeDto;
 import org.modelmapper.ModelMapper;

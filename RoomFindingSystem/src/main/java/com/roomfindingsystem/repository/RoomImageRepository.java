@@ -1,4 +1,4 @@
-package com.roomfindingsystem.reponsitory;
+package com.roomfindingsystem.repository;
 
 import com.roomfindingsystem.entity.RoomImagesEntity;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

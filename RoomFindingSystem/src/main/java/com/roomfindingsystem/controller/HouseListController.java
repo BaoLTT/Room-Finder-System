@@ -1,7 +1,7 @@
 package com.roomfindingsystem.controller;
 
 import com.roomfindingsystem.entity.ServiceDetailEntity;
-import com.roomfindingsystem.reponsitory.ServiceHouseRepository;
+import com.roomfindingsystem.repository.ServiceHouseRepository;
 import com.roomfindingsystem.service.HouseService;
 
 import com.roomfindingsystem.dto.HouseTypeVo;
