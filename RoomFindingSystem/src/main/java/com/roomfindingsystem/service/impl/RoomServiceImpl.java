@@ -329,7 +329,7 @@ public class RoomServiceImpl implements RoomService {
                 Cell cellType = row.getCell(2);
                 int typeId = (int) cellType.getNumericCellValue();
                 room.setRoomType(typeId);
-                
+
                 Cell cellArea = row.getCell(3);
                 Double area = cellArea.getNumericCellValue();
                 room.setArea(area);
@@ -351,11 +351,25 @@ public class RoomServiceImpl implements RoomService {
                 room.setCreatedDate(LocalDate.now());
                 room.setLastModifiedDate(LocalDate.now());
 
-                rooms.add(room);
+                Cell cellServices = row.getCell(7);
+                String serviceString = cellServices.getStringCellValue();
+                String[] services = serviceString.split(",");
+
+
+                roomRepository.save(room);
+
+                RoomEntity roomEntity = roomRepository.getRoomByHouseIdAndName(cellName.getStringCellValue(), houseId);
+                for (String service : services) {
+                    service = service.trim();
+                    ServiceDetailEntity serviceDetailEntity = serviceDetailRepository.findByServiceName(service).get();
+                    ServiceRoomEntity serviceRoomEntity = new ServiceRoomEntity();
+                    serviceRoomEntity.setServiceId(serviceDetailEntity.getServiceId());
+                    serviceRoomEntity.setRoomId(roomEntity.getRoomid());
+                    serviceRoomRepository.save(serviceRoomEntity);
+                }
             } catch (Exception ex) {
             }
         }
-        roomRepository.saveAll(rooms);
     }
 
     @Override
