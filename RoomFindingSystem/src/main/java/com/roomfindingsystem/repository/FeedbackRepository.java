@@ -1,7 +1,9 @@
 package com.roomfindingsystem.repository;
 
+
 import com.roomfindingsystem.dto.FeedbackHomeDto;
 import com.roomfindingsystem.entity.FeedbackEntity;
+
 
 
 import jakarta.transaction.Transactional;
@@ -9,6 +11,7 @@ import com.roomfindingsystem.dto.FeedbackDto;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
+
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -17,6 +20,7 @@ import java.util.List;
 
 @Repository
 public interface FeedbackRepository extends JpaRepository<FeedbackEntity,Integer> {
+
 
 
     @Query("SELECT NEW com.roomfindingsystem.dto.FeedbackDto(f.feedbackId, f.title, f.content, f.createdDate, u.firstName, u.lastName, u.imageLink, u.userId) FROM FeedbackEntity f JOIN UserEntity u " +
@@ -35,6 +39,7 @@ public interface FeedbackRepository extends JpaRepository<FeedbackEntity,Integer
 
 //    @Query("UPDATE FeedbackEntity f SET f.someField = :newValue WHERE f.houseId = :houseId AND f.memberId = :memberId")
 //    void updateFeedbackEntity(int houseId, int memberId, String newValue);
+
 
 
 

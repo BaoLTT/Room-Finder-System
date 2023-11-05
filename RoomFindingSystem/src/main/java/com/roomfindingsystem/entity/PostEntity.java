@@ -15,24 +15,24 @@ import java.util.Objects;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@jakarta.persistence.Table(name = "blog", schema = "room_finding_system", catalog = "")
-public class BlogEntity {
+@jakarta.persistence.Table(name = "post", schema = "room_finding_system", catalog = "")
+public class PostEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @jakarta.persistence.Column(name = "BlogID")
-    private int blogId;
+    @jakarta.persistence.Column(name = "PostID")
+    private int postId;
 
     @Basic
-    @Column(name = "Blog_Title")
-    private String blogTitle;
+    @Column(name = "Post_Title")
+    private String postTitle;
 
     @Basic
-    @Column(name = "Blog_Image")
-    private String blogImage;
+    @Column(name = "Post_Image")
+    private String postImage;
 
     @Basic
-    @Column(name = "Blog_Content")
-    private String blogContent;
+    @Column(name = "Post_Content")
+    private String postContent;
 
     @Basic
     @Column(name = "Created_Date")
@@ -51,12 +51,12 @@ public class BlogEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        BlogEntity that = (BlogEntity) o;
-        return blogId == that.blogId && userId == that.userId && Objects.equals(blogTitle, that.blogTitle) && Objects.equals(blogImage, that.blogImage) && Objects.equals(blogContent, that.blogContent) && Objects.equals(createdDate, that.createdDate) && Objects.equals(lastModifiedDate, that.lastModifiedDate);
+        PostEntity that = (PostEntity) o;
+        return postId == that.postId && userId == that.userId && Objects.equals(postTitle, that.postTitle) && Objects.equals(postImage, that.postImage) && Objects.equals(postContent, that.postContent) && Objects.equals(createdDate, that.createdDate) && Objects.equals(lastModifiedDate, that.lastModifiedDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(blogId, blogTitle, blogImage, blogContent, createdDate, lastModifiedDate, userId);
+        return Objects.hash(postId, postTitle, postImage, postContent, createdDate, lastModifiedDate, userId);
     }
 }

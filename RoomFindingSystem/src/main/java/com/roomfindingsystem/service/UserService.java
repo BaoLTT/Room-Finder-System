@@ -32,5 +32,7 @@ public interface UserService extends UserDetailsService {
 
     String getUserForChangePass(String email);
 
+    int countUserInAdmin();
+
 }
 

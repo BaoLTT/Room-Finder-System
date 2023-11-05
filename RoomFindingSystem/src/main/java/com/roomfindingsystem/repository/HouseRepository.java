@@ -10,6 +10,7 @@ import jakarta.persistence.Tuple;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -83,7 +84,8 @@ public interface HouseRepository extends JpaRepository<HousesEntity,Integer> {
     @Query("SELECT h from HousesEntity h join RoomEntity r on r.houseId = h.houseId where r.roomId=:roomid")
     HousesEntity findHouseByRoomId(int roomid);
 
-
+    @Query(value = "SELECT houses.houseid FROM houses WHERE house_name = :name", nativeQuery = true)
+    Integer findHousesEntityByHouseName(@Param("name") String name);
 
     //homepage
     @Query(value = "SELECT h.houseid, h.house_name, t.type_name, a.address_details, w.name AS ward_name, d.name AS district_name, p.name AS province_name, (SELECT GROUP_CONCAT(i.image_link) FROM house_images i WHERE i.houseid = h.houseid) AS Image_Link, h.last_modified_date, (select count(roomid) from room r where r.houseid = h.houseid and r.statusid = 1 group by r.houseid)  as count_Empty_Rooms, (select count(roomid) from room r where r.houseid = h.houseid group by r.houseid)  as count_Rooms " +

@@ -2,53 +2,61 @@ package com.roomfindingsystem.entity;
 
 import jakarta.persistence.*;
 
-import java.sql.Timestamp;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
-@jakarta.persistence.Table(name = "room", schema = "room_finding_system", catalog = "")
+@Table(name = "room", schema = "room_finding_system", catalog = "")
 public class RoomEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @jakarta.persistence.Column(name = "RoomID")
+    @Column(name = "roomid")
     private int roomId;
+    @Basic
+    @Column(name = "area")
+    private Double area;
+    @Basic
+    @Column(name = "created_by")
+    private Integer createdBy;
+    @Basic
+    @Column(name = "created_date")
+    private LocalDate createdDate;
+    @Basic
+    @Column(name = "description")
+    private String description;
+    @Basic
+    @Column(name = "houseid")
+    private Integer houseId;
+    @Basic
+    @Column(name = "last_modified_by")
+    private Integer lastModifiedBy;
+    @Basic
+    @Column(name = "last_modified_date")
+    private LocalDate lastModifiedDate;
+    @Basic
+    @Column(name = "price")
+    private Integer price;
+    @Basic
+    @Column(name = "room_name")
+    private String roomName;
+    @Basic
+    @Column(name = "room_type")
+    private Integer roomType;
+    @Basic
+    @Column(name = "statusid")
+    private Integer statusId;
+    @Basic
+    @Column(name = "status_update_date")
+    private LocalDate statusUpdateDate;
 
-    public int getRoomId() {
+    public int getRoomid() {
         return roomId;
     }
 
-    public void setRoomId(int roomId) {
-        this.roomId = roomId;
+    public void setRoomid(int roomid) {
+        this.roomId = roomid;
     }
-
-    @Basic
-    @Column(name = "Room_Name")
-    private String roomName;
-
-    public String getRoomName() {
-        return roomName;
-    }
-
-    public void setRoomName(String roomName) {
-        this.roomName = roomName;
-    }
-
-    @Basic
-    @Column(name = "Description")
-    private String description;
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    @Basic
-    @Column(name = "Area")
-    private Double area;
 
     public Double getArea() {
         return area;
@@ -58,9 +66,13 @@ public class RoomEntity {
         this.area = area;
     }
 
-    @Basic
-    @Column(name = "Created_Date")
-    private LocalDate createdDate;
+    public Integer getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(Integer createdBy) {
+        this.createdBy = createdBy;
+    }
 
     public LocalDate getCreatedDate() {
         return createdDate;
@@ -70,81 +82,21 @@ public class RoomEntity {
         this.createdDate = createdDate;
     }
 
-    @Basic
-    @Column(name = "Last_Modified_Date")
-    private LocalDate lastModifiedDate;
-
-    public LocalDate getLastModifiedDate() {
-        return lastModifiedDate;
+    public String getDescription() {
+        return description;
     }
 
-    public void setLastModifiedDate(LocalDate lastModifiedDate) {
-        this.lastModifiedDate = lastModifiedDate;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    @Basic
-    @Column(name = "Room_Type")
-    private int roomType;
-
-    public int getRoomType() {
-        return roomType;
-    }
-
-    public void setRoomType(int roomType) {
-        this.roomType = roomType;
-    }
-
-    @Basic
-    @Column(name = "HouseID")
-    private int houseId;
-
-    public int getHouseId() {
+    public Integer getHouseid() {
         return houseId;
     }
 
-    public void setHouseId(int houseId) {
-        this.houseId = houseId;
+    public void setHouseid(Integer houseid) {
+        this.houseId = houseid;
     }
-
-    @Basic
-    @Column(name = "Price")
-    private Integer price;
-
-    public Integer getPrice() {
-        return price;
-    }
-
-    public void setPrice(Integer price) {
-        this.price = price;
-    }
-
-    @Basic
-    @Column(name = "StatusID")
-    private Integer statusId;
-
-    public Integer getStatusId() {
-        return statusId;
-    }
-
-    public void setStatusId(Integer statusId) {
-        this.statusId = statusId;
-    }
-
-    @Basic
-    @Column(name = "Created_By")
-    private Integer createdBy;
-
-    public Integer getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(Integer createdBy) {
-        this.createdBy = createdBy;
-    }
-
-    @Basic
-    @Column(name = "Last_Modified_By")
-    private Integer lastModifiedBy;
 
     public Integer getLastModifiedBy() {
         return lastModifiedBy;
@@ -154,16 +106,64 @@ public class RoomEntity {
         this.lastModifiedBy = lastModifiedBy;
     }
 
+    public LocalDate getLastModifiedDate() {
+        return lastModifiedDate;
+    }
+
+    public void setLastModifiedDate(LocalDate lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
+    }
+
+    public Integer getPrice() {
+        return price;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
+    }
+
+    public String getRoomName() {
+        return roomName;
+    }
+
+    public void setRoomName(String roomName) {
+        this.roomName = roomName;
+    }
+
+    public Integer getRoomType() {
+        return roomType;
+    }
+
+    public void setRoomType(Integer roomType) {
+        this.roomType = roomType;
+    }
+
+    public Integer getStatusid() {
+        return statusId;
+    }
+
+    public void setStatusId(Integer statusid) {
+        this.statusId = statusid;
+    }
+
+    public LocalDate getStatusUpdateDate() {
+        return statusUpdateDate;
+    }
+
+    public void setStatusUpdateDate(LocalDate statusUpdateDate) {
+        this.statusUpdateDate = statusUpdateDate;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         RoomEntity that = (RoomEntity) o;
-        return roomId == that.roomId && roomType == that.roomType && houseId == that.houseId && Objects.equals(roomName, that.roomName) && Objects.equals(description, that.description) && Objects.equals(area, that.area) && Objects.equals(createdDate, that.createdDate) && Objects.equals(lastModifiedDate, that.lastModifiedDate) && Objects.equals(price, that.price) && Objects.equals(statusId, that.statusId) && Objects.equals(createdBy, that.createdBy) && Objects.equals(lastModifiedBy, that.lastModifiedBy);
+        return roomId == that.roomId && Objects.equals(area, that.area) && Objects.equals(createdBy, that.createdBy) && Objects.equals(createdDate, that.createdDate) && Objects.equals(description, that.description) && Objects.equals(houseId, that.houseId) && Objects.equals(lastModifiedBy, that.lastModifiedBy) && Objects.equals(lastModifiedDate, that.lastModifiedDate) && Objects.equals(price, that.price) && Objects.equals(roomName, that.roomName) && Objects.equals(roomType, that.roomType) && Objects.equals(statusId, that.statusId) && Objects.equals(statusUpdateDate, that.statusUpdateDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(roomId, roomName, description, area, createdDate, lastModifiedDate, roomType, houseId, price, statusId, createdBy, lastModifiedBy);
+        return Objects.hash(roomId, area, createdBy, createdDate, description, houseId, lastModifiedBy, lastModifiedDate, price, roomName, roomType, statusId, statusUpdateDate);
     }
 }
