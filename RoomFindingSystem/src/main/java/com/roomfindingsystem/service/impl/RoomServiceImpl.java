@@ -1,14 +1,13 @@
 package com.roomfindingsystem.service.impl;
 
 import com.roomfindingsystem.entity.*;
-import com.roomfindingsystem.reponsitory.*;
+import com.roomfindingsystem.repository.*;
 import com.roomfindingsystem.service.RoomService;
 
 import com.roomfindingsystem.dto.*;
 import jakarta.persistence.Tuple;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
-import org.apache.logging.log4j.core.tools.picocli.CommandLine;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -158,12 +157,12 @@ public class RoomServiceImpl implements RoomService {
 
         RoomEntity saveRoom = new RoomEntity();
 
-        saveRoom.setRoomId(room.getRoomId());
+        saveRoom.setRoomid(room.getRoomid());
         saveRoom.setArea(roomDto.getArea());
         saveRoom.setCreatedDate(room.getCreatedDate());
         saveRoom.setCreatedBy(room.getCreatedBy());
         saveRoom.setDescription(roomDto.getDescription());
-        saveRoom.setHouseId(room.getHouseId());
+        saveRoom.setHouseid(room.getHouseid());
         saveRoom.setLastModifiedBy(room.getLastModifiedBy());
         saveRoom.setLastModifiedDate(LocalDate.now());
         saveRoom.setPrice(roomDto.getPrice());
@@ -181,7 +180,7 @@ public class RoomServiceImpl implements RoomService {
         for (ServiceDto serviceDto : roomDto.getServiceDtos()) {
             ServiceRoomEntity serviceRoomEntity = new ServiceRoomEntity();
             serviceRoomEntity.setServiceId(serviceDto.getServiceId());
-            serviceRoomEntity.setRoomId(saveRoom.getRoomId());
+            serviceRoomEntity.setRoomId(saveRoom.getRoomid());
             serviceRoomRepository.save(serviceRoomEntity);
         }
         roomRepository.save(saveRoom);
@@ -203,7 +202,7 @@ public class RoomServiceImpl implements RoomService {
         saveRoom.setCreatedDate(LocalDate.now());
         saveRoom.setCreatedBy(1);
         saveRoom.setDescription(roomDto.getDescription());
-        saveRoom.setHouseId(1);
+        saveRoom.setHouseid(1);
         saveRoom.setLastModifiedBy(1);
         saveRoom.setLastModifiedDate(LocalDate.now());
         saveRoom.setPrice(roomDto.getPrice());
@@ -220,7 +219,7 @@ public class RoomServiceImpl implements RoomService {
         for (ServiceDto serviceDto : roomDto.getServiceDtos()) {
             ServiceRoomEntity serviceRoomEntity = new ServiceRoomEntity();
             serviceRoomEntity.setServiceId(serviceDto.getServiceId());
-            serviceRoomEntity.setRoomId(saveRoom.getRoomId());
+            serviceRoomEntity.setRoomId(saveRoom.getRoomid());
             serviceRoomRepository.save(serviceRoomEntity);
         }
     }
@@ -342,7 +341,7 @@ public class RoomServiceImpl implements RoomService {
                 Cell cellHouse = row.getCell(5);
                 String houseName = cellHouse.getStringCellValue();
                 Integer houseId = houseRepository.findHousesEntityByHouseName(houseName);
-                room.setHouseId(houseId);
+                room.setHouseid(houseId);
 
                 Cell cellDesc = row.getCell(6);
                 room.setDescription(cellDesc.getStringCellValue());
