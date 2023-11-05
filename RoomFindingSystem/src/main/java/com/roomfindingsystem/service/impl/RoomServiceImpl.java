@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -32,6 +33,7 @@ public class RoomServiceImpl implements RoomService {
     private final ModelMapper modelMapper;
     private final ServiceRoomRepository serviceRoomRepository;
     private final ServiceDetailRepository serviceDetailRepository;
+    private final RoomImageRepository roomImageRepository;
     private final HouseRepository houseRepository;
 
     @Override
@@ -146,17 +148,33 @@ public class RoomServiceImpl implements RoomService {
         List<ServiceDto> serviceDtos = serviceDetailEntities.stream().map(serviceDetailEntity -> {
             return modelMapper.map(serviceDetailEntity, ServiceDto.class);
         }).toList();
+
+        List<RoomImagesEntity> roomImagesEntities = roomImageRepository.getImageByRoomId(id);
+        List<RoomImageDto> roomImageDtos = roomImagesEntities.stream().map(roomImagesEntity -> {
+            return modelMapper.map(roomImagesEntity, RoomImageDto.class);
+        }).toList();
+        roomDto.setImgs(roomImageDtos);
         roomDto.setServiceDtos(serviceDtos);
         roomDto.setServiceNames(serviceNames);
         return roomDto;
     }
 
     @Override
-    public void update(RoomDto roomDto) {
+    public void update(RoomDto roomDto, MultipartFile[] files) throws IOException {
         RoomEntity room = roomRepository.findById(roomDto.getRoomId()).get();
-
         RoomEntity saveRoom = new RoomEntity();
-
+        for (MultipartFile file : files) {
+            if (!file.isEmpty()) {
+                byte[] imageData = Base64.getEncoder().encode(file.getBytes());
+                String imageLink = new String(imageData, StandardCharsets.UTF_8);
+                RoomImagesEntity roomImagesEntity = new RoomImagesEntity();
+                roomImagesEntity.setImageLink(imageLink);
+                roomImagesEntity.setRoomId(roomDto.getRoomId());
+                roomImagesEntity.setCreatedDate(LocalDate.now());
+                roomImagesEntity.setLastModifiedDate(LocalDate.now());
+                roomImageRepository.save(roomImagesEntity);
+            }
+        }
         saveRoom.setRoomid(room.getRoomid());
         saveRoom.setArea(roomDto.getArea());
         saveRoom.setCreatedDate(room.getCreatedDate());
@@ -192,11 +210,15 @@ public class RoomServiceImpl implements RoomService {
         for (ServiceRoomEntity serviceRoomEntity : serviceRoomEntities) {
             serviceRoomRepository.deleteByRoomIdAndServiceId(Math.toIntExact(id), serviceRoomEntity.getServiceId());
         }
+        List<RoomImagesEntity> roomImagesEntities = roomImageRepository.getImageByRoomId(id);
+        for(RoomImagesEntity roomImagesEntity : roomImagesEntities) {
+            roomImageRepository.deleteByImageId(roomImagesEntity.getImageId());
+        }
         roomRepository.deleteById(id);
     }
 
     @Override
-    public void save(RoomDto roomDto) {
+    public void save(RoomDto roomDto, MultipartFile[] files) throws IOException {
         RoomEntity saveRoom = new RoomEntity();
         saveRoom.setArea(roomDto.getArea());
         saveRoom.setCreatedDate(LocalDate.now());
@@ -222,6 +244,18 @@ public class RoomServiceImpl implements RoomService {
             serviceRoomEntity.setRoomId(saveRoom.getRoomid());
             serviceRoomRepository.save(serviceRoomEntity);
         }
+        for (MultipartFile file : files) {
+            if (!file.isEmpty()) {
+                byte[] imageData = Base64.getEncoder().encode(file.getBytes());
+                String imageLink = new String(imageData, StandardCharsets.UTF_8);
+                RoomImagesEntity roomImagesEntity = new RoomImagesEntity();
+                roomImagesEntity.setImageLink(imageLink);
+                roomImagesEntity.setRoomId(saveRoom.getRoomid());
+                roomImagesEntity.setCreatedDate(LocalDate.now());
+                roomImagesEntity.setLastModifiedDate(LocalDate.now());
+                roomImageRepository.save(roomImagesEntity);
+            }
+        }
     }
 
     @Override
@@ -244,23 +278,23 @@ public class RoomServiceImpl implements RoomService {
 
             // Kiểm tra xem cặp (HouseID, TypeID) đã xuất hiện chưa
             if (!uniquePairs.contains(pair)) {
-                RoomHouseDetailDto roomDto = new RoomHouseDetailDto();
-                roomDto.setRoomId(tuple.get("RoomID", Integer.class));
-                roomDto.setTypeId(typeId);
-                roomDto.setTypeName(tuple.get("type_name", String.class));
-                roomDto.setHouseId(houseId);
-                roomDto.setHouseName(tuple.get("house_name", String.class));
-                roomDto.setPrice(tuple.get("price", Integer.class));
+                RoomHouseDetailDto roomHouseDto = new RoomHouseDetailDto();
+                roomHouseDto.setRoomId(tuple.get("RoomID", Integer.class));
+                roomHouseDto.setTypeId(typeId);
+                roomHouseDto.setTypeName(tuple.get("type_name", String.class));
+                roomHouseDto.setHouseId(houseId);
+                roomHouseDto.setHouseName(tuple.get("house_name", String.class));
+                roomHouseDto.setPrice(tuple.get("price", Integer.class));
 
                 String roomName = tuple.get("room_list", String.class);
                 if (roomName == null) {
-                    roomDto.setRoomList(null);
+                    roomHouseDto.setRoomList(null);
                 } else {
                     roomList = Arrays.asList(roomName.split(","));
-                    roomDto.setRoomList(roomList);
+                    roomHouseDto.setRoomList(roomList);
                 }
 
-                roomDtos.add(roomDto);
+                roomDtos.add(roomHouseDto);
 
                 // Đánh dấu cặp (HouseID, TypeID) đã xuất hiện
                 uniquePairs.add(pair);
@@ -275,7 +309,7 @@ public class RoomServiceImpl implements RoomService {
         List<Tuple> tuples = roomRepository.getRoomList(min, max, roomName, type, pageIndex, pageSize);
         List<RoomDtoN> roomDtos = new ArrayList<>();
         List<String> imageLinks;
-       for (Tuple tuple : tuples) {
+        for (Tuple tuple : tuples) {
             RoomDtoN roomDto = new RoomDtoN();
             roomDto.setRoomId(tuple.get("roomid", Integer.class));
             roomDto.setRoomName(tuple.get("room_name", String.class));
@@ -376,22 +410,22 @@ public class RoomServiceImpl implements RoomService {
     public List<RoomAdminDashboardDto> getRoomStatusInAdminDashboard() {
         List<Tuple> tuples = roomRepository.getRoomStatusInAdminDashboard();
         List<RoomAdminDashboardDto> list = new ArrayList<>();
-        for(Tuple tuple: tuples){
+        for (Tuple tuple : tuples) {
             RoomAdminDashboardDto roomAdminDashboardDto = new RoomAdminDashboardDto();
             roomAdminDashboardDto.setRoomId(tuple.get("RoomId", Integer.class));
             roomAdminDashboardDto.setHouseName(tuple.get("House_Name", String.class));
             roomAdminDashboardDto.setRoomName(tuple.get("Room_Name", String.class));
             roomAdminDashboardDto.setFullName(tuple.get("full_Name", String.class));
             int statusIDint = tuple.get("statusId", Integer.class);
-            if(statusIDint == 1){
+            if (statusIDint == 1) {
                 roomAdminDashboardDto.setStatus("Còn trống");
-            } else if(statusIDint == 2){
+            } else if (statusIDint == 2) {
                 roomAdminDashboardDto.setStatus("Đã có người ở");
             } else roomAdminDashboardDto.setStatus("Tìm người ở ghép");
             java.sql.Date sqlDate = (java.sql.Date) tuple.get("status_update_date", Date.class);
-            if(sqlDate == null)
-            {roomAdminDashboardDto.setStatusUpdateDate(null);}
-            else {
+            if (sqlDate == null) {
+                roomAdminDashboardDto.setStatusUpdateDate(null);
+            } else {
                 LocalDate localDate = sqlDate.toLocalDate();
                 roomAdminDashboardDto.setStatusUpdateDate(localDate);
             }
@@ -414,5 +448,10 @@ public class RoomServiceImpl implements RoomService {
             room.setStatusId(statusId);
             roomRepository.save(room);
         }
+    }
+
+    @Override
+    public void deleteRoomImage(Integer imageId) {
+        roomImageRepository.deleteByImageId(imageId);
     }
 }
