@@ -9,11 +9,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ec34e655-ee0a-4be9-8773-96fceb50fb67" name="Changes" comment="update ADMIN DASHBOARD">
+    <list default="true" id="ec34e655-ee0a-4be9-8773-96fceb50fb67" name="Changes" comment="update feedback">
+      <change afterPath="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/example/roomfindingsystem/PostServiceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/entity/RoomEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/entity/RoomEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/impl/RoomServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/impl/RoomServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/footer.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/footer.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/homepage.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/homepage.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/housedetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/housedetail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/houselist.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/houselist.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +89,7 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.CommitDialog&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;,
     &quot;spring.configuration.checksum&quot;: &quot;cba14e4d5d8ebaea272e92fbdfce9e02&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
@@ -120,6 +123,22 @@
     </key>
   </component>
   <component name="RunManager" selected="Spring Boot.Main">
+    <configuration name="PostServiceTest.whenCountPosts_shouldReturnInt" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="RoomFindingSystem" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.roomfindingsystem.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.roomfindingsystem" />
+      <option name="MAIN_CLASS_NAME" value="com.example.roomfindingsystem.PostServiceTest" />
+      <option name="METHOD_NAME" value="whenCountPosts_shouldReturnInt" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="RoomFindingSystem" />
@@ -214,9 +233,15 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="JUnit.PostServiceTest.whenCountPosts_shouldReturnInt" />
       <item itemvalue="Spring Boot.Main" />
       <item itemvalue="Tomcat Server.Tomcat 9.0.69" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.PostServiceTest.whenCountPosts_shouldReturnInt" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -257,7 +282,10 @@
       <workItem from="1698807586664" duration="828000" />
       <workItem from="1698808448110" duration="1500000" />
       <workItem from="1698992591353" duration="1840000" />
-      <workItem from="1699097234873" duration="1710000" />
+      <workItem from="1699097234873" duration="2932000" />
+      <workItem from="1699159944783" duration="1515000" />
+      <workItem from="1699165657380" duration="1823000" />
+      <workItem from="1699171497703" duration="2486000" />
     </task>
     <task id="LOCAL-00001" summary="fix register and boảding house detail and send mail future">
       <option name="closed" value="true" />
@@ -387,7 +415,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699093640329</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="update feedback">
+      <option name="closed" value="true" />
+      <created>1699099254998</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1699099254998</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -433,6 +469,7 @@
     <MESSAGE value="update" />
     <MESSAGE value="update test" />
     <MESSAGE value="update ADMIN DASHBOARD" />
-    <option name="LAST_COMMIT_MESSAGE" value="update ADMIN DASHBOARD" />
+    <MESSAGE value="update feedback" />
+    <option name="LAST_COMMIT_MESSAGE" value="update feedback" />
   </component>
 </project>
