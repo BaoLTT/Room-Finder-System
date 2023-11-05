@@ -9,9 +9,9 @@ import java.util.Optional;
 
 public interface HouseService {
     //Th
-    int countHouse(int min, int max, String houseName, List<Integer> type, List<Integer> service);
+    int countHouse(int min1, int max1, int min2, int max2, String houseName, List<Integer> type, List<Integer> service);
 
-    List<HouseTypeVo> findHouse(int min, int max,String houseName,List<Integer> type, List<Integer> service, int pageIndex,int pageSize);
+    List<HouseTypeVo> findHouse(int min1, int max1, int min2, int max2,String houseName,List<Integer> type, List<Integer> service, int pageIndex,int pageSize);
 
 
     List<HouseHomeDto> viewHouseInHome();
