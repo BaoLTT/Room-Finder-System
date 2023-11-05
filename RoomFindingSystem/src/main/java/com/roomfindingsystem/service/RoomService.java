@@ -10,6 +10,7 @@ import com.roomfindingsystem.dto.*;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 
@@ -30,11 +31,11 @@ public interface RoomService {
 
     RoomDto findById(Integer id);
 
-    void update(RoomDto roomDto);
+    void update(RoomDto roomDto, MultipartFile[] files) throws IOException;
 
     void deleteById(Integer id);
 
-    void save(RoomDto roomDto);
+    void save(RoomDto roomDto, MultipartFile[] files) throws IOException;
 
     int countRoom();
 
@@ -49,5 +50,5 @@ public interface RoomService {
 
     void updateStatusDate(int roomId, int statusId);
 
-
+    void deleteRoomImage(Integer imageId);
 }

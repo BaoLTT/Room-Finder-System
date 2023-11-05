@@ -75,7 +75,9 @@ public interface RoomRepository extends JpaRepository<RoomEntity, Integer> {
             "left join user u on h.userid = u.userid", nativeQuery = true)
     List<Tuple> getRoomStatusInAdminDashboard();
 
-
+    @Query("SELECT r FROM RoomEntity r inner join HousesEntity h ON r.houseId = h.houseId " +
+            "WHERE h.houseId = :houseId and r.roomName = :name")
+    RoomEntity getRoomByHouseIdAndName(String name, Integer houseId);
 
 
 

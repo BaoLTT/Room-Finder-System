@@ -20,4 +20,5 @@ public class RoomDto {
     private String status;
     private List<ServiceDto> serviceDtos;
     private List<String> serviceNames;
+    private List<RoomImageDto> imgs;
 }

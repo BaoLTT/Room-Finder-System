@@ -11,10 +11,19 @@
     <link rel="shortcut icon" th:href="@{/assets_admin/images/favicon.ico}">
 
     <!-- App css -->
+    <link th:href="@{/assets_admin/libs/dropzone/dropzone.min.css}" rel="stylesheet" type="text/css"/>
     <link th:href="@{/assets_admin/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
     <link th:href="@{/assets_admin/css/icons.min.css}" rel="stylesheet" type="text/css"/>
     <link th:href="@{/assets_admin/css/app.min.css}" rel="stylesheet" type="text/css"/>
 
+    <style>
+        .profile-picture img {
+            max-width: 200px;
+            max-height: 200px;
+            width: auto;
+            height: auto;
+        }
+    </style>
 </head>
 
 <body>
@@ -490,8 +499,7 @@
                                 </form>
                             </div>
 
-                            <form class="parsley-examples" action="#" th:action="@{/room/save}" th:object="${room}"
-                                  method="post">
+                            <form class="parsley-examples" action="#" th:action="@{/room/save}" th:object="${room}" method="post" enctype="multipart/form-data">
                                 <input type="hidden" th:field="*{roomId}">
                                 <div class="form-group">
                                     <label>Name</label>
@@ -517,12 +525,10 @@
                                 <div class="form-group">
                                     <label>Type</label>
                                     <div>
-                                        <select class="form-select form-control mb-4 col-4" th:field="*{typeId}"
-                                                aria-label="Default select example">
-                                            <option th:each="type : ${types}" th:value="${type.typeId}"
-                                                    th:utext="${type.typeName}"/>
-                                        </select>
-                                    </div>
+                                       <select class="form-select form-control mb-4 col-4" th:field="*{typeId}" aria-label="Default select example">
+                                           <option th:each="type : ${types}" th:value="${type.typeId}" th:utext="${type.typeName}" />
+                                       </select>
+                                   </div>
                                 </div>
                                 <div class="form-group">
                                     <label>Description</label>
@@ -572,6 +578,17 @@
                                                 INACTIVE
                                             </option>
                                         </select>
+                                    </div>
+                                </div>
+								<!-- Pictures -->
+                                <div class="dropzone" id="myAwesomeDropzone">
+                                    <div class="fallback">
+                                        <input name="file" type="file" multiple />
+                                    </div>
+                                    <div class="dz-message needsclick">
+                                        <i class="h1 text-muted dripicons-cloud-upload"></i>
+                                        <h3>Drop files here or click to upload.</h3>
+                                        <span class="text-muted font-13">(This is just a demo dropzone. Selected files are <strong>not</strong> actually uploaded.)</span>
                                     </div>
                                 </div>
                                 <div class="form-group mb-0">
@@ -721,5 +738,41 @@
 
 <!-- App js -->
 <script th:src="@{/assets_admin/js/app.min.js}"></script>
+<!--Drop zone-->
+<!--<script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>-->
+<!--<script type="text/javascript" th:src="@{/assets/js/jquery-2.2.1.min.js}"></script>-->
+<!--<script type="text/javascript" th:src="@{/assets/js/jquery-migrate-1.2.1.min.js}"></script>-->
+<!--<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&libraries=places"></script>-->
+<!--<script type="text/javascript" th:src="@{/assets/bootstrap/js/bootstrap.min.js}"></script>-->
+<!--<script type="text/javascript" th:src="@{/assets/js/jquery.validate.min.js}"></script>-->
+<!--<script type="text/javascript" th:src="@{/assets/js/bootstrap-datepicker.js}"></script>-->
+<!--<script type="text/javascript" th:src="@{/assets/js/icheck.min.js}"></script>-->
+<!--<script type="text/javascript" th:src="@{/assets/js/owl.carousel.js}"></script>-->
+<!--<script type="text/javascript" th:src="@{/assets/js/masonry.pkgd.min.js}"></script>-->
+
+<!--<script type="text/javascript" th:src="@{/assets/js/maps.js}"></script>-->
+<!--<script type="text/javascript" th:src="@{/assets/js/custom.js}"></script>-->
+
+<!--<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>-->
+<!--<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>-->
+<script th:inline="javascript">
+    $(document).ready(function () {
+        // Customize Dropzone.js options here.
+        Dropzone.options.myAwesomeDropzone = {
+            paramName: "file", // Name of the file input field
+            maxFilesize: 5, // Maximum file size in MB
+            maxFiles: 10, // Maximum number of files
+            acceptedFiles: "image/*", // Restrict to image files
+            addRemoveLinks: true, // Display remove links
+            dictRemoveFile: "Remove", // Text for remove link
+            // Other options...
+
+            // Define a success callback for when files are uploaded successfully
+            success: function (file, response) {
+                // Handle the server response, if needed
+            },
+        };
+    });
+</script>
 </body>
 </html>
