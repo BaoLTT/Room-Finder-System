@@ -12,6 +12,7 @@ import lombok.*;
 @ToString
 @Builder
 public class ServiceDto {
+   private Integer serviceId;
    private String serviceName;
    private String description;
 }

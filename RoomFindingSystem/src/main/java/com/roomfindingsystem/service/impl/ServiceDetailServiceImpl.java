@@ -18,12 +18,12 @@ public class ServiceDetailServiceImpl implements ServiceDetailService {
         this.modelMapper = modelMapper;
     }
 
-//    @Override
-//    public ServiceDto findByName(String name) {
-//        ServiceDetailEntity serviceDetailEntity = serviceDetailRepository.findByServiceName(name).get();
-//        ServiceDto serviceDto = new ServiceDto();
-//        serviceDto.setServiceId(serviceDetailEntity.getServiceId());
-//        serviceDto.setServiceName(serviceDetailEntity.getServiceName());
-//        return serviceDto;
-//    }
+    @Override
+    public ServiceDto findByName(String name) {
+        ServiceDetailEntity serviceDetailEntity = serviceDetailRepository.findByServiceName(name).get();
+        ServiceDto serviceDto = new ServiceDto();
+        serviceDto.setServiceId(serviceDetailEntity.getServiceId());
+        serviceDto.setServiceName(serviceDetailEntity.getServiceName());
+        return serviceDto;
+    }
 }

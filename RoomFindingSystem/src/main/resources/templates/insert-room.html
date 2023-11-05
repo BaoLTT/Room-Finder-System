@@ -36,25 +36,29 @@
                 <div class="dropdown-menu dropdown-menu-right">
                     <!-- item-->
                     <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <img th:src="@{/assets_admin/images/flags/germany.jpg}" alt="user-image" class="mr-1" height="12"> <span
+                        <img th:src="@{/assets_admin/images/flags/germany.jpg}" alt="user-image" class="mr-1"
+                             height="12"> <span
                             class="align-middle">German</span>
                     </a>
 
                     <!-- item-->
                     <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <img th:src="@{/assets_admin/images/flags/italy.jpg}" alt="user-image" class="mr-1" height="12"> <span
-                            class="align-middle">Italian</span>
+                        <img th:src="@{/assets_admin/images/flags/italy.jpg}" alt="user-image" class="mr-1" height="12">
+                        <span
+                                class="align-middle">Italian</span>
                     </a>
 
                     <!-- item-->
                     <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <img th:src="@{/assets_admin/images/flags/spain.jpg}" alt="user-image" class="mr-1" height="12"> <span
-                            class="align-middle">Spanish</span>
+                        <img th:src="@{/assets_admin/images/flags/spain.jpg}" alt="user-image" class="mr-1" height="12">
+                        <span
+                                class="align-middle">Spanish</span>
                     </a>
 
                     <!-- item-->
                     <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <img th:src="@{/assets_admin/images/flags/russia.jpg}" alt="user-image" class="mr-1" height="12"> <span
+                        <img th:src="@{/assets_admin/images/flags/russia.jpg}" alt="user-image" class="mr-1"
+                             height="12"> <span
                             class="align-middle">Russian</span>
                     </a>
 
@@ -475,7 +479,15 @@
                         <div class="card-box">
                             <h4 class="header-title"> Add New Room</h4>
                             <div class="d-flex justify-content-end">
-                                <button class="btn btn-success mb-1 "><a href="#" style="color: white">Add Many Room</a></button>
+                                <form th:action="@{/room/importRooms}" method="post" enctype="multipart/form-data"
+                                      class="my-form">
+                                    <div class="form-group">
+                                        <input type="file" class="form-control-file" id="fileExcel" name="fileExcel"/>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary" onclick="event.stopPropagation()">Add
+                                        Many Room
+                                    </button>
+                                </form>
                             </div>
 
                             <form class="parsley-examples" action="#" th:action="@{/room/save}" th:object="${room}"

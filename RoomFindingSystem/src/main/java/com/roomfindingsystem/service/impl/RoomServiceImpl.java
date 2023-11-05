@@ -8,9 +8,18 @@ import com.roomfindingsystem.dto.*;
 import jakarta.persistence.Tuple;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import org.apache.logging.log4j.core.tools.picocli.CommandLine;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -24,7 +33,7 @@ public class RoomServiceImpl implements RoomService {
     private final ModelMapper modelMapper;
     private final ServiceRoomRepository serviceRoomRepository;
     private final ServiceDetailRepository serviceDetailRepository;
-
+    private final HouseRepository houseRepository;
     @Override
     public RoomEntity getRoomById(int roomId) {
         return roomRepository.getRoomById(roomId);
@@ -140,40 +149,40 @@ public class RoomServiceImpl implements RoomService {
         return roomDto;
     }
 
-//    @Override
-//    public void update(RoomDto roomDto) {
-//        RoomEntity room = roomRepository.findById(roomDto.getRoomId()).get();
-//
-//        RoomEntity saveRoom = new RoomEntity();
-//
-//        saveRoom.setRoomId(room.getRoomId());
-//        saveRoom.setArea(roomDto.getArea());
-//        saveRoom.setCreatedDate(room.getCreatedDate());
-//        saveRoom.setCreatedBy(room.getCreatedBy());
-//        saveRoom.setDescription(roomDto.getDescription());
-//        saveRoom.setHouseId(room.getHouseId());
-//        saveRoom.setLastModifiedBy(room.getLastModifiedBy());
-//        saveRoom.setLastModifiedDate(LocalDate.now());
-//        saveRoom.setPrice(roomDto.getPrice());
-//        saveRoom.setRoomName(roomDto.getRoomName());
-//        saveRoom.setRoomType(room.getRoomType());
-//        if (Objects.equals(roomDto.getStatus(), "ACTIVE")) {
-//            saveRoom.setStatusId(1);
-//        } else {
-//            saveRoom.setStatusId(0);
-//        }
-//        List<ServiceRoomEntity> serviceRoomEntities = serviceRoomRepository.findAllByRoomId(roomDto.getRoomId());
-//        for (ServiceRoomEntity serviceRoomEntity : serviceRoomEntities) {
-//            serviceRoomRepository.deleteByRoomIdAndServiceId(roomDto.getRoomId(), serviceRoomEntity.getServiceId());
-//        }
-//        for (ServiceDto serviceDto : roomDto.getServiceDtos()) {
-//            ServiceRoomEntity serviceRoomEntity = new ServiceRoomEntity();
-//            serviceRoomEntity.setServiceId(serviceDto.getServiceId());
-//            serviceRoomEntity.setRoomId(saveRoom.getRoomId());
-//            serviceRoomRepository.save(serviceRoomEntity);
-//        }
-//        roomRepository.save(saveRoom);
-//    }
+    @Override
+    public void update(RoomDto roomDto) {
+        RoomEntity room = roomRepository.findById(roomDto.getRoomId()).get();
+
+        RoomEntity saveRoom = new RoomEntity();
+
+        saveRoom.setRoomId(room.getRoomId());
+        saveRoom.setArea(roomDto.getArea());
+        saveRoom.setCreatedDate(room.getCreatedDate());
+        saveRoom.setCreatedBy(room.getCreatedBy());
+        saveRoom.setDescription(roomDto.getDescription());
+        saveRoom.setHouseId(room.getHouseId());
+        saveRoom.setLastModifiedBy(room.getLastModifiedBy());
+        saveRoom.setLastModifiedDate(LocalDate.now());
+        saveRoom.setPrice(roomDto.getPrice());
+        saveRoom.setRoomName(roomDto.getRoomName());
+        saveRoom.setRoomType(room.getRoomType());
+        if (Objects.equals(roomDto.getStatus(), "ACTIVE")) {
+            saveRoom.setStatusId(1);
+        } else {
+            saveRoom.setStatusId(0);
+        }
+        List<ServiceRoomEntity> serviceRoomEntities = serviceRoomRepository.findAllByRoomId(roomDto.getRoomId());
+        for (ServiceRoomEntity serviceRoomEntity : serviceRoomEntities) {
+            serviceRoomRepository.deleteByRoomIdAndServiceId(roomDto.getRoomId(), serviceRoomEntity.getServiceId());
+        }
+        for (ServiceDto serviceDto : roomDto.getServiceDtos()) {
+            ServiceRoomEntity serviceRoomEntity = new ServiceRoomEntity();
+            serviceRoomEntity.setServiceId(serviceDto.getServiceId());
+            serviceRoomEntity.setRoomId(saveRoom.getRoomId());
+            serviceRoomRepository.save(serviceRoomEntity);
+        }
+        roomRepository.save(saveRoom);
+    }
 
     @Override
     public void deleteById(Integer id) {
@@ -184,34 +193,34 @@ public class RoomServiceImpl implements RoomService {
         roomRepository.deleteById(id);
     }
 
-//    @Override
-//    public void save(RoomDto roomDto) {
-//        RoomEntity saveRoom = new RoomEntity();
-//        saveRoom.setArea(roomDto.getArea());
-//        saveRoom.setCreatedDate(LocalDate.now());
-//        saveRoom.setCreatedBy(1);
-//        saveRoom.setDescription(roomDto.getDescription());
-//        saveRoom.setHouseId(1);
-//        saveRoom.setLastModifiedBy(1);
-//        saveRoom.setLastModifiedDate(LocalDate.now());
-//        saveRoom.setPrice(roomDto.getPrice());
-//        saveRoom.setRoomName(roomDto.getRoomName());
-//        saveRoom.setRoomType(roomDto.getTypeId());
-//        if (Objects.equals(roomDto.getStatus(), "ACTIVE")) {
-//            saveRoom.setStatusId(1);
-//        } else {
-//            saveRoom.setStatusId(0);
-//        }
-//
-//        roomRepository.save(saveRoom);
-//
-//        for (ServiceDto serviceDto : roomDto.getServiceDtos()) {
-//            ServiceRoomEntity serviceRoomEntity = new ServiceRoomEntity();
-//            serviceRoomEntity.setServiceId(serviceDto.getServiceId());
-//            serviceRoomEntity.setRoomId(saveRoom.getRoomId());
-//            serviceRoomRepository.save(serviceRoomEntity);
-//        }
-//    }
+    @Override
+    public void save(RoomDto roomDto) {
+        RoomEntity saveRoom = new RoomEntity();
+        saveRoom.setArea(roomDto.getArea());
+        saveRoom.setCreatedDate(LocalDate.now());
+        saveRoom.setCreatedBy(1);
+        saveRoom.setDescription(roomDto.getDescription());
+        saveRoom.setHouseId(1);
+        saveRoom.setLastModifiedBy(1);
+        saveRoom.setLastModifiedDate(LocalDate.now());
+        saveRoom.setPrice(roomDto.getPrice());
+        saveRoom.setRoomName(roomDto.getRoomName());
+        saveRoom.setRoomType(roomDto.getTypeId());
+        if (Objects.equals(roomDto.getStatus(), "ACTIVE")) {
+            saveRoom.setStatusId(1);
+        } else {
+            saveRoom.setStatusId(0);
+        }
+
+        roomRepository.save(saveRoom);
+
+        for (ServiceDto serviceDto : roomDto.getServiceDtos()) {
+            ServiceRoomEntity serviceRoomEntity = new ServiceRoomEntity();
+            serviceRoomEntity.setServiceId(serviceDto.getServiceId());
+            serviceRoomEntity.setRoomId(saveRoom.getRoomId());
+            serviceRoomRepository.save(serviceRoomEntity);
+        }
+    }
 
     @Override
     public int countRoom() {
@@ -284,5 +293,65 @@ public class RoomServiceImpl implements RoomService {
         return roomDtos;
     }
 
+    @Override
+    public void importRooms(MultipartFile file) {
+        InputStream inputStream = null;
+        try {
+            inputStream = file.getInputStream();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
+        Workbook workbook = null;
+        try {
+            workbook = new XSSFWorkbook(inputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Sheet sheet = workbook.getSheetAt(0);
+
+        List<RoomEntity> rooms = new ArrayList<>();
+
+        int lastRowNum = sheet.getLastRowNum();
+        int startRow = 3;
+        for (int i = startRow; i <= lastRowNum - 3; i++) {
+            try {
+                RoomEntity room = new RoomEntity();
+                Row row = sheet.getRow(i);
+
+                Cell cellName = row.getCell(1);
+                room.setRoomName(cellName.getStringCellValue());
+
+                Cell cellType = row.getCell(2);
+                int typeId = (int) cellType.getNumericCellValue();
+                room.setRoomType(typeId);
+
+                Cell cellArea = row.getCell(3);
+                Double area = cellArea.getNumericCellValue();
+                room.setArea(area);
+
+                Cell cellPrice = row.getCell(4);
+                Integer price = (int) cellPrice.getNumericCellValue();
+                room.setPrice(price);
+
+                Cell cellHouse = row.getCell(5);
+                String houseName = cellHouse.getStringCellValue();
+                Integer houseId = houseRepository.findHousesEntityByHouseName(houseName);
+                room.setHouseId(houseId);
+
+                Cell cellDesc = row.getCell(6);
+                room.setDescription(cellDesc.getStringCellValue());
+                room.setStatusId(1);
+                room.setCreatedBy(1);
+                room.setLastModifiedBy(1);
+                room.setCreatedDate(LocalDate.now());
+                room.setLastModifiedDate(LocalDate.now());
+
+                rooms.add(room);
+            } catch (Exception ex) {
+            }
+        }
+        roomRepository.saveAll(rooms);
+    }
 }
