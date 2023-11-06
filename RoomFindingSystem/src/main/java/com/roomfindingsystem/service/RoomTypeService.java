@@ -1,6 +1,6 @@
 package com.roomfindingsystem.service;
 
-import com.roomfindingsystem.vo.RoomTypeDto;
+import com.roomfindingsystem.dto.RoomTypeDto;
 
 import java.util.List;
 

@@ -16,7 +16,7 @@ import java.util.Objects;
 
 @Controller
 @RequestMapping("/admin")
-public class AdminDashboardController {
+public class  AdminDashboardController {
     @Autowired
     HouseService houseService;
 

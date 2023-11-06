@@ -56,20 +56,10 @@ public class RoomServiceImpl implements RoomService {
 
     @Override
     public List<RoomDto> getAll() {
-        List<RoomEntity> roomEntities = roomRepository.findAllRooms();
-
-        List<RoomDto> roomDtos = roomEntities.stream().map(roomEntity -> {
-            RoomDto roomDto = modelMapper.map(roomEntity, RoomDto.class);
-            roomDto.setTypeName(roomTypeRepository.findById(roomEntity.getRoomType()).get().getTypeName());
-            if (roomEntity.getStatusid() == 1) {
-                roomDto.setStatus("ACTIVE");
-            } else {
-                roomDto.setStatus("INACTIVE");
-            }
-            List<ServiceDetailEntity> serviceDetailEntities = roomRepository.getServiceByRoomId(roomDto.getRoomId());
-
+        List<RoomDto> roomDtos = roomRepository.findRoomsDetail();
+        for(RoomDto roomDto : roomDtos) {
             StringBuilder servicesBuilder = new StringBuilder();
-
+            List<ServiceDetailEntity> serviceDetailEntities = roomRepository.getServiceByRoomId(roomDto.getRoomId());
             for (ServiceDetailEntity serviceDetailEntity : serviceDetailEntities) {
                 if (!servicesBuilder.isEmpty()) {
                     servicesBuilder.append(", ");
@@ -77,9 +67,7 @@ public class RoomServiceImpl implements RoomService {
                 servicesBuilder.append(serviceDetailEntity.getServiceName());
             }
             roomDto.setServices(servicesBuilder.toString());
-
-            return roomDto;
-        }).toList();
+        }
         return roomDtos;
     }
 
