@@ -1,5 +1,6 @@
 package com.roomfindingsystem.repository;
 
+import com.roomfindingsystem.dto.RoomDto;
 import com.roomfindingsystem.entity.RoomEntity;
 import com.roomfindingsystem.entity.RoomImagesEntity;
 import com.roomfindingsystem.entity.ServiceDetailEntity;
@@ -79,6 +80,10 @@ public interface RoomRepository extends JpaRepository<RoomEntity, Integer> {
             "WHERE h.houseId = :houseId and r.roomName = :name")
     RoomEntity getRoomByHouseIdAndName(String name, Integer houseId);
 
-
+    @Query("select new com.roomfindingsystem.dto.RoomDto(r.roomId, r.roomName, t.typeName, r.description, r.price, h.houseName, r.area, case when r.statusId = 1 then 'ACTIVE' else 'INACTIVE' end) " +
+            "from RoomEntity r " +
+            "join HousesEntity h on r.houseId = h.houseId " +
+            "left join RoomTypeEntity t on t.typeId = r.roomType ")
+    List<RoomDto> findRoomsDetail();
 
 }

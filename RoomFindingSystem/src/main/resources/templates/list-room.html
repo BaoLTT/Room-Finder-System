@@ -42,25 +42,29 @@
                 <div class="dropdown-menu dropdown-menu-right">
                     <!-- item-->
                     <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <img th:src="@{/assets_admin/images/flags/germany.jpg}" alt="user-image" class="mr-1" height="12"> <span
+                        <img th:src="@{/assets_admin/images/flags/germany.jpg}" alt="user-image" class="mr-1"
+                             height="12"> <span
                             class="align-middle">German</span>
                     </a>
 
                     <!-- item-->
                     <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <img th:src="@{/assets_admin/images/flags/italy.jpg}" alt="user-image" class="mr-1" height="12"> <span
-                            class="align-middle">Italian</span>
+                        <img th:src="@{/assets_admin/images/flags/italy.jpg}" alt="user-image" class="mr-1" height="12">
+                        <span
+                                class="align-middle">Italian</span>
                     </a>
 
                     <!-- item-->
                     <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <img th:src="@{/assets_admin/images/flags/spain.jpg}" alt="user-image" class="mr-1" height="12"> <span
-                            class="align-middle">Spanish</span>
+                        <img th:src="@{/assets_admin/images/flags/spain.jpg}" alt="user-image" class="mr-1" height="12">
+                        <span
+                                class="align-middle">Spanish</span>
                     </a>
 
                     <!-- item-->
                     <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <img th:src="@{/assets_admin/images/flags/russia.jpg}" alt="user-image" class="mr-1" height="12"> <span
+                        <img th:src="@{/assets_admin/images/flags/russia.jpg}" alt="user-image" class="mr-1"
+                             height="12"> <span
                             class="align-middle">Russian</span>
                     </a>
 
@@ -196,12 +200,12 @@
         <div class="logo-box">
             <a href="" class="logo text-center">
                         <span class="logo-lg">
-                            <img th:src="@{/images/logo-light.png}" alt="" height="16">
+                            <img th:src="@{/assets_admin/images/logo-light.png}" alt="" height="16">
                             <!-- <span class="logo-lg-text-light">UBold</span> -->
                         </span>
                 <span class="logo-sm">
                             <!-- <span class="logo-sm-text-dark">U</span> -->
-                            <img th:src="@{/images/logo-sm.png}" alt="" height="24">
+                            <img th:src="@{/assets_admin/images/logo-sm.png}" alt="" height="24">
                         </span>
             </a>
         </div>
@@ -475,6 +479,7 @@
                                     <th>Type</th>
                                     <th>Services</th>
                                     <th>Price</th>
+                                    <th>House</th>
                                     <th>Status</th>
                                     <th>Actions</th>
                                 </tr>
@@ -496,6 +501,9 @@
                                     <td th:text="${room.price}">
                                     </td>
 
+                                    <td th:text="${room.houseName}">
+                                    </td>
+
                                     <td th:text="${room.status}">
                                     </td>
 
@@ -513,8 +521,6 @@
                     </div>
                 </div>
                 <!-- end row -->
-
-
             </div> <!-- end container-fluid -->
 
         </div> <!-- end content -->
@@ -586,21 +592,21 @@
         <div class="p-3">
             <div class="inbox-widget">
                 <div class="inbox-item">
-                    <div class="inbox-item-img"><img th:src="@{/assets/images/users/avatar-1.jpg}"
+                    <div class="inbox-item-img"><img th:src="@{/assets_admin/images/users/avatar-1.jpg}"
                                                      class="rounded-circle" alt=""></div>
                     <p class="inbox-item-author"><a href="javascript: void(0);">Chadengle</a></p>
                     <p class="inbox-item-text">Hey! there I'm available...</p>
                     <p class="inbox-item-date">13:40 PM</p>
                 </div>
                 <div class="inbox-item">
-                    <div class="inbox-item-img"><img th:src="@{/assets/images/users/avatar-2.jpg}"
+                    <div class="inbox-item-img"><img th:src="@{/assets_admin/images/users/avatar-2.jpg}"
                                                      class="rounded-circle" alt=""></div>
                     <p class="inbox-item-author"><a href="javascript: void(0);">Tomaslau</a></p>
                     <p class="inbox-item-text">I've finished it! See you so...</p>
                     <p class="inbox-item-date">13:34 PM</p>
                 </div>
                 <div class="inbox-item">
-                    <div class="inbox-item-img"><img th:src="@{/assets/images/users/avatar-3.jpg}"
+                    <div class="inbox-item-img"><img th:src="@{/assets_admin/images/users/avatar-3.jpg}"
                                                      class="rounded-circle" alt=""></div>
                     <p class="inbox-item-author"><a href="javascript: void(0);">Stillnotdavid</a></p>
                     <p class="inbox-item-text">This theme is awesome!</p>
@@ -608,7 +614,7 @@
                 </div>
 
                 <div class="inbox-item">
-                    <div class="inbox-item-img"><img th:src="@{/assets/images/users/avatar-4.jpg}"
+                    <div class="inbox-item-img"><img th:src="@{/assets_admin/images/users/avatar-4.jpg}"
                                                      class="rounded-circle" alt=""></div>
                     <p class="inbox-item-author"><a href="javascript: void(0);">Kurafire</a></p>
                     <p class="inbox-item-text">Nice to meet you</p>
@@ -616,7 +622,7 @@
 
                 </div>
                 <div class="inbox-item">
-                    <div class="inbox-item-img"><img th:src="@{/assets/images/users/avatar-5.jpg}"
+                    <div class="inbox-item-img"><img th:src="@{/assets_admin/images/users/avatar-5.jpg}"
                                                      class="rounded-circle" alt=""></div>
                     <p class="inbox-item-author"><a href="javascript: void(0);">Shahedk</a></p>
                     <p class="inbox-item-text">Hey! there I'm available...</p>
