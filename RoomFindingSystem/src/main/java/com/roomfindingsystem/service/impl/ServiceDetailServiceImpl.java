@@ -1,5 +1,7 @@
 package com.roomfindingsystem.service.impl;
 
+import com.roomfindingsystem.dto.ServiceDto;
+import com.roomfindingsystem.entity.ServiceDetailEntity;
 import com.roomfindingsystem.repository.ServiceDetailRepository;
 import com.roomfindingsystem.service.ServiceDetailService;
 import org.modelmapper.ModelMapper;
@@ -16,12 +18,12 @@ public class ServiceDetailServiceImpl implements ServiceDetailService {
         this.modelMapper = modelMapper;
     }
 
-//    @Override
-//    public ServiceDto findByName(String name) {
-//        ServiceDetailEntity serviceDetailEntity = serviceDetailRepository.findByServiceName(name).get();
-//        ServiceDto serviceDto = new ServiceDto();
-//        serviceDto.setServiceId(serviceDetailEntity.getServiceId());
-//        serviceDto.setServiceName(serviceDetailEntity.getServiceName());
-//        return serviceDto;
-//    }
+    @Override
+    public ServiceDto findByName(String name) {
+        ServiceDetailEntity serviceDetailEntity = serviceDetailRepository.findByServiceName(name).get();
+        ServiceDto serviceDto = new ServiceDto();
+        serviceDto.setServiceId(serviceDetailEntity.getServiceId());
+        serviceDto.setServiceName(serviceDetailEntity.getServiceName());
+        return serviceDto;
+    }
 }

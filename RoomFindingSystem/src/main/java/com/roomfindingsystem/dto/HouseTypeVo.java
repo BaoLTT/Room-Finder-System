@@ -4,39 +4,40 @@ package com.roomfindingsystem.dto;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Setter
-    @Getter
-    @NoArgsConstructor
-    @AllArgsConstructor
-    @ToString
-    public class HouseTypeVo {
-        int houseID;
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+public class HouseTypeVo {
+    int houseID;
 
-        String houseName;
+    String houseName;
 
-        String typeHouse;
+    String typeHouse;
 
-        String addressDetail;
+    String addressDetail;
 
-        String ward;
+    String ward;
 
-        String district;
+    String district;
 
-        String province;
+    String province;
 
-        Integer price;
+    Integer price;
 
-        List<String> listImage;
+    List<String> listImage;
 
-        List<String> service;
+    List<String> service;
 
-        LocalDate last_modified_date;
+    LocalDate last_modified_date;
 
-        Integer count_room;
+    Integer count_room;
 
-        Integer like;
-    }
+    Integer like;
+}
 
 

@@ -21,7 +21,7 @@ public class RoomEntity {
     private Integer createdBy;
     @Basic
     @Column(name = "created_date")
-    private Date createdDate;
+    private LocalDate createdDate;
     @Basic
     @Column(name = "description")
     private String description;
@@ -33,7 +33,7 @@ public class RoomEntity {
     private Integer lastModifiedBy;
     @Basic
     @Column(name = "last_modified_date")
-    private Date lastModifiedDate;
+    private LocalDate lastModifiedDate;
     @Basic
     @Column(name = "price")
     private Integer price;
@@ -74,11 +74,11 @@ public class RoomEntity {
         this.createdBy = createdBy;
     }
 
-    public Date getCreatedDate() {
+    public LocalDate getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(Date createdDate) {
+    public void setCreatedDate(LocalDate createdDate) {
         this.createdDate = createdDate;
     }
 
@@ -106,11 +106,11 @@ public class RoomEntity {
         this.lastModifiedBy = lastModifiedBy;
     }
 
-    public Date getLastModifiedDate() {
+    public LocalDate getLastModifiedDate() {
         return lastModifiedDate;
     }
 
-    public void setLastModifiedDate(Date lastModifiedDate) {
+    public void setLastModifiedDate(LocalDate lastModifiedDate) {
         this.lastModifiedDate = lastModifiedDate;
     }
 

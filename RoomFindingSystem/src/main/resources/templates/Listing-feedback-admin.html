@@ -4,13 +4,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="ThemeStarz">
 
-    <link href="assets/fonts/font-awesome.css" rel="stylesheet" type="text/css">
-    <link href="assets/fonts/elegant-fonts.css" rel="stylesheet" type="text/css">
+    <link href="../static/assets/fonts/font-awesome.css" rel="stylesheet" type="text/css">
+    <link href="../static/assets/fonts/elegant-fonts.css" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700,900,400italic' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.css" type="text/css">
-    <link rel="stylesheet" href="assets/css/zabuto_calendar.min.css" type="text/css">
-    <link rel="stylesheet" href="assets/css/owl.carousel.css" type="text/css">
-    <link rel="stylesheet" href="assets/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/zabuto_calendar.min.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/owl.carousel.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
 
     <title>Listing feedback for admin</title>
 
@@ -288,12 +288,36 @@
                         <!--end item-->
                         <form>
                         <div class="center">
+<!--                            <ul class="pagination">-->
+<!--                                <li class="prev">-->
+<!--                                    <a th:if="${currentPage>1}" th:href="@{'?pageNo=' +${currentPage-1}}"><i class="arrow_left"></i></a>-->
+<!--                                </li>-->
+<!--                                <li th:each="i : ${#numbers.sequence(1,totalPage)}" th:classappend="${currentPage == i?'active':''}" ><a th:href="@{'?pageNo=' +${i}}" th:text="${i}">2</a></li>-->
+<!--                                <li class="next">-->
+<!--                                    <a th:if="${currentPage<totalPage}" th:href="@{'?pageNo=' +${currentPage+1}}"><i class="arrow_right"></i></a>-->
+<!--                                </li>-->
+<!--                            </ul>-->
                             <ul class="pagination">
-                                <li class="prev">
+                                <li class="prev" >
                                     <a th:if="${currentPage>1}" th:href="@{'?pageNo=' +${currentPage-1}}"><i class="arrow_left"></i></a>
                                 </li>
+
+                                <li th:if="${currentPage > 2}">
+                                    <a th:text="1" th:href="@{/houselist(page=1, houseName=${houseName})}">1</a>
+                                </li>
+                                <li th:if="${currentPage > 3}">
+                                    <span>...</span>
+                                </li>
+
                                 <li th:each="i : ${#numbers.sequence(1,totalPage)}" th:classappend="${currentPage == i?'active':''}" ><a th:href="@{'?pageNo=' +${i}}" th:text="${i}">2</a></li>
-                                <li class="next">
+                                <li th:if="${currentPage < totalPage - 2}">
+                                    <span>...</span>
+                                </li>
+                                <li th:if="${currentPage <= totalPage - 2}">
+                                    <a th:text="${totalPage}" th:href="@{/houselist(page=${totalPage}, houseName=${houseName})}" class="page-number">${totalPage}</a>
+                                </li>
+
+                                <li class="next" >
                                     <a th:if="${currentPage<totalPage}" th:href="@{'?pageNo=' +${currentPage+1}}"><i class="arrow_right"></i></a>
                                 </li>
                             </ul>
@@ -379,17 +403,17 @@
 <!--    </form>-->
 <!--</div>-->
 
-<script type="text/javascript" src="assets/js/jquery-2.2.1.min.js"></script>
-<script type="text/javascript" src="assets/js/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="/assets/js/jquery-2.2.1.min.js"></script>
+<script type="text/javascript" src="/assets/js/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="http://maps.google.com/maps/api/js"></script>
-<script type="text/javascript" src="assets/js/richmarker-compiled.js"></script>
-<script type="text/javascript" src="assets/js/markerwithlabel_packed.js"></script>
-<script type="text/javascript" src="assets/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="assets/js/jquery.validate.min.js"></script>
-<script type="text/javascript" src="assets/js/bootstrap-datepicker.js"></script>
-<script type="text/javascript" src="assets/js/icheck.min.js"></script>
-<script type="text/javascript" src="assets/js/owl.carousel.js"></script>
-<script type="text/javascript" src="assets/js/masonry.pkgd.min.js"></script>
+<script type="text/javascript" src="/assets/js/richmarker-compiled.js"></script>
+<script type="text/javascript" src="/assets/js/markerwithlabel_packed.js"></script>
+<script type="text/javascript" src="/assets/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/assets/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/assets/js/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="/assets/js/icheck.min.js"></script>
+<script type="text/javascript" src="/assets/js/owl.carousel.js"></script>
+<script type="text/javascript" src="/assets/js/masonry.pkgd.min.js"></script>
 
 <script type="text/javascript" src="assets/js/maps.js"></script>
 <script type="text/javascript" src="assets/js/custom.js"></script>

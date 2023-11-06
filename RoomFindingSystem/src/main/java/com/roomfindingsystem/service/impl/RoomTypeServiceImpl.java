@@ -3,7 +3,7 @@ package com.roomfindingsystem.service.impl;
 import com.roomfindingsystem.entity.RoomTypeEntity;
 import com.roomfindingsystem.repository.RoomTypeRepository;
 import com.roomfindingsystem.service.RoomTypeService;
-import com.roomfindingsystem.vo.RoomTypeDto;
+import com.roomfindingsystem.dto.RoomTypeDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 

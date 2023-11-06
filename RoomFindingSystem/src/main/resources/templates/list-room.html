@@ -9,24 +9,17 @@
     <meta content="Coderthemes" name="author"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <!-- App favicon -->
-    <link rel="shortcut icon" th:href="@{/images/favicon.ico}">
-    <link rel="shortcut icon" th:href="@{assets_admin/images/favicon.ico}">
+    <link rel="shortcut icon" th:href="@{/assets_admin/images/favicon.ico}">
 
     <!-- third party css -->
-    <link th:href="@{/libs/datatables/dataTables.bootstrap4.css}" rel="stylesheet" type="text/css"/>
-    <link th:href="@{/libs/datatables/buttons.bootstrap4.css}" rel="stylesheet" type="text/css"/>
-    <link th:href="@{/libs/datatables/responsive.bootstrap4.css}" rel="stylesheet" type="text/css"/>
-    <link th:href="@{assets_admin/libs/datatables/dataTables.bootstrap4.css}" rel="stylesheet" type="text/css"/>
-    <link th:href="@{assets_admin/libs/datatables/buttons.bootstrap4.css}" rel="stylesheet" type="text/css"/>
-    <link th:href="@{assets_admin/libs/datatables/responsive.bootstrap4.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/assets_admin/libs/datatables/dataTables.bootstrap4.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/assets_admin/libs/datatables/buttons.bootstrap4.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/assets_admin/libs/datatables/responsive.bootstrap4.css}" rel="stylesheet" type="text/css"/>
 
     <!-- App css -->
-    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
-    <link th:href="@{/css/icons.min.css}" rel="stylesheet" type="text/css"/>
-    <link th:href="@{/css/app.min.css}" rel="stylesheet" type="text/css"/>
-    <link th:href="@{assets_admin/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
-    <link th:href="@{assets_admin/css/icons.min.css}" rel="stylesheet" type="text/css"/>
-    <link th:href="@{assets_admin/css/app.min.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/assets_admin/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/assets_admin/css/icons.min.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/assets_admin/css/app.min.css}" rel="stylesheet" type="text/css"/>
 
 </head>
 
@@ -43,31 +36,35 @@
             <li class="dropdown d-none d-lg-block">
                 <a class="nav-link dropdown-toggle mr-0 waves-effect waves-light" data-toggle="dropdown" href="#"
                    role="button" aria-haspopup="false" aria-expanded="false">
-                    <img th:src="@{/images/flags/us.jpg}" alt="user-image" class="mr-1" height="12"> <span
+                    <img th:src="@{/assets_admin/images/flags/us.jpg}" alt="user-image" class="mr-1" height="12"> <span
                         class="align-middle">English <i class="mdi mdi-chevron-down"></i> </span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
                     <!-- item-->
                     <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <img th:src="@{/images/flags/germany.jpg}" alt="user-image" class="mr-1" height="12"> <span
+                        <img th:src="@{/assets_admin/images/flags/germany.jpg}" alt="user-image" class="mr-1"
+                             height="12"> <span
                             class="align-middle">German</span>
                     </a>
 
                     <!-- item-->
                     <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <img th:src="@{/images/flags/italy.jpg}" alt="user-image" class="mr-1" height="12"> <span
-                            class="align-middle">Italian</span>
+                        <img th:src="@{/assets_admin/images/flags/italy.jpg}" alt="user-image" class="mr-1" height="12">
+                        <span
+                                class="align-middle">Italian</span>
                     </a>
 
                     <!-- item-->
                     <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <img th:src="@{/images/flags/spain.jpg}" alt="user-image" class="mr-1" height="12"> <span
-                            class="align-middle">Spanish</span>
+                        <img th:src="@{/assets_admin/images/flags/spain.jpg}" alt="user-image" class="mr-1" height="12">
+                        <span
+                                class="align-middle">Spanish</span>
                     </a>
 
                     <!-- item-->
                     <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <img th:src="@{/images/flags/russia.jpg}" alt="user-image" class="mr-1" height="12"> <span
+                        <img th:src="@{/assets_admin/images/flags/russia.jpg}" alt="user-image" class="mr-1"
+                             height="12"> <span
                             class="align-middle">Russian</span>
                     </a>
 
@@ -641,29 +638,29 @@
 <div class="rightbar-overlay"></div>
 
 <!-- Vendor js -->
-<script th:src="@{assets_admin/js/vendor.min.js}"></script>
+<script th:src="@{/assets_admin/js/vendor.min.js}"></script>
 
 <!-- Required datatable js -->
-<script th:src="@{assets_admin/libs/datatables/jquery.dataTables.min.js}"></script>
-<script th:src="@{assets_admin/libs/datatables/dataTables.bootstrap4.min.js}"></script>
+<script th:src="@{/assets_admin/libs/datatables/jquery.dataTables.min.js}"></script>
+<script th:src="@{/assets_admin/libs/datatables/dataTables.bootstrap4.min.js}"></script>
 <!-- Buttons examples -->
-<script th:src="@{assets_admin/libs/datatables/dataTables.buttons.min.js}"></script>
-<script th:src="@{assets_admin/libs/datatables/buttons.bootstrap4.min.js}"></script>
-<script th:src="@{assets_admin/libs/jszip/jszip.min.js}"></script>
-<script th:src="@{assets_admin/libs/pdfmake/pdfmake.min.js}"></script>
-<script th:src="@{assets_admin/libs/pdfmake/vfs_fonts.js}"></script>
-<script th:src="@{assets_admin/libs/datatables/buttons.html5.min.js}"></script>
-<script th:src="@{assets_admin/libs/datatables/buttons.print.min.js}"></script>
+<script th:src="@{/assets_admin/libs/datatables/dataTables.buttons.min.js}"></script>
+<script th:src="@{/assets_admin/libs/datatables/buttons.bootstrap4.min.js}"></script>
+<script th:src="@{/assets_admin/libs/jszip/jszip.min.js}"></script>
+<script th:src="@{/assets_admin/libs/pdfmake/pdfmake.min.js}"></script>
+<script th:src="@{/assets_admin/libs/pdfmake/vfs_fonts.js}"></script>
+<script th:src="@{/assets_admin/libs/datatables/buttons.html5.min.js}"></script>
+<script th:src="@{/assets_admin/libs/datatables/buttons.print.min.js}"></script>
 
 <!-- Responsive examples -->
-<script th:src="@{assets_admin/libs/datatables/dataTables.responsive.min.js}"></script>
-<script th:src="@{assets_admin/libs/datatables/responsive.bootstrap4.min.js}"></script>
+<script th:src="@{/assets_admin/libs/datatables/dataTables.responsive.min.js}"></script>
+<script th:src="@{/assets_admin/libs/datatables/responsive.bootstrap4.min.js}"></script>
 
 <!-- Datatables init -->
-<script th:src="@{assets_admin/js/pages/datatables.init.js}"></script>
+<script th:src="@{/assets_admin/js/pages/datatables.init.js}"></script>
 
 <!-- App js -->
-<script th:src="@{assets_admin/js/app.min.js}"></script>
+<script th:src="@{/assets_admin/js/app.min.js}"></script>
 <script>
     document.querySelectorAll('.delete-button').forEach(function (button) {
         button.addEventListener('click', function () {
