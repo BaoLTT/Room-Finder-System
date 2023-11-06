@@ -11,7 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 @RequestMapping("/room")
@@ -29,7 +33,7 @@ public class RoomController {
     private RoomTypeService roomTypeService;
     @Autowired
     private ServiceDetailService serviceDetailService;
-    
+
     @GetMapping("/{id}")
     public String getRoom(Model model, @PathVariable("id") int id){
         RoomEntity room = roomService.getRoomById(id);
@@ -58,22 +62,24 @@ public class RoomController {
         return "edit-room";
     }
 
-//    @PostMapping("/update")
-//    public String update(@ModelAttribute(name = "room") RoomDto roomDto) {
-//        List<ServiceDto> serviceDtos = new ArrayList<>();
-//        List<String> selects = roomDto.getServiceNames();
-//        for (String serviceName : selects) {
-//            ServiceDto serviceDto = new ServiceDto();
-//            serviceDto.setServiceName(serviceName);
-//            System.out.println(serviceName);
-//            serviceDto.setServiceId(serviceDetailService.findByName(serviceName).getServiceId());
-//            serviceDtos.add(serviceDto);
-//        }
-//        System.out.println(serviceDtos);
-//        roomDto.setServiceDtos(serviceDtos);
-//        roomService.update(roomDto);
-//        return "redirect:/room/listRoomPage";
-//    }
+    @PostMapping("/update")
+    public String update(@ModelAttribute(name = "room") RoomDto roomDto, @RequestParam("file") MultipartFile[] files) throws IOException {
+        List<ServiceDto> serviceDtos = new ArrayList<>();
+        List<String> selects = roomDto.getServiceNames();
+        System.out.println(files.length);
+        if (selects != null) {
+            for (String serviceName : selects) {
+                ServiceDto serviceDto = new ServiceDto();
+                serviceDto.setServiceName(serviceName);
+                System.out.println(serviceName);
+                serviceDto.setServiceId(serviceDetailService.findByName(serviceName).getServiceId());
+                serviceDtos.add(serviceDto);
+            }
+        }
+        roomDto.setServiceDtos(serviceDtos);
+        roomService.update(roomDto, files);
+        return "redirect:/room/updateRoom/" + roomDto.getRoomId();
+    }
 
     @GetMapping("/deleteRoom/{id}")
     public String delete(@PathVariable("id") Integer id, Model model){
@@ -89,20 +95,34 @@ public class RoomController {
         return "insert-room";
     }
 
-//    @PostMapping("/save")
-//    public String save(@ModelAttribute(name = "room") RoomDto roomDto) {
-//        List<ServiceDto> serviceDtos = new ArrayList<>();
-//        List<String> selects = roomDto.getServiceNames();
-//        for (String serviceName : selects) {
-//            ServiceDto serviceDto = new ServiceDto();
-//            serviceDto.setServiceName(serviceName);
-//            System.out.println(serviceName);
-//            serviceDto.setServiceId(serviceDetailService.findByName(serviceName).getServiceId());
-//            serviceDtos.add(serviceDto);
-//        }
-//        System.out.println(serviceDtos);
-//        roomDto.setServiceDtos(serviceDtos);
-//        roomService.save(roomDto);
-//        return "redirect:/room/listRoomPage";
-//            }
+    @PostMapping("/save")
+    public String save(@ModelAttribute(name = "room") RoomDto roomDto, @RequestParam("file") MultipartFile[] files) throws IOException {
+        try {
+            List<ServiceDto> serviceDtos = new ArrayList<>();
+            List<String> selects = roomDto.getServiceNames();
+            for (String serviceName : selects) {
+                ServiceDto serviceDto = new ServiceDto();
+                serviceDto.setServiceName(serviceName);
+                System.out.println(serviceName);
+                serviceDto.setServiceId(serviceDetailService.findByName(serviceName).getServiceId());
+                serviceDtos.add(serviceDto);
+            }
+            System.out.println(serviceDtos);
+            roomDto.setServiceDtos(serviceDtos);
+            roomService.save(roomDto, files);
+        } catch (Exception ex) {
+        }
+        return "redirect:/room/listRoomPage";
+    }
+
+    @PostMapping("/importRooms")
+    public String importRoom(@RequestParam("fileExcel") MultipartFile fileExcel) {
+        roomService.importRooms(fileExcel);
+        return "redirect:/room/listRoomPage";
+    }
+    @GetMapping("deleteImage/{roomId}/{imageId}")
+    public String deleteImage(@PathVariable Integer roomId, @PathVariable Integer imageId) {
+        roomService.deleteRoomImage(imageId);
+        return "redirect:/room/updateRoom/" + roomId;
+    }
 }

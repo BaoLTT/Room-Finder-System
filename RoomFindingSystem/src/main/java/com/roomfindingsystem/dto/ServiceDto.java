@@ -11,6 +11,7 @@ import lombok.*;
 @Data
 @ToString
 public class ServiceDto {
+   private Integer serviceId;
    private String serviceName;
    private String description;
 }

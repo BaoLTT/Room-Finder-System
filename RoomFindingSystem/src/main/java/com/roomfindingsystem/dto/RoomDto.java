@@ -20,4 +20,19 @@ public class RoomDto {
     private String status;
     private List<ServiceDto> serviceDtos;
     private List<String> serviceNames;
+    private List<RoomImageDto> imgs;
+    private Integer houseId;
+    private String houseName;
+
+    public RoomDto(Integer roomId, String roomName, String typeName, String description, Integer price, String houseName, Double area, String status) {
+        this.roomId = roomId;
+        this.roomName = roomName;
+        this.typeName = typeName;
+        this.description = description;
+        this.price = price;
+        this.houseName = houseName;
+        this.area = area;
+        this.services = services;
+        this.status = status;
+    }
 }
