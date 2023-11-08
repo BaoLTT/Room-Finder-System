@@ -4,18 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9e6ad018-beb9-4958-b6d8-f85d8f09a69e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/admin/footer_admin.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/admin/header_admin.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/admin/adminDashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/admin/adminDashboard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/list-room.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/list-room.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/target/classes/application.properties" afterDir="false" />
-    </list>
+
+    <list default="true" id="ec34e655-ee0a-4be9-8773-96fceb50fb67" name="Changes" comment="update front end" />
+
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -42,22 +33,160 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "BaoLTT",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "spring.configuration.checksum": "cba14e4d5d8ebaea272e92fbdfce9e02",
-    "vue.rearranger.settings.migration": "true"
+
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;JPA.DatabaseSchemaImportDialog&quot;: &quot;e4725653-8927-4ad1-9a63-ec6c9d42bf1e&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.google.cloudcode.ide_session_index&quot;: &quot;20231106_0002&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Intellij project/Room-Finding-System/RoomFindingSystem/src/main/resources/templates&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.CommitDialog&quot;,
+    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;cba14e4d5d8ebaea272e92fbdfce9e02&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
+    ]
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Intellij project\Room-Finding-System\RoomFindingSystem\src\main\resources\templates" />
+      <recent name="D:\Intellij project\Room-Finding-System\RoomFindingSystem\src\main\resources" />
+      <recent name="D:\Intellij project\Room-Finding-System\RoomFindingSystem\src\main\resources\templates\admin" />
+      <recent name="D:\Intellij project\Room-Finding-System\RoomFindingSystem\src\main\resources\static" />
+      <recent name="D:\Intellij project\Room-Finding-System\RoomFindingSystem\src\main\java\com\roomfindingsystem\dto" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Intellij project\Room-Finding-System\RoomFindingSystem\src\main\resources\static" />
+      <recent name="D:\Intellij project\Room-Finding-System\RoomFindingSystem\src\main\resources\templates" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.roomfindingsystem.service.impl" />
+      <recent name="com.roomfindingsystem.vo" />
+      <recent name="com.roomfindingsystem.controller" />
+      <recent name="com.roomfindingsystem.config" />
+    </key>
+    <key name="ImportMappingsDialog.RecentPackages">
+      <recent name="com.roomfindingsystem.entity" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.Main">
+    <configuration name="Main" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="RoomFindingSystem" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.roomfindingsystem.Main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Tomcat 9.0.69" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.69" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+      <option name="UPDATING_POLICY" value="restart-server" />
+      <deployment>
+        <file path="$PROJECT_DIR$/RoomFindingSystem/target/ROOT.war">
+          <settings>
+            <option name="CONTEXT_PATH" value="/ROOT_war" />
+          </settings>
+        </file>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="8d50a486-1c4b-4955-948d-14a2cd78a878" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="51852" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Profile">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="false" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Spring Boot.Main" />
+      <item itemvalue="Tomcat Server.Tomcat 9.0.69" />
+    </list>
+  </component>
+
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -65,12 +194,269 @@
       <created>1699309533955</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1699309533955</updated>
-      <workItem from="1699309537388" duration="176000" />
+
+      <updated>1697189953889</updated>
+      <workItem from="1697189954921" duration="21729000" />
+      <workItem from="1697284419576" duration="5046000" />
+      <workItem from="1697443910148" duration="418000" />
+      <workItem from="1697444378721" duration="4072000" />
+      <workItem from="1697462386816" duration="12695000" />
+      <workItem from="1697508544796" duration="3293000" />
+      <workItem from="1697462386816" duration="6309000" />
+      <workItem from="1697484322714" duration="326000" />
+      <workItem from="1697549182873" duration="31000" />
+      <workItem from="1697549322762" duration="653000" />
+      <workItem from="1697877632559" duration="2053000" />
+      <workItem from="1697896548058" duration="2566000" />
+      <workItem from="1697899990177" duration="172000" />
+      <workItem from="1697900297133" duration="2004000" />
+      <workItem from="1697903846520" duration="836000" />
+      <workItem from="1697964698545" duration="874000" />
+      <workItem from="1697968836286" duration="2713000" />
+      <workItem from="1697983426123" duration="6267000" />
+      <workItem from="1698243493796" duration="2373000" />
+      <workItem from="1698608849773" duration="5856000" />
+      <workItem from="1698654450667" duration="971000" />
+      <workItem from="1698682463545" duration="6882000" />
+      <workItem from="1698697415707" duration="6404000" />
+      <workItem from="1698718106402" duration="9076000" />
+      <workItem from="1698732778657" duration="3143000" />
+      <workItem from="1698739342793" duration="2522000" />
+      <workItem from="1698768924464" duration="2018000" />
+      <workItem from="1698805529421" duration="1006000" />
+      <workItem from="1698807586664" duration="828000" />
+      <workItem from="1698808448110" duration="1500000" />
+      <workItem from="1698992591353" duration="1840000" />
+      <workItem from="1699097234873" duration="1710000" />
+      <workItem from="1699176036734" duration="1352000" />
+      <workItem from="1699192683212" duration="5254000" />
+      <workItem from="1699237911851" duration="2031000" />
+      <workItem from="1699240550604" duration="2060000" />
+      <workItem from="1699279557457" duration="3108000" />
+      <workItem from="1699287522298" duration="3183000" />
+      <workItem from="1699451164788" duration="30000" />
     </task>
+    <task id="LOCAL-00001" summary="fix register and boảding house detail and send mail future">
+      <option name="closed" value="true" />
+      <created>1697468926424</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1697468926424</updated>
+    </task>
+    <task id="LOCAL-00002" summary="fix register and boảding house detail and send mail future">
+      <option name="closed" value="true" />
+      <created>1697468973685</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1697468973685</updated>
+    </task>
+    <task id="LOCAL-00003" summary="send SMS and reset fix">
+      <option name="closed" value="true" />
+      <created>1697820290590</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1697820290590</updated>
+    </task>
+    <task id="LOCAL-00004" summary="check lai lan 1">
+      <option name="closed" value="true" />
+      <created>1698620936143</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1698620936144</updated>
+    </task>
+    <task id="LOCAL-00005" summary="check lai file dto">
+      <option name="closed" value="true" />
+      <created>1698621138729</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1698621138729</updated>
+    </task>
+    <task id="LOCAL-00006" summary="check lai repo va service">
+      <option name="closed" value="true" />
+      <created>1698621597006</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1698621597006</updated>
+    </task>
+    <task id="LOCAL-00007" summary="update lai 1 so thu">
+      <option name="closed" value="true" />
+      <created>1698721978733</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1698721978733</updated>
+    </task>
+    <task id="LOCAL-00008" summary="xoa validate mk o user">
+      <option name="closed" value="true" />
+      <created>1698723489936</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1698723489936</updated>
+    </task>
+    <task id="LOCAL-00009" summary="chinh sua">
+      <option name="closed" value="true" />
+      <created>1698724668428</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1698724668428</updated>
+    </task>
+    <task id="LOCAL-00010" summary="chinh sua part 2">
+      <option name="closed" value="true" />
+      <created>1698726256219</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1698726256219</updated>
+    </task>
+    <task id="LOCAL-00011" summary="chinh sua part 2">
+      <option name="closed" value="true" />
+      <created>1698726747686</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1698726747686</updated>
+    </task>
+    <task id="LOCAL-00012" summary="chinh sua part 3">
+      <option name="closed" value="true" />
+      <created>1698740178848</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1698740178848</updated>
+    </task>
+    <task id="LOCAL-00013" summary="chinh sua lai code Nghia">
+      <option name="closed" value="true" />
+      <created>1698984322748</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1698984322748</updated>
+    </task>
+    <task id="LOCAL-00014" summary="update tiep">
+      <option name="closed" value="true" />
+      <created>1698985457429</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1698985457429</updated>
+    </task>
+    <task id="LOCAL-00015" summary="update">
+      <option name="closed" value="true" />
+      <created>1698992947120</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1698992947120</updated>
+    </task>
+    <task id="LOCAL-00016" summary="update ADMIN DASHBOARD">
+      <option name="closed" value="true" />
+      <created>1699093640329</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1699093640329</updated>
+    </task>
+    <task id="LOCAL-00017" summary="update application.properties">
+      <option name="closed" value="true" />
+      <created>1699239747497</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1699239747497</updated>
+    </task>
+    <task id="LOCAL-00018" summary="update application.properties">
+      <option name="closed" value="true" />
+      <created>1699241305129</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1699241305129</updated>
+    </task>
+    <task id="LOCAL-00019" summary="update front end">
+      <option name="closed" value="true" />
+      <created>1699282618341</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1699282618341</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
+
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/BinhNH" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="fix register and boảding house detail and send mail future" />
+    <MESSAGE value="xoa price trong user" />
+    <MESSAGE value="send SMS and reset fix" />
+    <MESSAGE value="check lai lan 1" />
+    <MESSAGE value="check lai file dto" />
+    <MESSAGE value="check lai repo va service" />
+    <MESSAGE value="update lai 1 so thu" />
+    <MESSAGE value="xoa validate mk o user" />
+    <MESSAGE value="chinh sua" />
+    <MESSAGE value="chinh sua part 2" />
+    <MESSAGE value="chinh sua part 3" />
+    <MESSAGE value="chinh sua lai code Nghia" />
+    <MESSAGE value="update tiep" />
+    <MESSAGE value="update" />
+    <MESSAGE value="update test" />
+    <MESSAGE value="update ADMIN DASHBOARD" />
+    <MESSAGE value="update application.properties" />
+    <MESSAGE value="update front end" />
+    <option name="LAST_COMMIT_MESSAGE" value="update front end" />
+  </component>
+  <component name="com.github.evgenys91.machinet.common.dslhistory.DslHistoryState">
+    <option name="historyDtoById">
+      <map>
+        <entry key="greeting">
+          <value>
+            <ChatHistoryModel>
+              <option name="id" value="greeting" />
+              <option name="initiateTms" value="1699196529689" />
+              <option name="request" value="" />
+              <option name="response" value="" />
+              <option name="responseDescription" value="&#10;Hello, I am Machinet AI - context aware chat, which can help you with your daily programming routine. How can I help?" />
+              <option name="responseTms" value="1699196532175" />
+            </ChatHistoryModel>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+
 </project>
