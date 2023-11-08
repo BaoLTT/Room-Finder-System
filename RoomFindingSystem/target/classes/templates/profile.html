@@ -15,7 +15,32 @@
     <link rel="stylesheet" th:href="@{/assets/css/style.css}" type="text/css">
 
     <title>Room Finding System</title>
+    <style>
+        @media (min-width: 1200px) {
 
+            .profile-picture img {
+                height: 270px;
+            }
+        }
+        @media (min-width: 992px) and (max-width: 1200px) {
+
+            .profile-picture img {
+                height: 220px;
+            }
+        }
+        @media (min-width: 768px) and (max-width: 992px){
+
+            .profile-picture img {
+                height: 165px;
+            }
+        }
+        @media (max-width: 768px){
+
+            .profile-picture img {
+                height: auto;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -79,10 +104,6 @@
                                 <li><a th:href="@{/houselist/1}">Danh sách nhà trọ</a></li>
                                 <li>
                                     <a href="#" class="has-child">Danh sách phòng trọ</a>
-                                    <!--                                    <ul class="child-nav">-->
-                                    <!--                                        <li><a href="listing.html">List Listing</a></li>-->
-                                    <!--                                        <li><a href="listing-matrix.html">Matrix Listing</a></li>-->
-                                    <!--                                    </ul>-->
                                 </li>
 
                                 <li><a href="">Blog</a></li>
@@ -111,8 +132,7 @@
             <!--end breadcrumb-->
             <div class="main-content">
                 <div class="title">
-                    <h1 class="inactive"><a href="my-accommodations.html">My Accommodations</a></h1>
-                    <h1><a href="profile.html">Profile</a></h1>
+                    <h1><a href="#">Thông tin cá nhân</a></h1>
                 </div>
                 <!--end title-->
                 <div class="row">
@@ -122,12 +142,11 @@
                             <!--Profile Picture-->
                             <div class="col-md-3 col-sm-3">
                                 <section>
-                                    <h3>Profile Picture</h3>
                                     <div id="profile-picture" class="profile-picture single-file-preview">
-                                        <img th:src="*{'data:image/jpeg;base64,' + imageLink}" alt="" class="image" height="300">
+                                        <img th:src="*{'data:image/jpeg;base64,' + imageLink}" alt="" class="image">
                                         <div class="input">
                                             <input name="file" type="file" class="">
-                                            <span>Click to upload a picture</span>
+                                            <span>Chọn ảnh đại diện</span>
                                         </div>
                                     </div>
                                 </section>
@@ -137,11 +156,10 @@
                             <!--Contact Info-->
                             <div class="col-md-9 col-sm-9">
                                 <section>
-                                    <h3>Personal Info</h3>
                                     <div class="row">
                                         <div class="col-md-6 col-sm-6">
                                             <div class="form-group">
-                                                <label for="firstName">First Name</label>
+                                                <label for="firstName">Họ</label>
                                                 <input type="text" class="form-control" id="firstName"
                                                        name="firstName"
                                                        pattern="^[a-zA-ZxyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđÁÂĐ ]+$"
@@ -149,7 +167,7 @@
                                                 <small class="text-danger error-firstName"></small>
                                             </div>
                                             <div class="form-group">
-                                                <label for="lastName">Last Name</label>
+                                                <label for="lastName">Tên</label>
                                                 <input type="text" class="form-control" id="lastName"
                                                        name="lastName"
                                                        pattern="^[a-zA-ZxyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđÁÂĐ ]+$"
@@ -173,7 +191,7 @@
                                         <!--end col-md-6-->
                                         <div class="col-md-6 col-sm-6">
                                             <div class="form-group">
-                                                <label for="phone">Phone(10)</label>
+                                                <label for="phone">Số điện thoại</label>
                                                 <input type="text" class="form-control" id="phone" name="phone"
                                                        pattern="(84|0[3|5|7|8|9])+([0-9]{8})\b"
                                                        placeholder="(0)123 456 7890"
@@ -185,13 +203,13 @@
 
                                         <div class="col-md-6 col-sm-6">
                                             <div class="form-group">
-                                                <label for="gender">Gender</label>
+                                                <label for="gender">Giới tính</label>
                                                 <select class="form-control" id="gender" name="gender"
                                                         th:field="*{gender}">
-                                                    <option value="MALE" th:selected="${user.gender == 'MALE'}">MALE
+                                                    <option value="MALE" th:selected="${user.gender == 'MALE'}">Nam
                                                     </option>
                                                     <option value="FEMALE" th:selected="${user.gender == 'FEMALE'}">
-                                                        FEMALE
+                                                        Nữ
                                                     </option>
                                                 </select>
                                             </div>
@@ -199,7 +217,7 @@
                                         </div>
                                         <div class="col-md-6 col-sm-6">
                                             <div class="form-group">
-                                                <label for="dob">Date Of Birth</label>
+                                                <label for="dob">Ngày sinh</label>
                                                 <input style="height: 36px" type="date" class="form-control"
                                                        id="dob" name="dob"
                                                        placeholder="Enter your age (ex: 18)" th:value="*{dob}"
@@ -211,9 +229,9 @@
                                     </div>
                                 </section>
                                 <section>
-                                    <h3>Address</h3>
+                                    <h3>Địa chỉ</h3>
                                     <div class="form-group">
-                                        <label for="province">Province</label>
+                                        <label for="province">Tỉnh</label>
                                         <select class="form-control" name="" id="province" th:text="*{province}"
                                                 th:field="*{provinceId}" style="display: none;">
                                         </select>
@@ -221,7 +239,7 @@
                                     </div>
                                     <!--end form-group-->
                                     <div class="form-group">
-                                        <label for="district">District</label>
+                                        <label for="district">Huyện</label>
                                         <select class="form-control" name="" id="district" th:text="*{district}"
                                                 th:field="*{districtId}" style="display: none;">
                                         </select>
@@ -229,7 +247,7 @@
                                     </div>
                                     <!--end form-group-->
                                     <div class="form-group">
-                                        <label for="ward">Ward</label>
+                                        <label for="ward">Xã</label>
                                         <select class="form-control" name="" id="ward" th:text="*{ward}"
                                                 th:field="*{wardId}" style="display: none;">
                                         </select>
@@ -238,7 +256,7 @@
                                     <!--end col-md-3-->
 
                                     <div class="form-group">
-                                        <label for="addressDetails">Additional Address Line</label>
+                                        <label for="addressDetails">Địa chỉ chi tiết</label>
                                         <input type="text" class="form-control" id="addressDetails"
                                                name="addressDetails" th:value="*{addressDetails}">
                                     </div>
@@ -246,7 +264,7 @@
                                 </section>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-large btn-primary btn-rounded" id="submit">
-                                        Save Changes
+                                        Lưu thay đổi
                                     </button>
                                 </div>
                                 <!-- end form-group -->
