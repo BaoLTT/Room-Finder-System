@@ -69,8 +69,8 @@
                                     <h2>Thể loại phòng</h2>
                                     <div class="row">
                                         <div class="col-md-8 col-sm-7" >
-                                            <ul th:each = "housetype : ${housetypes}" class="checkboxes inline list-unstyled"  >
-                                                <li><label><input th:text = "${housetype.typeName}" type="checkbox" name="type" th:value = "${housetype.typeId}"></label></li>
+                                            <ul  class="checkboxes inline list-unstyled"  >
+                                                <li th:each = "housetype : ${housetypes}"><label><input th:text = "${housetype.typeName}" type="checkbox" name="type" th:value = "${housetype.typeId}"></label></li>
                                             </ul>
                                             <!--end checkboxes-->
                                         </div>
@@ -110,8 +110,8 @@
                                 <h2>Tiện ích</h2>
                                 <div class="row">
                                     <div class="col-md-8 col-sm-6">
-                                        <ul class="checkboxes inline" th:each = "houseservice : ${houseservices}">
-                                            <li><label><input type="checkbox" name="service_name" th:text = "${houseservice.serviceName}" th:value= "${houseservice.serviceId}"></label></li>
+                                        <ul class="checkboxes inline list-unstyled" >
+                                            <li th:each = "houseservice : ${houseservices}" ><label><input type="checkbox" name="service_name" th:text = "${houseservice.serviceName}" th:value= "${houseservice.serviceId}"></label></li>
 
                                         </ul>
                                         <!--end checkboxes-->
