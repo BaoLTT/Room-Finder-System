@@ -24,12 +24,12 @@ public class HouseServiceImpl implements HouseService {
     }
 
     @Override
-    public int countHouse(int min1, int max1, int min2, int max2, String houseName, List<Integer> type, List<Integer> service) {
-        return houseRepository.countHouse(min1, max1, min2, max2, houseName, type, service);
+    public int countHouse(int min1, int max1, int min2, int max2, String houseName, List<Integer> type, List<Integer> service,int countService) {
+        return houseRepository.countHouse(min1, max1, min2, max2, houseName, type, service, countService);
     }
 
-    public List<HouseTypeVo> findHouse(int min1, int max1, int min2, int max2, String houseName, List<Integer> type, List<Integer> service, int pageIndex, int pageSize) {
-        List<Tuple> tuples = houseRepository.findHouse(min1, max1, min2, max2, houseName, type, service, pageIndex, pageSize);
+    public List<HouseTypeVo> findHouse(int min1, int max1, int min2, int max2, String houseName, List<Integer> type, List<Integer> service,int countService, int pageIndex, int pageSize) {
+        List<Tuple> tuples = houseRepository.findHouse(min1, max1, min2, max2, houseName, type, service, countService, pageIndex, pageSize);
         List<HouseTypeVo> houseTypeVos = new ArrayList<>();
         List<String> imageLinks;
         List<String> services;
@@ -60,13 +60,11 @@ public class HouseServiceImpl implements HouseService {
                 houseTypeVo.setListImage(imageLinks);
             }
 
-            String service1 = (tuple.get("Service_Name", String.class));
-            if (service1.isEmpty()) {
-                houseTypeVo.setService(null);
-            } else {
-                services = Arrays.asList(service1.split(","));
-                houseTypeVo.setService(services);
-            }
+            String service1 = (tuple.get("Service_Name",String.class));
+            if(service1.isEmpty())
+            {houseTypeVo.setService(null);}
+            else {services = Arrays.asList(service1.split(","));
+                houseTypeVo.setService(services);}
             houseTypeVo.setProvince(tuple.get("province_name", String.class));
             houseTypeVo.setDistrict(tuple.get("district_name", String.class));
             houseTypeVo.setWard(tuple.get("ward_name", String.class));

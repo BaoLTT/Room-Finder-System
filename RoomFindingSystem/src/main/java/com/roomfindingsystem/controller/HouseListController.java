@@ -40,68 +40,85 @@ public class HouseListController {
 
 
     @GetMapping(value = {""})
-    public String list(@RequestParam(name = "page", required = false, defaultValue = "1") Integer pageIndex, @RequestParam(name = "houseName", required = false, defaultValue = "") String houseName,
-                       @RequestParam(name = "price", required = false, defaultValue = "0") List<String> price,
-                       @RequestParam(name = "type", required = false, defaultValue = "1,2,3,4") List<String> type,
-                       @RequestParam(name = "service", required = false, defaultValue = "1,2,3,4,5") List<String> service, Model model, HttpSession httpSession) {
+    public String list(@RequestParam(name = "page", required = false, defaultValue = "1") Integer pageIndex, @RequestParam(name = "houseName",required = false , defaultValue = "") String houseName,
+                       @RequestParam(name = "price",required = false,defaultValue = "0") List<String> price,
+                       @RequestParam(name = "type", required = false,defaultValue = "0") List<String> type,
+                       @RequestParam(name = "service", required = false) List<String> service,Model model, HttpSession httpSession){
         List<Integer> listType = new ArrayList<>();
         List<Integer> listPrice = new ArrayList<>();
-        for (String price1 : price) {
+        List<Integer> listService = new ArrayList<>();
+        List<ServiceDetailEntity> listAllService = new ArrayList<>();
+        List<HouseTypeVo>  list = new ArrayList<>();
+        int totalHouse = 0;
+        int pageSize =4;
+        int countService = 0;
+        int offset = (pageIndex -1)*pageSize;
+        model.addAttribute("listPrice",price);
+        model.addAttribute("listType",type);
+        model.addAttribute("listService",service);
+        for(String price1: price){
             listPrice.add(Integer.parseInt(price1));
         }
-        List<ServiceDetailEntity> listAllService = new ArrayList<>();
-        for (String type1 : type) {
-            listType.add(Integer.parseInt(type1));
+        if (type.contains("0")) {
+            listType.add(1);
+            listType.add(2);
+            listType.add(3);
+            listType.add(4);
+        }else{
+            for(String type1: type){
+                listType.add(Integer.parseInt(type1));
+            }
         }
-        List<Integer> listService = new ArrayList<>();
-        for (String service1 : service) {
+        if(service==null){
+            service = List.of("0");
+        }else{
+            for(int i=0;i<service.size();i++){
+                countService++;
+            }
+        }
+        for(String service1:service){
             listService.add(Integer.parseInt(service1));
         }
-        int pageSize = 4;
 
-        int offset = (pageIndex - 1) * pageSize;
-        model.addAttribute("listPrice", listPrice);
-        model.addAttribute("listType", listType);
-        model.addAttribute("listService", listService);
-
-        List<HouseTypeVo> list = houseService.findHouse(0, 0, 0, 6000000, houseName, listType, listService, offset, pageSize);
-        int totalHouse = houseService.countHouse(0, 0, 0, 6000000, houseName, listType, listService);
-
-        if (listPrice.contains(1)) {
-            list = houseService.findHouse(0, 0, 0, 2000000, houseName, listType, listService, offset, pageSize);
-            totalHouse = houseService.countHouse(0, 0, 0, 2000000, houseName, listType, listService);
+        System.out.println(listService.size());
+        list =houseService.findHouse(0,0,0,6000000,houseName,listType,listService,countService,offset, pageSize);
+        totalHouse = houseService.countHouse(0,0,0,6000000,houseName,listType,listService,countService);
+        if(listPrice.contains(1)){
+            list =houseService.findHouse(0,0,0,2000000,houseName,listType,listService,countService,offset, pageSize);
+            totalHouse = houseService.countHouse(0,0,0,2000000,houseName,listType,listService,countService);
         }
-        if (listPrice.contains(2)) {
-            list = houseService.findHouse(0, 0, 2000000, 4000000, houseName, listType, listService, offset, pageSize);
-            totalHouse = houseService.countHouse(0, 0, 2000000, 4000000, houseName, listType, listService);
+        if(listPrice.contains(2)){
+            list =houseService.findHouse(0,0,2000000,4000000,houseName,listType,listService,countService,offset, pageSize);
+            totalHouse = houseService.countHouse(0,0,2000000,4000000,houseName,listType,listService,countService);
         }
-        if (listPrice.contains(3)) {
-            list = houseService.findHouse(0, 0, 4000000, 6000000, houseName, listType, listService, offset, pageSize);
-            totalHouse = houseService.countHouse(0, 0, 4000000, 6000000, houseName, listType, listService);
+        if(listPrice.contains(3)){
+            list =houseService.findHouse(0,0,4000000,6000000,houseName,listType,listService,countService,offset, pageSize);
+            totalHouse = houseService.countHouse(0,0,4000000,6000000,houseName,listType,listService,countService);
         }
-        if (listPrice.contains(1) && listPrice.contains(3)) {
-            list = houseService.findHouse(0, 2000000, 4000000, 6000000, houseName, listType, listService, offset, pageSize);
-            totalHouse = houseService.countHouse(0, 2000000, 4000000, 6000000, houseName, listType, listService);
+        if(listPrice.contains(1) && listPrice.contains(3)){
+            list =houseService.findHouse(0,2000000,4000000,6000000,houseName,listType,listService,countService,offset, pageSize);
+            totalHouse = houseService.countHouse(0,2000000,4000000,6000000,houseName,listType,listService,countService);
         }
-        if (listPrice.contains(1) && listPrice.contains(2)) {
-            list = houseService.findHouse(0, 0, 0, 4000000, houseName, listType, listService, offset, pageSize);
-            totalHouse = houseService.countHouse(0, 0, 0, 6000000, houseName, listType, listService);
+        if(listPrice.contains(1) && listPrice.contains(2)){
+            list =houseService.findHouse(0,0,0,4000000,houseName,listType,listService,countService,offset, pageSize);
+            totalHouse = houseService.countHouse(0,0,0,6000000,houseName,listType,listService,countService);
         }
-        if (listPrice.contains(2) && listPrice.contains(3)) {
-            list = houseService.findHouse(2000000, 4000000, 4000000, 6000000, houseName, listType, listService, offset, pageSize);
-            totalHouse = houseService.countHouse(2000000, 4000000, 4000000, 6000000, houseName, listType, listService);
+        if(listPrice.contains(2) && listPrice.contains(3)){
+            list =houseService.findHouse(2000000,4000000,4000000,6000000,houseName,listType,listService,countService,offset, pageSize);
+            totalHouse = houseService.countHouse(2000000,4000000,4000000,6000000,houseName,listType,listService,countService);
         }
 
-
+        System.out.println(list.size());
+        System.out.println(totalHouse);
         int totalPage = (int) Math.ceil((double) totalHouse / pageSize);
-        model.addAttribute("houseName", houseName);
+        model.addAttribute("houseName",houseName);
 
-        model.addAttribute("currentPage", pageIndex);
+        model.addAttribute("currentPage",pageIndex);
         model.addAttribute("totalPage", totalPage);
         model.addAttribute("houses", list);
-        listAllService = serviceDetailRepository.getAll();
+        listAllService = serviceHouseRepository.findAll();
         model.addAttribute("listAllService", listAllService);
-        return "houselist";
+        return"houselist";
     }
 
 
