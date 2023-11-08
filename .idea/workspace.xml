@@ -9,11 +9,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-
     <list default="true" id="ec34e655-ee0a-4be9-8773-96fceb50fb67" name="Changes" comment="update front end">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/houselist.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/houselist.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +29,6 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -66,7 +62,6 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "DefaultHtmlFileTemplate": "HTML File",
@@ -80,7 +75,7 @@
     "WebServerToolWindowFactoryState": "false",
     "com.google.cloudcode.ide_session_index": "20231106_0002",
     "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "BaoLTT",
+    "git-widget-placeholder": "main",
     "last_opened_file_path": "D:/Intellij project/Room-Finding-System/RoomFindingSystem/src/main/resources/templates",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -92,7 +87,6 @@
     "show.migrate.to.gradle.popup": "false",
     "spring.configuration.checksum": "cba14e4d5d8ebaea272e92fbdfce9e02",
     "vue.rearranger.settings.migration": "true"
-
   },
   "keyToStringList": {
     "DatabaseDriversLRU": [
@@ -122,7 +116,7 @@
       <recent name="com.roomfindingsystem.entity" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.Main">
+  <component name="RunManager">
     <configuration name="PostServiceTest.whenCountPosts_shouldReturnInt" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RoomFindingSystem" />
       <extension name="coverage">
@@ -240,6 +234,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.PostServiceTest.whenCountPosts_shouldReturnInt" />
+        <item itemvalue="JUnit.PostServiceTest.whenCountPosts_shouldReturnInt" />
       </list>
     </recent_temporary>
   </component>
@@ -282,14 +277,12 @@
       <workItem from="1698807586664" duration="828000" />
       <workItem from="1698808448110" duration="1500000" />
       <workItem from="1698992591353" duration="1840000" />
-
       <workItem from="1699097234873" duration="1710000" />
       <workItem from="1699176036734" duration="1352000" />
       <workItem from="1699192683212" duration="5254000" />
       <workItem from="1699237911851" duration="2031000" />
       <workItem from="1699240550604" duration="2060000" />
       <workItem from="1699279557457" duration="3108000" />
-
     </task>
     <task id="LOCAL-00001" summary="fix register and boảding house detail and send mail future">
       <option name="closed" value="true" />
@@ -419,7 +412,6 @@
       <option name="project" value="LOCAL" />
       <updated>1699093640329</updated>
     </task>
-
     <task id="LOCAL-00017" summary="update application.properties">
       <option name="closed" value="true" />
       <created>1699239747497</created>
@@ -445,7 +437,6 @@
       <updated>1699282618341</updated>
     </task>
     <option name="localTasksCounter" value="20" />
-
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -491,10 +482,20 @@
     <MESSAGE value="update" />
     <MESSAGE value="update test" />
     <MESSAGE value="update ADMIN DASHBOARD" />
-
     <MESSAGE value="update application.properties" />
     <MESSAGE value="update front end" />
     <option name="LAST_COMMIT_MESSAGE" value="update front end" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/RoomFindingSystem/src/main/resources/static/assets/js/owl.carousel.js</url>
+          <line>1891</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.github.evgenys91.machinet.common.dslhistory.DslHistoryState">
     <option name="historyDtoById">
@@ -513,6 +514,5 @@
         </entry>
       </map>
     </option>
-
   </component>
 </project>
