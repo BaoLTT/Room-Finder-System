@@ -45,6 +45,11 @@ public class FeedbackServiceImpl implements FeedbackService {
     }
 
     @Override
+    public List<FeedbackEntity> getListFeedback() {
+        return feedbackRepository.findAll();
+    }
+
+    @Override
     public FeedbackEntity save(FeedbackEntity feedbackEntity) {
         return feedbackRepository.save(feedbackEntity);
     }
@@ -58,7 +63,4 @@ public class FeedbackServiceImpl implements FeedbackService {
     public void deleteByHouseIdAndMemberId(int houseId, int memberId) {
         feedbackRepository.deleteByHouseIdAndMemberId(houseId, memberId);}
 
-    public Page<FeedbackEntity> getListFeedback(Pageable pageable) {
-        return feedbackRepository.findAll(pageable);
-    }
 }

@@ -22,12 +22,10 @@ public class FeebackController {
     @Autowired
     private FeedbackService feedbackService;
     @RequestMapping(value = "feedback-list")
-    public String getFeebackList(Model model, @RequestParam(value = "pageNo",defaultValue = "1") Integer pageNo) {
-        Page<FeedbackEntity> list = feedbackService.getListFeedback(PageRequest.of(1, 2));
+    public String getFeebackList(Model model) {
+        List<FeedbackEntity> list = feedbackService.getListFeedback();
         model.addAttribute("feedbackList", list);
-        model.addAttribute("totalPage", list.getTotalPages());
-        model.addAttribute("currentPage", pageNo);
-        return "Listing-feedback-admin";
+        return "feedback-list-admin";
     }
 
 
