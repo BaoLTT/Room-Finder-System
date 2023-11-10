@@ -45,9 +45,9 @@ public class OtpController {
             userEntity.setEmail((String) session.getAttribute("email"));
             userEntity.setFirstName((String) session.getAttribute("firstname"));
             userEntity.setLastName((String) session.getAttribute("lastname"));
-            userEntity.setDob((LocalDate) session.getAttribute("dob"));
+//            userEntity.setDob((LocalDate) session.getAttribute("dob"));
             userEntity.setPhone((String) session.getAttribute("phone"));
-            userEntity.setGender((Boolean) session.getAttribute("gender"));
+//            userEntity.setGender((Boolean) session.getAttribute("gender"));
             userEntity.setPassword(passwordEncoder.encode((String) session.getAttribute("password")));
             String role = (String) session.getAttribute("role");
             if (role != null) {

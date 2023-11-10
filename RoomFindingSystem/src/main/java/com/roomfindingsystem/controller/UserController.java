@@ -68,9 +68,9 @@ public class UserController {
         session.setAttribute("email", user.getEmail());
         session.setAttribute("firstname", user.getFirstName());
         session.setAttribute("lastname", user.getLastName());
-        session.setAttribute("dob", user.getDob());
+//        session.setAttribute("dob", user.getDob());
         session.setAttribute("phone", user.getPhone());
-        session.setAttribute("gender", user.getGender());
+//        session.setAttribute("gender", user.getGender());
         session.setAttribute("password", user.getPassword());
         return "redirect:/otp-check";
 

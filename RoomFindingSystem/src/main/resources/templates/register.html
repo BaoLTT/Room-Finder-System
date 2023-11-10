@@ -63,28 +63,28 @@
                                 </div>
                                 <p style="color: red" th:text="${mess}"></p>
                             </div>
-                            <div class="form-group">
-                                <label>Date of birth</label>
-                                <input class="form-control" type="date" th:field="*{dob}"
-                                       id="dob" required>
-                                <div class="alert alert-warning" th:if="${#fields.hasErrors('dob')}"
-                                     th:errors="*{dob}">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="radio radio-info form-check-inline">
-                                    <input type="radio" id="male" th:field="*{gender}"
-                                           value="1" name="gender" checked>
+<!--                            <div class="form-group">-->
+<!--                                <label>Date of birth</label>-->
+<!--                                <input class="form-control" type="date" th:field="*{dob}"-->
+<!--                                       id="dob" required>-->
+<!--                                <div class="alert alert-warning" th:if="${#fields.hasErrors('dob')}"-->
+<!--                                     th:errors="*{dob}">-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="form-group">-->
+<!--                                <div class="radio radio-info form-check-inline">-->
+<!--                                    <input type="radio" id="male" th:field="*{gender}"-->
+<!--                                           value="1" name="gender" checked>-->
 
-                                    <label for="male">Male </label>
-                                </div>
-                                <div class="radio form-check-inline">
-                                    <input type="radio" id="female" th:field="*{gender}"
-                                           value="0" name="gender">
+<!--                                    <label for="male">Male </label>-->
+<!--                                </div>-->
+<!--                                <div class="radio form-check-inline">-->
+<!--                                    <input type="radio" id="female" th:field="*{gender}"-->
+<!--                                           value="0" name="gender">-->
 
-                                    <label for="female"> Female </label>
-                                </div>
-                            </div>
+<!--                                    <label for="female"> Female </label>-->
+<!--                                </div>-->
+<!--                            </div>-->
                             <div class="form-group">
                                 <label for="phone">Phone number</label>
                                 <input class="form-control" type="text" th:field="*{phone}"
