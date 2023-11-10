@@ -14,6 +14,7 @@
 
 <body>
 
+
       <div id="page-header" th:fragment="headerSection">
         <header>
           <div class="container">
@@ -28,19 +29,19 @@
                   </div>
                   <!--end left-->
                   <div class="right">
-                    <div th:if="${session.username != null}">
+                    <div th:if="${session.user != null}">
                       <!-- Hiển thị thông tin người dùng đã đăng nhập -->
-                      <a th:href="@{/profile}"><span>Xin chào, <span th:text="${session.userid}"></span></span></a>
+                      <a th:href="@{/profile}"><span>Xin chào, <span th:text="${session.user.lastName}"></span></span></a>
                       <a th:href="@{/logout}">Đăng xuất</a>
                     </div>
                     <!--end element-->
-                    <div th:unless="${session.username!= null}">
+                    <div th:if="${session.user == null}">
                       <div class="element">
-                        <a th:href="@{/login}" data-toggle="modal" data-tab="true" data-target="#sign-in-register-modal">Đăng nhập</a>
+                        <a th:href="@{/login}"  >Đăng nhập</a>
                       </div>
                       <!--end element-->
                       <div class="element">
-                        <a th:href="@{/register}" data-toggle="modal" data-tab="true" data-target="#sign-in-register-modal">Đăng ký</a>
+                        <a th:href="@{/register}">Đăng ký</a>
                       </div>
                       <!--end element-->
                     </div>
