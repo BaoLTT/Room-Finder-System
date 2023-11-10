@@ -3,6 +3,7 @@ package com.roomfindingsystem.service;
 
 import com.roomfindingsystem.dto.FeedbackDto;
 import com.roomfindingsystem.dto.FeedbackHomeDto;
+import com.roomfindingsystem.dto.FeedbackListAdminDto;
 import com.roomfindingsystem.entity.FeedbackEntity;
 
 import org.springframework.data.domain.Page;
@@ -25,7 +26,7 @@ public interface FeedbackService {
 
 
     List<FeedbackHomeDto> viewTop4Home();
-    List<FeedbackEntity> getListFeedback();
+    List<FeedbackListAdminDto> getListFeedback();
 
 
 }

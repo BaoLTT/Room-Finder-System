@@ -3,6 +3,7 @@ package com.roomfindingsystem.service.impl;
 
 
 import com.roomfindingsystem.dto.FeedbackHomeDto;
+import com.roomfindingsystem.dto.FeedbackListAdminDto;
 import com.roomfindingsystem.entity.FeedbackEntity;
 import com.roomfindingsystem.repository.FeedbackRepository;
 import com.roomfindingsystem.service.FeedbackService;
@@ -45,8 +46,8 @@ public class FeedbackServiceImpl implements FeedbackService {
     }
 
     @Override
-    public List<FeedbackEntity> getListFeedback() {
-        return feedbackRepository.findAll();
+    public List<FeedbackListAdminDto> getListFeedback() {
+        return feedbackRepository.getFeedbackListForAdmin();
     }
 
     @Override
