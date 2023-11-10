@@ -1,5 +1,6 @@
 package com.roomfindingsystem.controller;
 
+import com.roomfindingsystem.dto.FeedbackListAdminDto;
 import com.roomfindingsystem.entity.FeedbackEntity;
 import com.roomfindingsystem.service.FeedbackService;
 
@@ -23,7 +24,7 @@ public class FeebackController {
     private FeedbackService feedbackService;
     @RequestMapping(value = "feedback-list")
     public String getFeebackList(Model model) {
-        List<FeedbackEntity> list = feedbackService.getListFeedback();
+        List<FeedbackListAdminDto> list = feedbackService.getListFeedback();
         model.addAttribute("feedbackList", list);
         return "feedback-list-admin";
     }
