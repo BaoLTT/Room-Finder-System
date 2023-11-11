@@ -2,6 +2,7 @@ package com.roomfindingsystem.repository;
 
 
 import com.roomfindingsystem.dto.FeedbackHomeDto;
+import com.roomfindingsystem.dto.FeedbackListAdminDto;
 import com.roomfindingsystem.entity.FeedbackEntity;
 
 
@@ -41,16 +42,6 @@ public interface FeedbackRepository extends JpaRepository<FeedbackEntity,Integer
 //    void updateFeedbackEntity(int houseId, int memberId, String newValue);
 
 
-
-
-
-
-
-
-
-
-
-
     @Query("select new com.roomfindingsystem.dto.FeedbackHomeDto(u.firstName, u.lastName, h.houseName, f.content, h.houseId,  p.name, d.name, w.name, a.addressDetails) from FeedbackEntity f left join HousesEntity h on f.houseId = h.houseId " +
             "left join UserEntity u on f.memberId = u.userId " +
             "left join AddressEntity a on h.addressId = a.addressId " +
@@ -58,4 +49,15 @@ public interface FeedbackRepository extends JpaRepository<FeedbackEntity,Integer
             "left join DistrictEntity d on d.provinceId= p.provinceId " +
             "left join WardEntity w on w.districtId= d.districtId ")
     List<FeedbackHomeDto> viewTop4Home();
+    @Query("select new com.roomfindingsystem.dto.FeedbackListAdminDto(f.feedbackId,f.content,f.createdDate,f.lastModifiedDate,f.title,h.houseName,u.lastName,u.email)from FeedbackEntity f " +
+            " left join HousesEntity h on f.houseId= h.houseId" +
+            " left join UserEntity u on f.memberId = u.userId")
+    List<FeedbackListAdminDto> getFeedbackListForAdmin();
+
+    @Query("select new com.roomfindingsystem.dto.FeedbackListAdminDto(f.feedbackId,f.content,f.createdDate,f.lastModifiedDate,f.title,h.houseName,u.lastName,u.email)from FeedbackEntity f " +
+            " left join HousesEntity h on f.houseId= h.houseId" +
+            " left join UserEntity u on f.memberId = u.userId " +
+            "where h.createdBy =?1")
+    List<FeedbackListAdminDto> getFeedbackListForLandLord( int createdBy);
+
 }
