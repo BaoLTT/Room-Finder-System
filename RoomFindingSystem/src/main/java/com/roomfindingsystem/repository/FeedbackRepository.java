@@ -54,4 +54,10 @@ public interface FeedbackRepository extends JpaRepository<FeedbackEntity,Integer
             " left join UserEntity u on f.memberId = u.userId")
     List<FeedbackListAdminDto> getFeedbackListForAdmin();
 
+    @Query("select new com.roomfindingsystem.dto.FeedbackListAdminDto(f.feedbackId,f.content,f.createdDate,f.lastModifiedDate,f.title,h.houseName,u.lastName,u.email)from FeedbackEntity f " +
+            " left join HousesEntity h on f.houseId= h.houseId" +
+            " left join UserEntity u on f.memberId = u.userId " +
+            "where h.createdBy =?1")
+    List<FeedbackListAdminDto> getFeedbackListForLandLord( int createdBy);
+
 }

@@ -26,7 +26,10 @@ public interface FeedbackService {
 
 
     List<FeedbackHomeDto> viewTop4Home();
+
     List<FeedbackListAdminDto> getListFeedback();
+
+    List<FeedbackListAdminDto> getListFeedbackForLandLord(int createdBy);
 
 
 }
