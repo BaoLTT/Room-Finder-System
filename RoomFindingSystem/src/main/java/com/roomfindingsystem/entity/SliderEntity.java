@@ -2,8 +2,7 @@ package com.roomfindingsystem.entity;
 
 import jakarta.persistence.*;
 
-import java.sql.Timestamp;
-import java.time.LocalDate;
+import java.sql.Date;
 import java.util.Objects;
 
 @Entity
@@ -11,44 +10,55 @@ import java.util.Objects;
 public class SliderEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "SliderID")
-    private int sliderId;
+    @Column(name = "sliderid")
+    private int sliderid;
     @Basic
-    @Column(name = "Title")
-    private String title;
+    @Column(name = "created_by")
+    private Integer createdBy;
     @Basic
-    @Column(name = "Img_Link")
+    @Column(name = "created_date")
+    private Date createdDate;
+    @Basic
+    @Column(name = "img_link")
     private String imgLink;
     @Basic
-    @Column(name = "Created_Date")
-    private LocalDate createdDate;
+    @Column(name = "last_modified_date")
+    private Date lastModifiedDate;
     @Basic
-    @Column(name = "Last_Modified_Date")
-    private LocalDate lastModifiedDate;
+    @Column(name = "roomid")
+    private Integer roomid;
     @Basic
-    @Column(name = "RoomID")
-    private int roomId;
+    @Column(name = "title")
+    private String title;
     @Basic
-    @Column(name = "Last_Modified_By")
-    private Integer lastModifiedBy;
+    @Column(name = "content")
+    private String content;
     @Basic
-    @Column(name = "Created_By")
-    private int createdBy;
+    @Column(name = "status")
+    private Integer status;
 
-    public int getSliderId() {
-        return sliderId;
+    public int getSliderid() {
+        return sliderid;
     }
 
-    public void setSliderId(int sliderId) {
-        this.sliderId = sliderId;
+    public void setSliderid(int sliderid) {
+        this.sliderid = sliderid;
     }
 
-    public String getTitle() {
-        return title;
+    public Integer getCreatedBy() {
+        return createdBy;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setCreatedBy(Integer createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
     }
 
     public String getImgLink() {
@@ -59,44 +69,44 @@ public class SliderEntity {
         this.imgLink = imgLink;
     }
 
-    public LocalDate getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(LocalDate createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    public LocalDate getLastModifiedDate() {
+    public Date getLastModifiedDate() {
         return lastModifiedDate;
     }
 
-    public void setLastModifiedDate(LocalDate lastModifiedDate) {
+    public void setLastModifiedDate(Date lastModifiedDate) {
         this.lastModifiedDate = lastModifiedDate;
     }
 
-    public int getRoomId() {
-        return roomId;
+    public Integer getRoomid() {
+        return roomid;
     }
 
-    public void setRoomId(int roomId) {
-        this.roomId = roomId;
+    public void setRoomid(Integer roomid) {
+        this.roomid = roomid;
     }
 
-    public Integer getLastModifiedBy() {
-        return lastModifiedBy;
+    public String getTitle() {
+        return title;
     }
 
-    public void setLastModifiedBy(Integer lastModifiedBy) {
-        this.lastModifiedBy = lastModifiedBy;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public int getCreatedBy() {
-        return createdBy;
+    public String getContent() {
+        return content;
     }
 
-    public void setCreatedBy(int createdBy) {
-        this.createdBy = createdBy;
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     @Override
@@ -104,11 +114,11 @@ public class SliderEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         SliderEntity that = (SliderEntity) o;
-        return sliderId == that.sliderId && roomId == that.roomId && createdBy == that.createdBy && Objects.equals(title, that.title) && Objects.equals(imgLink, that.imgLink) && Objects.equals(createdDate, that.createdDate) && Objects.equals(lastModifiedDate, that.lastModifiedDate) && Objects.equals(lastModifiedBy, that.lastModifiedBy);
+        return sliderid == that.sliderid && Objects.equals(createdBy, that.createdBy) && Objects.equals(createdDate, that.createdDate) && Objects.equals(imgLink, that.imgLink) && Objects.equals(lastModifiedDate, that.lastModifiedDate) && Objects.equals(roomid, that.roomid) && Objects.equals(title, that.title) && Objects.equals(content, that.content) && Objects.equals(status, that.status);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(sliderId, title, imgLink, createdDate, lastModifiedDate, roomId, lastModifiedBy, createdBy);
+        return Objects.hash(sliderid, createdBy, createdDate, imgLink, lastModifiedDate, roomid, title, content, status);
     }
 }
