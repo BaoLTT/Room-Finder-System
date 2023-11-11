@@ -51,6 +51,11 @@ public class FeedbackServiceImpl implements FeedbackService {
     }
 
     @Override
+    public List<FeedbackListAdminDto> getListFeedbackForLandLord(int createdBy) {
+        return feedbackRepository.getFeedbackListForLandLord(createdBy);
+    }
+
+    @Override
     public FeedbackEntity save(FeedbackEntity feedbackEntity) {
         return feedbackRepository.save(feedbackEntity);
     }
