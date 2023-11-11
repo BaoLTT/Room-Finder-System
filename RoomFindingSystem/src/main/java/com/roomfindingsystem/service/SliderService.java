@@ -6,5 +6,7 @@ import com.roomfindingsystem.entity.SliderEntity;
 import java.util.List;
 
 public interface SliderService {
-    List<SliderEntity> viewTop4Home();
+    List<SliderEntity> viewTop7Home();
+
+    List<SliderEntity> viewAll();
 }
