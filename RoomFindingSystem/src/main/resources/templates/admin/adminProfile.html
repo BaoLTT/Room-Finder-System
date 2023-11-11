@@ -498,9 +498,9 @@
                                     <div class="col-md-3 col-sm-3">
                                         <section>
                                             <div id="profile-picture" class="profile-picture single-file-preview">
-                                                <img id="imagePreview" th:src="*{'data:image/jpeg;base64,' + imageLink}" alt="" class="image">
+                                                <img th:src="*{'data:image/jpeg;base64,' + imageLink}" alt="" class="image">
                                                 <div class="input">
-                                                    <input name="file" type="file" class="" onchange="previewFile()">
+                                                    <input name="file" type="file" class="">
                                                     <span>Chọn ảnh đại diện</span>
                                                 </div>
                                             </div>
@@ -545,7 +545,7 @@
                                                         <label for="email">Email</label>
                                                         <input type="email" class="form-control" id="email" name="email"
                                                                pattern="^\w+([\.]?\w+)*@\w+([\.]?\w+)*(\.\w{2,3})+$"
-                                                               placeholder="janedoe@gmail.com" th:value="*{email}" disabled>
+                                                               placeholder="janedoe@gmail.com" th:value="*{email}" readonly>
                                                         <small class="text-danger error-email"></small>
                                                     </div>
                                                     <div class="form-group">
@@ -755,20 +755,165 @@
 <!-- App js -->
 <script th:src="@{/assets_admin/js/app.min.js}"></script>
 <script>
-    function previewFile() {
-
-        const file = this.files[0];
-
-        if (file) {
-            const reader = new FileReader();
-
-            reader.addEventListener("load", function () {
-                document.getElementById("imagePreview").src = reader.result;
+    const host = "http://localhost:8080/";
+    let provinceTest = -1;
+    var callAPI = (api) => {
+        return axios.get(api)
+            .then((response) => {
+                renderDataProvince(response.data.provinces, "province");
             });
-
-            reader.readAsDataURL(file);
-        }
     }
+    callAPI(host + "province");
+
+    var callApiDistrict = (api) => {
+        return axios.get(api)
+            .then((response) => {
+                renderDataDistrict(response.data.districts, "district");
+            });
+    }
+    var callApiWard = (api) => {
+        return axios.get(api)
+            .then((response) => {
+                renderDataWard(response.data.wards, "ward");
+            });
+    }
+    var renderDataProvince = (array, select) => {
+        let row = ' <option disable value="">Select</option>';
+        array.forEach(element => {
+            row += `<option value="${element.provinceId}">${element.name}</option>`;
+        });
+        document.querySelector("#" + select).innerHTML = row;
+    }
+    var renderDataDistrict = (array, select) => {
+        let row = ' <option disable value="">Select</option>';
+        array.forEach(element => {
+            row += `<option value="${element.districtId}">${element.name}</option>`;
+        });
+        document.querySelector("#" + select).innerHTML = row;
+    }
+    var renderDataWard = (array, select) => {
+        let row = ' <option disable value="">Select</option>';
+        array.forEach(element => {
+            row += `<option value="${element.wardId}">${element.name}</option>`;
+        });
+        document.querySelector("#" + select).innerHTML = row;
+    }
+
+    $("#province").change(() => {
+        const selectedProvinceValue = $("#province").val();
+        const selectedProvinceText = $("#province option:selected").text();
+        provinceTest = selectedProvinceValue;
+        callApiDistrict(host + "p/" + selectedProvinceValue);
+
+        console.log(host + "p/" + selectedProvinceValue);
+        document.getElementById('provinceName').value = selectedProvinceText;
+
+    });
+    $("#district").change(() => {
+        const selectedDistrictValue = $("#district").val();
+        const selectedDistrictText = $("#district option:selected").text();
+
+        callApiWard(host + "p/" + provinceTest + "/d/" + selectedDistrictValue);
+
+        console.log(host + "p/" + provinceTest + "/d/" + selectedDistrictValue);
+        document.getElementById('districtName').value = selectedDistrictText;
+
+    });
+    $("#ward").change(() => {
+        const selectedWardValue = $("#ward").val();
+        const selectedWardText = $("#ward option:selected").text();
+        console.log("Ward Value: " + selectedWardValue);
+        console.log("Ward Text: " + selectedWardText);
+        document.getElementById('wardName').value = selectedWardText;
+    })
+
+    let province = document.getElementById('province');
+    let district = document.getElementById('district');
+    let ward = document.getElementById('ward');
+    document.getElementById('provinceName').addEventListener('click', () => {
+        document.getElementById('provinceName').style.display = "none";
+        document.getElementById('districtName').style.display = "none";
+        document.getElementById('wardName').style.display = "none";
+
+        document.getElementById('province').style.display = "block";
+        document.getElementById('district').style.display = "block";
+        document.getElementById('ward').style.display = "block";
+    });
+
+    // Lấy phần tử input và small số đt
+    const inputPhone = document.getElementById('phone');
+    const errorPhone = inputPhone.nextElementSibling;
+
+    // Sự kiện blur khỏi input
+    inputPhone.addEventListener('blur', () => {
+
+        // Nếu không thỏa mãn pattern
+        if (!inputPhone.value.match(inputPhone.pattern)) {
+            errorPhone.textContent = 'Số điện thoại gồm 10 số';
+        } else {
+            errorPhone.textContent = ''; // Clear message
+        }
+    });
+
+    // Lấy phần tử input và small email
+    const inputMail = document.getElementById('email');
+    const errorMail = inputMail.nextElementSibling;
+
+    // Sự kiện blur khỏi input
+    inputMail.addEventListener('blur', () => {
+
+        // Nếu không thỏa mãn pattern
+        if (!inputMail.value.match(inputMail.pattern)) {
+            errorMail.textContent = 'Email có dạng "manhhd@gmail.com"';
+        } else {
+            errorMail.textContent = ''; // Clear message
+        }
+    });
+
+    // Lấy phần tử input và small firstName
+    const inputFirstName = document.getElementById('firstName');
+    const errorFirstName = inputFirstName.nextElementSibling;
+
+    // Sự kiện blur khỏi input
+    inputFirstName.addEventListener('blur', () => {
+
+        // Nếu không thỏa mãn pattern
+        if (!inputFirstName.value.match(inputFirstName.pattern)) {
+            errorFirstName.textContent = 'tên không chứa số và kí tự đặc biệt';
+        } else {
+            errorFirstName.textContent = ''; // Clear message
+        }
+    });
+
+    // Lấy phần tử input và small lastName
+    const inputLastName = document.getElementById('lastName');
+    const errorLastName = inputLastName.nextElementSibling;
+
+    // Sự kiện blur khỏi input
+    inputLastName.addEventListener('blur', () => {
+
+        // Nếu không thỏa mãn pattern
+        if (!inputLastName.value.match(inputLastName.pattern)) {
+            errorLastName.textContent = 'tên không chứa số và kí tự đặc biệt';
+        } else {
+            errorLastName.textContent = ''; // Clear message
+        }
+    });
+
+    document.getElementById("dob").addEventListener("change", function () {
+        var dob = new Date(this.value);
+
+        var today = new Date();
+
+        var age = today.getFullYear() - dob.getFullYear();
+
+        if (age >= 18) {
+            document.querySelector('form').removeAttribute("onsubmit");
+        } else {
+            document.querySelector('form').setAttribute("onsubmit", "return false;");
+            alert("You must be 18 or older to enter!");
+        }
+    });
 </script>
 </body>
 </html>
