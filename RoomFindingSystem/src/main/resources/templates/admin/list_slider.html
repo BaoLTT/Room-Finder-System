@@ -30,6 +30,11 @@
 
 
     <!-- Topbar Start -->
+
+    <!-- end Topbar -->
+
+
+    <!-- ========== Left Sidebar Start ========== -->
     <div th:replace="admin/header_admin :: admin_topbar"></div>
     <!-- Left Sidebar End -->
 
@@ -46,7 +51,7 @@
                     <div class="col-12">
                         <div class="card-box table-responsive">
                             <div class="d-flex justify-content-end">
-                                <button class="btn btn-success mb-1 "><a th:href="@{/room/insertRoomPage}"
+                                <button class="btn btn-success mb-1 "><a
                                                                          style="color: white">Add New Room</a></button>
                             </div>
                             <table id="datatable-buttons"
@@ -54,44 +59,41 @@
                                    style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead>
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Area</th>
-                                    <th>Type</th>
-                                    <th>Services</th>
-                                    <th>Price</th>
-                                    <th>House</th>
-                                    <th>Status</th>
+                                    <th>Slider ID</th>
+                                    <th>Tiêu đề</th>
+                                    <th>Ảnh</th>
+                                    <th>Nội dung</th>
+                                    <th>Người viết</th>
+                                    <th>Trạng thái</th>
                                     <th>Actions</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each="room : ${rooms}">
-                                    <td th:text="${room.roomName}">
+                                <tr th:each="slider: ${sliderList}">
+                                    <td th:text="${slider.sliderid}">
                                     </td>
 
-                                    <td th:text="${room.area}">
+                                    <td th:text="${slider.title}">
                                     </td>
 
-                                    <td th:text="${room.typeName}">
+                                    <td th:text="${slider.imgLink}">
                                     </td>
 
-                                    <td th:text="${room.services}">
+                                    <td th:text="${slider.content}">
                                     </td>
 
-                                    <td th:text="${room.price}">
+                                    <td th:text="${slider.createdBy}">
                                     </td>
 
-                                    <td th:text="${room.houseName}">
+                                    <td th:text="${slider.status}">
                                     </td>
 
-                                    <td th:text="${room.status}">
-                                    </td>
 
                                     <td>
-                                        <a th:href="@{'/room/updateRoom/' + ${room.roomId}}" class="btn btn-warning">Update</a>
+                                        <a  class="btn btn-warning">Update</a>
                                         |
                                         <button class="btn btn-danger delete-button"
-                                                th:attr="data-roomid=${room.roomId}">Delete
+                                                >Delete
                                         </button>
                                     </td>
                                 </tr>
@@ -239,7 +241,7 @@
 <script th:src="@{/assets_admin/libs/datatables/responsive.bootstrap4.min.js}"></script>
 
 <!-- Datatables init -->
-<script th:src="@{/assets_admin/js/pages/datatables.init.js}"></script>
+<script src="/assets_admin/js/pages/datatables.init.js"></script>
 
 <!-- App js -->
 <script th:src="@{/assets_admin/js/app.min.js}"></script>

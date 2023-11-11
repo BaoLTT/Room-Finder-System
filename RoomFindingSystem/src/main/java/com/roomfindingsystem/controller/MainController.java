@@ -51,7 +51,7 @@ public class  MainController {
         model.addAttribute("houseservices", serviceHouseService.findAll());
         model.addAttribute("rooms", roomService.viewRoomInHome());
         model.addAttribute("feedbacks", feedbackService.viewTop4Home());
-        model.addAttribute("sliders", sliderService.viewTop4Home());
+        model.addAttribute("sliders", sliderService.viewTop7Home());
 
         final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
         UserEntity user = null;
