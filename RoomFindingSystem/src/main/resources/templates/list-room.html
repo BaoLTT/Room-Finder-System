@@ -467,21 +467,21 @@
                         <div class="card-box table-responsive">
                             <div class="d-flex justify-content-end">
                                 <button class="btn btn-success mb-1 "><a th:href="@{/room/insertRoomPage}"
-                                                                         style="color: white">Add New Room</a></button>
+                                                                         style="color: white">Thêm phòng mới</a></button>
                             </div>
                             <table id="datatable-buttons"
                                    class="table table-striped table-bordered dt-responsive nowrap"
                                    style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead>
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Area</th>
-                                    <th>Type</th>
-                                    <th>Services</th>
-                                    <th>Price</th>
-                                    <th>House</th>
-                                    <th>Status</th>
-                                    <th>Actions</th>
+                                    <th>Phòng</th>
+                                    <th>Diện tích</th>
+                                    <th>Loại phòng</th>
+                                    <th>Dịch vụ</th>
+                                    <th>Giá</th>
+                                    <th>Trọ</th>
+                                    <th>Tình trạng</th>
+                                    <th></th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -508,10 +508,10 @@
                                     </td>
 
                                     <td>
-                                        <a th:href="@{'/room/updateRoom/' + ${room.roomId}}" class="btn btn-warning">Update</a>
+                                        <a th:href="@{'/room/updateRoom/' + ${room.roomId}}" class="btn btn-warning">Chi tiết</a>
                                         |
                                         <button class="btn btn-danger delete-button"
-                                                th:attr="data-roomid=${room.roomId}">Delete
+                                                th:attr="data-roomid=${room.roomId}">Xóa
                                         </button>
                                     </td>
                                 </tr>
