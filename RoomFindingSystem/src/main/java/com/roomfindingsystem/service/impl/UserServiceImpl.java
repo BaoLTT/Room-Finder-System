@@ -225,4 +225,35 @@ public class UserServiceImpl implements UserService {
         return userRepository.countUserInAdmin();
     }
 
+    @Override
+    public UserDto findUserDtoByEmail(String email) {
+        Optional<UserEntity> optionalUser = userRepository.findByEmail(email);
+        UserEntity user = optionalUser.get();
+        UserDto userDto = modelMapper.map(user, UserDto.class);
+
+        AddressEntity address = addressRepository.findById(user.getAddressId()).get();
+
+        ProvinceEntity province = provinceRepository.findById(address.getProvinceId()).get();
+        DistrictEntity district = districtRepository.findById(address.getDistrictId()).get();
+        WardEntity ward = wardRepository.findById(address.getWardId()).get();
+
+        userDto.setProvince(province.getName());
+        userDto.setDistrict(district.getName());
+        userDto.setWard(ward.getName());
+        userDto.setProvinceId(province.getProvinceId());
+        userDto.setDistrictId(district.getDistrictId());
+        userDto.setWardId(ward.getWardId());
+        userDto.setAddressDetails(address.getAddressDetails());
+
+        if(user.getGender()) {
+            userDto.setGender("MALE");
+        }
+        else {
+            userDto.setGender("FEMALE");
+        }
+
+        userDto.setDob(user.getDob().toString());
+        return userDto;
+    }
+
 }
