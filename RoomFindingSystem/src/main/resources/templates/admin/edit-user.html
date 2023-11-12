@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
-    <title>Admin Profile</title>
+    <title>Update User</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description"/>
     <meta content="Coderthemes" name="author"/>
@@ -504,8 +504,7 @@
                         <div class="card-box">
                             <h4 class="header-title mb-3"> Thông tin cá nhân</h4>
                             <form id="form-profile" class="labels-uppercase" method="post" action="#"
-                                  th:action="@{/admin/profile/update}" th:object="${user}"
-                                  enctype="multipart/form-data">
+                                  th:action="@{/admin/user/update}" th:object="${user}" enctype="multipart/form-data">
                                 <input type="hidden" th:field="*{userId}">
                                 <div class="row">
                                     <!--Profile Picture-->
@@ -513,7 +512,7 @@
                                         <section>
                                             <div id="profile-picture" class="profile-picture single-file-preview">
                                                 <img th:src="*{imageLink}" alt="" class="image">
-                                                <div class="input">
+                                                <div>
                                                     <input name="file" type="file" class="">
                                                     <span>Chọn ảnh đại diện</span>
                                                 </div>
@@ -552,6 +551,7 @@
                                                         <small class="text-danger error-phone"></small>
                                                     </div>
                                                 </div>
+
                                                 <!--end col-md-6-->
 
                                                 <div class="col-md-6 col-sm-6">
@@ -583,6 +583,48 @@
                                                                placeholder="Enter your age (ex: 18)" th:value="*{dob}"
                                                                required
                                                                onchange="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="role">Chức vụ</label>
+                                                        <select class="form-control" id="role" name="role"
+                                                                th:field="*{role}">
+                                                            <option value="SUPER_ADMIN"
+                                                                    th:selected="${user.role == 'SUPER_ADMIN'}">
+                                                                SUPER_ADMIN
+                                                            </option>
+                                                            <option value="ADMIN"
+                                                                    th:selected="${user.role == 'ADMIN'}">
+                                                                ADMIN
+                                                            </option>
+                                                            <option value="USER"
+                                                                    th:selected="${user.role == 'USER'}">
+                                                                USER
+                                                            </option>
+                                                            <option value="LANDLORD"
+                                                                    th:selected="${user.role == 'LANDLORD'}">
+                                                                LANDLORD
+                                                            </option>
+                                                        </select>
+                                                    </div>
+
+                                                    <!--end form-group-->
+                                                </div>
+                                                <div class="col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="role">Trạng thái</label>
+                                                        <select class="form-control" id="status" name="status"
+                                                                th:field="*{status}">
+                                                            <option value="ACTIVE"
+                                                                    th:selected="${user.status == 'ACTIVE'}">
+                                                                ACTIVE
+                                                            </option>
+                                                            <option value="INACTIVE"
+                                                                    th:selected="${user.status == 'INACTIVE'}">
+                                                                INACTIVE
+                                                            </option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                                 <!--end col-md-6-->
@@ -626,6 +668,9 @@
                                             <button type="submit" class="btn btn-large btn-primary btn-rounded"
                                                     id="submit">
                                                 Lưu thay đổi
+                                            </button>
+                                            <button type="reset" class="btn btn-light waves-effect ml-1">
+                                                <a th:href="@{/admin/user}">Danh sách người dùng</a>
                                             </button>
                                         </div>
                                         <!-- end form-group -->
@@ -784,8 +829,7 @@
 <!-- App js -->
 <script th:src="@{/assets_admin/js/app.min.js}"></script>
 <script>
-    const host = "http://timtromoi.com/";
-    // const host = "http://localhost:8080/";
+    const host = "http://localhost:8080/";
     let provinceTest = -1;
     var callAPI = (api) => {
         return axios.get(api)
