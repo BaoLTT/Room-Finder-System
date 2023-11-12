@@ -585,7 +585,7 @@
                                 <div class="form-group">
                                     <div th:each="image, iterStat : ${room.imgs}"
                                          class="profile-picture single-file-preview">
-                                        <img th:src="${'data:image/jpeg;base64,' + image.imageLink}" alt=""
+                                        <img th:src="${image.imageLink}" alt=""
                                              class="image">
                                         <div class="input">
                                             <input th:name="'file' + ${image.imageId}" type="file" class="d-none">
