@@ -27,4 +27,6 @@ public class UserDto {
     private Integer districtId;
     private Integer wardId;
     private String addressDetails;
+    private String role;
+    private String status;
 }
