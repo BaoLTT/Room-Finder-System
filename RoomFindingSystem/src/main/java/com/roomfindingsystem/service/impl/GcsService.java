@@ -26,14 +26,12 @@ public class GcsService {
 
             // Đọc và cấu hình Storage client với JSON key
             try (InputStream inputStream = new ByteArrayInputStream(jsonBytes)) {
-                // Đọc ServiceAccountCredentials từ InputStream
                 // Đảm bảo rằng bạn đang đọc ServiceAccountCredentials từ InputStream
                 ServiceAccountCredentials credentials = ServiceAccountCredentials.fromStream(inputStream);
 
                 // Sử dụng credentials để cấu hình StorageOptions
                 StorageOptions storageOptions = StorageOptions.newBuilder()
                         .setProjectId("rfs-test-404421")
-                        .setCredentials(ServiceAccountCredentials.fromStream(inputStream))
                         .setCredentials(credentials)
                         .build();
 
