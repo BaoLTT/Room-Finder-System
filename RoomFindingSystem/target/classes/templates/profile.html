@@ -62,7 +62,7 @@
                                 <div th:if="${session!= null}">
                                     <!-- Hiển thị thông tin người dùng đã đăng nhập -->
                                     <a th:href="@{/profile}"><span>Xin chào, <span
-                                            th:text="${session.firstname+' '}+${session.lastname}"></span></span></a>
+                                            th:text="${user.firstName+' '}+${user.lastName}"></span></span></a>
                                     <a th:href="@{/logout}">Đăng xuất</a>
                                 </div>
                                 <!--end element-->
@@ -138,6 +138,7 @@
                 <div class="row">
                     <form id="form-profile" class="labels-uppercase" method="post" action="#"
                           th:action="@{/user/update}" th:object="${user}" enctype="multipart/form-data">
+                        <input type="hidden" id="userId" name="userId" th:value="*{userId}">
                         <div class="row">
                             <!--Profile Picture-->
                             <div class="col-md-3 col-sm-3">
@@ -446,6 +447,7 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+    // const host = "http://timtromoi.com/";
     const host = "http://localhost:8080/";
     let provinceTest = -1;
     var callAPI = (api) => {

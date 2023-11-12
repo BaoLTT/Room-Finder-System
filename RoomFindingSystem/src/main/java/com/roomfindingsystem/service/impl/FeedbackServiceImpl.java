@@ -3,6 +3,7 @@ package com.roomfindingsystem.service.impl;
 
 
 import com.roomfindingsystem.dto.FeedbackHomeDto;
+import com.roomfindingsystem.dto.FeedbackListAdminDto;
 import com.roomfindingsystem.entity.FeedbackEntity;
 import com.roomfindingsystem.repository.FeedbackRepository;
 import com.roomfindingsystem.service.FeedbackService;
@@ -45,6 +46,16 @@ public class FeedbackServiceImpl implements FeedbackService {
     }
 
     @Override
+    public List<FeedbackListAdminDto> getListFeedback() {
+        return feedbackRepository.getFeedbackListForAdmin();
+    }
+
+    @Override
+    public List<FeedbackListAdminDto> getListFeedbackForLandLord(int createdBy) {
+        return feedbackRepository.getFeedbackListForLandLord(createdBy);
+    }
+
+    @Override
     public FeedbackEntity save(FeedbackEntity feedbackEntity) {
         return feedbackRepository.save(feedbackEntity);
     }
@@ -58,7 +69,4 @@ public class FeedbackServiceImpl implements FeedbackService {
     public void deleteByHouseIdAndMemberId(int houseId, int memberId) {
         feedbackRepository.deleteByHouseIdAndMemberId(houseId, memberId);}
 
-    public Page<FeedbackEntity> getListFeedback(Pageable pageable) {
-        return feedbackRepository.findAll(pageable);
-    }
 }

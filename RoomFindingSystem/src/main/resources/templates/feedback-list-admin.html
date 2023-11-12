@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="utf-8"/>
-    <title>Abstack - Responsive Bootstrap 4 Admin Dashboard</title>
+    <title>List Room</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description"/>
     <meta content="Coderthemes" name="author"/>
@@ -10,20 +11,16 @@
     <!-- App favicon -->
     <link rel="shortcut icon" th:href="@{/assets_admin/images/favicon.ico}">
 
+    <!-- third party css -->
+    <link th:href="@{/assets_admin/libs/datatables/dataTables.bootstrap4.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/assets_admin/libs/datatables/buttons.bootstrap4.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/assets_admin/libs/datatables/responsive.bootstrap4.css}" rel="stylesheet" type="text/css"/>
+
     <!-- App css -->
-    <link th:href="@{/assets_admin/libs/dropzone/dropzone.min.css}" rel="stylesheet" type="text/css"/>
     <link th:href="@{/assets_admin/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
     <link th:href="@{/assets_admin/css/icons.min.css}" rel="stylesheet" type="text/css"/>
     <link th:href="@{/assets_admin/css/app.min.css}" rel="stylesheet" type="text/css"/>
 
-    <style>
-        .profile-picture img {
-            max-width: 200px;
-            max-height: 200px;
-            width: auto;
-            height: auto;
-        }
-    </style>
 </head>
 
 <body>
@@ -73,6 +70,7 @@
 
                 </div>
             </li>
+
 
             <li class="dropdown notification-list">
                 <a class="nav-link dropdown-toggle  waves-effect waves-light" data-toggle="dropdown" href="#"
@@ -202,12 +200,12 @@
         <div class="logo-box">
             <a href="" class="logo text-center">
                         <span class="logo-lg">
-                            <img th:src="@{/images/logo-light.png}" alt="" height="16">
+                            <img th:src="@{/assets_admin/images/logo-light.png}" alt="" height="16">
                             <!-- <span class="logo-lg-text-light">UBold</span> -->
                         </span>
                 <span class="logo-sm">
                             <!-- <span class="logo-sm-text-dark">U</span> -->
-                            <img th:src="@{/images/logo-sm.png}" alt="" height="24">
+                            <img th:src="@{/assets_admin/images/logo-sm.png}" alt="" height="24">
                         </span>
             </a>
         </div>
@@ -464,150 +462,54 @@
 
             <!-- Start Content-->
             <div class="container-fluid">
-
-                <!-- start page title -->
                 <div class="row">
                     <div class="col-12">
-                        <div class="page-title-box">
-                            <div class="page-title-right">
-                                <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Abstack</a></li>
-                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Forms</a></li>
-                                    <li class="breadcrumb-item active">Form Validation</li>
-                                </ol>
-                            </div>
-                            <h4 class="page-title">Form Validation</h4>
-                        </div>
-                    </div>
-                </div>
-                <!-- end page title -->
-
-
-                <div class="row">
-                    <div class="col-lg">
-                        <div class="card-box">
-                            <h4 class="header-title"> Thêm phòng mới</h4>
+                        <div class="card-box table-responsive">
                             <div class="d-flex justify-content-end">
-                                <form th:action="@{/room/importRooms}" method="post" enctype="multipart/form-data"
-                                      class="my-form">
-                                    <div class="form-group">
-                                        <input type="file" class="form-control-file" id="fileExcel" name="fileExcel"/>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary" onclick="event.stopPropagation()">Thêm nhiều phòng
-                                    </button>
-                                </form>
+                                <button class="btn btn-success mb-1 "><a th:href="@{/room/insertRoomPage}"
+                                                                         style="color: white">Add New Room</a></button>
                             </div>
+                            <table id="datatable-buttons"
+                                   class="table table-striped table-bordered dt-responsive nowrap"
+                                   style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>TitLe</th>
+                                    <th>HouseName</th>
+                                    <th>Email</th>
+                                    <th>Content</th>
+                                    <th>Create date</th>
+                                    <th>Name</th>
+                                    <th>Last Modify Date</th>
 
-                            <form class="parsley-examples" action="#" th:action="@{/room/save}" th:object="${room}" method="post" enctype="multipart/form-data">
-                                <input type="hidden" th:field="*{roomId}">
-                                <div class="form-group">
-                                    <label>Phòng</label>
-                                    <input type="text" class="form-control" required
-                                           placeholder="Type something" th:field="*{roomName}"/>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Diện tiích</label>
-                                    <div>
-                                        <input type="number" id="area" class="form-control" required
-                                               placeholder="56.5656" th:field="*{area}"/>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Giá</label>
-                                    <div>
-                                        <input type="number" class="form-control" required
-                                               placeholder="56.5656" th:field="*{price}"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label>Loại phòng</label>
-                                    <div>
-                                       <select class="form-select form-control mb-4 col-4" th:field="*{typeId}" aria-label="Default select example">
-                                           <option th:each="type : ${types}" th:value="${type.typeId}" th:utext="${type.typeName}" />
-                                       </select>
-                                   </div>
-                                </div>
-                                <div class="form-group">
-                                    <label>Mô tả chi tiết</label>
-                                    <input type="text" class="form-control" required
-                                           placeholder="Type something" th:field="*{description}"/>
-                                </div>
-                                <div class="form-group">
-                                    <label>Dịch vụ</label>
-                                    <div>
-                                        <div>
-                                            <input type="checkbox" id="fridge" name="serviceNames" value="Tủ lạnh">
-                                            <label for="fridge">Tủ lạnh</label><br>
-
-                                            <input type="checkbox" id="bed" name="serviceNames" value="Giường ngủ">
-                                            <label for="bed">Giường ngủ</label><br>
-
-                                            <input type="checkbox" id="washingMachine" name="serviceNames"
-                                                   value="Máy giặt">
-                                            <label for="washingMachine">Máy giặt</label><br>
-
-                                            <input type="checkbox" id="waterHeater" name="serviceNames"
-                                                   value="Bình nước nóng">
-                                            <label for="waterHeater">Bình nước nóng</label><br>
-
-                                            <input type="checkbox" id="kitchenShelf" name="serviceNames" value="Kệ bếp">
-                                            <label for="kitchenShelf">Kệ bếp</label><br>
-
-                                            <input type="checkbox" id="loftBed" name="serviceNames" value="Gác xép">
-                                            <label for="loftBed">Gác xép</label><br>
-
-                                            <input type="checkbox" id="studyDesk" name="serviceNames" value="Bàn học">
-                                            <label for="studyDesk">Bàn học</label><br>
-
-                                            <input type="checkbox" id="wardrobe" name="serviceNames" value="Tủ đồ">
-                                            <label for="wardrobe">Tủ đồ</label><br>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label>Tình trạng</label>
-                                    <div>
-                                        <select class="form-control" id="status" name="status"
-                                                th:field="*{status}">
-                                            <option value="ACTIVE" th:selected="${room.status == 'ACTIVE'}">Phòng trống
-                                            </option>
-                                            <option value="INACTIVE" th:selected="${room.status == 'INACTIVE'}">
-                                                Hết phòng
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-								<!-- Pictures -->
-                                <div class="dropzone" id="myAwesomeDropzone">
-                                    <div class="fallback">
-                                        <input name="file" type="file" multiple />
-                                    </div>
-                                    <div class="dz-message needsclick">
-                                        <i class="h1 text-muted dripicons-cloud-upload"></i>
-                                        <h3>Drop files here or click to upload.</h3>
-                                        <span class="text-muted font-13">(This is just a demo dropzone. Selected files are <strong>not</strong> actually uploaded.)</span>
-                                    </div>
-                                </div>
-                                <div class="form-group mb-0">
-                                    <div>
-                                        <button type="submit" class="btn btn-gradient waves-effect waves-light">
-                                            Lưu thông tin
-                                        </button>
-                                        <button type="reset" class="btn btn-light waves-effect ml-1">
-                                            <a th:href="@{/room/listRoomPage}">Danh sách phòng</a>
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="feedbackList : ${feedbackList}">
+                                    <td th:text="${feedbackList.feedbackId}">
+                                    </td>
+                                    <td th:text="${feedbackList.title}">
+                                    </td>
+                                    <td th:text="${feedbackList.houseName}">
+                                    </td>
+                                    <td th:text="${feedbackList.email}">
+                                    </td>
+                                    <td th:text="${feedbackList.content}">
+                                    </td>
+                                    <td th:text="${feedbackList.createdDate}">
+                                    </td>
+                                    <td th:text="${feedbackList.userLastName}">
+                                    </td>
+                                    <td th:text="${feedbackList.lastModifyDate}">
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-
                 </div>
                 <!-- end row -->
-
-
             </div> <!-- end container-fluid -->
 
         </div> <!-- end content -->
@@ -729,49 +631,39 @@
 <!-- Vendor js -->
 <script th:src="@{/assets_admin/js/vendor.min.js}"></script>
 
-<!-- Plugin js-->
-<script th:src="@{/assets_admin/assets/libs/parsleyjs/parsley.min.js}"></script>
+<!-- Required datatable js -->
+<script th:src="@{/assets_admin/libs/datatables/jquery.dataTables.min.js}"></script>
+<script th:src="@{/assets_admin/libs/datatables/dataTables.bootstrap4.min.js}"></script>
+<!-- Buttons examples -->
+<script th:src="@{/assets_admin/libs/datatables/dataTables.buttons.min.js}"></script>
+<script th:src="@{/assets_admin/libs/datatables/buttons.bootstrap4.min.js}"></script>
+<script th:src="@{/assets_admin/libs/jszip/jszip.min.js}"></script>
+<script th:src="@{/assets_admin/libs/pdfmake/pdfmake.min.js}"></script>
+<script th:src="@{/assets_admin/libs/pdfmake/vfs_fonts.js}"></script>
+<script th:src="@{/assets_admin/libs/datatables/buttons.html5.min.js}"></script>
+<script th:src="@{/assets_admin/libs/datatables/buttons.print.min.js}"></script>
 
-<!-- Validation init js-->
-<script th:src="@{/assets_admin/assets/js/pages/form-validation.init.js}"></script>
+<!-- Responsive examples -->
+<script th:src="@{/assets_admin/libs/datatables/dataTables.responsive.min.js}"></script>
+<script th:src="@{/assets_admin/libs/datatables/responsive.bootstrap4.min.js}"></script>
+
+<!-- Datatables init -->
+<script th:src="@{/assets_admin/js/pages/datatables.init.js}"></script>
 
 <!-- App js -->
 <script th:src="@{/assets_admin/js/app.min.js}"></script>
-<!--Drop zone-->
-<!--<script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>-->
-<!--<script type="text/javascript" th:src="@{/assets/js/jquery-2.2.1.min.js}"></script>-->
-<!--<script type="text/javascript" th:src="@{/assets/js/jquery-migrate-1.2.1.min.js}"></script>-->
-<!--<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&libraries=places"></script>-->
-<!--<script type="text/javascript" th:src="@{/assets/bootstrap/js/bootstrap.min.js}"></script>-->
-<!--<script type="text/javascript" th:src="@{/assets/js/jquery.validate.min.js}"></script>-->
-<!--<script type="text/javascript" th:src="@{/assets/js/bootstrap-datepicker.js}"></script>-->
-<!--<script type="text/javascript" th:src="@{/assets/js/icheck.min.js}"></script>-->
-<!--<script type="text/javascript" th:src="@{/assets/js/owl.carousel.js}"></script>-->
-<!--<script type="text/javascript" th:src="@{/assets/js/masonry.pkgd.min.js}"></script>-->
-
-<!--<script type="text/javascript" th:src="@{/assets/js/maps.js}"></script>-->
-<!--<script type="text/javascript" th:src="@{/assets/js/custom.js}"></script>-->
-
-<!--<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>-->
-<!--<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>-->
-<script th:inline="javascript">
-    $(document).ready(function () {
-        // Customize Dropzone.js options here.
-        Dropzone.options.myAwesomeDropzone = {
-            paramName: "file", // Name of the file input field
-            maxFilesize: 5, // Maximum file size in MB
-            maxFiles: 10, // Maximum number of files
-            acceptedFiles: "image/*", // Restrict to image files
-            addRemoveLinks: true, // Display remove links
-            dictRemoveFile: "Remove", // Text for remove link
-            // Other options...
-
-            // Define a success callback for when files are uploaded successfully
-            success: function (file, response) {
-                // Handle the server response, if needed
-            },
-        };
+<script>
+    document.querySelectorAll('.delete-button').forEach(function (button) {
+        button.addEventListener('click', function () {
+            let roomId = this.getAttribute('data-roomid');
+            if (confirm("Are you sure you want to delete this room?")) {
+                window.location.href = '/room/deleteRoom/' + roomId;
+            }
+        });
     });
+
+
 </script>
+
 </body>
 </html>

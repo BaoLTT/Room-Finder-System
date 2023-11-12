@@ -51,9 +51,9 @@ public class OtpController {
             userEntity.setPassword(passwordEncoder.encode((String) session.getAttribute("password")));
             String role = (String) session.getAttribute("role");
             if (role != null) {
-                userEntity.setRoleId(String.valueOf(Role.USER));
-            } else {
                 userEntity.setRoleId(String.valueOf(Role.LANDLORD));
+            } else {
+                userEntity.setRoleId(String.valueOf(Role.USER));
             }
             userEntity.setCreatedDate(null);
             userEntity.setAddressId(1);
