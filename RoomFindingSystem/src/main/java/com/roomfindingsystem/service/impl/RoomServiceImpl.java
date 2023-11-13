@@ -247,8 +247,8 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public int countRoom() {
-        return roomRepository.countRoom();
+    public int countRoom(int min, int max, String roomName, List<Integer> type) {
+        return roomRepository.countRoom(min, max, roomName, type);
     }
 
 

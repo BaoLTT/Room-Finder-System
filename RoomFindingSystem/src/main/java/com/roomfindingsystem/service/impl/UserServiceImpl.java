@@ -35,16 +35,16 @@ public class UserServiceImpl implements UserService {
     private final WardRepository wardRepository;
     private final ModelMapper modelMapper;
 
-    private final GcsService gcsService;
+//    private final GcsService gcsService;
 
-    public UserServiceImpl(UserReponsitory userRepository, AddressRepository addressRepository, ProvinceRepository provinceRepository, DistrictRepository districtRepository, WardRepository wardRepository, ModelMapper modelMapper, GcsService gcsService) {
+    public UserServiceImpl(UserReponsitory userRepository, AddressRepository addressRepository, ProvinceRepository provinceRepository, DistrictRepository districtRepository, WardRepository wardRepository, ModelMapper modelMapper) {
         this.userRepository = userRepository;
         this.addressRepository = addressRepository;
         this.provinceRepository = provinceRepository;
         this.districtRepository = districtRepository;
         this.wardRepository = wardRepository;
         this.modelMapper = modelMapper;
-        this.gcsService = gcsService;
+//        this.gcsService = gcsService;
     }
 
     @Autowired
@@ -138,7 +138,7 @@ public class UserServiceImpl implements UserService {
         if (!file.isEmpty()) {
             //        Handle Image
             byte[] imageBytes = file.getBytes();
-            gcsService.uploadImage("rfs_bucket", "User/user_"+user.getUserId()+".jpg", imageBytes);
+//            gcsService.uploadImage("rfs_bucket", "User/user_"+user.getUserId()+".jpg", imageBytes);
             saveUser.setImageLink("https://storage.cloud.google.com/rfs_bucket/User/"+"user_"+user.getUserId()+".jpg");
         } else {
             saveUser.setImageLink(user.getImageLink());
