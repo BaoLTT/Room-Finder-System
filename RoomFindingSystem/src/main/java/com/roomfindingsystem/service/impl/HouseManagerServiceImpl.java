@@ -1,11 +1,11 @@
 package com.roomfindingsystem.service.impl;
 
+import com.roomfindingsystem.dto.HouseManagerTypeVo;
 import com.roomfindingsystem.entity.HouseImagesEntity;
 import com.roomfindingsystem.entity.HousesEntity;
-import com.roomfindingsystem.reponsitory.HouseManagerReponsitory;
-import com.roomfindingsystem.reponsitory.ImagesHouseRepository;
+import com.roomfindingsystem.repository.HouseManagerRepository;
+import com.roomfindingsystem.repository.ImagesHouseRepository;
 import com.roomfindingsystem.service.HouseManagerService;
-import com.roomfindingsystem.vo.HouseManagerTypeVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,43 +13,43 @@ import java.util.List;
 
 @Service("houseManagerService")
 public class HouseManagerServiceImpl implements HouseManagerService {
-    private HouseManagerReponsitory houseManagerReponsitory;
+    private HouseManagerRepository houseManagerRepository;
 
-    public HouseManagerServiceImpl(HouseManagerReponsitory houseManagerReponsitory){
+    public HouseManagerServiceImpl(HouseManagerRepository houseManagerRepository){
         super();
-        this.houseManagerReponsitory = houseManagerReponsitory;
+        this.houseManagerRepository = houseManagerRepository;
     }
     @Autowired
     ImagesHouseRepository imagesHouseRepository;
 
     @Override
     public List<HouseManagerTypeVo> findHouseManager() {
-        return houseManagerReponsitory.findHouseManager();
+        return houseManagerRepository.findHouseManager();
     }
 
     @Override
     public boolean deleteHouse(Integer id) {
-        if ( houseManagerReponsitory.findById(id).isEmpty()) {
+        if ( houseManagerRepository.findById(id).isEmpty()) {
             System.err.println("House with id: "+ id +" not found!");
         }
-        houseManagerReponsitory.deleteById(id);
+        houseManagerRepository.deleteById(id);
         return true;
     }
 
     @Override
     public HouseManagerTypeVo findHouseById(Integer id) {
-        HouseManagerTypeVo house = houseManagerReponsitory.findHouseById(id);
+        HouseManagerTypeVo house = houseManagerRepository.findHouseById(id);
         return house;
     }
 
     @Override
     public void insertHouse(HousesEntity house) {
-        houseManagerReponsitory.save(house);
+        houseManagerRepository.save(house);
     }
 
     @Override
     public HousesEntity getLastHouse() {
-        return houseManagerReponsitory.getLastHouse();
+        return houseManagerRepository.getLastHouse();
     }
 
     @Override

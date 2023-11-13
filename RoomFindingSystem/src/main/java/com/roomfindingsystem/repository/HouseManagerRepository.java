@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository("houseManagerRepository")
-public interface HouseManagerReponsitory extends JpaRepository<HousesEntity,Integer> {
+public interface HouseManagerRepository extends JpaRepository<HousesEntity,Integer> {
     @Query("select new com.roomfindingsystem.dto.HouseManagerTypeVo(h.houseId, h.houseName, a.addressDetails, p.name, d.name, w.name,t.typeName, h.lastModifiedDate,u.firstName,u.lastName,u1.firstName,u1.lastName) from HousesEntity h " +
             "join TypeHouseEntity t on h.typeHouseId = t.typeId " +
             "join UserEntity u on h.lastModifiedBy = u.userId " +
