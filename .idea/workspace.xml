@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ec34e655-ee0a-4be9-8773-96fceb50fb67" name="Changes" comment="update">
+    <list default="true" id="ec34e655-ee0a-4be9-8773-96fceb50fb67" name="Changes" comment="sua loi trong report entity">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/entity/ReportEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/entity/ReportEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/admin/adminDashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/admin/adminDashboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/admin/header_admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/admin/header_admin.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -253,7 +253,7 @@
       <workItem from="1699695870453" duration="2422000" />
       <workItem from="1699808520969" duration="139000" />
       <workItem from="1699861435830" duration="1526000" />
-      <workItem from="1699895712545" duration="1600000" />
+      <workItem from="1699895712545" duration="2655000" />
     </task>
     <task id="LOCAL-00001" summary="fix register and boảding house detail and send mail future">
       <option name="closed" value="true" />
@@ -439,7 +439,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699804229865</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="sua loi trong report entity">
+      <option name="closed" value="true" />
+      <created>1699897622821</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1699897622821</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -489,7 +497,8 @@
     <MESSAGE value="update fix the &lt;html&gt; cua list room admin" />
     <MESSAGE value="thêm phần up ảnh của profile lên bucket" />
     <MESSAGE value="update" />
-    <option name="LAST_COMMIT_MESSAGE" value="update" />
+    <MESSAGE value="sua loi trong report entity" />
+    <option name="LAST_COMMIT_MESSAGE" value="sua loi trong report entity" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
