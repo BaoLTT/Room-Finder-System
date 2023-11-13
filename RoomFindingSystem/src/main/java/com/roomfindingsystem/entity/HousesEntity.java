@@ -74,6 +74,18 @@ public class HousesEntity {
         return houseId == that.houseId && addressId == that.addressId && typeHouseId == that.typeHouseId && userId == that.userId && Objects.equals(houseName, that.houseName) && Objects.equals(description, that.description) && Objects.equals(createdDate, that.createdDate) && Objects.equals(createdBy, that.createdBy) && Objects.equals(lastModifiedDate, that.lastModifiedDate) && Objects.equals(lastModifiedBy, that.lastModifiedBy);
     }
 
+    public HousesEntity(String houseName, String description, LocalDate createdDate, Integer createdBy, LocalDate lastModifiedDate, Integer lastModifiedBy, int addressId, int typeHouseId, int userId) {
+        this.houseName = houseName;
+        this.description = description;
+        this.createdDate = createdDate;
+        this.createdBy = createdBy;
+        this.lastModifiedDate = lastModifiedDate;
+        this.lastModifiedBy = lastModifiedBy;
+        this.addressId = addressId;
+        this.typeHouseId = typeHouseId;
+        this.userId = userId;
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(houseId, houseName, description, createdDate, createdBy, lastModifiedDate, lastModifiedBy, addressId, typeHouseId, userId);
