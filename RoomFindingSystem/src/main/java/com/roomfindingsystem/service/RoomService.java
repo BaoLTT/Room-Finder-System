@@ -37,7 +37,7 @@ public interface RoomService {
 
     void save(RoomDto roomDto, MultipartFile[] files) throws IOException;
 
-    int countRoom();
+    int countRoom(int min, int max, String roomName, List<Integer> type);
 
     //room type list in house detail
     List<RoomHouseDetailDto> viewRoomInHouse(int houseId);

@@ -27,8 +27,8 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectColorInfo">{
-        &quot;associatedIndex&quot;: 3
-        }</component>
+    &quot;associatedIndex&quot;: 3
+    }</component>
   <component name="ProjectId" id="2Xoy3fxsmz7luySE823IPEZjgbM" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -51,7 +51,7 @@
     "WebServerToolWindowFactoryState": "false",
     "com.google.cloudcode.ide_session_index": "20231111_0001",
     "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "BaoLTT",
+    "git-widget-placeholder": "nghiant2",
     "last_opened_file_path": "E:/Github/Room-Finding-System/RoomFindingSystem/src/main/resources/templates/admin",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
