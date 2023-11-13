@@ -4,50 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ec34e655-ee0a-4be9-8773-96fceb50fb67" name="Changes" comment="feedback list for landlord">
-      <change afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/admin/AdminEditUserController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/admin/HouseManagerController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/dto/HouseManagerTypeVo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/repository/HouseManagerRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/repository/ImagesHouseRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/repository/TypeHouseRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/repository/UserRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/AddressService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/AdminEditUserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/HouseManagerService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/impl/AddressServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/impl/AdminEditUserServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/impl/HouseManagerServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/admin/edit-user.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/admin/house-manager-add.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/admin/house-manager-detail.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/admin/house-manager.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/admin/insert-user.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/admin/list-user.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/MainController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/admin/AdminProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/admin/AdminProfileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/dto/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/dto/UserDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/entity/AddressEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/entity/AddressEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/entity/HousesEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/entity/HousesEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/repository/AddressRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/repository/AddressRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/impl/GcsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/impl/GcsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/impl/RoomServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/impl/RoomServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/impl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/404.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/404.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/admin/adminProfile.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/admin/adminProfile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/edit-room.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/edit-room.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/homepage.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/homepage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/target/classes/com/roomfindingsystem/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/target/classes/com/roomfindingsystem/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/target/classes/com/roomfindingsystem/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/target/classes/com/roomfindingsystem/service/UserService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/target/classes/templates/404.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/target/classes/templates/404.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/target/classes/templates/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/target/classes/templates/profile.html" afterDir="false" />
-    </list>
+    <list default="true" id="ec34e655-ee0a-4be9-8773-96fceb50fb67" name="Changes" comment="feedback list for landlord" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -94,7 +51,7 @@
     "WebServerToolWindowFactoryState": "false",
     "com.google.cloudcode.ide_session_index": "20231111_0001",
     "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "Merging nghiant2",
+    "git-widget-placeholder": "nghiant2",
     "last_opened_file_path": "E:/Github/Room-Finding-System/RoomFindingSystem/src/main/resources/templates/admin",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
