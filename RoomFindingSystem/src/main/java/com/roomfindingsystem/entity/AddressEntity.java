@@ -48,6 +48,14 @@ public class AddressEntity {
         return addressId == that.addressId && provinceId == that.provinceId && districtId == that.districtId && wardId == that.wardId && Objects.equals(name, that.name) && Objects.equals(addressDetails, that.addressDetails);
     }
 
+    public AddressEntity(String name, String addressDetails, int provinceId, int districtId, int wardId) {
+        this.name = name;
+        this.addressDetails = addressDetails;
+        this.provinceId = provinceId;
+        this.districtId = districtId;
+        this.wardId = wardId;
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(addressId, name, addressDetails, provinceId, districtId, wardId);
