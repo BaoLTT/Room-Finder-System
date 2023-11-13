@@ -19,7 +19,7 @@ public class ReportEntity {
     @Column(name = "created_date")
     private Date createdDate;
     @Basic
-    @Column(name = "report_statusid")
+    @Column(name = "report_status")
     private Integer reportStatusid;
     @Basic
     @Column(name = "solved_date")
