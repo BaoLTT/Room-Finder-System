@@ -1,11 +1,12 @@
 package com.roomfindingsystem.controller.admin;
 
+import com.roomfindingsystem.dto.HouseManagerTypeVo;
 import com.roomfindingsystem.entity.*;
-import com.roomfindingsystem.reponsitory.TypeHouseRepository;
-import com.roomfindingsystem.reponsitory.UserRepository;
-import com.roomfindingsystem.service.AddressService;
+
+import com.roomfindingsystem.repository.TypeHouseRepository;
+import com.roomfindingsystem.repository.UserRepository;
 import com.roomfindingsystem.service.HouseManagerService;
-import com.roomfindingsystem.vo.HouseManagerTypeVo;
+
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
