@@ -35,6 +35,7 @@ public class RoomServiceImpl implements RoomService {
     private final ServiceDetailRepository serviceDetailRepository;
     private final RoomImageRepository roomImageRepository;
     private final HouseRepository houseRepository;
+    private final GcsService gcsService;
 
     @Override
     public RoomEntity getRoomById(int roomId) {
@@ -151,12 +152,15 @@ public class RoomServiceImpl implements RoomService {
     public void update(RoomDto roomDto, MultipartFile[] files) throws IOException {
         RoomEntity room = roomRepository.findById(roomDto.getRoomId()).get();
         RoomEntity saveRoom = new RoomEntity();
+        List<RoomImagesEntity> roomImagesEntities = roomImageRepository.getImageByRoomId(roomDto.getRoomId());
+        int i = roomImagesEntities.size() + 1;
         for (MultipartFile file : files) {
             if (!file.isEmpty()) {
-                byte[] imageData = Base64.getEncoder().encode(file.getBytes());
-                String imageLink = new String(imageData, StandardCharsets.UTF_8);
                 RoomImagesEntity roomImagesEntity = new RoomImagesEntity();
-                roomImagesEntity.setImageLink(imageLink);
+                byte[] imageBytes = file.getBytes();
+                gcsService.uploadImage("rfs_bucket", "Room/room_" + i + "_"+room.getRoomid()+".jpg", imageBytes);
+                roomImagesEntity.setImageLink("https://storage.cloud.google.com/rfs_bucket/Room/"+"room_"+i + "_"+room.getRoomid()+".jpg");
+                i++;
                 roomImagesEntity.setRoomId(roomDto.getRoomId());
                 roomImagesEntity.setCreatedDate(LocalDate.now());
                 roomImagesEntity.setLastModifiedDate(LocalDate.now());
@@ -173,7 +177,7 @@ public class RoomServiceImpl implements RoomService {
         saveRoom.setLastModifiedDate(LocalDate.now());
         saveRoom.setPrice(roomDto.getPrice());
         saveRoom.setRoomName(roomDto.getRoomName());
-        saveRoom.setRoomType(room.getRoomType());
+        saveRoom.setRoomType(roomDto.getTypeId());
         if (Objects.equals(roomDto.getStatus(), "ACTIVE")) {
             saveRoom.setStatusId(1);
         } else {
@@ -232,12 +236,14 @@ public class RoomServiceImpl implements RoomService {
             serviceRoomEntity.setRoomId(saveRoom.getRoomid());
             serviceRoomRepository.save(serviceRoomEntity);
         }
+        int i = 1;
         for (MultipartFile file : files) {
             if (!file.isEmpty()) {
-                byte[] imageData = Base64.getEncoder().encode(file.getBytes());
-                String imageLink = new String(imageData, StandardCharsets.UTF_8);
                 RoomImagesEntity roomImagesEntity = new RoomImagesEntity();
-                roomImagesEntity.setImageLink(imageLink);
+                byte[] imageBytes = file.getBytes();
+                gcsService.uploadImage("rfs_bucket", "Room/room_" + i + "_"+saveRoom.getRoomid()+".jpg", imageBytes);
+                roomImagesEntity.setImageLink("https://storage.cloud.google.com/rfs_bucket/Room/"+"room_"+i + "_"+saveRoom.getRoomid()+".jpg");
+                i++;
                 roomImagesEntity.setRoomId(saveRoom.getRoomid());
                 roomImagesEntity.setCreatedDate(LocalDate.now());
                 roomImagesEntity.setLastModifiedDate(LocalDate.now());

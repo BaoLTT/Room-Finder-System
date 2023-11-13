@@ -1,45 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8"/>
-    <title>Admin Profile</title>
+    <meta charset="utf-8" />
+    <title>Abstack - Responsive Bootstrap 4 Admin Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description"/>
-    <meta content="Coderthemes" name="author"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+    <meta content="Coderthemes" name="author" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <!-- App favicon -->
-    <link rel="shortcut icon" th:href="@{/assets_admin/images/favicon.ico}">
+    <link rel="shortcut icon" href="/admin/assets/images/favicon.ico">
 
+    <link href="/admin/assets/libs/dropzone/dropzone.min.css" rel="stylesheet" type="text/css" />
     <!-- App css -->
-    <link th:href="@{/assets_admin/libs/dropzone/dropzone.min.css}" rel="stylesheet" type="text/css"/>
-    <link th:href="@{/assets_admin/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
-    <link th:href="@{/assets_admin/css/icons.min.css}" rel="stylesheet" type="text/css"/>
-    <link th:href="@{/assets_admin/css/app.min.css}" rel="stylesheet" type="text/css"/>
-    <link th:href="@{/assets_admin/css/style.css}" rel="stylesheet" type="text/css"/>
-    <link th:href="@{/assets/fonts/font-awesome.css}" rel="stylesheet" type="text/css">
-    <link th:href="@{/assets/fonts/elegant-fonts.css}" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700,900,400italic' rel='stylesheet'
-          type='text/css'>
-    <link rel="stylesheet" th:href="@{/assets/bootstrap/css/bootstrap.css}" type="text/css">
-    <link rel="stylesheet" th:href="@{/assets/css/owl.carousel.css}" type="text/css">
-    <link rel="stylesheet" th:href="@{/assets/css/style.css}" type="text/css">
-    <style>
-        .profile-picture img {
-            max-width: 250px;
-            max-height: 250px;
-            width: auto;
-            height: auto;
-        }
+    <link href="/admin/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/admin/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="/admin/assets/css/app.min.css" rel="stylesheet" type="text/css" />
 
-        input[type="file"] {
-            display: block;
-        }
-        html, body {
-            height: 130%;
-            margin: 0;
-            padding: 0;
-        }
-    </style>
+
+
 </head>
 
 <body>
@@ -53,46 +31,36 @@
         <ul class="list-unstyled topnav-menu float-right mb-0">
 
             <li class="dropdown d-none d-lg-block">
-                <a class="nav-link dropdown-toggle mr-0 waves-effect waves-light" data-toggle="dropdown" href="#"
-                   role="button" aria-haspopup="false" aria-expanded="false">
-                    <img th:src="@{/assets_admin/images/flags/us.jpg}" alt="user-image" class="mr-1" height="12"> <span
-                        class="align-middle">English <i class="mdi mdi-chevron-down"></i> </span>
+                <a class="nav-link dropdown-toggle mr-0 waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                    <img src="/admin/assets/images/flags/us.jpg" alt="user-image" class="mr-1" height="12"> <span class="align-middle">English <i class="mdi mdi-chevron-down"></i> </span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
                     <!-- item-->
                     <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <img th:src="@{/assets_admin/images/flags/germany.jpg}" alt="user-image" class="mr-1"
-                             height="12"> <span
-                            class="align-middle">German</span>
+                        <img src="/admin/assets/images/flags/germany.jpg" alt="user-image" class="mr-1" height="12"> <span class="align-middle">German</span>
                     </a>
 
                     <!-- item-->
                     <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <img th:src="@{/assets_admin/images/flags/italy.jpg}" alt="user-image" class="mr-1" height="12">
-                        <span
-                                class="align-middle">Italian</span>
+                        <img src="assets/images/flags/italy.jpg" alt="user-image" class="mr-1" height="12"> <span class="align-middle">Italian</span>
                     </a>
 
                     <!-- item-->
                     <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <img th:src="@{/assets_admin/images/flags/spain.jpg}" alt="user-image" class="mr-1" height="12">
-                        <span
-                                class="align-middle">Spanish</span>
+                        <img src="/admin/assets/images/flags/spain.jpg" alt="user-image" class="mr-1" height="12"> <span class="align-middle">Spanish</span>
                     </a>
 
                     <!-- item-->
                     <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <img th:src="@{/assets_admin/images/flags/russia.jpg}" alt="user-image" class="mr-1"
-                             height="12"> <span
-                            class="align-middle">Russian</span>
+                        <img src="/admin/assets/images/flags/russia.jpg" alt="user-image" class="mr-1" height="12"> <span class="align-middle">Russian</span>
                     </a>
 
                 </div>
             </li>
 
+
             <li class="dropdown notification-list">
-                <a class="nav-link dropdown-toggle  waves-effect waves-light" data-toggle="dropdown" href="#"
-                   role="button" aria-haspopup="false" aria-expanded="false">
+                <a class="nav-link dropdown-toggle  waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                     <i class="fe-bell noti-icon"></i>
                     <span class="badge badge-danger rounded-circle noti-icon-badge">9</span>
                 </a>
@@ -114,43 +82,37 @@
                         <!-- item-->
                         <a href="javascript:void(0);" class="dropdown-item notify-item">
                             <div class="notify-icon bg-success"><i class="mdi mdi-comment-account-outline"></i></div>
-                            <p class="notify-details">Caleb Flakelar commented on Admin<small class="text-muted">1 min
-                                ago</small></p>
+                            <p class="notify-details">Caleb Flakelar commented on Admin<small class="text-muted">1 min ago</small></p>
                         </a>
 
                         <!-- item-->
                         <a href="javascript:void(0);" class="dropdown-item notify-item">
                             <div class="notify-icon bg-info"><i class="mdi mdi-account-plus"></i></div>
-                            <p class="notify-details">New user registered.<small class="text-muted">5 hours ago</small>
-                            </p>
+                            <p class="notify-details">New user registered.<small class="text-muted">5 hours ago</small></p>
                         </a>
 
                         <!-- item-->
                         <a href="javascript:void(0);" class="dropdown-item notify-item">
                             <div class="notify-icon bg-danger"><i class="mdi mdi-heart"></i></div>
-                            <p class="notify-details">Carlos Crouch liked <b>Admin</b><small class="text-muted">3 days
-                                ago</small></p>
+                            <p class="notify-details">Carlos Crouch liked <b>Admin</b><small class="text-muted">3 days ago</small></p>
                         </a>
 
                         <!-- item-->
                         <a href="javascript:void(0);" class="dropdown-item notify-item">
                             <div class="notify-icon bg-warning"><i class="mdi mdi-comment-account-outline"></i></div>
-                            <p class="notify-details">Caleb Flakelar commented on Admin<small class="text-muted">4 days
-                                ago</small></p>
+                            <p class="notify-details">Caleb Flakelar commented on Admin<small class="text-muted">4 days ago</small></p>
                         </a>
 
                         <!-- item-->
                         <a href="javascript:void(0);" class="dropdown-item notify-item">
                             <div class="notify-icon bg-purple"><i class="mdi mdi-account-plus"></i></div>
-                            <p class="notify-details">New user registered.<small class="text-muted">7 days ago</small>
-                            </p>
+                            <p class="notify-details">New user registered.<small class="text-muted">7 days ago</small></p>
                         </a>
 
                         <!-- item-->
                         <a href="javascript:void(0);" class="dropdown-item notify-item">
                             <div class="notify-icon bg-primary"><i class="mdi mdi-heart"></i></div>
-                            <p class="notify-details">Carlos Crouch liked <b>Admin</b><small class="text-muted">13 days
-                                ago</small></p>
+                            <p class="notify-details">Carlos Crouch liked <b>Admin</b><small class="text-muted">13 days ago</small></p>
                         </a>
 
                     </div>
@@ -165,9 +127,8 @@
             </li>
 
             <li class="dropdown notification-list">
-                <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown"
-                   href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                    <img th:src="@{/assets_admin/images/users/avatar-1.jpg}" alt="user-image" class="rounded-circle">
+                <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                    <img src="/admin/assets/images/users/avatar-1.jpg" alt="user-image" class="rounded-circle">
                     <span class="ml-1">Samuel <i class="mdi mdi-chevron-down"></i> </span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
@@ -216,14 +177,14 @@
 
         <!-- LOGO -->
         <div class="logo-box">
-            <a href="" class="logo text-center">
+            <a href="index.html" class="logo text-center">
                         <span class="logo-lg">
-                            <img th:src="@{../images/logo-light.png}" alt="" height="16">
+                            <img src="/admin/assets/images/logo-light.png" alt="" height="16">
                             <!-- <span class="logo-lg-text-light">UBold</span> -->
                         </span>
                 <span class="logo-sm">
                             <!-- <span class="logo-sm-text-dark">U</span> -->
-                            <img th:src="@{../static/images/logo-sm.png}" alt="" height="24">
+                            <img src="/admin/assets/images/logo-sm.png" alt="" height="28">
                         </span>
             </a>
         </div>
@@ -489,162 +450,118 @@
                                 <ol class="breadcrumb m-0">
                                     <li class="breadcrumb-item"><a href="javascript: void(0);">Abstack</a></li>
                                     <li class="breadcrumb-item"><a href="javascript: void(0);">Forms</a></li>
-                                    <li class="breadcrumb-item active">Form Validation</li>
+                                    <li class="breadcrumb-item active">Form Elements</li>
                                 </ol>
                             </div>
-                            <h4 class="page-title">Form Validation</h4>
+                            <h4 class="page-title">Form Elements</h4>
                         </div>
                     </div>
                 </div>
                 <!-- end page title -->
 
-
                 <div class="row">
-                    <div class="col-lg">
+                    <div class="col-12">
                         <div class="card-box">
-                            <h4 class="header-title mb-3"> Thông tin cá nhân</h4>
-                            <form id="form-profile" class="labels-uppercase" method="post" action="#"
-                                  th:action="@{/admin/profile/update}" th:object="${user}"
-                                  enctype="multipart/form-data">
-                                <input type="hidden" th:field="*{userId}">
-                                <div class="row">
-                                    <!--Profile Picture-->
-                                    <div class="col-md-3 col-sm-3">
-                                        <section>
-                                            <div id="profile-picture" class="profile-picture single-file-preview">
-                                                <img th:src="*{imageLink}" alt="" class="image">
-                                                <div class="input">
-                                                    <input name="file" type="file" class="">
-                                                    <span>Chọn ảnh đại diện</span>
+                            <h4 class="header-title">Thông tin nhà trọ</h4>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div>
+                                        <form class="form-horizontal" role="form" method="post" th:action="@{/admin/house-manager/save}"  enctype="multipart/form-data" >
+                                            <div class="form-group row">
+                                                <label class="col-2 col-form-label">Chủ trọ</label>
+                                                <div class="col-10" >
+                                                    <select class="form-control" name="landlord">
+                                                        <option th:each="listUser : ${listUser}"  th:value="${listUser.getUserId()}" th:utext="${listUser.firstName + ' '+ listUser.lastName}"/>
+                                                    </select>
                                                 </div>
                                             </div>
-                                        </section>
+                                            <div class="form-group row">
+                                                <label class="col-2 col-form-label" >Tên trọ</label>
+                                                <div class="col-10">
+                                                    <input type="text"  name="houseName" class="form-control"  >
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-2 col-form-label">Địa chỉ cụ thể</label>
+                                                <div class="col-10">
+                                                    <input type="text" class="form-control" name="addressDetail">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-2 col-form-label">Địa chỉ </label>
+                                                <div class="col-3" >
+                                                    <label for="province">Tỉnh</label>
+                                                    <select class="form-control" id="province" name="province">
+                                                        <option value="" selected >Chọn tỉnh thành</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="col-3" >
+                                                    <label for="district">Huyện</label>
+                                                    <select class="form-control" id="district" name="district">
+                                                        <option value="" selected >Chọn huyện</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-3" >
+                                                    <label for="ward">Xã/Phường</label>
+                                                    <select class="form-control" id="ward" name="ward">
+                                                        <option value="" selected >Chọn xã/phường</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-2 col-form-label">Ghi chú</label>
+                                                <div class="col-10">
+                                                    <textarea class="form-control" rows="3" name="description"> </textarea>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-2 col-form-label">Thể loại trọ</label>
+                                                <div class="col-10" >
+                                                    <select class="form-control" name="houseType">
+                                                        <option th:each="listType : ${listType}" th:value="${listType.getTypeId()}" th:text="${listType.typeName}"/>
+
+                                                    </select>
+<!--                                                    <ul class="checkboxes no-bottom-margin" th:each = "listType: ${listType}">-->
+<!--                                                        <li><label><input type="checkbox" name="houseType" th:text = "${listType.getTypeName()}" th:value = "${listType.getTypeId()}"></label></li>-->
+
+<!--                                                    </ul>-->
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-2 col-form-label">Ảnh</label>
+                                                <div id="profile-picture" class="profile-picture single-file-preview col-10">
+                                                    <div class="input">
+                                                        <input name="file" type="file" class="" multiple>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group row">
+                                                <label class="col-2 col-form-label"></label>
+                                                <div class="col-10" >
+                                                    <button  type="submit" class="btn btn-success waves-light waves-effect width-md"> <span style="color: white">Lưu</span></button>
+                                                    <a  type="button" class="btn btn-danger waves-light waves-effect width-md" href="http://localhost:8080/admin/house-manager"> <span style="color: white">Đóng</span></a>
+                                                    <a  type="button" class="btn btn-success waves-light waves-effect width-md" style="float: right"> <span style="color: white">Quản lý phòng</span>  </a>
+                                                </div>
+                                            </div>
+
+                                        </form>
                                     </div>
-                                    <!--end col-md-3-->
-
-                                    <!--Contact Info-->
-                                    <div class="col-md-9 col-sm-9">
-                                        <section>
-                                            <div class="row">
-                                                <div class="col-md-6 col-sm-6">
-                                                    <div class="form-group">
-                                                        <label for="firstName">Họ</label>
-                                                        <input type="text" class="form-control" id="firstName"
-                                                               name="firstName"
-                                                               pattern="^[a-zA-ZxyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđÁÂĐ ]+$"
-                                                               placeholder="Jane" th:value="*{firstName}" required>
-                                                        <small class="text-danger error-firstName"></small>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="lastName">Tên</label>
-                                                        <input type="text" class="form-control" id="lastName"
-                                                               name="lastName"
-                                                               pattern="^[a-zA-ZxyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđÁÂĐ ]+$"
-                                                               placeholder="Doe" th:value="*{lastName}" required>
-                                                        <small class="text-danger error-lastName"></small>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="phone">Số điện thoại</label>
-                                                        <input type="text" class="form-control" id="phone" name="phone"
-                                                               pattern="(84|0[3|5|7|8|9])+([0-9]{8})\b"
-                                                               placeholder="(0)123 456 7890"
-                                                               th:value="*{phone}" required>
-                                                        <small class="text-danger error-phone"></small>
-                                                    </div>
-                                                </div>
-                                                <!--end col-md-6-->
-
-                                                <div class="col-md-6 col-sm-6">
-                                                    <div class="form-group">
-                                                        <label for="email">Email</label>
-                                                        <input type="email" class="form-control" id="email" name="email"
-                                                               pattern="^\w+([\.]?\w+)*@\w+([\.]?\w+)*(\.\w{2,3})+$"
-                                                               placeholder="janedoe@gmail.com" th:value="*{email}"
-                                                               readonly>
-                                                        <small class="text-danger error-email"></small>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="gender">Giới tính</label>
-                                                        <select class="form-control" id="gender" name="gender"
-                                                                th:field="*{gender}">
-                                                            <option value="MALE" th:selected="${user.gender == 'MALE'}">
-                                                                Nam
-                                                            </option>
-                                                            <option value="FEMALE"
-                                                                    th:selected="${user.gender == 'FEMALE'}">
-                                                                Nữ
-                                                            </option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="dob">Ngày sinh</label>
-                                                        <input style="height: 36px" type="date" class="form-control"
-                                                               id="dob" name="dob"
-                                                               placeholder="Enter your age (ex: 18)" th:value="*{dob}"
-                                                               required
-                                                               onchange="">
-                                                    </div>
-                                                </div>
-                                                <!--end col-md-6-->
-                                            </div>
-                                        </section>
-                                        <section>
-                                            <h3>Địa chỉ</h3>
-                                            <div class="form-group">
-                                                <label for="province">Tỉnh</label>
-                                                <select class="form-control" name="" id="province" th:text="*{province}"
-                                                        th:field="*{provinceId}" style="display: none;">
-                                                </select>
-                                                <input class="form-control" th:id="provinceName" th:field="*{province}">
-                                            </div>
-                                            <!--end form-group-->
-                                            <div class="form-group">
-                                                <label for="district">Huyện</label>
-                                                <select class="form-control" name="" id="district" th:text="*{district}"
-                                                        th:field="*{districtId}" style="display: none;">
-                                                </select>
-                                                <input class="form-control" th:id="districtName" th:field="*{district}">
-                                            </div>
-                                            <!--end form-group-->
-                                            <div class="form-group">
-                                                <label for="ward">Xã</label>
-                                                <select class="form-control" name="" id="ward" th:text="*{ward}"
-                                                        th:field="*{wardId}" style="display: none;">
-                                                </select>
-                                                <input class="form-control" th:id="wardName" th:field="*{ward}">
-                                            </div>
-                                            <!--end col-md-3-->
-
-                                            <div class="form-group">
-                                                <label for="addressDetails">Địa chỉ chi tiết</label>
-                                                <input type="text" class="form-control" id="addressDetails"
-                                                       name="addressDetails" th:value="*{addressDetails}">
-                                            </div>
-                                            <!--end form-group-->
-                                        </section>
-                                        <div class="form-group">
-                                            <button type="submit" class="btn btn-large btn-primary btn-rounded"
-                                                    id="submit">
-                                                Lưu thay đổi
-                                            </button>
-                                        </div>
-                                        <!-- end form-group -->
-                                    </div>
-                                    <!--end col-md-6-->
                                 </div>
-                            </form>
-                        </div>
-                    </div>
 
+                            </div>
+                            <!-- end row -->
+
+                        </div> <!-- end card-box -->
+                    </div><!-- end col -->
                 </div>
                 <!-- end row -->
-
-
             </div> <!-- end container-fluid -->
-
         </div> <!-- end content -->
-
-
         <!-- Footer Start -->
         <footer class="footer">
             <div class="container-fluid">
@@ -678,7 +595,7 @@
     <div class="slimscroll-menu">
         <hr class="mt-0">
         <h5 class="pl-3">Basic Settings</h5>
-        <hr class="mb-0"/>
+        <hr class="mb-0" />
 
 
         <div class="p-3">
@@ -705,44 +622,39 @@
         </div>
 
         <!-- Messages -->
-        <hr class="mt-0"/>
+        <hr class="mt-0" />
         <h5 class="pl-3 pr-3">Messages <span class="float-right badge badge-pill badge-danger">24</span></h5>
-        <hr class="mb-0"/>
+        <hr class="mb-0" />
         <div class="p-3">
             <div class="inbox-widget">
                 <div class="inbox-item">
-                    <div class="inbox-item-img"><img th:src="@{/assets_admin/images/users/avatar-1.jpg}"
-                                                     class="rounded-circle" alt=""></div>
+                    <div class="inbox-item-img"><img src="assets/images/users/avatar-1.jpg" class="rounded-circle" alt=""></div>
                     <p class="inbox-item-author"><a href="javascript: void(0);">Chadengle</a></p>
                     <p class="inbox-item-text">Hey! there I'm available...</p>
                     <p class="inbox-item-date">13:40 PM</p>
                 </div>
                 <div class="inbox-item">
-                    <div class="inbox-item-img"><img th:src="@{/assets_admin/images/users/avatar-2.jpg}"
-                                                     class="rounded-circle" alt=""></div>
+                    <div class="inbox-item-img"><img src="assets/images/users/avatar-2.jpg" class="rounded-circle" alt=""></div>
                     <p class="inbox-item-author"><a href="javascript: void(0);">Tomaslau</a></p>
                     <p class="inbox-item-text">I've finished it! See you so...</p>
                     <p class="inbox-item-date">13:34 PM</p>
                 </div>
                 <div class="inbox-item">
-                    <div class="inbox-item-img"><img th:src="@{/assets_admin/images/users/avatar-3.jpg}"
-                                                     class="rounded-circle" alt=""></div>
+                    <div class="inbox-item-img"><img src="assets/images/users/avatar-3.jpg" class="rounded-circle" alt=""></div>
                     <p class="inbox-item-author"><a href="javascript: void(0);">Stillnotdavid</a></p>
                     <p class="inbox-item-text">This theme is awesome!</p>
                     <p class="inbox-item-date">13:17 PM</p>
                 </div>
 
                 <div class="inbox-item">
-                    <div class="inbox-item-img"><img th:src="@{/assets_admin/images/users/avatar-4.jpg}"
-                                                     class="rounded-circle" alt=""></div>
+                    <div class="inbox-item-img"><img src="assets/images/users/avatar-4.jpg" class="rounded-circle" alt=""></div>
                     <p class="inbox-item-author"><a href="javascript: void(0);">Kurafire</a></p>
                     <p class="inbox-item-text">Nice to meet you</p>
                     <p class="inbox-item-date">12:20 PM</p>
 
                 </div>
                 <div class="inbox-item">
-                    <div class="inbox-item-img"><img th:src="@{/assets_admin/images/users/avatar-5.jpg}"
-                                                     class="rounded-circle" alt=""></div>
+                    <div class="inbox-item-img"><img src="assets/images/users/avatar-5.jpg" class="rounded-circle" alt=""></div>
                     <p class="inbox-item-author"><a href="javascript: void(0);">Shahedk</a></p>
                     <p class="inbox-item-text">Hey! there I'm available...</p>
                     <p class="inbox-item-date">10:15 AM</p>
@@ -758,192 +670,118 @@
 <!-- Right bar overlay-->
 <div class="rightbar-overlay"></div>
 
-
-<script type="text/javascript" th:src="@{/assets/js/jquery-2.2.1.min.js}"></script>
-<script type="text/javascript" th:src="@{/assets/js/jquery-migrate-1.2.1.min.js}"></script>
-<script type="text/javascript" th:src="@{/assets/bootstrap/js/bootstrap.min.js}"></script>
-<script type="text/javascript" th:src="@{/assets/js/jquery.validate.min.js}"></script>
-<script type="text/javascript" th:src="@{/assets/js/bootstrap-datepicker.js}"></script>
-<script type="text/javascript" th:src="@{/assets/js/icheck.min.js}"></script>
-<script type="text/javascript" th:src="@{/assets/js/owl.carousel.js}"></script>
-<script type="text/javascript" th:src="@{/assets/js/masonry.pkgd.min.js}"></script>
-
-<script type="text/javascript" th:src="@{/assets/js/maps.js}"></script>
-<script type="text/javascript" th:src="@{/assets/js/custom.js}"></script>
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- Vendor js -->
-<script th:src="@{/assets_admin/js/vendor.min.js}"></script>
+<script src="/admin/assets/js/vendor.min.js"></script>
+<!-- Plugins js -->
+<script src="/admin/assets/libs/dropzone/dropzone.min.js"></script>
 
-<!-- Plugin js-->
-<script th:src="@{/assets_admin/libs/parsleyjs/parsley.min.js}"></script>
 
-<!-- Validation init js-->
-<script th:src="@{/assets_admin/js/pages/form-validation.init.js}"></script>
+<!-- Truyền dữ liệu từ listProvince, listDistrict, và listWard vào mã JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+<script>
+    var citis = document.getElementById("province");
+    var districts = document.getElementById("district");
+    var wards = document.getElementById("ward");
+    var Parameter = {
+        url: "https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json",
+        method: "GET",
+        responseType: "application/json",
+    };
+    var promise = axios(Parameter);
+    promise.then(function (result) {
+        renderCity(result.data);
+    });
+
+    function renderCity(data) {
+        for (const x of data) {
+            citis.options[citis.options.length] = new Option(x.Name, x.Id);
+        }
+        citis.onchange = function () {
+            district.length = 1;
+            ward.length = 1;
+            if(this.value != ""){
+                const result = data.filter(n => n.Id === this.value);
+
+                for (const k of result[0].Districts) {
+                    district.options[district.options.length] = new Option(k.Name, k.Id);
+                }
+            }
+        };
+        district.onchange = function () {
+            ward.length = 1;
+            const dataCity = data.filter((n) => n.Id === citis.value);
+            if (this.value != "") {
+                const dataWards = dataCity[0].Districts.filter(n => n.Id === this.value)[0].Wards;
+
+                for (const w of dataWards) {
+                    wards.options[wards.options.length] = new Option(w.Name, w.Id);
+                }
+            }
+        };
+    }
+</script>
 
 <!-- App js -->
-<script th:src="@{/assets_admin/js/app.min.js}"></script>
+<script src="/admin/assets/js/app.min.js"></script>
 <script>
-    const host = "http://timtromoi.com/";
-    // const host = "http://localhost:8080/";
-    let provinceTest = -1;
-    var callAPI = (api) => {
-        return axios.get(api)
-            .then((response) => {
-                renderDataProvince(response.data.provinces, "province");
-            });
-    }
-    callAPI(host + "province");
-
-    var callApiDistrict = (api) => {
-        return axios.get(api)
-            .then((response) => {
-                renderDataDistrict(response.data.districts, "district");
-            });
-    }
-    var callApiWard = (api) => {
-        return axios.get(api)
-            .then((response) => {
-                renderDataWard(response.data.wards, "ward");
-            });
-    }
-    var renderDataProvince = (array, select) => {
-        let row = ' <option disable value="">Select</option>';
-        array.forEach(element => {
-            row += `<option value="${element.provinceId}">${element.name}</option>`;
+    let roomId = document.querySelector('input[name="roomId"]').value;
+    document.querySelectorAll('.delete-button').forEach(function (button) {
+        button.addEventListener('click', function () {
+            let imageId = this.getAttribute('data-imageId');
+            if (confirm("Are you sure you want to delete this image?")) {
+                window.location.href = '/room/deleteImage/' + roomId + "/" + imageId;
+            }
         });
-        document.querySelector("#" + select).innerHTML = row;
-    }
-    var renderDataDistrict = (array, select) => {
-        let row = ' <option disable value="">Select</option>';
-        array.forEach(element => {
-            row += `<option value="${element.districtId}">${element.name}</option>`;
-        });
-        document.querySelector("#" + select).innerHTML = row;
-    }
-    var renderDataWard = (array, select) => {
-        let row = ' <option disable value="">Select</option>';
-        array.forEach(element => {
-            row += `<option value="${element.wardId}">${element.name}</option>`;
-        });
-        document.querySelector("#" + select).innerHTML = row;
-    }
-
-    $("#province").change(() => {
-        const selectedProvinceValue = $("#province").val();
-        const selectedProvinceText = $("#province option:selected").text();
-        provinceTest = selectedProvinceValue;
-        callApiDistrict(host + "p/" + selectedProvinceValue);
-
-        console.log(host + "p/" + selectedProvinceValue);
-        document.getElementById('provinceName').value = selectedProvinceText;
-
     });
-    $("#district").change(() => {
-        const selectedDistrictValue = $("#district").val();
-        const selectedDistrictText = $("#district option:selected").text();
+    $(document).ready(function () {
+        // Customize Dropzone.js options here.
+        Dropzone.options.myAwesomeDropzone = {
+            url: "/upload", // Change this to the correct URL
+            paramName: "file", // Name of the file input field
+            maxFilesize: 5, // Maximum file size in MB
+            maxFiles: 10, // Maximum number of files
+            acceptedFiles: "image/*", // Restrict to image files
+            addRemoveLinks: true, // Display remove links
+            dictRemoveFile: "Remove", // Text for remove link
 
-        callApiWard(host + "p/" + provinceTest + "/d/" + selectedDistrictValue);
+            // Define a success callback for when files are uploaded successfully
+            success: function (file, response) {
+                // Handle the server response, if needed
+            },
 
-        console.log(host + "p/" + provinceTest + "/d/" + selectedDistrictValue);
-        document.getElementById('districtName').value = selectedDistrictText;
+            // Define an addedfile event handler
+            addedfile: function (file) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    var imageElement = document.createElement("img");
+                    imageElement.src = e.target.result;
+                    imageElement.classList.add("preview-image");
+                    var imagePreviewContainer = document.querySelector(".image-preview");
+                    imagePreviewContainer.appendChild(imageElement);
+                };
+                reader.readAsDataURL(file);
+            },
 
-    });
-    $("#ward").change(() => {
-        const selectedWardValue = $("#ward").val();
-        const selectedWardText = $("#ward option:selected").text();
-        console.log("Ward Value: " + selectedWardValue);
-        console.log("Ward Text: " + selectedWardText);
-        document.getElementById('wardName').value = selectedWardText;
-    })
-
-    let province = document.getElementById('province');
-    let district = document.getElementById('district');
-    let ward = document.getElementById('ward');
-    document.getElementById('provinceName').addEventListener('click', () => {
-        document.getElementById('provinceName').style.display = "none";
-        document.getElementById('districtName').style.display = "none";
-        document.getElementById('wardName').style.display = "none";
-
-        document.getElementById('province').style.display = "block";
-        document.getElementById('district').style.display = "block";
-        document.getElementById('ward').style.display = "block";
+            // Define a removedfile event handler
+            removedfile: function (file) {
+                var imagePreviewContainer = document.querySelector(".image-preview");
+                var previewImages = imagePreviewContainer.getElementsByClassName("preview-image");
+                for (var i = 0; i < previewImages.length; i++) {
+                    if (previewImages[i].src === file.dataURL) {
+                        imagePreviewContainer.removeChild(previewImages[i]);
+                        break;
+                    }
+                }
+            }
+        };
     });
 
-    // Lấy phần tử input và small số đt
-    const inputPhone = document.getElementById('phone');
-    const errorPhone = inputPhone.nextElementSibling;
-
-    // Sự kiện blur khỏi input
-    inputPhone.addEventListener('blur', () => {
-
-        // Nếu không thỏa mãn pattern
-        if (!inputPhone.value.match(inputPhone.pattern)) {
-            errorPhone.textContent = 'Số điện thoại gồm 10 số';
-        } else {
-            errorPhone.textContent = ''; // Clear message
-        }
-    });
-
-    // Lấy phần tử input và small email
-    const inputMail = document.getElementById('email');
-    const errorMail = inputMail.nextElementSibling;
-
-    // Sự kiện blur khỏi input
-    inputMail.addEventListener('blur', () => {
-
-        // Nếu không thỏa mãn pattern
-        if (!inputMail.value.match(inputMail.pattern)) {
-            errorMail.textContent = 'Email có dạng "manhhd@gmail.com"';
-        } else {
-            errorMail.textContent = ''; // Clear message
-        }
-    });
-
-    // Lấy phần tử input và small firstName
-    const inputFirstName = document.getElementById('firstName');
-    const errorFirstName = inputFirstName.nextElementSibling;
-
-    // Sự kiện blur khỏi input
-    inputFirstName.addEventListener('blur', () => {
-
-        // Nếu không thỏa mãn pattern
-        if (!inputFirstName.value.match(inputFirstName.pattern)) {
-            errorFirstName.textContent = 'tên không chứa số và kí tự đặc biệt';
-        } else {
-            errorFirstName.textContent = ''; // Clear message
-        }
-    });
-
-    // Lấy phần tử input và small lastName
-    const inputLastName = document.getElementById('lastName');
-    const errorLastName = inputLastName.nextElementSibling;
-
-    // Sự kiện blur khỏi input
-    inputLastName.addEventListener('blur', () => {
-
-        // Nếu không thỏa mãn pattern
-        if (!inputLastName.value.match(inputLastName.pattern)) {
-            errorLastName.textContent = 'tên không chứa số và kí tự đặc biệt';
-        } else {
-            errorLastName.textContent = ''; // Clear message
-        }
-    });
-
-    document.getElementById("dob").addEventListener("change", function () {
-        var dob = new Date(this.value);
-
-        var today = new Date();
-
-        var age = today.getFullYear() - dob.getFullYear();
-
-        if (age >= 18) {
-            document.querySelector('form').removeAttribute("onsubmit");
-        } else {
-            document.querySelector('form').setAttribute("onsubmit", "return false;");
-            alert("You must be 18 or older to enter!");
-        }
-    });
 </script>
+<script type="text/javascript" src="/assets/js/jquery-2.2.1.min.js"></script>
+<script type="text/javascript" src="/assets/js/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="/assets/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/assets/js/icheck.min.js"></script>
+<script type="text/javascript" src="/assets/js/custom.js"></script>
+
 </body>
 </html>

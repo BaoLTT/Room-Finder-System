@@ -11,6 +11,8 @@ import com.roomfindingsystem.dto.UserDto;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -58,11 +60,11 @@ public class UserController {
         String mess = "Hi You@" + " \nDear " + user.getFirstName() + " " + user.getLastName() + " " + "Here is your OTP Code: " + session.getAttribute("otp-register") + " Plaese input to form!" + "\n Thanks!";
         this.emailSenderService.sendEmail(user.getEmail(), subject, mess);
 // comment phần sms lúc nào cần send thì mở ra
-        String phone = "+84".concat(user.getPhone().substring(1,10));
-        System.out.println(phone);
-        smsrequest.setNumber(phone);
-        smsrequest.setMessage(mess);
-        smsservice.sendsms(smsrequest);
+//        String phone = "+84".concat(user.getPhone().substring(1,10));
+//        System.out.println(phone);
+//        smsrequest.setNumber(phone);
+//        smsrequest.setMessage(mess);
+//        smsservice.sendsms(smsrequest);
 
         session.setAttribute("userid", user.getUserId());
         session.setAttribute("email", user.getEmail());
@@ -132,18 +134,20 @@ public class UserController {
     }
     @GetMapping("/profile")
     public String getProfilePage(Model model) {
-        UserDto userDto = userService.findById(1);
-        model.addAttribute("user", userDto);
-        return "profile";
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.isAuthenticated()) {
+            String email = authentication.getName();
+            UserDto userDto = userService.findUserDtoByEmail(email);
+            model.addAttribute("user", userDto);
+            return "profile";
+        } else {
+            return "redirect:/login";
+        }
     }
 
     @PostMapping("/user/update")
     public String updateUser(@ModelAttribute(name = "user") UserDto userDto, @RequestParam("file") MultipartFile file) throws IOException {
-        userDto.setUserId(1);
         userService.updateProfile(userDto, file);
         return "redirect:/profile";
     }
-
-
 }
-

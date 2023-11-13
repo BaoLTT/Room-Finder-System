@@ -35,23 +35,23 @@ public class UserServiceImpl implements UserService {
     private final WardRepository wardRepository;
     private final ModelMapper modelMapper;
 
-//    private final GcsService gcsService;
+    private final GcsService gcsService;
 
-    public UserServiceImpl(UserReponsitory userRepository, AddressRepository addressRepository, ProvinceRepository provinceRepository, DistrictRepository districtRepository, WardRepository wardRepository, ModelMapper modelMapper) {
+    public UserServiceImpl(UserReponsitory userRepository, AddressRepository addressRepository, ProvinceRepository provinceRepository, DistrictRepository districtRepository, WardRepository wardRepository, ModelMapper modelMapper, GcsService gcsService) {
         this.userRepository = userRepository;
         this.addressRepository = addressRepository;
         this.provinceRepository = provinceRepository;
         this.districtRepository = districtRepository;
         this.wardRepository = wardRepository;
         this.modelMapper = modelMapper;
-//        this.gcsService = gcsService;
+        this.gcsService = gcsService;
     }
 
     @Autowired
     @Lazy
     private PasswordEncoder passwordEncoder;
 
-//    chưa xử lý mã hóa code
+    //    chưa xử lý mã hóa code
     @Override
     public void saveUser(UserEntity user) {
         userRepository.save(user);
@@ -138,7 +138,7 @@ public class UserServiceImpl implements UserService {
         if (!file.isEmpty()) {
             //        Handle Image
             byte[] imageBytes = file.getBytes();
-//            gcsService.uploadImage("rfs_bucket", "User/user_"+user.getUserId()+".jpg", imageBytes);
+            gcsService.uploadImage("rfs_bucket", "User/user_"+user.getUserId()+".jpg", imageBytes);
             saveUser.setImageLink("https://storage.cloud.google.com/rfs_bucket/User/"+"user_"+user.getUserId()+".jpg");
         } else {
             saveUser.setImageLink(user.getImageLink());
@@ -223,6 +223,37 @@ public class UserServiceImpl implements UserService {
     @Override
     public int countUserInAdmin() {
         return userRepository.countUserInAdmin();
+    }
+
+    @Override
+    public UserDto findUserDtoByEmail(String email) {
+        Optional<UserEntity> optionalUser = userRepository.findByEmail(email);
+        UserEntity user = optionalUser.get();
+        UserDto userDto = modelMapper.map(user, UserDto.class);
+
+        AddressEntity address = addressRepository.findById(user.getAddressId()).get();
+
+        ProvinceEntity province = provinceRepository.findById(address.getProvinceId()).get();
+        DistrictEntity district = districtRepository.findById(address.getDistrictId()).get();
+        WardEntity ward = wardRepository.findById(address.getWardId()).get();
+
+        userDto.setProvince(province.getName());
+        userDto.setDistrict(district.getName());
+        userDto.setWard(ward.getName());
+        userDto.setProvinceId(province.getProvinceId());
+        userDto.setDistrictId(district.getDistrictId());
+        userDto.setWardId(ward.getWardId());
+        userDto.setAddressDetails(address.getAddressDetails());
+
+        if(user.getGender()) {
+            userDto.setGender("MALE");
+        }
+        else {
+            userDto.setGender("FEMALE");
+        }
+
+        userDto.setDob(user.getDob().toString());
+        return userDto;
     }
 
 }
