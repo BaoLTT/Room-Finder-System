@@ -40,6 +40,8 @@ public class HouseManagerTypeVo {
 
     private String typeHouse;
 
+    private int typeHouseID;
+
     private LocalDate lastModifiedDate;
 
     private String lastModifiedBy_firstName;

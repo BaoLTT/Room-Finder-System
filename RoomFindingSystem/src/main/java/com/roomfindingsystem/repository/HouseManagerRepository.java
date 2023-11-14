@@ -3,9 +3,11 @@ package com.roomfindingsystem.repository;
 import com.roomfindingsystem.dto.HouseManagerTypeVo;
 import com.roomfindingsystem.entity.HousesEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Repository("houseManagerRepository")
@@ -35,5 +37,19 @@ public interface HouseManagerRepository extends JpaRepository<HousesEntity,Integ
     @Query(value = "select * from room_finding_system.houses order by houseid DESC LIMIT 1",nativeQuery = true)
 
     HousesEntity getLastHouse();
+
+    @Modifying
+    @Query(value = "UPDATE room_finding_system.houses " +
+            "SET " +
+            "house_name = ?1 ," +
+            "type_houseid = ?2 ," +
+            "addressid = ?3 ," +
+            "description = ?4 ," +
+            "last_modified_by = ?5 ," +
+            "last_modified_date = ?6 " +
+            "WHERE houseid = ?7 ;",nativeQuery = true)
+    void updateHouse(String houseName, Integer typeHouse, Integer addressID, String description, Integer lastBy, LocalDate lastDate, Integer id);
+
+
 
 }
