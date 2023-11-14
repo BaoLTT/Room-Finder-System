@@ -24,45 +24,35 @@ public class RoomListController {
     @GetMapping(value={"/{pageIndex}"})
     public String list(@PathVariable Integer pageIndex,
                        @RequestParam(name = "roomName",required = false , defaultValue = "") String roomName,
-                       @RequestParam(name = "price",required = false,defaultValue = "0") List<String> prices,
+                       @RequestParam(name = "minPrice",required = false, defaultValue = "0") String minPrice,
+                       @RequestParam(name = "maxPrice",required = false, defaultValue = "10") String maxPrice,
                        @RequestParam(name = "type", required = false,defaultValue = "1, 2, 3") List<String> type, Model model){
         List<Integer> listType = new ArrayList<>();
         for(String type1: type){
             listType.add(Integer.parseInt(type1));
         }
-        int pageSize =12;
+        int pageSize =1;
         int totalRoom = 0;
         int offset = (pageIndex -1)*pageSize;
         int totalPage;
         List<RoomDtoN> roomList = new ArrayList<>();
-        for (String priceValue : prices) {
-            if ("1".equals(priceValue)) {
-                for (RoomDtoN room : roomService.findRoom1(0, 2000000, roomName, listType, offset, pageSize)) {
-                    roomList.add(room);
-                }
-                totalRoom += roomService.countRoom(0, 2000000, roomName, listType);
-            } else if ("2".equals(priceValue)) {
-                for (RoomDtoN room : roomService.findRoom1(2000000, 4000000, roomName, listType, offset, pageSize)) {
-                    roomList.add(room);
-                }
-                totalRoom += roomService.countRoom(2000000, 4000000, roomName, listType);
-            } else if ("3".equals(priceValue)) {
-                for (RoomDtoN room : roomService.findRoom1(4000000, 6000000, roomName, listType, offset, pageSize)) {
-                    roomList.add(room);
-                }
-                totalRoom += roomService.countRoom(4000000, 6000000, roomName, listType);
-            } else if ("0".equals(priceValue)) {
-                roomList = (roomService.findRoom1(0, 6000000, roomName, listType, offset, pageSize));
-                totalRoom = roomService.countRoom(0, 6000000, roomName, listType);
-            }
+        int min = Integer.parseInt(minPrice);
+        int max = Integer.parseInt(maxPrice);
+
+        roomList = (roomService.findRoom1(min*1000000, max*1000000, roomName, listType, offset, pageSize));
+        totalRoom = roomService.countRoom(min*1000000, max*1000000, roomName, listType);
+        if(totalRoom<=pageSize){
+            totalPage=0;
+        }else{
+            totalPage = (int) Math.ceil((double) totalRoom / pageSize);
         }
-        totalPage = (int) Math.ceil((double) totalRoom / pageSize);
 
         model.addAttribute("roomName",roomName);
         model.addAttribute("currentPage",pageIndex);
         model.addAttribute("totalPage", totalPage);
         model.addAttribute("rooms", roomList);
-        model.addAttribute("price", prices);
+        model.addAttribute("minPrice", minPrice);
+        model.addAttribute("maxPrice", maxPrice);
         model.addAttribute("type", type);
 
 
