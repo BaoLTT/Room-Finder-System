@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ec34e655-ee0a-4be9-8773-96fceb50fb67" name="Changes" comment="feedback list for landlord" />
+    <list default="true" id="ec34e655-ee0a-4be9-8773-96fceb50fb67" name="Changes" comment="feedback list for landlord">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/impl/GcsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/impl/GcsService.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -51,7 +54,7 @@
     "WebServerToolWindowFactoryState": "false",
     "com.google.cloudcode.ide_session_index": "20231111_0001",
     "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "nghiant2",
+    "git-widget-placeholder": "Merging nghiant2",
     "last_opened_file_path": "E:/Github/Room-Finding-System/RoomFindingSystem/src/main/resources/templates/admin",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",

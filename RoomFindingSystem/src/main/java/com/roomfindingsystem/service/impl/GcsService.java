@@ -52,3 +52,4 @@ public class GcsService {
         Blob blob = storage.create(blobInfo, imageBytes);
     }
 }
+
