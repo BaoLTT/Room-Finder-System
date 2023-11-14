@@ -24,23 +24,26 @@ public class ReportController {
 
     @RequestMapping(value = "waiting")
     public String updateWaiting(Model model, @Param("id") int id) {
+        reportService.updateStatusWaiting(id);
         List<ReportListDto> listReport= reportService.getAllReport();
         model.addAttribute("reportList", listReport);
-        reportService.updateStatusWaiting(id);
+
         return "report-list-admin";
     }
     @RequestMapping(value = "handle")
     public String updateHandle(Model model , @Param("id") int id) {
+        reportService.updateStatusHandle(id);
         List<ReportListDto> listReport= reportService.getAllReport();
         model.addAttribute("reportList", listReport);
-        reportService.updateStatusHandle(id);
+
         return "report-list-admin";
     }
     @RequestMapping(value = "processed")
     public String updateProcessed(Model model , @Param("id") int id) {
+        reportService.updateStatusProcessed(id);
         List<ReportListDto> listReport= reportService.getAllReport();
         model.addAttribute("reportList", listReport);
-        reportService.updateStatusProcessed(id);
+
         return "report-list-admin";
     }
 }
