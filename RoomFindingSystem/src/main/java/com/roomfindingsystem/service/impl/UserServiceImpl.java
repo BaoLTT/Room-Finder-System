@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService {
     @Lazy
     private PasswordEncoder passwordEncoder;
 
-//    chưa xử lý mã hóa code
+    //    chưa xử lý mã hóa code
     @Override
     public void saveUser(UserEntity user) {
         userRepository.save(user);
