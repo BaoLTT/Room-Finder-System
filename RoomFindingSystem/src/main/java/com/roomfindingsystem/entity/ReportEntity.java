@@ -28,7 +28,9 @@ public class ReportEntity {
     private Date createdDate;
     @Basic
     @Column(name = "report_status")
+
     private String reportStatus;
+
     @Basic
     @Column(name = "solved_date")
     private Date solvedDate;

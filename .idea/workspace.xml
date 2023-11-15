@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+
     <list default="true" id="ec34e655-ee0a-4be9-8773-96fceb50fb67" name="Changes" comment="report admin" />
+
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,8 +15,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="HTML File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -40,7 +42,7 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;JPA.DatabaseSchemaImportDialog&quot;: &quot;e4725653-8927-4ad1-9a63-ec6c9d42bf1e&quot;,
+    &quot;JPA.DatabaseSchemaImportDialog&quot;: &quot;0917dbb1-b63e-4827-b1df-c0aa7f40a31c&quot;,
     &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
     &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
     &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
@@ -51,8 +53,10 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;com.google.cloudcode.ide_session_index&quot;: &quot;20231111_0001&quot;,
     &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+
     &quot;git-widget-placeholder&quot;: &quot;Merging nghiant2&quot;,
     &quot;last_opened_file_path&quot;: &quot;E:/Github/Room-Finding-System/RoomFindingSystem/src/main/resources/templates/admin&quot;,
+
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -72,10 +76,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\Github\Room-Finding-System\RoomFindingSystem\src\main\resources\templates\admin" />
+
+      <recent name="D:\Intellij project\Room-Finding-System\RoomFindingSystem\src\main\resources\templates\admin" />
+
       <recent name="D:\Intellij project\Room-Finding-System\RoomFindingSystem\src\main\resources\templates" />
       <recent name="D:\Intellij project\Room-Finding-System\RoomFindingSystem\src\main\resources" />
-      <recent name="D:\Intellij project\Room-Finding-System\RoomFindingSystem\src\main\resources\templates\admin" />
       <recent name="D:\Intellij project\Room-Finding-System\RoomFindingSystem\src\main\resources\static" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -248,7 +253,9 @@
       <workItem from="1699597590281" duration="2215000" />
       <workItem from="1699681970514" duration="1816000" />
       <workItem from="1699695870453" duration="2422000" />
+
       <workItem from="1699844968755" duration="2913000" />
+
     </task>
     <task id="LOCAL-00001" summary="fix register and boảding house detail and send mail future">
       <option name="closed" value="true" />
@@ -426,6 +433,7 @@
       <option name="project" value="LOCAL" />
       <updated>1699698171369</updated>
     </task>
+
     <task id="LOCAL-00023" summary="report admin">
       <option name="closed" value="true" />
       <created>1699979031516</created>
@@ -435,6 +443,7 @@
       <updated>1699979031516</updated>
     </task>
     <option name="localTasksCounter" value="24" />
+
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -477,15 +486,16 @@
     <MESSAGE value="chinh sua part 3" />
     <MESSAGE value="chinh sua lai code Nghia" />
     <MESSAGE value="update tiep" />
-    <MESSAGE value="update" />
     <MESSAGE value="update test" />
     <MESSAGE value="update ADMIN DASHBOARD" />
     <MESSAGE value="update application.properties" />
     <MESSAGE value="update front end" />
     <MESSAGE value="update fix the &lt;html&gt; cua list room admin" />
     <MESSAGE value="thêm phần up ảnh của profile lên bucket" />
+
     <MESSAGE value="report admin" />
     <option name="LAST_COMMIT_MESSAGE" value="report admin" />
+
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
