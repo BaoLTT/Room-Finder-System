@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/admin")
@@ -17,5 +18,9 @@ public class SliderController {
         model.addAttribute("sliderList", sliderService.viewAll() );
 
         return "/admin/list_slider";
+    }
+    @GetMapping("/sliderList/insert")
+    public String viewSliderDetail(Model model){
+        return "/admin/slider_details";
     }
 }
