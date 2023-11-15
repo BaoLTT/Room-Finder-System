@@ -18,80 +18,133 @@
     <title>Xem danh sách phòng trọ</title>
 
 </head>
+<style>
 
+
+
+    /*body {*/
+    /*    display: flex;*/
+    /*    align-items: center;*/
+    /*    justify-content: center;*/
+    /*    min-height: 100vh;*/
+    /*    background: #ffffff;*/
+    /*    flex-direction: column;*/
+    /*}*/
+
+    /*.custom-wrapper {*/
+    /*    margin: 0;*/
+    /*    width: 70%;*/
+    /*    padding: 0px 25px 40px;*/
+    /*    position: relative;*/
+    /*    left: 63px;*/
+    /*}*/
+
+
+    /* Styles for the price input container */
+    .price-input-container {
+        width: 100%;
+    }
+
+    .price-input .price-field {
+        display: flex;
+        margin-bottom: 22px;
+    }
+
+    .price-field span {
+        margin-right: 10px;
+        margin-top: 6px;
+        font-size: 17px;
+    }
+
+    .price-field input {
+        flex: 1;
+        height: 35px;
+        font-size: 15px;
+        font-family: "DM Sans", sans-serif;
+        border-radius: 9px;
+        text-align: center;
+        border: 0px;
+        background: #e4e4e4;
+    }
+
+    .price-input {
+        width: 100%;
+        /*font-size: 19px;*/
+        color: #555;
+    }
+
+    /*!* Remove Arrows/Spinners *!*/
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    .slider-container {
+        width: 100%;
+    }
+
+    .slider-container {
+        height: 6px;
+        position: relative;
+        background: #e4e4e4;
+        border-radius: 5px;
+    }
+
+    .slider-container .price-slider {
+        height: 100%;
+        position: absolute;
+        border-radius: 5px;
+        background: #3F7D36;
+    }
+
+    /* Set the left and right positions dynamically using JavaScript */
+    .slider-container .price-slider.left {
+        left: ${minPrice}%;
+    }
+
+    .slider-container .price-slider.right {
+        right: ${maxPrice}%;
+    }
+
+
+    .range-input {
+        position: relative;
+    }
+
+    .range-input input {
+        position: absolute;
+        width: 100%;
+        height: 5px;
+        background: none;
+        top: -5px;
+        pointer-events: none;
+        cursor: pointer;
+        -webkit-appearance: none;
+    }
+
+    /*!* Styles for the range thumb in WebKit browsers *!*/
+    input[type="range"]::-webkit-slider-thumb {
+        height: 18px;
+        width: 18px;
+        border-radius: 70%;
+        background: #555;
+        pointer-events: auto;
+        -webkit-appearance: none;
+    }
+
+    .input-number .change-button.plus{
+        display: none;
+    }
+    .input-number .change-button.minus{
+        display: none;
+    }
+
+
+</style>
 <body>
 <div class="page-wrapper">
-    <div id="page-header">
-        <header>
-            <div class="container">
-                <div class="secondary-nav">
-                    <div class="nav-trigger"><a data-toggle="collapse" href="#secondary-nav" aria-expanded="false" aria-controls="secondary-nav"><i class="fa fa-user"></i></a></div>
-                    <div id="secondary-nav">
-                        <nav>
-                            <div class="left opacity-60">
-                                <!--                                <a href=""><i class="fa fa-phone"></i>+1 781-903-1047</a>-->
-                                <a href="mailto:hello@example.com"><i class="fa fa-envelope"></i>hello@example.com</a>
-                            </div>
-                            <!--end left-->
 
-                            <div class="right">
-
-                                <!--end element-->
-                                <div class="element">
-                                    <a  data-toggle="modal" data-tab="true" data-target="#sign-in-register-modal">Đăng nhập</a>
-                                </div>
-                                <!--end element-->
-                                <div class="element">
-                                    <a th:href="@{/register}" >Đăng ký</a>
-                                </div>
-                                <!--end element-->
-
-                                <!--end element-->
-                            </div>
-                            <!--end right-->
-                        </nav>
-                    </div>
-                </div>
-                <!--end secondary-nav-->
-            </div>
-            <!--end container-->
-            <hr>
-            <div class="container">
-                <div class="primary-nav">
-                    <div class="left">
-                        <!--                        <a href="Homepage.html" id="brand"><img src="/assets/img/logo.png" alt=""></a>-->
-                        <a class="nav-trigger" data-toggle="collapse" href="#primary-nav" aria-expanded="false" aria-controls="primary-nav"><i class="fa fa-navicon"></i></a>
-                    </div>
-                    <!--end left-->
-                    <div class="right" >
-                        <nav id="primary-nav">
-                            <ul>
-
-                                <li><a th:href="@{/}">Trang chủ</a></li>
-                                <li class="active"><a th:href="@{/houselist/1}">Danh sách nhà trọ</a></li>
-
-                                <li>
-                                    <a href="#" class="has-child">Danh sách phòng trọ</a>
-                                    <!--                                    <ul class="child-nav">-->
-                                    <!--                                        <li><a href="listing.html">List Listing</a></li>-->
-                                    <!--                                        <li><a href="listing-matrix.html">Matrix Listing</a></li>-->
-                                    <!--                                    </ul>-->
-                                </li>
-
-                                <li><a href="">Blog</a></li>
-
-                            </ul>
-                        </nav>
-                        <!--end nav-->
-                    </div>
-                    <!--end right-->
-                </div>
-                <!--end primary-nav-->
-            </div>
-            <!--end container-->
-        </header>
-        <!--end header-->
-    </div>
     <div th:replace="~{header :: headerSection}"></div>
     <!--end page-header-->
 
@@ -111,7 +164,7 @@
                             <form id="form-filter" class="labels-uppercase" method="get" th:action = "@{/RoomList/1}">
                                 <div class="form-group">
                                     <label>Nhập thông tin tìm kiếm</label>
-                                    <input type="text" class="form-control" name="roomName" th:value ="${roomName}" id="roomName" placeholder="Tên trọ">
+                                    <input type="text" class="form-control" name="roomName" th:value ="${roomName}" id="roomName" placeholder="Nhập tên trọ hoặc tên phòng">
                                 </div>
                                 <div class="center">
                                     <a href="#filter-advanced-search" class="link icon" data-toggle="collapse" aria-expanded="false" aria-controls="filter-advanced-search">Thêm<i class="fa fa-plus"></i></a>
@@ -119,29 +172,87 @@
                                 <div class="collapse in" id="filter-advanced-search">
                                     <div class="wrapper">
                                         <section>
-                                            <h3>Giá phòng (mỗi tháng)</h3>
-                                            <ul class="checkboxes list-unstyled">
-                                                <li><label><input type="checkbox" name="price" value="1">0 - 2.000.000 VNĐ<span>12</span></label></li>
-                                                <li><label><input type="checkbox" name="price" value="2">2.000.0000 - 4.000.000 VNĐ<span>48</span></label></li>
-                                                <li><label><input type="checkbox" name="price" value="3">Trên 4.000.000 VNĐ<span>36</span></label></li>
+                                            <h3>Giá phòng (triệu đồng/tháng)</h3>
+                                            <div class="custom-wrapper">
 
-                                            </ul>
+
+
+                                                <div class="price-input-container">
+                                                    <div class="price-input">
+                                                        <div class="price-field">
+                                                            <table style="width: 100%">
+                                                                <tr>
+                                                                    <td><span>Từ: </span></td>
+                                                                    <td><input type="number" name="minPrice"
+                                                                               class="min-input"
+                                                                               th:value="${minPrice}" style="margin-bottom: 10px"></td>
+                                                                </tr>
+                                                                <tr >
+                                                                    <td><span>Đến: </span></td>
+                                                                    <td><input type="number"
+                                                                               class="max-input" name="maxPrice"
+                                                                               th:value="${maxPrice}" style="margin-bottom: 10px"></td>
+                                                                </tr>
+
+                                                            </table>
+
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="slider-container">
+                                                        <div class="price-slider">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Slider -->
+                                                <div class="range-input">
+                                                    <input type="range"
+                                                           class="min-range"
+                                                           min="0"
+                                                           max="10"
+                                                           th:value="${minPrice}"
+                                                           step="1">
+
+                                                    <input type="range"
+                                                           class="max-range"
+                                                           min="0"
+                                                           max="10"
+                                                           th:value="${maxPrice}"
+                                                           step="1">
+
+                                                </div>
+                                            </div>
+
                                             <!--end checkboxes-->
                                         </section>
                                         <!--end section-->
                                         <section>
                                             <h3>Loại phòng</h3>
                                             <ul class="checkboxes">
-                                                <li><label><input type="checkbox" name="type" value="1">Phòng đơn<span>67</span></label></li>
-                                                <li><label><input type="checkbox" name="type" value="2">Phòng đôi<span>31</span></label></li>
-                                                <li><label><input type="checkbox" name="type" value="3">Phòng ba người ở<span>68</span></label></li>
+                                                <li>
+                                                    <label>
+                                                        <input type="checkbox" name="type" value="1" th:checked="${#arrays.contains(type, '1')}">Phòng đơn
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <label>
+                                                        <input type="checkbox" name="type" value="2" th:checked="${#arrays.contains(type, '2')}">Phòng đôi
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <label>
+                                                        <input type="checkbox" name="type" value="3" th:checked="${#arrays.contains(type, '3')}">Phòng ba người ở
+                                                    </label>
+                                                </li>
                                             </ul>
+
                                             <div class="collapse" id="all-property-types">
                                                 <ul class="checkboxes">
-                                                    <li><label><input type="checkbox" name="ski-center">Ski Center<span>67</span></label></li>
-                                                    <li><label><input type="checkbox" name="cottage">Cottage<span>31</span></label></li>
-                                                    <li><label><input type="checkbox" name="hostel">Hostel<span>68</span></label></li>
-                                                    <li><label><input type="checkbox" name="boat">Boat<span>52</span></label></li>
+                                                    <li><label><input type="checkbox" name="ski-center">Ski Center</label></li>
+                                                    <li><label><input type="checkbox" name="cottage">Cottage</label></li>
+                                                    <li><label><input type="checkbox" name="hostel">Hostel</label></li>
+                                                    <li><label><input type="checkbox" name="boat">Boat</label></li>
                                                 </ul>
                                             </div>
                                             <!--end checkboxes-->
@@ -230,22 +341,46 @@
 
                         </div>
                         <!--end row-->
+                        <th:block th:if="${totalPage != 0}">
                         <div class="center">
                             <ul class="pagination">
-                                <li class="prev" >
-                                    <a th:href="@{/RoomList/}+${pageIndex-1}" th:if = "${pageIndex!=1}? 'None'" ><i class="arrow_left"></i></a>
+                                <li class="prev">
+                                    <a th:href="@{/RoomList/} + ${currentPage - 1} + '?price=' + ${#strings.arrayJoin(price, ',')} + '&type=' + ${#strings.arrayJoin(type, ',')}" th:if="${currentPage != 1}">
+                                        <i class="arrow_left"></i>
+                                    </a>
+                                </li>
+                                <li th:if="${currentPage > 2}">
+                                    <a th:href="@{/RoomList/} + '1' + '?price=' + ${#strings.arrayJoin(price, ',')} + '&type=' + ${#strings.arrayJoin(type, ',')}" th:text="1" class="page-number">1</a>
+                                </li>
+                                <li th:if="${currentPage > 3}">
+                                    <span>...</span>
+                                </li>
+                                <li th:each="pageIndex: ${#numbers.sequence(currentPage - 1, currentPage + 1)}"
+                                    th:unless="${pageIndex < 1 || pageIndex > totalPage}"
+                                    th:class="${pageIndex == currentPage ? 'active' : ''}">
+                                    <a th:href="@{/RoomList/} + ${pageIndex} + '?price=' + ${#strings.arrayJoin(price, ',')} + '&type=' + ${#strings.arrayJoin(type, ',')}"
+                                       th:text="${pageIndex}" class="page-number"></a>
+                                </li>
+                                <li th:if="${currentPage < totalPage - 2}">
+                                    <span>...</span>
+                                </li>
+                                <li th:if="${currentPage <= totalPage - 2}">
+                                    <a th:text="${totalPage}"
+                                       th:href="@{/RoomList/} + ${totalPage} + '?price=' + ${#strings.arrayJoin(price, ',')} + '&type=' + ${#strings.arrayJoin(type, ',')}"
+                                       class="page-number">${totalPage}</a>
+                                </li>
+                                <li class="next">
+                                    <a th:href="@{/RoomList/} + ${currentPage + 1} + '?price=' + ${#strings.arrayJoin(price, ',')} + '&type=' + ${#strings.arrayJoin(type, ',')}" th:if="${currentPage != totalPage}">
+                                        <i class="arrow_right"></i>
+                                    </a>
+                                </li>
 
-                                </li>
-                                <li th:each = "pageIndex: ${#numbers.sequence(1,totalPage)} " th:class="${pageIndex == currentPage ? 'active' : ''}" >
-                                    <a th:text = "${pageIndex}" class="page-number"    >1</a>
-                                </li>
 
-                                <li class="next" >
-                                    <a th:href=" @{/RoomList/}+${pageIndex+1}" th:if = "${pageIndex!=totalPage}? 'None'"><i class="arrow_right"></i></a>
-                                </li>
                             </ul>
                             <!-- end pagination-->
                         </div>
+                        </th:block>
+
                         <!--end center-->
                     </div>
                     <!--end main-content-->
@@ -307,6 +442,122 @@
 <a href="#page-header" class="to-top scroll" data-show-after-scroll="600"><i class="arrow_up"></i></a>
 
 
+<script>
+    // Script.js
+    const rangevalue =
+        document.querySelector(".slider-container .price-slider");
+    const rangeInputvalue =
+        document.querySelectorAll(".range-input input");
+
+    // Set the price gap
+    let priceGap = 1;
+
+    // Adding event listners to price input elements
+    const priceInputvalue =
+        document.querySelectorAll(".price-input input");
+    for (let i = 0; i < priceInputvalue.length; i++) {
+        priceInputvalue[i].addEventListener("input", e => {
+
+            // Parse min and max values of the range input
+            let minp = parseInt(priceInputvalue[0].value);
+            let maxp = parseInt(priceInputvalue[1].value);
+            let diff = maxp - minp
+
+            if (minp < 0) {
+                alert("minimum price cannot be less than 0");
+                priceInputvalue[0].value = 0;
+                minp = 0;
+            }
+
+            // Validate the input values
+            if (maxp > 10) {
+                alert("maximum price cannot be greater than 10");
+                priceInputvalue[1].value = 10;
+                maxp = 10;
+            }
+
+            if (minp > maxp - priceGap) {
+                priceInputvalue[0].value = maxp - priceGap;
+                minp = maxp - priceGap;
+
+                if (minp < 0) {
+                    priceInputvalue[0].value = 0;
+                    minp = 0;
+                }
+            }
+
+            // Check if the price gap is met
+            // and max price is within the range
+            if (diff >= priceGap && maxp <= rangeInputvalue[1].max) {
+                if (e.target.className === "min-input") {
+                    rangeInputvalue[0].value = minp;
+                    let value1 = rangeInputvalue[0].max;
+                    rangevalue.style.left = `${(minp / value1) * 100}%`;
+                }
+                else {
+                    rangeInputvalue[1].value = maxp;
+                    let value2 = rangeInputvalue[1].max;
+                    rangevalue.style.right =
+                        `${100 - (maxp / value2) * 100}%`;
+                }
+            }
+        });
+
+        // Add event listeners to range input elements
+        for (let i = 0; i < rangeInputvalue.length; i++) {
+            rangeInputvalue[i].addEventListener("input", e => {
+                let minVal =
+                    parseInt(rangeInputvalue[0].value);
+                let maxVal =
+                    parseInt(rangeInputvalue[1].value);
+
+                let diff = maxVal - minVal
+
+                // Check if the price gap is exceeded
+                if (diff < priceGap) {
+
+                    // Check if the input is the min range input
+                    if (e.target.className === "min-range") {
+                        rangeInputvalue[0].value = maxVal - priceGap;
+                    }
+                    else {
+                        rangeInputvalue[1].value = minVal + priceGap;
+                    }
+                }
+                else {
+
+                    // Update price inputs and range progress
+                    priceInputvalue[0].value = minVal;
+                    priceInputvalue[1].value = maxVal;
+                    rangevalue.style.left =
+                        `${(minVal / rangeInputvalue[0].max) * 100}%`;
+                    rangevalue.style.right =
+                        `${100 - (maxVal / rangeInputvalue[1].max) * 100}%`;
+                }
+            });
+        }
+    }
+    // Inside the updateSliderPositions function
+    function updateSliderPositions() {
+        let minVal = parseInt(rangeInputvalue[0].value);
+        let maxVal = parseInt(rangeInputvalue[1].value);
+
+        let value1 = rangeInputvalue[0].max;
+        let value2 = rangeInputvalue[1].max;
+
+        rangevalue.style.left = `${(minVal / value1) * 100}%`;
+        rangevalue.style.right = `${100 - (maxVal / value2) * 100}%`;
+
+        // Add or remove classes based on minPrice and maxPrice values
+        rangevalue.classList.remove('left', 'right');
+        rangevalue.classList.add('left');
+    }
+
+    // Call the function to update slider positions initially
+    updateSliderPositions();
+
+
+</script>
 
 <script type="text/javascript" src="/assets/js/jquery-2.2.1.min.js"></script>
 <script type="text/javascript" src="/assets/js/jquery-migrate-1.2.1.min.js"></script>

@@ -144,13 +144,16 @@
                         <div class="item list" data-map-latitude="48.87" data-map-longitude="2.29" data-id="1"
                              th:each="houses: ${houses}">
                             <div class="image-wrapper">
-                                <div class="mark-circle description" data-toggle="tooltip" data-placement="right"
-                                     title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis erat vel quam aliquet hendrerit semper eget elit. Aenean tincidunt ultrices bibendum. Proin nisi erat, iaculis non pulvinar a, scelerisque ut est. ">
-                                    <i class="fa fa-question"></i></div>
-                                <div class="mark-circle map" data-toggle="tooltip" data-placement="right"
-                                     title="Show on map"><i class="fa fa-map-marker"></i></div>
-                                <div class="mark-circle top" data-toggle="tooltip" data-placement="right"
-                                     title="Top accommodation"><i class="fa fa-thumbs-up"></i></div>
+<!--                                <div class="mark-circle description" data-toggle="tooltip" data-placement="right"-->
+<!--                                     title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis erat vel quam aliquet hendrerit semper eget elit. Aenean tincidunt ultrices bibendum. Proin nisi erat, iaculis non pulvinar a, scelerisque ut est. ">-->
+<!--                                    <i class="fa fa-question"></i></div>-->
+<!--                                <div class="mark-circle map" data-toggle="tooltip" data-placement="right"-->
+<!--                                     title="Show on map"><i class="fa fa-map-marker"></i></div>-->
+                                <a  th:href="@{/add-favourite-list?id=}+${houses.houseID}"  class="mark-circle" data-toggle="tooltip" data-placement="right"
+                                     title="Add to favourite list"><i style="color: white;" class="fa fa-thumbs-up"></i></a>
+<!--                                <div class="mark-circle top" data-toggle="tooltip" data-placement="right"-->
+<!--                                th:onclick= "AddToFavorite([[${houses.houseID}]])"-->
+<!--                                     title="Add to favourite list"><i class="fa fa-thumbs-up" ></i></div>-->
                                 <div class="image">
 
                                     <a th:href="@{/detail?id=}+${houses.houseID}" class="wrapper">
@@ -280,5 +283,32 @@
 
 <!--[if lte IE 9]>
 <script src="/assets/js/ie.js"></script>
+<script>
+function AddToFavorite(productId) {
+    $.ajax({
+        url: 'login',
+        data: {
+            productId: productId
+        },
+        success: function (responseText) {
+            switch (responseText) {
+                case "Add successful":
+                    showNotification("success", "Add product to favorite successful");
+                    break;
+                case "Add faild":
+                    showNotification("error", "Error when add product to favorite");
+                    break;
+                case "Sign in first":
+                    alert("Please sign in to use this function....");
+                    break;
+
+                default:
+
+                    break;
+            }
+        }
+    });
+}
+</script>
 <![endif]-->
 </body>
