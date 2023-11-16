@@ -2,13 +2,21 @@ package com.roomfindingsystem.repository;
 
 import com.roomfindingsystem.dto.UserDto;
 import com.roomfindingsystem.entity.UserEntity;
+
+
+
+import com.roomfindingsystem.dto.UserDto;
 import jakarta.transaction.Transactional;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
+
 
 public interface UserRepository extends JpaRepository<UserEntity,Integer> {
     public UserEntity save(UserEntity user);
@@ -29,5 +37,6 @@ public interface UserRepository extends JpaRepository<UserEntity,Integer> {
     String getUserEntitiesByUserId(String email);
     @Query("select count(*) from UserEntity u where u.roleId = 'Landlord' or u.roleId = 'User'")
     int countUserInAdmin();
+
 
 }

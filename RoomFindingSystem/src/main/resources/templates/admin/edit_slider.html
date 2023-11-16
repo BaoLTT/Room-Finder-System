@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
-    <title>Abstack - Danh sách slider </title>
+    <title>Thêm mới slider</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description"/>
     <meta content="Coderthemes" name="author"/>
@@ -16,14 +16,7 @@
     <link th:href="@{/assets_admin/css/icons.min.css}" rel="stylesheet" type="text/css"/>
     <link th:href="@{/assets_admin/css/app.min.css}" rel="stylesheet" type="text/css"/>
 
-    <style>
-        .profile-picture img {
-            max-width: 200px;
-            max-height: 200px;
-            width: auto;
-            height: auto;
-        }
-    </style>
+
 </head>
 
 <body>
@@ -47,12 +40,12 @@
                         <div class="page-title-box">
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Abstack</a></li>
-                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Forms</a></li>
-                                    <li class="breadcrumb-item active">Form Validation</li>
+                                    <li class="breadcrumb-item"><a th:href="@{/admin/dashboard}">Dashboard</a></li>
+                                    <li class="breadcrumb-item"><a th:href="@{/admin/sliderList}">Danh sách slider</a></li>
+                                    <li class="breadcrumb-item active">Cập nhật slider</li>
                                 </ol>
                             </div>
-                            <h4 class="page-title">Form Validation</h4>
+                            <h4 class="page-title">Cập nhật slider</h4>
                         </div>
                     </div>
                 </div>
@@ -65,18 +58,14 @@
                             <h4 class="header-title"></h4>
 
 
-                            <form class="parsley-examples" action="#" id="myForm"   enctype="multipart/form-data"><input type="hidden"
-                                                                                                         >
-                                <div class="form-group">
-                                    <label>Slider ID</label>
-                                    <input type="text" class="form-control" required
-                                           placeholder="Type something" />
-                                </div>
+                            <form class="parsley-examples"  id="myForm" th:action="@{/admin/slider/update}" th:object="${slider}" method="post"  enctype="multipart/form-data" >
+                                <input type="hidden" >
+
 
                                 <div class="form-group">
                                     <label>Chủ đề</label>
-                                        <input type="text" class="form-control" required
-                                           placeholder="Type something" />
+                                        <input type="text" class="form-control" name="title" required
+                                           placeholder="Type something" th:value = "${slider.title}"/>
                                     <div>
 
                                     </div>
@@ -84,15 +73,26 @@
 
                                 <div class="form-group">
                                     <label>Nội dung</label>
-                                    <div class="col-10">
-                                        <textarea class="form-control" rows="5"></textarea>
+                                    <div >
+                                        <textarea class="form-control" rows="5" name="content" th:attr="value=${slider.content} ? 'Default Value'" ></textarea>
                                     </div>
                                 </div>
 
 
+                                <div class="form-group">
+                                    <label>Trạng thái</label>
+                                    <div >
+                                        <select name="status">
+                                            <option value="Hoạt động" th:selected="${slider.status == 'Hoạt động'}">Hoạt động</option>
+                                            <option value="Không hoạt động" th:selected="${slider.status == 'Không hoạt động'}">Không hoạt động</option>
+                                        </select>
+                                    </div>
+                                </div>
+
                                 <!-- Pictures -->
 
                                 <div class="form-group">
+                                    <label>Chọn ảnh</label>
                                     <div class="dropzone" id="myAwesomeDropzone">
                                         <div class="fallback">
                                             <input name="file" type="file" multiple/>
@@ -104,7 +104,7 @@
                                 <div class="form-group mb-0">
                                     <div>
                                         <button type="submit" class="btn btn-gradient waves-effect waves-light">
-                                            Lưu thay đổi
+                                            Cập nhật
                                         </button>
                                         <button type="reset" class="btn btn-light waves-effect ml-1">
 <!--                                            <a th:href="@{/room/listRoomPage}">Danh sách phòng</a>-->
