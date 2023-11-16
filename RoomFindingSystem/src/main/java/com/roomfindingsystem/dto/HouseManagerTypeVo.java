@@ -54,7 +54,7 @@ public class HouseManagerTypeVo {
 
 
 
-    public HouseManagerTypeVo(int houseID, String houseName, String addressDetail, String province, String district, String ward, String typeHouse, LocalDate lastModifiedDate, String lastModifiedBy_firstName, String lastModifiedBy_lastName, String user_firstName, String user_lastName) {
+    public HouseManagerTypeVo(int houseID, String houseName, String addressDetail, String province, String district, String ward, String typeHouse, LocalDate lastModifiedDate, String lastModifiedBy_firstName,String lastModifiedBy_lastName, String user_firstName, String user_lastName) {
         this.houseID = houseID;
         this.houseName = houseName;
         this.addressDetail = addressDetail;
