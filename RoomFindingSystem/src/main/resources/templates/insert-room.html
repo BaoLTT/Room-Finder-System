@@ -486,15 +486,14 @@
                 <div class="row">
                     <div class="col-lg">
                         <div class="card-box">
-                            <h4 class="header-title"> Add New Room</h4>
+                            <h4 class="header-title"> Thêm phòng mới</h4>
                             <div class="d-flex justify-content-end">
                                 <form th:action="@{/room/importRooms}" method="post" enctype="multipart/form-data"
                                       class="my-form">
                                     <div class="form-group">
                                         <input type="file" class="form-control-file" id="fileExcel" name="fileExcel"/>
                                     </div>
-                                    <button type="submit" class="btn btn-primary" onclick="event.stopPropagation()">Add
-                                        Many Room
+                                    <button type="submit" class="btn btn-primary" onclick="event.stopPropagation()">Thêm nhiều phòng
                                     </button>
                                 </form>
                             </div>
@@ -502,13 +501,13 @@
                             <form class="parsley-examples" action="#" th:action="@{/room/save}" th:object="${room}" method="post" enctype="multipart/form-data">
                                 <input type="hidden" th:field="*{roomId}">
                                 <div class="form-group">
-                                    <label>Name</label>
+                                    <label>Phòng</label>
                                     <input type="text" class="form-control" required
                                            placeholder="Type something" th:field="*{roomName}"/>
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Area</label>
+                                    <label>Diện tiích</label>
                                     <div>
                                         <input type="number" id="area" class="form-control" required
                                                placeholder="56.5656" th:field="*{area}"/>
@@ -516,14 +515,14 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Price</label>
+                                    <label>Giá</label>
                                     <div>
                                         <input type="number" class="form-control" required
                                                placeholder="56.5656" th:field="*{price}"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label>Type</label>
+                                    <label>Loại phòng</label>
                                     <div>
                                        <select class="form-select form-control mb-4 col-4" th:field="*{typeId}" aria-label="Default select example">
                                            <option th:each="type : ${types}" th:value="${type.typeId}" th:utext="${type.typeName}" />
@@ -531,12 +530,12 @@
                                    </div>
                                 </div>
                                 <div class="form-group">
-                                    <label>Description</label>
+                                    <label>Mô tả chi tiết</label>
                                     <input type="text" class="form-control" required
                                            placeholder="Type something" th:field="*{description}"/>
                                 </div>
                                 <div class="form-group">
-                                    <label>Services</label>
+                                    <label>Dịch vụ</label>
                                     <div>
                                         <div>
                                             <input type="checkbox" id="fridge" name="serviceNames" value="Tủ lạnh">
@@ -568,14 +567,14 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label>Status</label>
+                                    <label>Tình trạng</label>
                                     <div>
                                         <select class="form-control" id="status" name="status"
                                                 th:field="*{status}">
-                                            <option value="ACTIVE" th:selected="${room.status == 'ACTIVE'}">ACTIVE
+                                            <option value="ACTIVE" th:selected="${room.status == 'ACTIVE'}">Phòng trống
                                             </option>
                                             <option value="INACTIVE" th:selected="${room.status == 'INACTIVE'}">
-                                                INACTIVE
+                                                Hết phòng
                                             </option>
                                         </select>
                                     </div>
@@ -594,10 +593,10 @@
                                 <div class="form-group mb-0">
                                     <div>
                                         <button type="submit" class="btn btn-gradient waves-effect waves-light">
-                                            Submit
+                                            Lưu thông tin
                                         </button>
                                         <button type="reset" class="btn btn-light waves-effect ml-1">
-                                            <a th:href="@{/room/listRoomPage}">Back to List Room</a>
+                                            <a th:href="@{/room/listRoomPage}">Danh sách phòng</a>
                                         </button>
                                     </div>
                                 </div>

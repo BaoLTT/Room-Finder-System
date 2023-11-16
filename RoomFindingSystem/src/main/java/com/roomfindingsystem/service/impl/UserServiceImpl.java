@@ -35,20 +35,23 @@ public class UserServiceImpl implements UserService {
     private final WardRepository wardRepository;
     private final ModelMapper modelMapper;
 
-    public UserServiceImpl(UserReponsitory userRepository, AddressRepository addressRepository, ProvinceRepository provinceRepository, DistrictRepository districtRepository, WardRepository wardRepository, ModelMapper modelMapper) {
+    private final GcsService gcsService;
+
+    public UserServiceImpl(UserReponsitory userRepository, AddressRepository addressRepository, ProvinceRepository provinceRepository, DistrictRepository districtRepository, WardRepository wardRepository, ModelMapper modelMapper, GcsService gcsService) {
         this.userRepository = userRepository;
         this.addressRepository = addressRepository;
         this.provinceRepository = provinceRepository;
         this.districtRepository = districtRepository;
         this.wardRepository = wardRepository;
         this.modelMapper = modelMapper;
+        this.gcsService = gcsService;
     }
 
     @Autowired
     @Lazy
     private PasswordEncoder passwordEncoder;
 
-//    chưa xử lý mã hóa code
+    //    chưa xử lý mã hóa code
     @Override
     public void saveUser(UserEntity user) {
         userRepository.save(user);
@@ -121,9 +124,12 @@ public class UserServiceImpl implements UserService {
         }
 
         userDto.setDob(user.getDob().toString());
-
-        System.out.println(userDto);
-
+        if(user.getUserStatusId() == 1) {
+            userDto.setStatus("ACTIVE");
+        }
+        else {
+            userDto.setStatus("INACTIVE");
+        }
         return userDto;
     }
 
@@ -134,9 +140,9 @@ public class UserServiceImpl implements UserService {
         UserEntity saveUser = new UserEntity();
         if (!file.isEmpty()) {
             //        Handle Image
-            byte[] imageData = Base64.getEncoder().encode(file.getBytes());
-            String imageLink = new String(imageData, StandardCharsets.UTF_8);
-            saveUser.setImageLink(imageLink);
+            byte[] imageBytes = file.getBytes();
+            gcsService.uploadImage("rfs_bucket", "User/user_"+user.getUserId()+".jpg", imageBytes);
+            saveUser.setImageLink("https://storage.cloud.google.com/rfs_bucket/User/"+"user_"+user.getUserId()+".jpg");
         } else {
             saveUser.setImageLink(user.getImageLink());
         }
@@ -196,6 +202,7 @@ public class UserServiceImpl implements UserService {
         saveUser.setLastName(userDto.getLastName());
         saveUser.setLastModifiedDate(Timestamp.from(Instant.now()));
         saveUser.setPhone(userDto.getPhone());
+        saveUser.setRoleId(userDto.getRole());
 
 //        User:
         saveUser.setUserId(user.getUserId());
@@ -203,8 +210,13 @@ public class UserServiceImpl implements UserService {
         saveUser.setFacebookId(user.getFacebookId());
         saveUser.setGmailId(user.getGmailId());
         saveUser.setPassword(user.getPassword());
-        saveUser.setRoleId(user.getRoleId());
-        saveUser.setUserStatusId(user.getUserStatusId());
+
+        if(Objects.equals(userDto.getStatus(), "ACTIVE")) {
+            saveUser.setUserStatusId(1);
+        }
+        else {
+            saveUser.setUserStatusId(0);
+        }
         userRepository.save(saveUser);
     }
     @Override
@@ -220,6 +232,37 @@ public class UserServiceImpl implements UserService {
     @Override
     public int countUserInAdmin() {
         return userRepository.countUserInAdmin();
+    }
+
+    @Override
+    public UserDto findUserDtoByEmail(String email) {
+        Optional<UserEntity> optionalUser = userRepository.findByEmail(email);
+        UserEntity user = optionalUser.get();
+        UserDto userDto = modelMapper.map(user, UserDto.class);
+
+        AddressEntity address = addressRepository.findById(user.getAddressId()).get();
+
+        ProvinceEntity province = provinceRepository.findById(address.getProvinceId()).get();
+        DistrictEntity district = districtRepository.findById(address.getDistrictId()).get();
+        WardEntity ward = wardRepository.findById(address.getWardId()).get();
+
+        userDto.setProvince(province.getName());
+        userDto.setDistrict(district.getName());
+        userDto.setWard(ward.getName());
+        userDto.setProvinceId(province.getProvinceId());
+        userDto.setDistrictId(district.getDistrictId());
+        userDto.setWardId(ward.getWardId());
+        userDto.setAddressDetails(address.getAddressDetails());
+
+        if(user.getGender()) {
+            userDto.setGender("MALE");
+        }
+        else {
+            userDto.setGender("FEMALE");
+        }
+
+        userDto.setDob(user.getDob().toString());
+        return userDto;
     }
 
 }

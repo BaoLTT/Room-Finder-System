@@ -2,7 +2,6 @@ package com.roomfindingsystem.controller;
 
 
 import com.roomfindingsystem.dto.RoomDto;
-import com.roomfindingsystem.dto.RoomDtoN;
 import com.roomfindingsystem.dto.ServiceDto;
 import com.roomfindingsystem.entity.RoomEntity;
 import com.roomfindingsystem.entity.RoomImagesEntity;
@@ -12,10 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.List;
 
 @RequestMapping("/room")

@@ -45,91 +45,12 @@
 
 <body>
 <div class="page-wrapper">
-    <div id="page-header">
-        <header>
-            <div class="container">
-                <div class="secondary-nav">
-                    <div class="nav-trigger"><a data-toggle="collapse" href="#secondary-nav" aria-expanded="false"
-                                                aria-controls="secondary-nav"><i class="fa fa-user"></i></a></div>
-                    <div id="secondary-nav">
-                        <nav>
-                            <div class="left opacity-60">
-                                <a href=""><i class="fa fa-phone"></i>+1 781-903-1047</a>
-                                <a href="mailto:hello@example.com"><i class="fa fa-envelope"></i>hello@example.com</a>
-                            </div>
-                            <!--end left-->
-                            <div class="right">
-                                <div th:if="${session!= null}">
-                                    <!-- Hiển thị thông tin người dùng đã đăng nhập -->
-                                    <a th:href="@{/profile}"><span>Xin chào, <span
-                                            th:text="${session.firstname+' '}+${session.lastname}"></span></span></a>
-                                    <a th:href="@{/logout}">Đăng xuất</a>
-                                </div>
-                                <!--end element-->
-                                <div th:unless="${session!= null}">
-                                    <div class="element">
-                                        <a th:href="@{/login}" href="#tab-sign-in" data-toggle="modal" data-tab="true"
-                                           data-target="#sign-in-register-modal">Đăng nhập</a>
-                                    </div>
-                                    <!--end element-->
-                                    <div class="element">
-                                        <a th:href="@{/register}" data-toggle="modal" data-tab="true"
-                                           data-target="#sign-in-register-modal">Đăng ký</a>
-                                    </div>
-                                    <!--end element-->
-                                </div>
-                                <!--end element-->
-                            </div>
-                            <!--end right-->
-                        </nav>
-                    </div>
-                </div>
-                <!--end secondary-nav-->
-            </div>
-            <!--end container-->
-            <hr>
-            <div class="container">
-                <div class="primary-nav">
-                    <div class="left">
-                        <!--                        <a href="Homepage.html" id="brand"><img src="/assets/img/logo.png" alt=""></a>-->
-                     <a href="homepage.html" id="brand"><img src="/assets/img/logo.png" alt=""></a>-->
-                        <a class="nav-trigger" data-toggle="collapse" href="#primary-nav" aria-expanded="false"
-                           aria-controls="primary-nav"><i class="fa fa-navicon"></i></a>
-                    </div>
-                    <!--end left-->
-                    <div class="right">
-                        <nav id="primary-nav">
-                            <ul>
-                                <li class="active"><a th:href="@{/}">Trang chủ</a></li>
-                                <li><a th:href="@{/houselist/1}">Danh sách nhà trọ</a></li>
-                                <li>
-                                    <a href="#" class="has-child">Danh sách phòng trọ</a>
-                                </li>
-
-                                <li><a href="">Blog</a></li>
-
-                            </ul>
-                        </nav>
-                        <!--end nav-->
-                    </div>
-                    <!--end right-->
-                </div>
-                <!--end primary-nav-->
-            </div>
-            <!--end container-->
-        </header>
-        <!--end header-->
-    </div>
+    <div th:replace="~{header :: headerSection}"></div>
     <!--end page-header-->
 
     <div id="page-content">
+        <br>
         <div class="container">
-            <ol class="breadcrumb">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Listing</a></li>
-                <li class="active">Detail</li>
-            </ol>
-            <!--end breadcrumb-->
             <div class="main-content">
                 <div class="title">
                     <h1><a href="#">Thông tin cá nhân</a></h1>
@@ -138,12 +59,13 @@
                 <div class="row">
                     <form id="form-profile" class="labels-uppercase" method="post" action="#"
                           th:action="@{/user/update}" th:object="${user}" enctype="multipart/form-data">
+                        <input type="hidden" id="userId" name="userId" th:value="*{userId}">
                         <div class="row">
                             <!--Profile Picture-->
                             <div class="col-md-3 col-sm-3">
                                 <section>
                                     <div id="profile-picture" class="profile-picture single-file-preview">
-                                        <img th:src="*{'data:image/jpeg;base64,' + imageLink}" alt="" class="image">
+                                        <img th:src="*{imageLink}" alt="" class="image">
                                         <div class="input">
                                             <input name="file" type="file" class="">
                                             <span>Chọn ảnh đại diện</span>
@@ -183,7 +105,7 @@
                                                 <label for="email">Email</label>
                                                 <input type="email" class="form-control" id="email" name="email"
                                                        pattern="^\w+([\.]?\w+)*@\w+([\.]?\w+)*(\.\w{2,3})+$"
-                                                       placeholder="janedoe@gmail.com" th:value="*{email}">
+                                                       placeholder="janedoe@gmail.com" th:value="*{email}" readonly>
                                                 <small class="text-danger error-email"></small>
                                             </div>
                                             <!--end form-group-->
@@ -446,7 +368,8 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    const host = "http://localhost:8080/";
+    const host = "http://timtromoi.com/";
+    // const host = "http://localhost:8080/";
     let provinceTest = -1;
     var callAPI = (api) => {
         return axios.get(api)

@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Abstack - Responsive Bootstrap 4 Admin Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+    <meta content="Coderthemes" name="author" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="/assets_admin/images/favicon.ico">
+
+    <link href="/assets_admin/libs/dropzone/dropzone.min.css" rel="stylesheet" type="text/css" />
+    <!-- App css -->
+    <link href="/assets_admin/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/assets_admin/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="/assets_admin/css/app.min.css" rel="stylesheet" type="text/css" />
+
+
+
+</head>
+
+<body>
+
+<!-- Begin page -->
+<div id="wrapper">
+
+
+    <!-- Topbar Start -->
+    <div class="navbar-custom">
+        <ul class="list-unstyled topnav-menu float-right mb-0">
+
+            <li class="dropdown d-none d-lg-block">
+                <a class="nav-link dropdown-toggle mr-0 waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                    <img src="/assets_admin/images/flags/us.jpg" alt="user-image" class="mr-1" height="12"> <span class="align-middle">English <i class="mdi mdi-chevron-down"></i> </span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <!-- item-->
+                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                        <img src="/assets_admin/images/flags/germany.jpg" alt="user-image" class="mr-1" height="12"> <span class="align-middle">German</span>
+                    </a>
+
+                    <!-- item-->
+                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                        <img src="/assets_admin/flags/italy.jpg" alt="user-image" class="mr-1" height="12"> <span class="align-middle">Italian</span>
+                    </a>
+
+                    <!-- item-->
+                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                        <img src="/assets_admin/images/flags/spain.jpg" alt="user-image" class="mr-1" height="12"> <span class="align-middle">Spanish</span>
+                    </a>
+
+                    <!-- item-->
+                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                        <img src="/assets_admin/images/flags/russia.jpg" alt="user-image" class="mr-1" height="12"> <span class="align-middle">Russian</span>
+                    </a>
+
+                </div>
+            </li>
+
+
+            <li class="dropdown notification-list">
+                <a class="nav-link dropdown-toggle  waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                    <i class="fe-bell noti-icon"></i>
+                    <span class="badge badge-danger rounded-circle noti-icon-badge">9</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right dropdown-lg">
+
+                    <!-- item-->
+                    <div class="dropdown-item noti-title">
+                        <h5 class="m-0">
+                                    <span class="float-right">
+                                        <a href="" class="text-dark">
+                                            <small>Clear All</small>
+                                        </a>
+                                    </span>Notification
+                        </h5>
+                    </div>
+
+                    <div class="slimscroll noti-scroll">
+
+                        <!-- item-->
+                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                            <div class="notify-icon bg-success"><i class="mdi mdi-comment-account-outline"></i></div>
+                            <p class="notify-details">Caleb Flakelar commented on Admin<small class="text-muted">1 min ago</small></p>
+                        </a>
+
+                        <!-- item-->
+                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                            <div class="notify-icon bg-info"><i class="mdi mdi-account-plus"></i></div>
+                            <p class="notify-details">New user registered.<small class="text-muted">5 hours ago</small></p>
+                        </a>
+
+                        <!-- item-->
+                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                            <div class="notify-icon bg-danger"><i class="mdi mdi-heart"></i></div>
+                            <p class="notify-details">Carlos Crouch liked <b>Admin</b><small class="text-muted">3 days ago</small></p>
+                        </a>
+
+                        <!-- item-->
+                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                            <div class="notify-icon bg-warning"><i class="mdi mdi-comment-account-outline"></i></div>
+                            <p class="notify-details">Caleb Flakelar commented on Admin<small class="text-muted">4 days ago</small></p>
+                        </a>
+
+                        <!-- item-->
+                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                            <div class="notify-icon bg-purple"><i class="mdi mdi-account-plus"></i></div>
+                            <p class="notify-details">New user registered.<small class="text-muted">7 days ago</small></p>
+                        </a>
+
+                        <!-- item-->
+                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                            <div class="notify-icon bg-primary"><i class="mdi mdi-heart"></i></div>
+                            <p class="notify-details">Carlos Crouch liked <b>Admin</b><small class="text-muted">13 days ago</small></p>
+                        </a>
+
+                    </div>
+
+                    <!-- All-->
+                    <a href="javascript:void(0);" class="dropdown-item text-center text-primary notify-item notify-all">
+                        View all
+                        <i class="fi-arrow-right"></i>
+                    </a>
+
+                </div>
+            </li>
+
+            <li class="dropdown notification-list">
+                <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                    <img src="/assets_admin/images/users/avatar-1.jpg" alt="user-image" class="rounded-circle">
+                    <span class="ml-1">Samuel <i class="mdi mdi-chevron-down"></i> </span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
+                    <!-- item-->
+                    <div class="dropdown-header noti-title">
+                        <h6 class="text-overflow m-0">Welcome !</h6>
+                    </div>
+
+                    <!-- item-->
+                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                        <i class="fe-user"></i>
+                        <span>Profile</span>
+                    </a>
+
+                    <!-- item-->
+                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                        <i class="fe-settings"></i>
+                        <span>Settings</span>
+                    </a>
+
+                    <!-- item-->
+                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                        <i class="fe-lock"></i>
+                        <span>Lock Screen</span>
+                    </a>
+
+                    <div class="dropdown-divider"></div>
+
+                    <!-- item-->
+                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                        <i class="fe-log-out"></i>
+                        <span>Logout</span>
+                    </a>
+
+                </div>
+            </li>
+
+            <li class="dropdown notification-list">
+                <a href="javascript:void(0);" class="nav-link right-bar-toggle waves-effect waves-light">
+                    <i class="fe-settings noti-icon"></i>
+                </a>
+            </li>
+
+
+        </ul>
+
+        <!-- LOGO -->
+        <div class="logo-box">
+            <a href="index.html" class="logo text-center">
+                        <span class="logo-lg">
+                            <img src="/admin/assets/images/logo-light.png" alt="" height="16">
+                            <!-- <span class="logo-lg-text-light">UBold</span> -->
+                        </span>
+                <span class="logo-sm">
+                            <!-- <span class="logo-sm-text-dark">U</span> -->
+                            <img src="/admin/assets/images/logo-sm.png" alt="" height="28">
+                        </span>
+            </a>
+        </div>
+
+        <ul class="list-unstyled topnav-menu topnav-menu-left m-0">
+            <li>
+                <button class="button-menu-mobile waves-effect waves-light">
+                    <i class="fe-menu"></i>
+                </button>
+            </li>
+
+            <li class="d-none d-sm-block">
+                <form class="app-search">
+                    <div class="app-search-box">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search...">
+                            <div class="input-group-append">
+                                <button class="btn" type="submit">
+                                    <i class="fe-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </li>
+
+        </ul>
+    </div>
+    <!-- end Topbar -->
+
+
+    <!-- ========== Left Sidebar Start ========== -->
+    <div class="left-side-menu">
+
+        <div class="slimscroll-menu">
+
+            <!--- Sidemenu -->
+            <div id="sidebar-menu">
+
+                <ul class="metismenu" id="side-menu">
+
+                    <li class="menu-title">Navigation</li>
+
+                    <li>
+                        <a href="index.html">
+                            <i class="fe-airplay"></i>
+                            <span class="badge badge-danger badge-pill float-right">3</span>
+                            <span> Dashboard </span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="javascript: void(0);">
+                            <i class="fe-briefcase"></i>
+                            <span> UI Kit </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <ul class="nav-second-level" aria-expanded="false">
+                            <li><a href="ui-typography.html">Typography</a></li>
+                            <li><a href="ui-cards.html">Cards</a></li>
+                            <li><a href="ui-buttons.html">Buttons</a></li>
+                            <li><a href="ui-modals.html">Modals</a></li>
+                            <li><a href="ui-checkbox-radio.html">Checkboxs-Radios</a></li>
+                            <li><a href="ui-tabs.html">Tabs</a></li>
+                            <li><a href="ui-progressbars.html">Progress Bars</a></li>
+                            <li><a href="ui-notifications.html">Notification</a></li>
+                            <li><a href="ui-grid.html">Grid</a></li>
+                            <li><a href="ui-sweet-alert.html">Sweet Alert</a></li>
+                            <li><a href="ui-bootstrap.html">Bootstrap UI</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="javascript: void(0);">
+                            <i class="fe-box"></i>
+                            <span> Icons </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <ul class="nav-second-level" aria-expanded="false">
+                            <li><a href="icons-materialdesign.html">Material Design</a></li>
+                            <li><a href="icons-dripicons.html">Dripicons</a></li>
+                            <li><a href="icons-fontawesome.html">Font awesome</a></li>
+                            <li><a href="icons-feather.html">Feather Icons</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="javascript: void(0);">
+                            <i class="fe-bar-chart-2"></i>
+                            <span> Graphs </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <ul class="nav-second-level" aria-expanded="false">
+                            <li><a href="charts-flot.html">Flot Chart</a></li>
+                            <li><a href="charts-morris.html">Morris Chart</a></li>
+                            <li><a href="charts-chartjs.html">Chartjs Chart</a></li>
+                            <li><a href="charts-sparkline.html">Sparkline Chart</a></li>
+                            <li><a href="charts-knob.html">Jquery Knob</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="javascript: void(0);">
+                            <i class="fe-mail"></i>
+                            <span> Email </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <ul class="nav-second-level" aria-expanded="false">
+                            <li><a href="email-inbox.html">Inbox</a></li>
+                            <li><a href="email-read.html">Read Email</a></li>
+                            <li><a href="email-compose.html">Compose Email</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="javascript: void(0);">
+                            <i class="fe-disc"></i>
+                            <span class="badge badge-warning badge-pill float-right">09</span>
+                            <span> Forms </span>
+                        </a>
+                        <ul class="nav-second-level" aria-expanded="false">
+
+                            <li><a href="form-elements.html">Form Elements</a></li>
+                            <li><a href="form-advanced.html">Form Advanced</a></li>
+                            <li><a href="form-validation.html">Form Validation</a></li>
+                            <li><a href="form-pickers.html">Form Pickers</a></li>
+                            <li><a href="form-wizard.html">Form Wizard</a></li>
+                            <li><a href="form-mask.html">Form Masks</a></li>
+                            <li><a href="forms-quilljs.html">Quilljs Editor</a></li>
+                            <li><a href="form-x-editable.html">X Editable</a></li>
+                            <li><a href="form-uploads.html">Multiple File Upload</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="javascript: void(0);">
+                            <i class="fe-layout"></i>
+                            <span> Tables </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <ul class="nav-second-level" aria-expanded="false">
+                            <li><a href="tables-basic.html">Basic Tables</a></li>
+                            <li><a href="tables-datatable.html">Data Tables</a></li>
+                            <li><a href="tables-responsive.html">Responsive Table</a></li>
+                            <li><a href="tables-tablesaw.html">Tablesaw Tables</a></li>
+                            <li><a href="tables-editable.html">Editable Tables</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="menu-title mt-2">More</li>
+
+                    <li>
+                        <a href="javascript: void(0);">
+                            <i class="fe-map"></i>
+                            <span> Maps </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <ul class="nav-second-level" aria-expanded="false">
+                            <li><a href="maps-google.html">Google Maps</a></li>
+                            <li><a href="maps-vector.html">Vector Maps</a></li>
+                            <li><a href="maps-mapael.html">Mapael Maps</a></li>
+                        </ul>
+                    </li>
+
+
+                    <li>
+                        <a href="calendar.html">
+                            <i class="fe-clock"></i>
+                            <span> Calendar </span>
+                        </a>
+                    </li>
+
+
+                    <li>
+                        <a href="javascript: void(0);">
+                            <i class="fe-book-open"></i>
+                            <span> Pages </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <ul class="nav-second-level" aria-expanded="false">
+
+                            <li><a href="pages-starter.html">Starter Page</a></li>
+                            <li><a href="pages-login.html">Login</a></li>
+                            <li><a href="pages-register.html">Register</a></li>
+                            <li><a href="pages-logout.html">Logout</a></li>
+                            <li><a href="pages-recoverpw.html">Recover Password</a></li>
+                            <li><a href="pages-lock-screen.html">Lock Screen</a></li>
+                            <li><a href="pages-confirm-mail.html">Confirm Mail</a></li>
+                            <li><a href="pages-404.html">Error 404</a></li>
+                            <li><a href="pages-404-alt.html">Error 404-alt</a></li>
+                            <li><a href="pages-500.html">Error 500</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="javascript: void(0);">
+                            <i class="fe-plus-square"></i>
+                            <span class="badge badge-success badge-pill float-right">Hot</span>
+                            <span> Extra Pages </span>
+                        </a>
+                        <ul class="nav-second-level" aria-expanded="false">
+                            <li><a href="extras-timeline.html">Timeline</a></li>
+                            <li><a href="extras-invoice.html">Invoice</a></li>
+                            <li><a href="extras-faq.html">FAQ</a></li>
+                            <li><a href="extras-pricing.html">Pricing</a></li>
+                            <li><a href="extras-email-template.html">Email Templates</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="javascript: void(0);">
+                            <i class="fe-share-2"></i>
+                            <span> Multi Level </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <ul class="nav-second-level nav" aria-expanded="false">
+                            <li>
+                                <a href="javascript: void(0);">Level 1.1</a>
+                            </li>
+                            <li>
+                                <a href="javascript: void(0);" aria-expanded="false">Level 1.2
+                                    <span class="menu-arrow"></span>
+                                </a>
+                                <ul class="nav-third-level nav" aria-expanded="false">
+                                    <li>
+                                        <a href="javascript: void(0);">Level 2.1</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript: void(0);">Level 2.2</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+            <!-- End Sidebar -->
+
+            <div class="clearfix"></div>
+
+        </div>
+        <!-- Sidebar -left -->
+
+    </div>
+    <!-- Left Sidebar End -->
+
+    <!-- ============================================================== -->
+    <!-- Start Page Content here -->
+    <!-- ============================================================== -->
+
+    <div class="content-page">
+        <div class="content">
+
+            <!-- Start Content-->
+            <div class="container-fluid">
+
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box">
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Abstack</a></li>
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Forms</a></li>
+                                    <li class="breadcrumb-item active">Form Elements</li>
+                                </ol>
+                            </div>
+                            <h4 class="page-title">Form Elements</h4>
+                        </div>
+                    </div>
+                </div>
+                <!-- end page title -->
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card-box">
+                            <h4 class="header-title">Thông tin nhà trọ</h4>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div>
+                                        <form class="form-horizontal" role="form" method="post" th:action="@{/admin/house-manager/save}"  enctype="multipart/form-data" >
+                                            <div class="form-group row">
+                                                <label class="col-2 col-form-label">Chủ trọ</label>
+                                                <div class="col-10" >
+                                                    <select class="form-control" name="landlord">
+                                                        <option th:each="listUser : ${listUser}"  th:value="${listUser.getUserId()}" th:utext="${listUser.firstName + ' '+ listUser.lastName}"/>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-2 col-form-label" >Tên trọ</label>
+                                                <div class="col-10">
+                                                    <input type="text"  name="houseName" class="form-control"  >
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-2 col-form-label">Địa chỉ cụ thể</label>
+                                                <div class="col-10">
+                                                    <input type="text" class="form-control" name="addressDetail">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-2 col-form-label">Địa chỉ </label>
+                                                <div class="col-3" >
+                                                    <label for="province">Tỉnh</label>
+                                                    <select class="form-control" id="province" name="province">
+                                                        <option value="" selected >Chọn tỉnh thành</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="col-3" >
+                                                    <label for="district">Huyện</label>
+                                                    <select class="form-control" id="district" name="district">
+                                                        <option value="" selected >Chọn huyện</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-3" >
+                                                    <label for="ward">Xã/Phường</label>
+                                                    <select class="form-control" id="ward" name="ward">
+                                                        <option value="" selected >Chọn xã/phường</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-2 col-form-label">Ghi chú</label>
+                                                <div class="col-10">
+                                                    <textarea class="form-control" rows="3" name="description"> </textarea>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-2 col-form-label">Thể loại trọ</label>
+                                                <div class="col-10" >
+                                                    <select class="form-control" name="houseType">
+                                                        <option th:each="listType : ${listType}" th:value="${listType.getTypeId()}" th:text="${listType.typeName}"/>
+
+                                                    </select>
+<!--                                                    <ul class="checkboxes no-bottom-margin" th:each = "listType: ${listType}">-->
+<!--                                                        <li><label><input type="checkbox" name="houseType" th:text = "${listType.getTypeName()}" th:value = "${listType.getTypeId()}"></label></li>-->
+
+<!--                                                    </ul>-->
+                                                </div>
+                                            </div>
+<!--                                            <div class="form-group row">-->
+<!--                                                <label class="col-2 col-form-label">Ảnh</label>-->
+<!--                                                <div id="profile-picture" class="profile-picture single-file-preview col-10">-->
+<!--                                                    <div class="input">-->
+<!--                                                        <input name="file" type="file" class="" multiple>-->
+
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+
+
+                                            <div class="form-group row">
+                                                <label class="col-2 col-form-label"></label>
+                                                <div class="col-10" >
+                                                    <button  type="submit" class="btn btn-success waves-light waves-effect width-md"> <span style="color: white">Lưu</span></button>
+                                                    <a  type="button" class="btn btn-danger waves-light waves-effect width-md" href="http://localhost:8080/admin/house-manager"> <span style="color: white">Đóng</span></a>
+                                                    <a  type="button" class="btn btn-success waves-light waves-effect width-md" style="float: right"> <span style="color: white">Quản lý phòng</span>  </a>
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- end row -->
+
+                        </div> <!-- end card-box -->
+                    </div><!-- end col -->
+                </div>
+                <!-- end row -->
+            </div> <!-- end container-fluid -->
+        </div> <!-- end content -->
+        <!-- Footer Start -->
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        2017 - 2019 &copy; Abstack theme by <a href="">Coderthemes</a>
+                    </div>
+
+                </div>
+            </div>
+        </footer>
+        <!-- end Footer -->
+
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- End Page content -->
+    <!-- ============================================================== -->
+
+</div>
+<!-- END wrapper -->
+
+<!-- Right Sidebar -->
+<div class="right-bar">
+    <div class="rightbar-title">
+        <a href="javascript:void(0);" class="right-bar-toggle float-right">
+            <i class="mdi mdi-close"></i>
+        </a>
+        <h5 class="m-0 text-white">Settings</h5>
+    </div>
+    <div class="slimscroll-menu">
+        <hr class="mt-0">
+        <h5 class="pl-3">Basic Settings</h5>
+        <hr class="mb-0" />
+
+
+        <div class="p-3">
+            <div class="custom-control custom-checkbox mb-2">
+                <input type="checkbox" class="custom-control-input" id="customCheck1" checked>
+                <label class="custom-control-label" for="customCheck1">Notifications</label>
+            </div>
+            <div class="custom-control custom-checkbox mb-2">
+                <input type="checkbox" class="custom-control-input" id="customCheck2" checked>
+                <label class="custom-control-label" for="customCheck2">API Access</label>
+            </div>
+            <div class="custom-control custom-checkbox mb-2">
+                <input type="checkbox" class="custom-control-input" id="customCheck3">
+                <label class="custom-control-label" for="customCheck3">Auto Updates</label>
+            </div>
+            <div class="custom-control custom-checkbox mb-2">
+                <input type="checkbox" class="custom-control-input" id="customCheck4" checked>
+                <label class="custom-control-label" for="customCheck4">Online Status</label>
+            </div>
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="customCheck5">
+                <label class="custom-control-label" for="customCheck5">Auto Payout</label>
+            </div>
+        </div>
+
+        <!-- Messages -->
+        <hr class="mt-0" />
+        <h5 class="pl-3 pr-3">Messages <span class="float-right badge badge-pill badge-danger">24</span></h5>
+        <hr class="mb-0" />
+        <div class="p-3">
+            <div class="inbox-widget">
+                <div class="inbox-item">
+                    <div class="inbox-item-img"><img src="assets/images/users/avatar-1.jpg" class="rounded-circle" alt=""></div>
+                    <p class="inbox-item-author"><a href="javascript: void(0);">Chadengle</a></p>
+                    <p class="inbox-item-text">Hey! there I'm available...</p>
+                    <p class="inbox-item-date">13:40 PM</p>
+                </div>
+                <div class="inbox-item">
+                    <div class="inbox-item-img"><img src="assets/images/users/avatar-2.jpg" class="rounded-circle" alt=""></div>
+                    <p class="inbox-item-author"><a href="javascript: void(0);">Tomaslau</a></p>
+                    <p class="inbox-item-text">I've finished it! See you so...</p>
+                    <p class="inbox-item-date">13:34 PM</p>
+                </div>
+                <div class="inbox-item">
+                    <div class="inbox-item-img"><img src="assets/images/users/avatar-3.jpg" class="rounded-circle" alt=""></div>
+                    <p class="inbox-item-author"><a href="javascript: void(0);">Stillnotdavid</a></p>
+                    <p class="inbox-item-text">This theme is awesome!</p>
+                    <p class="inbox-item-date">13:17 PM</p>
+                </div>
+
+                <div class="inbox-item">
+                    <div class="inbox-item-img"><img src="assets/images/users/avatar-4.jpg" class="rounded-circle" alt=""></div>
+                    <p class="inbox-item-author"><a href="javascript: void(0);">Kurafire</a></p>
+                    <p class="inbox-item-text">Nice to meet you</p>
+                    <p class="inbox-item-date">12:20 PM</p>
+
+                </div>
+                <div class="inbox-item">
+                    <div class="inbox-item-img"><img src="assets/images/users/avatar-5.jpg" class="rounded-circle" alt=""></div>
+                    <p class="inbox-item-author"><a href="javascript: void(0);">Shahedk</a></p>
+                    <p class="inbox-item-text">Hey! there I'm available...</p>
+                    <p class="inbox-item-date">10:15 AM</p>
+
+                </div>
+            </div> <!-- end inbox-widget -->
+        </div> <!-- end .p-3-->
+
+    </div> <!-- end slimscroll-menu-->
+</div>
+<!-- /Right-bar -->
+
+<!-- Right bar overlay-->
+<div class="rightbar-overlay"></div>
+
+<!-- Vendor js -->
+<script src="/assets_admin/js/vendor.min.js"></script>
+<!-- Plugins js -->
+<script src="/assets_admin/libs/dropzone/dropzone.min.js"></script>
+
+
+<!-- Truyền dữ liệu từ listProvince, listDistrict, và listWard vào mã JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+<script>
+    var citis = document.getElementById("province");
+    var districts = document.getElementById("district");
+    var wards = document.getElementById("ward");
+    var Parameter = {
+        url: "https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json",
+        method: "GET",
+        responseType: "application/json",
+    };
+    var promise = axios(Parameter);
+    promise.then(function (result) {
+        renderCity(result.data);
+    });
+
+    function renderCity(data) {
+        for (const x of data) {
+            citis.options[citis.options.length] = new Option(x.Name, x.Id);
+        }
+        citis.onchange = function () {
+            district.length = 1;
+            ward.length = 1;
+            if(this.value != ""){
+                const result = data.filter(n => n.Id === this.value);
+
+                for (const k of result[0].Districts) {
+                    district.options[district.options.length] = new Option(k.Name, k.Id);
+                }
+            }
+        };
+        district.onchange = function () {
+            ward.length = 1;
+            const dataCity = data.filter((n) => n.Id === citis.value);
+            if (this.value != "") {
+                const dataWards = dataCity[0].Districts.filter(n => n.Id === this.value)[0].Wards;
+
+                for (const w of dataWards) {
+                    wards.options[wards.options.length] = new Option(w.Name, w.Id);
+                }
+            }
+        };
+    }
+</script>
+
+<!-- App js -->
+<script src="/assets_admin/js/app.min.js"></script>
+<script>
+    let roomId = document.querySelector('input[name="roomId"]').value;
+    document.querySelectorAll('.delete-button').forEach(function (button) {
+        button.addEventListener('click', function () {
+            let imageId = this.getAttribute('data-imageId');
+            if (confirm("Are you sure you want to delete this image?")) {
+                window.location.href = '/room/deleteImage/' + roomId + "/" + imageId;
+            }
+        });
+    });
+    $(document).ready(function () {
+        // Customize Dropzone.js options here.
+        Dropzone.options.myAwesomeDropzone = {
+            url: "/upload", // Change this to the correct URL
+            paramName: "file", // Name of the file input field
+            maxFilesize: 5, // Maximum file size in MB
+            maxFiles: 10, // Maximum number of files
+            acceptedFiles: "image/*", // Restrict to image files
+            addRemoveLinks: true, // Display remove links
+            dictRemoveFile: "Remove", // Text for remove link
+
+            // Define a success callback for when files are uploaded successfully
+            success: function (file, response) {
+                // Handle the server response, if needed
+            },
+
+            // Define an addedfile event handler
+            addedfile: function (file) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    var imageElement = document.createElement("img");
+                    imageElement.src = e.target.result;
+                    imageElement.classList.add("preview-image");
+                    var imagePreviewContainer = document.querySelector(".image-preview");
+                    imagePreviewContainer.appendChild(imageElement);
+                };
+                reader.readAsDataURL(file);
+            },
+
+            // Define a removedfile event handler
+            removedfile: function (file) {
+                var imagePreviewContainer = document.querySelector(".image-preview");
+                var previewImages = imagePreviewContainer.getElementsByClassName("preview-image");
+                for (var i = 0; i < previewImages.length; i++) {
+                    if (previewImages[i].src === file.dataURL) {
+                        imagePreviewContainer.removeChild(previewImages[i]);
+                        break;
+                    }
+                }
+            }
+        };
+    });
+
+</script>
+<script type="text/javascript" src="/assets/js/jquery-2.2.1.min.js"></script>
+<script type="text/javascript" src="/assets/js/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="/assets/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/assets/js/icheck.min.js"></script>
+<script type="text/javascript" src="/assets/js/custom.js"></script>
+
+</body>
+</html>

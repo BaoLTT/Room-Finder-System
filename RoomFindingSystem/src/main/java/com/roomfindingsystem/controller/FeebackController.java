@@ -1,5 +1,6 @@
 package com.roomfindingsystem.controller;
 
+import com.roomfindingsystem.dto.FeedbackListAdminDto;
 import com.roomfindingsystem.entity.FeedbackEntity;
 import com.roomfindingsystem.service.FeedbackService;
 
@@ -22,12 +23,17 @@ public class FeebackController {
     @Autowired
     private FeedbackService feedbackService;
     @RequestMapping(value = "feedback-list")
-    public String getFeebackList(Model model, @RequestParam(value = "pageNo",defaultValue = "1") Integer pageNo) {
-        Page<FeedbackEntity> list = feedbackService.getListFeedback(PageRequest.of(1, 2));
+    public String getFeebackList(Model model) {
+        List<FeedbackListAdminDto> list = feedbackService.getListFeedback();
         model.addAttribute("feedbackList", list);
-        model.addAttribute("totalPage", list.getTotalPages());
-        model.addAttribute("currentPage", pageNo);
-        return "Listing-feedback-admin";
+        return "feedback-list-admin";
+    }
+
+    @RequestMapping(value = "feedback-list-landlord")
+    public String getFeebackListForLandLord(Model model) {
+        List<FeedbackListAdminDto> list = feedbackService.getListFeedbackForLandLord(1);
+        model.addAttribute("feedbackList", list);
+        return "feedback-list-landlord";
     }
 
 

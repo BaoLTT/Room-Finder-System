@@ -5,6 +5,7 @@ import com.roomfindingsystem.repository.SliderRepository;
 import com.roomfindingsystem.service.SliderService;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 @Service("sliderService")
 public class SliderServiceImpl implements SliderService {
@@ -15,7 +16,23 @@ public class SliderServiceImpl implements SliderService {
         this.sliderRepository = sliderRepository;
     }
     @Override
-    public List<SliderEntity> viewTop4Home() {
+    public List<SliderEntity> viewTop7Home() {
+        List<SliderEntity> list = new ArrayList<>();
+        if(sliderRepository.findAll().size()<7){
+            return sliderRepository.findAll();
+        } else {
+            for(int i = 0; i<7; i++){
+                list.add(sliderRepository.findAll().get(i));
+            }
+            return list;
+        }
+
+    }
+
+    @Override
+    public List<SliderEntity> viewAll() {
         return sliderRepository.findAll();
     }
+
+
 }
