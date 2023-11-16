@@ -4,7 +4,6 @@ import com.roomfindingsystem.dto.UserDto;
 import com.roomfindingsystem.entity.AddressEntity;
 import com.roomfindingsystem.entity.UserEntity;
 import com.roomfindingsystem.repository.AddressRepository;
-import com.roomfindingsystem.repository.UserReponsitory;
 import com.roomfindingsystem.service.AdminManageUserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
