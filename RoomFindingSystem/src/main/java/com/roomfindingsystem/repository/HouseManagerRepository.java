@@ -21,7 +21,7 @@ public interface HouseManagerRepository extends JpaRepository<HousesEntity,Integ
             "left join DistrictEntity d on a.districtId = d.districtId " +
             "left join WardEntity w on w.wardId = a.wardId " )
     List<HouseManagerTypeVo> findHouseManager();
-    @Query("select new com.roomfindingsystem.dto.HouseManagerTypeVo(h.houseId, h.houseName, h.description, h.createdDate, u1.firstName, u1.lastName, a.addressDetails, h.addressId, w.name, d.name, p.name,a.wardId,a.districtId,a.provinceId, t.typeName, h.lastModifiedDate, u2.firstName, u2.lastName, u.firstName, u.lastName) from HousesEntity h " +
+    @Query("select new com.roomfindingsystem.dto.HouseManagerTypeVo(h.houseId, h.houseName, h.description, h.createdDate, u1.firstName, u1.lastName, a.addressDetails, h.addressId, w.name, d.name, p.name,a.wardId,a.districtId,a.provinceId, t.typeName, h.typeHouseId, h.lastModifiedDate, u2.firstName, u2.lastName, u.firstName, u.lastName) from HousesEntity h " +
             "join TypeHouseEntity t on h.typeHouseId = t.typeId " +
             "left join UserEntity u on h.userId = u.userId " +
             "left join UserEntity u1 on h.createdBy = u1.userId " +
