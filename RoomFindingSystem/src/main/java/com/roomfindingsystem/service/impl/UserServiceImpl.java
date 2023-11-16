@@ -124,9 +124,12 @@ public class UserServiceImpl implements UserService {
         }
 
         userDto.setDob(user.getDob().toString());
-
-        System.out.println(userDto);
-
+        if(user.getUserStatusId() == 1) {
+            userDto.setStatus("ACTIVE");
+        }
+        else {
+            userDto.setStatus("INACTIVE");
+        }
         return userDto;
     }
 
@@ -199,6 +202,7 @@ public class UserServiceImpl implements UserService {
         saveUser.setLastName(userDto.getLastName());
         saveUser.setLastModifiedDate(Timestamp.from(Instant.now()));
         saveUser.setPhone(userDto.getPhone());
+        saveUser.setRoleId(userDto.getRole());
 
 //        User:
         saveUser.setUserId(user.getUserId());
@@ -206,8 +210,13 @@ public class UserServiceImpl implements UserService {
         saveUser.setFacebookId(user.getFacebookId());
         saveUser.setGmailId(user.getGmailId());
         saveUser.setPassword(user.getPassword());
-        saveUser.setRoleId(user.getRoleId());
-        saveUser.setUserStatusId(user.getUserStatusId());
+
+        if(Objects.equals(userDto.getStatus(), "ACTIVE")) {
+            saveUser.setUserStatusId(1);
+        }
+        else {
+            saveUser.setUserStatusId(0);
+        }
         userRepository.save(saveUser);
     }
     @Override
