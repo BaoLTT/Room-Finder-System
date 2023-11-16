@@ -1,7 +1,7 @@
 package com.roomfindingsystem.controller.admin;
 
 import com.roomfindingsystem.dto.UserDto;
-import com.roomfindingsystem.service.AdminEditUserService;
+import com.roomfindingsystem.service.AdminManageUserService;
 import com.roomfindingsystem.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,18 +13,18 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/admin/user")
-public class AdminEditUserController {
-    private final AdminEditUserService adminEditUserService;
+public class AdminManageUserController {
+    private final AdminManageUserService adminManageUserService;
     private final UserService userService;
 
-    public AdminEditUserController(AdminEditUserService adminEditUserService, UserService userService) {
-        this.adminEditUserService = adminEditUserService;
+    public AdminManageUserController(AdminManageUserService adminEditUserService, UserService userService) {
+        this.adminManageUserService = adminEditUserService;
         this.userService = userService;
     }
 
     @GetMapping()
     public String getListUserForm(Model model) {
-        List<UserDto> users = adminEditUserService.getAll();
+        List<UserDto> users = adminManageUserService.getAll();
         model.addAttribute("users", users);
         return "admin/list-user";
     }
@@ -38,7 +38,7 @@ public class AdminEditUserController {
 
     @PostMapping("/save")
     public String insertUserByAdmin(@ModelAttribute(name = "user") UserDto userDto, @RequestParam("file") MultipartFile file) throws IOException {
-        adminEditUserService.insertUser(userDto, file);
+        adminManageUserService.insertUser(userDto, file);
         return "redirect:/admin/user";
     }
 
@@ -52,7 +52,7 @@ public class AdminEditUserController {
 
     @GetMapping("/deleteUser/{id}")
     public String delete(@PathVariable("id") Integer id, Model model){
-        adminEditUserService.deleteById(id);
+        adminManageUserService.deleteById(id);
         return "redirect:/admin/user";
     }
 
