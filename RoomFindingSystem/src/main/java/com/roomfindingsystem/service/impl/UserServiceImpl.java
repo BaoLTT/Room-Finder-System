@@ -19,7 +19,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -28,7 +27,7 @@ import java.util.*;
 
 @Service
 public class UserServiceImpl implements UserService {
-    private final UserReponsitory userRepository;
+    private final UserRepository userRepository;
     private final AddressRepository addressRepository;
     private final ProvinceRepository provinceRepository;
     private final DistrictRepository districtRepository;
@@ -37,7 +36,7 @@ public class UserServiceImpl implements UserService {
 
     private final GcsService gcsService;
 
-    public UserServiceImpl(UserReponsitory userRepository, AddressRepository addressRepository, ProvinceRepository provinceRepository, DistrictRepository districtRepository, WardRepository wardRepository, ModelMapper modelMapper, GcsService gcsService) {
+    public UserServiceImpl(UserRepository userRepository, AddressRepository addressRepository, ProvinceRepository provinceRepository, DistrictRepository districtRepository, WardRepository wardRepository, ModelMapper modelMapper, GcsService gcsService) {
         this.userRepository = userRepository;
         this.addressRepository = addressRepository;
         this.provinceRepository = provinceRepository;
