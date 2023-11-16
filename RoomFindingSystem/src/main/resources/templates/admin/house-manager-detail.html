@@ -55,125 +55,130 @@
 
                 <div class="row">
                     <div class="col-12">
-                        <div th:object="${house}">
-                            <form class="form-horizontal" role="form"  method="post" th:action="@{/admin/house-manager/update}" th:object="${house}"  enctype="multipart/form-data">
-                                <div class="form-group row">
-                                    <label class="col-2 col-form-label">House ID</label>
-                                    <div class="col-10">
-                                        <p class="form-control-static"  th:text="*{houseID}"></p>
-                                        <input name="houseID" th:value="*{houseID}" type="hidden">
+                        <div class="card-box">
+                            <h4 class="header-title">Thông tin nhà trọ</h4>
+
+                            <div th:object="${house}">
+                                <form class="form-horizontal" role="form"  method="post" th:action="@{/admin/house-manager/update}" th:object="${house}"  enctype="multipart/form-data">
+                                    <div class="form-group row">
+                                        <label class="col-2 col-form-label">House ID</label>
+                                        <div class="col-10">
+                                            <p class="form-control-static"  th:text="*{houseID}"></p>
+                                            <input name="houseID" th:value="*{houseID}" type="hidden">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-2 col-form-label">Chủ trọ</label>
-                                    <div class="col-10">
-                                        <input type="text" class="form-control" readonly="" th:value="*{user_firstName+' '+user_lastName}">
+                                    <div class="form-group row">
+                                        <label class="col-2 col-form-label">Chủ trọ</label>
+                                        <div class="col-10">
+                                            <input type="text" class="form-control" readonly="" th:value="*{user_firstName+' '+user_lastName}">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-2 col-form-label" >Tên trọ</label>
-                                    <div class="col-10">
-                                        <input type="text"  name="houseName" class="form-control" th:value="*{houseName}" >
+                                    <div class="form-group row">
+                                        <label class="col-2 col-form-label" >Tên trọ</label>
+                                        <div class="col-10">
+                                            <input type="text"  name="houseName" class="form-control" th:value="*{houseName}" >
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-2 col-form-label">Người tạo</label>
-                                    <div class="col-10">
-                                        <input type="text" class="form-control" readonly="" th:value="*{created_firstName+' '+created_lastName}">
+                                    <div class="form-group row">
+                                        <label class="col-2 col-form-label">Người tạo</label>
+                                        <div class="col-10">
+                                            <input type="text" class="form-control" readonly="" th:value="*{created_firstName+' '+created_lastName}">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-2 col-form-label">Địa chỉ cụ thể</label>
-                                    <div class="col-10">
-                                        <input type="text" name="addressDetail" class="form-control" th:value="*{addressDetail}">
+                                    <div class="form-group row">
+                                        <label class="col-2 col-form-label">Địa chỉ cụ thể</label>
+                                        <div class="col-10">
+                                            <input type="text" name="addressDetail" class="form-control" th:value="*{addressDetail}">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-2 col-form-label">Địa chỉ </label>
-                                    <input type="hidden" name="addressid" th:value="*{address}">
-                                    <div class="col-3" >
-                                        <label for="province">Tỉnh</label>
-                                        <select class="form-control" name="province" id="province" style="display: none;">
-                                            <option value="" selected >Chọn tỉnh thành</option>
-                                        </select>
-                                        <!-- Hiển thị giá trị -->
-                                        <input class="form-control" th:id="provinceName" th:value="*{province}" />
+                                    <div class="form-group row">
+                                        <label class="col-2 col-form-label">Địa chỉ </label>
+                                        <input type="hidden" name="addressid" th:value="*{address}">
+                                        <div class="col-3" >
+                                            <label for="province">Tỉnh</label>
+                                            <select class="form-control" name="province" id="province" style="display: none;">
+                                                <option value="" selected >Chọn tỉnh thành</option>
+                                            </select>
+                                            <!-- Hiển thị giá trị -->
+                                            <input class="form-control" th:id="provinceName" th:value="*{province}" />
 
-                                        <!-- Truyền giá trị -->
-                                        <input type="hidden" name="provinceID" th:value="*{provinceID}" />
+                                            <!-- Truyền giá trị -->
+                                            <input type="hidden" name="provinceID" th:value="*{provinceID}" />
 
-                                    </div>
+                                        </div>
 
-                                    <div class="col-3" >
-                                        <label for="district">Huyện</label>
-                                        <select class="form-control" id="district" name="district" style="display: none;">
-                                            <option value="" selected>Chọn huyện</option>
-                                        </select>
-                                        <!-- Hiển thị giá trị -->
-                                        <input class="form-control" th:id="districtName" th:value="*{district}" />
+                                        <div class="col-3" >
+                                            <label for="district">Huyện</label>
+                                            <select class="form-control" id="district" name="district" style="display: none;">
+                                                <option value="" selected>Chọn huyện</option>
+                                            </select>
+                                            <!-- Hiển thị giá trị -->
+                                            <input class="form-control" th:id="districtName" th:value="*{district}" />
 
-                                        <!-- Truyền giá trị -->
-                                        <input type="hidden" name="districtID" th:value="*{districtID}" />
-
-
-                                    </div>
-                                    <div class="col-3" >
-                                        <label for="ward">Xã/Phường</label>
-                                        <select class="form-control" name="ward" id="ward" style="display: none;">
-                                            <option value="" selected>Chọn xã</option>
-                                        </select>
-                                        <input class="form-control" th:id="wardName" th:value="*{ward}">
-                                        <input type="hidden" name="wardID" th:value="*{wardID}" />
-
-                                    </div>
-
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-2 col-form-label">Ghi chú</label>
-                                    <div class="col-10">
-                                        <textarea class="form-control" rows="3" th:field="*{description}"> </textarea>
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <label class="col-2 col-form-label">Ngày tạo</label>
-                                    <div class="col-10">
-                                        <input type="date" class="form-control" readonly="" th:value="*{createdDate}">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-2 col-form-label">Ngày cuối cập nhật</label>
-                                    <div class="col-10">
-                                        <input type="date" class="form-control" readonly="" th:value="*{lastModifiedDate}">
-                                    </div>
-                                </div>
+                                            <!-- Truyền giá trị -->
+                                            <input type="hidden" name="districtID" th:value="*{districtID}" />
 
 
-                                <div class="form-group row">
-                                    <label class="col-2 col-form-label">Thể loại trọ</label>
-                                    <div class="col-10" >
+                                        </div>
+                                        <div class="col-3" >
+                                            <label for="ward">Xã/Phường</label>
+                                            <select class="form-control" name="ward" id="ward" style="display: none;">
+                                                <option value="" selected>Chọn xã</option>
+                                            </select>
+                                            <input class="form-control" th:id="wardName" th:value="*{ward}">
+                                            <input type="hidden" name="wardID" th:value="*{wardID}" />
 
-                                        <select class="form-control" th:field="*{typeHouseID}">
-                                            <option th:each="listType : ${listType}" th:value="${listType.getTypeId()}" th:text="${listType.typeName}"/>
-
-                                        </select>
+                                        </div>
 
                                     </div>
-                                </div>
-
-
-                                <div class="form-group row">
-                                    <label class="col-2 col-form-label"></label>
-                                    <div class="col-10" >
-                                        <button  type="submit" class="btn btn-success waves-light waves-effect width-md"> <span style="color: white">Lưu</span></button>
-                                        <a  type="button" class="btn btn-danger waves-light waves-effect width-md" href="http://localhost:8080/admin/house-manager"> <span style="color: white">Đóng</span></a>
-                                        <a  type="button" class="btn btn-success waves-light waves-effect width-md" style="float: right"> <span style="color: white">Quản lý phòng</span>  </a>
+                                    <div class="form-group row">
+                                        <label class="col-2 col-form-label">Ghi chú</label>
+                                        <div class="col-10">
+                                            <textarea class="form-control" rows="3" th:field="*{description}"> </textarea>
+                                        </div>
                                     </div>
-                                </div>
 
-                            </form>
-                        </div>
-                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-2 col-form-label">Ngày tạo</label>
+                                        <div class="col-10">
+                                            <input type="date" class="form-control" readonly="" th:value="*{createdDate}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-2 col-form-label">Ngày cuối cập nhật</label>
+                                        <div class="col-10">
+                                            <input type="date" class="form-control" readonly="" th:value="*{lastModifiedDate}">
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group row">
+                                        <label class="col-2 col-form-label">Thể loại trọ</label>
+                                        <div class="col-10" >
+
+                                            <select class="form-control" th:field="*{typeHouseID}">
+                                                <option th:each="listType : ${listType}" th:value="${listType.getTypeId()}" th:text="${listType.typeName}"/>
+
+                                            </select>
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group row">
+                                        <label class="col-2 col-form-label"></label>
+                                        <div class="col-10" >
+                                            <button  type="submit" class="btn btn-success waves-light waves-effect width-md"> <span style="color: white">Lưu</span></button>
+                                            <a  type="button" class="btn btn-danger waves-light waves-effect width-md" href="http://localhost:8080/admin/house-manager"> <span style="color: white">Đóng</span></a>
+                                            <a  type="button" class="btn btn-success waves-light waves-effect width-md" style="float: right"> <span style="color: white">Quản lý phòng</span>  </a>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+
+                        </div> <!-- end card-box -->
+                    </div><!-- end col -->
 
                 </div>
                 <!-- end row -->
