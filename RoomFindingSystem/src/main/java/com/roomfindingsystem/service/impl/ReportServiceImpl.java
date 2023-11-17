@@ -1,5 +1,7 @@
 package com.roomfindingsystem.service.impl;
 
+
+import com.roomfindingsystem.dto.ReportListDto;
 import com.roomfindingsystem.entity.ReportEntity;
 import com.roomfindingsystem.repository.ReportRepository;
 import com.roomfindingsystem.service.ReportService;
@@ -31,6 +33,7 @@ public class ReportServiceImpl implements ReportService {
     }
 
     @Override
+
     public ReportEntity save(ReportEntity reportEntity) {
         return reportRepository.save(reportEntity);
     }
@@ -42,6 +45,25 @@ public class ReportServiceImpl implements ReportService {
 
     @Override
     public void deleteByHouseIdAndMemberId(int houseid, int userid) {
-        reportRepository.deleteByHouseIdAndMemberId(houseid, userid);
+        reportRepository.deleteByHouseIdAndMemberId(houseid, userid);}
+
+    public List<ReportListDto> getAllReport() {
+        return reportRepository.findAllReport();
+    }
+
+    @Override
+    public int updateStatusProcessed(int id) {
+        return reportRepository.updateStatusReportProcessed(id);
+    }
+
+    @Override
+    public int updateStatusHandle(int id) {
+        return reportRepository.updateStatusReportHandle(id);
+    }
+
+    @Override
+    public int updateStatusWaiting(int id) {
+        return reportRepository.updateStatusReportWaiting(id);
+
     }
 }

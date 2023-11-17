@@ -20,4 +20,6 @@ public interface HouseManagerService {
 
     void inserImageHouse(HouseImagesEntity images);
 
+    void updateHouse(HousesEntity houses,int houseID);
+
 }

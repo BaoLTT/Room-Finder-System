@@ -85,6 +85,14 @@ public class HousesEntity {
         this.typeHouseId = typeHouseId;
         this.userId = userId;
     }
+    public HousesEntity(String houseName, String description, LocalDate lastModifiedDate, Integer lastModifiedBy, int addressId, int typeHouseId) {
+        this.houseName = houseName;
+        this.description = description;
+        this.lastModifiedDate = lastModifiedDate;
+        this.lastModifiedBy = lastModifiedBy;
+        this.addressId = addressId;
+        this.typeHouseId = typeHouseId;
+    }
 
     @Override
     public int hashCode() {

@@ -100,8 +100,6 @@ public class RoomServiceImpl implements RoomService {
 
             roomHomeDtos.add(roomHomeDto);
         }
-
-
         return roomHomeDtos;
 
     }

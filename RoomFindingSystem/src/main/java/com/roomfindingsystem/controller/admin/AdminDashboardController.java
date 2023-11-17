@@ -1,8 +1,12 @@
 package com.roomfindingsystem.controller.admin;
 
 
+import com.roomfindingsystem.entity.UserEntity;
 import com.roomfindingsystem.service.*;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,7 +36,7 @@ public class  AdminDashboardController {
     @Autowired
     ReportService reportService;
     @GetMapping("/dashboard")
-    public String getDashboard(Model model){
+    public String getDashboard(Model model, HttpServletRequest request){
         model.addAttribute("numberOfHouses", houseService.countHousesInAdmin());
         model.addAttribute("numberOfUsers", userService.countUserInAdmin());
         model.addAttribute("numberOfPosts", postService.countPosts());
@@ -43,6 +47,7 @@ public class  AdminDashboardController {
         statusList.add(1);  statusList.add(2);  statusList.add(3);
 
         model.addAttribute("statusList", statusList);
+
         return "admin/adminDashboard";
     }
 

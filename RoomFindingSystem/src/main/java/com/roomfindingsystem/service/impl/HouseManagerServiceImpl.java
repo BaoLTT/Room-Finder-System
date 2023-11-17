@@ -6,6 +6,7 @@ import com.roomfindingsystem.entity.HousesEntity;
 import com.roomfindingsystem.repository.HouseManagerRepository;
 import com.roomfindingsystem.repository.ImagesHouseRepository;
 import com.roomfindingsystem.service.HouseManagerService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -57,4 +58,9 @@ public class HouseManagerServiceImpl implements HouseManagerService {
         imagesHouseRepository.save(images);
     }
 
+    @Transactional
+    @Override
+    public void updateHouse(HousesEntity houses, int houseID) {
+        houseManagerRepository.updateHouse(houses.getHouseName(), houses.getTypeHouseId(),houses.getAddressId(),houses.getDescription(),houses.getLastModifiedBy(),houses.getLastModifiedDate(),houseID);
+    }
 }

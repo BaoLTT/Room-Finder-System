@@ -19,7 +19,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -28,7 +27,7 @@ import java.util.*;
 
 @Service
 public class UserServiceImpl implements UserService {
-    private final UserReponsitory userRepository;
+    private final UserRepository userRepository;
     private final AddressRepository addressRepository;
     private final ProvinceRepository provinceRepository;
     private final DistrictRepository districtRepository;
@@ -37,7 +36,7 @@ public class UserServiceImpl implements UserService {
 
     private final GcsService gcsService;
 
-    public UserServiceImpl(UserReponsitory userRepository, AddressRepository addressRepository, ProvinceRepository provinceRepository, DistrictRepository districtRepository, WardRepository wardRepository, ModelMapper modelMapper, GcsService gcsService) {
+    public UserServiceImpl(UserRepository userRepository, AddressRepository addressRepository, ProvinceRepository provinceRepository, DistrictRepository districtRepository, WardRepository wardRepository, ModelMapper modelMapper, GcsService gcsService) {
         this.userRepository = userRepository;
         this.addressRepository = addressRepository;
         this.provinceRepository = provinceRepository;
@@ -124,9 +123,12 @@ public class UserServiceImpl implements UserService {
         }
 
         userDto.setDob(user.getDob().toString());
-
-        System.out.println(userDto);
-
+        if(user.getUserStatusId() == 1) {
+            userDto.setStatus("ACTIVE");
+        }
+        else {
+            userDto.setStatus("INACTIVE");
+        }
         return userDto;
     }
 
@@ -199,6 +201,7 @@ public class UserServiceImpl implements UserService {
         saveUser.setLastName(userDto.getLastName());
         saveUser.setLastModifiedDate(Timestamp.from(Instant.now()));
         saveUser.setPhone(userDto.getPhone());
+        saveUser.setRoleId(userDto.getRole());
 
 //        User:
         saveUser.setUserId(user.getUserId());
@@ -206,8 +209,13 @@ public class UserServiceImpl implements UserService {
         saveUser.setFacebookId(user.getFacebookId());
         saveUser.setGmailId(user.getGmailId());
         saveUser.setPassword(user.getPassword());
-        saveUser.setRoleId(user.getRoleId());
-        saveUser.setUserStatusId(user.getUserStatusId());
+
+        if(Objects.equals(userDto.getStatus(), "ACTIVE")) {
+            saveUser.setUserStatusId(1);
+        }
+        else {
+            saveUser.setUserStatusId(0);
+        }
         userRepository.save(saveUser);
     }
     @Override
