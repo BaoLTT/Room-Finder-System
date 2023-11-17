@@ -2549,7 +2549,9 @@ ul.half li {
 .main-content .feature .circle i {
   font-size: 20px;
 }
-
+.favourite a[href^="https://www.facebook.com/"] {
+  display: none !important;
+}
 .map a[href^="http://maps.google.com/maps"] {
   display: none !important;
 }

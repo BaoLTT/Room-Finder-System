@@ -43,7 +43,7 @@ public class HouseListController {
     public String list(@RequestParam(name = "page", required = false, defaultValue = "1") Integer pageIndex, @RequestParam(name = "houseName",required = false , defaultValue = "") String houseName,
                        @RequestParam(name = "price",required = false,defaultValue = "0") List<String> price,
                        @RequestParam(name = "type", required = false,defaultValue = "0") List<String> type,
-                       @RequestParam(name = "service", required = false) List<String> service,Model model, HttpSession httpSession){
+                       @RequestParam(name = "service", required = false, defaultValue = "0") List<String> service,Model model, HttpSession httpSession){
         List<Integer> listType = new ArrayList<>();
         List<Integer> listPrice = new ArrayList<>();
         List<Integer> listService = new ArrayList<>();
@@ -69,7 +69,7 @@ public class HouseListController {
                 listType.add(Integer.parseInt(type1));
             }
         }
-        if(service==null){
+        if(service.contains("0")){
             service = List.of("0");
         }else{
             for(int i=0;i<service.size();i++){
