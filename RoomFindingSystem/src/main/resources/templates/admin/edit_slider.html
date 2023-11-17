@@ -59,7 +59,7 @@
 
 
                             <form class="parsley-examples"  id="myForm" th:action="@{/admin/slider/update}" th:object="${slider}" method="post"  enctype="multipart/form-data" >
-                                <input type="hidden" >
+                                <input type="hidden" th:field = "*{sliderid}">
 
 
                                 <div class="form-group">
