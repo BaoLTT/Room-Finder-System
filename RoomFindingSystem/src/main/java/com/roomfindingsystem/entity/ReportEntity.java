@@ -12,6 +12,10 @@ public class ReportEntity {
     @Id
     @Column(name = "reportid")
     private int reportid;
+
+    @Basic
+    @Column(name = "title")
+    private String title;
     @Basic
     @Column(name = "report_description")
     private String reportDescription;
@@ -27,6 +31,9 @@ public class ReportEntity {
     @Basic
     @Column(name = "userid")
     private Integer userid;
+    @Basic
+    @Column(name = "houseid")
+    private Integer houseid;
 
     public int getReportid() {
         return reportid;
@@ -42,6 +49,14 @@ public class ReportEntity {
 
     public void setReportDescription(String reportDescription) {
         this.reportDescription = reportDescription;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public Date getCreatedDate() {
@@ -74,6 +89,14 @@ public class ReportEntity {
 
     public void setUserid(Integer userid) {
         this.userid = userid;
+    }
+
+    public Integer getHouseid() {
+        return houseid;
+    }
+
+    public void setHouseid(Integer houseid) {
+        this.houseid = houseid;
     }
 
     @Override
