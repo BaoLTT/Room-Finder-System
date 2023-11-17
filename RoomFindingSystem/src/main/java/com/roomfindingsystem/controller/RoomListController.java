@@ -31,7 +31,7 @@ public class RoomListController {
         for(String type1: type){
             listType.add(Integer.parseInt(type1));
         }
-        int pageSize =9;
+        int pageSize =12;
         int totalRoom = 0;
         int offset = (pageIndex -1)*pageSize;
         int totalPage;
