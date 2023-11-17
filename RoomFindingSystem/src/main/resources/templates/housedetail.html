@@ -220,8 +220,11 @@
                                 <h2 th:text="${HousesEntity.houseName}">Miêu tả chi tiết</h2>
                             </div>
                             <div class="col-md-6 text-right"> <!-- Chia cột, dính về bên phải -->
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reportModalCenter" style="background-color: red" >
-                                    <i class="fa fa-flag" style="color: #FFFFFF"></i><span style="color: #FFFFFF" th:if="${countReport==0}">  Báo cáo</span><span style="color: #FFFFFF" th:if="${countReport>0}">  Chỉnh sửa báo cáo</span>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reportModalCenter" style="background-color: red" th:if="${countReport==0}">
+                                    <i class="fa fa-flag" style="color: #FFFFFF"></i><span style="color: #FFFFFF" th:if="${countReport==0}">  Báo cáo</span>
+                                </button>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reportModalCenter" style="background-color: grey" th:if="${countReport>0}">
+                                    <i class="fa fa-flag" style="color: #FFFFFF"></i><span style="color: #FFFFFF" > Chỉnh sửa báo cáo</span>
                                 </button>
 
                             </div>
