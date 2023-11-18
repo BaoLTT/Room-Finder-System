@@ -5,7 +5,9 @@ import com.roomfindingsystem.entity.AddressEntity;
 import com.roomfindingsystem.entity.UserEntity;
 import com.roomfindingsystem.repository.AddressRepository;
 import com.roomfindingsystem.repository.UserRepository;
-import com.roomfindingsystem.service.AdminEditUserService;
+
+import com.roomfindingsystem.service.AdminManageUserService;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,13 +22,17 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Service
-public class AdminEditUserServiceImpl implements AdminEditUserService {
+
+public class AdminManageUserServiceImpl implements AdminManageUserService {
+
     private final UserRepository userRepository;
     private final ModelMapper modelMapper;
     private final AddressRepository addressRepository;
     private final GcsService gcsService;
 
-    public AdminEditUserServiceImpl(UserRepository userRepository, ModelMapper modelMapper, AddressRepository addressRepository, GcsService gcsService) {
+
+    public AdminManageUserServiceImpl(UserRepository userRepository, ModelMapper modelMapper, AddressRepository addressRepository, GcsService gcsService) {
+
         this.userRepository = userRepository;
         this.modelMapper = modelMapper;
         this.addressRepository = addressRepository;
