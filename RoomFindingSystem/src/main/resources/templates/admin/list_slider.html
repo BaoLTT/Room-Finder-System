@@ -78,7 +78,7 @@
                         <div class="card-box table-responsive">
                             <div class="d-flex justify-content-end">
                                 <button class="btn btn-success mb-1 "><a th:href="@{/admin/sliderList/insert}"
-                                                                         style="color: white">Add New Slider</a></button>
+                                                                         style="color: white">Thêm mới slider</a></button>
                             </div>
                             <table id="datatable-buttons"
                                    class="table table-striped table-bordered dt-responsive nowrap"
@@ -103,7 +103,7 @@
                                     </td>
 
                                     <td >
-                                        <div id="image-slider"><img th:src="${slider.imgLink}" ></div>
+                                        <div class="image-slider"><img th:src="${slider.imgLink}" ></div>
 
                                     </td>
 
@@ -114,15 +114,16 @@
                                     <td th:text="${slider.createdBy}">
                                     </td>
 
-                                    <td th:text="${slider.status}">
-
+                                    <td>
+                                        <span th:if="${slider.status == '0'}">Không hoạt động</span>
+                                        <span th:if="${slider.status == '1'}">Hoạt động</span>
                                     </td>
 
 
                                     <td>
                                         <a th:href="@{/admin/sliderList/update/}+${slider.sliderid}"  class="btn btn-warning">Cập nhật</a>
-                                        <button th:href="@{/admin/sliderList/delete/}+${slider.sliderid}" class="btn btn-danger delete-button"
-                                                >Xóa
+                                        <button class="btn btn-danger delete-button"
+                                                th:attr="data-sliderid=${slider.sliderid}">Xóa
                                         </button>
                                     </td>
                                 </tr>
@@ -135,7 +136,25 @@
             </div> <!-- end container-fluid -->
 
         </div> <!-- end content -->
-
+        <div class="modal" id="deleteConfirmationModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Xác nhận xóa</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Bạn có chắc chắn muốn xóa không?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        <button type="button" class="btn btn-danger" id="deleteButton">Xóa</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Footer Start -->
         <footer class="footer">
@@ -275,12 +294,29 @@
 <!-- App js -->
 <script th:src="@{/assets_admin/js/app.min.js}"></script>
 <script>
-    document.querySelectorAll('.delete-button').forEach(function (button) {
-        button.addEventListener('click', function () {
-            let roomId = this.getAttribute('data-roomid');
-            if (confirm("Are you sure you want to delete this room?")) {
-                window.location.href = '/room/deleteRoom/' + roomId;
-            }
+    document.addEventListener("DOMContentLoaded", function () {
+        var deleteButtons = document.querySelectorAll(".delete-button");
+
+        deleteButtons.forEach(function (button) {
+            button.addEventListener("click", function () {
+                // Lấy sliderId từ thuộc tính data-sliderid
+                var sliderId = button.getAttribute("data-sliderid");
+
+                // Hiển thị modal và gán sliderId vào nút Xóa trong modal
+                $('#deleteConfirmationModal').modal('show');
+                document.getElementById("deleteButton").setAttribute("data-sliderid", sliderId);
+            });
+        });
+
+        document.getElementById("deleteButton").addEventListener("click", function () {
+            // Lấy sliderId từ thuộc tính data-sliderid của nút Xóa trong modal
+            var sliderId = this.getAttribute("data-sliderid");
+
+            // Thực hiện xóa hoặc gửi yêu cầu xóa dữ liệu
+            window.location.href = '/admin/sliderList/delete/' + sliderId;
+
+            // Sau khi xóa xong, đóng modal
+            $('#deleteConfirmationModal').modal('hide');
         });
     });
 </script>

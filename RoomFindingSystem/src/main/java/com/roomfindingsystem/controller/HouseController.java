@@ -80,8 +80,7 @@ public class HouseController {
         List<FeedbackEntity> feedbackEntities= feedbackService.getFeedbackEntityByUid(houseId, user.getUserId());
         count = feedbackEntities.size();
 
-        if(count>0)
-        feedbackEntity = feedbackEntities.get(0);
+        if(count>0) feedbackEntity = feedbackEntities.get(0);
 
 
 
