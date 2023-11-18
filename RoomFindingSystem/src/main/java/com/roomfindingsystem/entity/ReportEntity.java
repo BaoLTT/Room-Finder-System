@@ -20,6 +20,10 @@ public class ReportEntity {
     @Id
     @Column(name = "reportid")
     private int reportid;
+
+    @Basic
+    @Column(name = "title")
+    private String title;
     @Basic
     @Column(name = "report_description")
     private String reportDescription;
@@ -28,7 +32,6 @@ public class ReportEntity {
     private Date createdDate;
     @Basic
     @Column(name = "report_status")
-
     private String reportStatus;
 
     @Basic
@@ -37,6 +40,12 @@ public class ReportEntity {
     @Basic
     @Column(name = "userid")
     private Integer userid;
+    @Basic
+    @Column(name = "houseid")
+    private Integer houseid;
+
+
+
 
 
 }
