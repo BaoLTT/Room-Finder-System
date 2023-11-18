@@ -1,5 +1,6 @@
 package com.roomfindingsystem.service;
 
+
 import com.roomfindingsystem.dto.ReportListDto;
 import com.roomfindingsystem.entity.ReportEntity;
 
@@ -11,6 +12,13 @@ public interface ReportService {
     int countProcessingReports();
 
     int countProcessedReports();
+
+    ReportEntity save(ReportEntity reportEntity);
+
+    List<ReportEntity> getReportEntityByUid(int houseid, int userid);
+
+    void deleteByHouseIdAndMemberId(int houseid, int userid);
+
 
     List<ReportListDto> getAllReport();
 

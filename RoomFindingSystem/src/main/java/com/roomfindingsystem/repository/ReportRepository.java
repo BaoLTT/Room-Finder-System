@@ -1,5 +1,8 @@
 package com.roomfindingsystem.repository;
 
+
+import com.roomfindingsystem.entity.FeedbackEntity;
+
 import com.roomfindingsystem.dto.ReportListDto;
 import com.roomfindingsystem.entity.ReportEntity;
 import jakarta.transaction.Transactional;
@@ -23,6 +26,17 @@ public interface ReportRepository extends JpaRepository<ReportEntity, Integer> {
     @Query("select count(*) from ReportEntity r where r.reportStatus='ĐÃ_XỬ_LÝ'")
     int countProcessedReports();
 
+
+    @Query("SELECT r FROM ReportEntity r WHERE r.houseid = :houseId AND r.userid = :userid")
+    List<ReportEntity> getReportEntityByUid(int houseId, int userid);
+    public ReportEntity save(ReportEntity reportEntity);
+    @Transactional
+    @Modifying
+    @Query("DELETE FROM ReportEntity r WHERE r.houseid = :houseid AND r.userid = :userid")
+    void deleteByHouseIdAndMemberId(int houseid, int userid);
+
+
+
     @Query("select new com.roomfindingsystem.dto.ReportListDto(r.reportid,r.reportDescription,r.createdDate,r.reportStatus,r.solvedDate,u.email,h.houseName) from UserEntity u  join " +
             "ReportEntity  r on r.userid= u.userId" +
             " join HousesEntity h on r.houseid = h.houseId")
@@ -40,5 +54,6 @@ public interface ReportRepository extends JpaRepository<ReportEntity, Integer> {
     @Transactional
     @Query("UPDATE ReportEntity set reportStatus='Đã Xử Lý' WHERE reportid=?1" )
     int updateStatusReportProcessed(int id);
+
 
 }
