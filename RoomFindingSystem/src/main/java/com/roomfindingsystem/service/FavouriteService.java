@@ -1,14 +1,14 @@
 package com.roomfindingsystem.service;
 
-import com.roomfindingsystem.dto.FavouriteDto;
 import com.roomfindingsystem.entity.FavouriteEntity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import jakarta.transaction.Transactional;
 
-import java.time.LocalDate;
+import java.util.Optional;
 
 public interface FavouriteService {
 
-//    void addToFavourite(FavouriteDto favouriteDto);
+
+    FavouriteEntity addToFavourite(FavouriteEntity favouriteEntity);
+    FavouriteEntity insert(int id);
 }

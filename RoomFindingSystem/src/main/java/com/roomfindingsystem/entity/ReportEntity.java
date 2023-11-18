@@ -35,6 +35,9 @@ public class ReportEntity {
     @Basic
     @Column(name = "userid")
     private Integer userid;
+    @Basic
+    @Column(name = "houseid")
+    private Integer houseid;
 
 
 }

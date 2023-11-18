@@ -23,8 +23,9 @@ public interface ReportRepository extends JpaRepository<ReportEntity, Integer> {
     @Query("select count(*) from ReportEntity r where r.reportStatus='ĐÃ_XỬ_LÝ'")
     int countProcessedReports();
 
-    @Query("select new com.roomfindingsystem.dto.ReportListDto(r.reportid,r.reportDescription,r.createdDate,r.reportStatus,r.solvedDate,u.email) from ReportEntity r left join " +
-            "UserEntity  u on r.userid= u.userId")
+    @Query("select new com.roomfindingsystem.dto.ReportListDto(r.reportid,r.reportDescription,r.createdDate,r.reportStatus,r.solvedDate,u.email,h.houseName) from UserEntity u  join " +
+            "ReportEntity  r on r.userid= u.userId" +
+            " join HousesEntity h on r.houseid = h.houseId")
     List<ReportListDto> findAllReport();
 
     @Modifying

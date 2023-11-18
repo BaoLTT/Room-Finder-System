@@ -17,4 +17,6 @@ public class ReportListDto {
     private String reportStatus;
     private Date solvedDate;
     private String email;
+    private String houseName;
+
 }
