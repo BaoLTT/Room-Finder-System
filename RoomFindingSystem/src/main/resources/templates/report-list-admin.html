@@ -57,13 +57,14 @@
                                     <th>ID</th>
                                     <th>Miêu tả vấn đề</th>
                                     <th>Tình trạng</th>
-
+                                    <th>Tên Trọ </th>
                                     <th>Email</th>
                                     <th>
                                         Thay Đổi Trạng Thái
                                     </th>
                                     <th>Ngày Tạo</th>
                                     <th>Ngày Giải Quyết</th>
+
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -75,6 +76,8 @@
                                     </td>
 
                                     <td th:text="${reportList.reportStatus}">
+                                    </td>
+                                    <td th:text="${reportList.houseName}">
                                     </td>
                                     <td th:text="${reportList.email}">
                                     </td>
@@ -91,11 +94,11 @@
 <!--                                                javascript:void(0);-->
                                                 <a th:href="@{/waiting?id={id}(id=${reportList.reportId})}" class="dropdown-item notify-item">
                                                     <i class="fe-user"></i>
-                                                    <span>Chờ Xử Lý</span>
+                                                    <span style="color: #eea236;">Chờ Xử Lý</span>
                                                 </a>
                                                 <a th:href="@{/handle?id={id}(id=${reportList.reportId})}" class="dropdown-item notify-item">
                                                     <iconify-icon icon="tdesign:load"></iconify-icon>
-                                                    <span >Đang Xử Lý</span>
+                                                    <span style="color: #4cae4c;" >Đang Xử Lý</span>
                                                 </a>
                                                 <a th:href="@{/processed?id={id}(id=${reportList.reportId})}" class="dropdown-item notify-item">
                                                     <iconify-icon icon="material-symbols:done"></iconify-icon>
