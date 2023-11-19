@@ -27,10 +27,10 @@ public class UserController {
     @Autowired
     private UserService userService;
     @Autowired
-     PasswordEncoder passwordEncoder;
-     EmailSenderService emailSenderService;
+    private PasswordEncoder passwordEncoder;
+    private EmailSenderService emailSenderService;
     @Autowired
-     Smsservice smsservice;
+     private Smsservice smsservice;
 
 
     public UserController(EmailSenderService emailSenderService) {

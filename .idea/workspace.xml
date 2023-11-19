@@ -4,21 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ec34e655-ee0a-4be9-8773-96fceb50fb67" name="Changes" comment="update slider va test">
+    <list default="true" id="ec34e655-ee0a-4be9-8773-96fceb50fb67" name="Changes" comment="update 1 so cai trong housedetail">
+      <change afterPath="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/example/roomfindingsystem/controller/HouseDetailControllerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/HouseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/HouseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/config/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/config/SecurityConfiguration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/dto/RoomHouseDetailDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/dto/RoomHouseDetailDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/repository/RoomRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/repository/RoomRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/impl/RoomServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/impl/RoomServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/impl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/homepage.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/homepage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/housedetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/housedetail.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/example/roomfindingsystem/controller/UserRegisterControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/example/roomfindingsystem/controller/UserRegisterControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/example/roomfindingsystem/service/UserRegisterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/example/roomfindingsystem/service/UserRegisterTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/target/classes/com/roomfindingsystem/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/target/classes/com/roomfindingsystem/service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/target/classes/templates/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/target/classes/templates/detail.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,7 +99,23 @@
       <recent name="com.roomfindingsystem.entity" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.Main">
+  <component name="RunManager" selected="JUnit.UserRegisterControllerTest">
+    <configuration name="HouseDetailControllerTest.testGetAllHouse" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="RoomFindingSystem" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.roomfindingsystem.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.roomfindingsystem.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.example.roomfindingsystem.controller.HouseDetailControllerTest" />
+      <option name="METHOD_NAME" value="testGetAllHouse" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="UserRegisterControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RoomFindingSystem" />
       <extension name="coverage">
@@ -139,17 +147,18 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserRegisterTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="UserRegisterControllerTest.testSave_ValidUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RoomFindingSystem" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.example.roomfindingsystem.service.*" />
+          <option name="PATTERN" value="com.example.roomfindingsystem.controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.example.roomfindingsystem.service" />
-      <option name="MAIN_CLASS_NAME" value="com.example.roomfindingsystem.service.UserRegisterTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="PACKAGE_NAME" value="com.example.roomfindingsystem.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.example.roomfindingsystem.controller.UserRegisterControllerTest" />
+      <option name="METHOD_NAME" value="testSave_ValidUser" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -165,22 +174,6 @@
       <option name="PACKAGE_NAME" value="com.example.roomfindingsystem.service" />
       <option name="MAIN_CLASS_NAME" value="com.example.roomfindingsystem.service.UserRegisterTest" />
       <option name="METHOD_NAME" value="testFindByEmail_EmailCaseInsensitive" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UserRegisterTest.testFindByEmail_InvalidEmailFormat" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="RoomFindingSystem" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.roomfindingsystem.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.example.roomfindingsystem.service" />
-      <option name="MAIN_CLASS_NAME" value="com.example.roomfindingsystem.service.UserRegisterTest" />
-      <option name="METHOD_NAME" value="testFindByEmail_InvalidEmailFormat" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -280,21 +273,21 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="JUnit.HouseDetailControllerTest.testGetAllHouse" />
+      <item itemvalue="JUnit.UserRegisterControllerTest.testSave_ValidUser" />
       <item itemvalue="JUnit.UserRegisterControllerTest" />
-      <item itemvalue="JUnit.UserRegisterTest" />
       <item itemvalue="JUnit.UserRegisterControllerTest.testSave_UserWithExistingEmail" />
       <item itemvalue="JUnit.UserRegisterTest.testFindByEmail_EmailCaseInsensitive" />
-      <item itemvalue="JUnit.UserRegisterTest.testFindByEmail_InvalidEmailFormat" />
       <item itemvalue="Spring Boot.Main" />
       <item itemvalue="Tomcat Server.Tomcat 9.0.69" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.UserRegisterControllerTest" />
+        <item itemvalue="JUnit.UserRegisterControllerTest.testSave_ValidUser" />
+        <item itemvalue="JUnit.HouseDetailControllerTest.testGetAllHouse" />
         <item itemvalue="JUnit.UserRegisterControllerTest.testSave_UserWithExistingEmail" />
         <item itemvalue="JUnit.UserRegisterTest.testFindByEmail_EmailCaseInsensitive" />
-        <item itemvalue="JUnit.UserRegisterTest" />
-        <item itemvalue="JUnit.UserRegisterControllerTest" />
-        <item itemvalue="JUnit.UserRegisterTest.testFindByEmail_InvalidEmailFormat" />
       </list>
     </recent_temporary>
   </component>
@@ -365,7 +358,7 @@
       <workItem from="1700282488565" duration="14789000" />
       <workItem from="1700337270292" duration="5869000" />
       <workItem from="1700344307255" duration="106000" />
-      <workItem from="1700371315356" duration="6627000" />
+      <workItem from="1700371315356" duration="15445000" />
     </task>
     <task id="LOCAL-00001" summary="fix register and boảding house detail and send mail future">
       <option name="closed" value="true" />
@@ -551,15 +544,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699804229865</updated>
     </task>
-    <task id="LOCAL-00024" summary="sua loi trong report entity">
+    <task id="LOCAL-00024" summary="update 1 so cai trong housedetail">
       <option name="closed" value="true" />
-      <created>1699897622821</created>
+      <created>1700400960291</created>
       <option name="number" value="00024" />
       <option name="presentableId" value="LOCAL-00024" />
       <option name="project" value="LOCAL" />
-      <updated>1699897622821</updated>
+      <updated>1700400960291</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -609,7 +602,8 @@
     <MESSAGE value="update fix the &lt;html&gt; cua list room admin" />
     <MESSAGE value="thêm phần up ảnh của profile lên bucket" />
     <MESSAGE value="report admin" />
-    <option name="LAST_COMMIT_MESSAGE" value="report admin" />
+    <MESSAGE value="update 1 so cai trong housedetail" />
+    <option name="LAST_COMMIT_MESSAGE" value="update 1 so cai trong housedetail" />
   </component>
   <component name="com.github.evgenys91.machinet.common.dslhistory.DslHistoryState">
     <option name="historyDtoById">
