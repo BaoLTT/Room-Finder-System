@@ -4,13 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="130c9416-e72b-46aa-82cd-d3e7e3468e0d" name="Changes" comment="report admin">
-      <change afterPath="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/roomfindingsystem/controller/UserControllerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/roomfindingsystem/service/impl/EmailSenderServiceImplTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+
+    <list default="true" id="ec34e655-ee0a-4be9-8773-96fceb50fb67" name="Changes" comment="update 1 so cai trong housedetail">
+      <change afterPath="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/example/roomfindingsystem/controller/HouseDetailControllerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/config/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/config/SecurityConfiguration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/example/roomfindingsystem/controller/UserRegisterControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/example/roomfindingsystem/controller/UserRegisterControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/target/classes/templates/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/target/classes/templates/detail.html" afterDir="false" />
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,8 +89,10 @@
       <recent name="com.roomfindingsystem.entity" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.UserControllerTest">
-    <configuration name="UserControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+
+  <component name="RunManager" selected="JUnit.UserRegisterControllerTest">
+    <configuration name="HouseDetailControllerTest.testGetAllHouse" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+
       <module name="RoomFindingSystem" />
       <extension name="coverage">
         <pattern>
@@ -96,46 +100,74 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.roomfindingsystem.controller" />
-      <option name="MAIN_CLASS_NAME" value="com.roomfindingsystem.controller.UserControllerTest" />
+
+      <option name="PACKAGE_NAME" value="com.example.roomfindingsystem.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.example.roomfindingsystem.controller.HouseDetailControllerTest" />
+      <option name="METHOD_NAME" value="testGetAllHouse" />
+      <option name="TEST_OBJECT" value="method" />
+
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+
+    <configuration name="UserRegisterControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+
+      <module name="RoomFindingSystem" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.roomfindingsystem.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+
+      <option name="PACKAGE_NAME" value="com.example.roomfindingsystem.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.example.roomfindingsystem.controller.UserRegisterControllerTest" />
       <option name="TEST_OBJECT" value="class" />
+
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserControllerTest.testGetId" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+
+    <configuration name="UserRegisterControllerTest.testSave_UserWithExistingEmail" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RoomFindingSystem" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.roomfindingsystem.controller.*" />
+          <option name="PATTERN" value="com.example.roomfindingsystem.controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.roomfindingsystem.controller" />
-      <option name="MAIN_CLASS_NAME" value="com.roomfindingsystem.controller.UserControllerTest" />
-      <option name="METHOD_NAME" value="testGetId" />
+      <option name="PACKAGE_NAME" value="com.example.roomfindingsystem.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.example.roomfindingsystem.controller.UserRegisterControllerTest" />
+      <option name="METHOD_NAME" value="testSave_UserWithExistingEmail" />
+
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserControllerTest.testGetProfilePageWhenUserIsAuthenticatedThenReturnProfileView" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+
+    <configuration name="UserRegisterControllerTest.testSave_ValidUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RoomFindingSystem" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.roomfindingsystem.controller.*" />
+          <option name="PATTERN" value="com.example.roomfindingsystem.controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.roomfindingsystem.controller" />
-      <option name="MAIN_CLASS_NAME" value="com.roomfindingsystem.controller.UserControllerTest" />
-      <option name="METHOD_NAME" value="testGetProfilePageWhenUserIsAuthenticatedThenReturnProfileView" />
+      <option name="PACKAGE_NAME" value="com.example.roomfindingsystem.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.example.roomfindingsystem.controller.UserRegisterControllerTest" />
+      <option name="METHOD_NAME" value="testSave_ValidUser" />
+
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserControllerTest.testGetProfilePageWhenUserIsNotAuthenticatedThenRedirectToLoginPage" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+
+    <configuration name="UserRegisterTest.testFindByEmail_EmailCaseInsensitive" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+
       <module name="RoomFindingSystem" />
       <extension name="coverage">
         <pattern>
@@ -143,25 +175,11 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.roomfindingsystem.controller" />
-      <option name="MAIN_CLASS_NAME" value="com.roomfindingsystem.controller.UserControllerTest" />
-      <option name="METHOD_NAME" value="testGetProfilePageWhenUserIsNotAuthenticatedThenRedirectToLoginPage" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UserControllerTest.testUpdateUserWhenValidDataThenSuccess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="RoomFindingSystem" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.roomfindingsystem.controller.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.roomfindingsystem.controller" />
-      <option name="MAIN_CLASS_NAME" value="com.roomfindingsystem.controller.UserControllerTest" />
-      <option name="METHOD_NAME" value="testUpdateUserWhenValidDataThenSuccess" />
+
+      <option name="PACKAGE_NAME" value="com.example.roomfindingsystem.service" />
+      <option name="MAIN_CLASS_NAME" value="com.example.roomfindingsystem.service.UserRegisterTest" />
+      <option name="METHOD_NAME" value="testFindByEmail_EmailCaseInsensitive" />
+
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -261,21 +279,25 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.UserControllerTest" />
-      <item itemvalue="JUnit.UserControllerTest.testGetProfilePageWhenUserIsNotAuthenticatedThenRedirectToLoginPage" />
-      <item itemvalue="JUnit.UserControllerTest.testUpdateUserWhenValidDataThenSuccess" />
-      <item itemvalue="JUnit.UserControllerTest.testGetId" />
-      <item itemvalue="JUnit.UserControllerTest.testGetProfilePageWhenUserIsAuthenticatedThenReturnProfileView" />
+
+      <item itemvalue="JUnit.HouseDetailControllerTest.testGetAllHouse" />
+      <item itemvalue="JUnit.UserRegisterControllerTest.testSave_ValidUser" />
+      <item itemvalue="JUnit.UserRegisterControllerTest" />
+      <item itemvalue="JUnit.UserRegisterControllerTest.testSave_UserWithExistingEmail" />
+      <item itemvalue="JUnit.UserRegisterTest.testFindByEmail_EmailCaseInsensitive" />
+
       <item itemvalue="Spring Boot.Main" />
       <item itemvalue="Tomcat Server.Tomcat 9.0.69" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.UserControllerTest" />
-        <item itemvalue="JUnit.UserControllerTest.testUpdateUserWhenValidDataThenSuccess" />
-        <item itemvalue="JUnit.UserControllerTest.testGetProfilePageWhenUserIsNotAuthenticatedThenRedirectToLoginPage" />
-        <item itemvalue="JUnit.UserControllerTest.testGetProfilePageWhenUserIsAuthenticatedThenReturnProfileView" />
-        <item itemvalue="JUnit.UserControllerTest.testGetId" />
+
+        <item itemvalue="JUnit.UserRegisterControllerTest" />
+        <item itemvalue="JUnit.UserRegisterControllerTest.testSave_ValidUser" />
+        <item itemvalue="JUnit.HouseDetailControllerTest.testGetAllHouse" />
+        <item itemvalue="JUnit.UserRegisterControllerTest.testSave_UserWithExistingEmail" />
+        <item itemvalue="JUnit.UserRegisterTest.testFindByEmail_EmailCaseInsensitive" />
+
       </list>
     </recent_temporary>
   </component>
@@ -336,9 +358,19 @@
       <workItem from="1699681970514" duration="1816000" />
       <workItem from="1699695870453" duration="2422000" />
       <workItem from="1699844968755" duration="2913000" />
-      <workItem from="1700117164999" duration="2665000" />
-      <workItem from="1700322146507" duration="2446000" />
-      <workItem from="1700402180243" duration="6715000" />
+
+      <workItem from="1700062419743" duration="4194000" />
+      <workItem from="1700074491389" duration="6054000" />
+      <workItem from="1700102984230" duration="5944000" />
+      <workItem from="1700115241592" duration="7866000" />
+      <workItem from="1700123447796" duration="402000" />
+      <workItem from="1700123869113" duration="12988000" />
+      <workItem from="1700211052753" duration="7432000" />
+      <workItem from="1700282488565" duration="14789000" />
+      <workItem from="1700337270292" duration="5869000" />
+      <workItem from="1700344307255" duration="106000" />
+      <workItem from="1700371315356" duration="15445000" />
+
     </task>
     <task id="LOCAL-00001" summary="fix register and boảding house detail and send mail future">
       <option name="closed" value="true" />
@@ -524,15 +556,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699804229865</updated>
     </task>
-    <task id="LOCAL-00024" summary="sua loi trong report entity">
+    <task id="LOCAL-00024" summary="update 1 so cai trong housedetail">
       <option name="closed" value="true" />
-      <created>1699897622821</created>
+      <created>1700400960291</created>
       <option name="number" value="00024" />
       <option name="presentableId" value="LOCAL-00024" />
       <option name="project" value="LOCAL" />
-      <updated>1699897622821</updated>
+      <updated>1700400960291</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -582,7 +614,8 @@
     <MESSAGE value="update fix the &lt;html&gt; cua list room admin" />
     <MESSAGE value="thêm phần up ảnh của profile lên bucket" />
     <MESSAGE value="report admin" />
-    <option name="LAST_COMMIT_MESSAGE" value="report admin" />
+    <MESSAGE value="update 1 so cai trong housedetail" />
+    <option name="LAST_COMMIT_MESSAGE" value="update 1 so cai trong housedetail" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
