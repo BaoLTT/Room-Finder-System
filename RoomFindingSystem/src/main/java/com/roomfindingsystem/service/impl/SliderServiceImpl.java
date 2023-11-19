@@ -68,8 +68,10 @@ public class SliderServiceImpl implements SliderService {
         return sliderRepository.save(slider1);
     }
 
-
-
+    @Override
+    public void deleteById(int id) {
+         sliderRepository.deleteById(id);
+    }
 
 
 }

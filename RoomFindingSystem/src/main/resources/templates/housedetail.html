@@ -215,7 +215,81 @@
                             <!--                            end title-->
 
                         </div>
-                        <strong>  <h2 th:text="${HousesEntity.houseName}">Miêu tả chi tiết</h2></strong>
+                        <div class="row">
+                            <div class="col-md-6"> <!-- Chia cột, có thể điều chỉnh theo ý muốn -->
+                                <h2 th:text="${HousesEntity.houseName}">Miêu tả chi tiết</h2>
+                            </div>
+                            <div class="col-md-6 text-right"> <!-- Chia cột, dính về bên phải -->
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reportModalCenter" style="background-color: red" th:if="${countReport==0}">
+                                    <i class="fa fa-flag" style="color: #FFFFFF"></i><span style="color: #FFFFFF" th:if="${countReport==0}">  Báo cáo</span>
+                                </button>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reportModalCenter" style="background-color: grey" th:if="${countReport>0}">
+                                    <i class="fa fa-flag" style="color: #FFFFFF"></i><span style="color: #FFFFFF" > Chỉnh sửa báo cáo</span>
+                                </button>
+
+                            </div>
+                            <div class="modal fade" id="reportModalCenter" tabindex="-1" role="dialog" aria-labelledby="reportModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="comment-title">
+                                                <h4>Gửi báo cáo</h4>
+                                            </div>
+                                            <form class="labels-uppercase clearfix"  th:object="${reportEntity}" th:action="@{/report}" method="post">
+                                                <!--                                <div class="alert alert-dark fade in center" role="alert">-->
+                                                <!--                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"-->
+                                                <!--                                            data-switch="#review-write">-->
+                                                <!--                                        <span aria-hidden="true">&times;</span>-->
+                                                <!--                                    </button>-->
+                                                <!--                                    <span class="sr-only">Error:</span>-->
+                                                <!--                                    <a href="#tab-sign-in" data-toggle="modal" data-tab="true"-->
+                                                <!--                                       data-target="#sign-in-register-modal">Xin mời đăng nhập để đánh giá</a>-->
+                                                <!--                                </div>-->
+                                                <div class="review write">
+                                                    <div class="comment" style="margin-top: 10px">
+
+                                                        <!--end title-->
+                                                        <div class="form-group">
+                                                            <label for="form_reply_1-name">Tiêu đề:<em style="color: red">*</em></label>
+                                                            <input type="text" class="form-control"
+                                                                   name="name" placeholder="Viết tiêu đề ở đây" required=""
+                                                                   th:field="*{title}">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="form_reply_1-message">Mô tả<em style="color: red">*</em></label>
+                                                            <textarea class="form-control"  rows="8"
+                                                                      name="answer" required="" placeholder="Viết mô tả ở đây"
+                                                                      th:field="*{reportDescription}" ></textarea>
+                                                        </div>
+                                                        <!--end form-group-->
+                                                    </div>
+                                                    <!--end comment-->
+                                                </div>
+                                                <input type="hidden" th:field="*{userid}">
+                                                <input type="hidden" th:field="*{houseid}">
+                                                <div class="modal-footer" style="border-top: 0px">
+<!--                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+                                                    <a th:href="@{deleteReport(houseId=*{houseid})}"><button type="button" class="btn btn-secondary">Xóa</button></a>
+                                                    <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+                                                </div>
+                                                <!--end review-->
+                                            </form>
+                                        </div>
+<!--                                        <div class="modal-footer" style="border-top: 0px">-->
+<!--                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+<!--                                            <button type="submit" class="btn btn-primary">Save changes</button>-->
+<!--                                        </div>-->
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
                         <!--                        <p th:text="${HousesEntity.houseImagesEntities}"></p>-->
                         <!--                        <img th:src="${HousesEntity.houseImagesEntities}" alt="">-->
                         <div class="row" th:object="${HousesEntity}">
@@ -303,7 +377,7 @@
                         </div>
                         <!--end row-->
                         <section>
-                            <div><h2 style="display: inline-block ">Why Choose </h2>  <strong><u> <h2 style="display: inline-block " th:text="${HousesEntity.houseName}"></h2></u></strong></div>
+                            <div><h2 style="display: inline-block ">Tại sao chọn</h2>  <strong><u> <h2 style="display: inline-block " th:text="${HousesEntity.houseName}"></h2></u></strong></div>
                             <div class="row">
                                 <div class="col-md-4 col-sm-4">
                                     <div class="feature">
@@ -384,11 +458,11 @@
                                     <table class="table">
                                         <thead>
                                         <tr>
-                                            <th>Room Type</th>
+                                            <th>Loại phòng</th>
 
                                             <!--                                            <th>Persons</th>-->
-                                            <th>Price</th>
-                                            <th>Rooms</th>
+                                            <th>Giá tiền</th>
+                                            <th>Phòng</th>
                                             <th></th>
                                         </tr>
                                         </thead>
@@ -403,13 +477,9 @@
 
                                                     <!--                                                    <figure class="label label-danger">1 Room Left!</figure>-->
                                                 </a>
-                                                <p>Consectetur adipiscing elit. Vivamus nec augue ac dui sodales
-                                                    euismod.
-                                                    Suspendisse at dui sit amet felis commodo dictum.
-                                                </p>
-                                                <ul class="info">
-                                                    <li>Breakfast Included</li>
-                                                    <li>VAT Included</li>
+
+                                                <ul th:each="service: ${room.serviceList}">
+                                                    <li><span th:text="${service}"></span></li>
                                                 </ul>
                                             </td>
 
@@ -438,22 +508,22 @@
                             </div>
                             <!--end form-reservations-->
                         </section>
-                        <section id="additional-information">
-                            <h2>Additional Information</h2>
-                            <dl class="info">
-                                <dt>Check-in:</dt>
-                                <dd>14:00 - 00:00</dd>
-                                <dt>Check-out:</dt>
-                                <dd><strong>Late Check-out: until 12:00 </strong></dd>
-                                <dt>Cancellation:</dt>
-                                <dd>Cancellation and prepayment policies vary according to room type.</dd>
-                                <dt>Children:</dt>
-                                <dd>All children are welcome.</dd>
-                                <dt>Pets:</dt>
-                                <dd>Pets are not allowed</dd>
-                            </dl>
-                            <!--end info-->
-                        </section>
+<!--                        <section id="additional-information">-->
+<!--                            <h2>Additional Information</h2>-->
+<!--                            <dl class="info">-->
+<!--                                <dt>Check-in:</dt>-->
+<!--                                <dd>14:00 - 00:00</dd>-->
+<!--                                <dt>Check-out:</dt>-->
+<!--                                <dd><strong>Late Check-out: until 12:00 </strong></dd>-->
+<!--                                <dt>Cancellation:</dt>-->
+<!--                                <dd>Cancellation and prepayment policies vary according to room type.</dd>-->
+<!--                                <dt>Children:</dt>-->
+<!--                                <dd>All children are welcome.</dd>-->
+<!--                                <dt>Pets:</dt>-->
+<!--                                <dd>Pets are not allowed</dd>-->
+<!--                            </dl>-->
+<!--                            &lt;!&ndash;end info&ndash;&gt;-->
+<!--                        </section>-->
                         <section id="reviews">
                             <div class="title">
                                 <h2 class="pull-left">Đánh giá</h2>
@@ -529,7 +599,7 @@
                                                                         <!--                                            data-switch="#review-write">-->
                                                                         <!--                                        <span aria-hidden="true">&times;</span>-->
                                                                         <!--                                    </button>-->
-                                                                        <!--                                    <span class="sr-only">Error:</span>-->
+                                                                       <!--                                    <span class="sr-only">Error:</span>-->
                                                                         <!--                                    <a href="#tab-sign-in" data-toggle="modal" data-tab="true"-->
                                                                         <!--                                       data-target="#sign-in-register-modal">Xin mời đăng nhập để đánh giá</a>-->
                                                                         <!--                                </div>-->
@@ -590,9 +660,11 @@
                                                     <span class="pull-left"><a href=""
                                                                                class="btn btn-framed btn-default btn-rounded btn-small icon"><i
                                                             class="fa fa-thumbs-up font-color-default"></i>3</a>Helpful Review?</span>
-                                                        <span class="pull-right"><a href=""
-                                                                                    class="link icon font-color-grey"><i
-                                                                class="fa fa-flag"></i>Report</a></span>
+                                                        <span class="pull-right">
+
+
+                                                        </span>
+
                                                     </div>
                                                     <!--end options-->
                                                     <!--                                                    <div class="answer">-->
@@ -683,13 +755,13 @@
                                         </div>
                                         <!--end title-->
                                         <div class="form-group">
-                                            <label for="form_reply_1-name">Tiêu đề đánh giá<em>*</em></label>
+                                            <label for="form_reply_1-name">Tiêu đề đánh giá<em style="color: red">*</em></label>
                                             <input type="text" class="form-control" id="form_reply_1-name"
                                                    name="name" placeholder="Viết tiêu đề ở đây" required=""
                                                    th:field="*{title}" pattern=".{20,}" title="Yêu cầu ít nhất 20 ký tự">
                                         </div>
                                         <div class="form-group">
-                                            <label for="form_reply_1-message">Mô tả<em>*</em></label>
+                                            <label for="form_reply_1-message">Mô tả<em style="color: red">*</em></label>
                                             <textarea class="form-control" id="form_reply_1-message" rows="8"
                                                       name="answer" required="" placeholder="Viết mô tả ở đây"
                                                       th:field="*{content}" pattern=".{20,}" title="Yêu cầu ít nhất 20 ký tự"></textarea>

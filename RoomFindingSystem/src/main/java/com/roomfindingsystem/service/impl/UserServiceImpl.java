@@ -27,6 +27,7 @@ import java.util.*;
 
 @Service
 public class UserServiceImpl implements UserService {
+    @Autowired
     private final UserRepository userRepository;
     private final AddressRepository addressRepository;
     private final ProvinceRepository provinceRepository;
@@ -45,6 +46,8 @@ public class UserServiceImpl implements UserService {
         this.modelMapper = modelMapper;
         this.gcsService = gcsService;
     }
+
+//    public UserServiceImpl(){};
 
     @Autowired
     @Lazy

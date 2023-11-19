@@ -1,16 +1,14 @@
 package com.roomfindingsystem.controller;
 
 import com.roomfindingsystem.entity.FeedbackEntity;
+import com.roomfindingsystem.entity.ReportEntity;
 import com.roomfindingsystem.entity.UserEntity;
-import com.roomfindingsystem.service.FeedbackService;
-import com.roomfindingsystem.service.HouseService;
-import com.roomfindingsystem.service.UserService;
+import com.roomfindingsystem.service.*;
 import jakarta.validation.Valid;
 import com.roomfindingsystem.dto.*;
 import com.roomfindingsystem.service.FeedbackService;
 import com.roomfindingsystem.service.HouseService;
 
-import com.roomfindingsystem.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -20,9 +18,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import static net.minidev.asm.ConvertDate.convertToDate;
 
 @Controller
 public class HouseController {
@@ -35,6 +36,10 @@ public class HouseController {
 
     @Autowired
     RoomService roomService;
+    @Autowired
+    ReportService reportService;
+
+
 
     @RequestMapping(value = "houseDetail")
     public String index(Model model) {
@@ -80,8 +85,20 @@ public class HouseController {
         List<FeedbackEntity> feedbackEntities= feedbackService.getFeedbackEntityByUid(houseId, user.getUserId());
         count = feedbackEntities.size();
 
-        if(count>0)
-        feedbackEntity = feedbackEntities.get(0);
+        if(count>0) feedbackEntity = feedbackEntities.get(0);
+
+        //set houseId và userid cho feedback
+        ReportEntity reportEntity = new ReportEntity();
+        reportEntity.setHouseid(houseId);
+        reportEntity.setUserid(user.getUserId());
+
+        //lấy ra số lượng comment của user hiện tai ở bài vieest này
+        int countReport = 0;
+        List<ReportEntity> reportEntities= reportService.getReportEntityByUid(houseId, user.getUserId());
+        countReport = reportEntities.size();
+
+        if(countReport>0)
+            reportEntity = reportEntities.get(0);
 
 
 
@@ -89,9 +106,13 @@ public class HouseController {
         model.addAttribute("feedbackEntity", feedbackEntity);
         model.addAttribute("user", user);
         model.addAttribute("count", count);
+        model.addAttribute("reportEntity", reportEntity);
+        model.addAttribute("countReport", countReport);
         //baoltt code
         List<RoomHouseDetailDto> roomHouseDetailDtos = roomService.viewRoomInHouse(houseId);
         model.addAttribute("roomList", roomHouseDetailDtos);
+
+        System.out.println(roomHouseDetailDtos.toString());
 
 
 
@@ -121,5 +142,28 @@ public class HouseController {
         UserEntity user = userService.findByEmail(currentUserName).get();
         feedbackService.deleteByHouseIdAndMemberId(houseId, user.getUserId());
         return "redirect:/detail?id=" + houseId + "#reviews";
+    }
+
+    @PostMapping(value="report")
+    public String addReport(@Valid @ModelAttribute("report") ReportEntity reportEntity, BindingResult bindingResult){
+//        LocalDate currentDate = LocalDate.now();
+//        reportEntity.setCreatedDate((Date)currentDate);
+        int houseId = reportEntity.getHouseid();
+        //nếu số lượng feedback của người đó = 0 thì cho phép add thêm
+        if(reportService.getReportEntityByUid(houseId, reportEntity.getUserid()).size()==0){
+            reportService.save(reportEntity);
+        }else{
+            reportEntity.setReportid(reportService.getReportEntityByUid(houseId, reportEntity.getUserid()).get(0).getReportid());
+            reportService.save(reportEntity);
+        }
+        return "redirect:/detail?id=" + houseId;
+    }
+
+    @GetMapping(value = "deleteReport")
+    public String deleteReport(@RequestParam("houseId") int houseId){
+        String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserEntity user = userService.findByEmail(currentUserName).get();
+        reportService.deleteByHouseIdAndMemberId(houseId, user.getUserId());
+        return "redirect:/detail?id=" + houseId;
     }
 }

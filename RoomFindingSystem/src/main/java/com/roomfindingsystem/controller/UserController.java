@@ -27,15 +27,18 @@ public class UserController {
     @Autowired
     private UserService userService;
     @Autowired
-    private PasswordEncoder passwordEncoder;
-    private final EmailSenderService emailSenderService;
+     PasswordEncoder passwordEncoder;
+     EmailSenderService emailSenderService;
     @Autowired
-    private Smsservice smsservice;
+     Smsservice smsservice;
+
 
     public UserController(EmailSenderService emailSenderService) {
         this.emailSenderService = emailSenderService;
     }
 
+    public UserController() {
+    }
 
     @RequestMapping(value = "register")
     public String addUser(Model model) {

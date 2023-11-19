@@ -1,5 +1,6 @@
 package com.roomfindingsystem.dto;
 
+import com.roomfindingsystem.entity.ServiceDetailEntity;
 import lombok.*;
 
 import java.util.List;
@@ -23,5 +24,7 @@ public class RoomHouseDetailDto {
     String houseName;
 
     Integer price;
+
+    List<String> serviceList;
 
 }
