@@ -348,7 +348,7 @@
                         </div>
                         <!--end row-->
                         <section>
-                            <div><h2 style="display: inline-block ">Why Choose </h2>  <strong><u> <h2 style="display: inline-block " th:text="${HousesEntity.houseName}"></h2></u></strong></div>
+                            <div><h2 style="display: inline-block ">Tại sao chọn</h2>  <strong><u> <h2 style="display: inline-block " th:text="${HousesEntity.houseName}"></h2></u></strong></div>
                             <div class="row">
                                 <div class="col-md-4 col-sm-4">
                                     <div class="feature">
@@ -429,11 +429,11 @@
                                     <table class="table">
                                         <thead>
                                         <tr>
-                                            <th>Room Type</th>
+                                            <th>Loại phòng</th>
 
                                             <!--                                            <th>Persons</th>-->
-                                            <th>Price</th>
-                                            <th>Rooms</th>
+                                            <th>Giá tiền</th>
+                                            <th>Phòng</th>
                                             <th></th>
                                         </tr>
                                         </thead>
@@ -448,13 +448,9 @@
 
                                                     <!--                                                    <figure class="label label-danger">1 Room Left!</figure>-->
                                                 </a>
-                                                <p>Consectetur adipiscing elit. Vivamus nec augue ac dui sodales
-                                                    euismod.
-                                                    Suspendisse at dui sit amet felis commodo dictum.
-                                                </p>
-                                                <ul class="info">
-                                                    <li>Breakfast Included</li>
-                                                    <li>VAT Included</li>
+
+                                                <ul th:each="service: ${room.serviceList}">
+                                                    <li><span th:text="${service}"></span></li>
                                                 </ul>
                                             </td>
 

@@ -260,7 +260,7 @@ public class RoomServiceImpl implements RoomService {
     public List<RoomHouseDetailDto> viewRoomInHouse(int houseId) {
         List<Tuple> tuples = roomRepository.viewRoomInHouseDetail(houseId);
         List<RoomHouseDetailDto> roomDtos = new ArrayList<>();
-        List<String> roomList;
+        List<String> roomList; List<String> serviceList;
         Set<String> uniquePairs = new HashSet<>();
 
         for (Tuple tuple : tuples) {
@@ -285,6 +285,15 @@ public class RoomServiceImpl implements RoomService {
                     roomList = Arrays.asList(roomName.split(","));
                     roomHouseDto.setRoomList(roomList);
                 }
+
+                String serviceName = tuple.get("service_list", String.class);
+                if (serviceName == null) {
+                    roomHouseDto.setServiceList(null);
+                } else {
+                    serviceList = Arrays.asList(serviceName.split(","));
+                    roomHouseDto.setServiceList(serviceList);
+                }
+
 
                 roomDtos.add(roomHouseDto);
 
@@ -408,12 +417,15 @@ public class RoomServiceImpl implements RoomService {
             roomAdminDashboardDto.setHouseName(tuple.get("House_Name", String.class));
             roomAdminDashboardDto.setRoomName(tuple.get("Room_Name", String.class));
             roomAdminDashboardDto.setFullName(tuple.get("full_Name", String.class));
-            int statusIDint = tuple.get("statusId", Integer.class);
-            if (statusIDint == 1) {
-                roomAdminDashboardDto.setStatus("Còn trống");
-            } else if (statusIDint == 2) {
-                roomAdminDashboardDto.setStatus("Đã có người ở");
-            } else roomAdminDashboardDto.setStatus("Tìm người ở ghép");
+            Integer statusIDint = tuple.get("statusId", Integer.class);
+            if(statusIDint!=null){
+                if (statusIDint == 1) {
+                    roomAdminDashboardDto.setStatus("Còn trống");
+                } else if (statusIDint == 2) {
+                    roomAdminDashboardDto.setStatus("Đã có người ở");
+                } else roomAdminDashboardDto.setStatus("Tìm người ở ghép");
+            }
+            else statusIDint = 1;
             java.sql.Date sqlDate = (java.sql.Date) tuple.get("status_update_date", Date.class);
             if (sqlDate == null) {
                 roomAdminDashboardDto.setStatusUpdateDate(null);

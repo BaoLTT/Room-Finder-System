@@ -19,5 +19,7 @@ public interface SliderService {
 
     SliderEntity update(SliderEntity sliderEntity);
 
+    void deleteById(int id);
+
 
 }
