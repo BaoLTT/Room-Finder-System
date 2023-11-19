@@ -102,4 +102,11 @@ public class SliderManageController {
         sliderService.update(sliderEntity);
         return "redirect:/admin/sliderList";
     }
+
+
+    @GetMapping("/sliderList/delete/{id}")
+    String deleteSlider(@PathVariable("id") int id){
+        sliderService.deleteById(id);
+        return "redirect:/admin/sliderList";
+    }
 }

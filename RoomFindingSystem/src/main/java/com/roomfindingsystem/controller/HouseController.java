@@ -85,8 +85,7 @@ public class HouseController {
         List<FeedbackEntity> feedbackEntities= feedbackService.getFeedbackEntityByUid(houseId, user.getUserId());
         count = feedbackEntities.size();
 
-        if(count>0)
-        feedbackEntity = feedbackEntities.get(0);
+        if(count>0) feedbackEntity = feedbackEntities.get(0);
 
         //set houseId và userid cho feedback
         ReportEntity reportEntity = new ReportEntity();
@@ -112,6 +111,8 @@ public class HouseController {
         //baoltt code
         List<RoomHouseDetailDto> roomHouseDetailDtos = roomService.viewRoomInHouse(houseId);
         model.addAttribute("roomList", roomHouseDetailDtos);
+
+        System.out.println(roomHouseDetailDtos.toString());
 
 
 
