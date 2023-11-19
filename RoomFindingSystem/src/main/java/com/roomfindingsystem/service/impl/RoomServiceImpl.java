@@ -260,7 +260,7 @@ public class RoomServiceImpl implements RoomService {
     public List<RoomHouseDetailDto> viewRoomInHouse(int houseId) {
         List<Tuple> tuples = roomRepository.viewRoomInHouseDetail(houseId);
         List<RoomHouseDetailDto> roomDtos = new ArrayList<>();
-        List<String> roomList;
+        List<String> roomList; List<String> serviceList;
         Set<String> uniquePairs = new HashSet<>();
 
         for (Tuple tuple : tuples) {
@@ -285,6 +285,15 @@ public class RoomServiceImpl implements RoomService {
                     roomList = Arrays.asList(roomName.split(","));
                     roomHouseDto.setRoomList(roomList);
                 }
+
+                String serviceName = tuple.get("service_list", String.class);
+                if (serviceName == null) {
+                    roomHouseDto.setServiceList(null);
+                } else {
+                    serviceList = Arrays.asList(serviceName.split(","));
+                    roomHouseDto.setServiceList(serviceList);
+                }
+
 
                 roomDtos.add(roomHouseDto);
 

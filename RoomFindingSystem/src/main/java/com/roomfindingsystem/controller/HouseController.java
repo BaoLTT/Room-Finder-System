@@ -112,6 +112,8 @@ public class HouseController {
         List<RoomHouseDetailDto> roomHouseDetailDtos = roomService.viewRoomInHouse(houseId);
         model.addAttribute("roomList", roomHouseDetailDtos);
 
+        System.out.println(roomHouseDetailDtos.toString());
+
 
 
         return "housedetail";

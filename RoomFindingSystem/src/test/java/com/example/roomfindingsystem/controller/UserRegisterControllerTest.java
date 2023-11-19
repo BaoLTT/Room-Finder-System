@@ -3,6 +3,8 @@ package com.example.roomfindingsystem.controller;
 import com.roomfindingsystem.controller.UserController;
 import com.roomfindingsystem.dto.Smsrequest;
 import com.roomfindingsystem.entity.UserEntity;
+import com.roomfindingsystem.service.EmailSenderService;
+import com.roomfindingsystem.service.UserService;
 import com.roomfindingsystem.service.impl.EmailSenderServiceImpl;
 import com.roomfindingsystem.service.impl.Smsservice;
 import com.roomfindingsystem.service.impl.UserServiceImpl;
@@ -13,6 +15,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 
@@ -21,19 +24,21 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
+
+
 @ExtendWith(MockitoExtension.class)
 public class UserRegisterControllerTest {
 
-    @InjectMocks
-    private UserController userController;
+
 
     @Mock
-    private UserServiceImpl userService;
+    private UserService userService;
 
     @Mock
     private EmailSenderServiceImpl emailSenderService;
 
-
+    @Mock
+    private HttpSession session;
 
     @Mock
     private BindingResult bindingResult;
@@ -41,33 +46,71 @@ public class UserRegisterControllerTest {
     @Mock
     private Model model;
 
-    @Mock
-    private HttpSession session;
+    @InjectMocks
+    private UserController userController;
 
     @Test
-    public void testSave() {
-        // Arrange
+    public void testSave_ValidUser() {
+        // Chuẩn bị
         UserEntity user = new UserEntity();
-        user.setEmail("baoltthe153367@fpt.edu.vn");
-        // Populate other fields of the user object as needed
+        user.setEmail("thaibaoa3k45no123@gmail.com");
+
+
 
         when(bindingResult.hasErrors()).thenReturn(false);
         when(userService.findByEmail(anyString())).thenReturn(Optional.empty());
 
-        // You may need to mock other dependencies or set up session attributes as needed
+        // Thực hiện
+        String result = userController.save(user, bindingResult, model, null,session);
 
-        // Act
+        // Kiểm tra
+        verify(userService).findByEmail("baoltthe153367@fpt.edu.vn");
+        verify(model, never()).addAttribute(eq("mess"), anyString());
+        verify(session).setAttribute(eq("otp-register"), anyString());
+        verify(session).setMaxInactiveInterval(360);
+        // Kiểm tra các phương thức khác nếu cần
+
+        // Kiểm tra kết quả
+        assertEquals("redirect:/otp-check", result);
+        // Thêm các kiểm tra khác tùy thuộc vào cần thiết
+    }
+
+
+
+
+    @Test
+    public void testSave_UserWithExistingEmail() {
+        // Chuẩn bị
+        UserEntity user = new UserEntity();
+        user.setEmail("baoltthe153367@fpt.edu.vn"); // Thiết lập email đã tồn tại
+
+        when(bindingResult.hasErrors()).thenReturn(false);
+        when(userService.findByEmail("baoltthe153367@fpt.edu.vn")).thenReturn(Optional.of(user));
+
+        // Thực hiện
         String result = userController.save(user, bindingResult, model, null, session);
 
-        // Assert
-        assertEquals("redirect:/otp-check", result);
-
-        // Verify that the userService.findByEmail method is called with the correct argument
-        verify(userService).findByEmail("test@example.com");
-
-        // Verify that the emailSenderService.sendEmail method is called with the correct arguments
-        verify(emailSenderService).sendEmail(eq("test@example.com"), anyString(), anyString());
-
-        // You can add more assertions or verifications based on your requirements
+        // Kiểm tra
+        assertEquals("register", result);
+        verify(model).addAttribute(eq("mess"), anyString());
+        verify(emailSenderService, never()).sendEmail(any(), any(), any());
     }
+
+    @Test
+    public void testSave_InvalidUser() {
+        // Chuẩn bị
+        UserEntity user = new UserEntity();
+        user.setEmail("invalid-email"); // Thiết lập email không hợp lệ
+
+        when(bindingResult.hasErrors()).thenReturn(true);
+
+        // Thực hiện
+        String result = userController.save(user, bindingResult, model, null, session);
+
+        // Kiểm tra
+        assertEquals("register", result);
+        verifyNoInteractions(userService, emailSenderService, session);
+    }
+
+    // Thêm các test case khác cho các tình huống khác nhau
 }
