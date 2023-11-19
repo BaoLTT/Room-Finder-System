@@ -24,13 +24,16 @@ import java.io.IOException;
 
 @Controller
 public class UserController {
-    @Autowired
+//    @Autowired
     private UserService userService;
-    @Autowired
+//    @Autowired
     private PasswordEncoder passwordEncoder;
-    private final EmailSenderService emailSenderService;
-    @Autowired
+    private EmailSenderService emailSenderService;
+//    @Autowired
     private Smsservice smsservice;
+
+    public UserController() {
+    }
 
     public UserController(EmailSenderService emailSenderService) {
         this.emailSenderService = emailSenderService;

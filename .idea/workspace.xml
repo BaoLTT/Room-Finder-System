@@ -4,11 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="130c9416-e72b-46aa-82cd-d3e7e3468e0d" name="Changes" comment="">
+    <list default="true" id="130c9416-e72b-46aa-82cd-d3e7e3468e0d" name="Changes" comment="report admin">
+      <change afterPath="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/roomfindingsystem/controller/UserControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/roomfindingsystem/service/impl/EmailSenderServiceImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/RoomListController.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/RoomListController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/auth/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/auth/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/register.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +28,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="BinhNH" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -51,11 +53,14 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+    "com.google.cloudcode.ide_session_index": "20231119_0000",
+    "dart.analysis.tool.window.visible": "false",
     "git-widget-placeholder": "nghiant2",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "show.migrate.to.gradle.popup": "false",
     "spring.configuration.checksum": "cba14e4d5d8ebaea272e92fbdfce9e02",
     "vue.rearranger.settings.migration": "true"
   }
@@ -82,7 +87,86 @@
       <recent name="com.roomfindingsystem.entity" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.Main">
+  <component name="RunManager" selected="JUnit.UserControllerTest">
+    <configuration name="UserControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="RoomFindingSystem" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.roomfindingsystem.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.roomfindingsystem.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.roomfindingsystem.controller.UserControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserControllerTest.testGetId" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="RoomFindingSystem" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.roomfindingsystem.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.roomfindingsystem.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.roomfindingsystem.controller.UserControllerTest" />
+      <option name="METHOD_NAME" value="testGetId" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserControllerTest.testGetProfilePageWhenUserIsAuthenticatedThenReturnProfileView" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="RoomFindingSystem" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.roomfindingsystem.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.roomfindingsystem.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.roomfindingsystem.controller.UserControllerTest" />
+      <option name="METHOD_NAME" value="testGetProfilePageWhenUserIsAuthenticatedThenReturnProfileView" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserControllerTest.testGetProfilePageWhenUserIsNotAuthenticatedThenRedirectToLoginPage" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="RoomFindingSystem" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.roomfindingsystem.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.roomfindingsystem.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.roomfindingsystem.controller.UserControllerTest" />
+      <option name="METHOD_NAME" value="testGetProfilePageWhenUserIsNotAuthenticatedThenRedirectToLoginPage" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserControllerTest.testUpdateUserWhenValidDataThenSuccess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="RoomFindingSystem" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.roomfindingsystem.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.roomfindingsystem.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.roomfindingsystem.controller.UserControllerTest" />
+      <option name="METHOD_NAME" value="testUpdateUserWhenValidDataThenSuccess" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="RoomFindingSystem" />
@@ -177,14 +261,28 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="JUnit.UserControllerTest" />
+      <item itemvalue="JUnit.UserControllerTest.testGetProfilePageWhenUserIsNotAuthenticatedThenRedirectToLoginPage" />
+      <item itemvalue="JUnit.UserControllerTest.testUpdateUserWhenValidDataThenSuccess" />
+      <item itemvalue="JUnit.UserControllerTest.testGetId" />
+      <item itemvalue="JUnit.UserControllerTest.testGetProfilePageWhenUserIsAuthenticatedThenReturnProfileView" />
       <item itemvalue="Spring Boot.Main" />
       <item itemvalue="Tomcat Server.Tomcat 9.0.69" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.UserControllerTest" />
+        <item itemvalue="JUnit.UserControllerTest.testUpdateUserWhenValidDataThenSuccess" />
+        <item itemvalue="JUnit.UserControllerTest.testGetProfilePageWhenUserIsNotAuthenticatedThenRedirectToLoginPage" />
+        <item itemvalue="JUnit.UserControllerTest.testGetProfilePageWhenUserIsAuthenticatedThenReturnProfileView" />
+        <item itemvalue="JUnit.UserControllerTest.testGetId" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="ec34e655-ee0a-4be9-8773-96fceb50fb67" name="Changes" comment="update front end" />
+      <changelist id="130c9416-e72b-46aa-82cd-d3e7e3468e0d" name="Changes" comment="report admin" />
       <created>1699309533955</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -239,6 +337,8 @@
       <workItem from="1699695870453" duration="2422000" />
       <workItem from="1699844968755" duration="2913000" />
       <workItem from="1700117164999" duration="2665000" />
+      <workItem from="1700322146507" duration="2446000" />
+      <workItem from="1700402180243" duration="6715000" />
     </task>
     <task id="LOCAL-00001" summary="fix register and boảding house detail and send mail future">
       <option name="closed" value="true" />
@@ -489,7 +589,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/HouseController.java</url>
-          <line>107</line>
+          <line>127</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
@@ -498,6 +598,68 @@
   <component name="com.github.evgenys91.machinet.common.dslhistory.DslHistoryState">
     <option name="historyDtoById">
       <map>
+        <entry key="0bc07d">
+          <value>
+            <ChatHistoryModel>
+              <option name="contextFilesPaths">
+                <list>
+                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/impl/EmailSenderServiceImpl.java" />
+                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/EmailSenderService.java" />
+                </list>
+              </option>
+              <option name="id" value="0bc07d" />
+              <option name="initiateTms" value="1700323301034" />
+              <option name="request" value="Generate tests for class EmailSenderServiceImpl" />
+              <option name="response" value="package com.roomfindingsystem.service.impl;&#10;&#10;import org.junit.Before;&#10;import org.junit.Test;&#10;import org.junit.runner.RunWith;&#10;import org.mockito.InjectMocks;&#10;import org.mockito.Mock;&#10;import org.mockito.junit.MockitoJUnitRunner;&#10;import org.springframework.mail.SimpleMailMessage;&#10;import org.springframework.mail.javamail.JavaMailSender;&#10;&#10;import static org.mockito.ArgumentMatchers.any;&#10;import static org.mockito.Mockito.times;&#10;import static org.mockito.Mockito.verify;&#10;&#10;@RunWith(MockitoJUnitRunner.class)&#10;public class EmailSenderServiceImplTest {&#10;&#10;    @Mock&#10;    private JavaMailSender mailSender;&#10;&#10;    @InjectMocks&#10;    private EmailSenderServiceImpl emailSenderService;&#10;&#10;    @Before&#10;    public void setUp() {&#10;        emailSenderService = new EmailSenderServiceImpl(mailSender);&#10;    }&#10;&#10;    @Test&#10;    public void testSendEmailWhenValidInputThenEmailSent() {&#10;        emailSenderService.sendEmail(&quot;test@example.com&quot;, &quot;Test Subject&quot;, &quot;Test Message&quot;);&#10;        verify(mailSender, times(1)).send(any(SimpleMailMessage.class));&#10;    }&#10;&#10;    @Test&#10;    public void testSendEmailWhenEmptyToThenNoEmailSent() {&#10;        emailSenderService.sendEmail(&quot;&quot;, &quot;Test Subject&quot;, &quot;Test Message&quot;);&#10;        verify(mailSender, times(0)).send(any(SimpleMailMessage.class));&#10;    }&#10;&#10;    @Test&#10;    public void testSendEmailWhenEmptySubjectThenNoEmailSent() {&#10;        emailSenderService.sendEmail(&quot;test@example.com&quot;, &quot;&quot;, &quot;Test Message&quot;);&#10;        verify(mailSender, times(0)).send(any(SimpleMailMessage.class));&#10;    }&#10;&#10;    @Test&#10;    public void testSendEmailWhenEmptyMessageThenNoEmailSent() {&#10;        emailSenderService.sendEmail(&quot;test@example.com&quot;, &quot;Test Subject&quot;, &quot;&quot;);&#10;        verify(mailSender, times(0)).send(any(SimpleMailMessage.class));&#10;    }&#10;}&#10;" />
+              <option name="responseDescription" value="&lt;em&gt;Unit Test Agent: generating unit tests for src/main/java/com/roomfindingsystem/service/impl/EmailSenderServiceImpl.java.&lt;br/&gt;&lt;/em&gt;&lt;em&gt;&lt;br/&gt;Let's test the following cases for you:&lt;br/&gt;testSendEmailWhenValidInputThenEmailSent - Test sending an email with valid input.&lt;br/&gt;testSendEmailWhenEmptyToThenNoEmailSent - Test sending an email with an empty 'to' parameter.&lt;br/&gt;testSendEmailWhenEmptySubjectThenNoEmailSent - Test sending an email with an empty 'subject' parameter.&lt;br/&gt;testSendEmailWhenEmptyMessageThenNoEmailSent - Test sending an email with an empty 'message' parameter.&lt;br/&gt;&lt;br/&gt;&lt;/em&gt;&lt;em&gt;I have figured out how to test it.&lt;br/&gt;&lt;br/&gt;&lt;/em&gt;Here is the test class for the EmailSenderServiceImpl:&#10;&#10;```java&#10;package com.roomfindingsystem.service.impl;&#10;&#10;import org.junit.Before;&#10;import org.junit.Test;&#10;import org.junit.runner.RunWith;&#10;import org.mockito.InjectMocks;&#10;import org.mockito.Mock;&#10;import org.mockito.junit.MockitoJUnitRunner;&#10;import org.springframework.mail.SimpleMailMessage;&#10;import org.springframework.mail.javamail.JavaMailSender;&#10;&#10;import static org.mockito.ArgumentMatchers.any;&#10;import static org.mockito.Mockito.times;&#10;import static org.mockito.Mockito.verify;&#10;&#10;@RunWith(MockitoJUnitRunner.class)&#10;public class EmailSenderServiceImplTest {&#10;&#10;    @Mock&#10;    private JavaMailSender mailSender;&#10;&#10;    @InjectMocks&#10;    private EmailSenderServiceImpl emailSenderService;&#10;&#10;    @Before&#10;    public void setUp() {&#10;        emailSenderService = new EmailSenderServiceImpl(mailSender);&#10;    }&#10;&#10;    @Test&#10;    public void testSendEmailWhenValidInputThenEmailSent() {&#10;        emailSenderService.sendEmail(&quot;test@example.com&quot;, &quot;Test Subject&quot;, &quot;Test Message&quot;);&#10;        verify(mailSender, times(1)).send(any(SimpleMailMessage.class));&#10;    }&#10;&#10;    @Test&#10;    public void testSendEmailWhenEmptyToThenNoEmailSent() {&#10;        emailSenderService.sendEmail(&quot;&quot;, &quot;Test Subject&quot;, &quot;Test Message&quot;);&#10;        verify(mailSender, times(0)).send(any(SimpleMailMessage.class));&#10;    }&#10;&#10;    @Test&#10;    public void testSendEmailWhenEmptySubjectThenNoEmailSent() {&#10;        emailSenderService.sendEmail(&quot;test@example.com&quot;, &quot;&quot;, &quot;Test Message&quot;);&#10;        verify(mailSender, times(0)).send(any(SimpleMailMessage.class));&#10;    }&#10;&#10;    @Test&#10;    public void testSendEmailWhenEmptyMessageThenNoEmailSent() {&#10;        emailSenderService.sendEmail(&quot;test@example.com&quot;, &quot;Test Subject&quot;, &quot;&quot;);&#10;        verify(mailSender, times(0)).send(any(SimpleMailMessage.class));&#10;    }&#10;}&#10;```&#10;&#10;This test class contains four test cases for the 'sendEmail' method of the EmailSenderServiceImpl class. Each test case verifies a different scenario: sending an email with valid input, and sending an email with an empty 'to', 'subject', or 'message' parameter. The test cases use Mockito to create a mock JavaMailSender and verify that the 'send' method is called the expected number of times.&lt;em&gt;&lt;br/&gt;&lt;br/&gt;Here are the generated unit tests. Do you want to make changes to the code?&lt;br/&gt;&lt;/em&gt; ```file was provided```" />
+              <option name="responseFileName" value="EmailSenderServiceImplTest.java" />
+              <option name="responseFilePath" value="src/test/java/com/roomfindingsystem/service/impl/" />
+              <option name="responseTms" value="1700323361567" />
+              <option name="usedFilesPaths">
+                <list>
+                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/impl/EmailSenderServiceImpl.java" />
+                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/EmailSenderService.java" />
+                </list>
+              </option>
+            </ChatHistoryModel>
+          </value>
+        </entry>
+        <entry key="1d238d">
+          <value>
+            <ChatHistoryModel>
+              <option name="id" value="1d238d" />
+              <option name="initiateTms" value="1700299213028" />
+              <option name="request" value="Generate tests for class EmailSenderServiceImpl" />
+              <option name="response" value="" />
+              <option name="responseDescription" value="&lt;em&gt;Unit Test Agent: generating unit tests for src/main/java/com/roomfindingsystem/service/impl/EmailSenderServiceImpl.java.&lt;br/&gt;&lt;/em&gt;&lt;em&gt;&lt;br/&gt;Let's test the following cases for you:&lt;br/&gt;testSendEmailWhenValidInputThenEmailSent - Test sending an email with valid input.&lt;br/&gt;testSendEmailWhenEmptyToThenNoEmailSent - Test sending an email with an empty 'to' parameter.&lt;br/&gt;testSendEmailWhenEmptySubjectThenNoEmailSent - Test sending an email with an empty 'subject' parameter.&lt;br/&gt;testSendEmailWhenEmptyMessageThenNoEmailSent - Test sending an email with an empty 'message' parameter.&lt;br/&gt;&lt;br/&gt;&lt;/em&gt;&lt;em&gt;I have figured out how to test it.&lt;br/&gt;&lt;br/&gt;&lt;/em&gt;Here is the test class for the EmailSenderServiceImpl class:&#10;&#10;```java&#10;package com.roomfindingsystem.service.impl;&#10;&#10;import org.junit.Before;&#10;import org.junit.Test;&#10;import org.junit.runner.RunWith;&#10;import org.mockito.InjectMocks;&#10;import org.mockito.Mock;&#10;import org.mockito.junit.MockitoJUnitRunner;&#10;import org.springframework.mail.SimpleMailMessage;&#10;import org.springframework.mail.javamail.JavaMailSender;&#10;&#10;import static org.mockito.ArgumentMatchers.any;&#10;import static org.mockito.Mockito.times;&#10;import static org.mockito.Mockito.verify;&#10;&#10;@RunWith(MockitoJUnitRunner.class)&#10;public class EmailSenderServiceImplTest {&#10;&#10;    @Mock&#10;    private JavaMailSender mailSender;&#10;&#10;    @InjectMocks&#10;    private EmailSenderServiceImpl emailSenderService;&#10;&#10;    @Before&#10;    public void setUp() {&#10;        emailSenderService = new EmailSenderServiceImpl(mailSender);&#10;    }&#10;&#10;    @Test&#10;    public void testSendEmailWhenValidInputThenEmailSent() {&#10;        emailSenderService.sendEmail(&quot;test@example.com&quot;, &quot;Test Subject&quot;, &quot;Test Message&quot;);&#10;        verify(mailSender, times(1)).send(any(SimpleMailMessage.class));&#10;    }&#10;&#10;    @Test&#10;    public void testSendEmailWhenEmptyToThenNoEmailSent() {&#10;        emailSenderService.sendEmail(&quot;&quot;, &quot;Test Subject&quot;, &quot;Test Message&quot;);&#10;        verify(mailSender, times(0)).send(any(SimpleMailMessage.class));&#10;    }&#10;&#10;    @Test&#10;    public void testSendEmailWhenEmptySubjectThenNoEmailSent() {&#10;        emailSenderService.sendEmail(&quot;test@example.com&quot;, &quot;&quot;, &quot;Test Message&quot;);&#10;        verify(mailSender, times(0)).send(any(Simple" />
+              <option name="responseTms" value="1700299254193" />
+              <option name="usedFilesPaths">
+                <list>
+                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/impl/EmailSenderServiceImpl.java" />
+                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/EmailSenderService.java" />
+                </list>
+              </option>
+            </ChatHistoryModel>
+          </value>
+        </entry>
+        <entry key="da4101">
+          <value>
+            <ChatHistoryModel>
+              <option name="id" value="da4101" />
+              <option name="initiateTms" value="1700299106246" />
+              <option name="request" value="Generate tests for class EmailSenderServiceImpl" />
+              <option name="response" value="" />
+              <option name="responseDescription" value="&lt;em&gt;Unit Test Agent: generating unit tests for src/main/java/com/roomfindingsystem/service/impl/EmailSenderServiceImpl.java.&lt;br/&gt;&lt;/em&gt;" />
+              <option name="responseTms" value="1700299110937" />
+              <option name="usedFilesPaths">
+                <list>
+                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/impl/EmailSenderServiceImpl.java" />
+                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/EmailSenderService.java" />
+                </list>
+              </option>
+            </ChatHistoryModel>
+          </value>
+        </entry>
         <entry key="greeting">
           <value>
             <ChatHistoryModel>
@@ -512,5 +674,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Room_Finding_System$UserControllerTest.ic" NAME="UserControllerTest Coverage Results" MODIFIED="1700300286928" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.roomfindingsystem.controller.*</FILTER>
+    </SUITE>
   </component>
 </project>
