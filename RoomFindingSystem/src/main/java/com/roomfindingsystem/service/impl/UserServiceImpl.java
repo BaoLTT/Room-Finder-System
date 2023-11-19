@@ -102,7 +102,6 @@ public class UserServiceImpl implements UserService {
         UserDto userDto = modelMapper.map(user, UserDto.class);
 
         AddressEntity address = addressRepository.findById(user.getAddressId()).get();
-
         ProvinceEntity province = provinceRepository.findById(address.getProvinceId()).get();
         DistrictEntity district = districtRepository.findById(address.getDistrictId()).get();
         WardEntity ward = wardRepository.findById(address.getWardId()).get();
