@@ -139,6 +139,9 @@
     .input-number .change-button.minus{
         display: none;
     }
+    .mark-circle{
+        display: none;
+    }
 
 
 </style>
@@ -151,9 +154,9 @@
     <div id="page-content">
         <div class="container">
             <ol class="breadcrumb">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Listing</a></li>
-                <li class="active">Detail</li>
+                <li><a href="/">Trang chủ</a></li>
+                <li><a href="#">Danh sách phòng trọ</a></li>
+
             </ol>
             <!--end breadcrumb-->
             <div class="row">
@@ -165,9 +168,6 @@
                                 <div class="form-group">
                                     <label>Nhập thông tin tìm kiếm</label>
                                     <input type="text" class="form-control" name="roomName" th:value ="${roomName}" id="roomName" placeholder="Nhập tên trọ hoặc tên phòng">
-                                </div>
-                                <div class="center">
-                                    <a href="#filter-advanced-search" class="link icon" data-toggle="collapse" aria-expanded="false" aria-controls="filter-advanced-search">Thêm<i class="fa fa-plus"></i></a>
                                 </div>
                                 <div class="collapse in" id="filter-advanced-search">
                                     <div class="wrapper">
@@ -249,31 +249,16 @@
 
                                             <div class="collapse" id="all-property-types">
                                                 <ul class="checkboxes">
-                                                    <li><label><input type="checkbox" name="ski-center">Ski Center</label></li>
-                                                    <li><label><input type="checkbox" name="cottage">Cottage</label></li>
-                                                    <li><label><input type="checkbox" name="hostel">Hostel</label></li>
-                                                    <li><label><input type="checkbox" name="boat">Boat</label></li>
+<!--                                                    <li><label><input type="checkbox" name="ski-center">Ski Center</label></li>-->
+<!--                                                    <li><label><input type="checkbox" name="cottage">Cottage</label></li>-->
+<!--                                                    <li><label><input type="checkbox" name="hostel">Hostel</label></li>-->
+<!--                                                    <li><label><input type="checkbox" name="boat">Boat</label></li>-->
                                                 </ul>
                                             </div>
                                             <!--end checkboxes-->
-                                            <a href="#all-property-types" class="link" data-toggle="collapse" aria-expanded="false" aria-controls="all-property-types">Show all</a>
+<!--                                            <a href="#all-property-types" class="link" data-toggle="collapse" aria-expanded="false" aria-controls="all-property-types">Show all</a>-->
                                         </section>
-                                        <!--end section-->
-<!--                                        <section>-->
-<!--                                            <h3>Property Facility</h3>-->
-<!--                                            <ul class="checkboxes no-bottom-margin">-->
-<!--                                                <li><label><input type="checkbox" name="wi-fi">Wifi riêng<span>12</span></label></li>-->
-<!--                                                <li><label><input type="checkbox" name="free-parking">Điều hòa<span>48</span></label></li>-->
-<!--                                                <li><label><input type="checkbox" name="airport"> Nóng lạnh<span>36</span></label></li>-->
-<!--                                                <li><label><input type="checkbox" name="family-rooms">Khu vệ sinh khép kín<span>56</span></label></li>-->
-<!--                                                <li><label><input type="checkbox" name="family-rooms">Tủ<span>56</span></label></li>-->
-<!--                                                <li><label><input type="checkbox" name="family-rooms">Giường<span>56</span></label></li>-->
-<!--                                                <li><label><input type="checkbox" name="family-rooms">Tủ lạnh<span>56</span></label></li>-->
 
-<!--                                            </ul>-->
-<!--                                            &lt;!&ndash;end checkboxes&ndash;&gt;-->
-<!--                                        </section>-->
-                                        <!--end section-->
                                     </div>
                                     <!--end filter-advanced-search-->
                                 </div>
@@ -291,12 +276,8 @@
                 <div class="col-md-9">
                     <div class="main-content">
                         <div class="title">
-                            <h1>Listing</h1>
-                            <div class="display-selector">
-                                <span>Display:</span>
-                                <a href="listing.html" data-toggle="tooltip" data-placement="left" title="Display list"><i class="fa fa-th-list"></i></a>
-                                <a href="listing-matrix.html" class="active" data-toggle="tooltip" data-placement="left" title="Display matrix"><i class="fa fa-th"></i></a>
-                            </div>
+                            <h1>Danh sách phòng trọ</h1>
+
                         </div>
                         <!--end title-->
                         <div class="row">
@@ -305,16 +286,22 @@
 <!--                                    <div class="ribbon"><div class="offer-number">20%</div><figure>Off Today!</figure></div>-->
                                     <div class="item-wrapper">
                                         <div class="image">
-                                            <div class="mark-circle description" data-toggle="tooltip" data-placement="right" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis erat vel quam aliquet hendrerit semper eget elit. Aenean tincidunt ultrices bibendum. Proin nisi erat, iaculis non pulvinar a, scelerisque ut est. "><i class="fa fa-question"></i></div>
-                                            <div class="mark-circle map" data-toggle="tooltip" data-placement="right" title="Show on map"><i class="fa fa-map-marker"></i></div>
-                                            <div class="mark-circle top" data-toggle="tooltip" data-placement="right" title="Top accommodation"><i class="fa fa-thumbs-up"></i></div>
-                                            <a href="" class="wrapper">
-                                                <div class="gallery" >
-                                                    <img style="width: 273px; height: 208px;" th:each = "image: ${room.roomImages}" th:src="${image}" alt="">
+<!--                                            <div class="mark-circle description" data-toggle="tooltip" data-placement="right" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis erat vel quam aliquet hendrerit semper eget elit. Aenean tincidunt ultrices bibendum. Proin nisi erat, iaculis non pulvinar a, scelerisque ut est. "><i class="fa fa-question"></i></div>-->
+<!--                                            <div class="mark-circle map" data-toggle="tooltip" data-placement="right" title="Show on map"><i class="fa fa-map-marker"></i></div>-->
+<!--                                            <div class="mark-circle top" data-toggle="tooltip" data-placement="right" title="Top accommodation"><i class="fa fa-thumbs-up"></i></div>-->
 
-                                                </div>
-                                            </a>
-                                            <div class="owl-navigation"></div>
+                                            <div th:if="${room.roomImages != null && room.roomImages.size() > 1}">
+                                                <a href="" class="wrapper">
+                                                    <div class="gallery" >
+                                                        <img style="width: 273px; height: 208px;" th:each = "image: ${room.roomImages}" th:src="${image}" alt="">
+
+                                                    </div>
+                                                </a>
+                                                <div class="owl-navigation"></div>
+                                            </div>
+                                            <div th:if="${room.roomImages != null && room.roomImages.size() == 1}">
+                                                <img style="width: 273px; height: 208px;" th:src="${room.roomImages.get(0)}" alt="">
+                                            </div>
                                             <!--end owl-navigation-->
                                         </div>
                                         <!--end image-->
@@ -323,7 +310,7 @@
                                                 <figure class="label label-info" th:text="${room.roomType}"></figure>
                                                 <a href="detail.html"><h3 th:text="${room.roomName}"></h3></a>
                                                 <figure class="location" th:text="${room.houseName}"></figure>
-                                                <figure style="font-weight: bold; color: red" th:text="${room.price}+' VND'"></figure>
+                                                <figure style="font-weight: bold; color: red" th:with="formattedPrice=${#numbers.formatDecimal(room.price, 0, 'COMMA', 0, 'POINT')}"> <span th:text="${formattedPrice + ' VND'}"></span> </figure>
                                             </div>
                                         </div>
                                         <!--end description-->

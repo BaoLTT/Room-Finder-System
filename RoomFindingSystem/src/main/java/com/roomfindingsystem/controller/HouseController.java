@@ -10,6 +10,7 @@ import com.roomfindingsystem.service.FeedbackService;
 import com.roomfindingsystem.service.HouseService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -48,7 +49,7 @@ public class HouseController {
     }
 
     @RequestMapping(value = "detail", method = RequestMethod.GET)
-    public String getAllHouse(@RequestParam("id") Integer houseId, ModelMap model) {
+    public String getAllHouse(@RequestParam(name = "id", required = false, defaultValue = "1") int houseId, ModelMap model) {
         List<HouseDto> houseDto = houseService.getHouseDetail(houseId);
         System.out.printf(houseDto.toString());
 
@@ -72,46 +73,61 @@ public class HouseController {
 
 
         //lấy ra tên của user hiện tại -> lấy ra user hiện tại
-        String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
-        UserEntity user = userService.findByEmail(currentUserName).get();
 
-        //set houseId và userid cho feedback
-        FeedbackEntity feedbackEntity = new FeedbackEntity();
-        feedbackEntity.setHouseId(houseId);
-        feedbackEntity.setMemberId(user.getUserId());
+        try {
+            String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
+            UserEntity user = userService.findByEmail(currentUserName).get();
+
+            //set houseId và userid cho feedback
+            FeedbackEntity feedbackEntity = new FeedbackEntity();
+            feedbackEntity.setHouseId(houseId);
+            feedbackEntity.setMemberId(user.getUserId());
+            int count = 0;
+            List<FeedbackEntity> feedbackEntities= feedbackService.getFeedbackEntityByUid(houseId, user.getUserId());
+            count = feedbackEntities.size();
+
+
+          if(count>0) feedbackEntity = feedbackEntities.get(0);
+
+
+            //set houseId và userid cho feedback
+            ReportEntity reportEntity = new ReportEntity();
+            reportEntity.setHouseid(houseId);
+            reportEntity.setUserid(user.getUserId());
+
+            //lấy ra số lượng comment của user hiện tai ở bài vieest này
+            int countReport = 0;
+            List<ReportEntity> reportEntities= reportService.getReportEntityByUid(houseId, user.getUserId());
+            countReport = reportEntities.size();
+
+            if(countReport>0)
+                reportEntity = reportEntities.get(0);
+
+
+
+
+            model.addAttribute("feedbackEntity", feedbackEntity);
+            model.addAttribute("user", user);
+            model.addAttribute("count", count);
+            model.addAttribute("reportEntity", reportEntity);
+            model.addAttribute("countReport", countReport);
+        }
+        catch(Exception e){
+
+        }
+
+
+
+
 
         //lấy ra số lượng comment của user hiện tai ở bài vieest này
-        int count = 0;
-        List<FeedbackEntity> feedbackEntities= feedbackService.getFeedbackEntityByUid(houseId, user.getUserId());
-        count = feedbackEntities.size();
-
-        if(count>0)
-        feedbackEntity = feedbackEntities.get(0);
-
-        //set houseId và userid cho feedback
-        ReportEntity reportEntity = new ReportEntity();
-        reportEntity.setHouseid(houseId);
-        reportEntity.setUserid(user.getUserId());
-
-        //lấy ra số lượng comment của user hiện tai ở bài vieest này
-        int countReport = 0;
-        List<ReportEntity> reportEntities= reportService.getReportEntityByUid(houseId, user.getUserId());
-        countReport = reportEntities.size();
-
-        if(countReport>0)
-            reportEntity = reportEntities.get(0);
 
 
-
-
-        model.addAttribute("feedbackEntity", feedbackEntity);
-        model.addAttribute("user", user);
-        model.addAttribute("count", count);
-        model.addAttribute("reportEntity", reportEntity);
-        model.addAttribute("countReport", countReport);
         //baoltt code
         List<RoomHouseDetailDto> roomHouseDetailDtos = roomService.viewRoomInHouse(houseId);
         model.addAttribute("roomList", roomHouseDetailDtos);
+
+        System.out.println(roomHouseDetailDtos.toString());
 
 
 
