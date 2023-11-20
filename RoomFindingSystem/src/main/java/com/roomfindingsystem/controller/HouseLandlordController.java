@@ -4,6 +4,8 @@ import com.roomfindingsystem.dto.HouseLandlordVo;
 import com.roomfindingsystem.entity.ServiceDetailEntity;
 import com.roomfindingsystem.entity.TypeHouseEntity;
 
+import com.roomfindingsystem.service.HouseLandlordService;
+import com.roomfindingsystem.service.HouseTypeService;
 import com.roomfindingsystem.service.ServiceDetailService;
 
 import jakarta.servlet.http.HttpSession;
@@ -23,7 +25,7 @@ public class HouseLandlordController {
     @Autowired
     private HouseLandlordService houseLandlordService;
     @Autowired
-    TypeHouseRepository typeHouseRepository;
+    HouseTypeService houseTypeService;
     @Autowired
     ServiceDetailService serviceDetailService;
 
@@ -38,7 +40,7 @@ public class HouseLandlordController {
 
     @GetMapping("/edit/{houseid}")
     public String detailHouse(@PathVariable Integer houseid,Model model, HttpSession httpSession){
-        List<TypeHouseEntity> listType = typeHouseRepository.findAll();
+        List<TypeHouseEntity> listType = houseTypeService.findAll();
         List<ServiceDetailEntity> listService = serviceDetailService.getAllService();
 
         HouseLandlordVo  house = houseLandlordService.findHouseByID(houseid);

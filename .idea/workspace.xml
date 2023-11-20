@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-
-    <list default="true" id="ec34e655-ee0a-4be9-8773-96fceb50fb67" name="Changes" comment="update 1 so cai trong housedetail">
-      <change afterPath="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/example/roomfindingsystem/controller/HouseDetailControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/config/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/config/SecurityConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/example/roomfindingsystem/controller/UserRegisterControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/example/roomfindingsystem/controller/UserRegisterControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/target/classes/templates/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/target/classes/templates/detail.html" afterDir="false" />
-
-    </list>
+    <list default="true" id="ec34e655-ee0a-4be9-8773-96fceb50fb67" name="Changes" comment="update 1 so cai trong housedetail" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -57,7 +48,7 @@
     "WebServerToolWindowFactoryState": "false",
     "com.google.cloudcode.ide_session_index": "20231119_0000",
     "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "nghiant2",
+    "last_opened_file_path": "E:/Github/Room-Finding-System/RoomFindingSystem/src/main/resources/templates",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -69,30 +60,29 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Github\Room-Finding-System\RoomFindingSystem\src\main\resources\templates" />
       <recent name="D:\Intellij project\Room-Finding-System\RoomFindingSystem\src\main\resources\templates\admin" />
       <recent name="D:\Intellij project\Room-Finding-System\RoomFindingSystem\src\main\resources\templates" />
       <recent name="D:\Intellij project\Room-Finding-System\RoomFindingSystem\src\main\resources" />
       <recent name="D:\Intellij project\Room-Finding-System\RoomFindingSystem\src\main\resources\static" />
-      <recent name="D:\Intellij project\Room-Finding-System\RoomFindingSystem\src\main\java\com\roomfindingsystem\dto" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Intellij project\Room-Finding-System\RoomFindingSystem\src\main\resources\static" />
       <recent name="D:\Intellij project\Room-Finding-System\RoomFindingSystem\src\main\resources\templates" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.roomfindingsystem.controller" />
+      <recent name="com.roomfindingsystem.repository" />
       <recent name="com.roomfindingsystem.service.impl" />
-      <recent name="com.roomfindingsystem.vo" />
-      <recent name="com.roomfindingsystem.config" />
+      <recent name="com.roomfindingsystem.service" />
+      <recent name="com.roomfindingsystem.dto" />
+      <recent name="com.roomfindingsystem.controller" />
     </key>
     <key name="ImportMappingsDialog.RecentPackages">
       <recent name="com.roomfindingsystem.entity" />
     </key>
   </component>
-
   <component name="RunManager" selected="JUnit.UserRegisterControllerTest">
     <configuration name="HouseDetailControllerTest.testGetAllHouse" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-
       <module name="RoomFindingSystem" />
       <extension name="coverage">
         <pattern>
@@ -100,19 +90,15 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-
       <option name="PACKAGE_NAME" value="com.example.roomfindingsystem.controller" />
       <option name="MAIN_CLASS_NAME" value="com.example.roomfindingsystem.controller.HouseDetailControllerTest" />
       <option name="METHOD_NAME" value="testGetAllHouse" />
       <option name="TEST_OBJECT" value="method" />
-
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-
     <configuration name="UserRegisterControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-
       <module name="RoomFindingSystem" />
       <extension name="coverage">
         <pattern>
@@ -120,16 +106,13 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-
       <option name="PACKAGE_NAME" value="com.example.roomfindingsystem.controller" />
       <option name="MAIN_CLASS_NAME" value="com.example.roomfindingsystem.controller.UserRegisterControllerTest" />
       <option name="TEST_OBJECT" value="class" />
-
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-
     <configuration name="UserRegisterControllerTest.testSave_UserWithExistingEmail" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RoomFindingSystem" />
       <extension name="coverage">
@@ -141,13 +124,11 @@
       <option name="PACKAGE_NAME" value="com.example.roomfindingsystem.controller" />
       <option name="MAIN_CLASS_NAME" value="com.example.roomfindingsystem.controller.UserRegisterControllerTest" />
       <option name="METHOD_NAME" value="testSave_UserWithExistingEmail" />
-
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-
     <configuration name="UserRegisterControllerTest.testSave_ValidUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RoomFindingSystem" />
       <extension name="coverage">
@@ -159,15 +140,12 @@
       <option name="PACKAGE_NAME" value="com.example.roomfindingsystem.controller" />
       <option name="MAIN_CLASS_NAME" value="com.example.roomfindingsystem.controller.UserRegisterControllerTest" />
       <option name="METHOD_NAME" value="testSave_ValidUser" />
-
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-
     <configuration name="UserRegisterTest.testFindByEmail_EmailCaseInsensitive" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-
       <module name="RoomFindingSystem" />
       <extension name="coverage">
         <pattern>
@@ -175,11 +153,9 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-
       <option name="PACKAGE_NAME" value="com.example.roomfindingsystem.service" />
       <option name="MAIN_CLASS_NAME" value="com.example.roomfindingsystem.service.UserRegisterTest" />
       <option name="METHOD_NAME" value="testFindByEmail_EmailCaseInsensitive" />
-
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -279,25 +255,21 @@
       </method>
     </configuration>
     <list>
-
       <item itemvalue="JUnit.HouseDetailControllerTest.testGetAllHouse" />
       <item itemvalue="JUnit.UserRegisterControllerTest.testSave_ValidUser" />
       <item itemvalue="JUnit.UserRegisterControllerTest" />
       <item itemvalue="JUnit.UserRegisterControllerTest.testSave_UserWithExistingEmail" />
       <item itemvalue="JUnit.UserRegisterTest.testFindByEmail_EmailCaseInsensitive" />
-
       <item itemvalue="Spring Boot.Main" />
       <item itemvalue="Tomcat Server.Tomcat 9.0.69" />
     </list>
     <recent_temporary>
       <list>
-
         <item itemvalue="JUnit.UserRegisterControllerTest" />
         <item itemvalue="JUnit.UserRegisterControllerTest.testSave_ValidUser" />
         <item itemvalue="JUnit.HouseDetailControllerTest.testGetAllHouse" />
         <item itemvalue="JUnit.UserRegisterControllerTest.testSave_UserWithExistingEmail" />
         <item itemvalue="JUnit.UserRegisterTest.testFindByEmail_EmailCaseInsensitive" />
-
       </list>
     </recent_temporary>
   </component>
@@ -358,7 +330,6 @@
       <workItem from="1699681970514" duration="1816000" />
       <workItem from="1699695870453" duration="2422000" />
       <workItem from="1699844968755" duration="2913000" />
-
       <workItem from="1700062419743" duration="4194000" />
       <workItem from="1700074491389" duration="6054000" />
       <workItem from="1700102984230" duration="5944000" />
@@ -370,7 +341,6 @@
       <workItem from="1700337270292" duration="5869000" />
       <workItem from="1700344307255" duration="106000" />
       <workItem from="1700371315356" duration="15445000" />
-
     </task>
     <task id="LOCAL-00001" summary="fix register and boảding house detail and send mail future">
       <option name="closed" value="true" />
