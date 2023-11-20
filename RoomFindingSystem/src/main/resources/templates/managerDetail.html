@@ -210,7 +210,6 @@
                                 <!--end form-group-->
                             </div>
                             <div class="col-md-5">
-                                <h3>Room Types <i class="fa fa-question-circle tooltip-question" data-toggle="tooltip" data-placement="right" title="Nam quis ipsum ac sem ornare efficitur et vel mauris. Proin nibh arcu, vulputate eget massa sed."></i></h3>
                                 <div class="form-group" style="float: left;width: inherit">
                                     <label>Số lượt thích</label>
                                     <input type="text" readonly th:field="*{like}" style="padding: 10px" >
@@ -218,6 +217,13 @@
                                 <div class="form-group" style="float: right;width: inherit">
                                     <label>Số lượng phòng</label>
                                     <input type="text" readonly th:field="*{count_room}" style="padding: 10px">
+                                </div>
+                                <div class="form-group" style="float: left;width: inherit">
+                                    <label>Tình trạng</label>
+                                    <select class="form-control" th:field="*{status}">
+                                        <option value="1"  th:selected="${house.status == 1}" >HOẠT ĐỘNG</option>
+                                        <option value="0"  th:selected="${house.status == 0}">NGƯNG HOẠT ĐỘNG</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
