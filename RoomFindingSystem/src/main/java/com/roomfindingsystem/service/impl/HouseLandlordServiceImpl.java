@@ -33,6 +33,7 @@ public class HouseLandlordServiceImpl implements HouseLandlordService {
         for (Tuple tuple : tuples) {
             HouseLandlordVo houseLandlordVo = new HouseLandlordVo();
             houseLandlordVo.setHouseID(tuple.get("HouseID", Integer.class));
+            houseLandlordVo.setStatus(tuple.get("status", Integer.class));
             houseLandlordVo.setHouseName(tuple.get("House_Name", String.class));
             houseLandlordVo.setTypeHouse(tuple.get("Type_Name", String.class));
             houseLandlordVo.setAddressDetail(tuple.get("Address_Details", String.class));
@@ -102,9 +103,9 @@ public class HouseLandlordServiceImpl implements HouseLandlordService {
         List<String> imageLinks ;
         List<String> services;
 
-
             HouseLandlordVo houseLandlordVo = new HouseLandlordVo();
             houseLandlordVo.setHouseID(tuple.get("HouseID", Integer.class));
+            houseLandlordVo.setStatus(tuple.get("status", Integer.class));
             houseLandlordVo.setHouseName(tuple.get("House_Name", String.class));
             houseLandlordVo.setTypeHouse(tuple.get("Type_Name", String.class));
             houseLandlordVo.setAddressDetail(tuple.get("Address_Details", String.class));
