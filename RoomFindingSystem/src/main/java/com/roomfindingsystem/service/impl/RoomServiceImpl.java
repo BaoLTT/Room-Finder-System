@@ -306,6 +306,11 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
+    public String getRoomNameById(String id) {
+        return roomRepository.getRoomNameById(id);
+    }
+
+    @Override
     public List<RoomDtoN> findRoom1(int min, int max, String roomName, List<Integer> type, int pageIndex, int pageSize) {
         List<Tuple> tuples = roomRepository.getRoomList(min, max, roomName, type, pageIndex, pageSize);
         List<RoomDtoN> roomDtos = new ArrayList<>();
