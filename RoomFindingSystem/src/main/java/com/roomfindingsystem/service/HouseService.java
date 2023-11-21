@@ -23,4 +23,6 @@ public interface HouseService {
 
     //admin
     int countHousesInAdmin();
+
+    void updateStar(double star, int houseId);
 }

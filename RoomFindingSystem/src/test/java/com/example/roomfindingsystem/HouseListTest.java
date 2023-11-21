@@ -17,6 +17,7 @@ public class HouseListTest {
 
 
     HouseService houseService = new HouseService() {
+
         @Override
         public int countHouse(int min1, int max1, int min2, int max2, String houseName, List<Integer> type, List<Integer> service, int countService) {
             return 0;
@@ -60,6 +61,11 @@ public class HouseListTest {
         @Override
         public int countHousesInAdmin() {
             return 0;
+        }
+
+        @Override
+        public void updateStar(double star, int houseId) {
+
         }
     };
     @Test

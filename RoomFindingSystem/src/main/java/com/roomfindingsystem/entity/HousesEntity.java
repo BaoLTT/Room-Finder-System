@@ -66,6 +66,12 @@ public class HousesEntity {
     private int userId;
 
     @Basic
+
+    @Column(name = "star")
+    private double star;
+
+
+
     @Column(name = "status")
     private int status;
     @Override
