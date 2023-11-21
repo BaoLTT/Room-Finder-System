@@ -66,10 +66,14 @@ public class HousesEntity {
     private int userId;
 
     @Basic
+
     @Column(name = "star")
     private double star;
 
 
+
+    @Column(name = "status")
+    private int status;
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -78,7 +82,7 @@ public class HousesEntity {
         return houseId == that.houseId && addressId == that.addressId && typeHouseId == that.typeHouseId && userId == that.userId && Objects.equals(houseName, that.houseName) && Objects.equals(description, that.description) && Objects.equals(createdDate, that.createdDate) && Objects.equals(createdBy, that.createdBy) && Objects.equals(lastModifiedDate, that.lastModifiedDate) && Objects.equals(lastModifiedBy, that.lastModifiedBy);
     }
 
-    public HousesEntity(String houseName, String description, LocalDate createdDate, Integer createdBy, LocalDate lastModifiedDate, Integer lastModifiedBy, int addressId, int typeHouseId, int userId) {
+    public HousesEntity(String houseName, String description, LocalDate createdDate, Integer createdBy, LocalDate lastModifiedDate, Integer lastModifiedBy, int addressId, int typeHouseId, int userId, int status) {
         this.houseName = houseName;
         this.description = description;
         this.createdDate = createdDate;
@@ -88,6 +92,7 @@ public class HousesEntity {
         this.addressId = addressId;
         this.typeHouseId = typeHouseId;
         this.userId = userId;
+        this.status = status;
     }
     public HousesEntity(String houseName, String description, LocalDate lastModifiedDate, Integer lastModifiedBy, int addressId, int typeHouseId) {
         this.houseName = houseName;

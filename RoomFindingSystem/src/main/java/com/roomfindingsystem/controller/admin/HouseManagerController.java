@@ -133,7 +133,7 @@ public class HouseManagerController {
 
         Integer typeHouse = Integer.parseInt(houseType);
         Integer landlordId = Integer.parseInt(landlord);
-        HousesEntity house = new HousesEntity(houseName,description.trim(),createdDate,createdBy,createdDate,createdBy,addressID,typeHouse,landlordId);
+        HousesEntity house = new HousesEntity(houseName,description.trim(),createdDate,createdBy,createdDate,createdBy,addressID,typeHouse,landlordId,1);
         houseManagerService.insertHouse(house);
 //        for (MultipartFile image : images) {
 //
