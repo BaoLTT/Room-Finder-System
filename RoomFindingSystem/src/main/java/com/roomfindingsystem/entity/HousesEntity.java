@@ -65,6 +65,10 @@ public class HousesEntity {
     @Column(name = "UserID")
     private int userId;
 
+    @Basic
+    @Column(name = "star")
+    private double star;
+
 
     @Override
     public boolean equals(Object o) {
