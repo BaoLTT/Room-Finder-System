@@ -19,6 +19,7 @@ public class ReportController {
     public String getListReport(Model model) {
         List<ReportListDto> listReport= reportService.getAllReport();
         model.addAttribute("reportList", listReport);
+        System.out.println(listReport.toString());
         return "report-list-admin";
     }
 

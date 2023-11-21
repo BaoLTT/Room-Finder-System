@@ -7,6 +7,8 @@ import com.roomfindingsystem.service.ServiceDetailService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ServiceDetailServiceImpl implements ServiceDetailService {
     private final ServiceDetailRepository serviceDetailRepository;
@@ -25,5 +27,10 @@ public class ServiceDetailServiceImpl implements ServiceDetailService {
         serviceDto.setServiceId(serviceDetailEntity.getServiceId());
         serviceDto.setServiceName(serviceDetailEntity.getServiceName());
         return serviceDto;
+    }
+
+    @Override
+    public List<ServiceDetailEntity> getAllService() {
+        return serviceDetailRepository.findAll();
     }
 }
