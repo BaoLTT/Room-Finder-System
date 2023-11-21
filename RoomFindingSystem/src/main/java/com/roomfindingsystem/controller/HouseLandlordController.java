@@ -1,21 +1,20 @@
 package com.roomfindingsystem.controller;
 
 import com.roomfindingsystem.dto.HouseLandlordVo;
+import com.roomfindingsystem.entity.AddressEntity;
+import com.roomfindingsystem.entity.HousesEntity;
 import com.roomfindingsystem.entity.ServiceDetailEntity;
 import com.roomfindingsystem.entity.TypeHouseEntity;
 
-import com.roomfindingsystem.service.HouseLandlordService;
-import com.roomfindingsystem.service.HouseTypeService;
-import com.roomfindingsystem.service.ServiceDetailService;
+import com.roomfindingsystem.service.*;
 
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +27,12 @@ public class HouseLandlordController {
     HouseTypeService houseTypeService;
     @Autowired
     ServiceDetailService serviceDetailService;
+
+    @Autowired
+    AddressService addressService;
+
+    @Autowired
+    HouseManagerService houseManagerService;
 
     @GetMapping("")
     public String findAll(Model model, HttpSession httpSession){
@@ -51,5 +56,25 @@ public class HouseLandlordController {
         model.addAttribute("listChecked",listChecked);
         model.addAttribute("listService",listService);
         return "managerDetail";
+    }
+
+    @PostMapping("/save")
+    public String saveHouse(@ModelAttribute(name = "house") HouseLandlordVo house, Model model, HttpSession httpSession){
+//        System.out.println(house.getHouseName());
+//        System.out.println(house.getTypeHouseID());
+//        System.out.println(house.getDescription());
+//        System.out.println(house.getAddressDetail());
+//        System.out.println(house.getProvinceID());
+//        System.out.println(house.getDistrictID());
+//        System.out.println(house.getWardID());
+//        System.out.println(house.getService());
+//        System.out.println(house.getStatus());
+        int userid= 1;
+        LocalDate createdDate = LocalDate.now();
+        AddressEntity address = new AddressEntity("a",house.getAddressDetail().trim(),house.getProvinceID(),house.getDistrictID(),house.getWardID());
+        int addressID = addressService.insertAddress(address);
+        HousesEntity newHouse = new HousesEntity(house.getHouseName().trim(),house.getDescription().trim(),createdDate,userid,createdDate,userid,addressID,house.getTypeHouseID(),userid,house.getStatus());
+        houseManagerService.insertHouse(newHouse);
+        return  "redirect:/manager";
     }
 }
