@@ -5,8 +5,10 @@ import com.roomfindingsystem.dto.HouseManagerTypeVo;
 import com.roomfindingsystem.entity.HouseImagesEntity;
 import com.roomfindingsystem.entity.HousesEntity;
 import com.roomfindingsystem.entity.ServiceHouseEntity;
+import com.roomfindingsystem.repository.AddressRepository;
 import com.roomfindingsystem.repository.HouseManagerRepository;
 import com.roomfindingsystem.repository.ImagesHouseRepository;
+import com.roomfindingsystem.repository.ServiceHouseRepository;
 import com.roomfindingsystem.service.HouseManagerService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,7 @@ public class HouseManagerServiceImpl implements HouseManagerService {
     @Autowired
     ImagesHouseRepository imagesHouseRepository;
     @Autowired
+    ServiceHouseRepository serviceHouseRepository;
 
     @Override
     public List<HouseManagerTypeVo> findHouseManager() {
