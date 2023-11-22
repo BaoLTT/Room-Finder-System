@@ -27,8 +27,9 @@ public interface ReportRepository extends JpaRepository<ReportEntity, Integer> {
     int countProcessedReports();
 
 
-    @Query("SELECT r FROM ReportEntity r WHERE r.houseid = :houseId AND r.userid = :userid")
+    @Query("SELECT r FROM ReportEntity r WHERE r.houseid = :houseId AND r.userid = :userid ORDER BY r.reportid DESC")
     List<ReportEntity> getReportEntityByUid(int houseId, int userid);
+
     public ReportEntity save(ReportEntity reportEntity);
     @Transactional
     @Modifying
