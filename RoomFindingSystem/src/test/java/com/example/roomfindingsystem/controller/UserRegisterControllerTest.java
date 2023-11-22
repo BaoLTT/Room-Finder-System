@@ -9,10 +9,12 @@ import com.roomfindingsystem.service.impl.EmailSenderServiceImpl;
 import com.roomfindingsystem.service.impl.Smsservice;
 import com.roomfindingsystem.service.impl.UserServiceImpl;
 import jakarta.servlet.http.HttpSession;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -28,8 +30,6 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class UserRegisterControllerTest {
-
-
 
     @Mock
     private UserService userService;
@@ -49,6 +49,11 @@ public class UserRegisterControllerTest {
     @InjectMocks
     private UserController userController;
 
+    @BeforeEach
+    void setUp(){
+        MockitoAnnotations.openMocks(this);
+    }
+
     @Test
     public void testSave_ValidUser() {
         // Chuẩn bị
@@ -56,15 +61,14 @@ public class UserRegisterControllerTest {
         user.setEmail("thaibaoa3k45no123@gmail.com");
 
 
-
         when(bindingResult.hasErrors()).thenReturn(false);
-        when(userService.findByEmail(anyString())).thenReturn(Optional.empty());
+        when(userService.findByEmail("thaibaoa3k45no123@gmail.com")).thenReturn(Optional.empty());
 
         // Thực hiện
         String result = userController.save(user, bindingResult, model, null,session);
 
         // Kiểm tra
-        verify(userService).findByEmail("baoltthe153367@fpt.edu.vn");
+        verify(userService).findByEmail("thaibaoa3k45no123@gmail.com");
         verify(model, never()).addAttribute(eq("mess"), anyString());
         verify(session).setAttribute(eq("otp-register"), anyString());
         verify(session).setMaxInactiveInterval(360);
@@ -74,7 +78,6 @@ public class UserRegisterControllerTest {
         assertEquals("redirect:/otp-check", result);
         // Thêm các kiểm tra khác tùy thuộc vào cần thiết
     }
-
 
 
 

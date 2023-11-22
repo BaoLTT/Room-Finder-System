@@ -7,13 +7,14 @@ import com.roomfindingsystem.entity.ServiceDetailEntity;
 
 import com.roomfindingsystem.dto.*;
 
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
 
-
+@Component
 public interface RoomService {
     RoomEntity getRoomById(int roomId);
 
@@ -42,6 +43,8 @@ public interface RoomService {
     //room type list in house detail
     List<RoomHouseDetailDto> viewRoomInHouse(int houseId);
 
+    String getRoomNameById(String id);
+
     List<RoomDtoN> findRoom1(int min, int max, String roomName, List<Integer> type, int pageIndex, int pageSize);
 
     void importRooms(MultipartFile file);
@@ -51,4 +54,6 @@ public interface RoomService {
     void updateStatusDate(int roomId, int statusId);
 
     void deleteRoomImage(Integer imageId);
+
+
 }

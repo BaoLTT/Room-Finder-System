@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
@@ -29,14 +30,14 @@ public class ReportEntity {
     private String reportDescription;
     @Basic
     @Column(name = "created_date")
-    private Date createdDate;
+    private LocalDate createdDate;
     @Basic
     @Column(name = "report_status")
     private String reportStatus;
 
     @Basic
     @Column(name = "solved_date")
-    private Date solvedDate;
+    private LocalDate solvedDate;
     @Basic
     @Column(name = "userid")
     private Integer userid;

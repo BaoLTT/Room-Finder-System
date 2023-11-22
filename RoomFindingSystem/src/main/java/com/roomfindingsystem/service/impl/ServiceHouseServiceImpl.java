@@ -14,8 +14,4 @@ public class ServiceHouseServiceImpl implements ServiceHouseService {
         super();
         this.serviceHouseRepository = serviceHouseRepository;
     }
-    @Override
-    public List<ServiceDetailEntity> findAll() {
-        return serviceHouseRepository.findAll();
-    }
 }

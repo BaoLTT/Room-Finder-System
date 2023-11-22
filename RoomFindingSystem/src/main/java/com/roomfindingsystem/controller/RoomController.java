@@ -43,6 +43,12 @@ public class RoomController {
         return "room/RoomDetail";
     }
 
+    @PostMapping("/houseDetail")
+    public String getRoomInHouseDetail(Model model, @RequestParam(name = "roomId") String id){
+        int id1 = Integer.parseInt(id);
+        return "redirect:/room/"+id1;
+    }
+
     @GetMapping("/listRoomPage")
     public String getListRoomPage(Model model) {
         List<RoomDto> roomDtos = roomService.getAll();

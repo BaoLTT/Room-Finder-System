@@ -97,8 +97,8 @@ public class HouseManagerController {
         AddressEntity address = new AddressEntity("a",addressDetail,province,district,ward);
         addressService.updateAddress(address,Integer.parseInt(addressid));
 
-        HousesEntity house = new HousesEntity(houseName,description.trim(),lastDate,createdBy,Integer.parseInt(addressid),houseManager.getTypeHouseID());
-        houseManagerService.updateHouse(house,Integer.parseInt(houseID));
+//        HousesEntity house = new HousesEntity(houseName,description.trim(),lastDate,createdBy,Integer.parseInt(addressid),houseManager.getTypeHouseID());
+//        houseManagerService.updateHouse(house,Integer.parseInt(houseID));
 
         return "redirect:/admin/house-manager";
     }
@@ -133,8 +133,8 @@ public class HouseManagerController {
 
         Integer typeHouse = Integer.parseInt(houseType);
         Integer landlordId = Integer.parseInt(landlord);
-        HousesEntity house = new HousesEntity(houseName,description.trim(),createdDate,createdBy,createdDate,createdBy,addressID,typeHouse,landlordId);
-        houseManagerService.insertHouse(house);
+//        HousesEntity house = new HousesEntity(houseName,description.trim(),createdDate,createdBy,createdDate,createdBy,addressID,typeHouse,landlordId,1);
+//        houseManagerService.insertHouse(house);
 //        for (MultipartFile image : images) {
 //
 //            // Lưu trữ thông tin ảnh vào database

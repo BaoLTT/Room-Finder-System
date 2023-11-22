@@ -7,8 +7,10 @@ import com.roomfindingsystem.dto.HouseDto;
 import com.roomfindingsystem.dto.HouseImageLink;
 import com.roomfindingsystem.dto.ServiceDto;
 import jakarta.persistence.Tuple;
+import jakarta.transaction.Transactional;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -82,7 +84,7 @@ public interface HouseRepository extends JpaRepository<HousesEntity, Integer> {
             "GROUP BY h.houseid, h.house_name, t.type_name, a.address_details, ward_name, district_name, province_name, h.last_modified_date) as subquery", nativeQuery = true)
     int countHouse(int min1, int max1, int min2, int max2, String houseName, List<Integer> type, List<Integer> service,int countService);
 
-    @Query("SELECT new com.roomfindingsystem.dto.HouseDto( h.houseId, h.houseName,h.description,h.createdDate, u.lastName,u.firstName , u.phone,a.addressDetails, t.typeName ,p.name,d.name,w.name)\n" +
+    @Query("SELECT new com.roomfindingsystem.dto.HouseDto( h.houseId, h.houseName,h.description,h.createdDate, u.lastName,u.firstName , u.phone,a.addressDetails, t.typeName ,p.name,d.name,w.name, h.star)\n" +
             "FROM HousesEntity as h \n" +
             "left join UserEntity as u on h.userId = u.userId \n" +
             "left join AddressEntity as a on h.addressId = a.addressId\n" +
@@ -121,6 +123,17 @@ public interface HouseRepository extends JpaRepository<HousesEntity, Integer> {
     //admin
     @Query("select count(*) from HousesEntity")
     int countHouses();
+
+    @Transactional
+    @Modifying
+    @Query(value = "UPDATE room_finding_system.houses SET star = ?1 WHERE houseid = ?2", nativeQuery = true)
+    void updateStarHouse(double star, Integer houseId);
+
+
+
+
+
+
 
 
 }
