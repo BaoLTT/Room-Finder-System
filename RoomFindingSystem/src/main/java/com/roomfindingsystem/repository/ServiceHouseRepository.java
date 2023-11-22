@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository("serviceRepository")
-public interface ServiceHouseRepository extends JpaRepository<ServiceDetailEntity, Integer> {
+public interface ServiceRepository extends JpaRepository<ServiceDetailEntity, Integer> {
 
     List<ServiceDetailEntity> findAll();
 }

@@ -27,7 +27,7 @@ public class HouseListController {
     }
 
     @Autowired
-    private ServiceHouseRepository serviceHouseRepository;
+    private ServiceDetailRepository serviceDetailRepository;
     @Autowired
     private ServiceDetailRepository serviceDetailRepository;
 
@@ -116,7 +116,7 @@ public class HouseListController {
         model.addAttribute("currentPage",pageIndex);
         model.addAttribute("totalPage", totalPage);
         model.addAttribute("houses", list);
-        listAllService = serviceHouseRepository.findAll();
+        listAllService = serviceDetailRepository.getAll();
         model.addAttribute("listAllService", listAllService);
         return"houselist";
     }
