@@ -2,7 +2,6 @@ package com.roomfindingsystem.controller;
 
 import com.roomfindingsystem.entity.ServiceDetailEntity;
 import com.roomfindingsystem.repository.ServiceDetailRepository;
-import com.roomfindingsystem.repository.ServiceHouseRepository;
 import com.roomfindingsystem.service.HouseService;
 
 import com.roomfindingsystem.dto.HouseTypeVo;
@@ -25,9 +24,6 @@ public class HouseListController {
     public HouseListController(HouseService houseService) {
         this.houseService = houseService;
     }
-
-    @Autowired
-    private ServiceHouseRepository serviceHouseRepository;
     @Autowired
     private ServiceDetailRepository serviceDetailRepository;
 
@@ -116,7 +112,7 @@ public class HouseListController {
         model.addAttribute("currentPage",pageIndex);
         model.addAttribute("totalPage", totalPage);
         model.addAttribute("houses", list);
-        listAllService = serviceHouseRepository.findAll();
+        listAllService = serviceDetailRepository.getAll();
         model.addAttribute("listAllService", listAllService);
         return"houselist";
     }
