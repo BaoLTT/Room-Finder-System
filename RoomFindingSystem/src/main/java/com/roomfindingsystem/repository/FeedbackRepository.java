@@ -24,7 +24,7 @@ public interface FeedbackRepository extends JpaRepository<FeedbackEntity,Integer
 
 
 
-    @Query("SELECT NEW com.roomfindingsystem.dto.FeedbackDto(f.feedbackId, f.title, f.content, f.createdDate, u.firstName, u.lastName, u.imageLink, u.userId) FROM FeedbackEntity f JOIN UserEntity u " +
+    @Query("SELECT NEW com.roomfindingsystem.dto.FeedbackDto(f.feedbackId, f.title, f.content, f.createdDate, u.firstName, u.lastName, u.imageLink, u.userId, f.star) FROM FeedbackEntity f JOIN UserEntity u " +
             "ON u.userId = f.memberId WHERE f.houseId = :houseId")
     List<FeedbackDto> findFeedbackDtosByHouseId(int houseId);
 

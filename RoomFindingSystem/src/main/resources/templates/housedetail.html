@@ -33,6 +33,34 @@
         h4{
             font-weight: bold
         }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .star{
+            font-size: 19px;
+        }
+
+        .one {
+            color: red;
+        }
+
+        .two {
+            color: orangered;
+        }
+
+        .three {
+            color: darkorange;
+        }
+
+        .four {
+            color: orange;
+        }
+
+        .five {
+            color: #FFCE45;
+        }
     </style>
 
     <title>Xem chi tiết nhà trọ</title>
@@ -167,7 +195,7 @@
                                 <li><a href="#map" class="scroll">Bản đồ</a></li>
                                 <li><a href="#facilities" class="scroll">Facilities</a></li>
                                 <li><a href="#additional-information" class="scroll">Thêm Thông Tin</a></li>
-                                <li><a href="#reviews" class="scroll">Bình Luận</a></li>
+                                <li><a href="#reviews" class="scroll">Đánh giá</a></li>
                                 <li></li>
                             </ul>
                         </div>
@@ -180,7 +208,6 @@
                                 <!--                                <h1 th:text="*{houseName}" >Mountain Paradise<span class="rating"><i class="fa fa-star"></i>9.9</span></h1>-->
 
                                 <h3><strong>Ngày Tạo:</strong></h3>
-                                <h3 th:text="${HousesEntity.createdDate}">(63 properties)</h3>
                             </div>
                             <div class="right">
                                 <a href="#map" class="icon scroll"><i class="fa fa-map-marker"></i>Tìm Trên Bản Đồ</a>
@@ -218,6 +245,11 @@
                         <div class="row">
                             <div class="col-md-6 col-sm-6"> <!-- Chia cột, có thể điều chỉnh theo ý muốn -->
                                 <h2 th:text="${HousesEntity.houseName}"></h2>
+                                <a href="#reviews">
+                                    <span th:text="'Đánh giá: ' + ${HousesEntity.star} + ' '"></span><i class="fa fa-star" style="color: #FFCE45"></i>
+                                </a>
+
+
                             </div>
 
                             <div class="col-md-6 col-sm-6 text-right" th:if="${session.user != null}"> <!-- Chia cột, dính về bên phải -->
@@ -479,22 +511,6 @@
                             </div>
                             <!--end form-reservations-->
                         </section>
-<!--                        <section id="additional-information">-->
-<!--                            <h2>Additional Information</h2>-->
-<!--                            <dl class="info">-->
-<!--                                <dt>Check-in:</dt>-->
-<!--                                <dd>14:00 - 00:00</dd>-->
-<!--                                <dt>Check-out:</dt>-->
-<!--                                <dd><strong>Late Check-out: until 12:00 </strong></dd>-->
-<!--                                <dt>Cancellation:</dt>-->
-<!--                                <dd>Cancellation and prepayment policies vary according to room type.</dd>-->
-<!--                                <dt>Children:</dt>-->
-<!--                                <dd>All children are welcome.</dd>-->
-<!--                                <dt>Pets:</dt>-->
-<!--                                <dd>Pets are not allowed</dd>-->
-<!--                            </dl>-->
-<!--                            &lt;!&ndash;end info&ndash;&gt;-->
-<!--                        </section>-->
                         <section id="reviews">
                             <div class="title">
                                 <h2 class="pull-left">Đánh giá</h2>
@@ -575,13 +591,16 @@
                                                                                                       name="answer" required="" placeholder="Viết mô tả ở đây"
                                                                                                       th:field="*{content}" pattern=".{20,}" title="Yêu cầu ít nhất 20 ký tự"></textarea>
                                                                                         </div>
-                                                                                        <div class="comment-title">
-                                                                                            <h4 >Đánh giá</h4>
-                                                                                        </div>
                                                                                         <!--end title-->
-                                                                                        <dl class="visitor-rating">
-                                                                                            <dd class="star-rating active" data-name="cleanliness"></dd>
-                                                                                        </dl>
+                                                                                        <div class="comment-title">
+                                                                                            <h4>Đánh giá: </h4>
+                                                                                            <input type="text" id="ratingInput1" hidden="" oninput="updateRating(1, this.value)" th:field="*{star}">
+                                                                                            <span onclick="gfg(1, 1)" class="star">★</span>
+                                                                                            <span onclick="gfg(2, 1)" class="star">★</span>
+                                                                                            <span onclick="gfg(3, 1)" class="star">★</span>
+                                                                                            <span onclick="gfg(4, 1)" class="star">★</span>
+                                                                                            <span onclick="gfg(5, 1)" class="star">★</span>
+                                                                                        </div>
                                                                                         <!--end form-group-->
                                                                                         <div class="form-group pull-right">
                                                                                             <button type="submit" class="btn btn-primary btn-rounded">Gửi đánh giá
@@ -612,13 +631,8 @@
                                                     <!--end title-->
                                                     <p th:text="${feedback.getContent()}"></p>
                                                     <div class="clearfix options">
-                                                    <span class="pull-left"><a href=""
-                                                                               class="btn btn-framed btn-default btn-rounded btn-small icon"><i
-                                                            class="fa fa-thumbs-up font-color-default"></i>3</a>Helpful Review?</span>
-                                                        <span class="pull-right">
-
-
-                                                        </span>
+                                                    <span class="pull-left"><span>Đánh giá: </span><span th:text="${feedback.getStar()}" >  </span><span style="color: #FFCE45"><i class="fa fa-star"></i></span></span>
+                                                    <span class="pull-right"></span>
 
                                                     </div>
                                                     <!--end options-->
@@ -678,14 +692,19 @@
                                                           name="answer" required="" placeholder="Viết mô tả ở đây"
                                                           th:field="*{content}" pattern=".{20,}" title="Yêu cầu ít nhất 20 ký tự"></textarea>
                                             </div>
+
+
                                             <div class="comment-title">
-                                                <h4 >Đánh giá</h4>
+                                                <h4>Đánh giá: </h4>
+                                                <input type="text" id="ratingInput2" hidden="" oninput="updateRating(2, this.value)" th:value="5" th:field="*{star}">
+                                                <span onclick="gfg(1, 2)" class="star">★</span>
+                                                <span onclick="gfg(2, 2)" class="star">★</span>
+                                                <span onclick="gfg(3, 2)" class="star">★</span>
+                                                <span onclick="gfg(4, 2)" class="star">★</span>
+                                                <span onclick="gfg(5, 2)" class="star">★</span>
                                             </div>
-                                            <!--end title-->
-                                            <dl class="visitor-rating">
-                                                <dd class="star-rating active" data-name="cleanliness"></dd>
-                                            </dl>
-                                            <!--end form-group-->
+
+
                                             <div class="form-group pull-right">
                                                 <button type="submit" class="btn btn-primary btn-rounded">Gửi đánh giá
                                                 </button>
@@ -752,4 +771,120 @@
     var element = "map-item";
     simpleMap(_latitude,_longitude, element);
 </script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get initial rating from the input value or set default to 5 if it's 0
+        initializeRating(1);
+        initializeRating(2);
+    });
+
+    function initializeRating(index) {
+        const initialRatingInput = document.getElementById("ratingInput" + index);
+        let initialRating = initialRatingInput.value ? parseInt(initialRatingInput.value, 10) : 5;
+
+        // If initial rating is 0, set it to 5
+        if (initialRating === 0) {
+            initialRating = 5;
+            initialRatingInput.value = "5";
+        }
+
+        gfg(initialRating, index);
+    }
+
+    function updateRating(index, value) {
+        // Convert input value to a number
+        const rating = parseInt(value, 10);
+
+        // Check if the value is a valid number between 1 and 5
+        if (!isNaN(rating) && rating >= 1 && rating <= 5) {
+            gfg(rating, index);
+        } else {
+            // If the input value is not valid, you can handle it here (e.g., display an error message)
+        }
+    }
+
+    function gfg(n, index) {
+        const stars = document.getElementsByClassName("star");
+        const starIndex = index - 1;
+
+        remove(stars, starIndex);
+
+        for (let i = 0; i < n; i++) {
+            let cls;
+            if (n == 1) cls = "one";
+            else if (n == 2) cls = "two";
+            else if (n == 3) cls = "three";
+            else if (n == 4) cls = "four";
+            else if (n == 5) cls = "five";
+            stars[starIndex * 5 + i].className = "star " + cls;
+        }
+
+        document.getElementById("ratingInput" + index).value = "" + n;
+    }
+
+    // To remove the pre-applied styling
+    function remove(stars, starIndex) {
+        for (let i = 0; i < 5; i++) {
+            stars[starIndex * 5 + i].className = "star";
+        }
+    }
+
+
+</script>
+<!--<script>-->
+<!--    document.addEventListener('DOMContentLoaded', function() {-->
+<!--        // Get initial rating from the input value or set default to 5 if it's 0-->
+<!--        const initialRatingInput = document.getElementById("ratingInput");-->
+<!--        let initialRating = initialRatingInput.value ? parseInt(initialRatingInput.value, 10) : 5;-->
+
+<!--        // If initial rating is 0, set it to 5-->
+<!--        if (initialRating === 0) {-->
+<!--            initialRating = 5;-->
+<!--            initialRatingInput.value = "5";-->
+<!--        }-->
+
+<!--        gfg(initialRating);-->
+<!--    });-->
+
+<!--    function updateRating(value) {-->
+<!--        // Convert input value to a number-->
+<!--        const rating = parseInt(value, 10);-->
+
+<!--        // Check if the value is a valid number between 1 and 5-->
+<!--        if (!isNaN(rating) && rating >= 1 && rating <= 5) {-->
+<!--            gfg(rating);-->
+<!--        } else {-->
+<!--            // If the input value is not valid, you can handle it here (e.g., display an error message)-->
+<!--        }-->
+<!--    }-->
+<!--</script>-->
+<!--<script>-->
+<!--    // script.js-->
+
+<!--    // To access the stars-->
+<!--    let stars = document.getElementsByClassName("star");-->
+
+<!--    // Function to update rating-->
+<!--    function gfg(n) {-->
+<!--        remove();-->
+
+<!--        for (let i = 0; i < n; i++) {-->
+<!--            let cls;-->
+<!--            if (n == 1) cls = "one";-->
+<!--            else if (n == 2) cls = "two";-->
+<!--            else if (n == 3) cls = "three";-->
+<!--            else if (n == 4) cls = "four";-->
+<!--            else if (n == 5) cls = "five";-->
+<!--            stars[i].className = "star " + cls;-->
+<!--        }-->
+<!--        document.getElementById("ratingInput").value = "" + n;-->
+<!--    }-->
+
+<!--    // To remove the pre-applied styling-->
+<!--    function remove() {-->
+<!--        for (let i = 0; i < 5; i++) {-->
+<!--            stars[i].className = "star";-->
+<!--        }-->
+<!--    }-->
+<!--</script>-->
 </body>

@@ -25,6 +25,7 @@ public class HouseDto {
     private String province;
     private String district;
     private String ward;
+    private double star;
 
 
 }
