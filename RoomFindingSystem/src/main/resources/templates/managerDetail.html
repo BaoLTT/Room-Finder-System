@@ -178,7 +178,7 @@
                             <div class="col-md-7">
                                 <div class="form-group">
                                     <label for="form-submit-title">Tên trọ<em>*</em></label>
-                                    <input type="text" class="form-control" id="form-submit-title" name="houseName" placeholder="Tên trọ..." required="" th:value="${house.getHouseName()}">
+                                    <input type="text" class="form-control" id="form-submit-title" name="houseName" placeholder="Tên trọ..." required="" th:field="${house.getHouseName()}">
                                 </div>
                                 <!--end form-group-->
                             </div>
@@ -239,32 +239,29 @@
                                     <label for="addressDetail">Địa chỉ cụ thể<em>*</em></label>
                                     <input type="text" class="form-control" id="addressDetail" placeholder="Address Detail..." required="" th:field="*{addressDetail}">
                                 </div>
-                                <input type="hidden" name="addressid" th:value="*{address}">
+                                <input type="hidden" name="addressid" th:field="*{address}">
                                 <div class="form-group">
                                         <label for="province">Tỉnh</label>
-                                        <select class="form-control" name="province" id="province" style="display: none;">
+                                        <select class="form-control" name="province" id="province" style="display: none;" th:field="*{provinceID}">
                                             <option value="" selected >Chọn tỉnh thành</option>
                                         </select>
                                         <!-- Hiển thị giá trị -->
-                                        <input class="form-control" th:id="provinceName" th:value="*{province}" />
-                                        <input type="hidden" name="provinceID" th:value="*{provinceID}" />
+                                        <input class="form-control" th:id="provinceName" th:field="*{province}" />
                                 </div>
                                 <div class="form-group">
                                         <label for="district">Huyện</label>
-                                        <select class="form-control" id="district" name="district" style="display: none;">
+                                        <select class="form-control" id="district" name="district" style="display: none;" th:field="*{districtID}">
                                             <option value="" selected>Chọn huyện</option>
                                         </select>
                                         <!-- Hiển thị giá trị -->
-                                        <input class="form-control" th:id="districtName" th:value="*{district}" />
-                                        <input type="hidden" name="districtID" th:value="*{districtID}" />
+                                        <input class="form-control" th:id="districtName" th:field="*{district}" />
                                 </div>
                                 <div class="form-group">
                                         <label for="ward">Xã/Phường</label>
-                                        <select class="form-control" name="ward" id="ward" style="display: none;">
+                                        <select class="form-control" name="ward" id="ward" style="display: none;" th:field="*{wardID}">
                                             <option value="" selected>Chọn xã</option>
                                         </select>
-                                        <input class="form-control" th:id="wardName" th:value="*{ward}">
-                                        <input type="hidden" name="wardID" th:value="*{wardID}" />
+                                        <input class="form-control" th:id="wardName" th:field="*{ward}">
                                 </div>
                             </div>
                         </div>

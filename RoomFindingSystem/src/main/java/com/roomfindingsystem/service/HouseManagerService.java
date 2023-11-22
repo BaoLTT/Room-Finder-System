@@ -1,5 +1,6 @@
 package com.roomfindingsystem.service;
 
+import com.roomfindingsystem.dto.HouseLandlordVo;
 import com.roomfindingsystem.dto.HouseManagerTypeVo;
 import com.roomfindingsystem.entity.HouseImagesEntity;
 import com.roomfindingsystem.entity.HousesEntity;
@@ -14,12 +15,12 @@ public interface HouseManagerService {
 
     HouseManagerTypeVo findHouseById(Integer id);
 
-    void insertHouse(HousesEntity house);
+    void insertHouse(HouseLandlordVo house,int addressID);
 
     HousesEntity getLastHouse();
 
     void inserImageHouse(HouseImagesEntity images);
 
-    void updateHouse(HousesEntity houses,int houseID);
+    void updateHouse(HouseLandlordVo houses, int houseID);
 
 }
