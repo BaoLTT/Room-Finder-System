@@ -44,6 +44,18 @@ public class HouseLandlordController {
         return "managerHouse";
     }
 
+    @GetMapping("/add")
+    public String addHouse(Model model,HttpSession httpSession){
+        HouseLandlordVo house = new HouseLandlordVo();
+
+        List<TypeHouseEntity> listType = houseTypeService.findAll();
+        List<ServiceDetailEntity> listService = serviceDetailService.getAllService();
+        model.addAttribute("house",house);
+        model.addAttribute("listType",listType);
+        model.addAttribute("listService",listService);
+        return "managerAdd";
+    }
+
     @GetMapping("/edit/{houseid}")
     public String detailHouse(@PathVariable Integer houseid,Model model, HttpSession httpSession){
         List<TypeHouseEntity> listType = houseTypeService.findAll();
