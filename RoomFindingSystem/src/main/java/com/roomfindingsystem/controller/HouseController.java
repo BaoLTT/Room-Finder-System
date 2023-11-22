@@ -126,6 +126,7 @@ public class HouseController {
         //baoltt code
         List<RoomHouseDetailDto> roomHouseDetailDtos = roomService.viewRoomInHouse(houseId);
         model.addAttribute("roomList", roomHouseDetailDtos);
+        model.addAttribute("roomService", roomService);
 
         System.out.println(roomHouseDetailDtos.toString());
 

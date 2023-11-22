@@ -471,7 +471,8 @@
                                         </thead>
                                     </table>
                                 </div>
-                                <form th:each="room: ${roomList}">
+<!--                                <form th:each="room: ${roomList}" th:action="@{'/room/' + ${room.roomId}}" >-->
+                                    <form th:each="room: ${roomList}" th:action="@{/room/houseDetail}" method="post">
                                     <table class="table">
                                         <tbody>
                                         <tr class="room">
@@ -488,16 +489,16 @@
 
                                             <!--                                            <td class="persons">2<i class="fa fa-user"></i></td>-->
                                             <td th:text="${room.price}" ></td>
+
                                             <td class="rooms">
-                                                <select class="framed">
-                                                    <option value="1" th:each="roomName : ${room.roomList}" th:text = "${roomName}"></option>
+                                                <select name="roomId" class="framed">
+                                                    <option  th:each="id : ${room.roomList}" th:value="${id}" th:text="${roomService.getRoomNameById(id)}" ></option>
 
                                                 </select>
                                             </td>
                                             <td>
-                                                <div class="form-group">
-                                                    <button type="submit" class="btn btn-primary btn-rounded">Xem chi tiết
-                                                    </button>
+                                                <div  class="form-group">
+                                                    <button type="submit" class="btn btn-primary btn-rounded">Xem chi tiết</button>
                                                 </div>
                                                 <!--end form-group-->
                                             </td>

@@ -1,4 +1,5 @@
 package com.example.roomfindingsystem.controller;
+
 import com.roomfindingsystem.controller.HouseController;
 import com.roomfindingsystem.dto.*;
 import com.roomfindingsystem.entity.FeedbackEntity;
@@ -8,18 +9,23 @@ import com.roomfindingsystem.service.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.ModelMap;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.*;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.when;
+
+
 
 @ExtendWith(MockitoExtension.class)
 public class HouseDetailControllerTest {
@@ -44,12 +50,6 @@ public class HouseDetailControllerTest {
     @BeforeEach
     void setUp(){
         MockitoAnnotations.openMocks(this);
-
-//        Authentication authentication = new UsernamePasswordAuthenticationToken("username", "password");
-//
-//        // Tạo một đối tượng SecurityContext và thiết lập Authentication vào đó
-//        SecurityContext securityContext = SecurityContextHolder.getContext();
-//        securityContext.setAuthentication(authentication);
     }
 
     @Test
@@ -71,14 +71,14 @@ public class HouseDetailControllerTest {
         List<FeedbackDto> feedbacks = Arrays.asList(new FeedbackDto()); // Mock your data accordingly
         when(feedbackService.getFeedbackByHouseId(houseId)).thenReturn(feedbacks);
 
-        UserEntity user = new UserEntity(); // Mock your user data accordingly
-        when(userService.findByEmail(anyString())).thenReturn(java.util.Optional.of(user));
-
-        List<FeedbackEntity> feedbackEntities = Arrays.asList(new FeedbackEntity()); // Mock your data accordingly
-        when(feedbackService.getFeedbackEntityByUid(houseId, user.getUserId())).thenReturn(feedbackEntities);
-
-        ReportEntity reportEntity = new ReportEntity(); // Mock your report data accordingly
-        when(reportService.getReportEntityByUid(houseId, user.getUserId())).thenReturn(Arrays.asList(reportEntity));
+//        UserEntity user = new UserEntity(); // Mock your user data accordingly
+//        Mockito.lenient().when(userService.findByEmail("baoltthe153367@fpt.edu.vn")).thenReturn(Optional.of(user));
+//
+//        List<FeedbackEntity> feedbackEntities = Arrays.asList(new FeedbackEntity()); // Mock your data accordingly
+//        Mockito.lenient().when(feedbackService.getFeedbackEntityByUid(houseId, user.getUserId())).thenReturn(feedbackEntities);
+//
+//        ReportEntity reportEntity = new ReportEntity(); // Mock your report data accordingly
+//        Mockito.lenient().when(reportService.getReportEntityByUid(houseId, user.getUserId())).thenReturn(Arrays.asList(reportEntity));
 
         List<RoomHouseDetailDto> roomHouseDetailDtos = Arrays.asList(new RoomHouseDetailDto()); // Mock your data accordingly
         when(roomService.viewRoomInHouse(houseId)).thenReturn(roomHouseDetailDtos);
