@@ -141,12 +141,23 @@ public class HouseController {
         LocalDate currentDate = LocalDate.now();
         feedbackEntity.setCreatedDate(currentDate);
         int houseId = feedbackEntity.getHouseId();
+        int sum =0;
         if(feedbackService.getFeedbackEntityByUid(houseId, feedbackEntity.getMemberId()).size()==0){
             feedbackService.save(feedbackEntity);
+
+
+
+            //get house -> get star avg, get count, (avg*count + star)/(count+1)
         }else{
             feedbackEntity.setFeedbackId(feedbackService.getFeedbackEntityByUid(houseId, feedbackEntity.getMemberId()).get(0).getFeedbackId());
             feedbackService.save(feedbackEntity);
         }
+        List<FeedbackDto> feedbackDtoList = feedbackService.getFeedbackByHouseId(houseId);
+        for(int i=0; i<feedbackDtoList.size(); i++){
+            sum+=feedbackDtoList.get(i).getStar();
+        }
+        double avg = (double)sum / (double)feedbackDtoList.size();
+        houseService.updateStar(avg, houseId);
         return "redirect:/detail?id=" + houseId + "#reviews";
     }
 

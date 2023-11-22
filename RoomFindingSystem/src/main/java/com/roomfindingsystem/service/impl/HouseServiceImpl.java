@@ -109,6 +109,11 @@ public class HouseServiceImpl implements HouseService {
         return houseRepository.countHouses();
     }
 
+    @Override
+    public void updateStar(double star, int houseId) {
+        houseRepository.updateStarHouse(star, houseId);
+    }
+
 
     @Override
 

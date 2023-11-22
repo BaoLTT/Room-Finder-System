@@ -11,11 +11,9 @@ import java.util.Objects;
 public class ServiceHouseEntityPK implements Serializable {
     @Column(name = "ServiceID")
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int serviceId;
     @Column(name = "HouseID")
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int houseId;
 
     public int getServiceId() {
