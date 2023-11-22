@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/manager")
@@ -60,21 +61,25 @@ public class HouseLandlordController {
 
     @PostMapping("/save")
     public String saveHouse(@ModelAttribute(name = "house") HouseLandlordVo house, Model model, HttpSession httpSession){
-//        System.out.println(house.getHouseName());
-//        System.out.println(house.getTypeHouseID());
-//        System.out.println(house.getDescription());
-//        System.out.println(house.getAddressDetail());
-//        System.out.println(house.getProvinceID());
-//        System.out.println(house.getDistrictID());
-//        System.out.println(house.getWardID());
-//        System.out.println(house.getService());
-//        System.out.println(house.getStatus());
-        int userid= 1;
-        LocalDate createdDate = LocalDate.now();
         AddressEntity address = new AddressEntity("a",house.getAddressDetail().trim(),house.getProvinceID(),house.getDistrictID(),house.getWardID());
         int addressID = addressService.insertAddress(address);
-        HousesEntity newHouse = new HousesEntity(house.getHouseName().trim(),house.getDescription().trim(),createdDate,userid,createdDate,userid,addressID,house.getTypeHouseID(),userid,house.getStatus());
-        houseManagerService.insertHouse(newHouse);
+        houseManagerService.insertHouse(house,addressID);
+        return  "redirect:/manager";
+    }
+
+    @PostMapping("/update")
+    public String updateHouse(@ModelAttribute(name = "house") HouseLandlordVo house, Model model, HttpSession httpSession){
+        if(house.getProvinceID()==0){
+            Optional<AddressEntity> newAddress = addressService.findbyId(house.getAddress());
+            AddressEntity address = new AddressEntity("a",house.getAddressDetail(),newAddress.get().getProvinceId(),newAddress.get().getDistrictId(),newAddress.get().getWardId());
+            addressService.updateAddress(address,house.getAddress());
+        }else{
+            AddressEntity address = new AddressEntity("a",house.getAddressDetail(),house.getProvinceID(),house.getDistrictID(),house.getWardID());
+            addressService.updateAddress(address,house.getAddress());
+        }
+        System.out.println(house.getHouseID());
+        houseManagerService.updateHouse(house,house.getHouseID());
+
         return  "redirect:/manager";
     }
 }
