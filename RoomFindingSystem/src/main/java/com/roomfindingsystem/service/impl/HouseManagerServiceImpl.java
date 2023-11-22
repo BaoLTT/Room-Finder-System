@@ -1,8 +1,10 @@
 package com.roomfindingsystem.service.impl;
 
+import com.roomfindingsystem.dto.HouseLandlordVo;
 import com.roomfindingsystem.dto.HouseManagerTypeVo;
 import com.roomfindingsystem.entity.HouseImagesEntity;
 import com.roomfindingsystem.entity.HousesEntity;
+import com.roomfindingsystem.entity.ServiceHouseEntity;
 import com.roomfindingsystem.repository.HouseManagerRepository;
 import com.roomfindingsystem.repository.ImagesHouseRepository;
 import com.roomfindingsystem.service.HouseManagerService;
@@ -10,6 +12,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service("houseManagerService")
@@ -22,6 +25,7 @@ public class HouseManagerServiceImpl implements HouseManagerService {
     }
     @Autowired
     ImagesHouseRepository imagesHouseRepository;
+    @Autowired
 
     @Override
     public List<HouseManagerTypeVo> findHouseManager() {
@@ -44,8 +48,28 @@ public class HouseManagerServiceImpl implements HouseManagerService {
     }
 
     @Override
-    public void insertHouse(HousesEntity house) {
-        houseManagerRepository.save(house);
+    public void insertHouse(HouseLandlordVo house,int addressID) {
+        LocalDate createdDate = LocalDate.now();
+        HousesEntity housesEntity = new HousesEntity();
+        housesEntity.setHouseName(house.getHouseName());
+        housesEntity.setDescription(house.getDescription());
+        housesEntity.setCreatedDate(createdDate);
+        housesEntity.setCreatedBy(1);
+        housesEntity.setTypeHouseId(house.getTypeHouseID());
+        housesEntity.setStatus(house.getStatus());
+        housesEntity.setAddressId(addressID);
+        housesEntity.setUserId(1);
+        housesEntity.setLastModifiedBy(1);
+        housesEntity.setLastModifiedDate(createdDate);
+        houseManagerRepository.save(housesEntity);
+        for(int i =0; i<house.getService().size();i++){
+            ServiceHouseEntity serviceHouseEntity = new ServiceHouseEntity();
+            serviceHouseEntity.setHouseId( housesEntity.getHouseId());
+            int serviceid = Integer.parseInt(house.getService().get(i));
+            serviceHouseEntity.setServiceId(serviceid);
+
+            serviceHouseRepository.save(serviceHouseEntity);
+        }
     }
 
     @Override
@@ -60,7 +84,7 @@ public class HouseManagerServiceImpl implements HouseManagerService {
 
     @Transactional
     @Override
-    public void updateHouse(HousesEntity houses, int houseID) {
-        houseManagerRepository.updateHouse(houses.getHouseName(), houses.getTypeHouseId(),houses.getAddressId(),houses.getDescription(),houses.getLastModifiedBy(),houses.getLastModifiedDate(),houseID);
+    public void updateHouse(HouseLandlordVo houses, int houseID) {
+        houseManagerRepository.updateHouse(houses.getHouseName(), houses.getTypeHouseID(),houses.getDescription(),1,houses.getLastModifiedDate(),houses.getStatus(),houseID);
     }
 }
