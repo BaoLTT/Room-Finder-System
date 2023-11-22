@@ -22,13 +22,13 @@ public class HomeController {
 
     private HouseTypeService houseTypeService;
 
-    private ServiceHouseService serviceHouseService;
+    private ServiceDetailService serviceDetailService;
 
     private UserService userService;
 
     public HomeController(HouseService houseService, RoomService roomService,
                           FeedbackService feedbackService, SliderService sliderService,
-                          HouseTypeService houseTypeService, ServiceHouseService serviceHouseService,
+                          HouseTypeService houseTypeService, ServiceDetailService serviceDetailService,
                           UserService userService){
         super();
         this.houseService = houseService;
@@ -36,7 +36,7 @@ public class HomeController {
         this.feedbackService  = feedbackService;
         this.sliderService = sliderService;
         this.houseTypeService = houseTypeService;
-        this.serviceHouseService = serviceHouseService;
+        this.serviceDetailService = serviceDetailService;
         this.userService = userService;
     }
 
@@ -48,7 +48,7 @@ public class HomeController {
 
         model.addAttribute("houses", houseService.viewHouseInHome() );
         model.addAttribute("housetypes", houseTypeService.findAll() );
-        model.addAttribute("houseservices", serviceHouseService.findAll());
+        model.addAttribute("houseservices", serviceDetailService.getAllService());
         model.addAttribute("rooms", roomService.viewRoomInHome());
         model.addAttribute("feedbacks", feedbackService.viewTop4Home());
         model.addAttribute("sliders", sliderService.viewTop7Home());

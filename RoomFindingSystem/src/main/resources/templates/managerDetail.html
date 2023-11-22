@@ -178,7 +178,7 @@
                             <div class="col-md-7">
                                 <div class="form-group">
                                     <label for="form-submit-title">Tên trọ<em>*</em></label>
-                                    <input type="text" class="form-control" id="form-submit-title" name="houseName" placeholder="Tên trọ..." required="" th:field="${house.getHouseName()}">
+                                    <input type="text" class="form-control" id="form-submit-title" name="houseName" placeholder="Tên trọ..." required="" th:field="*{houseName}">
                                 </div>
                                 <!--end form-group-->
                             </div>
@@ -243,7 +243,7 @@
                                 <div class="form-group">
                                         <label for="province">Tỉnh</label>
                                         <select class="form-control" name="province" id="province" style="display: none;" th:field="*{provinceID}">
-                                            <option value="" selected >Chọn tỉnh thành</option>
+                                            <option value="0" selected >Chọn tỉnh thành</option>
                                         </select>
                                         <!-- Hiển thị giá trị -->
                                         <input class="form-control" th:id="provinceName" th:field="*{province}" />
@@ -251,7 +251,7 @@
                                 <div class="form-group">
                                         <label for="district">Huyện</label>
                                         <select class="form-control" id="district" name="district" style="display: none;" th:field="*{districtID}">
-                                            <option value="" selected>Chọn huyện</option>
+                                            <option value="0" selected>Chọn huyện</option>
                                         </select>
                                         <!-- Hiển thị giá trị -->
                                         <input class="form-control" th:id="districtName" th:field="*{district}" />
@@ -259,7 +259,7 @@
                                 <div class="form-group">
                                         <label for="ward">Xã/Phường</label>
                                         <select class="form-control" name="ward" id="ward" style="display: none;" th:field="*{wardID}">
-                                            <option value="" selected>Chọn xã</option>
+                                            <option value="0" selected>Chọn xã</option>
                                         </select>
                                         <input class="form-control" th:id="wardName" th:field="*{ward}">
                                 </div>
@@ -352,7 +352,7 @@
                         </div>
                     </section>
                     <section>
-                        <div class="center"><a href="#" class="btn btn-framed btn-default btn-rounded">Trở lại</a></div>
+                        <div class="center"><a href="/manager" class="btn btn-framed btn-default btn-rounded">Trở lại</a></div>
                     </section>
                 </form>
                 <!--end form-->
