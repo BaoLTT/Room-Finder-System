@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 @Controller
@@ -53,12 +54,21 @@ public class HouseManagerController {
     }
 
     @GetMapping("/house-manager/detail/{houseid}")
-    public String updateHouse(@PathVariable Integer houseid,final Model model,HttpSession httpSession){
-        HouseManagerTypeVo house = houseManagerService.findHouseById(houseid);
-        List<TypeHouseEntity> listType = typeHouseRepository.findAll();
-        model.addAttribute("house",house);
-        model.addAttribute("listType",listType);
-        return "admin/house-manager-detail";
+    public String updateHouse(@ModelAttribute("house") HouseLandlordVo house,@RequestParam(name = "service", required = false,defaultValue = "0") List<Integer> service,MultipartFile[] images, Model model, HttpSession httpSession) throws IOException {
+        if(house.getProvinceID()==0){
+            Optional<AddressEntity> newAddress = addressService.findbyId(house.getAddress());
+            AddressEntity address = new AddressEntity("a",house.getAddressDetail(),newAddress.get().getProvinceId(),newAddress.get().getDistrictId(),newAddress.get().getWardId());
+            addressService.updateAddress(address,house.getAddress());
+        }else{
+            AddressEntity address = new AddressEntity("a",house.getAddressDetail(),house.getProvinceID(),house.getDistrictID(),house.getWardID());
+            addressService.updateAddress(address,house.getAddress());
+        }
+        System.out.println(house.getHouseID());
+        System.out.println(service);
+
+        houseManagerService.updateHouse(house,house.getHouseID(),service);
+
+        return "redirect:/admin/house-manager";
     }
     @PostMapping("/house-manager/update")
     public String updateHouse(@RequestParam(name = "houseID",required = false , defaultValue = "") String houseID,
