@@ -56,10 +56,16 @@ public class HouseManagerController {
 
     @GetMapping("/house-manager/detail/{houseid}")
     public String updateHouse(@PathVariable Integer houseid,final Model model,HttpSession httpSession){
-        HouseManagerTypeVo house = houseManagerService.findHouseById(houseid);
         List<TypeHouseEntity> listType = typeHouseRepository.findAll();
+        List<ServiceDetailEntity> listService = serviceDetailService.getAllService();
+
+        HouseLandlordVo  house = houseLandlordService.findHouseByID(houseid);
+        List<String> listChecked = house.getService();
+        System.out.println(listChecked);
         model.addAttribute("house",house);
         model.addAttribute("listType",listType);
+        model.addAttribute("listChecked",listChecked);
+        model.addAttribute("listService",listService);
         return "admin/house-manager-detail";
     }
     @PostMapping("/house-manager/update")
