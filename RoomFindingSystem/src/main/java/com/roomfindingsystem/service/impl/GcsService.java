@@ -54,11 +54,16 @@ public class GcsService {
 
 
     public String getMapKey(){
-        Storage storage = StorageOptions.getDefaultInstance().getService();
-        String bucketName = "rfs_test";
+
+        String bucketName = "rfs_bucket";
         String filePath = "key_map/key_map.txt"; // Đặt tên đúng của tệp txt trong bucket
 
         Blob blob = storage.get(bucketName, filePath);
+
+
+        if (blob == null) {
+            throw new RuntimeException("Blob is null. File not found or permission issue.");
+        }
 
         return new String(blob.getContent());
     }

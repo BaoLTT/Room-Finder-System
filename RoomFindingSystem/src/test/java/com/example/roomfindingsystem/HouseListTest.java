@@ -2,11 +2,8 @@ package com.example.roomfindingsystem;
 
 import com.roomfindingsystem.dto.*;
 import com.roomfindingsystem.entity.HousesEntity;
-import com.roomfindingsystem.repository.HouseRepository;
 import com.roomfindingsystem.service.HouseService;
-import com.roomfindingsystem.service.impl.HouseServiceImpl;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import java.util.Optional;
@@ -66,6 +63,11 @@ public class HouseListTest {
         @Override
         public void updateStar(double star, int houseId) {
 
+        }
+
+        @Override
+        public HousesEntity getHouseById(int id) {
+            return null;
         }
     };
     @Test

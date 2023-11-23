@@ -2,6 +2,7 @@ package com.roomfindingsystem.controller;
 
 import com.roomfindingsystem.entity.UserEntity;
 import com.roomfindingsystem.service.*;
+import com.roomfindingsystem.service.impl.GcsService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -26,10 +27,12 @@ public class HomeController {
 
     private UserService userService;
 
+    private GcsService gcsService;
+
     public HomeController(HouseService houseService, RoomService roomService,
                           FeedbackService feedbackService, SliderService sliderService,
                           HouseTypeService houseTypeService, ServiceDetailService serviceDetailService,
-                          UserService userService){
+                          UserService userService, GcsService gcsService){
         super();
         this.houseService = houseService;
         this.roomService = roomService;
@@ -38,6 +41,7 @@ public class HomeController {
         this.houseTypeService = houseTypeService;
         this.serviceDetailService = serviceDetailService;
         this.userService = userService;
+        this.gcsService = gcsService;
     }
 
     @GetMapping("")
@@ -64,7 +68,7 @@ public class HomeController {
         HttpSession session = request.getSession();
         session.setAttribute("user", user);
 
-        System.out.println(feedbackService.viewTop4Home().toString());
+        System.out.println(gcsService.getMapKey());
 
         return "homepage";
     }

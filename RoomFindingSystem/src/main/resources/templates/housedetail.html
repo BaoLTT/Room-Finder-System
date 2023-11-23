@@ -61,6 +61,10 @@
         .five {
             color: #FFCE45;
         }
+
+         body {
+             font-family: 'Arial', sans-serif;
+         }
     </style>
 
     <title>Xem chi tiết nhà trọ</title>
@@ -227,9 +231,7 @@
                                                         <figure class="rating">9.8</figure>
                                                         <h4>Very Good Hotel</h4>
                                                     </div>
-                                                    <p>Consectetur adipiscing elit. Vivamus nec augue ac dui sodales euismod. Suspendisse
-                                                        at dui sit amet felis commodo dictum. Class aptent taciti sociosqu ad litora
-                                                        torquent per conubia nostra, per inceptos
+                                                    <p>
                                                     </p>
                                                 </div>
                                             </a>
@@ -349,11 +351,19 @@
                                 <!--                                                                <section id="map">-->
                                 <!--                                                                    <h2>Map</h2>-->
                                 <!--                                                                    <div id="map-item" class="map height-300 box"></div>-->
+                                <div id="map" th:if="${houseLocation.latitude == null || houseLocation.longitude== null }">
+                                    <h2>Map</h2>
+                                    <span>Nhà trọ chưa cập nhật vị trí trên google map</span>
+                                </div>
+                                <div th:if="${houseLocation.latitude != null && houseLocation.longitude != null }">
+                                    <section id="map">
+                                        <h2>Map</h2>
+                                        <div id="map-item" class="map height-300 box"></div>
+                                        <input id="latitude" type="hidden" th:value="${houseLocation.latitude}">
+                                        <input id="longitude" type="hidden" th:value="${houseLocation.longitude}">
+                                    </section>
+                                </div>
 
-                                <!--                                                                <section id="map">-->
-                                <!--                                                                    <h2>Map</h2>-->
-                                <!--                                                                    <div id="map-item" class="map height-300 box"></div>-->
-                                <!--                                                                     </section>-->
                             </div>
                             <!--end col-md-8-->
                             <div class="col-md-4">
@@ -764,7 +774,7 @@
 <script type="text/javascript" src="assets/js/owl.carousel.js"></script>
 <script type="text/javascript" src="assets/js/masonry.pkgd.min.js"></script>
 <script type="text/javascript" src="assets/js/jquery.simpleWeather.min.js"></script>
-<script type="text/javascript" src="assets/js/maps.js"></script>
+<!--<script type="text/javascript" src="/assets/js/maps.js"></script>-->
 <script type="text/javascript" src="assets/js/custom.js"></script>
 <script>
     var _latitude = 48.47292127;
@@ -832,60 +842,34 @@
 
 
 </script>
-<!--<script>-->
-<!--    document.addEventListener('DOMContentLoaded', function() {-->
-<!--        // Get initial rating from the input value or set default to 5 if it's 0-->
-<!--        const initialRatingInput = document.getElementById("ratingInput");-->
-<!--        let initialRating = initialRatingInput.value ? parseInt(initialRatingInput.value, 10) : 5;-->
 
-<!--        // If initial rating is 0, set it to 5-->
-<!--        if (initialRating === 0) {-->
-<!--            initialRating = 5;-->
-<!--            initialRatingInput.value = "5";-->
-<!--        }-->
+<script th:src="@{'https://maps.googleapis.com/maps/api/js?key='+${key_map}+'&callback=initMap'}" async defer></script>
 
-<!--        gfg(initialRating);-->
-<!--    });-->
+<script>
+    var map;
+    var marker;
 
-<!--    function updateRating(value) {-->
-<!--        // Convert input value to a number-->
-<!--        const rating = parseInt(value, 10);-->
+    function initMap() {
+        var latitude = parseFloat(document.getElementById('latitude').value);
+        var longitude = parseFloat(document.getElementById('longitude').value);
 
-<!--        // Check if the value is a valid number between 1 and 5-->
-<!--        if (!isNaN(rating) && rating >= 1 && rating <= 5) {-->
-<!--            gfg(rating);-->
-<!--        } else {-->
-<!--            // If the input value is not valid, you can handle it here (e.g., display an error message)-->
-<!--        }-->
-<!--    }-->
-<!--</script>-->
-<!--<script>-->
-<!--    // script.js-->
+        // Tạo map với vị trí ban đầu
+        map = new google.maps.Map(document.getElementById('map-item'), {
+            center: {lat: latitude, lng: longitude},
+            zoom: 16
+        });
 
-<!--    // To access the stars-->
-<!--    let stars = document.getElementsByClassName("star");-->
 
-<!--    // Function to update rating-->
-<!--    function gfg(n) {-->
-<!--        remove();-->
+        //marker ban dau
+        marker = new google.maps.Marker({
+            position: {lat: latitude, lng: longitude},
+            map: map
+        });
 
-<!--        for (let i = 0; i < n; i++) {-->
-<!--            let cls;-->
-<!--            if (n == 1) cls = "one";-->
-<!--            else if (n == 2) cls = "two";-->
-<!--            else if (n == 3) cls = "three";-->
-<!--            else if (n == 4) cls = "four";-->
-<!--            else if (n == 5) cls = "five";-->
-<!--            stars[i].className = "star " + cls;-->
-<!--        }-->
-<!--        document.getElementById("ratingInput").value = "" + n;-->
-<!--    }-->
 
-<!--    // To remove the pre-applied styling-->
-<!--    function remove() {-->
-<!--        for (let i = 0; i < 5; i++) {-->
-<!--            stars[i].className = "star";-->
-<!--        }-->
-<!--    }-->
-<!--</script>-->
+    }
+
+
+</script>
+
 </body>

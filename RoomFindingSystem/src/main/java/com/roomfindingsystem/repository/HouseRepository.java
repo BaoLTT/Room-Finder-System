@@ -1,11 +1,10 @@
 package com.roomfindingsystem.repository;
 
-import com.roomfindingsystem.entity.HousesEntity;
-
 
 import com.roomfindingsystem.dto.HouseDto;
 import com.roomfindingsystem.dto.HouseImageLink;
 import com.roomfindingsystem.dto.ServiceDto;
+import com.roomfindingsystem.entity.HousesEntity;
 import jakarta.persistence.Tuple;
 import jakarta.transaction.Transactional;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -130,7 +129,8 @@ public interface HouseRepository extends JpaRepository<HousesEntity, Integer> {
     void updateStarHouse(double star, Integer houseId);
 
 
-
+//    @Query("select h from HousesEntity where houseId = ?1")
+    HousesEntity getHousesEntitiesByHouseId(int id);
 
 
 

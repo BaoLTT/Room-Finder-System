@@ -4,6 +4,7 @@ import com.roomfindingsystem.entity.FeedbackEntity;
 import com.roomfindingsystem.entity.ReportEntity;
 import com.roomfindingsystem.entity.UserEntity;
 import com.roomfindingsystem.service.*;
+import com.roomfindingsystem.service.impl.GcsService;
 import jakarta.validation.Valid;
 import com.roomfindingsystem.dto.*;
 import com.roomfindingsystem.service.FeedbackService;
@@ -40,6 +41,8 @@ public class HouseController {
     @Autowired
     ReportService reportService;
 
+    @Autowired
+    GcsService gcsService;
 
 
     @RequestMapping(value = "houseDetail")
@@ -127,6 +130,8 @@ public class HouseController {
         List<RoomHouseDetailDto> roomHouseDetailDtos = roomService.viewRoomInHouse(houseId);
         model.addAttribute("roomList", roomHouseDetailDtos);
         model.addAttribute("roomService", roomService);
+        model.addAttribute("houseLocation", houseService.getHouseById(houseId));
+        model.addAttribute("key_map", gcsService.getMapKey());
 
         System.out.println(roomHouseDetailDtos.toString());
 
