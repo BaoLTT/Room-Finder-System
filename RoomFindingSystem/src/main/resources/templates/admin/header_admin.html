@@ -26,7 +26,7 @@
                 </div>
 
                 <!-- item-->
-                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                <a th:href="@{/admin/profile}" class="dropdown-item notify-item">
                     <i class="fe-user"></i>
                     <span>Profile</span>
                 </a>
@@ -142,17 +142,10 @@
                     </li>
 
                     <li>
-                        <a href="javascript: void(0);" >
+                        <a th:href="@{/room/listRoomPage}">
                             <i class="fe-box"></i>
                             <span> Danh sách phòng trọ </span>
-                            <span class="menu-arrow"></span>
                         </a>
-                        <ul class="nav-second-level" aria-expanded="false">
-                            <li><a href="icons-materialdesign.html">Material Design</a></li>
-                            <li><a href="icons-dripicons.html">Dripicons</a></li>
-                            <li><a href="icons-fontawesome.html">Font awesome</a></li>
-                            <li><a href="icons-feather.html">Feather Icons</a></li>
-                        </ul>
                     </li>
 
                     <li>
