@@ -51,5 +51,16 @@ public class GcsService {
         BlobInfo blobInfo = BlobInfo.newBuilder(blobId).setContentType("image/jpeg").build();
         Blob blob = storage.create(blobInfo, imageBytes);
     }
+
+
+    public String getMapKey(){
+        Storage storage = StorageOptions.getDefaultInstance().getService();
+        String bucketName = "rfs_test";
+        String filePath = "key_map/key_map.txt"; // Đặt tên đúng của tệp txt trong bucket
+
+        Blob blob = storage.get(bucketName, filePath);
+
+        return new String(blob.getContent());
+    }
 }
 
