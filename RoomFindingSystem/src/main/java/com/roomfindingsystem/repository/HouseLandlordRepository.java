@@ -79,9 +79,9 @@ public interface HouseLandlordRepository extends JpaRepository<HousesEntity,Inte
             "    h.status,\n" +
             "    (SELECT MIN(r.price) FROM room r WHERE r.houseid = h.houseid) AS minPrice, \n" +
             "    (SELECT GROUP_CONCAT(i.image_link) FROM house_images i WHERE i.houseid = h.houseid) AS Image_Link,\n" +
-            "    SUBSTRING_INDEX((SELECT GROUP_CONCAT(DISTINCT sd.serviceid) FROM service_house sh\n" +
+            "    (SELECT GROUP_CONCAT(DISTINCT sd.serviceid) FROM service_house sh\n" +
             "        LEFT JOIN service_detail sd ON sd.serviceid = sh.serviceid\n" +
-            "        WHERE sh.houseid = h.houseid), ',', 3) AS Service_Name,\n" +
+            "        WHERE sh.houseid = h.houseid) AS Service_Name,\n" +
             "    h.last_modified_date, \n" +
             "    (SELECT COUNT(roomid) FROM room r WHERE r.houseid = h.houseid) AS count_Rooms,\n" +
             "    (SELECT COUNT(likeid) FROM room_finding_system.like l WHERE l.houseid = h.houseid) AS like_House\n" +

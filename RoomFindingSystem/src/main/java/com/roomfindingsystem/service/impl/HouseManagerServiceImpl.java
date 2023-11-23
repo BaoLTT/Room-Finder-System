@@ -87,7 +87,19 @@ public class HouseManagerServiceImpl implements HouseManagerService {
 
     @Transactional
     @Override
-    public void updateHouse(HouseLandlordVo houses, int houseID) {
-        houseManagerRepository.updateHouse(houses.getHouseName(), houses.getTypeHouseID(),houses.getDescription(),1,houses.getLastModifiedDate(),houses.getStatus(),houseID);
+    public void updateHouse(HouseLandlordVo houses, int houseID,List<Integer> service) {
+        LocalDate localDate = LocalDate.now();
+        houseManagerRepository.updateHouse(houses.getHouseName(), houses.getTypeHouseID(),houses.getDescription(),1,localDate,houses.getStatus(),houseID);
+        serviceHouseRepository.deleteByHouseId(houseID);
+        if(!service.contains(0)){
+            for(int i =0; i<service.size();i++){
+                ServiceHouseEntity serviceHouseEntity = new ServiceHouseEntity();
+                serviceHouseEntity.setHouseId( houseID);
+                int serviceid = service.get(i);
+                serviceHouseEntity.setServiceId(serviceid);
+                serviceHouseRepository.save(serviceHouseEntity);
+
+            }
+        }
     }
 }

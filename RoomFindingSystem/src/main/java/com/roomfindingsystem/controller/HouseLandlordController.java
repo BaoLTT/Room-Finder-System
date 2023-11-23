@@ -80,7 +80,7 @@ public class HouseLandlordController {
     }
 
     @PostMapping("/update")
-    public String updateHouse(@ModelAttribute(name = "house") HouseLandlordVo house, Model model, HttpSession httpSession){
+    public String updateHouse(@ModelAttribute(name = "house") HouseLandlordVo house,@RequestParam(name = "service", required = false,defaultValue = "0") List<Integer> service, Model model, HttpSession httpSession){
         if(house.getProvinceID()==0){
             Optional<AddressEntity> newAddress = addressService.findbyId(house.getAddress());
             AddressEntity address = new AddressEntity("a",house.getAddressDetail(),newAddress.get().getProvinceId(),newAddress.get().getDistrictId(),newAddress.get().getWardId());
@@ -90,7 +90,7 @@ public class HouseLandlordController {
             addressService.updateAddress(address,house.getAddress());
         }
         System.out.println(house.getHouseID());
-        houseManagerService.updateHouse(house,house.getHouseID());
+        houseManagerService.updateHouse(house,house.getHouseID(),service);
 
         return  "redirect:/manager";
     }
