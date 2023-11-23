@@ -97,8 +97,12 @@ public class HouseManagerController {
         List<UserEntity> listUser = new ArrayList<>();
         listUser = userRepository.findAll();
         List<TypeHouseEntity> listType = typeHouseRepository.findAll();
+        List<ServiceDetailEntity> listService = serviceDetailService.getAllService();
         model.addAttribute("listUser",listUser);
         model.addAttribute("listType",listType);
+        model.addAttribute("listService",listService);
+        HouseLandlordVo house = new HouseLandlordVo();
+        model.addAttribute("house",house);
         return "admin/house-manager-add";
     }
 
