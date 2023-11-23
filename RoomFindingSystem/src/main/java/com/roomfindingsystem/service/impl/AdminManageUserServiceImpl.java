@@ -44,20 +44,20 @@ public class AdminManageUserServiceImpl implements AdminManageUserService {
         List<UserEntity> userEntities = userRepository.findAll();
         return userEntities.stream().map(user -> {
             UserDto userDto = modelMapper.map(user, UserDto.class);
-            if(user.getGender()) {
+            if (user.getGender()) {
                 userDto.setGender("MALE");
-            }
-            else {
+            } else {
                 userDto.setGender("FEMALE");
             }
 
-            if(user.getUserStatusId() == 1) {
+            if (user.getUserStatusId() == 1) {
                 userDto.setStatus("ACTIVE");
-            }
-            else {
+            } else {
                 userDto.setStatus("INACTIVE");
             }
-            userDto.setDob(user.getDob().toString());
+            if (user.getDob() != null) {
+                userDto.setDob(user.getDob().toString());
+            }
             return userDto;
         }).toList();
     }
@@ -111,10 +111,9 @@ public class AdminManageUserServiceImpl implements AdminManageUserService {
 //        User:
         saveUser.setCreatedDate(Timestamp.valueOf(LocalDateTime.now()));
         saveUser.setRoleId(userDto.getRole());
-        if(Objects.equals(userDto.getStatus(), "ACTIVE")) {
+        if (Objects.equals(userDto.getStatus(), "ACTIVE")) {
             saveUser.setUserStatusId(1);
-        }
-        else {
+        } else {
             saveUser.setUserStatusId(0);
         }
         userRepository.save(saveUser);
@@ -122,8 +121,8 @@ public class AdminManageUserServiceImpl implements AdminManageUserService {
         if (!file.isEmpty()) {
             //        Handle Image
             byte[] imageBytes = file.getBytes();
-            gcsService.uploadImage("rfs_bucket", "User/user_"+saveUser.getUserId()+".jpg", imageBytes);
-            saveUser.setImageLink("https://storage.cloud.google.com/rfs_bucket/User/"+"user_"+saveUser.getUserId()+".jpg");
+            gcsService.uploadImage("rfs_bucket", "User/user_" + saveUser.getUserId() + ".jpg", imageBytes);
+            saveUser.setImageLink("https://storage.cloud.google.com/rfs_bucket/User/" + "user_" + saveUser.getUserId() + ".jpg");
             userRepository.save(saveUser);
         }
     }
