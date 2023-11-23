@@ -48,7 +48,10 @@ class HomeControllerTest {
     @InjectMocks
     private HomeController controller;
 
-
+    @BeforeEach
+    void setUp(){
+        MockitoAnnotations.openMocks(this);
+    }
     @Test
     public void viewHomepage() {
 
