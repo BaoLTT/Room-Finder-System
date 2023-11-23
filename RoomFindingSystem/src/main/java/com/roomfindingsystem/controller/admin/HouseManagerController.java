@@ -7,6 +7,7 @@ import com.roomfindingsystem.entity.*;
 import com.roomfindingsystem.repository.TypeHouseRepository;
 import com.roomfindingsystem.repository.UserRepository;
 import com.roomfindingsystem.service.AddressService;
+import com.roomfindingsystem.service.HouseLandlordService;
 import com.roomfindingsystem.service.HouseManagerService;
 
 import jakarta.servlet.http.HttpSession;
@@ -37,6 +38,8 @@ public class HouseManagerController {
     AddressService addressService;
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    HouseLandlordService houseLandlordService;
 
 
 
