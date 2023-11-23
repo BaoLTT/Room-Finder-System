@@ -28,6 +28,7 @@ public class UserController {
     private UserService userService;
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
     private EmailSenderService emailSenderService;
     @Autowired
      private Smsservice smsservice;

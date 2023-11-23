@@ -242,7 +242,6 @@ public class UserServiceImpl implements UserService {
         UserDto userDto = modelMapper.map(user, UserDto.class);
 
         AddressEntity address = addressRepository.findById(user.getAddressId()).get();
-
         ProvinceEntity province = provinceRepository.findById(address.getProvinceId()).get();
         DistrictEntity district = districtRepository.findById(address.getDistrictId()).get();
         WardEntity ward = wardRepository.findById(address.getWardId()).get();
@@ -254,15 +253,16 @@ public class UserServiceImpl implements UserService {
         userDto.setDistrictId(district.getDistrictId());
         userDto.setWardId(ward.getWardId());
         userDto.setAddressDetails(address.getAddressDetails());
-
-        if(user.getGender()) {
-            userDto.setGender("MALE");
+        if (user.getGender() != null) {
+            if (user.getGender()) {
+                userDto.setGender("MALE");
+            } else {
+                userDto.setGender("FEMALE");
+            }
         }
-        else {
-            userDto.setGender("FEMALE");
+        if (user.getDob() != null) {
+            userDto.setDob(user.getDob().toString());
         }
-
-        userDto.setDob(user.getDob().toString());
         return userDto;
     }
 
