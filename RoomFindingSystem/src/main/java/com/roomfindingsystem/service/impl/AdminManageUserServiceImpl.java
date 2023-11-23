@@ -44,16 +44,19 @@ public class AdminManageUserServiceImpl implements AdminManageUserService {
         List<UserEntity> userEntities = userRepository.findAll();
         return userEntities.stream().map(user -> {
             UserDto userDto = modelMapper.map(user, UserDto.class);
-            if (user.getGender()) {
-                userDto.setGender("MALE");
-            } else {
-                userDto.setGender("FEMALE");
+            if (user.getGender() != null) {
+                if (user.getGender()) {
+                    userDto.setGender("MALE");
+                } else {
+                    userDto.setGender("FEMALE");
+                }
             }
-
-            if (user.getUserStatusId() == 1) {
-                userDto.setStatus("ACTIVE");
-            } else {
-                userDto.setStatus("INACTIVE");
+            if (user.getUserStatusId() != null) {
+                if (user.getUserStatusId() == 1) {
+                    userDto.setStatus("ACTIVE");
+                } else {
+                    userDto.setStatus("INACTIVE");
+                }
             }
             if (user.getDob() != null) {
                 userDto.setDob(user.getDob().toString());
