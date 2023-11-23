@@ -22,19 +22,22 @@
                 height: 270px;
             }
         }
+
         @media (min-width: 992px) and (max-width: 1200px) {
 
             .profile-picture img {
                 height: 220px;
             }
         }
-        @media (min-width: 768px) and (max-width: 992px){
+
+        @media (min-width: 768px) and (max-width: 992px) {
 
             .profile-picture img {
                 height: 165px;
             }
         }
-        @media (max-width: 768px){
+
+        @media (max-width: 768px) {
 
             .profile-picture img {
                 height: auto;
@@ -96,34 +99,6 @@
                                                        placeholder="Doe" th:value="*{lastName}" required>
                                                 <small class="text-danger error-lastName"></small>
                                             </div>
-                                            <!--end form-group-->
-                                        </div>
-                                        <!--end col-md-6-->
-
-                                        <div class="col-md-6 col-sm-6">
-                                            <div class="form-group">
-                                                <label for="email">Email</label>
-                                                <input type="email" class="form-control" id="email" name="email"
-                                                       pattern="^\w+([\.]?\w+)*@\w+([\.]?\w+)*(\.\w{2,3})+$"
-                                                       placeholder="janedoe@gmail.com" th:value="*{email}" readonly>
-                                                <small class="text-danger error-email"></small>
-                                            </div>
-                                            <!--end form-group-->
-                                        </div>
-                                        <!--end col-md-6-->
-                                        <div class="col-md-6 col-sm-6">
-                                            <div class="form-group">
-                                                <label for="phone">Số điện thoại</label>
-                                                <input type="text" class="form-control" id="phone" name="phone"
-                                                       pattern="(84|0[3|5|7|8|9])+([0-9]{8})\b"
-                                                       placeholder="(0)123 456 7890"
-                                                       th:value="*{phone}" required>
-                                                <small class="text-danger error-phone"></small>
-                                            </div>
-                                            <!--end form-group-->
-                                        </div>
-
-                                        <div class="col-md-6 col-sm-6">
                                             <div class="form-group">
                                                 <label for="gender">Giới tính</label>
                                                 <select class="form-control" id="gender" name="gender"
@@ -135,9 +110,25 @@
                                                     </option>
                                                 </select>
                                             </div>
-                                            <!--end form-group-->
                                         </div>
+                                        <!--end col-md-6-->
+
                                         <div class="col-md-6 col-sm-6">
+                                            <div class="form-group">
+                                                <label for="email">Email</label>
+                                                <input type="email" class="form-control" id="email" name="email"
+                                                       pattern="^\w+([\.]?\w+)*@\w+([\.]?\w+)*(\.\w{2,3})+$"
+                                                       placeholder="janedoe@gmail.com" th:value="*{email}" readonly>
+                                                <small class="text-danger error-email"></small>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="phone">Số điện thoại</label>
+                                                <input type="text" class="form-control" id="phone" name="phone"
+                                                       pattern="(84|0[3|5|7|8|9])+([0-9]{8})\b"
+                                                       placeholder="(0)123 456 7890"
+                                                       th:value="*{phone}">
+                                                <small class="text-danger error-phone"></small>
+                                            </div>
                                             <div class="form-group">
                                                 <label for="dob">Ngày sinh</label>
                                                 <input style="height: 36px" type="date" class="form-control"
@@ -146,8 +137,8 @@
                                                        required
                                                        onchange="">
                                             </div>
-                                            <!--end form-group-->
                                         </div>
+                                        <!--end col-md-6-->
                                     </div>
                                 </section>
                                 <section>
@@ -203,34 +194,6 @@
     <!--end page-content-->
 
     <footer id="page-footer">
-        <div class="row-one">
-            <div class="container">
-                <div class="logos">
-                    <div class="logo">
-                        <a href="#"><img th:src="@{/assets/img/logo-1.png}" alt=""></a>
-                    </div>
-                    <!--/ .logo-->
-                    <div class="logo">
-                        <a href="#"><img th:src="@{/assets/img/logo-2.png}" alt=""></a>
-                    </div>
-                    <!--/ .logo-->
-                    <div class="logo">
-                        <a href="#"><img th:src="@{/assets/img/logo-3.png}" alt=""></a>
-                    </div>
-                    <!--/ .logo-->
-                    <div class="logo">
-                        <a href="#"><img th:src="@{/assets/img/logo-4.png}" alt=""></a>
-                    </div>
-                    <!--/ .logo-->
-                    <div class="logo">
-                        <a href="#"><img th:src="@{/assets/img/logo-5.png}" alt=""></a>
-                    </div>
-                    <!--/ .logo-->
-                </div>
-                <!--/ .logos-->
-            </div>
-        </div>
-        <!--end row-one-->
         <div class="row-two clearfix">
             <div class="container">
                 <div class="copyright pull-left">(C) 2016 Your Company, All Rights Reserved</div>
@@ -362,11 +325,13 @@
 <script type="text/javascript" th:src="@{/assets/js/icheck.min.js}"></script>
 <script type="text/javascript" th:src="@{/assets/js/owl.carousel.js}"></script>
 <script type="text/javascript" th:src="@{/assets/js/masonry.pkgd.min.js}"></script>
-
 <script type="text/javascript" th:src="@{/assets/js/maps.js}"></script>
 <script type="text/javascript" th:src="@{/assets/js/custom.js}"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Truyền dữ liệu từ listProvince, listDistrict, và listWard vào mã JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
 <script>
     const host = "https://timtromoi.com/";
     // const host = "http://localhost:8080/";
