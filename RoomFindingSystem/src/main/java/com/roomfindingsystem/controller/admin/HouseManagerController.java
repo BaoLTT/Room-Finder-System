@@ -10,6 +10,7 @@ import com.roomfindingsystem.service.AddressService;
 import com.roomfindingsystem.service.HouseLandlordService;
 import com.roomfindingsystem.service.HouseManagerService;
 
+import com.roomfindingsystem.service.ServiceDetailService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -38,6 +39,8 @@ public class HouseManagerController {
     AddressService addressService;
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    ServiceDetailService serviceDetailService;
     @Autowired
     HouseLandlordService houseLandlordService;
 
