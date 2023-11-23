@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.Objects;
 
 @Controller
@@ -47,11 +49,18 @@ public class SliderManageController {
         SliderEntity sliderEntity = new SliderEntity();
         String imgLink = null;
 
+        // Lấy thời gian hiện tại
+        long timestamp = System.currentTimeMillis();
+
+        // Chuyển định dạng thời gian thành chuỗi
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss");
+        String formattedTimestamp = dateFormat.format(new Date(timestamp));
+
         if (!file.isEmpty()) {
             //        Handle Image
             byte[] imageBytes = file.getBytes();
-            gcsService.uploadImage("rfs_bucket", "Slider/slider_"+sliderEntity.getSliderid()+".jpg", imageBytes);
-            imgLink = "https://storage.cloud.google.com/rfs_bucket/Slider/"+"slider_"+sliderEntity.getSliderid()+".jpg";
+            gcsService.uploadImage("rfs_bucket", "Slider/slider_"+formattedTimestamp+".jpg", imageBytes);
+            imgLink = "https://storage.cloud.google.com/rfs_bucket/Slider/"+"slider_"+formattedTimestamp+".jpg";
         }
         sliderEntity.setImgLink(imgLink);
         sliderEntity.setTitle(title);
@@ -67,7 +76,7 @@ public class SliderManageController {
         assert user != null;
         sliderEntity.setCreatedBy(user.getUserId());
 
-        sliderEntity.setStatus("Không hoạt động");
+        sliderEntity.setStatus("0");
 
         sliderService.save(sliderEntity);
         return "redirect:/admin/sliderList";
@@ -76,6 +85,12 @@ public class SliderManageController {
     @GetMapping("sliderList/update/{id}")
     public String viewFormUpdateSlider(Model model, @PathVariable("id") int id){
         SliderEntity slider = sliderService.getSliderById(id);
+        if(slider.getStatus()==null) slider.setStatus("Không hoạt động");
+        if(slider.getStatus().equals("1")){
+            slider.setStatus("Hoạt động");
+        } else {
+            slider.setStatus("Không hoạt động");
+        };
         model.addAttribute("slider", slider);
         return "/admin/edit_slider";
     }
@@ -95,7 +110,12 @@ public class SliderManageController {
         }
         sliderEntity.setImgLink(imgLink);
 
-        sliderEntity.setStatus(status);
+        if(status.equals("Hoạt động")){
+            sliderEntity.setStatus("1");
+        } else {
+            sliderEntity.setStatus("0");
+        };
+
         sliderEntity.setContent(content);
         sliderEntity.setTitle(title);
 //        sliderEntity.setSliderid(sliderEntity.getSliderid());

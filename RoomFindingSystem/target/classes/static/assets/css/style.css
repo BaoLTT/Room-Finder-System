@@ -26,6 +26,11 @@ Body copy:		'Lato', sans-serif; 14px;
 Headers:		'Lato', sans-serif;
 
 -------------------------------------------------------------------*/
+body {
+  font-family: 'Arial', sans-serif;
+}
+
+
 /* 1. Header */
 #page-header header {
   -moz-box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.07);

@@ -64,6 +64,8 @@ public class HomeController {
         HttpSession session = request.getSession();
         session.setAttribute("user", user);
 
+        System.out.println(feedbackService.viewTop4Home().toString());
+
         return "homepage";
     }
 }
