@@ -104,25 +104,14 @@ public class HouseController {
             if(countReport>0) {
                 reportEntity = reportEntities.get(0);
                 String status = reportEntity.getReportStatus();
-                LocalDate reportDate = reportEntity.getCreatedDate();
 
-                System.out.println(reportDate.isEqual(currentDate));
-                currentDate = LocalDate.now();
-//                System.out.println(reportDate);
-                System.out.println((currentDate));
-                if(reportDate.isEqual(currentDate)&&reportEntity.getReportStatus().equals("Chờ Xử Lý")
+                if(reportEntity.getReportStatus().equals("Chờ Xử Lý")
                 ){
                     check = 0; //ko cho bao cao nua
-//                    System.out.println("ok chưa");
                 }
-
-
             }
             if(check==1)
                 reportEntity=new ReportEntity();
-
-
-
             reportEntity.setHouseid(houseId);
             reportEntity.setUserid(user.getUserId());
 
@@ -140,11 +129,6 @@ public class HouseController {
         catch(Exception e){
 
         }
-
-
-
-
-
         //lấy ra số lượng comment của user hiện tai ở bài vieest này
 
 
@@ -201,6 +185,14 @@ public class HouseController {
         System.out.println("houseId");
         UserEntity user = userService.findByEmail(currentUserName).get();
         feedbackService.deleteByHouseIdAndMemberId(houseId, user.getUserId());
+        int sum =0;
+        List<FeedbackDto> feedbackDtoList = feedbackService.getFeedbackByHouseId(houseId);
+        for(int i=0; i<feedbackDtoList.size(); i++){
+            sum+=feedbackDtoList.get(i).getStar();
+        }
+        double avg = (double)sum / (double)feedbackDtoList.size();
+        double roundedAvg = round(avg, 1);
+        houseService.updateStar(roundedAvg, houseId);
         return "redirect:/detail?id=" + houseId + "#reviews";
     }
 
@@ -212,7 +204,7 @@ public class HouseController {
         reportEntity.setReportStatus("Chờ Xử Lý");
         List<ReportEntity> reportEntities = reportService.getReportEntityByUid(houseId, reportEntity.getUserid());
         //update
-        if(reportEntities.size()>0&&reportEntities.get(0).getCreatedDate()==currentDate&&reportEntities.get(0).getReportStatus().equals("Chưa Xử Lý")){
+        if(reportEntities.size()>0&&reportEntities.get(0).getReportStatus().equals("Chưa Xử Lý")){
             reportEntity.setReportid(reportService.getReportEntityByUid(houseId, reportEntity.getUserid()).get(0).getReportid());
             reportService.save(reportEntity);
         }else{//update
