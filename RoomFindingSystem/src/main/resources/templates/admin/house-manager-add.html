@@ -61,11 +61,11 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div>
-                                        <form class="form-horizontal" role="form" method="post" th:action="@{/admin/house-manager/save}"  enctype="multipart/form-data" >
+                                        <form class="form-horizontal" role="form" method="post" th:action="@{/admin/house-manager/save}" th:object="${house}" enctype="multipart/form-data">
                                             <div class="form-group row">
                                                 <label class="col-2 col-form-label">Chủ trọ</label>
                                                 <div class="col-10" >
-                                                    <select class="form-control" name="landlord">
+                                                    <select class="form-control" name="landlord" th:field="*{userID}">
                                                         <option th:each="listUser : ${listUser}"  th:value="${listUser.getUserId()}" th:utext="${listUser.firstName + ' '+ listUser.lastName}"/>
                                                     </select>
                                                 </div>
@@ -73,34 +73,34 @@
                                             <div class="form-group row">
                                                 <label class="col-2 col-form-label" >Tên trọ</label>
                                                 <div class="col-10">
-                                                    <input type="text"  name="houseName" class="form-control"  >
+                                                    <input type="text"  name="houseName" class="form-control" th:field="*{houseName}">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-2 col-form-label">Địa chỉ cụ thể</label>
                                                 <div class="col-10">
-                                                    <input type="text" class="form-control" name="addressDetail">
+                                                    <input type="text" class="form-control" name="addressDetail" th:field="*{addressDetail}">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-2 col-form-label">Địa chỉ </label>
                                                 <div class="col-3" >
                                                     <label for="province">Tỉnh</label>
-                                                    <select class="form-control" id="province" name="province">
-                                                        <option value="" selected >Chọn tỉnh thành</option>
+                                                    <select class="form-control" id="province" name="province" th:field="*{provinceID}">
+                                                        <option value="0" selected >Chọn tỉnh thành</option>
                                                     </select>
                                                 </div>
 
                                                 <div class="col-3" >
                                                     <label for="district">Huyện</label>
-                                                    <select class="form-control" id="district" name="district">
-                                                        <option value="" selected >Chọn huyện</option>
+                                                    <select class="form-control" id="district" name="district" th:field="*{districtID}">
+                                                        <option value="0" selected >Chọn huyện</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-3" >
                                                     <label for="ward">Xã/Phường</label>
-                                                    <select class="form-control" id="ward" name="ward">
-                                                        <option value="" selected >Chọn xã/phường</option>
+                                                    <select class="form-control" id="ward" name="ward" th:field="*{wardID}">
+                                                        <option value="0" selected >Chọn xã/phường</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -113,9 +113,11 @@
                                             <div class="form-group row">
                                                 <label class="col-2 col-form-label">Thể loại trọ</label>
                                                 <div class="col-10" >
-                                                    <select class="form-control" name="houseType">
+                                                    <select class="form-control" name="houseType" th:field="*{typeHouseID}">
                                                         <option th:each="listType : ${listType}" th:value="${listType.getTypeId()}" th:text="${listType.typeName}"/>
+
                                                     </select>
+
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -129,15 +131,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-<!--                                            <div class="form-group row">-->
-<!--                                                <label class="col-2 col-form-label">Ảnh</label>-->
-<!--                                                <div id="profile-picture" class="profile-picture single-file-preview col-10">-->
-<!--                                                    <div class="input">-->
-<!--                                                        <input name="file" type="file" class="" multiple>-->
 
-<!--                                                    </div>-->
-<!--                                                </div>-->
-<!--                                            </div>-->
+
 
 
                                             <div class="form-group row">
