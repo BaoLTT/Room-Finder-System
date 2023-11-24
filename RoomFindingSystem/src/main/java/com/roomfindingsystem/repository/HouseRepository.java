@@ -1,11 +1,10 @@
 package com.roomfindingsystem.repository;
 
-import com.roomfindingsystem.entity.HousesEntity;
-
 
 import com.roomfindingsystem.dto.HouseDto;
 import com.roomfindingsystem.dto.HouseImageLink;
 import com.roomfindingsystem.dto.ServiceDto;
+import com.roomfindingsystem.entity.HousesEntity;
 import jakarta.persistence.Tuple;
 import jakarta.transaction.Transactional;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -117,7 +116,7 @@ public interface HouseRepository extends JpaRepository<HousesEntity, Integer> {
             "LEFT JOIN province p ON a.provinceid = p.provinceid " +
             "LEFT JOIN district d ON a.districtid = d.districtid " +
             "LEFT JOIN ward w ON a.wardid = w.wardid " +
-            "GROUP BY h.houseid, h.house_name, t.type_name, a.address_details, ward_name, district_name, province_name, h.last_modified_by LIMIT 6 OFFSET 0 ", nativeQuery = true)
+            "GROUP BY h.houseid, h.house_name, t.type_name, a.address_details, ward_name, district_name, province_name, h.last_modified_by LIMIT 8 OFFSET 0 ", nativeQuery = true)
     List<Tuple> viewHouseInHome();
 
     //admin
@@ -130,7 +129,8 @@ public interface HouseRepository extends JpaRepository<HousesEntity, Integer> {
     void updateStarHouse(double star, Integer houseId);
 
 
-
+//    @Query("select h from HousesEntity where houseId = ?1")
+    HousesEntity getHousesEntitiesByHouseId(int id);
 
 
 

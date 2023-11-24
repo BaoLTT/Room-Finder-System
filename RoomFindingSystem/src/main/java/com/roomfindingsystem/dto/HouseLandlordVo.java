@@ -53,6 +53,8 @@ public class HouseLandlordVo {
 
     private String user_lastName;
 
+    private Integer userID;
+
     private Integer count_room;
 
     private Integer price;
@@ -65,7 +67,7 @@ public class HouseLandlordVo {
 
     private int status;
 
-    public HouseLandlordVo(int houseID, String houseName, String description, LocalDate createdDate, String created_firstName, String created_lastName, String addressDetail, int address, String ward, String district, String province, int wardID, int districtID, int provinceID, String typeHouse, int typeHouseID, LocalDate lastModifiedDate, String lastModifiedBy_firstName, String lastModifiedBy_lastName, String user_firstName, String user_lastName) {
+    public HouseLandlordVo(int houseID, String houseName, String description, LocalDate createdDate, String created_firstName, String created_lastName, String addressDetail, int address, String ward, String district, String province, int wardID, int districtID, int provinceID, String typeHouse, int typeHouseID, LocalDate lastModifiedDate, String lastModifiedBy_firstName, String lastModifiedBy_lastName, String user_firstName, String user_lastName, int status) {
         this.houseID = houseID;
         this.houseName = houseName;
         this.description = description;
@@ -87,5 +89,6 @@ public class HouseLandlordVo {
         this.lastModifiedBy_lastName = lastModifiedBy_lastName;
         this.user_firstName = user_firstName;
         this.user_lastName = user_lastName;
+        this.status = status;
     }
 }

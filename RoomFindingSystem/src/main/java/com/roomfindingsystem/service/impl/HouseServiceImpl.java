@@ -1,8 +1,8 @@
 package com.roomfindingsystem.service.impl;
 
 import com.roomfindingsystem.dto.*;
-import com.roomfindingsystem.entity.HousesEntity;
 
+import com.roomfindingsystem.entity.HousesEntity;
 import com.roomfindingsystem.repository.HouseRepository;
 
 import com.roomfindingsystem.service.HouseService;
@@ -114,6 +114,11 @@ public class HouseServiceImpl implements HouseService {
         houseRepository.updateStarHouse(star, houseId);
     }
 
+    @Override
+    public HousesEntity getHouseById(int id) {
+        return houseRepository.getHousesEntitiesByHouseId(id);
+    }
+
 
     @Override
 
@@ -165,6 +170,8 @@ public class HouseServiceImpl implements HouseService {
 
         return houseHomeDtos;
     }
+
+
 
 
 }

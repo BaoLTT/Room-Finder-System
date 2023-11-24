@@ -4,45 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="73cc3c3f-6599-40ea-b9db-1ff38dbb4c04" name="Changes" comment="update properties">
-      <change afterPath="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/example/roomfindingsystem/controller/profileControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+    <list default="true" id="1e0562a2-7ad5-40d8-bd96-2e66b43cd15f" name="Changes" comment="report admin">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/FavouriteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/FavouriteController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/repository/FavouriteRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/repository/FavouriteRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/FavouriteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/FavouriteService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/impl/FavouriteServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/impl/FavouriteServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/static/assets/js/favorite.js" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/static/assets/js/favorite.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/favourite-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/favourite-list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/roomfindingsystem/controller/UserControllerTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="main" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="2YZ7cPP6ohnllFPanoah5XnvzQ6" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
-  </component>
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
@@ -50,397 +24,36 @@
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
     "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "com.google.cloudcode.ide_session_index": "20231124_0000",
-    "dart.analysis.tool.window.visible": "false",
-    "show.migrate.to.gradle.popup": "false",
-    "spring.configuration.checksum": "cba14e4d5d8ebaea272e92fbdfce9e02"
+    "git-widget-placeholder": "BaoLTT",
+    "node.js.selected.package.tslint": "(autodetect)"
   }
 }]]></component>
-  <component name="RunManager" selected="JUnit.profileControllerTest.testGetProfilePageWithUserDto">
-    <configuration name="profileControllerTest.testGetProfilePageAuthenticated" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager">
+    <configuration name="Main" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="RoomFindingSystem" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.roomfindingsystem.Main" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.example.roomfindingsystem.controller.*" />
+          <option name="PATTERN" value="com.roomfindingsystem.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.example.roomfindingsystem.controller" />
-      <option name="MAIN_CLASS_NAME" value="com.example.roomfindingsystem.controller.profileControllerTest" />
-      <option name="METHOD_NAME" value="testGetProfilePageAuthenticated" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="profileControllerTest.testGetProfilePageNotAuthenticated" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="RoomFindingSystem" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.roomfindingsystem.controller.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.example.roomfindingsystem.controller" />
-      <option name="MAIN_CLASS_NAME" value="com.example.roomfindingsystem.controller.profileControllerTest" />
-      <option name="METHOD_NAME" value="testGetProfilePageNotAuthenticated" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="profileControllerTest.testGetProfilePageWithUserDto" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="RoomFindingSystem" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.roomfindingsystem.controller.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.example.roomfindingsystem.controller" />
-      <option name="MAIN_CLASS_NAME" value="com.example.roomfindingsystem.controller.profileControllerTest" />
-      <option name="METHOD_NAME" value="testGetProfilePageWithUserDto" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="profileControllerTest.testUpdateUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="RoomFindingSystem" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.roomfindingsystem.controller.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.example.roomfindingsystem.controller" />
-      <option name="MAIN_CLASS_NAME" value="com.example.roomfindingsystem.controller.profileControllerTest" />
-      <option name="METHOD_NAME" value="testUpdateUser" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="profileControllerTest.testUpdateUserWithFile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="RoomFindingSystem" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.roomfindingsystem.controller.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.example.roomfindingsystem.controller" />
-      <option name="MAIN_CLASS_NAME" value="com.example.roomfindingsystem.controller.profileControllerTest" />
-      <option name="METHOD_NAME" value="testUpdateUserWithFile" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.profileControllerTest.testGetProfilePageWithUserDto" />
-        <item itemvalue="JUnit.profileControllerTest.testUpdateUserWithFile" />
-        <item itemvalue="JUnit.profileControllerTest.testGetProfilePageAuthenticated" />
-        <item itemvalue="JUnit.profileControllerTest.testGetProfilePageNotAuthenticated" />
-        <item itemvalue="JUnit.profileControllerTest.testUpdateUser" />
+        <item itemvalue="Spring Boot.Main" />
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="73cc3c3f-6599-40ea-b9db-1ff38dbb4c04" name="Changes" comment="update properties" />
-      <created>1700721332593</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1700721332593</updated>
-      <workItem from="1700721334833" duration="14092000" />
-      <workItem from="1700812351730" duration="754000" />
-    </task>
     <servers />
   </component>
-  <component name="com.github.evgenys91.machinet.common.dslhistory.DslHistoryState">
-    <option name="historyDtoById">
-      <map>
-        <entry key="052a49">
-          <value>
-            <ChatHistoryModel>
-              <option name="contextFilesPaths">
-                <list>
-                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/example/roomfindingsystem/controller/profileControllerTest.java" />
-                </list>
-              </option>
-              <option name="id" value="052a49" />
-              <option name="initiateTms" value="1700760490866" />
-              <option name="request" value="when(userService.updateProfile(userDto, file)).thenReturn(userDto); what is error" />
-              <option name="response" value="" />
-              <option name="responseDescription" value="The line `when(userService.updateProfile(userDto, file)).thenReturn(userDto);` is not causing an error. It is using Mockito's `thenReturn` method to specify the behavior of the `userService.updateProfile` method. In this case, it is telling Mockito to return the `userDto` object when the `updateProfile` method is called with the `userDto` and `file` parameters.&#10;&#10;If you are experiencing an error, it is likely related to a different part of your code. Please provide more information about the error message or the specific issue you are facing so that I can assist you further." />
-              <option name="responseFileName" value="" />
-              <option name="responseFilePath" value="" />
-              <option name="responseTms" value="1700760495154" />
-              <option name="usedFilesPaths">
-                <list>
-                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/example/roomfindingsystem/controller/profileControllerTest.java" />
-                </list>
-              </option>
-            </ChatHistoryModel>
-          </value>
-        </entry>
-        <entry key="164536">
-          <value>
-            <ChatHistoryModel>
-              <option name="contextFilesPaths">
-                <list>
-                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/example/roomfindingsystem/controller/profileControllerTest.java" />
-                </list>
-              </option>
-              <option name="id" value="164536" />
-              <option name="initiateTms" value="1700760203551" />
-              <option name="request" value=" SecurityContextHolder.setContext(mock(AutoConfigureMockMvc.class));what is error" />
-              <option name="response" value="" />
-              <option name="responseDescription" value="Apologies for the confusion. It seems that there is an error in the code snippet I provided. The correct code should be:&#10;&#10;```java&#10;SecurityContextHolder.setContext(mock(SecurityContext.class));&#10;```&#10;&#10;The error is that the `AutoConfigureMockMvc` class is being used instead of the `SecurityContext` class. To resolve this error, you need to replace `AutoConfigureMockMvc` with `SecurityContext` in the `SecurityContextHolder.setContext()` method call.&#10;&#10;Here's the corrected code snippet:&#10;&#10;```java&#10;SecurityContextHolder.setContext(mock(SecurityContext.class));&#10;```&#10;&#10;This will set the mocked `SecurityContext` object as the current security context for the test.&#10;&#10;I apologize for any confusion caused. Let me know if you have any further questions!" />
-              <option name="responseFileName" value="" />
-              <option name="responseFilePath" value="" />
-              <option name="responseTms" value="1700760208818" />
-              <option name="usedFilesPaths">
-                <list>
-                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/example/roomfindingsystem/controller/profileControllerTest.java" />
-                </list>
-              </option>
-            </ChatHistoryModel>
-          </value>
-        </entry>
-        <entry key="286420">
-          <value>
-            <ChatHistoryModel>
-              <option name="contextFilesPaths">
-                <list>
-                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/example/roomfindingsystem/controller/profileControllerTest.java" />
-                </list>
-              </option>
-              <option name="id" value="286420" />
-              <option name="initiateTms" value="1700760356673" />
-              <option name="request" value="viết thêm test case đi" />
-              <option name="response" value="" />
-              <option name="responseDescription" value="Certainly! Here are a few additional test cases you can add to your `profileControllerTest` class:&#10;&#10;```java&#10;import org.junit.jupiter.api.Test;&#10;import org.mockito.InjectMocks;&#10;import org.mockito.Mock;&#10;import org.mockito.MockitoAnnotations;&#10;import org.springframework.mock.web.MockMultipartFile;&#10;import org.springframework.ui.Model;&#10;import org.springframework.web.multipart.MultipartFile;&#10;&#10;import static org.junit.jupiter.api.Assertions.assertEquals;&#10;import static org.mockito.Mockito.*;&#10;&#10;class profileControllerTest {&#10;&#10;    @Mock&#10;    private UserService userService;&#10;&#10;    @Mock&#10;    private EmailSenderServiceImpl emailSenderService;&#10;&#10;    @Mock&#10;    private HttpSession session;&#10;&#10;    @Mock&#10;    private BindingResult bindingResult;&#10;&#10;    @Mock&#10;    private Model model;&#10;&#10;    @InjectMocks&#10;    private UserController userController;&#10;&#10;    private UserDto userDto;&#10;&#10;    @BeforeEach&#10;    void setUp() {&#10;        userDto = new UserDto();&#10;        userDto.setUserId(1);&#10;        userDto.setFirstName(&quot;John&quot;);&#10;        userDto.setLastName(&quot;Doe&quot;);&#10;        userDto.setEmail(&quot;john.doe@example.com&quot;);&#10;        MockitoAnnotations.openMocks(this);&#10;    }&#10;&#10;    @Test&#10;    void testGetProfilePageAuthenticated() {&#10;        // Arrange&#10;        // ...&#10;&#10;        // Act&#10;        // ...&#10;&#10;        // Assert&#10;        // ...&#10;    }&#10;&#10;    @Test&#10;    void testGetProfilePageNotAuthenticated() {&#10;        // Arrange&#10;        // ...&#10;&#10;        // Act&#10;        // ...&#10;&#10;        // Assert&#10;        // ...&#10;    }&#10;&#10;    @Test&#10;    void testUpdateUser() throws IOException {&#10;        // Arrange&#10;        // ...&#10;&#10;        // Act&#10;        // ...&#10;&#10;        // Assert&#10;        // ...&#10;    }&#10;&#10;    @Test&#10;    void testGetProfilePageWithUserDto() {&#10;        // Arrange&#10;        MockitoAnnotations.openMocks(this);&#10;        UserDto userDto = new UserDto();&#10;        userDto.setUserId(1);&#10;        userDto.setFirstName(&quot;John&quot;);&#10;        userDto.setLastName(&quot;Doe&quot;);&#10;        userDto.setEmail(&quot;john.doe@example.com&quot;);&#10;        when(userService.findUserDtoByEmail(&quot;test@example.com&quot;)).thenReturn(userDto);&#10;&#10;        // Act&#10;        String result = userController.getProfilePage(model);&#10;&#10;        // Assert&#10;        assertEquals(&quot;profile&quot;, result);&#10;        verify(model).addAttribute(&quot;user&quot;, userDto);&#10;    }&#10;&#10;    @Test&#10;    void testUpdateUserWithFile() throws IOException {&#10;        // Arrange&#10;        MockitoAnnotations.openMocks(this);&#10;        UserDto userDto = new UserDto();&#10;        MultipartFile file = new MockMultipartFile(&quot;file&quot;, new byte[0]);&#10;        when(userService.updateProfile(userDto, file)).thenReturn(userDto);&#10;&#10;        // Act&#10;        String result = userController.updateUser(userDto, file);&#10;&#10;        // Assert&#10;        assertEquals(&quot;redirect:/profile&quot;, result);&#10;        verify(userService).updateProfile(userDto, file);&#10;    }&#10;}&#10;```&#10;&#10;In the `testGetProfilePageWithUserDto` test case, we simulate the scenario where the `userService.findUserDtoByEmail` method returns a `UserDto` object. We then verify that the `userController.getProfilePage` method returns the expected view name and adds the `userDto` object to the model.&#10;&#10;In the `testUpdateUserWithFile` test case, we simulate the scenario where the `userService.updateProfile` method is called with a `UserDto` object and a `MultipartFile` object. We then verify that the `userController.updateUser` method returns the expected redirectCertainly! Here are a few additional test cases you can add to your `profileControllerTest` class:&#10;&#10;```java&#10;import org.junit.jupiter.api.Test;&#10;import org.mockito.InjectMocks;&#10;import org.mockito.Mock;&#10;import org.mockito.MockitoAnnotations;&#10;import org.springframework.mock.web.MockMultipartFile;&#10;import org.springframework.ui.Model;&#10;import org.springframework.web.multipart.MultipartFile;&#10;&#10;import static org.junit.jupiter.api.Assertions.assertEquals;&#10;import static org.mockito.Mockito.*;&#10;&#10;class profileControllerTest {&#10;&#10;    @Mock&#10;    private UserService userService;&#10;&#10;    @Mock&#10;    private EmailSenderServiceImpl emailSenderService;&#10;&#10;    @Mock&#10;    private HttpSession session;&#10;&#10;    @Mock&#10;    private BindingResult bindingResult;&#10;&#10;    @Mock&#10;    private Model model;&#10;&#10;    @InjectMocks&#10;    private UserController userController;&#10;&#10;    private UserDto userDto;&#10;&#10;    @BeforeEach&#10;    void setUp() {&#10;        userDto = new UserDto();&#10;        userDto.setUserId(1);&#10;        userDto.setFirstName(&quot;John&quot;);&#10;        userDto.setLastName(&quot;Doe&quot;);&#10;        userDto.setEmail(&quot;john.doe@example.com&quot;);&#10;        MockitoAnnotations.openMocks(this);&#10;    }&#10;&#10;    @Test&#10;    void testGetProfilePageAuthenticated() {&#10;        // Arrange&#10;        // ...&#10;&#10;        // Act&#10;        // ...&#10;&#10;        // Assert&#10;        // ...&#10;    }&#10;&#10;    @Test&#10;    void testGetProfilePageNotAuthenticated() {&#10;        // Arrange&#10;        // ...&#10;&#10;        // Act&#10;        // ...&#10;&#10;        // Assert&#10;        // ...&#10;    }&#10;&#10;    @Test&#10;    void testUpdateUser() throws IOException {&#10;        // Arrange&#10;        // ...&#10;&#10;        // Act&#10;        // ...&#10;&#10;        // Assert&#10;        // ...&#10;    }&#10;&#10;    @Test&#10;    void testGetProfilePageWithUserDto() {&#10;        // Arrange&#10;        MockitoAnnotations.openMocks(this);&#10;        UserDto userDto = new UserDto();&#10;        userDto.setUserId(1);&#10;        userDto.setFirstName(&quot;John&quot;);&#10;        userDto.setLastName(&quot;Doe&quot;);&#10;        userDto.setEmail(&quot;john.doe@example.com&quot;);&#10;        when(userService.findUserDtoByEmail(&quot;test@example.com&quot;)).thenReturn(userDto);&#10;&#10;        // Act&#10;        String result = userController.getProfilePage(model);&#10;&#10;        // Assert&#10;        assertEquals(&quot;profile&quot;, result);&#10;        verify(model).addAttribute(&quot;user&quot;, userDto);&#10;    }&#10;&#10;    @Test&#10;    void testUpdateUserWithFile() throws IOException {&#10;        // Arrange&#10;        MockitoAnnotations.openMocks(this);&#10;        UserDto userDto = new UserDto();&#10;        MultipartFile file = new MockMultipartFile(&quot;file&quot;, new byte[0]);&#10;        when(userService.updateProfile(userDto, file)).thenReturn(userDto);&#10;&#10;        // Act&#10;        String result = userController.updateUser(userDto, file);&#10;&#10;        // Assert&#10;        assertEquals(&quot;redirect:/profile&quot;, result);&#10;        verify(userService).updateProfile(userDto, file);&#10;    }&#10;}&#10;```&#10;&#10;In the `testGetProfilePageWithUserDto` test case, we simulate the scenario where the `userService.findUserDtoByEmail` method returns a `UserDto` object. We then verify that the `userController.getProfilePage` method returns the expected view name and adds the `userDto` object to the model.&#10;&#10;In the `testUpdateUserWithFile` test case, we simulate the scenario where the `userService.updateProfile` method is called with a `UserDto` object and a `MultipartFile` object. We then verify that the `userController.updateUser` method returns the expected redirectCertainly! Here are a few additional test cases you can add to your `profileControllerTest` class:&#10;&#10;```java&#10;import org.junit.jupiter.api.Test;&#10;import org.mockito.InjectMocks;&#10;import org.mockito.Mock;&#10;import org.mockito.MockitoAnnotations;&#10;import org.springframework.mock.web.MockMultipartFile;&#10;import org.springframework.ui.Model;&#10;import org.springframework.web.multipart.MultipartFile;&#10;&#10;import static org.junit.jupiter.api.Assertions.assertEquals;&#10;import static org.mockito.Mockito.*;&#10;&#10;class profileControllerTest {&#10;&#10;    @Mock&#10;    private UserService userService;&#10;&#10;    @Mock&#10;    private EmailSenderServiceImpl emailSenderService;&#10;&#10;    @Mock&#10;    private HttpSession session;&#10;&#10;    @Mock&#10;    private BindingResult bindingResult;&#10;&#10;    @Mock&#10;    private Model model;&#10;&#10;    @InjectMocks&#10;    private UserController userController;&#10;&#10;    private UserDto userDto;&#10;&#10;    @BeforeEach&#10;    void setUp() {&#10;        userDto = new UserDto();&#10;        userDto.setUserId(1);&#10;        userDto.setFirstName(&quot;John&quot;);&#10;        userDto.setLastName(&quot;Doe&quot;);&#10;        userDto.setEmail(&quot;john.doe@example.com&quot;);&#10;        MockitoAnnotations.openMocks(this);&#10;    }&#10;&#10;    @Test&#10;    void testGetProfilePageAuthenticated() {&#10;        // Arrange&#10;        // ...&#10;&#10;        // Act&#10;        // ...&#10;&#10;        // Assert&#10;        // ...&#10;    }&#10;&#10;    @Test&#10;    void testGetProfilePageNotAuthenticated() {&#10;        // Arrange&#10;        // ...&#10;&#10;        // Act&#10;        // ...&#10;&#10;        // Assert&#10;        // ...&#10;    }&#10;&#10;    @Test&#10;    void testUpdateUser() throws IOException {&#10;        // Arrange&#10;        // ...&#10;&#10;        // Act&#10;        // ...&#10;&#10;        // Assert&#10;        // ...&#10;    }&#10;&#10;    @Test&#10;    void testGetProfilePageWithUserDto() {&#10;        // Arrange&#10;        MockitoAnnotations.openMocks(this);&#10;        UserDto userDto = new UserDto();&#10;        userDto.setUserId(1);&#10;        userDto.setFirstName(&quot;John&quot;);&#10;        userDto.setLastName(&quot;Doe&quot;);&#10;        userDto.setEmail(&quot;john.doe@example.com&quot;);&#10;        when(userService.findUserDtoByEmail(&quot;test@example.com&quot;)).thenReturn(userDto);&#10;&#10;        // Act&#10;        String result = userController.getProfilePage(model);&#10;&#10;        // Assert&#10;        assertEquals(&quot;profile&quot;, result);&#10;        verify(model).addAttribute(&quot;user&quot;, userDto);&#10;    }&#10;&#10;    @Test&#10;    void testUpdateUserWithFile() throws IOException {&#10;        // Arrange&#10;        MockitoAnnotations.openMocks(this);&#10;        UserDto userDto = new UserDto();&#10;        MultipartFile file = new MockMultipartFile(&quot;file&quot;, new byte[0]);&#10;        when(userService.updateProfile(userDto, file)).thenReturn(userDto);&#10;&#10;        // Act&#10;        String result = userController.updateUser(userDto, file);&#10;&#10;        // Assert&#10;        assertEquals(&quot;redirect:/profile&quot;, result);&#10;        verify(userService).updateProfile(userDto, file);&#10;    }&#10;}&#10;```&#10;&#10;In the `testGetProfilePageWithUserDto` test case, we simulate the scenario where the `userService.findUserDtoByEmail` method returns a `UserDto` object. We then verify that the `userController.getProfilePage` method returns the expected view name and adds the `userDto` object to the model.&#10;&#10;In the `testUpdateUserWithFile` test case, we simulate the scenario where the `userService.updateProfile` method is called with a `UserDto` object and a `MultipartFile` object. We then verify that the `userController.updateUser` method returns the expected redirectURL and that the `userService.updateProfile` method is called with the correct parameters.&#10;&#10;These additional test cases provide coverage for different scenarios and help ensure the correctness of your `UserController` class.&#10;&#10;I hope this helps! Let me know if you have any further questions." />
-              <option name="responseFileName" value="" />
-              <option name="responseFilePath" value="" />
-              <option name="responseTms" value="1700760374767" />
-              <option name="usedFilesPaths">
-                <list>
-                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/example/roomfindingsystem/controller/profileControllerTest.java" />
-                </list>
-              </option>
-            </ChatHistoryModel>
-          </value>
-        </entry>
-        <entry key="302d13">
-          <value>
-            <ChatHistoryModel>
-              <option name="contextFilesPaths">
-                <list>
-                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/example/roomfindingsystem/controller/profileControllerTest.java" />
-                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/dto/UserDto.java" />
-                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/UserService.java" />
-                </list>
-              </option>
-              <option name="id" value="302d13" />
-              <option name="initiateTms" value="1700760755995" />
-              <option name="request" value="đúng rồi" />
-              <option name="response" value="" />
-              <option name="responseDescription" value="Great! Here are some additional test cases that you can add to the `profileControllerTest` class:&#10;&#10;```java&#10;@Test&#10;void testSaveChangePass() {&#10;    // Arrange&#10;    MockitoAnnotations.openMocks(this);&#10;    String oldPassword = &quot;oldPassword&quot;;&#10;    String newPassword = &quot;newPassword&quot;;&#10;    Model model = mock(Model.class);&#10;&#10;    // Act&#10;    String result = userController.saveChangePass(oldPassword, newPassword, model);&#10;&#10;    // Assert&#10;    assertEquals(&quot;redirect:/profile&quot;, result);&#10;    verify(userService).changePassword(oldPassword, newPassword);&#10;}&#10;&#10;@Test&#10;void testSaveChangePassWithInvalidPasswords() {&#10;    // Arrange&#10;    MockitoAnnotations.openMocks(this);&#10;    String oldPassword = &quot;oldPassword&quot;;&#10;    String newPassword = &quot;newPassword&quot;;&#10;    Model model = mock(Model.class);&#10;    when(bindingResult.hasErrors()).thenReturn(true);&#10;&#10;    // Act&#10;    String result = userController.saveChangePass(oldPassword, newPassword, model);&#10;&#10;    // Assert&#10;    assertEquals(&quot;change-password&quot;, result);&#10;    verify(userService, never()).changePassword(oldPassword, newPassword);&#10;    verify(model).addAttribute(&quot;error&quot;, &quot;Invalid passwords&quot;);&#10;}&#10;&#10;@Test&#10;void testUpdateUserWithInvalidFile() throws IOException {&#10;    // Arrange&#10;    MockitoAnnotations.openMocks(this);&#10;    UserDto userDto = new UserDto();&#10;    MultipartFile file = new MockMultipartFile(&quot;file&quot;, new byte[0]);&#10;    when(bindingResult.hasErrors()).thenReturn(true);&#10;&#10;    // Act&#10;    String result = userController.updateUser(userDto, file);&#10;&#10;    // Assert&#10;    assertEquals(&quot;profile&quot;, result);&#10;    verify(userService, never()).updateProfile(userDto, file);&#10;    verify(model).addAttribute(&quot;error&quot;, &quot;Invalid file&quot;);&#10;}&#10;&#10;@Test&#10;void testResend() {&#10;    // Arrange&#10;    MockitoAnnotations.openMocks(this);&#10;    HttpSession session = mock(HttpSession.class);&#10;&#10;    // Act&#10;    String result = userController.resend(session);&#10;&#10;    // Assert&#10;    assertEquals(&quot;redirect:/register&quot;, result);&#10;    verify(session).removeAttribute(&quot;otpCode&quot;);&#10;}&#10;&#10;@Test&#10;void testSendMailForgotPass() {&#10;    // Arrange&#10;    MockitoAnnotations.openMocks(this);&#10;    String email = &quot;test@example.com&quot;;&#10;    HttpSession session = mock(HttpSession.class);&#10;&#10;    // Act&#10;    String result = userController.sendMailForgotPass(email, session);&#10;&#10;    // Assert&#10;    assertEquals(&quot;redirect:/recover&quot;, result);&#10;    verify(emailSenderService).sendEmail(eq(email), anyString(), anyString());&#10;    verify(session).setAttribute(eq(&quot;email&quot;), eq(email));&#10;}&#10;&#10;// Add more test cases as needed&#10;&#10;```&#10;&#10;Feel free to modify the test cases according to your specific requirements and add more test cases as needed." />
-              <option name="responseFileName" value="" />
-              <option name="responseFilePath" value="" />
-              <option name="responseTms" value="1700760765546" />
-              <option name="usedFilesPaths">
-                <list>
-                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/UserController.java" />
-                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/example/roomfindingsystem/controller/profileControllerTest.java" />
-                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/dto/UserDto.java" />
-                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/UserService.java" />
-                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/dto/Smsrequest.java" />
-                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/impl/EmailSenderServiceImpl.java" />
-                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/EmailSenderService.java" />
-                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/entity/UserEntity.java" />
-                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/impl/Smsservice.java" />
-                </list>
-              </option>
-            </ChatHistoryModel>
-          </value>
-        </entry>
-        <entry key="32943b">
-          <value>
-            <ChatHistoryModel>
-              <option name="contextFilesPaths">
-                <list>
-                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/example/roomfindingsystem/controller/profileControllerTest.java" />
-                </list>
-              </option>
-              <option name="id" value="32943b" />
-              <option name="initiateTms" value="1700760794795" />
-              <option name="request" value="viết cho chức năng update profile thôi" />
-              <option name="response" value="" />
-              <option name="responseDescription" value="Certainly! Here's a test case for the `updateUser` method in the `profileControllerTest` class:&#10;&#10;```java&#10;@Test&#10;void testUpdateUser() throws IOException {&#10;    // Arrange&#10;    MockitoAnnotations.openMocks(this);&#10;    UserDto userDto = new UserDto();&#10;    MultipartFile file = new MockMultipartFile(&quot;file&quot;, new byte[0]);&#10;&#10;    // Act&#10;    String result = userController.updateUser(userDto, file);&#10;&#10;    // Assert&#10;    assertEquals(&quot;redirect:/profile&quot;, result);&#10;    verify(userService).updateProfile(userDto, file);&#10;}&#10;```&#10;&#10;This test case verifies that when the `updateUser` method is called with a `UserDto` object and a file, it should return &quot;redirect:/profile&quot; and invoke the `updateProfile` method of the `userService` with the provided `UserDto` object and file.&#10;&#10;Please note that you may need to modify the test case according to your specific implementation and requirements." />
-              <option name="responseFileName" value="" />
-              <option name="responseFilePath" value="" />
-              <option name="responseTms" value="1700760801586" />
-              <option name="usedFilesPaths">
-                <list>
-                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/UserController.java" />
-                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/example/roomfindingsystem/controller/profileControllerTest.java" />
-                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/dto/UserDto.java" />
-                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/UserService.java" />
-                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/dto/Smsrequest.java" />
-                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/impl/EmailSenderServiceImpl.java" />
-                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/EmailSenderService.java" />
-                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/profile.html" />
-                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/entity/UserEntity.java" />
-                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/impl/Smsservice.java" />
-                </list>
-              </option>
-            </ChatHistoryModel>
-          </value>
-        </entry>
-        <entry key="44a890">
-          <value>
-            <ChatHistoryModel>
-              <option name="contextFilesPaths">
-                <list>
-                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/example/roomfindingsystem/controller/profileControllerTest.java" />
-                </list>
-              </option>
-              <option name="id" value="44a890" />
-              <option name="initiateTms" value="1700760228476" />
-              <option name="request" value="what is error   SecurityContextHolder.setContext(mock(AutoConfigureMockMvc.class));" />
-              <option name="response" value="" />
-              <option name="responseDescription" value="Apologies for the confusion. The error in the code `SecurityContextHolder.setContext(mock(AutoConfigureMockMvc.class));` is that `AutoConfigureMockMvc` is not the correct class to use for mocking the `SecurityContext` in this context.&#10;&#10;To fix the error, you should replace `AutoConfigureMockMvc` with `SecurityContext` in the `SecurityContextHolder.setContext()` method call. Here's the corrected code:&#10;&#10;```java&#10;SecurityContextHolder.setContext(mock(SecurityContext.class));&#10;```&#10;&#10;The `SecurityContext` class is the correct class to use for mocking the security context in Spring Security. By using `mock(SecurityContext.class)`, you create a mock object of the `SecurityContext` class, which can be used to set the security context for testing purposes.&#10;&#10;I apologize for any confusion caused. Let me know if you have any further questions!" />
-              <option name="responseFileName" value="" />
-              <option name="responseFilePath" value="" />
-              <option name="responseTms" value="1700760248192" />
-              <option name="usedFilesPaths">
-                <list>
-                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/example/roomfindingsystem/controller/profileControllerTest.java" />
-                </list>
-              </option>
-            </ChatHistoryModel>
-          </value>
-        </entry>
-        <entry key="9b3fc8">
-          <value>
-            <ChatHistoryModel>
-              <option name="contextFilesPaths">
-                <list>
-                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/UserController.java" />
-                </list>
-              </option>
-              <option name="id" value="9b3fc8" />
-              <option name="initiateTms" value="1700759685406" />
-              <option name="request" value="alo" />
-              <option name="response" value="" />
-              <option name="responseDescription" value="Hello! How can I assist you today?" />
-              <option name="responseFileName" value="" />
-              <option name="responseFilePath" value="" />
-              <option name="responseTms" value="1700759690810" />
-              <option name="usedFilesPaths">
-                <list>
-                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/UserController.java" />
-                </list>
-              </option>
-            </ChatHistoryModel>
-          </value>
-        </entry>
-        <entry key="d1c2bb">
-          <value>
-            <ChatHistoryModel>
-              <option name="contextFilesPaths">
-                <list>
-                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/example/roomfindingsystem/controller/profileControllerTest.java" />
-                </list>
-              </option>
-              <option name="id" value="d1c2bb" />
-              <option name="initiateTms" value="1700760118217" />
-              <option name="request" value=" SecurityContextHolder.setContext(mock(SecurityContext.class)); what is error" />
-              <option name="response" value="" />
-              <option name="responseDescription" value="Apologies for the confusion. It seems that there is an error in the code snippet I provided. The correct code should be:&#10;&#10;```java&#10;SecurityContextHolder.setContext(mock(SecurityContext.class));&#10;```&#10;&#10;The error is that the `SecurityContext` class is missing an import statement. To resolve this error, you need to add the following import statement at the top of your test class:&#10;&#10;```java&#10;import org.springframework.security.core.context.SecurityContext;&#10;```&#10;&#10;This will import the `SecurityContext` class from the `org.springframework.security.core.context` package, allowing you to use it in your test case.&#10;&#10;I apologize for any inconvenience caused. Let me know if you have any further questions!" />
-              <option name="responseFileName" value="" />
-              <option name="responseFilePath" value="" />
-              <option name="responseTms" value="1700760123333" />
-              <option name="usedFilesPaths">
-                <list>
-                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/example/roomfindingsystem/controller/profileControllerTest.java" />
-                </list>
-              </option>
-            </ChatHistoryModel>
-          </value>
-        </entry>
-        <entry key="d38dc7">
-          <value>
-            <ChatHistoryModel>
-              <option name="contextFilesPaths">
-                <list>
-                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/example/roomfindingsystem/controller/profileControllerTest.java" />
-                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/dto/UserDto.java" />
-                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/UserService.java" />
-                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/impl/EmailSenderServiceImpl.java" />
-                </list>
-              </option>
-              <option name="id" value="d38dc7" />
-              <option name="initiateTms" value="1700760734485" />
-              <option name="request" value="viết thêm test case đc ko" />
-              <option name="response" value="" />
-              <option name="responseDescription" value="Certainly! I can help you write additional test cases for the `profileControllerTest` class. Please let me know which specific scenarios or functionalities you would like to test, and I'll be happy to assist you in writing the test cases." />
-              <option name="responseFileName" value="" />
-              <option name="responseFilePath" value="" />
-              <option name="responseTms" value="1700760738748" />
-              <option name="usedFilesPaths">
-                <list>
-                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/UserController.java" />
-                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/example/roomfindingsystem/controller/profileControllerTest.java" />
-                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/dto/UserDto.java" />
-                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/UserService.java" />
-                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/dto/Smsrequest.java" />
-                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/impl/EmailSenderServiceImpl.java" />
-                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/EmailSenderService.java" />
-                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/entity/UserEntity.java" />
-                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/impl/Smsservice.java" />
-                </list>
-              </option>
-            </ChatHistoryModel>
-          </value>
-        </entry>
-        <entry key="f44a93">
-          <value>
-            <ChatHistoryModel>
-              <option name="contextFilesPaths">
-                <list>
-                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/UserController.java" />
-                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/dto/UserDto.java" />
-                </list>
-              </option>
-              <option name="id" value="f44a93" />
-              <option name="initiateTms" value="1700759705702" />
-              <option name="request" value=" @GetMapping(&quot;/profile&quot;)&#10;    public String getProfilePage(Model model) {&#10;        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();&#10;        if (authentication != null &amp;&amp; authentication.isAuthenticated()) {&#10;            String email = authentication.getName();&#10;            UserDto userDto = userService.findUserDtoByEmail(email);&#10;            model.addAttribute(&quot;user&quot;, userDto);&#10;            return &quot;profile&quot;;&#10;        } else {&#10;            return &quot;redirect:/login&quot;;&#10;        }&#10;    }&#10;&#10;    @PostMapping(&quot;/user/update&quot;)&#10;    public String updateUser(@ModelAttribute(name = &quot;user&quot;) UserDto userDto, @RequestParam(&quot;file&quot;) MultipartFile file) throws IOException {&#10;        userService.updateProfile(userDto, file);&#10;        return &quot;redirect:/profile&quot;;&#10;    } viết test case junit tets" />
-              <option name="response" value="" />
-              <option name="responseDescription" value="&lt;em&gt;Unit Test Agent: generating unit tests for getProfilePage, updateUser.&lt;br/&gt;&lt;/em&gt;&lt;em&gt;Houston, we have a problem! Returning control to Machinet Assistant&lt;br&gt;&lt;br&gt;&lt;/em&gt;Sure! Here's an example of how you can write JUnit test cases for the `getProfilePage` and `updateUser` methods in your `UserController` class:&#10;&#10;```java&#10;import org.junit.jupiter.api.Test;&#10;import org.mockito.InjectMocks;&#10;import org.mockito.Mock;&#10;import org.mockito.MockitoAnnotations;&#10;import org.springframework.mock.web.MockMultipartFile;&#10;import org.springframework.ui.Model;&#10;import org.springframework.web.multipart.MultipartFile;&#10;&#10;import static org.junit.jupiter.api.Assertions.assertEquals;&#10;import static org.mockito.Mockito.*;&#10;&#10;class UserControllerTest {&#10;&#10;    @Mock&#10;    private UserService userService;&#10;&#10;    @InjectMocks&#10;    private UserController userController;&#10;&#10;    @Mock&#10;    private Model model;&#10;&#10;    @Test&#10;    void testGetProfilePageAuthenticated() {&#10;        // Arrange&#10;        MockitoAnnotations.openMocks(this);&#10;        Authentication authentication = mock(Authentication.class);&#10;        SecurityContextHolder.setContext(mock(SecurityContext.class));&#10;        when(SecurityContextHolder.getContext().getAuthentication()).thenReturn(authentication);&#10;        when(authentication.isAuthenticated()).thenReturn(true);&#10;        when(authentication.getName()).thenReturn(&quot;test@example.com&quot;);&#10;        UserDto userDto = new UserDto();&#10;        when(userService.findUserDtoByEmail(&quot;test@example.com&quot;)).thenReturn(userDto);&#10;&#10;        // Act&#10;        String result = userController.getProfilePage(model);&#10;&#10;        // Assert&#10;        assertEquals(&quot;profile&quot;, result);&#10;        verify(model).addAttribute(&quot;user&quot;, userDto);&#10;    }&#10;&#10;    @Test&#10;    void testGetProfilePageNotAuthenticated() {&#10;        // Arrange&#10;        MockitoAnnotations.openMocks(this);&#10;        SecurityContextHolder.setContext(mock(SecurityContext.class));&#10;        when(SecurityContextHolder.getContext().getAuthentication()).thenReturn(null);&#10;&#10;        // Act&#10;        String result = userController.getProfilePage(model);&#10;&#10;        // Assert&#10;        assertEquals(&quot;redirect:/login&quot;, result);&#10;        verifyNoInteractions(userService);&#10;    }&#10;&#10;    @Test&#10;    void testUpdateUser() throws IOException {&#10;        // Arrange&#10;        MockitoAnnotations.openMocks(this);&#10;        UserDto userDto = new UserDto();&#10;        MultipartFile file = new MockMultipartFile(&quot;file&quot;, new byte[0]);&#10;        when(userService.updateProfile(userDto, file)).thenReturn(userDto);&#10;&#10;        // Act&#10;        String result = userController.updateUser(userDto, file);&#10;&#10;        // Assert&#10;        assertEquals(&quot;redirect:/profile&quot;, result);&#10;        verify(userService).updateProfile(userDto, file);&#10;    }&#10;}&#10;```&#10;&#10;In the above example, we use Mockito to mock the dependencies (`UserService` and `Model`) and verify the interactions with them. We also use `MockMultipartFile` to create a mock `MultipartFile` object for testing the `updateUser` method.&#10;&#10;Make sure to include the necessary dependencies for Mockito and JUnit in your project's build file.&#10;&#10;Let me know if you need any further assistance!" />
-              <option name="responseFileName" value="" />
-              <option name="responseFilePath" value="" />
-              <option name="responseTms" value="1700759723040" />
-              <option name="usedFilesPaths">
-                <list>
-                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/UserController.java" />
-                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/dto/UserDto.java" />
-                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/profile.html" />
-                </list>
-              </option>
-            </ChatHistoryModel>
-          </value>
-        </entry>
-      </map>
-    </option>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="update lai homepage" />
+    <option name="LAST_COMMIT_MESSAGE" value="update lai homepage" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Room_Finding_System$UserControllerTest.ic" NAME="UserControllerTest Coverage Results" MODIFIED="1700300286928" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

@@ -22,19 +22,22 @@
                 height: 270px;
             }
         }
+
         @media (min-width: 992px) and (max-width: 1200px) {
 
             .profile-picture img {
                 height: 220px;
             }
         }
-        @media (min-width: 768px) and (max-width: 992px){
+
+        @media (min-width: 768px) and (max-width: 992px) {
 
             .profile-picture img {
                 height: 165px;
             }
         }
-        @media (max-width: 768px){
+
+        @media (max-width: 768px) {
 
             .profile-picture img {
                 height: auto;
@@ -96,34 +99,6 @@
                                                        placeholder="Doe" th:value="*{lastName}" required>
                                                 <small class="text-danger error-lastName"></small>
                                             </div>
-                                            <!--end form-group-->
-                                        </div>
-                                        <!--end col-md-6-->
-
-                                        <div class="col-md-6 col-sm-6">
-                                            <div class="form-group">
-                                                <label for="email">Email</label>
-                                                <input type="email" class="form-control" id="email" name="email"
-                                                       pattern="^\w+([\.]?\w+)*@\w+([\.]?\w+)*(\.\w{2,3})+$"
-                                                       placeholder="janedoe@gmail.com" th:value="*{email}" readonly>
-                                                <small class="text-danger error-email"></small>
-                                            </div>
-                                            <!--end form-group-->
-                                        </div>
-                                        <!--end col-md-6-->
-                                        <div class="col-md-6 col-sm-6">
-                                            <div class="form-group">
-                                                <label for="phone">Số điện thoại</label>
-                                                <input type="text" class="form-control" id="phone" name="phone"
-                                                       pattern="(84|0[3|5|7|8|9])+([0-9]{8})\b"
-                                                       placeholder="(0)123 456 7890"
-                                                       th:value="*{phone}" required>
-                                                <small class="text-danger error-phone"></small>
-                                            </div>
-                                            <!--end form-group-->
-                                        </div>
-
-                                        <div class="col-md-6 col-sm-6">
                                             <div class="form-group">
                                                 <label for="gender">Giới tính</label>
                                                 <select class="form-control" id="gender" name="gender"
@@ -135,9 +110,25 @@
                                                     </option>
                                                 </select>
                                             </div>
-                                            <!--end form-group-->
                                         </div>
+                                        <!--end col-md-6-->
+
                                         <div class="col-md-6 col-sm-6">
+                                            <div class="form-group">
+                                                <label for="email">Email</label>
+                                                <input type="email" class="form-control" id="email" name="email"
+                                                       pattern="^\w+([\.]?\w+)*@\w+([\.]?\w+)*(\.\w{2,3})+$"
+                                                       placeholder="janedoe@gmail.com" th:value="*{email}" readonly>
+                                                <small class="text-danger error-email"></small>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="phone">Số điện thoại</label>
+                                                <input type="text" class="form-control" id="phone" name="phone"
+                                                       pattern="(84|0[3|5|7|8|9])+([0-9]{8})\b"
+                                                       placeholder="(0)123 456 7890"
+                                                       th:value="*{phone}">
+                                                <small class="text-danger error-phone"></small>
+                                            </div>
                                             <div class="form-group">
                                                 <label for="dob">Ngày sinh</label>
                                                 <input style="height: 36px" type="date" class="form-control"
@@ -146,8 +137,8 @@
                                                        required
                                                        onchange="">
                                             </div>
-                                            <!--end form-group-->
                                         </div>
+                                        <!--end col-md-6-->
                                     </div>
                                 </section>
                                 <section>
@@ -202,156 +193,13 @@
     </div>
     <!--end page-content-->
 
-    <footer id="page-footer">
-        <div class="row-one">
-            <div class="container">
-                <div class="logos">
-                    <div class="logo">
-                        <a href="#"><img th:src="@{/assets/img/logo-1.png}" alt=""></a>
-                    </div>
-                    <!--/ .logo-->
-                    <div class="logo">
-                        <a href="#"><img th:src="@{/assets/img/logo-2.png}" alt=""></a>
-                    </div>
-                    <!--/ .logo-->
-                    <div class="logo">
-                        <a href="#"><img th:src="@{/assets/img/logo-3.png}" alt=""></a>
-                    </div>
-                    <!--/ .logo-->
-                    <div class="logo">
-                        <a href="#"><img th:src="@{/assets/img/logo-4.png}" alt=""></a>
-                    </div>
-                    <!--/ .logo-->
-                    <div class="logo">
-                        <a href="#"><img th:src="@{/assets/img/logo-5.png}" alt=""></a>
-                    </div>
-                    <!--/ .logo-->
-                </div>
-                <!--/ .logos-->
-            </div>
-        </div>
-        <!--end row-one-->
-        <div class="row-two clearfix">
-            <div class="container">
-                <div class="copyright pull-left">(C) 2016 Your Company, All Rights Reserved</div>
-                <div class="footer-nav pull-right">
-                    <a href="index.html">Home</a>
-                    <a href="about-us.html">About Us</a>
-                    <a href="listing.html">Listing</a>
-                    <a href="contact-us.html">Contact Us</a>
-                </div>
-            </div>
-            <div class="bg-transfer"><img th:src="@{/assets/img/footer-bg.jpg}" alt=""></div>
-        </div>
-        <!--end row-two-->
-    </footer>
+
+    <div th:replace="~{footer :: footerSection}"></div>
+
     <!--end page-footer-->
 </div>
 <!--end page-wrapper-->
 <a href="#page-header" class="to-top scroll" data-show-after-scroll="600"><i class="arrow_up"></i></a>
-
-<!-- Modal -->
-<div class="modal fade" id="sign-in-register" tabindex="-1" role="dialog">
-    <div class="wrapper">
-        <div class="inner">
-            <div class="modal-dialog width-400px" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
-                        <!-- Nav tabs -->
-                        <ul class="nav nav-tabs" role="tablist">
-                            <li role="presentation" class="active"><a href="#tab-sign-in" role="tab" data-toggle="tab">
-                                <h1>Sign In</h1></a></li>
-                            <li role="presentation"><a href="#tab-register" role="tab" data-toggle="tab"><h1>
-                                Register</h1></a></li>
-                        </ul>
-                    </div>
-                    <!--end modal-header-->
-                    <div class="modal-body">
-                        <div class="tab-content">
-                            <div role="tabpanel" class="tab-pane fade in active" id="tab-sign-in">
-                                <form id="form-sign">
-                                    <div class="form-group">
-                                        <label for="form-sign-in-email">E-mail</label>
-                                        <input type="text" class="form-control" id="form-sign-in-email"
-                                               name="sign_in_email" placeholder="Login E-mail">
-                                    </div>
-                                    <!--end form-group-->
-                                    <div class="form-group">
-                                        <label for="form-sign-in-password">Password</label>
-                                        <input type="password" class="form-control" id="form-sign-in-password"
-                                               name="sign_in_password" placeholder="*****">
-                                    </div>
-                                    <!--end form-group-->
-                                    <div class="clearfix action">
-                                        <div class="form-group pull-right">
-                                            <button type="submit" class="btn btn-primary btn-rounded">Sign In</button>
-                                        </div>
-                                        <div class="form-group pull-left">
-                                            <label><input type="checkbox" name="1">Login Automatically</label>
-                                        </div>
-                                    </div>
-                                    <!--end action-->
-                                </form>
-                                <!--end form-sign-in-->
-                            </div>
-                            <div role="tabpanel" class="tab-pane fade" id="tab-register">
-                                <form id="form-register">
-                                    <div class="form-group">
-                                        <label for="form-register-name">Name</label>
-                                        <input type="text" class="form-control" id="form-register-name"
-                                               name="register_name" placeholder="John">
-                                    </div>
-                                    <!--end form-group-->
-                                    <div class="form-group">
-                                        <label for="form-register-surname">Surname</label>
-                                        <input type="text" class="form-control" id="form-register-surname"
-                                               name="register_surname" placeholder="Doe">
-                                    </div>
-                                    <!--end form-group-->
-                                    <div class="form-group">
-                                        <label for="form-register-email">E-mail</label>
-                                        <input type="text" class="form-control" id="form-register-email"
-                                               name="register_email" placeholder="Login E-mail">
-                                    </div>
-                                    <!--end form-group-->
-                                    <div class="form-group">
-                                        <label for="form-register-password">Password</label>
-                                        <input type="password" class="form-control" id="form-register-password"
-                                               name="register_password" placeholder="*****">
-                                    </div>
-                                    <!--end form-group-->
-                                    <div class="clearfix action">
-                                        <div class="form-group pull-right">
-                                            <button type="submit" class="btn btn-primary btn-rounded">Sign In</button>
-                                        </div>
-                                        <div class="form-group pull-left">
-                                            <label><input type="checkbox" name="1">Login Automatically</label>
-                                        </div>
-                                    </div>
-                                    <!--end action-->
-                                </form>
-                                <!--end form-sign-in-->
-                            </div>
-                        </div>
-
-                    </div>
-                    <!--end modal-body-->
-                    <div class="modal-footer">
-                        <div class="center">
-                            <div>Lost Password? <a href="#">Reset here</a></div>
-                            <div>New to Accommondo? <a href="#">Register an account</a></div>
-                        </div>
-                    </div>
-                    <!--end modal-footer-->
-                </div>
-                <!--end modal-content-->
-            </div>
-            <!--end modal-dialog-->
-        </div>
-    </div>
-</div>
-<!--end modal-->
 
 <script type="text/javascript" th:src="@{/assets/js/jquery-2.2.1.min.js}"></script>
 <script type="text/javascript" th:src="@{/assets/js/jquery-migrate-1.2.1.min.js}"></script>
@@ -362,7 +210,6 @@
 <script type="text/javascript" th:src="@{/assets/js/icheck.min.js}"></script>
 <script type="text/javascript" th:src="@{/assets/js/owl.carousel.js}"></script>
 <script type="text/javascript" th:src="@{/assets/js/masonry.pkgd.min.js}"></script>
-
 <script type="text/javascript" th:src="@{/assets/js/maps.js}"></script>
 <script type="text/javascript" th:src="@{/assets/js/custom.js}"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

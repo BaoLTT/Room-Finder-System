@@ -46,8 +46,8 @@ public interface FeedbackRepository extends JpaRepository<FeedbackEntity,Integer
             "left join UserEntity u on f.memberId = u.userId " +
             "left join AddressEntity a on h.addressId = a.addressId " +
             "left join ProvinceEntity p on a.provinceId = p.provinceId " +
-            "left join DistrictEntity d on d.provinceId= p.provinceId " +
-            "left join WardEntity w on w.districtId= d.districtId ")
+            "left join DistrictEntity d on d.districtId= a.districtId " +
+            "left join WardEntity w on w.wardId= a.wardId ")
     List<FeedbackHomeDto> viewTop4Home();
     @Query("select new com.roomfindingsystem.dto.FeedbackListAdminDto(f.feedbackId,f.content,f.createdDate,f.lastModifiedDate,f.title,h.houseName,u.lastName,u.email)from FeedbackEntity f " +
             " left join HousesEntity h on f.houseId= h.houseId" +
