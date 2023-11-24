@@ -97,50 +97,21 @@ public class HouseManagerController {
         List<UserEntity> listUser = new ArrayList<>();
         listUser = userRepository.findAll();
         List<TypeHouseEntity> listType = typeHouseRepository.findAll();
+        List<ServiceDetailEntity> listService = serviceDetailService.getAllService();
         model.addAttribute("listUser",listUser);
         model.addAttribute("listType",listType);
+        model.addAttribute("listService",listService);
+        HouseLandlordVo house = new HouseLandlordVo();
+        model.addAttribute("house",house);
         return "admin/house-manager-add";
     }
 
     @PostMapping("/house-manager/save")
-    public String saveHouse(@RequestParam(name = "houseName",required = false , defaultValue = "") String houseName,
-                            @RequestParam(name = "landlord",required = false , defaultValue = "1") String landlord,
-                            @RequestParam(name = "addressDetail",required = false , defaultValue = "") String addressDetail,
-                            @RequestParam(name = "description",required = false , defaultValue = "") String description,
-                            @RequestParam(name = "houseType",required = false , defaultValue = "1") String houseType,
-                            @RequestParam(name = "province",required = false , defaultValue = "1") String province,
-                            @RequestParam(name = "district",required = false , defaultValue = "1") String district,
-                            @RequestParam(name = "ward",required = false , defaultValue = "1") String ward,
-                            MultipartFile[] images, Model model, HttpSession httpSession) throws IOException {
-        Integer createdBy = 1;
-        LocalDate createdDate = LocalDate.now();
-        System.out.println(province);
-        System.out.println(district);
-        System.out.println(ward);
-        AddressEntity address = new AddressEntity("a",addressDetail,Integer.parseInt(province),Integer.parseInt(district),Integer.parseInt(ward));
+    public String saveHouse(@ModelAttribute(name = "house") HouseLandlordVo house, MultipartFile[] images, Model model, HttpSession httpSession) throws IOException {
+        AddressEntity address = new AddressEntity("a",house.getAddressDetail().trim(),house.getProvinceID(),house.getDistrictID(),house.getWardID());
         int addressID = addressService.insertAddress(address);
-
-        Integer typeHouse = Integer.parseInt(houseType);
-        Integer landlordId = Integer.parseInt(landlord);
-//        HousesEntity house = new HousesEntity(houseName,description.trim(),createdDate,createdBy,createdDate,createdBy,addressID,typeHouse,landlordId,1);
-//        houseManagerService.insertHouse(house);
-//        for (MultipartFile image : images) {
-//
-//            // Lưu trữ thông tin ảnh vào database
-//            HouseImagesEntity imageModel = new HouseImagesEntity();
-//            imageModel.setCreatedDate(createdDate);
-//
-//            imageModel.setImageLink(image.getContentType());
-//            imageModel.setHouseId(houseManagerService.getLastHouse().getHouseId());
-//
-//            // Lưu trữ ảnh vào database
-//            houseManagerService.inserImageHouse(imageModel);
-//        }
-
-        // Thêm danh sách ảnh vào model
-
-
-        return "redirect:/admin/house-manager";
+        houseManagerService.insertHouse(house,addressID);
+        return  "redirect:/admin/house-manager";
     }
 
 

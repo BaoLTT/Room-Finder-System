@@ -61,7 +61,7 @@ public class HouseManagerServiceImpl implements HouseManagerService {
         housesEntity.setTypeHouseId(house.getTypeHouseID());
         housesEntity.setStatus(house.getStatus());
         housesEntity.setAddressId(addressID);
-        housesEntity.setUserId(1);
+        housesEntity.setUserId(house.getUserID());
         housesEntity.setLastModifiedBy(1);
         housesEntity.setLastModifiedDate(createdDate);
         houseManagerRepository.save(housesEntity);
