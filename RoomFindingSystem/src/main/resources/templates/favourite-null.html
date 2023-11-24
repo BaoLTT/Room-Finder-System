@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="ThemeStarz">
+
+    <link href="assets/fonts/font-awesome.css" rel="stylesheet" type="text/css">
+    <link href="assets/fonts/elegant-fonts.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700,900,400italic' rel='stylesheet'
+          type='text/css'>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="assets/css/zabuto_calendar.min.css" type="text/css">
+    <link rel="stylesheet" href="assets/css/owl.carousel.css" type="text/css">
+    <link rel="stylesheet" href="assets/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/myfavourite.css" type="text/css">
+    <script
+            src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"
+    ></script>
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+            integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+    />
+
+    <!-- Slick slider -->
+    <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+          integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+          crossorigin="anonymous"/>
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+
+    <title>Accommodo - Accommodation HTML Template Full of Useful Features</title>
+
+</head>
+
+<body>
+<div class="page-wrapper">
+    <div th:replace="~{header :: headerSection}"></div>
+
+    <div id="page-content">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Listing</a></li>
+                <li class="active">Detail</li>
+            </ol>
+            <!--end breadcrumb-->
+            <div class="row">
+
+                <!--end col-md-3-->
+                <div class="col-md-12">
+                    <div id="notification-box"></div>
+                    <div class="main-content">
+                        <div class="title">
+                            <h1>Danh Sách Yêu Thích</h1>
+                            <div class="display-selector">
+                                <span>Display:</span>
+                                <a href="listing.html" data-toggle="tooltip" data-placement="left" title="Display list"><i
+                                        class="fa fa-th-list"></i></a>
+                                <a href="listing-matrix.html" class="active" data-toggle="tooltip" data-placement="left"
+                                   title="Display matrix"><i class="fa fa-th"></i></a>
+                            </div>
+                        </div>
+                        <!--end title-->
+                        <div class="row">
+                            <div class="col-md-4 col-sm-6">
+                                <div class="item big equal-height" data-map-latitude="48.87" data-map-longitude="2.29"
+                                     data-id="1">
+
+                                </div>
+                            </div>
+                            <!--end item-->
+                        </div>
+
+
+                        <!--end row-->
+                        <div class="center">
+                            <h1>Hãy Thêm Danh Sách Yêu Thích Của Bạn</h1>
+                        </div>
+                        <!--end center-->
+                    </div>
+                    <!--end main-content-->
+                </div>
+                <!--end col-md-9-->
+            </div>
+            <!--end row-->
+        </div>
+        <!--end container-->
+    </div>
+    <!--end page-content-->
+    <div th:replace="~{footer :: footerSection}"></div>
+    <!--end page-wrapper-->
+    <a href="#page-header" class="to-top scroll" data-show-after-scroll="600"><i class="arrow_up"></i></a>
+
+
+    <script type="text/javascript" src="assets/js/jquery-2.2.1.min.js"></script>
+    <script type="text/javascript" src="assets/js/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js"></script>
+    <script type="text/javascript" src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/js/richmarker-compiled.js"></script>
+    <script type="text/javascript" src="assets/js/markerwithlabel_packed.js"></script>
+    <script type="text/javascript" src="assets/js/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="assets/js/bootstrap-datepicker.js"></script>
+    <script type="text/javascript" src="assets/js/icheck.min.js"></script>
+    <script type="text/javascript" src="assets/js/owl.carousel.js"></script>
+    <script type="text/javascript" src="assets/js/masonry.pkgd.min.js"></script>
+
+    <script type="text/javascript" src="assets/js/maps.js"></script>
+    <script type="text/javascript" src="assets/js/custom.js"></script>
+
+    <script type="text/javascript" th:src="@{/assets/js/favorite.js}"></script>
+
+    <!--[if lte IE 9]>
+    <script src="assets/js/ie.js"></script>
+    <![endif]-->
+</div>
+</body>
