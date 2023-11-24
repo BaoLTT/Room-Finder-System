@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="73cc3c3f-6599-40ea-b9db-1ff38dbb4c04" name="Changes" comment="report admin">
       <change beforePath="$PROJECT_DIR$/RoomFindingSystem/target/classes/templates/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/target/classes/templates/profile.html" afterDir="false" />
+    <list default="true" id="73cc3c3f-6599-40ea-b9db-1ff38dbb4c04" name="Changes" comment="update lai homepage">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <list default="true" id="73cc3c3f-6599-40ea-b9db-1ff38dbb4c04" name="Changes" comment="update lai homepage" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,6 +28,8 @@
   "keyToString": {
     "dart.analysis.tool.window.visible": "false",
     "git-widget-placeholder": "main"
+    "git-widget-placeholder": "main",
+    "node.js.selected.package.tslint": "(autodetect)"
   }
 }</component>
 }]]></component>
