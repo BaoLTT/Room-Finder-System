@@ -2,7 +2,6 @@ package com.roomfindingsystem.controller;
 
 import com.roomfindingsystem.dto.HouseLandlordVo;
 import com.roomfindingsystem.entity.AddressEntity;
-import com.roomfindingsystem.entity.HousesEntity;
 import com.roomfindingsystem.entity.ServiceDetailEntity;
 import com.roomfindingsystem.entity.TypeHouseEntity;
 
@@ -14,7 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;

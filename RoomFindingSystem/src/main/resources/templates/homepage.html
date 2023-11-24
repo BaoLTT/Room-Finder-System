@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-
+<html lang="vi">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
@@ -17,6 +17,10 @@
     <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
 
     <title>Room Finding System</title>
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+    }</style>
 
 </head>
 
@@ -203,12 +207,12 @@
                         </div>
                         <!--end item-->
                     </div>
-                    <div class="col-md-6 col-sm-12">
-                        <a href="#" class="advertising-banner equal-height">
-                            <span class="banner-badge">Advertising</span>
-                            <img src="/assets/img/ad-banner-01.jpg" alt="">
-                        </a>
-                    </div>
+<!--                    <div class="col-md-6 col-sm-12">-->
+<!--                        <a href="#" class="advertising-banner equal-height">-->
+<!--                            <span class="banner-badge">Advertising</span>-->
+<!--                            <img src="/assets/img/ad-banner-01.jpg" alt="">-->
+<!--                        </a>-->
+<!--                    </div>-->
                 </div>
                 <a th:href="@{/houselist}" class="pull-right">View All</a>
 
@@ -226,7 +230,7 @@
             </div>
             <!--end title-->
             <div class="row">
-                <div class="col-md-9 col-sm-8">
+                <div class="col-md-12 col-sm-12">
                     <div class="row">
                         <div class="col-md-3 col-sm-6" th:each="room: ${rooms}">
                             <a th:href="@{/room/}+${room.roomId}" class="item small">
@@ -262,11 +266,11 @@
                     <!--end row-->
                     <a th:href="@{/RoomList/1}" class="pull-right">View All</a>
                 </div>
-                <div class="col-md-3 col-sm-4">
-                    <a href="#" class="advertising-banner">
-                        <img src="assets/img/ad-banner-02.jpg" alt="">
-                    </a>
-                </div>
+<!--                <div class="col-md-3 col-sm-4">-->
+<!--                    <a href="#" class="advertising-banner">-->
+<!--                        <img src="assets/img/ad-banner-02.jpg" alt="">-->
+<!--                    </a>-->
+<!--                </div>-->
             </div>
         </div>
         <!--end container-->
@@ -310,7 +314,7 @@
                             <i class="icon_headphones"></i>
                         </aside>
                         <figure>
-                            <h3>Cung cấp thông tin chi tiết</h3>
+                            <h3>Thông tin chi tiết</h3>
                             <p>
                             </p>
                         </figure>
@@ -338,8 +342,7 @@
                         <div class="image"><img th:src="${slider.imgLink}" alt=""></div>
                     </a>
                     <div class="description">
-                        <!--                            <a href=""><h3 th:text = "${slider.content}"></h3></a>-->
-                        <!--                            <figure th:text = "${slider.content}">Austria</figure>-->
+
                         <p th:text="${slider.content}"></p>
                         <a href="" class="btn btn-default btn-small btn-framed btn-rounded">More</a>
                     </div>
@@ -452,7 +455,7 @@
                                                    th:text="${' '+feedback.lastName+' '+feedback.firstName}"></i></div>
                             <p th:text="${feedback.content}">
                             </p>
-                            <a href="housedetail.html#reviews" class="link icon">Full Review<i class="arrow_right"></i></a>
+                            <a th:href="@{/detail?id=}+${feedback.houseId}+'#reviews'" class="link icon">Xem chi tiết<i class="arrow_right"></i></a>
                         </div>
                         <!--end review-->
                     </div>

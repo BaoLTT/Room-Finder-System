@@ -25,4 +25,6 @@ public interface HouseService {
     int countHousesInAdmin();
 
     void updateStar(double star, int houseId);
+
+    HousesEntity getHouseById(int id);
 }
