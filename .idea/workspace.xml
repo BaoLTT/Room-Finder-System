@@ -4,118 +4,71 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+
     <list default="true" id="f0aac5be-668d-40ba-95e1-e071ad2a5f77" name="Changes" comment="update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/HomeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/static/assets/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/static/assets/css/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/homepage.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/homepage.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RoomFindingSystem/target/classes/static/assets/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/target/classes/static/assets/css/style.css" afterDir="false" />
+
     </list>
+    <list default="true" id="73cc3c3f-6599-40ea-b9db-1ff38dbb4c04" name="Changes" comment="update lai homepage" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
+
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 6
-}</component>
-  <component name="ProjectId" id="2YXTJf8WAVxSxFF2Roy9v6xEd6v" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showLibraryContents" value="true" />
-  </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
-    &quot;JPA.DatabaseSchemaImportDialog&quot;: &quot;0917dbb1-b63e-4827-b1df-c0aa7f40a31c&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;BaoLTT&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;cba14e4d5d8ebaea272e92fbdfce9e02&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "main"
+    "git-widget-placeholder": "main",
+    "node.js.selected.package.tslint": "(autodetect)"
   }
 }</component>
-  <component name="RecentsManager">
-    <key name="ImportMappingsDialog.RecentPackages">
-      <recent name="com.roomfindingsystem.entity" />
-    </key>
+}]]></component>
+  <component name="RunManager">
+    <configuration name="Main" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="RoomFindingSystem" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.roomfindingsystem.Main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.roomfindingsystem.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.Main" />
+      </list>
+    </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="f0aac5be-668d-40ba-95e1-e071ad2a5f77" name="Changes" comment="update phan tro trong house detail" />
-      <created>1700670854152</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1700670854152</updated>
-      <workItem from="1700670855309" duration="876000" />
-      <workItem from="1700680233012" duration="3289000" />
-      <workItem from="1700710796143" duration="1520000" />
-      <workItem from="1700714387150" duration="10891000" />
-      <workItem from="1700731405841" duration="98000" />
-      <workItem from="1700731844406" duration="637000" />
-      <workItem from="1700737278531" duration="5610000" />
-      <workItem from="1700747463403" duration="5380000" />
-      <workItem from="1700753455712" duration="570000" />
-      <workItem from="1700766468547" duration="2377000" />
-      <workItem from="1700769991960" duration="2302000" />
-      <workItem from="1700822336867" duration="851000" />
-    </task>
-    <task id="LOCAL-00001" summary="update phan slider">
-      <option name="closed" value="true" />
-      <created>1700731441945</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1700731441946</updated>
-    </task>
-    <task id="LOCAL-00002" summary="update phan usercontroller">
-      <option name="closed" value="true" />
-      <created>1700737946867</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1700737946867</updated>
-    </task>
-    <task id="LOCAL-00003" summary="update">
-      <option name="closed" value="true" />
-      <created>1700753983058</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1700753983058</updated>
-    </task>
-    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
-  </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update phan tro trong house detail" />
-    <MESSAGE value="update phan slider" />
-    <MESSAGE value="update phan usercontroller" />
-    <MESSAGE value="update" />
-    <option name="LAST_COMMIT_MESSAGE" value="update" />
+    <MESSAGE value="update lai homepage" />
+    <option name="LAST_COMMIT_MESSAGE" value="update lai homepage" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Room_Finding_System$UserControllerTest.ic" NAME="UserControllerTest Coverage Results" MODIFIED="1700300286928" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.roomfindingsystem.controller.*</FILTER>
+    </SUITE>
+
   </component>
 </project>

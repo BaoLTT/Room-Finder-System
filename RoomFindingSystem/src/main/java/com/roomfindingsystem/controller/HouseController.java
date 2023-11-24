@@ -11,7 +11,6 @@ import com.roomfindingsystem.service.FeedbackService;
 import com.roomfindingsystem.service.HouseService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +19,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.Date;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,8 +43,12 @@ public class HouseController {
     @Autowired
     ReportService reportService;
 
+
     @Autowired
     GcsService gcsService;
+
+    LocalDate currentDate = LocalDate.now();
+
 
 
     @RequestMapping(value = "houseDetail")
@@ -95,16 +101,27 @@ public class HouseController {
 
             //set houseId và userid cho feedback
             ReportEntity reportEntity = new ReportEntity();
-            reportEntity.setHouseid(houseId);
-            reportEntity.setUserid(user.getUserId());
 
-            //lấy ra số lượng comment của user hiện tai ở bài vieest này
+            //lấy ra số lượng report của user hiện tai ở bài vieest này
             int countReport = 0;
             List<ReportEntity> reportEntities= reportService.getReportEntityByUid(houseId, user.getUserId());
             countReport = reportEntities.size();
+            int check = 1;// cho bao cao
 
-            if(countReport>0)
+            if(countReport>0) {
                 reportEntity = reportEntities.get(0);
+                String status = reportEntity.getReportStatus();
+
+                if(reportEntity.getReportStatus().equals("Chờ Xử Lý")
+                ){
+                    check = 0; //ko cho bao cao nua
+                }
+            }
+            if(check==1)
+                reportEntity=new ReportEntity();
+            reportEntity.setHouseid(houseId);
+            reportEntity.setUserid(user.getUserId());
+
 
 
 
@@ -114,15 +131,11 @@ public class HouseController {
             model.addAttribute("count", count);
             model.addAttribute("reportEntity", reportEntity);
             model.addAttribute("countReport", countReport);
+            model.addAttribute("checkReport", check);
         }
         catch(Exception e){
 
         }
-
-
-
-
-
         //lấy ra số lượng comment của user hiện tai ở bài vieest này
 
 
@@ -143,7 +156,7 @@ public class HouseController {
     // add feedback
     @PostMapping(value="detail")
     public String addFeedback(@Valid @ModelAttribute("feedback") FeedbackEntity feedbackEntity, BindingResult bindingResult){
-        LocalDate currentDate = LocalDate.now();
+
         feedbackEntity.setCreatedDate(currentDate);
         int houseId = feedbackEntity.getHouseId();
         int sum =0;
@@ -162,8 +175,16 @@ public class HouseController {
             sum+=feedbackDtoList.get(i).getStar();
         }
         double avg = (double)sum / (double)feedbackDtoList.size();
-        houseService.updateStar(avg, houseId);
+        double roundedAvg = round(avg, 1);
+        houseService.updateStar(roundedAvg, houseId);
         return "redirect:/detail?id=" + houseId + "#reviews";
+    }
+    public static double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        BigDecimal bd = new BigDecimal(Double.toString(value));
+        bd = bd.setScale(places, RoundingMode.HALF_UP);
+        return bd.doubleValue();
     }
 
     @GetMapping(value = "deleteHouseCmt")
@@ -173,21 +194,39 @@ public class HouseController {
         System.out.println("houseId");
         UserEntity user = userService.findByEmail(currentUserName).get();
         feedbackService.deleteByHouseIdAndMemberId(houseId, user.getUserId());
+        int sum =0;
+        List<FeedbackDto> feedbackDtoList = feedbackService.getFeedbackByHouseId(houseId);
+        for(int i=0; i<feedbackDtoList.size(); i++){
+            sum+=feedbackDtoList.get(i).getStar();
+        }
+        double avg = (double)sum / (double)feedbackDtoList.size();
+        double roundedAvg = round(avg, 1);
+        houseService.updateStar(roundedAvg, houseId);
         return "redirect:/detail?id=" + houseId + "#reviews";
     }
 
     @PostMapping(value="report")
     public String addReport(@Valid @ModelAttribute("report") ReportEntity reportEntity, BindingResult bindingResult){
-//        LocalDate currentDate = LocalDate.now();
-//        reportEntity.setCreatedDate((Date)currentDate);
+
+        reportEntity.setCreatedDate(currentDate.plusDays(1));
         int houseId = reportEntity.getHouseid();
-        //nếu số lượng feedback của người đó = 0 thì cho phép add thêm
-        if(reportService.getReportEntityByUid(houseId, reportEntity.getUserid()).size()==0){
-            reportService.save(reportEntity);
-        }else{
+        reportEntity.setReportStatus("Chờ Xử Lý");
+        List<ReportEntity> reportEntities = reportService.getReportEntityByUid(houseId, reportEntity.getUserid());
+        //update
+        if(reportEntities.size()>0&&reportEntities.get(0).getReportStatus().equals("Chưa Xử Lý")){
             reportEntity.setReportid(reportService.getReportEntityByUid(houseId, reportEntity.getUserid()).get(0).getReportid());
             reportService.save(reportEntity);
+        }else{//update
+//            reportEntity.setReportid(reportService.getReportEntityByUid(houseId, reportEntity.getUserid()).get(0).getReportid());
+            reportService.save(reportEntity);
         }
+        //lưu mới
+//        if(reportService.getReportEntityByUid(houseId, reportEntity.getUserid()).size()==0){
+//            reportService.save(reportEntity);
+//        }else{//update
+//            reportEntity.setReportid(reportService.getReportEntityByUid(houseId, reportEntity.getUserid()).get(0).getReportid());
+//            reportService.save(reportEntity);
+//        }
         return "redirect:/detail?id=" + houseId;
     }
 

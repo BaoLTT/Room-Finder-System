@@ -21,6 +21,6 @@ public interface HouseManagerService {
 
     void inserImageHouse(HouseImagesEntity images);
 
-    void updateHouse(HouseLandlordVo houses, int houseID);
+    void updateHouse(HouseLandlordVo houses, int houseID,List<Integer> service);
 
 }
