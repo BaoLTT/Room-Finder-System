@@ -3,6 +3,7 @@ package com.roomfindingsystem.controller;
 import com.roomfindingsystem.dto.FavouriteDto;
 import com.roomfindingsystem.entity.FavouriteEntity;
 import com.roomfindingsystem.service.FavouriteService;
+import jakarta.servlet.http.HttpServletResponse;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Modifying;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
@@ -27,7 +30,7 @@ public class FavouriteController {
 
     @RequestMapping(value = "favourite-list")
     public String getFavourite(Model model) {
-        List<FavouriteDto> list = favouriteService.getListFavourite();
+        List<FavouriteDto> list = favouriteService.getListFavourite(2);
         System.out.println(list);
         model.addAttribute("listFavourite",list);
         return "favourite-list";
@@ -43,16 +46,15 @@ public class FavouriteController {
 
     @RequestMapping(value = "add-favourite-list")
     public String addToFavourite(@RequestParam("id") Integer id, Model model) {
-        if (!favouriteService.getAllByHouseId(id).isPresent()){
+        if (!favouriteService.getAllByHouseId(2,id).isPresent()){
             FavouriteEntity favouriteEntity = new FavouriteEntity();
             LocalDate now = LocalDate.now();
             // get session id
-            favouriteEntity.setUserId(1);
+            favouriteEntity.setUserId(2);
             favouriteEntity.setRoomId(1);
             favouriteEntity.setCreatedDate(now);
             favouriteEntity.setHouseId(id);
             favouriteService.addToFavourite(favouriteEntity);
-            model.addAttribute("favouriteEntity", favouriteService.getAllByHouseId(id));
         }else{
             System.out.println("false");
         }
