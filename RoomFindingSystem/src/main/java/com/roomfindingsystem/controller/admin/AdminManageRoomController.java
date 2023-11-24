@@ -12,8 +12,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@Controller
 @RequestMapping("/admin/room")
+@Controller
 public class AdminManageRoomController {
     @Autowired
     private RoomService roomService;
@@ -23,11 +23,11 @@ public class AdminManageRoomController {
     private RoomTypeService roomTypeService;
     @Autowired
     private ServiceDetailService serviceDetailService;
-    @GetMapping("")
+    @GetMapping("/listRoom")
     public String getListRoomPage(Model model) {
         List<RoomDto> roomDtos = roomService.getAll();
         model.addAttribute("rooms", roomDtos);
-        return "/list-room";
+        return "admin/list-room";
     }
 
     @GetMapping("/updateRoom/{id}")
@@ -36,7 +36,7 @@ public class AdminManageRoomController {
         model.addAttribute("room", roomDto);
         System.out.println(roomDto);
         model.addAttribute("types", roomTypeService.findAll());
-        return "edit-room";
+        return "admin/edit-room";
     }
 
     @PostMapping("/update")
@@ -55,21 +55,21 @@ public class AdminManageRoomController {
         }
         roomDto.setServiceDtos(serviceDtos);
         roomService.update(roomDto, files);
-        return "redirect:/room/updateRoom/" + roomDto.getRoomId();
+        return "redirect:/admin/room/updateRoom/" + roomDto.getRoomId();
     }
 
     @GetMapping("/deleteRoom/{id}")
     public String delete(@PathVariable("id") Integer id, Model model){
         roomService.deleteById(id);
-        return "redirect:/room";
+        return "admin/list-room";
     }
-    @GetMapping("/insertRoomPage")
+    @GetMapping("/insertRoom")
     public String insertRoomPage(Model model) {
         RoomDto roomDto = new RoomDto();
         model.addAttribute("room", roomDto);
         model.addAttribute("services", serviceRoomService.findAll());
         model.addAttribute("types", roomTypeService.findAll());
-        return "insert-room";
+        return "admin/insert-room";
     }
 
     @PostMapping("/save")
@@ -89,17 +89,19 @@ public class AdminManageRoomController {
             roomService.save(roomDto, files);
         } catch (Exception ex) {
         }
-        return "redirect:/room";
+        return "redirect:/admin/room/listRoom";
     }
 
     @PostMapping("/importRooms")
     public String importRoom(@RequestParam("fileExcel") MultipartFile fileExcel) {
         roomService.importRooms(fileExcel);
-        return "redirect:/room";
+        return "redirect:/admin/room/listRoom";
     }
     @GetMapping("deleteImage/{roomId}/{imageId}")
     public String deleteImage(@PathVariable Integer roomId, @PathVariable Integer imageId) {
         roomService.deleteRoomImage(imageId);
-        return "redirect:/room/updateRoom/" + roomId;
+        return "redirect:/updateRoom/" + roomId;
     }
 }
+
+
