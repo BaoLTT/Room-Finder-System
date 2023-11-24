@@ -27,12 +27,12 @@ public class HomeController {
 
     private UserService userService;
 
-    private GcsService gcsService;
+
 
     public HomeController(HouseService houseService, RoomService roomService,
                           FeedbackService feedbackService, SliderService sliderService,
                           HouseTypeService houseTypeService, ServiceDetailService serviceDetailService,
-                          UserService userService, GcsService gcsService){
+                          UserService userService){
         super();
         this.houseService = houseService;
         this.roomService = roomService;
@@ -41,7 +41,7 @@ public class HomeController {
         this.houseTypeService = houseTypeService;
         this.serviceDetailService = serviceDetailService;
         this.userService = userService;
-        this.gcsService = gcsService;
+
     }
 
     @GetMapping("")
@@ -68,7 +68,7 @@ public class HomeController {
         HttpSession session = request.getSession();
         session.setAttribute("user", user);
 
-        System.out.println(gcsService.getMapKey());
+
 
         return "homepage";
     }
