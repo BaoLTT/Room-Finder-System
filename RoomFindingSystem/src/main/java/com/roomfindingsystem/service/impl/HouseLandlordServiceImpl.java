@@ -22,7 +22,8 @@ public class HouseLandlordServiceImpl implements HouseLandlordService {
 
     @Override
     public List<HouseLandlordVo> getAllHouse() {
-        return null;
+        List<Tuple> tuples = houseLandlordRepository.getAllHouse();
+        return getListHouseLandlordVo(tuples);
     }
 
     @Override
