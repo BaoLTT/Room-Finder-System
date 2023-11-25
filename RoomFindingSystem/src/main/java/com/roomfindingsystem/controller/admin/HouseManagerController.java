@@ -107,10 +107,10 @@ public class HouseManagerController {
     }
 
     @PostMapping("/house-manager/save")
-    public String saveHouse(@ModelAttribute(name = "house") HouseLandlordVo house, MultipartFile[] images, Model model, HttpSession httpSession) throws IOException {
+    public String saveHouse(@ModelAttribute(name = "house") HouseLandlordVo house, @RequestParam("file") MultipartFile[] files, Model model, HttpSession httpSession) throws IOException {
         AddressEntity address = new AddressEntity("a",house.getAddressDetail().trim(),house.getProvinceID(),house.getDistrictID(),house.getWardID());
         int addressID = addressService.insertAddress(address);
-        houseManagerService.insertHouse(house,addressID);
+        houseManagerService.insertHouse(house,addressID,files);
         return  "redirect:/admin/house-manager";
     }
 

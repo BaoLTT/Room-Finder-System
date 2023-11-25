@@ -4,6 +4,7 @@ import com.roomfindingsystem.dto.HouseLandlordVo;
 import com.roomfindingsystem.dto.HouseManagerTypeVo;
 import com.roomfindingsystem.entity.HouseImagesEntity;
 import com.roomfindingsystem.entity.HousesEntity;
+import com.roomfindingsystem.entity.RoomImagesEntity;
 import com.roomfindingsystem.entity.ServiceHouseEntity;
 import com.roomfindingsystem.repository.HouseManagerRepository;
 import com.roomfindingsystem.repository.ImagesHouseRepository;
@@ -12,7 +13,9 @@ import com.roomfindingsystem.service.HouseManagerService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -28,6 +31,8 @@ public class HouseManagerServiceImpl implements HouseManagerService {
     ImagesHouseRepository imagesHouseRepository;
     @Autowired
     ServiceHouseRepository serviceHouseRepository;
+    @Autowired
+    GcsService gcsService;
 
     @Override
     public List<HouseManagerTypeVo> findHouseManager() {
@@ -50,7 +55,7 @@ public class HouseManagerServiceImpl implements HouseManagerService {
     }
 
     @Override
-    public void insertHouse(HouseLandlordVo house,int addressID) {
+    public void insertHouse(HouseLandlordVo house,int addressID,MultipartFile[] files) throws IOException {
         LocalDate createdDate = LocalDate.now();
         HousesEntity housesEntity = new HousesEntity();
         housesEntity.setHouseName(house.getHouseName());
@@ -71,6 +76,20 @@ public class HouseManagerServiceImpl implements HouseManagerService {
             serviceHouseEntity.setServiceId(serviceid);
 
             serviceHouseRepository.save(serviceHouseEntity);
+        }
+        int i = 1;
+        for (MultipartFile file : files) {
+            if (!file.isEmpty()) {
+                HouseImagesEntity houseImagesEntity = new HouseImagesEntity();
+                byte[] imageBytes = file.getBytes();
+                gcsService.uploadImage("rfs_bucket", "Room/room_" + i + "_"+saveRoom.getRoomid()+".jpg", imageBytes);
+                roomImagesEntity.setImageLink("https://storage.cloud.google.com/rfs_bucket/Room/"+"room_"+i + "_"+saveRoom.getRoomid()+".jpg");
+                i++;
+                roomImagesEntity.setRoomId(saveRoom.getRoomid());
+                roomImagesEntity.setCreatedDate(LocalDate.now());
+                roomImagesEntity.setLastModifiedDate(LocalDate.now());
+                roomImageRepository.save(roomImagesEntity);
+            }
         }
     }
 
