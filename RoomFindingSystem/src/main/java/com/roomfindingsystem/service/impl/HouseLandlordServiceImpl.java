@@ -16,8 +16,18 @@ public class HouseLandlordServiceImpl implements HouseLandlordService {
     HouseLandlordRepository houseLandlordRepository;
     @Override
     public List<HouseLandlordVo> findHouse(int userId) {
-        List<Tuple> tuples = houseLandlordRepository.findHouse(userId);
-        return getHouseLandlordVo(tuples);
+        List<Tuple> tuples = houseLandlordRepository.findHouseByUser(userId);
+        return getListHouseLandlordVo(tuples);
+    }
+
+    @Override
+    public List<HouseLandlordVo> findHouseByUser(int userId) {
+        return null;
+    }
+
+    @Override
+    public List<HouseLandlordVo> getAllHouse() {
+        return null;
     }
 
     @Override
@@ -25,7 +35,7 @@ public class HouseLandlordServiceImpl implements HouseLandlordService {
         Tuple tuples = houseLandlordRepository.findHouseByID(houseid);
         return getHouseLandlordVo(tuples);
     }
-    public List<HouseLandlordVo> getHouseLandlordVo(List<Tuple> tuples) {
+    public List<HouseLandlordVo> getListHouseLandlordVo(List<Tuple> tuples) {
         List<HouseLandlordVo> houseLandlord1 = new ArrayList<>();
         List<String> imageLinks ;
         List<String> services;
