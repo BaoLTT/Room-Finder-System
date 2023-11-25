@@ -8,7 +8,8 @@ import java.util.List;
 
 @Service
 public interface HouseLandlordService {
-    List<HouseLandlordVo> findHouse(int userId);
+    List<HouseLandlordVo> findHouseByUser(int userId);
+    List<HouseLandlordVo> getAllHouse();
 
     HouseLandlordVo findHouseByID(int houseid);
 }
