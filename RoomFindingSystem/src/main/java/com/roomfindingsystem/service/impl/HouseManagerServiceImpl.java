@@ -82,13 +82,12 @@ public class HouseManagerServiceImpl implements HouseManagerService {
             if (!file.isEmpty()) {
                 HouseImagesEntity houseImagesEntity = new HouseImagesEntity();
                 byte[] imageBytes = file.getBytes();
-                gcsService.uploadImage("rfs_bucket", "Room/room_" + i + "_"+saveRoom.getRoomid()+".jpg", imageBytes);
-                roomImagesEntity.setImageLink("https://storage.cloud.google.com/rfs_bucket/Room/"+"room_"+i + "_"+saveRoom.getRoomid()+".jpg");
+                gcsService.uploadImage("rfs_bucket", "House/house_" + i + "_"+saveRoom.getRoomid()+".jpg", imageBytes);
+                houseImagesEntity.setImageLink("https://storage.cloud.google.com/rfs_bucket/Room/"+"room_"+i + "_"+saveRoom.getRoomid()+".jpg");
                 i++;
-                roomImagesEntity.setRoomId(saveRoom.getRoomid());
-                roomImagesEntity.setCreatedDate(LocalDate.now());
-                roomImagesEntity.setLastModifiedDate(LocalDate.now());
-                roomImageRepository.save(roomImagesEntity);
+                houseImagesEntity.setRoomId(saveRoom.getRoomid());
+                houseImagesEntity.setCreatedDate(LocalDate.now());
+                roomImageRepository.save(houseImagesEntity);
             }
         }
     }
