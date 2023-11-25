@@ -8,7 +8,6 @@ import com.roomfindingsystem.entity.RoomImagesEntity;
 import com.roomfindingsystem.entity.ServiceHouseEntity;
 import com.roomfindingsystem.repository.HouseImageRepository;
 import com.roomfindingsystem.repository.HouseManagerRepository;
-import com.roomfindingsystem.repository.ImagesHouseRepository;
 import com.roomfindingsystem.repository.ServiceHouseRepository;
 import com.roomfindingsystem.service.HouseManagerService;
 import jakarta.transaction.Transactional;
@@ -28,8 +27,6 @@ public class HouseManagerServiceImpl implements HouseManagerService {
         super();
         this.houseManagerRepository = houseManagerRepository;
     }
-    @Autowired
-    ImagesHouseRepository imagesHouseRepository;
     @Autowired
     ServiceHouseRepository serviceHouseRepository;
     @Autowired
@@ -110,6 +107,7 @@ public class HouseManagerServiceImpl implements HouseManagerService {
     @Override
     public void updateHouse(HouseLandlordVo houses, int houseID,List<Integer> service,MultipartFile[] files) {
         LocalDate localDate = LocalDate.now();
+        HouseImagesEntity houseImagesEntity = new HouseImagesEntity();
         houseManagerRepository.updateHouse(houses.getHouseName(), houses.getTypeHouseID(),houses.getDescription(),1,localDate,houses.getStatus(),houseID);
         serviceHouseRepository.deleteByHouseId(houseID);
         if(!service.contains(0)){
@@ -120,6 +118,20 @@ public class HouseManagerServiceImpl implements HouseManagerService {
                 serviceHouseEntity.setServiceId(serviceid);
                 serviceHouseRepository.save(serviceHouseEntity);
 
+            }
+        }
+        int i = houseImagesEntity.size() + 1;
+        for (MultipartFile file : files) {
+            if (!file.isEmpty()) {
+                RoomImagesEntity roomImagesEntity = new RoomImagesEntity();
+                byte[] imageBytes = file.getBytes();
+                gcsService.uploadImage("rfs_bucket", "Room/room_" + i + "_"+room.getRoomid()+".jpg", imageBytes);
+                roomImagesEntity.setImageLink("https://storage.cloud.google.com/rfs_bucket/Room/"+"room_"+i + "_"+room.getRoomid()+".jpg");
+                i++;
+                roomImagesEntity.setRoomId(roomDto.getRoomId());
+                roomImagesEntity.setCreatedDate(LocalDate.now());
+                roomImagesEntity.setLastModifiedDate(LocalDate.now());
+                roomImageRepository.save(roomImagesEntity);
             }
         }
     }
