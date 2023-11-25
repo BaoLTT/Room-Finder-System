@@ -61,7 +61,7 @@ public class AdminManageRoomController {
     @GetMapping("/deleteRoom/{id}")
     public String delete(@PathVariable("id") Integer id, Model model){
         roomService.deleteById(id);
-        return "admin/list-room";
+        return "redirect:/admin/room/listRoom";
     }
     @GetMapping("/insertRoom")
     public String insertRoomPage(Model model) {
