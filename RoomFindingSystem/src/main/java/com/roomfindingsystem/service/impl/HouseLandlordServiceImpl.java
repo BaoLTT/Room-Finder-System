@@ -72,15 +72,17 @@ public class HouseLandlordServiceImpl implements HouseLandlordService {
             }else{
                 houseLandlordVo.setLike(like.intValue());
             }
-
+            List<HouseImageDto> listHouseImage = new ArrayList<>();
             String imageLink = (tuple.get("Image_Link", String.class));
             if(imageLink == null)
             {houseLandlordVo.setListImage(null);}
             else {imageLinks = Arrays.asList(imageLink.split(","));
                 for (String link : imageLinks) {
-                        HouseImageDto imageDto = new HouseImageDto();
-                        imageDto.setImageLink(link);
+                    HouseImageDto imageDto = new HouseImageDto();
+                    imageDto.setImageLink(link);
+                    listHouseImage.add(imageDto);
                 }
+                houseLandlordVo.setListImage(listHouseImage);
             }
 
             String service1 = (tuple.get("Service_Name",String.class));
@@ -148,7 +150,7 @@ public class HouseLandlordServiceImpl implements HouseLandlordService {
             }else{
                 houseLandlordVo.setLike(like.intValue());
             }
-
+            List<HouseImageDto> listHouseImage = new ArrayList<>();
             String imageLink = (tuple.get("Image_Link", String.class));
             if(imageLink == null)
             {houseLandlordVo.setListImage(null);}
@@ -156,7 +158,11 @@ public class HouseLandlordServiceImpl implements HouseLandlordService {
                 for (String link : imageLinks) {
                     HouseImageDto imageDto = new HouseImageDto();
                     imageDto.setImageLink(link);
-                }}
+                    listHouseImage.add(imageDto);
+
+                }
+                houseLandlordVo.setListImage(listHouseImage);
+            }
 
             String service1 = (tuple.get("Service_Name",String.class));
             if (service1 == null || service1.isEmpty()) {
