@@ -1,9 +1,11 @@
 package com.roomfindingsystem.controller;
 
 import com.roomfindingsystem.dto.FavouriteDto;
+import com.roomfindingsystem.dto.HouseImageLink;
 import com.roomfindingsystem.entity.FavouriteEntity;
 import com.roomfindingsystem.entity.UserEntity;
 import com.roomfindingsystem.service.FavouriteService;
+import com.roomfindingsystem.service.HouseService;
 import com.roomfindingsystem.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -33,10 +35,14 @@ public class FavouriteController {
     FavouriteService favouriteService;
     private UserService userService;
 
+    @Autowired
+    HouseService houseService;
+
+
 
 
     @RequestMapping(value = "favourite-list")
-    public String getFavourite(Model model, HttpSession session, HttpServletRequest request) {
+    public String getFavourite(@RequestParam(name = "id", required = false, defaultValue = "1") int houseId,Model model, HttpSession session, HttpServletRequest request) {
         session = request.getSession();
         UserEntity user = (UserEntity) session.getAttribute("user");
 
@@ -45,7 +51,10 @@ public class FavouriteController {
             return "favourite-null";
         }
         System.out.println(list);
-        model.addAttribute("listFavourite",list);
+        model.addAttribute("houses", houseService.viewHouseInHomeInFavourite(houseId) );
+//       List<HouseImageLink> houseImageLinks= houseService.getImageById(houseId);
+//        model.addAttribute("houseImageLinks",houseImageLinks);
+//        model.addAttribute("listFavourite",list);
         return "favourite-list";
     }
 

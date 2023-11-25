@@ -79,45 +79,36 @@
                         <!--end title-->
                         <div class="row">
                             <!--col-md-3-->
-                            <div class="col-md-4 col-sm-6" th:each="listFavourite : ${listFavourite}">
+                            <div class="col-md-3 col-sm-6" th:each="house : ${houses}">
                                 <div class="item big equal-height" data-map-latitude="48.87" data-map-longitude="2.29"
                                      data-id="1">
                                     <div class="item-wrapper">
+                                        <a th:href="@{/remove-favourite-list?id=}+${house.houseId}"
+                                           onclick="showSuccessToast()" class="mark-circle" data-toggle="tooltip"
+                                           data-placement="right" title="Removed from favorites list"><i
+                                                style="color: #488f3e;" class="fa fa-trash"></i></a>
                                         <div class="image">
-                                            <a th:href="@{/remove-favourite-list?id=}+${listFavourite.houseId}"
-                                               onclick="showSuccessToast()"
-                                               class="mark-circle" data-toggle="tooltip" data-placement="right"
-                                               title="Removed from favorites list"><i style="color: #488f3e;"
-                                                                                      class="fa fa-trash"></i></a>
-                                            <a href="detail.html" class="wrapper">
+                                            <a th:href="@{/detail?id=}+${house.houseId}" class="wrapper">
                                                 <div class="gallery">
-                                                    <img src="assets/img/items/01.jpg" alt="">
-                                                    <img src="#" class="owl-lazy" alt=""
-                                                         data-src="assets/img/items/02.jpg">
-                                                    <img src="#" class="owl-lazy" alt=""
-                                                         data-src="assets/img/items/03.jpg">
+                                                    <img style="width: 273px; height: 208px;"
+                                                         th:each="image: ${house.listImage}" th:src="${image}" alt="">
                                                 </div>
                                             </a>
                                             <div class="owl-navigation"></div>
                                             <!--end owl-navigation-->
                                         </div>
                                         <!--end image-->
-                                        <div class="description">
+                                        <div class="description" style="padding-top: 10px;">
                                             <div class="meta">
-                                                <span><i class="fa fa-star"></i>8.9</span>
-                                                <span><i class="fa fa-bed"></i>365</span>
+                                                <!--                                        <span><i class="fa fa-star"></i>8.9</span>-->
                                             </div>
+
                                             <div class="info">
-                                                <figure class="label label-info" th:text="${listFavourite.typeName}">
-                                                    Hotel
-                                                </figure>
-                                                <br>
-                                                <a href="detail.html" th:text="${listFavourite.housesName}"><h3>Spring
-                                                    Hotel</h3></a>
-                                                <figure class="location"
-                                                        th:text="${listFavourite.addressDetail+' ,' +listFavourite.ward+', '+listFavourite.ward+', '+listFavourite.ward}">
-                                                    Montenegro
-                                                </figure>
+                                                <figure class="label label-info" th:text="${house.typeHouse}"></figure>
+                                                <a th:href="@{/detail?id=}+${house.houseId}"><h3
+                                                        th:text="${house.houseName}"></h3></a>
+                                                <figure class=""
+                                                        th:text="${house.addressDetail+', '+house.ward+', '+house.district+', '+house.province}"></figure>
                                             </div>
                                         </div>
                                         <!--end description-->
@@ -128,8 +119,7 @@
                                         <!--end map-item-->
                                     </div>
                                 </div>
-                                <!--col-md-3-->
-
+                                <!--end item-->
                             </div>
                             <!--end row-->
                             <div class="center">
