@@ -1,5 +1,6 @@
 package com.roomfindingsystem.service.impl;
 
+import com.roomfindingsystem.dto.HouseImageDto;
 import com.roomfindingsystem.dto.HouseLandlordVo;
 import com.roomfindingsystem.repository.HouseLandlordRepository;
 import com.roomfindingsystem.service.HouseLandlordService;
@@ -76,7 +77,11 @@ public class HouseLandlordServiceImpl implements HouseLandlordService {
             if(imageLink == null)
             {houseLandlordVo.setListImage(null);}
             else {imageLinks = Arrays.asList(imageLink.split(","));
-                houseLandlordVo.setListImage(imageLinks);}
+                for (String link : imageLinks) {
+                        HouseImageDto imageDto = new HouseImageDto();
+                        imageDto.setImageLink(link);
+                }
+            }
 
             String service1 = (tuple.get("Service_Name",String.class));
             if (service1 == null || service1.isEmpty()) {
@@ -148,7 +153,10 @@ public class HouseLandlordServiceImpl implements HouseLandlordService {
             if(imageLink == null)
             {houseLandlordVo.setListImage(null);}
             else {imageLinks = Arrays.asList(imageLink.split(","));
-                houseLandlordVo.setListImage(imageLinks);}
+                for (String link : imageLinks) {
+                    HouseImageDto imageDto = new HouseImageDto();
+                    imageDto.setImageLink(link);
+                }}
 
             String service1 = (tuple.get("Service_Name",String.class));
             if (service1 == null || service1.isEmpty()) {

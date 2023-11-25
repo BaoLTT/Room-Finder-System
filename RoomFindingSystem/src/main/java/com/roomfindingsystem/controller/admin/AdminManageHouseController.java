@@ -73,7 +73,7 @@ public class AdminManageHouseController {
         return "admin/house-manager-detail";
     }
     @PostMapping("/house-manager/update")
-    public String updateHouse(@ModelAttribute("house") HouseLandlordVo house, @RequestParam(name = "service", required = false,defaultValue = "0") List<Integer> service, MultipartFile[] images, Model model, HttpSession httpSession) throws IOException {
+    public String updateHouse(@ModelAttribute("house") HouseLandlordVo house,@RequestParam("file") MultipartFile[] files, @RequestParam(name = "service", required = false,defaultValue = "0") List<Integer> service, MultipartFile[] images, Model model, HttpSession httpSession) throws IOException {
         if(house.getProvinceID()==0){
             Optional<AddressEntity> newAddress = addressService.findbyId(house.getAddress());
             AddressEntity address = new AddressEntity("a",house.getAddressDetail(),newAddress.get().getProvinceId(),newAddress.get().getDistrictId(),newAddress.get().getWardId());
@@ -85,7 +85,7 @@ public class AdminManageHouseController {
         System.out.println(house.getHouseID());
         System.out.println(service);
 
-        houseManagerService.updateHouse(house,house.getHouseID(),service);
+        houseManagerService.updateHouse(house,house.getHouseID(),service,files);
 
         return "redirect:/admin/house-manager";
     }
