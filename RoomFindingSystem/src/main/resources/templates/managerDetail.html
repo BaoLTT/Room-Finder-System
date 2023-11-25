@@ -263,7 +263,7 @@
                             <aside class="step">3</aside>
                         </div>
                         <div class="file-upload-previews">
-                            <div class="MultiFile-label"  id="imageContainer" th:each="image, iterStat : ${room.imgs}">
+                            <div class="MultiFile-label"  id="imageContainer" th:each="image, iterStat : ${house.listImage}">
                                 <a class="MultiFile-remove" href="#" onclick="removeImage(event)">x</a>
                                 <span class="MultiFile-label" title="File selected: abc.png">
                                     <span class="MultiFile-title">abc.png</span>
