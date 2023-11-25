@@ -140,8 +140,6 @@ public interface HouseLandlordRepository extends JpaRepository<HousesEntity,Inte
             "LEFT JOIN province p ON a.provinceid = p.provinceid \n" +
             "LEFT JOIN district d ON a.districtid = d.districtid \n" +
             "LEFT JOIN ward w ON a.wardid = w.wardid \n" +
-            "WHERE \n" +
-            "    h.houseid = ?1 \n" +
             "GROUP BY h.houseid, h.house_name, t.type_name, a.address_details, ward_name, district_name, province_name, h.last_modified_date ",nativeQuery = true)
     List<Tuple> getAllHouse();
 }
