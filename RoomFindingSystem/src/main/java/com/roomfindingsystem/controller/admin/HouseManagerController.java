@@ -48,7 +48,7 @@ public class HouseManagerController {
 
     @GetMapping("/house-manager")
     public String viewHomepage(final Model model, HttpSession httpSession){
-        List<HouseManagerTypeVo> houseList = houseManagerService.findHouseManager();
+        List<HouseLandlordVo> houseList = houseLandlordService.getAllHouse();
         model.addAttribute("houses", houseList);
         //entries từ 0 đến 5 vào jquery.dataTables.min.js" tìm entries sửa display = 5
         return "admin/house-manager";
