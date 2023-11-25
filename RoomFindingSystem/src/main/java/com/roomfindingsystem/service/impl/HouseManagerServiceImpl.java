@@ -98,16 +98,12 @@ public class HouseManagerServiceImpl implements HouseManagerService {
         return houseManagerRepository.getLastHouse();
     }
 
-    @Override
-    public void inserImageHouse(HouseImagesEntity images) {
-        imagesHouseRepository.save(images);
-    }
 
     @Transactional
     @Override
-    public void updateHouse(HouseLandlordVo houses, int houseID,List<Integer> service,MultipartFile[] files) {
+    public void updateHouse(HouseLandlordVo houses, int houseID,List<Integer> service,MultipartFile[] files) throws IOException {
         LocalDate localDate = LocalDate.now();
-        HouseImagesEntity houseImagesEntity = new HouseImagesEntity();
+        List<HouseImagesEntity> houseImagesEntity = houseImageRepository.getImageByHouseId(houseID);
         houseManagerRepository.updateHouse(houses.getHouseName(), houses.getTypeHouseID(),houses.getDescription(),1,localDate,houses.getStatus(),houseID);
         serviceHouseRepository.deleteByHouseId(houseID);
         if(!service.contains(0)){
@@ -123,15 +119,14 @@ public class HouseManagerServiceImpl implements HouseManagerService {
         int i = houseImagesEntity.size() + 1;
         for (MultipartFile file : files) {
             if (!file.isEmpty()) {
-                RoomImagesEntity roomImagesEntity = new RoomImagesEntity();
+                HouseImagesEntity houseImages = new HouseImagesEntity();
                 byte[] imageBytes = file.getBytes();
-                gcsService.uploadImage("rfs_bucket", "Room/room_" + i + "_"+room.getRoomid()+".jpg", imageBytes);
-                roomImagesEntity.setImageLink("https://storage.cloud.google.com/rfs_bucket/Room/"+"room_"+i + "_"+room.getRoomid()+".jpg");
+                gcsService.uploadImage("rfs_bucket", "House/house_" + i + "_"+houseID+".jpg", imageBytes);
+                houseImages.setImageLink("https://storage.cloud.google.com/rfs_bucket/Room/"+"room_"+i + "_"+houseID+".jpg");
                 i++;
-                roomImagesEntity.setRoomId(roomDto.getRoomId());
-                roomImagesEntity.setCreatedDate(LocalDate.now());
-                roomImagesEntity.setLastModifiedDate(LocalDate.now());
-                roomImageRepository.save(roomImagesEntity);
+                houseImages.setHouseId(houseID);
+                houseImages.setCreatedDate(LocalDate.now());
+                houseImageRepository.save(houseImages);
             }
         }
     }
