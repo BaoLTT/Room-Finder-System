@@ -56,7 +56,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card-box">
-                            <h4 class="header-title">House Detail</h4>
+                            <h4 class="header-title">Thông tin trọ</h4>
 
                             <div class="row">
                                 <div class="col-12">
@@ -80,6 +80,26 @@
                                                 <div class="col-10">
                                                     <input type="text"  name="houseName" class="form-control" placeholder="Tên trọ..." required th:field="*{houseName}" >
                                                 </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-2 col-form-label">Thông tin khác</label>
+                                                <div class="col-3">
+                                                    <label>Tình trạng</label>
+                                                    <select class="form-control" th:field="*{status}">
+                                                        <option value="1"  th:selected="${house.status == 1}" >HOẠT ĐỘNG</option>
+                                                        <option value="0"  th:selected="${house.status == 0}">NGƯNG HOẠT ĐỘNG</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-3">
+                                                    <label for="like">Số lượt thích</label>
+                                                    <input type="text" class="form-control" id="like" readonly th:field="*{like}" style="padding: 10px" >
+                                                </div>
+                                                <div class="col-3">
+                                                    <label for="room">Số lượng phòng</label>
+                                                    <input type="text" class="form-control" id="room" readonly th:field="*{count_room}" style="padding: 10px">
+                                                </div>
+
+
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-2 col-form-label">Người tạo</label>
@@ -164,7 +184,7 @@
                                                     <div class="checkbox checkbox-primary col-2" th:each="listService : ${listService}" th:field="*{service}" style="padding-left: 10px">
                                                         <input th:id="${listService.serviceName}" type="checkbox" name="service"  th:value="${listService.serviceId}" th:checked="${#lists.contains(listChecked,''+ listService.serviceId+'')}">
                                                         <label th:for="${listService.serviceName}" th:text="${listService.serviceName}">
-                                                            Primary
+                                                            <Primary></Primary>
                                                         </label>
                                                     </div>
                                                 </div>
