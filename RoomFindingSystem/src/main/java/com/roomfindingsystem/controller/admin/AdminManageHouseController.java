@@ -1,7 +1,6 @@
 package com.roomfindingsystem.controller.admin;
 
 import com.roomfindingsystem.dto.HouseLandlordVo;
-import com.roomfindingsystem.dto.HouseManagerTypeVo;
 import com.roomfindingsystem.entity.*;
 
 import com.roomfindingsystem.repository.TypeHouseRepository;
@@ -19,7 +18,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -27,10 +25,10 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("/admin")
-public class HouseManagerController {
+public class AdminManageHouseController {
     private HouseManagerService houseManagerService;
 
-    public HouseManagerController(HouseManagerService houseManagerService){
+    public AdminManageHouseController(HouseManagerService houseManagerService){
         this.houseManagerService = houseManagerService;
     }
     @Autowired
