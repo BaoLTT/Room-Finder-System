@@ -59,7 +59,7 @@ public class HouseLandlordVo {
 
     private Integer price;
 
-    List<String> listImage;
+    List<HouseImageDto> listImage;
 
     List<String> service;
 
