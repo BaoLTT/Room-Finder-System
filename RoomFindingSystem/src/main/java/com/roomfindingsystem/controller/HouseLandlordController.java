@@ -37,7 +37,7 @@ public class HouseLandlordController {
     public String findAll(Model model, HttpSession httpSession){
         List<HouseLandlordVo> listHouse = new ArrayList<>();
         int userId = 9;
-        listHouse = houseLandlordService.findHouse(userId);
+        listHouse = houseLandlordService.findHouseByUser(userId);
         model.addAttribute("house",listHouse);
         return "managerHouse";
     }

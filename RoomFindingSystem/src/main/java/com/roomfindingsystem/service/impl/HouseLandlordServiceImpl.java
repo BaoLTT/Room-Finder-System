@@ -15,14 +15,9 @@ public class HouseLandlordServiceImpl implements HouseLandlordService {
     @Autowired
     HouseLandlordRepository houseLandlordRepository;
     @Override
-    public List<HouseLandlordVo> findHouse(int userId) {
+    public List<HouseLandlordVo> findHouseByUser(int userId) {
         List<Tuple> tuples = houseLandlordRepository.findHouseByUser(userId);
         return getListHouseLandlordVo(tuples);
-    }
-
-    @Override
-    public List<HouseLandlordVo> findHouseByUser(int userId) {
-        return null;
     }
 
     @Override
