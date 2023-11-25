@@ -15,12 +15,6 @@
     <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
 
     <title>Accommodo - Accommodation HTML Template Full of Useful Features</title>
-    <style>
-        /* Ẩn khối div ban đầu */
-        #divToToggle {
-            display: none;
-        }
-    </style>
 </head>
 
 <body>
@@ -181,11 +175,6 @@
                                     <select class="framed width-100" name="typeHouseID" id="typeHouseID" th:field="*{typeHouseID}" >
                                         <option th:each="listType : ${listType}" th:value="${listType.getTypeId()}" th:text="${listType.typeName}"/>
                                     </select>
-                                    <a href="#" class="link icon" id="toggleLink"><i class="fa fa-plus"></i>Thêm thể loại</a>
-                                    <div style="margin-top: 5px" id="divToToggle" >
-                                        <input type="text" id="houseType" name="houseType" style="width: inherit">
-                                        <button type="submit" class="btn btn-primary" style="margin-left: 5px">Thêm</button>
-                                    </div>
                                 </div>
                                 <!--end form-group-->
                             </div>

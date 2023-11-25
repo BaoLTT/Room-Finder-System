@@ -108,7 +108,7 @@ public class HouseManagerServiceImpl implements HouseManagerService {
 
     @Transactional
     @Override
-    public void updateHouse(HouseLandlordVo houses, int houseID,List<Integer> service) {
+    public void updateHouse(HouseLandlordVo houses, int houseID,List<Integer> service,MultipartFile[] files) {
         LocalDate localDate = LocalDate.now();
         houseManagerRepository.updateHouse(houses.getHouseName(), houses.getTypeHouseID(),houses.getDescription(),1,localDate,houses.getStatus(),houseID);
         serviceHouseRepository.deleteByHouseId(houseID);

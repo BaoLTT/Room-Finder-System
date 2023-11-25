@@ -23,6 +23,6 @@ public interface HouseManagerService {
 
     void inserImageHouse(HouseImagesEntity images);
 
-    void updateHouse(HouseLandlordVo houses, int houseID,List<Integer> service);
+    void updateHouse(HouseLandlordVo houses, int houseID,List<Integer> service,MultipartFile[] files );
 
 }
