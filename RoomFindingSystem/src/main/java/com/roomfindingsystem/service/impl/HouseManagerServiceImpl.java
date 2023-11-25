@@ -4,7 +4,9 @@ import com.roomfindingsystem.dto.HouseLandlordVo;
 import com.roomfindingsystem.dto.HouseManagerTypeVo;
 import com.roomfindingsystem.entity.HouseImagesEntity;
 import com.roomfindingsystem.entity.HousesEntity;
+import com.roomfindingsystem.entity.RoomImagesEntity;
 import com.roomfindingsystem.entity.ServiceHouseEntity;
+import com.roomfindingsystem.repository.HouseImageRepository;
 import com.roomfindingsystem.repository.HouseManagerRepository;
 import com.roomfindingsystem.repository.ImagesHouseRepository;
 import com.roomfindingsystem.repository.ServiceHouseRepository;
@@ -12,7 +14,9 @@ import com.roomfindingsystem.service.HouseManagerService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -28,6 +32,10 @@ public class HouseManagerServiceImpl implements HouseManagerService {
     ImagesHouseRepository imagesHouseRepository;
     @Autowired
     ServiceHouseRepository serviceHouseRepository;
+    @Autowired
+    GcsService gcsService;
+    @Autowired
+    HouseImageRepository houseImageRepository;
 
     @Override
     public List<HouseManagerTypeVo> findHouseManager() {
@@ -50,9 +58,10 @@ public class HouseManagerServiceImpl implements HouseManagerService {
     }
 
     @Override
-    public void insertHouse(HouseLandlordVo house,int addressID) {
+    public void insertHouse(HouseLandlordVo house,int addressID,MultipartFile[] files) throws IOException {
         LocalDate createdDate = LocalDate.now();
         HousesEntity housesEntity = new HousesEntity();
+        housesEntity.setHouseId(house.getHouseID());
         housesEntity.setHouseName(house.getHouseName());
         housesEntity.setDescription(house.getDescription());
         housesEntity.setCreatedDate(createdDate);
@@ -71,6 +80,19 @@ public class HouseManagerServiceImpl implements HouseManagerService {
             serviceHouseEntity.setServiceId(serviceid);
 
             serviceHouseRepository.save(serviceHouseEntity);
+        }
+        int i = 1;
+        for (MultipartFile file : files) {
+            if (!file.isEmpty()) {
+                HouseImagesEntity houseImagesEntity = new HouseImagesEntity();
+                byte[] imageBytes = file.getBytes();
+                gcsService.uploadImage("rfs_bucket", "House/house_" + i + "_"+housesEntity.getHouseId()+".jpg", imageBytes);
+                houseImagesEntity.setImageLink("https://storage.cloud.google.com/rfs_bucket/House/"+"house_"+i + "_"+housesEntity.getHouseId()+".jpg");
+                i++;
+                houseImagesEntity.setHouseId(housesEntity.getHouseId());
+                houseImagesEntity.setCreatedDate(LocalDate.now());
+                houseImageRepository.save(houseImagesEntity);
+            }
         }
     }
 
