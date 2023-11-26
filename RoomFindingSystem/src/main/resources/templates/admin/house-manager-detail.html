@@ -435,7 +435,7 @@
     function previewImages(event) {
         var input = event.target;
         var imagePreview = document.getElementById('image-preview');
-
+        var imagesInfo = [];
         if (input.files && input.files.length > 0) {
             for (var i = 0; i < input.files.length; i++) {
                 var reader = new FileReader();
@@ -461,8 +461,18 @@
                     deleteButton.style.float = 'right';
                     deleteButton.style.border= 'none';
                     deleteButton.addEventListener('click', function () {
-                        imgElement.remove();
-                        deleteButton.remove();
+                        // Lấy index của ảnh trong mảng imagesInfo
+                        var index = imagesInfo.findIndex(function (img) {
+                            return img.src === imgElement.src;
+                        });
+
+                        // Xóa ảnh và thông tin tương ứng từ preview và mảng
+                        if (index !== -1) {
+                            imagesInfo.splice(index, 1);
+                            imgElement.remove();
+                            deleteButton.remove();
+                            updateInputValue();
+                        }
                     });
 
                     var container = document.createElement('div');
@@ -471,9 +481,24 @@
                     container.style.float = 'left';
                     container.style.margin = '10px';
                     imagePreview.appendChild(container);
+
+                    imagesInfo.push({
+                        src: e.target.result,
+                        container: container
+                    });
+
+                    imagePreview.appendChild(container);
+                    updateInputValue();
                 };
 
+
                 reader.readAsDataURL(input.files[i]);
+            }
+            function updateInputValue() {
+                // Cập nhật giá trị của input
+                input.value = imagesInfo.map(function (imgInfo) {
+                    return imgInfo.src;
+                }).join(',');
             }
         }
     }
