@@ -89,15 +89,11 @@ public class HouseLandlordServiceImpl implements HouseLandlordService {
             else {
                 imageLinks = Arrays.asList(imageLink.split(","));
                 imageIds = Arrays.asList(imageId.split(","));
-                for (String link : imageLinks) {
-                    for(String id: imageIds){
-                        HouseImageDto imageDto = new HouseImageDto();
-                        imageDto.setImageLink(link);
-                        imageDto.setImageId(Integer.parseInt(id));
-                        listHouseImage.add(imageDto);
-                    }
-
-
+                for (int i = 0; i < imageLinks.size(); i++) {
+                    HouseImageDto imageDto = new HouseImageDto();
+                    imageDto.setImageLink(imageLinks.get(i));
+                    imageDto.setImageId(Integer.parseInt(imageIds.get(i)));
+                    listHouseImage.add(imageDto);
                 }
                 houseLandlordVo.setListImage(listHouseImage);
             }
@@ -176,15 +172,11 @@ public class HouseLandlordServiceImpl implements HouseLandlordService {
             else {
                 imageLinks = Arrays.asList(imageLink.split(","));
                 imageIds = Arrays.asList(imageId.split(","));
-                for (String link : imageLinks) {
-                    for(String id: imageIds){
-                        HouseImageDto imageDto = new HouseImageDto();
-                        imageDto.setImageLink(link);
-                        imageDto.setImageId(Integer.parseInt(id));
-                        listHouseImage.add(imageDto);
-                    }
-
-
+                for (int i = 0; i < imageLinks.size(); i++) {
+                    HouseImageDto imageDto = new HouseImageDto();
+                    imageDto.setImageLink(imageLinks.get(i));
+                    imageDto.setImageId(Integer.parseInt(imageIds.get(i)));
+                    listHouseImage.add(imageDto);
                 }
                 houseLandlordVo.setListImage(listHouseImage);
             }

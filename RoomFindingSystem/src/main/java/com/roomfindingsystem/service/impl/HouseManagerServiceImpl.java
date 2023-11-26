@@ -122,7 +122,7 @@ public class HouseManagerServiceImpl implements HouseManagerService {
 
             }
         }
-        int i = houseImagesEntity.size() + 1;
+        int i = houseImagesEntity.size() + 2;
         for (MultipartFile file : files) {
             if (!file.isEmpty()) {
                 HouseImagesEntity houseImages = new HouseImagesEntity();
