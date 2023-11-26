@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
-    <title>Thêm phòng mới</title>
+    <title>Thông tin phòng</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description"/>
     <meta content="Coderthemes" name="author"/>
@@ -52,32 +52,23 @@
                         <div class="page-title-box">
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a th:href="@{/admin/room/listRoom}">Danh sách phòng</a></li>
-                                    <li class="breadcrumb-item active">Thêm phòng mới</li>
+                                    <li class="breadcrumb-item"><a th:href="@{/landlord/room/listRoom}">Danh sách phòng</a></li>
+                                    <li class="breadcrumb-item active">Thông tin phòng</li>
                                 </ol>
                             </div>
-                            <h4 class="page-title">Thêm phòng mới</h4>
+                            <h4 class="page-title">Thông tin phòng</h4>
                         </div>
                     </div>
                 </div>
                 <!-- end page title -->
 
+
                 <div class="row">
                     <div class="col-lg">
                         <div class="card-box">
-                            <div class="d-flex justify-content-end">
-                                <form th:action="@{importRooms}" method="post" enctype="multipart/form-data"
-                                      class="my-form">
-                                    <div class="form-group">
-                                        <input type="file" class="form-control-file" id="fileExcel" name="fileExcel"/>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary" onclick="event.stopPropagation()">Thêm nhiều phòng
-                                    </button>
-                                </form>
-                            </div>
-
-                            <form class="parsley-examples" action="#" th:action="@{/admin/room/save}" th:object="${room}" method="post" enctype="multipart/form-data">
-                                <input type="hidden" th:field="*{roomId}">
+                            <form class="parsley-examples" action="#" id="myForm" th:action="@{/landlord/room/update}"
+                                  th:object="${room}" method="post" enctype="multipart/form-data"><input type="hidden"
+                                                                                                         th:field="*{roomId}">
                                 <div class="form-group">
                                     <label>Phòng</label>
                                     <input type="text" class="form-control" required
@@ -85,7 +76,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Diện tiích</label>
+                                    <label>Diện tích</label>
                                     <div>
                                         <input type="number" id="area" class="form-control" required
                                                placeholder="56.5656" th:field="*{area}"/>
@@ -102,10 +93,13 @@
                                 <div class="form-group">
                                     <label>Loại phòng</label>
                                     <div>
-                                       <select class="form-select form-control mb-4 col-4" th:field="*{typeId}" aria-label="Default select example">
-                                           <option th:each="type : ${types}" th:value="${type.typeId}" th:utext="${type.typeName}" />
-                                       </select>
-                                   </div>
+                                        <select class="form-select form-control mb-4 col-4" th:field="*{typeId}"
+                                                aria-label="Default select example">
+                                            <option th:each="type : ${types}" th:value="${type.typeId}"
+                                                    th:utext="${type.typeName}"
+                                                    th:selected="${room.typeName == type.typeName}"/>
+                                        </select>
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label>Mô tả chi tiết</label>
@@ -116,36 +110,43 @@
                                     <label>Dịch vụ</label>
                                     <div>
                                         <div>
-                                            <input type="checkbox" id="fridge" name="serviceNames" value="Tủ lạnh">
+                                            <input type="checkbox" id="fridge" name="serviceNames" value="Tủ lạnh"
+                                                   th:checked="*{serviceNames.contains('Tủ lạnh')}">
                                             <label for="fridge">Tủ lạnh</label><br>
 
-                                            <input type="checkbox" id="bed" name="serviceNames" value="Giường ngủ">
+                                            <input type="checkbox" id="bed" name="serviceNames" value="Giường ngủ"
+                                                   th:checked="*{serviceNames.contains('Giường ngủ')}">
                                             <label for="bed">Giường ngủ</label><br>
 
                                             <input type="checkbox" id="washingMachine" name="serviceNames"
-                                                   value="Máy giặt">
+                                                   value="Máy giặt" th:checked="*{serviceNames.contains('Máy giặt')}">
                                             <label for="washingMachine">Máy giặt</label><br>
 
                                             <input type="checkbox" id="waterHeater" name="serviceNames"
-                                                   value="Bình nóng lạnh">
+                                                   value="Bình nóng lạnh"
+                                                   th:checked="*{serviceNames.contains('Bình nóng lạnh')}">
                                             <label for="waterHeater">Bình nóng lạnh</label><br>
 
-                                            <input type="checkbox" id="kitchenShelf" name="serviceNames" value="Kệ bếp">
+                                            <input type="checkbox" id="kitchenShelf" name="serviceNames" value="Kệ bếp"
+                                                   th:checked="*{serviceNames.contains('Kệ bếp')}">
                                             <label for="kitchenShelf">Kệ bếp</label><br>
 
-                                            <input type="checkbox" id="loftBed" name="serviceNames" value="Gác xép">
+                                            <input type="checkbox" id="loftBed" name="serviceNames" value="Gác xép"
+                                                   th:checked="*{serviceNames.contains('Gác xép')}">
                                             <label for="loftBed">Gác xép</label><br>
 
-                                            <input type="checkbox" id="studyDesk" name="serviceNames" value="Bàn học">
+                                            <input type="checkbox" id="studyDesk" name="serviceNames" value="Bàn học"
+                                                   th:checked="*{serviceNames.contains('Bàn học')}">
                                             <label for="studyDesk">Bàn học</label><br>
 
-                                            <input type="checkbox" id="wardrobe" name="serviceNames" value="Tủ quần áo">
+                                            <input type="checkbox" id="wardrobe" name="serviceNames" value="Tủ quần áo"
+                                                   th:checked="*{serviceNames.contains('Tủ quần áo')}">
                                             <label for="wardrobe">Tủ quần áo</label><br>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label>Tình trạng</label>
+                                    <label>Trạng thái</label>
                                     <div>
                                         <select class="form-control" id="status" name="status"
                                                 th:field="*{status}">
@@ -157,24 +158,41 @@
                                         </select>
                                     </div>
                                 </div>
-								<!-- Pictures -->
-                                <div class="dropzone" id="myAwesomeDropzone">
-                                    <div class="fallback">
-                                        <input name="file" type="file" multiple />
+                                <!-- Pictures -->
+                                <div class="form-group">
+                                    <div th:each="image, iterStat : ${room.imgs}"
+                                         class="profile-picture single-file-preview">
+                                        <img th:src="${image.imageLink}" alt=""
+                                             class="image">
+                                        <div class="input">
+                                            <input th:name="'file' + ${image.imageId}" type="file" class="d-none">
+                                            <button class="btn btn-danger delete-button" type="button"
+                                                    th:attr="data-imageId=${image.imageId}">Xóa
+                                            </button>
+                                        </div>
                                     </div>
-                                    <div class="dz-message needsclick">
-                                        <i class="h1 text-muted dripicons-cloud-upload"></i>
-                                        <h3>Drop files here or click to upload.</h3>
-                                        <span class="text-muted font-13">(This is just a demo dropzone. Selected files are <strong>not</strong> actually uploaded.)</span>
+
+
+                                </div>
+                                <div class="form-group">
+                                    <div class="dropzone" id="myAwesomeDropzone">
+                                        <div class="fallback">
+                                            <input name="file" type="file" multiple/>
+                                        </div>
+                                        <div class="dz-message needsclick">
+                                            <i class="h1 text-muted dripicons-cloud-upload"></i>
+                                            <h3>Drop files here or click to upload.</h3>
+                                        </div>
                                     </div>
+                                    <div class="image-preview"></div>
                                 </div>
                                 <div class="form-group mb-0">
                                     <div>
                                         <button type="submit" class="btn btn-gradient waves-effect waves-light">
-                                            Lưu thông tin
+                                            Lưu thay đổi
                                         </button>
                                         <button type="reset" class="btn btn-light waves-effect ml-1">
-                                            <a th:href="@{/admin/room/listRoom}">Danh sách phòng</a>
+                                            <a th:href="@{/landlord/room/listRoom}">Danh sách phòng</a>
                                         </button>
                                     </div>
                                 </div>
@@ -215,25 +233,59 @@
 
 <!-- App js -->
 <script th:src="@{/assets_admin/js/app.min.js}"></script>
-
-<script th:inline="javascript">
+<script>
+    let roomId = document.querySelector('input[name="roomId"]').value;
+    document.querySelectorAll('.delete-button').forEach(function (button) {
+        button.addEventListener('click', function () {
+            let imageId = this.getAttribute('data-imageId');
+            if (confirm("Are you sure you want to delete this image?")) {
+                window.location.href = '/room/deleteImage/' + roomId + "/" + imageId;
+            }
+        });
+    });
     $(document).ready(function () {
         // Customize Dropzone.js options here.
         Dropzone.options.myAwesomeDropzone = {
+            url: "/upload", // Change this to the correct URL
             paramName: "file", // Name of the file input field
             maxFilesize: 5, // Maximum file size in MB
             maxFiles: 10, // Maximum number of files
             acceptedFiles: "image/*", // Restrict to image files
             addRemoveLinks: true, // Display remove links
             dictRemoveFile: "Remove", // Text for remove link
-            // Other options...
 
             // Define a success callback for when files are uploaded successfully
             success: function (file, response) {
                 // Handle the server response, if needed
             },
+
+            // Define an addedfile event handler
+            addedfile: function (file) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    var imageElement = document.createElement("img");
+                    imageElement.src = e.target.result;
+                    imageElement.classList.add("preview-image");
+                    var imagePreviewContainer = document.querySelector(".image-preview");
+                    imagePreviewContainer.appendChild(imageElement);
+                };
+                reader.readAsDataURL(file);
+            },
+
+            // Define a removedfile event handler
+            removedfile: function (file) {
+                var imagePreviewContainer = document.querySelector(".image-preview");
+                var previewImages = imagePreviewContainer.getElementsByClassName("preview-image");
+                for (var i = 0; i < previewImages.length; i++) {
+                    if (previewImages[i].src === file.dataURL) {
+                        imagePreviewContainer.removeChild(previewImages[i]);
+                        break;
+                    }
+                }
+            }
         };
     });
+
 </script>
 </body>
 </html>
