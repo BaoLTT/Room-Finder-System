@@ -179,6 +179,20 @@
                                             </div>
 
                                             <div class="form-group row">
+                                                <label class="col-2 col-form-label">Ảnh</label>
+                                                <div id="profile-picture" class="profile-picture single-file-preview col-10">
+                                                    <div class="input">
+                                                        <input name="file" type="file" class="" multiple onchange="previewImages(event)">
+                                                    </div>
+                                                    <div style="float: left; margin: 10px">
+                                                        <img alt="Ảnh" src="">
+                                                        <button style="float:right;">Xóa</button>
+                                                    </div>
+                                                    <div id="image-preview"></div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
                                                 <label class="col-2 col-form-label">Dịch vụ</label>
                                                 <div class="col-10" style="display: flex; flex-wrap: wrap;">
                                                     <div class="checkbox checkbox-primary col-2" th:each="listService : ${listService}" th:field="*{service}" style="padding-left: 10px">
@@ -398,6 +412,45 @@
                 }
             }
         };
+    }
+</script>
+
+
+<script>
+    function previewImages(event) {
+        var input = event.target;
+        var imagePreview = document.getElementById('image-preview');
+
+        if (input.files && input.files.length > 0) {
+            for (var i = 0; i < input.files.length; i++) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    var imgElement = document.createElement('img');
+                    imgElement.src = e.target.result;
+                    imgElement.alt = 'Ảnh trước';
+                    imgElement.style.width = '100px';
+                    imgElement.style.height = '100px';
+
+                    var deleteButton = document.createElement('button');
+                    deleteButton.textContent = 'Xóa';
+                    deleteButton.style.float = 'right';
+                    deleteButton.addEventListener('click', function () {
+                        imgElement.remove();
+                        deleteButton.remove();
+                    });
+
+                    var container = document.createElement('div');
+                    container.appendChild(imgElement);
+                    container.appendChild(deleteButton);
+                    container.style.float = 'left';
+                    container.style.margin = '10px';
+                    imagePreview.appendChild(container);
+                };
+
+                reader.readAsDataURL(input.files[i]);
+            }
+        }
     }
 </script>
 
