@@ -16,7 +16,19 @@
     <link href="/assets_admin/css/icons.min.css" rel="stylesheet" type="text/css" />
     <link href="/assets_admin/css/app.min.css" rel="stylesheet" type="text/css" />
 
-
+    <style>
+        .delete-link {
+            background-color: #e2e2e2;
+            height: 24px;
+            width: 24px;
+            margin-left: 5px;
+            line-height: 24px;
+            color: red;
+            text-align: center;
+            border-radius: 50%;
+            margin-top: -4px;
+        }
+    </style>
 
 </head>
 
@@ -186,7 +198,10 @@
                                                     </div>
                                                     <div style="float: left; margin: 10px" th:each="image, iterStat : ${house.listImage}">
                                                         <img alt="Ảnh" style="width: 100px;height: 100px" th:src="${image.imageLink}">
-                                                        <a style="float: right; margin-left: 10px; color: red; text-decoration: none;" th:href="@{'/admin/house-manager/deleteImage/' + ${house.houseID} + '/' + ${image.imageId}}">X</a>
+                                                        <a th:href="@{'/admin/house-manager/deleteImage/' + ${house.houseID} + '/' + ${image.imageId}}" class="delete-link float-right">
+                                                            <i class="mdi mdi-close"></i>
+                                                        </a>
+
                                                     </div>
                                                     <div id="image-preview"></div>
                                                 </div>
@@ -433,8 +448,18 @@
                     imgElement.style.height = '100px';
 
                     var deleteButton = document.createElement('button');
-                    deleteButton.textContent = 'Xóa';
+                    deleteButton.textContent = 'X';
+                    deleteButton.style.backgroundColor= '#e2e2e2';
+                    deleteButton.style.height= '24px';
+                    deleteButton.style.width= '24px';
+                    deleteButton.style.marginLeft= '5px';
+                    deleteButton.style.lineHeight= '24px';
+                    deleteButton.style.color= 'red';
+                    deleteButton.style.textAlign= 'center';
+                    deleteButton.style.borderRadius= '50%';
+                    deleteButton.style.marginTop= '-4px';
                     deleteButton.style.float = 'right';
+                    deleteButton.style.border= 'none';
                     deleteButton.addEventListener('click', function () {
                         imgElement.remove();
                         deleteButton.remove();

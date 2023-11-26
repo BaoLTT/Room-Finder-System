@@ -350,8 +350,18 @@
                     imgElement.style.height = '100px';
 
                     var deleteButton = document.createElement('button');
-                    deleteButton.textContent = 'Xóa';
+                    deleteButton.textContent = 'X';
+                    deleteButton.style.backgroundColor= '#e2e2e2';
+                    deleteButton.style.height= '24px';
+                    deleteButton.style.width= '24px';
+                    deleteButton.style.marginLeft= '5px';
+                    deleteButton.style.lineHeight= '24px';
+                    deleteButton.style.color= 'red';
+                    deleteButton.style.textAlign= 'center';
+                    deleteButton.style.borderRadius= '50%';
+                    deleteButton.style.marginTop= '-4px';
                     deleteButton.style.float = 'right';
+                    deleteButton.style.border= 'none';
                     deleteButton.addEventListener('click', function () {
                         imgElement.remove();
                         deleteButton.remove();
