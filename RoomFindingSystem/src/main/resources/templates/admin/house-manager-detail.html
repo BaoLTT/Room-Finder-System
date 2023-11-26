@@ -186,7 +186,7 @@
                                                     </div>
                                                     <div style="float: left; margin: 10px" th:each="image, iterStat : ${house.listImage}">
                                                         <img alt="Ảnh" style="width: 100px;height: 100px" th:src="${image.imageLink}">
-                                                        <button style="float:right;" th:href="@{'/admin/house-manager/deleteImage/' + ${house.houseID} + '/' + ${image.imageId}}">Xóa</button>
+                                                        <a style="float: right; margin-left: 10px; color: red; text-decoration: none;" th:href="@{'/admin/house-manager/deleteImage/' + ${house.houseID} + '/' + ${image.imageId}}">X</a>
                                                     </div>
                                                     <div id="image-preview"></div>
                                                 </div>

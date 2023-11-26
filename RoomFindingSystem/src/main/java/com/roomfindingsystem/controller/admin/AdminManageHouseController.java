@@ -114,7 +114,10 @@ public class AdminManageHouseController {
 
     @GetMapping("/house-manager/deleteImage/{houseId}/{imageId}")
     public String deleteImage(@PathVariable Integer houseId,@PathVariable Integer imageId,Model model, HttpSession httpSession){
+        System.out.println(houseId);
+        System.out.println(imageId);
         houseManagerService.deleteImageById(imageId);
+
         return "redirect:/admin/house-manager/detail/" + houseId;
     }
 
