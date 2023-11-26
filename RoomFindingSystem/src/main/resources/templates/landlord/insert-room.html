@@ -52,7 +52,7 @@
                         <div class="page-title-box">
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a th:href="@{/admin/room/listRoom}">Danh sách phòng</a></li>
+                                    <li class="breadcrumb-item"><a th:href="@{/landlord/room/listRoom}">Danh sách phòng</a></li>
                                     <li class="breadcrumb-item active">Thêm phòng mới</li>
                                 </ol>
                             </div>
@@ -76,7 +76,7 @@
                                 </form>
                             </div>
 
-                            <form class="parsley-examples" action="#" th:action="@{/admin/room/save}" th:object="${room}" method="post" enctype="multipart/form-data">
+                            <form class="parsley-examples" action="#" th:action="@{/landlord/room/save}" th:object="${room}" method="post" enctype="multipart/form-data">
                                 <input type="hidden" th:field="*{roomId}">
                                 <div class="form-group">
                                     <label>Phòng</label>
@@ -174,7 +174,7 @@
                                             Lưu thông tin
                                         </button>
                                         <button type="reset" class="btn btn-light waves-effect ml-1">
-                                            <a th:href="@{/admin/room/listRoom}">Danh sách phòng</a>
+                                            <a th:href="@{/landlord/room/listRoom}">Danh sách phòng</a>
                                         </button>
                                     </div>
                                 </div>
@@ -215,7 +215,6 @@
 
 <!-- App js -->
 <script th:src="@{/assets_admin/js/app.min.js}"></script>
-
 <script th:inline="javascript">
     $(document).ready(function () {
         // Customize Dropzone.js options here.

@@ -51,7 +51,7 @@ public class FavouriteController {
             return "favourite-null";
         }
         System.out.println(list);
-        model.addAttribute("houses", houseService.viewHouseInHomeInFavourite(user.getUserId()) );
+        model.addAttribute("houses", houseService.viewHouseInHomeInFavourite(user.getUserId()));
 //       List<HouseImageLink> houseImageLinks= houseService.getImageById(houseId);
 //        model.addAttribute("houseImageLinks",houseImageLinks);
 //        model.addAttribute("listFavourite",list);
@@ -63,6 +63,7 @@ public class FavouriteController {
         favouriteService.removeItemFavourite(id);
         return "redirect:/favourite-list";
     }
+
 
 
 
