@@ -185,8 +185,8 @@
                                                         <input name="file" type="file" class="" multiple onchange="previewImages(event)">
                                                     </div>
                                                     <div style="float: left; margin: 10px" th:each="image, iterStat : ${house.listImage}">
-                                                        <img alt="Ảnh" th:src="${image.imageLink}">
-                                                        <button style="float:right;" th:href="@{'/manager/deleteImage/' + ${house.houseID} + '/' + ${image.imageId}}">Xóa</button>
+                                                        <img alt="Ảnh" style="width: 100px;height: 100px" th:src="${image.imageLink}">
+                                                        <button style="float:right;" th:href="@{'/admin/house-manager/deleteImage/' + ${house.houseID} + '/' + ${image.imageId}}">Xóa</button>
                                                     </div>
                                                     <div id="image-preview"></div>
                                                 </div>
