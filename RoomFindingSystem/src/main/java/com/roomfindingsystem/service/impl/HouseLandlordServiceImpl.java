@@ -82,12 +82,14 @@ public class HouseLandlordServiceImpl implements HouseLandlordService {
             }
             List<HouseImageDto> listHouseImage = new ArrayList<>();
             String imageLink = (tuple.get("Image_Link", String.class));
+            Integer imageId  = (tuple.get("Image_Id",Integer.class));
             if(imageLink == null)
             {houseLandlordVo.setListImage(null);}
             else {imageLinks = Arrays.asList(imageLink.split(","));
                 for (String link : imageLinks) {
                     HouseImageDto imageDto = new HouseImageDto();
                     imageDto.setImageLink(link);
+                    imageDto.setImageId(imageId);
                     listHouseImage.add(imageDto);
                 }
                 houseLandlordVo.setListImage(listHouseImage);
@@ -160,12 +162,14 @@ public class HouseLandlordServiceImpl implements HouseLandlordService {
             }
             List<HouseImageDto> listHouseImage = new ArrayList<>();
             String imageLink = (tuple.get("Image_Link", String.class));
+            Integer imageId  = (tuple.get("Image_Id",Integer.class));
             if(imageLink == null)
             {houseLandlordVo.setListImage(null);}
             else {imageLinks = Arrays.asList(imageLink.split(","));
                 for (String link : imageLinks) {
                     HouseImageDto imageDto = new HouseImageDto();
                     imageDto.setImageLink(link);
+                    imageDto.setImageId(imageId);
                     listHouseImage.add(imageDto);
 
                 }

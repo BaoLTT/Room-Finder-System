@@ -99,6 +99,6 @@ public class HouseLandlordController {
     @GetMapping("/deleteImage/{houseId}/{imageId}")
     public String deleteImage(@PathVariable Integer houseId,@PathVariable Integer imageId,Model model, HttpSession httpSession){
         houseManagerService.deleteImageById(imageId);
-        return "redirect:/edit/" + houseId;
+        return "redirect:/manager/edit/" + houseId;
     }
 }
