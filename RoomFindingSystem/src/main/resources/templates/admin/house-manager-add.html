@@ -15,6 +15,7 @@
     <link href="/assets_admin/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="/assets_admin/css/icons.min.css" rel="stylesheet" type="text/css" />
     <link href="/assets_admin/css/app.min.css" rel="stylesheet" type="text/css" />
+    <link href="/assets_admin/css/file-upload.css" rel="stylesheet" type="text/css" />
 
 
 
@@ -123,12 +124,11 @@
 
                                             <div class="form-group row">
                                                 <label class="col-2 col-form-label">Ảnh</label>
-                                                    <div id="profile-picture" class="profile-picture single-file-preview col-10">
-                                                        <div class="input">
-                                                            <input name="file" type="file" class="" multiple onchange="previewImages(event)">
-                                                        </div>
-
-                                                        <div id="image-preview"></div>
+                                                <div class="col-10" >
+                                                    <div class="file-upload">
+                                                        <input  type="file" name="file" class="file-upload-input with-preview" multiple title="Click to add files" maxlength="10" accept="gif|jpg|png">
+                                                        <span>Click to add images</span>
+                                                    </div>
                                                 </div>
                                             </div>
 
@@ -333,78 +333,6 @@
 <!-- App js -->
 <script src="/assets_admin/js/app.min.js"></script>
 
-<script>
-    function previewImages(event) {
-        var input = event.target;
-        var imagePreview = document.getElementById('image-preview');
-        var imagesInfo = [];
-        if (input.files && input.files.length > 0) {
-            for (var i = 0; i < input.files.length; i++) {
-                var reader = new FileReader();
-
-                reader.onload = function (e) {
-                    var imgElement = document.createElement('img');
-                    imgElement.src = e.target.result;
-                    imgElement.alt = 'Ảnh trước';
-                    imgElement.style.width = '100px';
-                    imgElement.style.height = '100px';
-
-                    var deleteButton = document.createElement('button');
-                    deleteButton.textContent = 'X';
-                    deleteButton.style.backgroundColor= '#e2e2e2';
-                    deleteButton.style.height= '24px';
-                    deleteButton.style.width= '24px';
-                    deleteButton.style.marginLeft= '5px';
-                    deleteButton.style.lineHeight= '24px';
-                    deleteButton.style.color= 'red';
-                    deleteButton.style.textAlign= 'center';
-                    deleteButton.style.borderRadius= '50%';
-                    deleteButton.style.marginTop= '-4px';
-                    deleteButton.style.float = 'right';
-                    deleteButton.style.border= 'none';
-                    deleteButton.addEventListener('click', function () {
-                        // Lấy index của ảnh trong mảng imagesInfo
-                        var index = imagesInfo.findIndex(function (img) {
-                            return img.src === imgElement.src;
-                        });
-
-                        // Xóa ảnh và thông tin tương ứng từ preview và mảng
-                        if (index !== -1) {
-                            imagesInfo.splice(index, 1);
-                            imgElement.remove();
-                            deleteButton.remove();
-                            updateInputValue();
-                        }
-                    });
-
-                    var container = document.createElement('div');
-                    container.appendChild(imgElement);
-                    container.appendChild(deleteButton);
-                    container.style.float = 'left';
-                    container.style.margin = '10px';
-                    imagePreview.appendChild(container);
-
-                    imagesInfo.push({
-                        src: e.target.result,
-                        container: container
-                    });
-
-                    imagePreview.appendChild(container);
-                    updateInputValue();
-                };
-
-
-                reader.readAsDataURL(input.files[i]);
-            }
-            function updateInputValue() {
-                // Cập nhật giá trị của input
-                input.value = imagesInfo.map(function (imgInfo) {
-                    return imgInfo.src;
-                }).join(',');
-            }
-        }
-    }
-</script>
 
 </body>
 </html>
