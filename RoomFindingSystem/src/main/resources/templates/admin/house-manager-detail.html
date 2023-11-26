@@ -15,8 +15,7 @@
     <link href="/assets_admin/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="/assets_admin/css/icons.min.css" rel="stylesheet" type="text/css" />
     <link href="/assets_admin/css/app.min.css" rel="stylesheet" type="text/css" />
-
-
+    <link href="/assets_admin/css/file-upload.css" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -180,15 +179,19 @@
 
                                             <div class="form-group row">
                                                 <label class="col-2 col-form-label">Ảnh</label>
-                                                <div id="profile-picture" class="profile-picture single-file-preview col-10">
-                                                    <div class="input">
-                                                        <input name="file" type="file" class="" multiple onchange="previewImages(event)">
+                                                <div class="col-10" >
+                                                <div class="file-upload-previews">
+                                                    <div class="MultiFile-label"  id="imageContainer" th:each="image, iterStat : ${house.listImage}">
+                                                        <a class="MultiFile-remove" th:href="@{'/manager/deleteImage/' + ${house.houseID} + '/' + ${image.imageId}}">x</a>
+                                                        <span class="MultiFile-label" title="File selected: abc.png">
+                                                            <img th:src="${image.imageLink}" alt="Ảnh" id="imagePreview" style="width: 100px;height: 100px">
+                                                        </span>
                                                     </div>
-                                                    <div style="float: left; margin: 10px">
-                                                        <img alt="Ảnh" src="">
-                                                        <button style="float:right;">Xóa</button>
-                                                    </div>
-                                                    <div id="image-preview"></div>
+                                                </div>
+                                                <div class="file-upload">
+                                                    <input  type="file" name="file" class="file-upload-input with-preview" multiple title="Click to add files" maxlength="10" accept="gif|jpg|png">
+                                                    <span>Click to add images</span>
+                                                </div>
                                                 </div>
                                             </div>
 
@@ -360,6 +363,12 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+
+<script type="text/javascript" src="/assets/js/jQuery.MultiFile.min.js"></script>
+
+<script type="text/javascript" src="/assets/js/maps.js"></script>
+<script type="text/javascript" src="/assets/js/custom.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
 <script>
     document.getElementById('provinceName').addEventListener('click', () => {
@@ -415,44 +424,6 @@
     }
 </script>
 
-
-<script>
-    function previewImages(event) {
-        var input = event.target;
-        var imagePreview = document.getElementById('image-preview');
-
-        if (input.files && input.files.length > 0) {
-            for (var i = 0; i < input.files.length; i++) {
-                var reader = new FileReader();
-
-                reader.onload = function (e) {
-                    var imgElement = document.createElement('img');
-                    imgElement.src = e.target.result;
-                    imgElement.alt = 'Ảnh trước';
-                    imgElement.style.width = '100px';
-                    imgElement.style.height = '100px';
-
-                    var deleteButton = document.createElement('button');
-                    deleteButton.textContent = 'Xóa';
-                    deleteButton.style.float = 'right';
-                    deleteButton.addEventListener('click', function () {
-                        imgElement.remove();
-                        deleteButton.remove();
-                    });
-
-                    var container = document.createElement('div');
-                    container.appendChild(imgElement);
-                    container.appendChild(deleteButton);
-                    container.style.float = 'left';
-                    container.style.margin = '10px';
-                    imagePreview.appendChild(container);
-                };
-
-                reader.readAsDataURL(input.files[i]);
-            }
-        }
-    }
-</script>
 
 <!-- App js -->
 
