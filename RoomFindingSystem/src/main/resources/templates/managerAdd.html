@@ -15,12 +15,6 @@
     <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
 
     <title>Accommodo - Accommodation HTML Template Full of Useful Features</title>
-    <style>
-        /* Ẩn khối div ban đầu */
-        #divToToggle {
-            display: none;
-        }
-    </style>
 </head>
 
 <body>
@@ -160,7 +154,7 @@
                     </div>
                 </div>
                 <!--end quick-navigation-->
-                <form class="form-submit labels-uppercase" id="form-submit" th:action="@{/manager/save}" method="post" th:object="${house}">
+                <form class="form-submit labels-uppercase" id="form-submit" th:action="@{/manager/save}" method="post" th:object="${house}" enctype="multipart/form-data">
                     <section id="main-information">
                         <div class="title">
                             <h2>Thông tin chính</h2>
@@ -181,11 +175,6 @@
                                     <select class="framed width-100" name="typeHouseID" id="typeHouseID" th:field="*{typeHouseID}" >
                                         <option th:each="listType : ${listType}" th:value="${listType.getTypeId()}" th:text="${listType.typeName}"/>
                                     </select>
-                                    <a href="#" class="link icon" id="toggleLink"><i class="fa fa-plus"></i>Thêm thể loại</a>
-                                    <div style="margin-top: 5px" id="divToToggle" >
-                                        <input type="text" id="houseType" name="houseType" style="width: inherit">
-                                        <button type="submit" class="btn btn-primary" style="margin-left: 5px">Thêm</button>
-                                    </div>
                                 </div>
                                 <!--end form-group-->
                             </div>
@@ -257,7 +246,7 @@
                         </div>
                         <div class="file-upload-previews"></div>
                         <div class="file-upload">
-                            <input type="file" name="files[]" class="file-upload-input with-preview" multiple title="Click to add files" maxlength="10" accept="gif|jpg|png">
+                            <input type="file" name="file" class="file-upload-input with-preview" multiple title="Click to add files" maxlength="10" accept="gif|jpg|png">
                             <span>Click to add images</span>
                         </div>
                     </section>

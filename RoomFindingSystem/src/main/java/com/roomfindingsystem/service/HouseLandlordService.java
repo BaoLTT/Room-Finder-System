@@ -11,5 +11,7 @@ public interface HouseLandlordService {
     List<HouseLandlordVo> findHouseByUser(int userId);
     List<HouseLandlordVo> getAllHouse();
 
+    void deleteImageById(int imageId);
+
     HouseLandlordVo findHouseByID(int houseid);
 }
