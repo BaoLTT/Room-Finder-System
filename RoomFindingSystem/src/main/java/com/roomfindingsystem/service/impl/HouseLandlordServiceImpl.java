@@ -44,6 +44,7 @@ public class HouseLandlordServiceImpl implements HouseLandlordService {
         List<HouseLandlordVo> houseLandlord1 = new ArrayList<>();
         List<String> imageLinks ;
         List<String> services;
+        List<String> imageIds;
 
         for (Tuple tuple : tuples) {
             HouseLandlordVo houseLandlordVo = new HouseLandlordVo();
@@ -82,15 +83,21 @@ public class HouseLandlordServiceImpl implements HouseLandlordService {
             }
             List<HouseImageDto> listHouseImage = new ArrayList<>();
             String imageLink = (tuple.get("Image_Link", String.class));
-            Integer imageId  = (tuple.get("Image_Id",Integer.class));
+            String imageId  = (tuple.get("Image_Id",String.class));
             if(imageLink == null)
             {houseLandlordVo.setListImage(null);}
-            else {imageLinks = Arrays.asList(imageLink.split(","));
+            else {
+                imageLinks = Arrays.asList(imageLink.split(","));
+                imageIds = Arrays.asList(imageId.split(","));
                 for (String link : imageLinks) {
-                    HouseImageDto imageDto = new HouseImageDto();
-                    imageDto.setImageLink(link);
-                    imageDto.setImageId(imageId);
-                    listHouseImage.add(imageDto);
+                    for(String id: imageIds){
+                        HouseImageDto imageDto = new HouseImageDto();
+                        imageDto.setImageLink(link);
+                        imageDto.setImageId(Integer.parseInt(id));
+                        listHouseImage.add(imageDto);
+                    }
+
+
                 }
                 houseLandlordVo.setListImage(listHouseImage);
             }
@@ -125,6 +132,7 @@ public class HouseLandlordServiceImpl implements HouseLandlordService {
     public HouseLandlordVo getHouseLandlordVo(Tuple tuple) {
         List<String> imageLinks ;
         List<String> services;
+        List<String> imageIds;
 
             HouseLandlordVo houseLandlordVo = new HouseLandlordVo();
             houseLandlordVo.setHouseID(tuple.get("HouseID", Integer.class));
@@ -162,15 +170,20 @@ public class HouseLandlordServiceImpl implements HouseLandlordService {
             }
             List<HouseImageDto> listHouseImage = new ArrayList<>();
             String imageLink = (tuple.get("Image_Link", String.class));
-            Integer imageId  = (tuple.get("Image_Id",Integer.class));
+            String imageId  = (tuple.get("Image_Id",String.class));
             if(imageLink == null)
             {houseLandlordVo.setListImage(null);}
-            else {imageLinks = Arrays.asList(imageLink.split(","));
+            else {
+                imageLinks = Arrays.asList(imageLink.split(","));
+                imageIds = Arrays.asList(imageId.split(","));
                 for (String link : imageLinks) {
-                    HouseImageDto imageDto = new HouseImageDto();
-                    imageDto.setImageLink(link);
-                    imageDto.setImageId(imageId);
-                    listHouseImage.add(imageDto);
+                    for(String id: imageIds){
+                        HouseImageDto imageDto = new HouseImageDto();
+                        imageDto.setImageLink(link);
+                        imageDto.setImageId(Integer.parseInt(id));
+                        listHouseImage.add(imageDto);
+                    }
+
 
                 }
                 houseLandlordVo.setListImage(listHouseImage);
