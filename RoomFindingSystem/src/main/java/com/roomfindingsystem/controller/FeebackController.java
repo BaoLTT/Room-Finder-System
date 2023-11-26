@@ -2,8 +2,11 @@ package com.roomfindingsystem.controller;
 
 import com.roomfindingsystem.dto.FeedbackListAdminDto;
 import com.roomfindingsystem.entity.FeedbackEntity;
+import com.roomfindingsystem.entity.UserEntity;
 import com.roomfindingsystem.service.FeedbackService;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -30,8 +33,10 @@ public class FeebackController {
     }
 
     @RequestMapping(value = "feedback-list-landlord")
-    public String getFeebackListForLandLord(Model model) {
-        List<FeedbackListAdminDto> list = feedbackService.getListFeedbackForLandLord(1);
+    public String getFeebackListForLandLord(Model model, HttpSession session, HttpServletRequest request) {
+        session = request.getSession();
+        UserEntity user = (UserEntity) session.getAttribute("user");
+        List<FeedbackListAdminDto> list = feedbackService.getListFeedbackForLandLord(user.getUserId());
         model.addAttribute("feedbackList", list);
         return "feedback-list-landlord";
     }
