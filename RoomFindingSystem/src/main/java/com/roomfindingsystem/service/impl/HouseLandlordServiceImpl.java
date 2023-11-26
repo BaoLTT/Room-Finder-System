@@ -2,6 +2,7 @@ package com.roomfindingsystem.service.impl;
 
 import com.roomfindingsystem.dto.HouseImageDto;
 import com.roomfindingsystem.dto.HouseLandlordVo;
+import com.roomfindingsystem.repository.HouseImageRepository;
 import com.roomfindingsystem.repository.HouseLandlordRepository;
 import com.roomfindingsystem.service.HouseLandlordService;
 import jakarta.persistence.Tuple;
@@ -15,6 +16,8 @@ import java.util.*;
 public class HouseLandlordServiceImpl implements HouseLandlordService {
     @Autowired
     HouseLandlordRepository houseLandlordRepository;
+    @Autowired
+    HouseImageRepository houseImageRepository;
     @Override
     public List<HouseLandlordVo> findHouseByUser(int userId) {
         List<Tuple> tuples = houseLandlordRepository.findHouseByUser(userId);
@@ -25,6 +28,11 @@ public class HouseLandlordServiceImpl implements HouseLandlordService {
     public List<HouseLandlordVo> getAllHouse() {
         List<Tuple> tuples = houseLandlordRepository.getAllHouse();
         return getListHouseLandlordVo(tuples);
+    }
+
+    @Override
+    public void deleteImageById(int imageId) {
+        houseImageRepository.deleteById(imageId);
     }
 
     @Override

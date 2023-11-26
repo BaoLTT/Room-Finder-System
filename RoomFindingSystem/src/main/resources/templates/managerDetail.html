@@ -264,9 +264,8 @@
                         </div>
                         <div class="file-upload-previews">
                             <div class="MultiFile-label"  id="imageContainer" th:each="image, iterStat : ${house.listImage}">
-                                <a class="MultiFile-remove" href="#" onclick="removeImage(event)">x</a>
+                                <a class="MultiFile-remove" th:href="@{'/manager/deleteImage/' + 265 + '/' + image.imageId}">x</a>
                                 <span class="MultiFile-label" title="File selected: abc.png">
-                                    <span class="MultiFile-title">abc.png</span>
                                     <img th:src="${image.imageLink}" alt="Ảnh" id="imagePreview" style="width: 100px;height: 100px">
                                 </span>
                             </div>

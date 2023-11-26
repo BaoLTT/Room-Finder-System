@@ -34,6 +34,7 @@ public class HouseManagerServiceImpl implements HouseManagerService {
     @Autowired
     HouseImageRepository houseImageRepository;
 
+
     @Override
     public List<HouseManagerTypeVo> findHouseManager() {
         return houseManagerRepository.findHouseManager();
@@ -96,6 +97,11 @@ public class HouseManagerServiceImpl implements HouseManagerService {
     @Override
     public HousesEntity getLastHouse() {
         return houseManagerRepository.getLastHouse();
+    }
+
+    @Override
+    public void deleteImageById(int imageId) {
+        houseImageRepository.deleteById(imageId);
     }
 
 

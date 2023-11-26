@@ -21,6 +21,7 @@ public interface HouseManagerService {
 
     HousesEntity getLastHouse();
 
+    void deleteImageById(int imageId);
 
     void updateHouse(HouseLandlordVo houses, int houseID,List<Integer> service,MultipartFile[] files ) throws IOException;
 
