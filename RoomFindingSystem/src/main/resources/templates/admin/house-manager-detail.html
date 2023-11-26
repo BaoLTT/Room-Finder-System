@@ -363,16 +363,7 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<script type="text/javascript" src="/assets/js/jquery-2.2.1.min.js"></script>
-<script type="text/javascript" src="/assets/js/jquery-migrate-1.2.1.min.js"></script>
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&libraries=places"></script>
-<script type="text/javascript" src="/assets/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/assets/js/markerwithlabel_packed.js"></script>
-<script type="text/javascript" src="/assets/js/jquery.validate.min.js"></script>
-<script type="text/javascript" src="/assets/js/bootstrap-datepicker.js"></script>
-<script type="text/javascript" src="/assets/js/icheck.min.js"></script>
-<script type="text/javascript" src="/assets/js/owl.carousel.js"></script>
-<script type="text/javascript" src="/assets/js/masonry.pkgd.min.js"></script>
+
 <script type="text/javascript" src="/assets/js/jQuery.MultiFile.min.js"></script>
 
 <script type="text/javascript" src="/assets/js/maps.js"></script>
@@ -433,79 +424,6 @@
     }
 </script>
 
-
-<script>
-    function previewImages(event) {
-        var input = event.target;
-        var imagePreview = document.getElementById('image-preview');
-        var imagesInfo = [];
-        if (input.files && input.files.length > 0) {
-            for (var i = 0; i < input.files.length; i++) {
-                var reader = new FileReader();
-
-                reader.onload = function (e) {
-                    var imgElement = document.createElement('img');
-                    imgElement.src = e.target.result;
-                    imgElement.alt = 'Ảnh trước';
-                    imgElement.style.width = '100px';
-                    imgElement.style.height = '100px';
-
-                    var deleteButton = document.createElement('button');
-                    deleteButton.textContent = 'X';
-                    deleteButton.style.backgroundColor= '#e2e2e2';
-                    deleteButton.style.height= '24px';
-                    deleteButton.style.width= '24px';
-                    deleteButton.style.marginLeft= '5px';
-                    deleteButton.style.lineHeight= '24px';
-                    deleteButton.style.color= 'red';
-                    deleteButton.style.textAlign= 'center';
-                    deleteButton.style.borderRadius= '50%';
-                    deleteButton.style.marginTop= '-4px';
-                    deleteButton.style.float = 'right';
-                    deleteButton.style.border= 'none';
-                    deleteButton.addEventListener('click', function () {
-                        // Lấy index của ảnh trong mảng imagesInfo
-                        var index = imagesInfo.findIndex(function (img) {
-                            return img.src === imgElement.src;
-                        });
-
-                        // Xóa ảnh và thông tin tương ứng từ preview và mảng
-                        if (index !== -1) {
-                            imagesInfo.splice(index, 1);
-                            imgElement.remove();
-                            deleteButton.remove();
-                            updateInputValue();
-                        }
-                    });
-
-                    var container = document.createElement('div');
-                    container.appendChild(imgElement);
-                    container.appendChild(deleteButton);
-                    container.style.float = 'left';
-                    container.style.margin = '10px';
-                    imagePreview.appendChild(container);
-
-                    imagesInfo.push({
-                        src: e.target.result,
-                        container: container
-                    });
-
-                    imagePreview.appendChild(container);
-                    updateInputValue();
-                };
-
-
-                reader.readAsDataURL(input.files[i]);
-            }
-            function updateInputValue() {
-                // Cập nhật giá trị của input
-                input.value = imagesInfo.map(function (imgInfo) {
-                    return imgInfo.src;
-                }).join(',');
-            }
-        }
-    }
-</script>
 
 <!-- App js -->
 
