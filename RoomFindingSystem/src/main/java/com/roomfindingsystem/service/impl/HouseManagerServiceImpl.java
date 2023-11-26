@@ -34,6 +34,7 @@ public class HouseManagerServiceImpl implements HouseManagerService {
     @Autowired
     HouseImageRepository houseImageRepository;
 
+
     @Override
     public List<HouseManagerTypeVo> findHouseManager() {
         return houseManagerRepository.findHouseManager();
@@ -98,6 +99,11 @@ public class HouseManagerServiceImpl implements HouseManagerService {
         return houseManagerRepository.getLastHouse();
     }
 
+    @Override
+    public void deleteImageById(int imageId) {
+        houseImageRepository.deleteById(imageId);
+    }
+
 
     @Transactional
     @Override
@@ -116,13 +122,13 @@ public class HouseManagerServiceImpl implements HouseManagerService {
 
             }
         }
-        int i = houseImagesEntity.size() + 1;
+        int i = houseImagesEntity.size() + 2;
         for (MultipartFile file : files) {
             if (!file.isEmpty()) {
                 HouseImagesEntity houseImages = new HouseImagesEntity();
                 byte[] imageBytes = file.getBytes();
                 gcsService.uploadImage("rfs_bucket", "House/house_" + i + "_"+houseID+".jpg", imageBytes);
-                houseImages.setImageLink("https://storage.cloud.google.com/rfs_bucket/Room/"+"room_"+i + "_"+houseID+".jpg");
+                houseImages.setImageLink("https://storage.cloud.google.com/rfs_bucket/House/"+"house_"+i + "_"+houseID+".jpg");
                 i++;
                 houseImages.setHouseId(houseID);
                 houseImages.setCreatedDate(LocalDate.now());

@@ -34,6 +34,7 @@ public interface HouseLandlordRepository extends JpaRepository<HousesEntity,Inte
             "    h.status,\n" +
             "    (SELECT MIN(r.price) FROM room r WHERE r.houseid = h.houseid) AS minPrice, \n" +
             "    (SELECT GROUP_CONCAT(i.image_link) FROM house_images i WHERE i.houseid = h.houseid) AS Image_Link,\n" +
+            "    (SELECT GROUP_CONCAT(i.imageid) FROM house_images i WHERE i.houseid = h.houseid) AS Image_Id,\n" +
             "    SUBSTRING_INDEX((SELECT GROUP_CONCAT(DISTINCT sd.service_name) FROM service_house sh\n" +
             "        LEFT JOIN service_detail sd ON sd.serviceid = sh.serviceid\n" +
             "        WHERE sh.houseid = h.houseid), ',', 3) AS Service_Name,\n" +
@@ -79,6 +80,7 @@ public interface HouseLandlordRepository extends JpaRepository<HousesEntity,Inte
             "    h.status,\n" +
             "    (SELECT MIN(r.price) FROM room r WHERE r.houseid = h.houseid) AS minPrice, \n" +
             "    (SELECT GROUP_CONCAT(i.image_link) FROM house_images i WHERE i.houseid = h.houseid) AS Image_Link,\n" +
+            "    (SELECT GROUP_CONCAT(i.imageid) FROM house_images i WHERE i.houseid = h.houseid) AS Image_Id,\n" +
             "    (SELECT GROUP_CONCAT(DISTINCT sd.serviceid) FROM service_house sh\n" +
             "        LEFT JOIN service_detail sd ON sd.serviceid = sh.serviceid\n" +
             "        WHERE sh.houseid = h.houseid) AS Service_Name,\n" +
@@ -124,6 +126,7 @@ public interface HouseLandlordRepository extends JpaRepository<HousesEntity,Inte
             "    h.status,\n" +
             "    (SELECT MIN(r.price) FROM room r WHERE r.houseid = h.houseid) AS minPrice, \n" +
             "    (SELECT GROUP_CONCAT(i.image_link) FROM house_images i WHERE i.houseid = h.houseid) AS Image_Link,\n" +
+            "    (SELECT GROUP_CONCAT(i.imageid) FROM house_images i WHERE i.houseid = h.houseid) AS Image_Id,\n" +
             "    (SELECT GROUP_CONCAT(DISTINCT sd.serviceid) FROM service_house sh\n" +
             "        LEFT JOIN service_detail sd ON sd.serviceid = sh.serviceid\n" +
             "        WHERE sh.houseid = h.houseid) AS Service_Name,\n" +
