@@ -27,4 +27,6 @@ public interface HouseService {
     void updateStar(double star, int houseId);
 
     HousesEntity getHouseById(int id);
+
+    void saveHouse(HousesEntity housesEntity);
 }

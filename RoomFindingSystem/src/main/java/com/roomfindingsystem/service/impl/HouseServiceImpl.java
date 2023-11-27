@@ -119,6 +119,11 @@ public class HouseServiceImpl implements HouseService {
         return houseRepository.getHousesEntitiesByHouseId(id);
     }
 
+    @Override
+    public void saveHouse(HousesEntity housesEntity) {
+        houseRepository.save(housesEntity);
+    }
+
 
     @Override
 
