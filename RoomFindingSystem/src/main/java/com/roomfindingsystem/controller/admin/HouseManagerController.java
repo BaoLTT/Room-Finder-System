@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -90,7 +89,7 @@ public class HouseManagerController {
         }
 
 
-        houseManagerService.updateHouse(house,house.getHouseID(),service);
+        houseManagerService.updateHouse(house,house.getHouseID(),service, images);
 
 
         HousesEntity housesEntity = houseService.getHouseById(house.getHouseID());
@@ -120,7 +119,7 @@ public class HouseManagerController {
     public String saveHouse(@ModelAttribute(name = "house") HouseLandlordVo house, MultipartFile[] images, Model model, HttpSession httpSession) throws IOException {
         AddressEntity address = new AddressEntity("a",house.getAddressDetail().trim(),house.getProvinceID(),house.getDistrictID(),house.getWardID());
         int addressID = addressService.insertAddress(address);
-        houseManagerService.insertHouse(house,addressID);
+        houseManagerService.insertHouse(house,addressID,images);
         return  "redirect:/admin/house-manager";
     }
 
