@@ -1,11 +1,10 @@
 package com.roomfindingsystem.repository;
 
-import com.roomfindingsystem.entity.HousesEntity;
-
 
 import com.roomfindingsystem.dto.HouseDto;
 import com.roomfindingsystem.dto.HouseImageLink;
 import com.roomfindingsystem.dto.ServiceDto;
+import com.roomfindingsystem.entity.HousesEntity;
 import jakarta.persistence.Tuple;
 import jakarta.transaction.Transactional;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -117,8 +116,20 @@ public interface HouseRepository extends JpaRepository<HousesEntity, Integer> {
             "LEFT JOIN province p ON a.provinceid = p.provinceid " +
             "LEFT JOIN district d ON a.districtid = d.districtid " +
             "LEFT JOIN ward w ON a.wardid = w.wardid " +
-            "GROUP BY h.houseid, h.house_name, t.type_name, a.address_details, ward_name, district_name, province_name, h.last_modified_by LIMIT 6 OFFSET 0 ", nativeQuery = true)
+            "GROUP BY h.houseid, h.house_name, t.type_name, a.address_details, ward_name, district_name, province_name, h.last_modified_by LIMIT 8 OFFSET 0 ", nativeQuery = true)
     List<Tuple> viewHouseInHome();
+
+    @Query(value = "SELECT u.userid,h.houseId, h.house_name,th.type_name,ad.address_details,pr.name AS province_name,d.name AS district_name,w.name AS ward_name ,\n" +
+            "(SELECT GROUP_CONCAT(i.image_link) FROM house_images i WHERE i.houseid = h.houseid) AS Image_Link, h.last_modified_date  \n" +
+            "FROM room_finding_system.favourite f\n" +
+            "join room_finding_system.user u on f.userid = u.userid\n" +
+            "join room_finding_system.houses h on f.houseid = h.houseid\n" +
+            "join room_finding_system.type_house th on h.type_houseid = th.typeid \n" +
+            "join room_finding_system.address ad on h.addressid = ad.addressid \n" +
+            "join room_finding_system.province pr on pr.provinceid = ad.provinceid\n" +
+            "join room_finding_system.district d on  d.districtid = ad.districtid \n" +
+            "join room_finding_system.ward w on ad.wardid = w.wardid where u.userid=?1  order by f.created_date desc;", nativeQuery = true)
+    List<Tuple> viewHouseInHomeInFavourite(int id);
 
     //admin
     @Query("select count(*) from HousesEntity")
@@ -130,7 +141,8 @@ public interface HouseRepository extends JpaRepository<HousesEntity, Integer> {
     void updateStarHouse(double star, Integer houseId);
 
 
-
+//    @Query("select h from HousesEntity where houseId = ?1")
+    HousesEntity getHousesEntitiesByHouseId(int id);
 
 
 

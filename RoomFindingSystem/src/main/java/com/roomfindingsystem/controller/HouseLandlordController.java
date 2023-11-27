@@ -2,7 +2,6 @@ package com.roomfindingsystem.controller;
 
 import com.roomfindingsystem.dto.HouseLandlordVo;
 import com.roomfindingsystem.entity.AddressEntity;
-import com.roomfindingsystem.entity.HousesEntity;
 import com.roomfindingsystem.entity.ServiceDetailEntity;
 import com.roomfindingsystem.entity.TypeHouseEntity;
 
@@ -13,8 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.time.LocalDate;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -39,7 +39,7 @@ public class HouseLandlordController {
     public String findAll(Model model, HttpSession httpSession){
         List<HouseLandlordVo> listHouse = new ArrayList<>();
         int userId = 9;
-        listHouse = houseLandlordService.findHouse(userId);
+        listHouse = houseLandlordService.findHouseByUser(userId);
         model.addAttribute("house",listHouse);
         return "managerHouse";
     }
@@ -62,6 +62,7 @@ public class HouseLandlordController {
         List<ServiceDetailEntity> listService = serviceDetailService.getAllService();
 
         HouseLandlordVo  house = houseLandlordService.findHouseByID(houseid);
+        System.out.println(house.getListImage().get(0).getImageLink());
         List<String> listChecked = house.getService();
         System.out.println(listChecked);
                 model.addAttribute("house",house);
@@ -72,15 +73,15 @@ public class HouseLandlordController {
     }
 
     @PostMapping("/save")
-    public String saveHouse(@ModelAttribute(name = "house") HouseLandlordVo house, Model model, HttpSession httpSession){
+    public String saveHouse(@ModelAttribute(name = "house") HouseLandlordVo house, @RequestParam("file") MultipartFile[] files, Model model, HttpSession httpSession) throws IOException {
         AddressEntity address = new AddressEntity("a",house.getAddressDetail().trim(),house.getProvinceID(),house.getDistrictID(),house.getWardID());
         int addressID = addressService.insertAddress(address);
-        houseManagerService.insertHouse(house,addressID);
+        houseManagerService.insertHouse(house,addressID,files);
         return  "redirect:/manager";
     }
 
     @PostMapping("/update")
-    public String updateHouse(@ModelAttribute(name = "house") HouseLandlordVo house, Model model, HttpSession httpSession){
+    public String updateHouse(@ModelAttribute(name = "house") HouseLandlordVo house,@RequestParam("file") MultipartFile[] files,@RequestParam(name = "service", required = false,defaultValue = "0") List<Integer> service, Model model, HttpSession httpSession) throws IOException {
         if(house.getProvinceID()==0){
             Optional<AddressEntity> newAddress = addressService.findbyId(house.getAddress());
             AddressEntity address = new AddressEntity("a",house.getAddressDetail(),newAddress.get().getProvinceId(),newAddress.get().getDistrictId(),newAddress.get().getWardId());
@@ -90,8 +91,14 @@ public class HouseLandlordController {
             addressService.updateAddress(address,house.getAddress());
         }
         System.out.println(house.getHouseID());
-        houseManagerService.updateHouse(house,house.getHouseID());
+        houseManagerService.updateHouse(house,house.getHouseID(),service,files);
 
         return  "redirect:/manager";
+    }
+
+    @GetMapping("/deleteImage/{houseId}/{imageId}")
+    public String deleteImage(@PathVariable Integer houseId,@PathVariable Integer imageId,Model model, HttpSession httpSession){
+        houseManagerService.deleteImageById(imageId);
+        return "redirect:/manager/edit/" + houseId;
     }
 }

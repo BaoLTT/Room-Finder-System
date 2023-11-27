@@ -15,8 +15,7 @@
     <link href="/assets_admin/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="/assets_admin/css/icons.min.css" rel="stylesheet" type="text/css" />
     <link href="/assets_admin/css/app.min.css" rel="stylesheet" type="text/css" />
-
-
+    <link href="/assets_admin/css/file-upload.css" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -56,130 +55,177 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card-box">
-                            <h4 class="header-title">Thông tin nhà trọ</h4>
+                            <h4 class="header-title">Thông tin trọ</h4>
 
-                            <div th:object="${house}">
-                                <form class="form-horizontal" role="form"  method="post" th:action="@{/admin/house-manager/update}" th:object="${house}"  enctype="multipart/form-data">
-                                    <div class="form-group row">
-                                        <label class="col-2 col-form-label">House ID</label>
-                                        <div class="col-10">
-                                            <p class="form-control-static"  th:text="*{houseID}"></p>
-                                            <input name="houseID" th:value="*{houseID}" type="hidden">
-                                        </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div th:object="${house}">
+                                        <form class="form-horizontal" role="form"  method="post" th:action="@{/admin/house-manager/update}" th:object="${house}"  enctype="multipart/form-data">
+                                            <div class="form-group row">
+                                                <label class="col-2 col-form-label">House ID</label>
+                                                <div class="col-10">
+                                                    <p class="form-control-static"  th:field="*{houseID}"></p>
+                                                    <input name="houseID" th:field="*{houseID}" type="hidden">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-2 col-form-label">Chủ trọ</label>
+                                                <div class="col-10">
+                                                    <input type="text" class="form-control" readonly="" th:value="*{user_firstName+' '+user_lastName}">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-2 col-form-label" >Tên trọ</label>
+                                                <div class="col-10">
+                                                    <input type="text"  name="houseName" class="form-control" placeholder="Tên trọ..." required th:field="*{houseName}" >
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-2 col-form-label">Thông tin khác</label>
+                                                <div class="col-3">
+                                                    <label>Tình trạng</label>
+                                                    <select class="form-control" th:field="*{status}">
+                                                        <option value="1"  th:selected="${house.status == 1}" >HOẠT ĐỘNG</option>
+                                                        <option value="0"  th:selected="${house.status == 0}">NGƯNG HOẠT ĐỘNG</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-3">
+                                                    <label for="like">Số lượt thích</label>
+                                                    <input type="text" class="form-control" id="like" readonly th:field="*{like}" style="padding: 10px" >
+                                                </div>
+                                                <div class="col-3">
+                                                    <label for="room">Số lượng phòng</label>
+                                                    <input type="text" class="form-control" id="room" readonly th:field="*{count_room}" style="padding: 10px">
+                                                </div>
+
+
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-2 col-form-label">Người tạo</label>
+                                                <div class="col-10">
+                                                    <input type="text" class="form-control" readonly="" th:value="*{created_firstName+' '+created_lastName}">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-2 col-form-label">Địa chỉ cụ thể</label>
+                                                <div class="col-10">
+                                                    <input type="text" name="addressDetail" class="form-control" placeholder="Địa chỉ cụ thể..." th:field="*{addressDetail}">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-2 col-form-label">Địa chỉ </label>
+                                                <input type="hidden" name="addressid" th:field="*{address}">
+                                                <div class="col-3" >
+                                                    <label for="province">Tỉnh</label>
+                                                    <select class="form-control" name="province" id="province" style="display: none;" th:field="*{provinceID}">
+                                                        <option value="0" selected >Chọn tỉnh thành</option>
+                                                    </select>
+                                                    <!-- Hiển thị giá trị -->
+                                                    <input class="form-control" th:id="provinceName" th:field="*{province}" />
+
+                                                </div>
+
+                                                <div class="col-3" >
+                                                    <label for="district">Huyện</label>
+                                                    <select class="form-control" id="district" name="district" style="display: none;" th:field="*{districtID}">
+                                                        <option value="0" selected>Chọn huyện</option>
+                                                    </select>
+                                                    <!-- Hiển thị giá trị -->
+                                                    <input class="form-control" th:id="districtName" th:field="*{district}" />
+
+                                                </div>
+                                                <div class="col-3" >
+                                                    <label for="ward">Xã/Phường</label>
+                                                    <select class="form-control" name="ward" id="ward" style="display: none;" th:field="*{wardID}">
+                                                        <option value="0" selected>Chọn xã</option>
+                                                    </select>
+                                                    <input class="form-control" th:id="wardName" th:field="*{ward}">
+
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-2 col-form-label">Ghi chú</label>
+                                                <div class="col-10">
+                                                    <textarea class="form-control" rows="3" placeholder="Ghi chú..." th:field="*{description}"> </textarea>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-2 col-form-label">Ngày tạo</label>
+                                                <div class="col-10">
+                                                    <input type="date" class="form-control" readonly="" th:value="*{createdDate}">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-2 col-form-label">Ngày cuối cập nhật</label>
+                                                <div class="col-10">
+                                                    <input type="date" class="form-control" readonly="" th:value="*{lastModifiedDate}">
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group row">
+                                                <label class="col-2 col-form-label">Thể loại trọ</label>
+                                                <div class="col-10" >
+
+                                                    <select class="form-control" th:field="*{typeHouseID}">
+                                                        <option th:each="listType : ${listType}" th:value="${listType.getTypeId()}" th:text="${listType.typeName}"/>
+
+                                                    </select>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-2 col-form-label">Ảnh</label>
+                                                <div class="col-10" >
+                                                <div class="file-upload-previews">
+                                                    <div class="MultiFile-label"  id="imageContainer" th:each="image, iterStat : ${house.listImage}">
+                                                        <a class="MultiFile-remove" th:href="@{'/manager/deleteImage/' + ${house.houseID} + '/' + ${image.imageId}}">x</a>
+                                                        <span class="MultiFile-label" title="File selected: abc.png">
+                                                            <img th:src="${image.imageLink}" alt="Ảnh" id="imagePreview" style="width: 100px;height: 100px">
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="file-upload">
+                                                    <input  type="file" name="file" class="file-upload-input with-preview" multiple title="Click to add files" maxlength="10" accept="gif|jpg|png">
+                                                    <span>Click to add images</span>
+                                                </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-2 col-form-label">Dịch vụ</label>
+                                                <div class="col-10" style="display: flex; flex-wrap: wrap;">
+                                                    <div class="checkbox checkbox-primary col-2" th:each="listService : ${listService}" th:field="*{service}" style="padding-left: 10px">
+                                                        <input th:id="${listService.serviceName}" type="checkbox" name="service"  th:value="${listService.serviceId}" th:checked="${#lists.contains(listChecked,''+ listService.serviceId+'')}">
+                                                        <label th:for="${listService.serviceName}" th:text="${listService.serviceName}">
+                                                            <Primary></Primary>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group row">
+                                                <label class="col-2 col-form-label"></label>
+                                                <div class="col-10" >
+                                                    <button  type="submit" class="btn btn-success waves-light waves-effect width-md"> <span style="color: white">Lưu</span></button>
+                                                    <a  type="button" class="btn btn-danger waves-light waves-effect width-md" href="http://localhost:8080/admin/house-manager"> <span style="color: white">Đóng</span></a>
+                                                    <a  type="button" class="btn btn-success waves-light waves-effect width-md" style="float: right"> <span style="color: white">Quản lý phòng</span>  </a>
+                                                </div>
+                                            </div>
+
+                                        </form>
                                     </div>
-                                    <div class="form-group row">
-                                        <label class="col-2 col-form-label">Chủ trọ</label>
-                                        <div class="col-10">
-                                            <input type="text" class="form-control" readonly="" th:value="*{user_firstName+' '+user_lastName}">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-2 col-form-label" >Tên trọ</label>
-                                        <div class="col-10">
-                                            <input type="text"  name="houseName" class="form-control" th:value="*{houseName}" >
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-2 col-form-label">Người tạo</label>
-                                        <div class="col-10">
-                                            <input type="text" class="form-control" readonly="" th:value="*{created_firstName+' '+created_lastName}">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-2 col-form-label">Địa chỉ cụ thể</label>
-                                        <div class="col-10">
-                                            <input type="text" name="addressDetail" class="form-control" th:value="*{addressDetail}">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-2 col-form-label">Địa chỉ </label>
-                                        <input type="hidden" name="addressid" th:value="*{address}">
-                                        <div class="col-3" >
-                                            <label for="province">Tỉnh</label>
-                                            <select class="form-control" name="province" id="province" style="display: none;">
-                                                <option value="" selected >Chọn tỉnh thành</option>
-                                            </select>
-                                            <!-- Hiển thị giá trị -->
-                                            <input class="form-control" th:id="provinceName" th:value="*{province}" />
+                                </div>
 
-                                            <!-- Truyền giá trị -->
-                                            <input type="hidden" name="provinceID" th:value="*{provinceID}" />
-
-                                        </div>
-
-                                        <div class="col-3" >
-                                            <label for="district">Huyện</label>
-                                            <select class="form-control" id="district" name="district" style="display: none;">
-                                                <option value="" selected>Chọn huyện</option>
-                                            </select>
-                                            <!-- Hiển thị giá trị -->
-                                            <input class="form-control" th:id="districtName" th:value="*{district}" />
-
-                                            <!-- Truyền giá trị -->
-                                            <input type="hidden" name="districtID" th:value="*{districtID}" />
-
-
-                                        </div>
-                                        <div class="col-3" >
-                                            <label for="ward">Xã/Phường</label>
-                                            <select class="form-control" name="ward" id="ward" style="display: none;">
-                                                <option value="" selected>Chọn xã</option>
-                                            </select>
-                                            <input class="form-control" th:id="wardName" th:value="*{ward}">
-                                            <input type="hidden" name="wardID" th:value="*{wardID}" />
-
-                                        </div>
-
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-2 col-form-label">Ghi chú</label>
-                                        <div class="col-10">
-                                            <textarea class="form-control" rows="3" th:field="*{description}"> </textarea>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label class="col-2 col-form-label">Ngày tạo</label>
-                                        <div class="col-10">
-                                            <input type="date" class="form-control" readonly="" th:value="*{createdDate}">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-2 col-form-label">Ngày cuối cập nhật</label>
-                                        <div class="col-10">
-                                            <input type="date" class="form-control" readonly="" th:value="*{lastModifiedDate}">
-                                        </div>
-                                    </div>
-
-
-                                    <div class="form-group row">
-                                        <label class="col-2 col-form-label">Thể loại trọ</label>
-                                        <div class="col-10" >
-
-                                            <select class="form-control" th:field="*{typeHouseID}">
-                                                <option th:each="listType : ${listType}" th:value="${listType.getTypeId()}" th:text="${listType.typeName}"/>
-
-                                            </select>
-
-                                        </div>
-                                    </div>
-
-
-                                    <div class="form-group row">
-                                        <label class="col-2 col-form-label"></label>
-                                        <div class="col-10" >
-                                            <button  type="submit" class="btn btn-success waves-light waves-effect width-md"> <span style="color: white">Lưu</span></button>
-                                            <a  type="button" class="btn btn-danger waves-light waves-effect width-md" href="http://localhost:8080/admin/house-manager"> <span style="color: white">Đóng</span></a>
-                                            <a  type="button" class="btn btn-success waves-light waves-effect width-md" style="float: right"> <span style="color: white">Quản lý phòng</span>  </a>
-                                        </div>
-                                    </div>
-
-                                </form>
                             </div>
+                            <!-- end row -->
 
                         </div> <!-- end card-box -->
                     </div><!-- end col -->
-
                 </div>
                 <!-- end row -->
 
@@ -317,6 +363,12 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+
+<script type="text/javascript" src="/assets/js/jQuery.MultiFile.min.js"></script>
+
+<script type="text/javascript" src="/assets/js/maps.js"></script>
+<script type="text/javascript" src="/assets/js/custom.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
 <script>
     document.getElementById('provinceName').addEventListener('click', () => {
@@ -371,6 +423,7 @@
         };
     }
 </script>
+
 
 <!-- App js -->
 

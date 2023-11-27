@@ -13,8 +13,8 @@ public interface FavouriteService {
 
 
     FavouriteEntity addToFavourite(FavouriteEntity favouriteEntity);
-    List<FavouriteDto> getListFavourite();
+    List<FavouriteDto> getListFavourite( int id);
     void removeItemFavourite(int houseId);
-    Optional<FavouriteEntity> getAllByHouseId(int houseid);
+    Optional<FavouriteEntity> getAllByHouseId(int userid , int houseid);
 
 }

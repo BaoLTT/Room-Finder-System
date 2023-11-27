@@ -62,6 +62,7 @@
             color: #FFCE45;
         }
 
+
         .filter-container {
             display: flex;
             justify-content: flex-end;
@@ -72,6 +73,11 @@
         .filter-container span {
             margin-right: 10px; /* Điều chỉnh khoảng cách giữa các phần tử */
         }
+
+         body {
+             font-family: 'Arial', sans-serif;
+         }
+
     </style>
 
     <title>Xem chi tiết nhà trọ</title>
@@ -226,6 +232,7 @@
                             </div>
                         </div>
 
+
                         <div class="row">
                             <div class="col-md-6 col-sm-6">
                                 <h2 th:text="${HousesEntity.houseName}" style="display: inline-block;"></h2>
@@ -350,11 +357,19 @@
                                 <!--                                                                <section id="map">-->
                                 <!--                                                                    <h2>Map</h2>-->
                                 <!--                                                                    <div id="map-item" class="map height-300 box"></div>-->
+                                <div id="map" th:if="${houseLocation.latitude == null || houseLocation.longitude== null }">
+                                    <h2>Map</h2>
+                                    <span>Nhà trọ chưa cập nhật vị trí trên google map</span>
+                                </div>
+                                <div th:if="${houseLocation.latitude != null && houseLocation.longitude != null }">
+                                    <section id="map">
+                                        <h2>Map</h2>
+                                        <div id="map-item" class="map height-300 box"></div>
+                                        <input id="latitude" type="hidden" th:value="${houseLocation.latitude}">
+                                        <input id="longitude" type="hidden" th:value="${houseLocation.longitude}">
+                                    </section>
+                                </div>
 
-                                <!--                                                                <section id="map">-->
-                                <!--                                                                    <h2>Map</h2>-->
-                                <!--                                                                    <div id="map-item" class="map height-300 box"></div>-->
-                                <!--                                                                     </section>-->
                             </div>
                             <!--end col-md-8-->
                             <div class="col-md-4">
@@ -794,7 +809,7 @@
 <script type="text/javascript" src="assets/js/owl.carousel.js"></script>
 <script type="text/javascript" src="assets/js/masonry.pkgd.min.js"></script>
 <script type="text/javascript" src="assets/js/jquery.simpleWeather.min.js"></script>
-<script type="text/javascript" src="assets/js/maps.js"></script>
+<!--<script type="text/javascript" src="/assets/js/maps.js"></script>-->
 <script type="text/javascript" src="assets/js/custom.js"></script>
 <script>
     var _latitude = 48.47292127;
@@ -862,6 +877,7 @@
 
 
 </script>
+
 <script>
     function submitForm() {
         // Khi giá trị của dropdown thay đổi, tự động gửi form
@@ -924,4 +940,36 @@
 <!--        }-->
 <!--    }-->
 <!--</script>-->
+
+
+<script th:src="@{'https://maps.googleapis.com/maps/api/js?key='+${key_map}+'&callback=initMap'}" async defer></script>
+
+<script>
+    var map;
+    var marker;
+
+    function initMap() {
+        var latitude = parseFloat(document.getElementById('latitude').value);
+        var longitude = parseFloat(document.getElementById('longitude').value);
+
+        // Tạo map với vị trí ban đầu
+        map = new google.maps.Map(document.getElementById('map-item'), {
+            center: {lat: latitude, lng: longitude},
+            zoom: 16
+        });
+
+
+        //marker ban dau
+        marker = new google.maps.Marker({
+            position: {lat: latitude, lng: longitude},
+            map: map
+        });
+
+
+    }
+
+
+</script>
+
+
 </body>
