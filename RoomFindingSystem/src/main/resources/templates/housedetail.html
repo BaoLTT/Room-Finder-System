@@ -62,9 +62,22 @@
             color: #FFCE45;
         }
 
+
+        .filter-container {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center; /* Căn giữa theo chiều dọc nếu cần */
+        }
+
+        /* Điều chỉnh độ rộng nếu cần thiết */
+        .filter-container span {
+            margin-right: 10px; /* Điều chỉnh khoảng cách giữa các phần tử */
+        }
+
          body {
              font-family: 'Arial', sans-serif;
          }
+
     </style>
 
     <title>Xem chi tiết nhà trọ</title>
@@ -523,7 +536,26 @@
                                     <a  class="btn btn-primary btn-rounded pull-right scroll" type="button"  data-toggle="modal" data-target="#exampleModal" th:if="${count == 0}">Viết đánh giá</a>
                                 </div>
 
+
                             </div>
+                            <div class="filter-container">
+                                <span style="margin-right: 10px">Lọc theo sao:</span>
+                                <form th:action="@{/detail#reviews}" th:method="get" id="filterForm">
+                                    <select name="star" class="framed" onchange="submitForm()" style="width: 70px">
+                                        <option value="0">Tất cả</option>
+                                        <option value="1" th:selected="${star==1}">1 sao</option>
+                                        <option value="2" th:selected="${star==2}">2 sao</option>
+                                        <option value="3" th:selected="${star==3}">3 sao</option>
+                                        <option value="4" th:selected="${star==4}">4 sao</option>
+                                        <option value="5" th:selected="${star==5}">5 sao</option>
+                                    </select>
+                                    <input name="id" th:value="${HousesEntity.getHouseId}" hidden="">
+                                    <!-- Thêm một nút submit ẩn để có thể gửi form khi cần thiết -->
+                                    <button type="submit" style="display:none;"></button>
+                                </form>
+                            </div>
+
+
                             <div class="reviews">
 
                                 <div th:each="feedback: ${feedbacks}">
@@ -841,6 +873,70 @@
 
 </script>
 
+<script>
+    function submitForm() {
+        // Khi giá trị của dropdown thay đổi, tự động gửi form
+        document.getElementById("filterForm").submit();
+    }
+</script>
+<!--<script>-->
+<!--    document.addEventListener('DOMContentLoaded', function() {-->
+<!--        // Get initial rating from the input value or set default to 5 if it's 0-->
+<!--        const initialRatingInput = document.getElementById("ratingInput");-->
+<!--        let initialRating = initialRatingInput.value ? parseInt(initialRatingInput.value, 10) : 5;-->
+
+<!--        // If initial rating is 0, set it to 5-->
+<!--        if (initialRating === 0) {-->
+<!--            initialRating = 5;-->
+<!--            initialRatingInput.value = "5";-->
+<!--        }-->
+
+<!--        gfg(initialRating);-->
+<!--    });-->
+
+<!--    function updateRating(value) {-->
+<!--        // Convert input value to a number-->
+<!--        const rating = parseInt(value, 10);-->
+
+<!--        // Check if the value is a valid number between 1 and 5-->
+<!--        if (!isNaN(rating) && rating >= 1 && rating <= 5) {-->
+<!--            gfg(rating);-->
+<!--        } else {-->
+<!--            // If the input value is not valid, you can handle it here (e.g., display an error message)-->
+<!--        }-->
+<!--    }-->
+<!--</script>-->
+<!--<script>-->
+<!--    // script.js-->
+
+<!--    // To access the stars-->
+<!--    let stars = document.getElementsByClassName("star");-->
+
+<!--    // Function to update rating-->
+<!--    function gfg(n) {-->
+<!--        remove();-->
+
+<!--        for (let i = 0; i < n; i++) {-->
+<!--            let cls;-->
+<!--            if (n == 1) cls = "one";-->
+<!--            else if (n == 2) cls = "two";-->
+<!--            else if (n == 3) cls = "three";-->
+<!--            else if (n == 4) cls = "four";-->
+<!--            else if (n == 5) cls = "five";-->
+<!--            stars[i].className = "star " + cls;-->
+<!--        }-->
+<!--        document.getElementById("ratingInput").value = "" + n;-->
+<!--    }-->
+
+<!--    // To remove the pre-applied styling-->
+<!--    function remove() {-->
+<!--        for (let i = 0; i < 5; i++) {-->
+<!--            stars[i].className = "star";-->
+<!--        }-->
+<!--    }-->
+<!--</script>-->
+
+
 <script th:src="@{'https://maps.googleapis.com/maps/api/js?key='+${key_map}+'&callback=initMap'}" async defer></script>
 
 <script>
@@ -940,5 +1036,6 @@
 
 
 </script>
+
 
 </body>

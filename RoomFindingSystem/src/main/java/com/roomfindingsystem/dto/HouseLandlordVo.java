@@ -23,6 +23,8 @@ public class HouseLandlordVo {
 
     private String created_lastName;
 
+    private Integer createdBy;
+
     private String addressDetail;
 
     private int address;
@@ -49,6 +51,8 @@ public class HouseLandlordVo {
 
     private String lastModifiedBy_lastName;
 
+    private Integer lastModifiedBy;
+
     private String user_firstName;
 
     private String user_lastName;
@@ -59,7 +63,7 @@ public class HouseLandlordVo {
 
     private Integer price;
 
-    List<String> listImage;
+    List<HouseImageDto> listImage;
 
     List<String> service;
 

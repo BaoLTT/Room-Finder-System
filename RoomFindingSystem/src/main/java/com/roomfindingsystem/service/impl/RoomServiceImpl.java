@@ -19,7 +19,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -462,5 +461,22 @@ public class RoomServiceImpl implements RoomService {
     @Override
     public void deleteRoomImage(Integer imageId) {
         roomImageRepository.deleteByImageId(imageId);
+    }
+
+    @Override
+    public List<RoomDto> getRoomsInHouse(int houseId) {
+        List<RoomDto> roomDtos = roomRepository.findRoomsInHouse(houseId);
+        for(RoomDto roomDto : roomDtos) {
+            StringBuilder servicesBuilder = new StringBuilder();
+            List<ServiceDetailEntity> serviceDetailEntities = roomRepository.getServiceByRoomId(roomDto.getRoomId());
+            for (ServiceDetailEntity serviceDetailEntity : serviceDetailEntities) {
+                if (!servicesBuilder.isEmpty()) {
+                    servicesBuilder.append(", ");
+                }
+                servicesBuilder.append(serviceDetailEntity.getServiceName());
+            }
+            roomDto.setServices(servicesBuilder.toString());
+        }
+        return roomDtos;
     }
 }

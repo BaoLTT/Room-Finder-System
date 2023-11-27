@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Thêm phòng mới</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description"/>
+    <meta content="Coderthemes" name="author"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+    <link href="/assets/fonts/font-awesome.css" rel="stylesheet" type="text/css">
+    <link href="/assets/fonts/elegant-fonts.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/assets/css/owl.carousel.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
+    <!-- App favicon -->
+    <link rel="shortcut icon" th:href="@{/assets_admin/images/favicon.ico}">
+
+    <!-- App css -->
+    <link th:href="@{/assets_admin/libs/dropzone/dropzone.min.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/assets_admin/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/assets_admin/css/icons.min.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/assets_admin/css/app.min.css}" rel="stylesheet" type="text/css"/>
+
+    <style>
+        .profile-picture img {
+            max-width: 200px;
+            max-height: 200px;
+            width: auto;
+            height: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Begin page -->
+<div id="page-wrapper">
+
+
+    <!-- Topbar Start -->
+    <div th:replace="~{header :: headerSection}"></div>
+    <!-- Left Sidebar End -->
+
+    <!-- ============================================================== -->
+    <!-- Start Page Content here -->
+    <!-- ============================================================== -->
+
+    <div class="page-content">
+        <div class="container">
+
+            <!-- Start Content-->
+            <div class="main-content">
+                <div class="row">
+                    <div class="col-lg">
+                        <div class="card-box">
+                            <h4 class="page-title">Thêm phòng mới</h4>
+                            <div class="d-flex justify-content-end">
+                                <form th:action="@{importRooms}" method="post" enctype="multipart/form-data"
+                                      class="my-form">
+                                    <div class="form-group">
+                                        <input type="file" class="form-control-file" id="fileExcel" name="fileExcel"/>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary" onclick="event.stopPropagation()">Thêm nhiều phòng
+                                    </button>
+                                </form>
+                            </div>
+
+                            <form class="parsley-examples" action="#" th:action="@{/landlord/room/save}" th:object="${room}" method="post" enctype="multipart/form-data">
+                                <input type="hidden" th:field="*{roomId}">
+                                <div class="form-group">
+                                    <label>Phòng</label>
+                                    <input type="text" class="form-control" required
+                                           placeholder="Type something" th:field="*{roomName}"/>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Diện tiích</label>
+                                    <div>
+                                        <input type="number" id="area" class="form-control" required
+                                               placeholder="56.5656" th:field="*{area}"/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Giá</label>
+                                    <div>
+                                        <input type="number" class="form-control" required
+                                               placeholder="56.5656" th:field="*{price}"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Loại phòng</label>
+                                    <div>
+                                       <select class="form-select form-control mb-4 col-4" th:field="*{typeId}" aria-label="Default select example">
+                                           <option th:each="type : ${types}" th:value="${type.typeId}" th:utext="${type.typeName}" />
+                                       </select>
+                                   </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Mô tả chi tiết</label>
+                                    <input type="text" class="form-control" required
+                                           placeholder="Type something" th:field="*{description}"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Dịch vụ</label>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <input type="checkbox" id="fridge" name="serviceNames" value="Tủ lạnh">
+                                            <label for="fridge">Tủ lạnh</label>
+
+                                            <input type="checkbox" id="bed" name="serviceNames" value="Giường ngủ">
+                                            <label for="bed">Giường ngủ</label>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input type="checkbox" id="washingMachine" name="serviceNames"
+                                                   value="Máy giặt">
+                                            <label for="washingMachine">Máy giặt</label>
+
+                                            <input type="checkbox" id="waterHeater" name="serviceNames"
+                                                   value="Bình nóng lạnh">
+                                            <label for="waterHeater">Bình nóng lạnh</label>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input type="checkbox" id="kitchenShelf" name="serviceNames" value="Kệ bếp">
+                                            <label for="kitchenShelf">Kệ bếp</label>
+
+                                            <input type="checkbox" id="loftBed" name="serviceNames" value="Gác xép">
+                                            <label for="loftBed">Gác xép</label>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input type="checkbox" id="studyDesk" name="serviceNames" value="Bàn học">
+                                            <label for="studyDesk">Bàn học</label>
+
+                                            <input type="checkbox" id="wardrobe" name="serviceNames" value="Tủ quần áo">
+                                            <label for="wardrobe">Tủ quần áo</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Tình trạng</label>
+                                    <div>
+                                        <select class="form-control" id="status" name="status"
+                                                th:field="*{status}">
+                                            <option value="ACTIVE" th:selected="${room.status == 'ACTIVE'}">Phòng trống
+                                            </option>
+                                            <option value="INACTIVE" th:selected="${room.status == 'INACTIVE'}">
+                                                Hết phòng
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+								<!-- Pictures -->
+                                <div class="dropzone" id="myAwesomeDropzone">
+                                    <div class="fallback">
+                                        <input name="file" type="file" multiple />
+                                    </div>
+                                    <div class="dz-message needsclick">
+                                        <i class="h1 text-muted dripicons-cloud-upload"></i>
+                                        <h3>Drop files here or click to upload.</h3>
+                                        <span class="text-muted font-13">(This is just a demo dropzone. Selected files are <strong>not</strong> actually uploaded.)</span>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-0">
+                                    <div>
+                                        <button type="submit" class="btn btn-gradient waves-effect waves-light">
+                                            Lưu thông tin
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- end row -->
+
+
+            </div> <!-- end container-fluid -->
+
+        </div> <!-- end content -->
+
+
+        <!-- Footer Start -->
+        <div th:replace="~{footer :: footerSection}"></div>
+        <!-- end Footer -->
+
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- End Page content -->
+    <!-- ============================================================== -->
+
+</div>
+<!-- END wrapper -->
+
+<!-- Vendor js -->
+<script th:src="@{/assets_admin/js/vendor.min.js}"></script>
+
+<!-- Plugin js-->
+<script th:src="@{/assets_admin/assets/libs/parsleyjs/parsley.min.js}"></script>
+
+<!-- Validation init js-->
+<script th:src="@{/assets_admin/assets/js/pages/form-validation.init.js}"></script>
+
+<!-- App js -->
+<script th:src="@{/assets_admin/js/app.min.js}"></script>
+<script th:inline="javascript">
+    $(document).ready(function () {
+        // Customize Dropzone.js options here.
+        Dropzone.options.myAwesomeDropzone = {
+            paramName: "file", // Name of the file input field
+            maxFilesize: 5, // Maximum file size in MB
+            maxFiles: 10, // Maximum number of files
+            acceptedFiles: "image/*", // Restrict to image files
+            addRemoveLinks: true, // Display remove links
+            dictRemoveFile: "Remove", // Text for remove link
+            // Other options...
+
+            // Define a success callback for when files are uploaded successfully
+            success: function (file, response) {
+                // Handle the server response, if needed
+            },
+        };
+    });
+</script>
+</body>
+</html>
