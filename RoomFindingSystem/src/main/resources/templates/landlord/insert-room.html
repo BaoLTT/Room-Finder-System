@@ -7,6 +7,11 @@
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description"/>
     <meta content="Coderthemes" name="author"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+    <link href="/assets/fonts/font-awesome.css" rel="stylesheet" type="text/css">
+    <link href="/assets/fonts/elegant-fonts.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/assets/css/owl.carousel.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
     <!-- App favicon -->
     <link rel="shortcut icon" th:href="@{/assets_admin/images/favicon.ico}">
 
@@ -29,42 +34,26 @@
 <body>
 
 <!-- Begin page -->
-<div id="wrapper">
+<div id="page-wrapper">
 
 
     <!-- Topbar Start -->
-    <div th:replace="~{admin/header_admin :: admin_topbar}"></div>
+    <div th:replace="~{header :: headerSection}"></div>
     <!-- Left Sidebar End -->
 
     <!-- ============================================================== -->
     <!-- Start Page Content here -->
     <!-- ============================================================== -->
 
-    <div class="content-page">
-        <div class="content">
+    <div class="page-content">
+        <div class="container">
 
             <!-- Start Content-->
-            <div class="container-fluid">
-
-                <!-- start page title -->
-                <div class="row">
-                    <div class="col-12">
-                        <div class="page-title-box">
-                            <div class="page-title-right">
-                                <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a th:href="@{/landlord/room/listRoom}">Danh sách phòng</a></li>
-                                    <li class="breadcrumb-item active">Thêm phòng mới</li>
-                                </ol>
-                            </div>
-                            <h4 class="page-title">Thêm phòng mới</h4>
-                        </div>
-                    </div>
-                </div>
-                <!-- end page title -->
-
+            <div class="main-content">
                 <div class="row">
                     <div class="col-lg">
                         <div class="card-box">
+                            <h4 class="page-title">Thêm phòng mới</h4>
                             <div class="d-flex justify-content-end">
                                 <form th:action="@{importRooms}" method="post" enctype="multipart/form-data"
                                       class="my-form">
@@ -192,7 +181,7 @@
 
 
         <!-- Footer Start -->
-        <div th:replace="admin/footer_admin :: admin_footer"></div>
+        <div th:replace="~{footer :: footerSection}"></div>
         <!-- end Footer -->
 
     </div>
