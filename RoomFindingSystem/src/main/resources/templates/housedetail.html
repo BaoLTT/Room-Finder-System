@@ -61,6 +61,17 @@
         .five {
             color: #FFCE45;
         }
+
+        .filter-container {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center; /* Căn giữa theo chiều dọc nếu cần */
+        }
+
+        /* Điều chỉnh độ rộng nếu cần thiết */
+        .filter-container span {
+            margin-right: 10px; /* Điều chỉnh khoảng cách giữa các phần tử */
+        }
     </style>
 
     <title>Xem chi tiết nhà trọ</title>
@@ -509,7 +520,26 @@
                                     <a  class="btn btn-primary btn-rounded pull-right scroll" type="button"  data-toggle="modal" data-target="#exampleModal" th:if="${count == 0}">Viết đánh giá</a>
                                 </div>
 
+
                             </div>
+                            <div class="filter-container">
+                                <span style="margin-right: 10px">Lọc theo sao:</span>
+                                <form th:action="@{/detail#reviews}" th:method="get" id="filterForm">
+                                    <select name="star" class="framed" onchange="submitForm()" style="width: 70px">
+                                        <option value="0">Tất cả</option>
+                                        <option value="1" th:selected="${star==1}">1 sao</option>
+                                        <option value="2" th:selected="${star==2}">2 sao</option>
+                                        <option value="3" th:selected="${star==3}">3 sao</option>
+                                        <option value="4" th:selected="${star==4}">4 sao</option>
+                                        <option value="5" th:selected="${star==5}">5 sao</option>
+                                    </select>
+                                    <input name="id" th:value="${HousesEntity.getHouseId}" hidden="">
+                                    <!-- Thêm một nút submit ẩn để có thể gửi form khi cần thiết -->
+                                    <button type="submit" style="display:none;"></button>
+                                </form>
+                            </div>
+
+
                             <div class="reviews">
 
                                 <div th:each="feedback: ${feedbacks}">
@@ -831,6 +861,12 @@
     }
 
 
+</script>
+<script>
+    function submitForm() {
+        // Khi giá trị của dropdown thay đổi, tự động gửi form
+        document.getElementById("filterForm").submit();
+    }
 </script>
 <!--<script>-->
 <!--    document.addEventListener('DOMContentLoaded', function() {-->
