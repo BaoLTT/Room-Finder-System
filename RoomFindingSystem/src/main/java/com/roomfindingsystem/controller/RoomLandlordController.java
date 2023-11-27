@@ -27,9 +27,9 @@ public class RoomLandlordController {
     private RoomTypeService roomTypeService;
     @Autowired
     private ServiceDetailService serviceDetailService;
-    @GetMapping("/listRoom")
-    public String getListRoomPage(Model model) {
-        List<RoomDto> roomDtos = roomService.getAll();
+    @GetMapping("/listRoom/{id}")
+    public String getListRoomPage(@PathVariable("id") Integer id, Model model) {
+        List<RoomDto> roomDtos = roomService.getRoomsInHouse(id);
         model.addAttribute("rooms", roomDtos);
         return "landlord/list-room";
     }
