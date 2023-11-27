@@ -49,13 +49,20 @@
                         <tr class="my-item" th:each="house:${house}">
                             <td>
                                 <div class="image-wrapper">
-                                    <div class="mark-circle top" data-toggle="tooltip" data-placement="right" title="Top accommodation"><i class="fa fa-thumbs-up"></i></div>
-                                    <a href="edit.html" class="image">
-                                        <div class="bg-transfer">
-                                            <img src="/assets/img/items/01.jpg">
-                                        </div>
-                                    </a>
+                                    <div class="mark-circle top" data-toggle="tooltip" data-placement="right" title="Top accommodation">
+                                        <i class="fa fa-thumbs-up"></i>
+                                    </div>
+                                    <div class="image-carousel">
+                                        <a th:href="@{/manager/edit/}+${house.houseID}" class="image" th:each="image, iterStat : ${house.listImage}" th:classappend="${iterStat.index eq 0} ? 'active'">
+                                            <div class="bg-transfer">
+                                                <img th:src="${image.imageLink}" alt="Ảnh">
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <button class="prev-button" onclick="plusSlides(-1)">❮</button>
+                                    <button class="next-button" style="float: right" onclick="plusSlides(1)">❯</button>
                                 </div>
+
                                 <div class="info">
                                     <a href="detail.html"><h2  th:text="${house.houseName}" style="display: block">Spring Hotel</h2></a>
                                     <figure class="label label-info" th:text="${house.getTypeHouse()}" >Hotel</figure>
@@ -69,7 +76,14 @@
                                 </div>
                                 <!--end info-->
                             </td>
-                            <td><div class="featured yes"><i class="fa fa-check"></i><aside></aside></div></td>
+                            <td th:if="${house.getStatus() == 1}"><div class="featured yes">
+                                <i class="fa fa-check"></i>
+                                <aside></aside>
+                            </div></td>
+                            <td th:if="${house.getStatus() == 0}"><div class="featured yes" style="color: red">
+                                <i class="fa fa-close"></i>
+                                <aside></aside>
+                            </div></td>
                             <td class="views" th:text="${house.getLike()}">426</td>
                             <td class="reviews" th:text="${house.created_firstName + ' '+ house.created_lastName}">45</td>
 
@@ -79,8 +93,8 @@
                                 <div class="edit-options">
                                     <a th:href = "@{/manager/edit/}+${house.houseID}" class="link icon"><i class="fa fa-edit"></i>Edit</a>
                                     <a th:href="@{'/landlord/room/listRoom/' + ${house.houseID}}" class="fa fa-edit">Danh sách phòng</a>
-                                    <a href="reviews.html" class="link icon"><i class="fa fa-comment"></i>Reviews</a>
-                                    <a href="#" class="link icon delete"><i class="fa fa-trash"></i>Delete</a>
+<!--                                    <a href="reviews.html" class="link icon"><i class="fa fa-comment"></i>Reviews</a>-->
+<!--                                    <a href="#" class="link icon delete"><i class="fa fa-trash"></i>Delete</a>-->
                                 </div>
                                 <div>
                                     <span  style="position: absolute;bottom:-42px;left: 180px;opacity: 0.4">Người cập nhật: <h th:text="${house.getLastModifiedBy_firstName()+' '+house.getLastModifiedBy_lastName()}"></h></span>
@@ -162,6 +176,27 @@
 
 <script type="text/javascript" src="/assets/js/maps.js"></script>
 <script type="text/javascript" src="/assets/js/custom.js"></script>
+
+
+<script>
+    var slideIndex = 1;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("image");
+        if (n > slides.length) { slideIndex = 1 }
+        if (n < 1) { slideIndex = slides.length }
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        slides[slideIndex - 1].style.display = "block";
+    }
+</script>
 
 <!--[if lte IE 9]>
 <script src="assets/js/ie.js"></script>
