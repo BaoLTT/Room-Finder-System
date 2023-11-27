@@ -35,6 +35,7 @@ public class HouseServiceImpl implements HouseService {
         List<HouseTypeVo> houseTypeVos = new ArrayList<>();
         List<String> imageLinks;
         List<String> services;
+        List<String> imageIds;
 
         for (Tuple tuple : tuples) {
             HouseTypeVo houseTypeVo = new HouseTypeVo();
@@ -53,13 +54,21 @@ public class HouseServiceImpl implements HouseService {
             } else {
                 houseTypeVo.setLike(like.intValue());
             }
-
+            List<HouseImageDto> listHouseImage = new ArrayList<>();
             String imageLink = (tuple.get("Image_Link", String.class));
-            if (imageLink == null) {
-                houseTypeVo.setListImage(null);
-            } else {
+            String imageId  = (tuple.get("Image_Id",String.class));
+            if(imageLink == null)
+            {houseTypeVo.setListImage(null);}
+            else {
                 imageLinks = Arrays.asList(imageLink.split(","));
-                houseTypeVo.setListImage(imageLinks);
+                imageIds = Arrays.asList(imageId.split(","));
+                for (int i = 0; i < imageLinks.size(); i++) {
+                    HouseImageDto imageDto = new HouseImageDto();
+                    imageDto.setImageLink(imageLinks.get(i));
+                    imageDto.setImageId(Integer.parseInt(imageIds.get(i)));
+                    listHouseImage.add(imageDto);
+                }
+                houseTypeVo.setListImage(listHouseImage);
             }
 
             String service1 = (tuple.get("Service_Name", String.class));
