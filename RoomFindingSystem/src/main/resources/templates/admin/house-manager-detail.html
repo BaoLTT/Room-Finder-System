@@ -182,7 +182,7 @@
                                                 <div class="col-10" >
                                                 <div class="file-upload-previews">
                                                     <div class="MultiFile-label"  id="imageContainer" th:each="image, iterStat : ${house.listImage}">
-                                                        <a class="MultiFile-remove" th:href="@{'/manager/deleteImage/' + ${house.houseID} + '/' + ${image.imageId}}">x</a>
+                                                        <a class="MultiFile-remove" th:href="@{'/admin/house-manager/deleteImage/' + ${house.houseID} + '/' + ${image.imageId}}">x</a>
                                                         <span class="MultiFile-label" title="File selected: abc.png">
                                                             <img th:src="${image.imageLink}" alt="Ảnh" id="imagePreview" style="width: 100px;height: 100px">
                                                         </span>
@@ -364,6 +364,10 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
+<script type="text/javascript" src="/assets/js/jquery-2.2.1.min.js"></script>
+<script type="text/javascript" src="/assets/js/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="/assets/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/assets/js/icheck.min.js"></script>
 <script type="text/javascript" src="/assets/js/jQuery.MultiFile.min.js"></script>
 
 <script type="text/javascript" src="/assets/js/maps.js"></script>
