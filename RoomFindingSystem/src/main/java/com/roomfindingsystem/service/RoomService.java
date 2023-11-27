@@ -55,5 +55,5 @@ public interface RoomService {
 
     void deleteRoomImage(Integer imageId);
 
-
+    List<RoomDto> getRoomsInHouse(int houseId);
 }

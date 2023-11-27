@@ -191,7 +191,7 @@
 
                                 <div class="edit-options">
                                     <a th:href = "@{/manager/edit/}+${house.houseID}" class="link icon"><i class="fa fa-edit"></i>Edit</a>
-                                    <a href="reservations.html" class="link icon"><i class="fa fa-check-square-o"></i>Reservations</a>
+                                    <a th:href="@{'/landlord/room/listRoom/' + ${house.houseID}}" class="fa fa-edit">Danh sách phòng</a>
                                     <a href="reviews.html" class="link icon"><i class="fa fa-comment"></i>Reviews</a>
                                     <a href="#" class="link icon delete"><i class="fa fa-trash"></i>Delete</a>
                                 </div>
