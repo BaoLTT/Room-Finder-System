@@ -58,7 +58,9 @@ public class HouseController {
     }
 
     @RequestMapping(value = "detail", method = RequestMethod.GET)
-    public String getAllHouse(@RequestParam(name = "id", required = false, defaultValue = "1") int houseId, ModelMap model) {
+    public String getAllHouse(@RequestParam(name = "id", required = false, defaultValue = "1") int houseId,
+                              @RequestParam(name = "star", required = false, defaultValue = "0") int star,
+                              ModelMap model) {
         List<HouseDto> houseDto = houseService.getHouseDetail(houseId);
         System.out.printf(houseDto.toString());
 
@@ -75,11 +77,16 @@ public class HouseController {
         model.addAttribute("HousesImages", listsImage);
 
 
-
+        List<FeedbackDto> feedbacks = new ArrayList<>();
         //nghia code
-        List<FeedbackDto> feedbacks = feedbackService.getFeedbackByHouseId(houseId);
+        if (star==0){
+            feedbacks = feedbackService.getFeedbackByHouseId(houseId);
+        } else {
+            feedbacks = feedbackService.getFeedbackByHouseIdAndStar(houseId, star);
+        }
+//        List<FeedbackDto> feedbacks = feedbackService.getFeedbackByHouseId(houseId);
         model.addAttribute("feedbacks", feedbacks);
-
+        model.addAttribute("star", star);
 
         //lấy ra tên của user hiện tại -> lấy ra user hiện tại
 
@@ -158,6 +165,7 @@ public class HouseController {
     public String addFeedback(@Valid @ModelAttribute("feedback") FeedbackEntity feedbackEntity, BindingResult bindingResult){
 
         feedbackEntity.setCreatedDate(currentDate);
+        feedbackEntity.setStatus(true);
         int houseId = feedbackEntity.getHouseId();
         int sum =0;
         if(feedbackService.getFeedbackEntityByUid(houseId, feedbackEntity.getMemberId()).size()==0){

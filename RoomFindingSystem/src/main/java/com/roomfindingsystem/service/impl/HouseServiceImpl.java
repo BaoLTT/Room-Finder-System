@@ -24,8 +24,10 @@ public class HouseServiceImpl implements HouseService {
     }
 
     @Override
+
     public int countHouse(int min1, int max1, int min2, int max2, String houseName, List<Integer> type, List<Integer> service, int countService) {
         return houseRepository.countHouse(min1, max1, min2, max2, houseName, type, service, countService);
+
     }
 
     public List<HouseTypeVo> findHouse(int min1, int max1, int min2, int max2, String houseName, List<Integer> type, List<Integer> service, int countService, int pageIndex, int pageSize) {
