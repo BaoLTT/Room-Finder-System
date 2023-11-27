@@ -1,16 +1,14 @@
 package com.roomfindingsystem.controller.admin;
 
 import com.roomfindingsystem.dto.HouseLandlordVo;
+import com.roomfindingsystem.dto.HouseManagerTypeVo;
 import com.roomfindingsystem.entity.*;
 
 import com.roomfindingsystem.repository.TypeHouseRepository;
 import com.roomfindingsystem.repository.UserRepository;
-import com.roomfindingsystem.service.AddressService;
-import com.roomfindingsystem.service.HouseLandlordService;
-import com.roomfindingsystem.service.HouseManagerService;
+import com.roomfindingsystem.service.*;
 
-import com.roomfindingsystem.service.ServiceDetailService;
-import jakarta.servlet.http.HttpServletRequest;
+import com.roomfindingsystem.service.impl.GcsService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,10 +24,10 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("/admin")
-public class AdminManageHouseController {
+public class HouseManagerController {
     private HouseManagerService houseManagerService;
 
-    public AdminManageHouseController(HouseManagerService houseManagerService){
+    public HouseManagerController(HouseManagerService houseManagerService){
         this.houseManagerService = houseManagerService;
     }
     @Autowired
@@ -42,12 +40,14 @@ public class AdminManageHouseController {
     ServiceDetailService serviceDetailService;
     @Autowired
     HouseLandlordService houseLandlordService;
-
-
+    @Autowired
+    GcsService gcsService;
+    @Autowired
+    HouseService houseService;
 
     @GetMapping("/house-manager")
     public String viewHomepage(final Model model, HttpSession httpSession){
-        List<HouseLandlordVo> houseList = houseLandlordService.getAllHouse();
+        List<HouseManagerTypeVo> houseList = houseManagerService.findHouseManager();
         model.addAttribute("houses", houseList);
         //entries từ 0 đến 5 vào jquery.dataTables.min.js" tìm entries sửa display = 5
         return "admin/house-manager";
@@ -71,10 +71,14 @@ public class AdminManageHouseController {
         model.addAttribute("listType",listType);
         model.addAttribute("listChecked",listChecked);
         model.addAttribute("listService",listService);
+        model.addAttribute("key_map", gcsService.getMapKey());
+        model.addAttribute("houseLocation", houseService.getHouseById(houseid));
+
         return "admin/house-manager-detail";
     }
     @PostMapping("/house-manager/update")
-    public String updateHouse(@ModelAttribute("house") HouseLandlordVo house,@RequestParam("file") MultipartFile[] files, @RequestParam(name = "service", required = false,defaultValue = "0") List<Integer> service, MultipartFile[] images, Model model, HttpSession httpSession,HttpServletRequest request) throws IOException {
+    public String updateHouse(@ModelAttribute("house") HouseLandlordVo house, @RequestParam(name = "service", required = false,defaultValue = "0") List<Integer> service, MultipartFile[] images, Model model, HttpSession httpSession,
+                              @RequestParam(name = "latitude1") Double latitude ,@RequestParam(name = "longitude1") Double longitude ) throws IOException {
         if(house.getProvinceID()==0){
             Optional<AddressEntity> newAddress = addressService.findbyId(house.getAddress());
             AddressEntity address = new AddressEntity("a",house.getAddressDetail(),newAddress.get().getProvinceId(),newAddress.get().getDistrictId(),newAddress.get().getWardId());
@@ -83,14 +87,16 @@ public class AdminManageHouseController {
             AddressEntity address = new AddressEntity("a",house.getAddressDetail(),house.getProvinceID(),house.getDistrictID(),house.getWardID());
             addressService.updateAddress(address,house.getAddress());
         }
-        System.out.println(house.getHouseID());
-        System.out.println(service);
-        HttpSession session = request.getSession();
-        UserEntity user = (UserEntity) session.getAttribute("user");
-        house.setUserID(user.getUserId());
-        house.setCreatedBy(user.getUserId());
-        house.setLastModifiedBy(user.getUserId());
-        houseManagerService.updateHouse(house,house.getHouseID(),service,files);
+
+
+        houseManagerService.updateHouse(house,house.getHouseID(),service, images);
+
+
+        HousesEntity housesEntity = houseService.getHouseById(house.getHouseID());
+        housesEntity.setLatitude(latitude);
+        housesEntity.setLongitude(longitude);
+        houseService.saveHouse(housesEntity);
+        System.out.println(housesEntity.toString());
 
         return "redirect:/admin/house-manager";
     }
@@ -110,25 +116,13 @@ public class AdminManageHouseController {
     }
 
     @PostMapping("/house-manager/save")
-    public String saveHouse(@ModelAttribute(name = "house") HouseLandlordVo house, @RequestParam("file") MultipartFile[] files, Model model, HttpSession httpSession, HttpServletRequest request) throws IOException {
+    public String saveHouse(@ModelAttribute(name = "house") HouseLandlordVo house, MultipartFile[] images, Model model, HttpSession httpSession) throws IOException {
         AddressEntity address = new AddressEntity("a",house.getAddressDetail().trim(),house.getProvinceID(),house.getDistrictID(),house.getWardID());
         int addressID = addressService.insertAddress(address);
-        HttpSession session = request.getSession();
-        UserEntity user = (UserEntity) session.getAttribute("user");
-        house.setUserID(user.getUserId());
-        house.setLastModifiedBy(user.getUserId());
-        houseManagerService.insertHouse(house,addressID,files);
+        houseManagerService.insertHouse(house,addressID,images);
         return  "redirect:/admin/house-manager";
     }
 
-    @GetMapping("/house-manager/deleteImage/{houseId}/{imageId}")
-    public String deleteImage(@PathVariable Integer houseId,@PathVariable Integer imageId,Model model, HttpSession httpSession){
-        System.out.println(houseId);
-        System.out.println(imageId);
-        houseManagerService.deleteImageById(imageId);
-
-        return "redirect:/admin/house-manager/detail/" + houseId;
-    }
 
 
 

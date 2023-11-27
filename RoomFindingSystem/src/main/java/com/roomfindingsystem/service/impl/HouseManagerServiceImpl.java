@@ -136,4 +136,5 @@ public class HouseManagerServiceImpl implements HouseManagerService {
             }
         }
     }
+
 }

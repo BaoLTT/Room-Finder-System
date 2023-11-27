@@ -210,7 +210,7 @@
                             <ul>
                                 <li><a href="#description" class="scroll">Miêu tả chi tiết</a></li>
                                 <li><a href="#map" class="scroll">Bản đồ</a></li>
-                                <li><a href="#facilities" class="scroll">Facilities</a></li>
+                                <li><a href="#facilities" class="scroll">Dịch vụ</a></li>
                                 <li><a href="#additional-information" class="scroll">Thêm Thông Tin</a></li>
                                 <li><a href="#reviews" class="scroll">Đánh giá</a></li>
                                 <li></li>
@@ -358,7 +358,7 @@
                                 <!--                                                                    <h2>Map</h2>-->
                                 <!--                                                                    <div id="map-item" class="map height-300 box"></div>-->
                                 <div id="map" th:if="${houseLocation.latitude == null || houseLocation.longitude== null }">
-                                    <h2>Map</h2>
+                                    <h2>Bản đồ</h2>
                                     <span>Nhà trọ chưa cập nhật vị trí trên google map</span>
                                 </div>
                                 <div th:if="${houseLocation.latitude != null && houseLocation.longitude != null }">
@@ -367,6 +367,7 @@
                                         <div id="map-item" class="map height-300 box"></div>
                                         <input id="latitude" type="hidden" th:value="${houseLocation.latitude}">
                                         <input id="longitude" type="hidden" th:value="${houseLocation.longitude}">
+                                        <button type="button" class="btn btn-secondary" onclick="showDirections()">Chỉ đường</button>
                                     </section>
                                 </div>
 
@@ -800,7 +801,7 @@
 <!--</div>-->
 <script type="text/javascript" src="assets/js/jquery-2.2.1.min.js"></script>
 <script type="text/javascript" src="assets/js/jquery-migrate-1.2.1.min.js"></script>
-<script type="text/javascript" src="http://maps.google.com/maps/api/js"></script>
+<!--<script type="text/javascript" src="https://maps.google.com/maps/api/js"></script>-->
 <script type="text/javascript" src="assets/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="assets/js/jquery.validate.min.js"></script>
 <script type="text/javascript" src="assets/js/bootstrap-datepicker.js"></script>
@@ -811,12 +812,6 @@
 <script type="text/javascript" src="assets/js/jquery.simpleWeather.min.js"></script>
 <!--<script type="text/javascript" src="/assets/js/maps.js"></script>-->
 <script type="text/javascript" src="assets/js/custom.js"></script>
-<script>
-    var _latitude = 48.47292127;
-    var _longitude = 4.28672791;
-    var element = "map-item";
-    simpleMap(_latitude,_longitude, element);
-</script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Get initial rating from the input value or set default to 5 if it's 0
@@ -947,6 +942,9 @@
 <script>
     var map;
     var marker;
+    var directionsRenderer;
+    var directionsService;
+
 
     function initMap() {
         var latitude = parseFloat(document.getElementById('latitude').value);
@@ -959,13 +957,81 @@
         });
 
 
+
         //marker ban dau
         marker = new google.maps.Marker({
             position: {lat: latitude, lng: longitude},
             map: map
         });
 
+    }
 
+    function showDirections() {
+
+        directionsService = new google.maps.DirectionsService();
+        directionsRenderer = new google.maps.DirectionsRenderer({
+            map: map
+        });
+
+        var latitude = parseFloat(document.getElementById('latitude').value);
+        var longitude = parseFloat(document.getElementById('longitude').value);
+
+        var destinationCoordinates = {lat: latitude, lng: longitude};
+
+
+
+            calculateAndDisplayRoute(destinationCoordinates);
+
+
+
+    }
+
+    function calculateAndDisplayRoute(destination) {
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var origin = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+
+                var request = {
+                    origin: origin,
+                    destination: destination,
+                    travelMode: 'DRIVING'
+                };
+
+                directionsService.route(request, function(result, status) {
+                    if (status === 'OK') {
+                        directionsRenderer.setDirections(result);
+
+                        // Lấy thông tin thời gian và quãng đường từ kết quả API
+                        var route = result.routes[0];
+                        var duration = route.legs[0].duration.text;
+                        var distance = route.legs[0].distance.text;
+
+                        // Hiển thị thông tin trên bản đồ
+                        showRouteInfo(duration, distance);
+                    } else {
+                        console.error('Error: Unable to retrieve directions.');
+                    }
+                });
+            }, function() {
+                // Xử lý lỗi
+                console.error('Error: The Geolocation service failed.');
+            });
+        } else {
+            // Trình duyệt không hỗ trợ Geolocation
+            console.error('Error: Your browser doesn\'t support geolocation.');
+        }
+    }
+
+    function showRouteInfo(duration, distance) {
+        var infoContainer = document.createElement('div');
+        infoContainer.innerHTML = '<strong>Thời gian đi:</strong> ' + duration + '<br><strong>Quãng đường:</strong> ' + distance;
+
+        // Thêm thông tin vào bản đồ
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(infoContainer);
     }
 
 
