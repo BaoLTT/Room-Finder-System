@@ -13,9 +13,9 @@ import java.time.LocalDate;
 public class ReportListDto {
     private int reportId;
     private String reportDescription;
-    private Date createdDate;
+    private LocalDate createdDate;
     private String reportStatus;
-    private Date solvedDate;
+    private LocalDate solvedDate;
     private String email;
     private String houseName;
 

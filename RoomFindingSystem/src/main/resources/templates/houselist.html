@@ -182,17 +182,13 @@
 
                                 <a  th:href="@{/add-favourite-list?id=}+${houses.houseID}" class="mark-circle" onclick="showSuccessToastAdd()"
                                    data-toggle="tooltip" data-placement="right"
-                                   title="Add to favourite list"><i style="color: white;"
+                                   title="Add to favourite list"><i style="color: Green;"
                                                                     class="fa fa-thumbs-up"></i></a>
 
-                                <div class="image">
-
-
+                                <div class="image" >
                                     <a th:href="@{/detail?id=}+${houses.houseID}" class="wrapper">
                                         <div class="gallery">
-
-                                            <img style="width: 273px; height: 208px;"
-                                                 th:each="image: ${houses.listImage}" th:src="${image}" alt="">
+                                            <img style="width: 273px; height: 208px;" th:each="image, iterStat : ${houses.listImage}" th:src="${image.imageLink}" alt="Ảnh">
                                         </div>
                                     </a>
                                     <div class="map-item">
@@ -230,7 +226,7 @@
 
                                     </p>
 
-                                    <div class="price-info" >Từ<span class="price" th:text="${formattedPrices}" ></span>Triệu
+                                    <div class="price-info" >Từ<span class="price" th:text="${houses.price}" ></span>Triệu
                                         <span class="appendix">/tháng</span></div>
 
                                     <a th:href="@{/detail?id=}+${houses.houseID}"
