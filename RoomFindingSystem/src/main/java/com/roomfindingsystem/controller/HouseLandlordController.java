@@ -84,6 +84,8 @@ public class HouseLandlordController {
         HttpSession session = request.getSession();
         UserEntity user = (UserEntity) session.getAttribute("user");
         house.setUserID(user.getUserId());
+        house.setCreatedBy(user.getUserId());
+        house.setLastModifiedBy(user.getUserId());
         houseManagerService.insertHouse(house,addressID,files);
         return  "redirect:/manager";
     }
@@ -102,6 +104,8 @@ public class HouseLandlordController {
         HttpSession session = request.getSession();
         UserEntity user = (UserEntity) session.getAttribute("user");
         house.setUserID(user.getUserId());
+        house.setCreatedBy(user.getUserId());
+        house.setLastModifiedBy(user.getUserId());
         houseManagerService.updateHouse(house,house.getHouseID(),service,files);
 
         return  "redirect:/manager";
