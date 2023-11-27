@@ -43,8 +43,7 @@ public class HouseLandlordController {
         UserEntity user = (UserEntity) session.getAttribute("user");
         System.out.println("UserID: "+user.getUserId());
         List<HouseLandlordVo> listHouse = new ArrayList<>();
-        int userId = 9;
-        listHouse = houseLandlordService.findHouseByUser(userId);
+        listHouse = houseLandlordService.findHouseByUser(user.getUserId());
         model.addAttribute("house",listHouse);
         return "managerHouse";
     }
