@@ -4,12 +4,14 @@
 <head>
     <meta charset="utf-8"/>
     <title>Danh sách phòng</title>
+    <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description"/>
-    <meta content="Coderthemes" name="author"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <!-- App favicon -->
-    <link rel="shortcut icon" th:href="@{/assets_admin/images/favicon.ico}">
+    <meta name="author" content="ThemeStarz">
+
+    <link href="/assets/fonts/font-awesome.css" rel="stylesheet" type="text/css">
+    <link href="/assets/fonts/elegant-fonts.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/assets/css/owl.carousel.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
 
     <!-- third party css -->
     <link th:href="@{/assets_admin/libs/datatables/dataTables.bootstrap4.css}" rel="stylesheet" type="text/css"/>
@@ -26,28 +28,28 @@
 <body>
 
 <!-- Begin page -->
-<div id="wrapper">
-
+<div id="page-wrapper">
 
     <!-- Topbar Start -->
-    <div th:replace="~{admin/header_admin :: admin_topbar}"></div>
+    <div th:replace="~{header :: headerSection}"></div>
     <!-- Left Sidebar End -->
 
     <!-- ============================================================== -->
     <!-- Start Page Content here -->
     <!-- ============================================================== -->
 
-    <div class="content-page">
-        <div class="content">
+    <div class="page-content">
+        <div class="container">
 
             <!-- Start Content-->
-            <div class="container-fluid">
+            <div class="main-content">
                 <div class="row">
                     <div class="col-12">
                         <div class="card-box table-responsive">
                             <div class="d-flex justify-content-end">
                                 <button class="btn btn-success mb-1 "><a th:href="@{/landlord/room/insertRoom}"
-                                                                         style="color: white">Thêm phòng mới</a></button>
+                                                                         style="color: white">Thêm phòng mới</a>
+                                </button>
                             </div>
                             <table id="datatable-buttons"
                                    class="table table-striped table-bordered dt-responsive nowrap"
@@ -88,9 +90,11 @@
                                     </td>
 
                                     <td>
-                                        <a th:href="@{'/landlord/room/updateRoom/' + ${room.roomId}}" class="btn btn-warning">Chi tiết</a>
+                                        <a th:href="@{'/landlord/room/updateRoom/' + ${room.roomId}}"
+                                           class="btn btn-warning">Chi tiết</a>
                                         |
-                                        <a th:href="@{'/landlord/room/deleteRoom/' + ${room.roomId}}" class="btn btn-danger">Xóa</a>
+                                        <a th:href="@{'/landlord/room/deleteRoom/' + ${room.roomId}}"
+                                           class="btn btn-danger">Xóa</a>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -105,7 +109,7 @@
 
 
         <!-- Footer Start -->
-        <div th:replace="admin/footer_admin :: admin_footer"></div>
+        <div th:replace="~{footer :: footerSection}"></div>
         <!-- end Footer -->
 
     </div>
