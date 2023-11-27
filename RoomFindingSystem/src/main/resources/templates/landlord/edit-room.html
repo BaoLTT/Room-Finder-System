@@ -96,8 +96,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Dịch vụ</label>
-                                    <div>
-                                        <div>
+                                    <div class="row">
+                                        <div class="col-md-3">
                                             <input type="checkbox" id="fridge" name="serviceNames" value="Tủ lạnh"
                                                    th:checked="*{serviceNames.contains('Tủ lạnh')}">
                                             <label for="fridge">Tủ lạnh</label><br>
@@ -105,7 +105,8 @@
                                             <input type="checkbox" id="bed" name="serviceNames" value="Giường ngủ"
                                                    th:checked="*{serviceNames.contains('Giường ngủ')}">
                                             <label for="bed">Giường ngủ</label><br>
-
+                                        </div>
+                                        <div class="col-md-3">
                                             <input type="checkbox" id="washingMachine" name="serviceNames"
                                                    value="Máy giặt" th:checked="*{serviceNames.contains('Máy giặt')}">
                                             <label for="washingMachine">Máy giặt</label><br>
@@ -114,7 +115,8 @@
                                                    value="Bình nóng lạnh"
                                                    th:checked="*{serviceNames.contains('Bình nóng lạnh')}">
                                             <label for="waterHeater">Bình nóng lạnh</label><br>
-
+                                        </div>
+                                        <div class="col-md-3">
                                             <input type="checkbox" id="kitchenShelf" name="serviceNames" value="Kệ bếp"
                                                    th:checked="*{serviceNames.contains('Kệ bếp')}">
                                             <label for="kitchenShelf">Kệ bếp</label><br>
@@ -122,7 +124,8 @@
                                             <input type="checkbox" id="loftBed" name="serviceNames" value="Gác xép"
                                                    th:checked="*{serviceNames.contains('Gác xép')}">
                                             <label for="loftBed">Gác xép</label><br>
-
+                                        </div>
+                                        <div class="col-md-3">
                                             <input type="checkbox" id="studyDesk" name="serviceNames" value="Bàn học"
                                                    th:checked="*{serviceNames.contains('Bàn học')}">
                                             <label for="studyDesk">Bàn học</label><br>
@@ -180,7 +183,7 @@
                                             Lưu thay đổi
                                         </button>
                                         <button type="reset" class="btn btn-light waves-effect ml-1">
-                                            <a th:href="@{/landlord/room/listRoom}">Danh sách phòng</a>
+                                            <a th:href="@{'/landlord/room/listRoom/' + ${room.houseId}}">Danh sách phòng</a>
                                         </button>
                                     </div>
                                 </div>
