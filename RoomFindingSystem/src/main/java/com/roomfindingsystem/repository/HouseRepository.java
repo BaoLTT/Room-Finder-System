@@ -23,6 +23,7 @@ public interface HouseRepository extends JpaRepository<HousesEntity, Integer> {
 
     @Query(value = "SELECT h.houseid, h.house_name, t.type_name, a.address_details, w.name AS ward_name, d.name AS district_name, p.name AS province_name, (SELECT MIN(r.price) FROM room r WHERE r.houseid = h.houseid) AS minPrice," +
             " (SELECT GROUP_CONCAT(i.image_link) FROM house_images i WHERE i.houseid = h.houseid) AS Image_Link," +
+            " (SELECT GROUP_CONCAT(i.imageid) FROM house_images i WHERE i.houseid = h.houseid) AS Image_Id," +
             " SUBSTRING_INDEX( (SELECT GROUP_CONCAT(DISTINCT sd.service_name) FROM service_house sh" +
             "            LEFT JOIN service_detail sd ON sd.serviceid = sh.serviceid" +
             "            WHERE sh.houseid = h.houseid), ',', 2) AS Service_Name, h.last_modified_date," +
