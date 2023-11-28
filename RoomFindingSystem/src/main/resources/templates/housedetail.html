@@ -67,9 +67,9 @@
             color: #FFCE45;
         }
 
-        body {
-            font-family: 'Arial', sans-serif;
-        }
+         body {
+             font-family: 'Arial', sans-serif;
+         }
     </style>
 
     <title>Xem chi tiết nhà trọ</title>
@@ -202,7 +202,7 @@
                             <ul>
                                 <li><a href="#description" class="scroll">Miêu tả chi tiết</a></li>
                                 <li><a href="#map" class="scroll">Bản đồ</a></li>
-                                <li><a href="#facilities" class="scroll">Facilities</a></li>
+                                <li><a href="#facilities" class="scroll">Dịch vụ</a></li>
                                 <li><a href="#additional-information" class="scroll">Thêm Thông Tin</a></li>
                                 <li><a href="#reviews" class="scroll">Đánh giá</a></li>
                                 <li></li>
@@ -398,8 +398,7 @@
                                 <!--                                                                <section id="map">-->
                                 <!--                                                                    <h2>Map</h2>-->
                                 <!--                                                                    <div id="map-item" class="map height-300 box"></div>-->
-                                <div id="map"
-                                     th:if="${houseLocation.latitude == null || houseLocation.longitude== null }">
+                                <div id="map" th:if="${houseLocation.latitude == null || houseLocation.longitude== null }">
                                     <h2>Map</h2>
                                     <span>Nhà trọ chưa cập nhật vị trí trên google map</span>
                                 </div>
@@ -588,7 +587,26 @@
                                         giá</a>
                                 </div>
 
+
                             </div>
+                            <div class="filter-container">
+                                <span style="margin-right: 10px">Lọc theo sao:</span>
+                                <form th:action="@{/detail#reviews}" th:method="get" id="filterForm">
+                                    <select name="star" class="framed" onchange="submitForm()" style="width: 70px">
+                                        <option value="0">Tất cả</option>
+                                        <option value="1" th:selected="${star==1}">1 sao</option>
+                                        <option value="2" th:selected="${star==2}">2 sao</option>
+                                        <option value="3" th:selected="${star==3}">3 sao</option>
+                                        <option value="4" th:selected="${star==4}">4 sao</option>
+                                        <option value="5" th:selected="${star==5}">5 sao</option>
+                                    </select>
+                                    <input name="id" th:value="${HousesEntity.getHouseId}" hidden="">
+                                    <!-- Thêm một nút submit ẩn để có thể gửi form khi cần thiết -->
+                                    <button type="submit" style="display:none;"></button>
+                                </form>
+                            </div>
+
+
                             <div class="reviews">
 
                                 <div th:each="feedback: ${feedbacks}">
@@ -883,7 +901,7 @@
 <!--</div>-->
 <script type="text/javascript" src="assets/js/jquery-2.2.1.min.js"></script>
 <script type="text/javascript" src="assets/js/jquery-migrate-1.2.1.min.js"></script>
-<script type="text/javascript" src="http://maps.google.com/maps/api/js"></script>
+<!--<script type="text/javascript" src="https://maps.google.com/maps/api/js"></script>-->
 <script type="text/javascript" src="assets/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="assets/js/jquery.validate.min.js"></script>
 <script type="text/javascript" src="assets/js/bootstrap-datepicker.js"></script>
@@ -899,7 +917,6 @@
     var _longitude = 4.28672791;
     var element = "map-item";
     simpleMap(_latitude,_longitude, element);
-
 </script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -960,14 +977,80 @@
     }
 
 
-
 </script>
+
+<script>
+    function submitForm() {
+        // Khi giá trị của dropdown thay đổi, tự động gửi form
+        document.getElementById("filterForm").submit();
+    }
+</script>
+<!--<script>-->
+<!--    document.addEventListener('DOMContentLoaded', function() {-->
+<!--        // Get initial rating from the input value or set default to 5 if it's 0-->
+<!--        const initialRatingInput = document.getElementById("ratingInput");-->
+<!--        let initialRating = initialRatingInput.value ? parseInt(initialRatingInput.value, 10) : 5;-->
+
+<!--        // If initial rating is 0, set it to 5-->
+<!--        if (initialRating === 0) {-->
+<!--            initialRating = 5;-->
+<!--            initialRatingInput.value = "5";-->
+<!--        }-->
+
+<!--        gfg(initialRating);-->
+<!--    });-->
+
+<!--    function updateRating(value) {-->
+<!--        // Convert input value to a number-->
+<!--        const rating = parseInt(value, 10);-->
+
+<!--        // Check if the value is a valid number between 1 and 5-->
+<!--        if (!isNaN(rating) && rating >= 1 && rating <= 5) {-->
+<!--            gfg(rating);-->
+<!--        } else {-->
+<!--            // If the input value is not valid, you can handle it here (e.g., display an error message)-->
+<!--        }-->
+<!--    }-->
+<!--</script>-->
+<!--<script>-->
+<!--    // script.js-->
+
+<!--    // To access the stars-->
+<!--    let stars = document.getElementsByClassName("star");-->
+
+<!--    // Function to update rating-->
+<!--    function gfg(n) {-->
+<!--        remove();-->
+
+<!--        for (let i = 0; i < n; i++) {-->
+<!--            let cls;-->
+<!--            if (n == 1) cls = "one";-->
+<!--            else if (n == 2) cls = "two";-->
+<!--            else if (n == 3) cls = "three";-->
+<!--            else if (n == 4) cls = "four";-->
+<!--            else if (n == 5) cls = "five";-->
+<!--            stars[i].className = "star " + cls;-->
+<!--        }-->
+<!--        document.getElementById("ratingInput").value = "" + n;-->
+<!--    }-->
+
+<!--    // To remove the pre-applied styling-->
+<!--    function remove() {-->
+<!--        for (let i = 0; i < 5; i++) {-->
+<!--            stars[i].className = "star";-->
+<!--        }-->
+<!--    }-->
+<!--</script>-->
+
 
 <script th:src="@{'https://maps.googleapis.com/maps/api/js?key='+${key_map}+'&callback=initMap'}" async defer></script>
 
 <script>
     var map;
     var marker;
+    var directionsRenderer;
+    var directionsService;
+
 
     function initMap() {
         var latitude = parseFloat(document.getElementById('latitude').value);
@@ -980,13 +1063,81 @@
         });
 
 
+
         //marker ban dau
         marker = new google.maps.Marker({
             position: {lat: latitude, lng: longitude},
             map: map
         });
 
+    }
 
+    function showDirections() {
+
+        directionsService = new google.maps.DirectionsService();
+        directionsRenderer = new google.maps.DirectionsRenderer({
+            map: map
+        });
+
+        var latitude = parseFloat(document.getElementById('latitude').value);
+        var longitude = parseFloat(document.getElementById('longitude').value);
+
+        var destinationCoordinates = {lat: latitude, lng: longitude};
+
+
+
+            calculateAndDisplayRoute(destinationCoordinates);
+
+
+
+    }
+
+    function calculateAndDisplayRoute(destination) {
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var origin = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+
+                var request = {
+                    origin: origin,
+                    destination: destination,
+                    travelMode: 'DRIVING'
+                };
+
+                directionsService.route(request, function(result, status) {
+                    if (status === 'OK') {
+                        directionsRenderer.setDirections(result);
+
+                        // Lấy thông tin thời gian và quãng đường từ kết quả API
+                        var route = result.routes[0];
+                        var duration = route.legs[0].duration.text;
+                        var distance = route.legs[0].distance.text;
+
+                        // Hiển thị thông tin trên bản đồ
+                        showRouteInfo(duration, distance);
+                    } else {
+                        console.error('Error: Unable to retrieve directions.');
+                    }
+                });
+            }, function() {
+                // Xử lý lỗi
+                console.error('Error: The Geolocation service failed.');
+            });
+        } else {
+            // Trình duyệt không hỗ trợ Geolocation
+            console.error('Error: Your browser doesn\'t support geolocation.');
+        }
+    }
+
+    function showRouteInfo(duration, distance) {
+        var infoContainer = document.createElement('div');
+        infoContainer.innerHTML = '<strong>Thời gian đi:</strong> ' + duration + '<br><strong>Quãng đường:</strong> ' + distance;
+
+        // Thêm thông tin vào bản đồ
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(infoContainer);
     }
 
 

@@ -24,8 +24,10 @@ public class HouseServiceImpl implements HouseService {
     }
 
     @Override
+
     public int countHouse(int min1, int max1, int min2, int max2, String houseName, List<Integer> type, List<Integer> service, int countService) {
         return houseRepository.countHouse(min1, max1, min2, max2, houseName, type, service, countService);
+
     }
 
     public List<HouseTypeVo> findHouse(int min1, int max1, int min2, int max2, String houseName, List<Integer> type, List<Integer> service, int countService, int pageIndex, int pageSize) {
@@ -33,6 +35,7 @@ public class HouseServiceImpl implements HouseService {
         List<HouseTypeVo> houseTypeVos = new ArrayList<>();
         List<String> imageLinks;
         List<String> services;
+        List<String> imageIds;
 
         for (Tuple tuple : tuples) {
             HouseTypeVo houseTypeVo = new HouseTypeVo();
@@ -51,13 +54,21 @@ public class HouseServiceImpl implements HouseService {
             } else {
                 houseTypeVo.setLike(like.intValue());
             }
-
+            List<HouseImageDto> listHouseImage = new ArrayList<>();
             String imageLink = (tuple.get("Image_Link", String.class));
-            if (imageLink == null) {
-                houseTypeVo.setListImage(null);
-            } else {
+            String imageId  = (tuple.get("Image_Id",String.class));
+            if(imageLink == null)
+            {houseTypeVo.setListImage(null);}
+            else {
                 imageLinks = Arrays.asList(imageLink.split(","));
-                houseTypeVo.setListImage(imageLinks);
+                imageIds = Arrays.asList(imageId.split(","));
+                for (int i = 0; i < imageLinks.size(); i++) {
+                    HouseImageDto imageDto = new HouseImageDto();
+                    imageDto.setImageLink(imageLinks.get(i));
+                    imageDto.setImageId(Integer.parseInt(imageIds.get(i)));
+                    listHouseImage.add(imageDto);
+                }
+                houseTypeVo.setListImage(listHouseImage);
             }
 
             String service1 = (tuple.get("Service_Name", String.class));
@@ -119,6 +130,11 @@ public class HouseServiceImpl implements HouseService {
     @Override
     public HousesEntity getHouseById(int id) {
         return houseRepository.getHousesEntitiesByHouseId(id);
+    }
+
+    @Override
+    public void saveHouse(HousesEntity housesEntity) {
+        houseRepository.save(housesEntity);
     }
 
 

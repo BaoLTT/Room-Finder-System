@@ -24,9 +24,13 @@ public interface FeedbackRepository extends JpaRepository<FeedbackEntity,Integer
 
 
 
-    @Query("SELECT NEW com.roomfindingsystem.dto.FeedbackDto(f.feedbackId, f.title, f.content, f.createdDate, u.firstName, u.lastName, u.imageLink, u.userId, f.star) FROM FeedbackEntity f JOIN UserEntity u " +
+    @Query("SELECT NEW com.roomfindingsystem.dto.FeedbackDto(f.feedbackId, f.title, f.content, f.createdDate, u.firstName, u.lastName, u.imageLink, u.userId, f.star, f.status) FROM FeedbackEntity f JOIN UserEntity u " +
             "ON u.userId = f.memberId WHERE f.houseId = :houseId")
     List<FeedbackDto> findFeedbackDtosByHouseId(int houseId);
+
+    @Query("SELECT NEW com.roomfindingsystem.dto.FeedbackDto(f.feedbackId, f.title, f.content, f.createdDate, u.firstName, u.lastName, u.imageLink, u.userId, f.star, f.status) FROM FeedbackEntity f JOIN UserEntity u " +
+            "ON u.userId = f.memberId WHERE f.houseId = :houseId and f.star=:star")
+    List<FeedbackDto> findFeedbackDtosByHouseIdAndStar(int houseId, int star);
 
     @Query("SELECT f FROM FeedbackEntity f WHERE f.houseId = :houseId AND f.memberId = :memberId")
     List<FeedbackEntity> getFeedbackEntityByUid(int houseId, int memberId);
@@ -36,6 +40,18 @@ public interface FeedbackRepository extends JpaRepository<FeedbackEntity,Integer
     @Modifying
     @Query("DELETE FROM FeedbackEntity f WHERE f.houseId = :houseId AND f.memberId = :memberId")
     void deleteByHouseIdAndMemberId(int houseId, int memberId);
+
+    @Transactional
+    @Modifying
+    @Query("UPDATE FeedbackEntity f SET f.status = false WHERE f.feedbackId = :feedbackId")
+    void updateStatusToFalse(int feedbackId);
+
+    @Transactional
+    @Modifying
+    @Query("UPDATE FeedbackEntity f SET f.status = true WHERE f.feedbackId = :feedbackId")
+    void updateStatusToTrue(int feedbackId);
+
+
 
 
 //    @Query("UPDATE FeedbackEntity f SET f.someField = :newValue WHERE f.houseId = :houseId AND f.memberId = :memberId")

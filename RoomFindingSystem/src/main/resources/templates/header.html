@@ -66,8 +66,10 @@
                 <nav id="primary-nav">
                   <ul>
                     <li class="active"><a th:href="@{/}">Trang chủ</a></li>
+                      <li><a th:if="${session.user != null and session.user.getRoleId() == 'LANDLORD'}" th:href="@{/manager}" >Quản lý phòng trọ</a></li>
                     <li><a th:href="@{/houselist}">Danh sách nhà trọ</a></li>
                     <li><a th:href="@{/RoomList/1}" class="has-child" id="roomList">Danh sách phòng trọ</a></li>
+
                     <li><a href="/blog">Blog</a></li>
                   </ul>
                 </nav>
