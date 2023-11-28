@@ -66,7 +66,16 @@ public class HouseLandlordController {
     }
 
     @GetMapping("/edit/{houseid}")
-    public String detailHouse(@PathVariable Integer houseid,Model model, HttpSession httpSession){
+    public String detailHouse(@PathVariable Integer houseid,Model model, HttpSession httpSession, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        UserEntity user = (UserEntity) session.getAttribute("user");
+        if(user == null){
+            return "redirect:/";
+        }
+        if(!user.getRoleId().equals("LANDLORD")){
+            return "redirect:/login";
+        }
+
         List<TypeHouseEntity> listType = houseTypeService.findAll();
         List<ServiceDetailEntity> listService = serviceDetailService.getAllService();
 
