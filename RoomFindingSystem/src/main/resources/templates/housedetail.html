@@ -67,9 +67,9 @@
             color: #FFCE45;
         }
 
-        body {
-            font-family: 'Arial', sans-serif;
-        }
+         body {
+             font-family: 'Arial', sans-serif;
+         }
     </style>
 
     <title>Xem chi tiết nhà trọ</title>
@@ -319,20 +319,20 @@
                         <div class="one-item-carousel">
 
                             <!-- Carousel container -->
-<!--                                                        <section id="gallery" th:each="HousesImages : ${HousesImages}">-->
-<!--                                                            <div class="gallery-detail">-->
-<!--                                                                &lt;!&ndash;                                    <div class="ribbon"><div class="offer-number">20%</div><figure>Off Today!</figure></div>&ndash;&gt;-->
-<!--                                                                <div class="one-item-carousel">-->
-<!--                                                                    <div class="image">-->
+<!--                            <section id="gallery" th:each="HousesImages : ${HousesImages}">-->
+<!--                                <div class="gallery-detail">-->
+<!--                                    &lt;!&ndash;                                    <div class="ribbon"><div class="offer-number">20%</div><figure>Off Today!</figure></div>&ndash;&gt;-->
+<!--                                    <div class="one-item-carousel">-->
+<!--                                        <div class="image">-->
 
-<!--                                                                        <img width="847" height="501" th:src="${HousesImages.houseImagesEntities}"-->
-<!--                                                                             alt="">-->
-<!--                                                                    </div>-->
+<!--                                            <img width="847" height="501" th:src="${HousesImages.houseImagesEntities}"-->
+<!--                                                 alt="">-->
+<!--                                        </div>-->
 
-<!--                                                                </div>-->
-<!--                                                            </div>-->
-<!--                                                        </section>-->
-<!--                                                        end title-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </section>-->
+                            <!--                            end title-->
 
                         </div>
 
@@ -363,6 +363,7 @@
                                 </div>
                                 <!--end item-->
                             </div>
+                            <!--end row-->
                             <!--end row-->
 
 
@@ -398,7 +399,7 @@
                                 <!--                                                                <section id="map">-->
                                 <!--                                                                    <h2>Map</h2>-->
                                 <!--                                                                    <div id="map-item" class="map height-300 box"></div>-->
-                                <div id="map1" th:if="${houseLocation.latitude == null || houseLocation.longitude== null }">
+                                <div id="map" th:if="${houseLocation.latitude == null || houseLocation.longitude== null }">
                                     <h2>Map</h2>
                                     <span>Nhà trọ chưa cập nhật vị trí trên google map</span>
                                 </div>
@@ -408,6 +409,8 @@
                                         <div id="map-item" class="map height-300 box"></div>
                                         <input id="latitude" type="hidden" th:value="${houseLocation.latitude}">
                                         <input id="longitude" type="hidden" th:value="${houseLocation.longitude}">
+                                        <button type="button" class="btn btn-secondary" onclick="showDirections()">Chỉ đường</button>
+
                                     </section>
                                 </div>
 
@@ -1143,7 +1146,5 @@
 
 
 </script>
-<script src="js/jquery-1.7.1.min.js"></script>
-<script src="js/bootstrap.js"></script>
 
 </body>
