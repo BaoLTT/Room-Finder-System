@@ -119,26 +119,13 @@
                                                                   th:checked="${#arrays.contains(listType, '4')}">Ký túc
                                                     xá</label></li>
                                             </ul>
-                                            <!--                                            <div class="collapse" id="all-property-types">-->
-                                            <!--                                                <ul class="checkboxes">-->
-                                            <!--                                                    <li><label><input type="checkbox" name="ski-center">Ski-->
-                                            <!--                                                        Center</label></li>-->
-                                            <!--                                                    <li><label><input type="checkbox" name="cottage">Cottage</label>-->
-                                            <!--                                                    </li>-->
-                                            <!--                                                    <li><label><input type="checkbox" name="hostel">Hostel</label></li>-->
-                                            <!--                                                    <li><label><input type="checkbox" name="boat">Boat</label></li>-->
-                                            <!--                                                </ul>-->
-                                            <!--                                            </div>-->
-                                            <!--end checkboxes-->
-                                            <a href="#all-property-types" class="link" data-toggle="collapse"
-                                               aria-expanded="false" aria-controls="all-property-types">Show all</a>
                                         </section>
                                         <!--end section-->
                                         <section>
                                             <h3>Tiện ích</h3>
-                                            <ul class="checkboxes no-bottom-margin"
-                                                th:each="listAllService: ${listAllService}">
-                                                <li>
+                                            <ul class="checkboxes no-bottom-margin" id="servicesList">
+                                                <!-- Chỉ hiển thị 4 dịch vụ ban đầu -->
+                                                <li th:each="listAllService, iterStat : ${listAllService}" th:if="${iterStat.index < 4}">
                                                     <label>
                                                         <input type="checkbox"
                                                                name="service"
@@ -148,6 +135,22 @@
                                                     </label>
                                                 </li>
                                             </ul>
+                                            <div class="collapse" id="all-property-types">
+                                                <ul class="checkboxes no-bottom-margin" >
+
+                                                    <li th:each="listAllService, iterStat : ${listAllService}" th:if="${iterStat.index >= 4}">
+                                                        <label>
+                                                            <input type="checkbox"
+                                                                   name="service"
+                                                                   th:text="${listAllService.serviceName}"
+                                                                   th:value="${listAllService.serviceId}"
+                                                                   th:checked="${#lists.contains(listService,''+ listAllService.serviceId+'')}">
+                                                        </label>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <a href="#all-property-types" class="link" data-toggle="collapse"
+                                               aria-expanded="false" aria-controls="all-property-types">Show all</a>
                                             <!--end checkboxes-->
                                         </section>
                                         <!--end section-->
@@ -310,6 +313,8 @@
 <script type="text/javascript" src="/assets/js/masonry.pkgd.min.js"></script>
 <script type="text/javascript" src="/assets/js/maps.js"></script>
 <script type="text/javascript" src="/assets/js/custom.js"></script>
+
+
 
 
 <script type="text/javascript" th:src="@{/assets/js/favorite.js}"></script>
