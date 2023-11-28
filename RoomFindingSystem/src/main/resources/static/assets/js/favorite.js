@@ -24,13 +24,13 @@ function RemoveFavoriteItem(productId) {
 }
 function AddToFavorite(id) {
     $.ajax({
-        url: 'add-favourite-list',
-        method: 'POST',
+        url: 'http://localhost:8080/add-favourite-list',
         data: {
             id: id
         },
-        success: function (responseText) {
-            switch (responseText) {
+        success: function (model) {
+         showNotification("success", "Add product to favorite successful");
+            switch (model) {
                 case "Add successful":
                     showNotification("success", "Add product to favorite successful");
                     break;

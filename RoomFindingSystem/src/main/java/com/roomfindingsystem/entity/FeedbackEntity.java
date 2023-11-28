@@ -59,6 +59,18 @@ public class FeedbackEntity {
     }
 
     @Basic
+    @Column(name = "status")
+    private boolean status;
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    @Basic
     @Column(name = "Created_Date")
     private LocalDate createdDate;
 

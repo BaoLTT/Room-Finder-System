@@ -90,10 +90,10 @@
                                             <ul class="checkboxes list-unstyled">
                                                 <li><label><input type="checkbox" id="price" name="price" value="1"
                                                                   th:checked="${#arrays.contains(listPrice, '1')}">0 -
-                                                    2.000.000 Triệu</label></li>
+                                                    2.000.000</label></li>
                                                 <li><label><input type="checkbox" id="price-2" name="price" value="2"
                                                                   th:checked="${#arrays.contains(listPrice, '2')}">2.000.000
-                                                    - 4.000.000 Triệu</label></li>
+                                                    - 4.000.000</label></li>
                                                 <li><label><input type="checkbox" id="price-3" name="price" value="3"
                                                                   th:checked="${#arrays.contains(listPrice, '3')}">4.000.000
                                                     - 6.000.000</label></li>
@@ -182,17 +182,13 @@
 
                                 <a  th:href="@{/add-favourite-list?id=}+${houses.houseID}" class="mark-circle" onclick="showSuccessToastAdd()"
                                    data-toggle="tooltip" data-placement="right"
-                                   title="Add to favourite list"><i style="color: white;"
+                                   title="Add to favourite list"><i style="color: Green;"
                                                                     class="fa fa-thumbs-up"></i></a>
 
-                                <div class="image">
-
-
+                                <div class="image" >
                                     <a th:href="@{/detail?id=}+${houses.houseID}" class="wrapper">
                                         <div class="gallery">
-
-                                            <img style="width: 273px; height: 208px;"
-                                                 th:each="image: ${houses.listImage}" th:src="${image}" alt="">
+                                            <img style="width: 273px; height: 208px;" th:each="image, iterStat : ${houses.listImage}" th:src="${image.imageLink}" alt="Ảnh">
                                         </div>
                                     </a>
                                     <div class="map-item">
@@ -219,7 +215,7 @@
                                         Spring Hotel</h3></a>
 
                                     <figure class="label label-info" th:text="${houses.typeHouse}">Hotel</figure>
-                                    <figure class="label label-info" th:text="${houses.last_modified_date}"
+                                    <figure class="label label-info" th:text="${#temporals.format(houses.last_modified_date, 'dd/MM/yyyy')}"
                                             style="position: absolute;right: 0;margin-top: 7px;margin-right: 30px">Hotel
                                     </figure>
                                     <figure class="location" th:text="${houses.getService()}">Montenegro</figure>
@@ -229,7 +225,8 @@
 
 
                                     </p>
-                                    <div class="price-info">From<span class="price" th:text="${houses.price}"></span>Triệu
+
+                                    <div class="price-info" >Từ<span class="price" th:text="${houses.price}" ></span>Triệu
                                         <span class="appendix">/tháng</span></div>
 
                                     <a th:href="@{/detail?id=}+${houses.houseID}"
@@ -313,6 +310,7 @@
 <script type="text/javascript" src="/assets/js/masonry.pkgd.min.js"></script>
 <script type="text/javascript" src="/assets/js/maps.js"></script>
 <script type="text/javascript" src="/assets/js/custom.js"></script>
+
 
 <script type="text/javascript" th:src="@{/assets/js/favorite.js}"></script>
 <!--[if lte IE 9]>
