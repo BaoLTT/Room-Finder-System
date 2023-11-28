@@ -6,7 +6,11 @@ import com.roomfindingsystem.entity.*;
 
 import com.roomfindingsystem.repository.TypeHouseRepository;
 import com.roomfindingsystem.repository.UserRepository;
+import com.roomfindingsystem.service.AddressService;
+import com.roomfindingsystem.service.HouseLandlordService;
+import com.roomfindingsystem.service.HouseManagerService;
 
+import com.roomfindingsystem.service.ServiceDetailService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,6 +43,8 @@ public class HouseManagerController {
     @Autowired
     HouseLandlordService houseLandlordService;
 
+
+
     @GetMapping("/house-manager")
     public String viewHomepage(final Model model, HttpSession httpSession){
         List<HouseManagerTypeVo> houseList = houseManagerService.findHouseManager();
@@ -68,6 +74,7 @@ public class HouseManagerController {
         return "admin/house-manager-detail";
     }
     @PostMapping("/house-manager/update")
+    public String updateHouse(@ModelAttribute("house") HouseLandlordVo house, @RequestParam(name = "service", required = false,defaultValue = "0") List<Integer> service, MultipartFile[] images, Model model, HttpSession httpSession) throws IOException {
         if(house.getProvinceID()==0){
             Optional<AddressEntity> newAddress = addressService.findbyId(house.getAddress());
             AddressEntity address = new AddressEntity("a",house.getAddressDetail(),newAddress.get().getProvinceId(),newAddress.get().getDistrictId(),newAddress.get().getWardId());
@@ -76,6 +83,8 @@ public class HouseManagerController {
             AddressEntity address = new AddressEntity("a",house.getAddressDetail(),house.getProvinceID(),house.getDistrictID(),house.getWardID());
             addressService.updateAddress(address,house.getAddress());
         }
+        System.out.println(house.getHouseID());
+        System.out.println(service);
 
         houseManagerService.updateHouse(house,house.getHouseID(),service, images);
 

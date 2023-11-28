@@ -26,6 +26,9 @@ Body copy:		'Lato', sans-serif; 14px;
 Headers:		'Lato', sans-serif;
 
 -------------------------------------------------------------------*/
+body {
+  font-family: 'Arial', sans-serif;
+}
 
 
 /* 1. Header */
@@ -361,6 +364,7 @@ body {
   background-color: #f6f6f4;
   color: #1f1f1f;
   font-size: 14px;
+  font-family: 'Lato', sans-serif;
   position: relative;
 }
 

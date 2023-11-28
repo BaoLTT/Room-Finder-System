@@ -4,7 +4,6 @@ package com.roomfindingsystem.service.impl;
 import com.roomfindingsystem.entity.PostEntity;
 import com.roomfindingsystem.repository.PostRepository;
 import com.roomfindingsystem.service.PostService;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.time.YearMonth;
@@ -57,11 +56,6 @@ public class PostServiceImpl implements PostService {
                 .forEach((month, count) -> postCountsByMonth.put(month, count));
 
         return postCountsByMonth;
-    }
-
-    @Override
-    public Page<PostEntity> getAllPost() {
-        return null;
     }
 
 }
