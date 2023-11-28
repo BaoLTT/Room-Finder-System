@@ -27,7 +27,6 @@ public class FavouriteEntity {
     @Column(name = "HouseID")
     private int houseId;
 
-
     @Basic
     @Column(name = "UserID")
     private int userId;

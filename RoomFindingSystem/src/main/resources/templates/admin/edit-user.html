@@ -49,6 +49,7 @@
 
 
     <!-- Topbar Start -->
+    <div th:replace="admin/header_admin :: admin_topbar"></div>
     <!-- Left Sidebar End -->
 
     <!-- ============================================================== -->
@@ -67,8 +68,11 @@
                         <div class="page-title-box">
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item"><a th:href="@{/admin/user}">Danh sách nguời dùng</a></li>
+                                    <li class="breadcrumb-item active">Thông tin chi tiết</li>
                                 </ol>
                             </div>
+                            <h4 class="page-title">Thông tin chi tiết</h4>
                         </div>
                     </div>
                 </div>
@@ -262,6 +266,7 @@
 
 
         <!-- Footer Start -->
+        <div th:replace="admin/footer_admin :: admin_footer"></div>
         <!-- end Footer -->
 
     </div>
@@ -298,6 +303,8 @@
 <!-- App js -->
 <script th:src="@{/assets_admin/js/app.min.js}"></script>
 <script>
+    const host = "https://timtromoi.com/";
+    // const host = "http://localhost:8080/";
     let provinceTest = -1;
     var callAPI = (api) => {
         return axios.get(api)

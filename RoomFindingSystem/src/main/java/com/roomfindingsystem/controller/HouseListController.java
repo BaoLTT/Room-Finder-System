@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
+import java.text.NumberFormat;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/houselist")
@@ -111,6 +113,7 @@ public class HouseListController {
         model.addAttribute("currentPage",pageIndex);
         model.addAttribute("totalPage", totalPage);
         model.addAttribute("houses", list);
+
         listAllService = serviceDetailRepository.getAll();
         model.addAttribute("listAllService", listAllService);
         return"houselist";

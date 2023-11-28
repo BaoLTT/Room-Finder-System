@@ -38,4 +38,6 @@ public interface UserRepository extends JpaRepository<UserEntity,Integer> {
     @Query("select count(*) from UserEntity u where u.roleId = 'Landlord' or u.roleId = 'User'")
     int countUserInAdmin();
 
+    @Query("SELECT u FROM UserEntity u WHERE u.roleId <> 'SUPER_ADMIN'")
+    List<UserEntity> findAllExceptSuperAdmin();
 }

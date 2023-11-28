@@ -24,13 +24,18 @@ public class HouseServiceImpl implements HouseService {
     }
 
     @Override
+
+    public int countHouse(int min1, int max1, int min2, int max2, String houseName, List<Integer> type, List<Integer> service, int countService) {
         return houseRepository.countHouse(min1, max1, min2, max2, houseName, type, service, countService);
+
     }
 
+    public List<HouseTypeVo> findHouse(int min1, int max1, int min2, int max2, String houseName, List<Integer> type, List<Integer> service, int countService, int pageIndex, int pageSize) {
         List<Tuple> tuples = houseRepository.findHouse(min1, max1, min2, max2, houseName, type, service, countService, pageIndex, pageSize);
         List<HouseTypeVo> houseTypeVos = new ArrayList<>();
         List<String> imageLinks;
         List<String> services;
+        List<String> imageIds;
 
         for (Tuple tuple : tuples) {
             HouseTypeVo houseTypeVo = new HouseTypeVo();
@@ -49,10 +54,30 @@ public class HouseServiceImpl implements HouseService {
             } else {
                 houseTypeVo.setLike(like.intValue());
             }
+            List<HouseImageDto> listHouseImage = new ArrayList<>();
             String imageLink = (tuple.get("Image_Link", String.class));
+            String imageId  = (tuple.get("Image_Id",String.class));
+            if(imageLink == null)
+            {houseTypeVo.setListImage(null);}
+            else {
                 imageLinks = Arrays.asList(imageLink.split(","));
+                imageIds = Arrays.asList(imageId.split(","));
+                for (int i = 0; i < imageLinks.size(); i++) {
+                    HouseImageDto imageDto = new HouseImageDto();
+                    imageDto.setImageLink(imageLinks.get(i));
+                    imageDto.setImageId(Integer.parseInt(imageIds.get(i)));
+                    listHouseImage.add(imageDto);
+                }
+                houseTypeVo.setListImage(listHouseImage);
             }
 
+            String service1 = (tuple.get("Service_Name", String.class));
+            if (service1.isEmpty()) {
+                houseTypeVo.setService(null);
+            } else {
+                services = Arrays.asList(service1.split(","));
+                houseTypeVo.setService(services);
+            }
             houseTypeVo.setProvince(tuple.get("province_name", String.class));
             houseTypeVo.setDistrict(tuple.get("district_name", String.class));
             houseTypeVo.setWard(tuple.get("ward_name", String.class));
@@ -107,6 +132,11 @@ public class HouseServiceImpl implements HouseService {
         return houseRepository.getHousesEntitiesByHouseId(id);
     }
 
+    @Override
+    public void saveHouse(HousesEntity housesEntity) {
+        houseRepository.save(housesEntity);
+    }
+
 
     @Override
 
@@ -159,7 +189,48 @@ public class HouseServiceImpl implements HouseService {
         return houseHomeDtos;
     }
 
+    @Override
+    public List<HouseFavouriteDto> viewHouseInHomeInFavourite(int id) {
+        List<Tuple> tuples = houseRepository.viewHouseInHomeInFavourite(id);
+        List<HouseFavouriteDto> HouseFavouriteDto = new ArrayList<>();
+        List<String> imageLinks;
 
+        for (Tuple tuple : tuples) {
+            HouseFavouriteDto houseHomeDto = new HouseFavouriteDto();
+            houseHomeDto.setUserId(tuple.get("userid", Integer.class));
+            houseHomeDto.setHouseId(tuple.get("houseId", Integer.class));
+            houseHomeDto.setHouseName(tuple.get("House_Name", String.class));
+            houseHomeDto.setTypeHouse(tuple.get("Type_Name", String.class));
+            String addressDetail = tuple.get("Address_Details", String.class);
+            if (addressDetail == null) {
+                houseHomeDto.setAddressDetail("");
+            } else houseHomeDto.setAddressDetail(addressDetail);
+
+            String imageLink = (tuple.get("Image_Link", String.class));
+            if (imageLink == null) {
+                houseHomeDto.setListImage(null);
+            } else {
+                imageLinks = Arrays.asList(imageLink.split(","));
+                houseHomeDto.setListImage(imageLinks);
+            }
+            houseHomeDto.setProvince(tuple.get("province_name", String.class));
+            houseHomeDto.setDistrict(tuple.get("district_name", String.class));
+            houseHomeDto.setWard(tuple.get("ward_name", String.class));
+            java.sql.Date sqlDate = (java.sql.Date) tuple.get("last_modified_date", Date.class);
+            if (sqlDate == null) {
+                houseHomeDto.setLastModify(null);
+            } else {
+                LocalDate localDate = sqlDate.toLocalDate();
+                houseHomeDto.setLastModify(localDate);
+            }
+
+
+            HouseFavouriteDto.add(houseHomeDto);
+        }
+
+
+        return HouseFavouriteDto;
+    }
 
 
 }

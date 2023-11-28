@@ -21,14 +21,20 @@ public interface FavouriteRepository extends JpaRepository<FavouriteEntity,Integ
 
 
     @Query("select new com.roomfindingsystem.dto.FavouriteDto(h.houseId,h.houseName,t.typeName, ad.addressDetails, pr.name,d.name,w.name) from FavouriteEntity f " +
+            "join UserEntity u on f.userId = u.userId " +
             "join HousesEntity h on f.houseId = h.houseId " +
             "join TypeHouseEntity t on h.typeHouseId = t.typeId " +
             "join AddressEntity ad on h.addressId = ad.addressId " +
             "join ProvinceEntity pr on ad.provinceId = pr.provinceId " +
             "join DistrictEntity d on ad.districtId = d.districtId " +
+            "join  WardEntity w on ad.wardId = w.wardId where u.userId =?1 " +
             "order by f.createdDate desc ")
+    List<FavouriteDto> findAllFavourite( int id);
     @Transactional
     @Modifying
     void deleteFavouriteEntitiesByHouseId(int houseid);
 
+    @Query("select f from FavouriteEntity  f join UserEntity u on f.userId= u.userId " +
+            " where u.userId =?1 and f.houseId =?2 ")
+    Optional<FavouriteEntity> getAllByHouseId(int userid,int houseid);
 }

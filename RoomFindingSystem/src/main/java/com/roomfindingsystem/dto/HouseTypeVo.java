@@ -29,6 +29,7 @@ public class HouseTypeVo {
 
     Integer price;
 
+    List<HouseImageDto> listImage;
 
     List<String> service;
 

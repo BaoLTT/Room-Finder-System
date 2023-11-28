@@ -42,12 +42,14 @@ public class HouseListTest {
 
         // Mocking the behavior of houseRepository.countHouse
         when(houseRepository.countHouse(min1, max1, min2, max2, houseName, type, service, countService))
+                .thenReturn(12);
 
         // Calling the service method
         int result = houseService.countHouse(min1, max1, min2, max2, houseName, type, service, countService);
 
 
         // Asserting the result
+        assertEquals(11, result);
         verify(houseRepository).countHouse(min1, max1, min2, max2, houseName, type, service, countService);
     }
     @Test

@@ -462,4 +462,21 @@ public class RoomServiceImpl implements RoomService {
     public void deleteRoomImage(Integer imageId) {
         roomImageRepository.deleteByImageId(imageId);
     }
+
+    @Override
+    public List<RoomDto> getRoomsInHouse(int houseId) {
+        List<RoomDto> roomDtos = roomRepository.findRoomsInHouse(houseId);
+        for(RoomDto roomDto : roomDtos) {
+            StringBuilder servicesBuilder = new StringBuilder();
+            List<ServiceDetailEntity> serviceDetailEntities = roomRepository.getServiceByRoomId(roomDto.getRoomId());
+            for (ServiceDetailEntity serviceDetailEntity : serviceDetailEntities) {
+                if (!servicesBuilder.isEmpty()) {
+                    servicesBuilder.append(", ");
+                }
+                servicesBuilder.append(serviceDetailEntity.getServiceName());
+            }
+            roomDto.setServices(servicesBuilder.toString());
+        }
+        return roomDtos;
+    }
 }

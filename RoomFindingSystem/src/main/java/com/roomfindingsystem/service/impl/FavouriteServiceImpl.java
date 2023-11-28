@@ -28,6 +28,8 @@ public class FavouriteServiceImpl implements FavouriteService {
     }
 
     @Override
+    public List<FavouriteDto> getListFavourite(int id) {
+        return favouriteRepository.findAllFavourite(id);
     }
 
     @Override
@@ -37,6 +39,8 @@ public class FavouriteServiceImpl implements FavouriteService {
     }
 
     @Override
+    public Optional<FavouriteEntity> getAllByHouseId(int userid,int houseid) {
+        return favouriteRepository.getAllByHouseId(userid,houseid);
     }
 
 

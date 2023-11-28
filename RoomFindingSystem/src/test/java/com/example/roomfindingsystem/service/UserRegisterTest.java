@@ -128,10 +128,7 @@ public class UserRegisterTest {
         String originalEmail = "baoltthe153367@fpt.edu.vn";
         UserEntity userEntity = new UserEntity();
         userEntity.setEmail(originalEmail);
-<<<<<<< HEAD
-=======
-
->>>>>>> parent of 88daca2 (Merge branch 'main' into BaoLTT)
+        //giả định
         when(userRepository.findByEmail(originalEmail)).thenReturn(Optional.of(userEntity));
 
         String uppercaseEmail = "BAOLTTHE153367@FPT.EDU.VN";
