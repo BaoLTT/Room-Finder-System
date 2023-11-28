@@ -44,11 +44,6 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="main" />
-      </map>
   <component name="CompilerWorkspaceConfiguration">
     <option name="MAKE_PROJECT_ON_SAVE" value="true" />
   </component>
@@ -128,6 +123,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+>>>>>>> parent of 88daca2 (Merge branch 'main' into BaoLTT)
     <configuration name="Main" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="RoomFindingSystem" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.roomfindingsystem.Main" />
@@ -144,16 +140,21 @@
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.Main" />
+<<<<<<< HEAD
+=======
         <item itemvalue="JUnit.UserRegisterTest.testFindByEmail_EmailCaseInsensitive" />
+>>>>>>> parent of 88daca2 (Merge branch 'main' into BaoLTT)
       </list>
     </recent_temporary>
   </component>
   <component name="TaskManager">
+<<<<<<< HEAD
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="update lai homepage" />
     <option name="LAST_COMMIT_MESSAGE" value="update lai homepage" />
+=======
     <task id="LOCAL-00001" summary="workspace">
       <option name="closed" value="true" />
       <created>1700835159336</created>
@@ -184,6 +185,7 @@
     <MESSAGE value="update lai homepage" />
     <MESSAGE value="workspace" />
     <option name="LAST_COMMIT_MESSAGE" value="workspace" />
+>>>>>>> parent of 88daca2 (Merge branch 'main' into BaoLTT)
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Room_Finding_System$UserControllerTest.ic" NAME="UserControllerTest Coverage Results" MODIFIED="1700300286928" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

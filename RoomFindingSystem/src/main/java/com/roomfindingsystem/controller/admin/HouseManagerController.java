@@ -6,10 +6,8 @@ import com.roomfindingsystem.entity.*;
 
 import com.roomfindingsystem.repository.TypeHouseRepository;
 import com.roomfindingsystem.repository.UserRepository;
-import com.roomfindingsystem.service.AddressService;
-import com.roomfindingsystem.service.HouseLandlordService;
-import com.roomfindingsystem.service.HouseManagerService;
 import com.roomfindingsystem.service.*;
+
 
 import com.roomfindingsystem.service.impl.GcsService;
 
@@ -45,8 +43,6 @@ public class HouseManagerController {
     ServiceDetailService serviceDetailService;
     @Autowired
     HouseLandlordService houseLandlordService;
-
-
     @Autowired
     GcsService gcsService;
     @Autowired
@@ -84,7 +80,6 @@ public class HouseManagerController {
         return "admin/house-manager-detail";
     }
     @PostMapping("/house-manager/update")
-    public String updateHouse(@ModelAttribute("house") HouseLandlordVo house, @RequestParam(name = "service", required = false,defaultValue = "0") List<Integer> service, MultipartFile[] images, Model model, HttpSession httpSession) throws IOException {
 
 
     public String updateHouse(@ModelAttribute("house") HouseLandlordVo house, @RequestParam(name = "service", required = false,defaultValue = "0") List<Integer> service, MultipartFile[] images, Model model, HttpSession httpSession,
@@ -102,9 +97,6 @@ public class HouseManagerController {
         System.out.println(house.getHouseID());
         System.out.println(service);
 
-<<<<<<< HEAD
-        houseManagerService.updateHouse(house,house.getHouseID(),service, images);
-=======
 
 
 
@@ -112,7 +104,6 @@ public class HouseManagerController {
 
 
         houseManagerService.updateHouse(house,house.getHouseID(),service);
->>>>>>> parent of d28a035 (update map)
 
 
         HousesEntity housesEntity = houseService.getHouseById(house.getHouseID());
@@ -143,7 +134,7 @@ public class HouseManagerController {
     public String saveHouse(@ModelAttribute(name = "house") HouseLandlordVo house, MultipartFile[] images, Model model, HttpSession httpSession) throws IOException {
         AddressEntity address = new AddressEntity("a",house.getAddressDetail().trim(),house.getProvinceID(),house.getDistrictID(),house.getWardID());
         int addressID = addressService.insertAddress(address);
-        houseManagerService.insertHouse(house,addressID,images);
+
         houseManagerService.insertHouse(house,addressID);
 
         return  "redirect:/admin/house-manager";
