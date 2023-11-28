@@ -18,38 +18,7 @@ public class AdminDashBoardRestController {
     @Autowired
     ReportService reportService;
 
-    @GetMapping("/bar")
-    public Map<String, Object> getPostData() {
-        Map<String, Object> data = new HashMap<>();
 
-        // Sử dụng service để lấy dữ liệu thống kê theo tháng
-        Map<String, Long> postCountsByMonth = postService.countPostByMonth();
-
-        List<String> labels = new ArrayList<>();
-        List<Long> dataValues = new ArrayList<>();
-
-        // Sắp xếp thống kê theo tháng
-        postCountsByMonth.entrySet().stream()
-                .sorted(Map.Entry.comparingByKey())
-                .forEach(entry -> {
-                    labels.add(entry.getKey());
-                    dataValues.add(entry.getValue());
-                });
-
-        Map<String, Object> dataset = new HashMap<>();
-        dataset.put("data", dataValues);
-        dataset.put("backgroundColor", "rgba(60, 134, 216, 0.3)");
-        dataset.put("hoverBackgroundColor", "rgba(60, 134, 216, 0.7)");
-        dataset.put("hoverBorderColor", "#3c86d8");
-        dataset.put("borderWidth", 2);
-        dataset.put("borderColor", "#3c86d8");
-        dataset.put("label", "Số bài đăng");
-
-        data.put("labels", labels);
-        data.put("datasets", Arrays.asList(dataset));
-
-        return data;
-    }
 
 
     @GetMapping("/pie")
