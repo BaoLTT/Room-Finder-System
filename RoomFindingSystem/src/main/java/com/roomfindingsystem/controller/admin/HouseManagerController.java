@@ -86,7 +86,11 @@ public class HouseManagerController {
         System.out.println(house.getHouseID());
         System.out.println(service);
 
+<<<<<<< HEAD
         houseManagerService.updateHouse(house,house.getHouseID(),service, images);
+=======
+        houseManagerService.updateHouse(house,house.getHouseID(),service);
+>>>>>>> parent of d28a035 (update map)
 
         return "redirect:/admin/house-manager";
     }
