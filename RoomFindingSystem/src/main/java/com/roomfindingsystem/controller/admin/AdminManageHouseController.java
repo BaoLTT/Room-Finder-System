@@ -46,7 +46,15 @@ public class AdminManageHouseController {
 
 
     @GetMapping("/house-manager")
-    public String viewHomepage(final Model model, HttpSession httpSession){
+    public String viewHomepage(final Model model, HttpSession httpSession,HttpServletRequest request){
+        HttpSession session = request.getSession();
+        UserEntity user = (UserEntity) session.getAttribute("user");
+        if(user == null){
+            return "redirect:/admin/dashboard";
+        }
+        if(!user.getRoleId().equals("ADMIN") && !user.getRoleId().equals("SUPER_ADMIN")){
+            return "redirect:/login";
+        }
         List<HouseLandlordVo> houseList = houseLandlordService.getAllHouse();
         model.addAttribute("houses", houseList);
         //entries từ 0 đến 5 vào jquery.dataTables.min.js" tìm entries sửa display = 5
@@ -60,7 +68,15 @@ public class AdminManageHouseController {
     }
 
     @GetMapping("/house-manager/detail/{houseid}")
-    public String updateHouse(@PathVariable Integer houseid,final Model model,HttpSession httpSession){
+    public String updateHouse(@PathVariable Integer houseid,final Model model,HttpSession httpSession,HttpServletRequest request){
+        HttpSession session = request.getSession();
+        UserEntity user = (UserEntity) session.getAttribute("user");
+        if(user == null){
+            return "redirect:/admin/dashboard";
+        }
+        if(!user.getRoleId().equals("ADMIN") && !user.getRoleId().equals("SUPER_ADMIN")){
+            return "redirect:/login";
+        }
         List<TypeHouseEntity> listType = typeHouseRepository.findAll();
         List<ServiceDetailEntity> listService = serviceDetailService.getAllService();
 
@@ -96,7 +112,15 @@ public class AdminManageHouseController {
     }
 
     @GetMapping("/house-manager/add")
-    public String addHouse(final Model model,HttpSession httpSession){
+    public String addHouse(final Model model,HttpSession httpSession,HttpServletRequest request){
+        HttpSession session = request.getSession();
+        UserEntity user = (UserEntity) session.getAttribute("user");
+        if(user == null){
+            return "redirect:/admin/dashboard";
+        }
+        if(!user.getRoleId().equals("ADMIN") && !user.getRoleId().equals("SUPER_ADMIN")){
+            return "redirect:/login";
+        }
         List<UserEntity> listUser = new ArrayList<>();
         listUser = userRepository.findAll();
         List<TypeHouseEntity> listType = typeHouseRepository.findAll();
