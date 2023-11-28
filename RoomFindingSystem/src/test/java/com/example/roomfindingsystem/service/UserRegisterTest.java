@@ -128,7 +128,10 @@ public class UserRegisterTest {
         String originalEmail = "baoltthe153367@fpt.edu.vn";
         UserEntity userEntity = new UserEntity();
         userEntity.setEmail(originalEmail);
+<<<<<<< HEAD
         //giả định
+=======
+>>>>>>> parent of d28a035 (update map)
         when(userRepository.findByEmail(originalEmail)).thenReturn(Optional.of(userEntity));
 
         String uppercaseEmail = "BAOLTTHE153367@FPT.EDU.VN";
