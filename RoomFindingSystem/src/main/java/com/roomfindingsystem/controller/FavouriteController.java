@@ -26,7 +26,10 @@ public class FavouriteController {
 
 
     @RequestMapping(value = "favourite-list")
+    public String getFavourite(Model model) {
+        List<FavouriteDto> list = favouriteService.getListFavourite();
         System.out.println(list);
+        model.addAttribute("listFavourite",list);
         return "favourite-list";
     }
 
@@ -39,12 +42,17 @@ public class FavouriteController {
 
 
     @RequestMapping(value = "add-favourite-list")
+    public String addToFavourite(@RequestParam("id") Integer id, Model model) {
+        if (!favouriteService.getAllByHouseId(id).isPresent()){
             FavouriteEntity favouriteEntity = new FavouriteEntity();
             LocalDate now = LocalDate.now();
             // get session id
+            favouriteEntity.setUserId(1);
+            favouriteEntity.setRoomId(1);
             favouriteEntity.setCreatedDate(now);
             favouriteEntity.setHouseId(id);
             favouriteService.addToFavourite(favouriteEntity);
+            model.addAttribute("favouriteEntity", favouriteService.getAllByHouseId(id));
         }else{
             System.out.println("false");
         }

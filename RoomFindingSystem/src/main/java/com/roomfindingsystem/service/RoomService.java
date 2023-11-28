@@ -55,4 +55,5 @@ public interface RoomService {
 
     void deleteRoomImage(Integer imageId);
 
+
 }

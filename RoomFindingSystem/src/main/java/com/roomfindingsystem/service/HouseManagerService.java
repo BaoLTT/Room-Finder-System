@@ -15,9 +15,12 @@ public interface HouseManagerService {
 
     HouseManagerTypeVo findHouseById(Integer id);
 
+    void insertHouse(HouseLandlordVo house,int addressID);
 
     HousesEntity getLastHouse();
 
+    void inserImageHouse(HouseImagesEntity images);
 
+    void updateHouse(HouseLandlordVo houses, int houseID,List<Integer> service);
 
 }

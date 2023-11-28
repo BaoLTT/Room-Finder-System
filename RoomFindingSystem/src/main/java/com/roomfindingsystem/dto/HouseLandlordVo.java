@@ -59,12 +59,17 @@ public class HouseLandlordVo {
 
     private Integer price;
 
+    List<String> listImage;
 
     List<String> service;
 
     private Integer like;
 
     private int status;
+
+    private double latitude;
+
+    private double longitude;
 
     public HouseLandlordVo(int houseID, String houseName, String description, LocalDate createdDate, String created_firstName, String created_lastName, String addressDetail, int address, String ward, String district, String province, int wardID, int districtID, int provinceID, String typeHouse, int typeHouseID, LocalDate lastModifiedDate, String lastModifiedBy_firstName, String lastModifiedBy_lastName, String user_firstName, String user_lastName, int status) {
         this.houseID = houseID;

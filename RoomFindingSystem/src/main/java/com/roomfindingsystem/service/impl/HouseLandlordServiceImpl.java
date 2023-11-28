@@ -15,6 +15,9 @@ public class HouseLandlordServiceImpl implements HouseLandlordService {
     @Autowired
     HouseLandlordRepository houseLandlordRepository;
     @Override
+    public List<HouseLandlordVo> findHouse(int userId) {
+        List<Tuple> tuples = houseLandlordRepository.findHouse(userId);
+        return getHouseLandlordVo(tuples);
     }
 
     @Override
@@ -22,6 +25,7 @@ public class HouseLandlordServiceImpl implements HouseLandlordService {
         Tuple tuples = houseLandlordRepository.findHouseByID(houseid);
         return getHouseLandlordVo(tuples);
     }
+    public List<HouseLandlordVo> getHouseLandlordVo(List<Tuple> tuples) {
         List<HouseLandlordVo> houseLandlord1 = new ArrayList<>();
         List<String> imageLinks ;
         List<String> services;
@@ -61,9 +65,12 @@ public class HouseLandlordServiceImpl implements HouseLandlordService {
             }else{
                 houseLandlordVo.setLike(like.intValue());
             }
+
             String imageLink = (tuple.get("Image_Link", String.class));
             if(imageLink == null)
             {houseLandlordVo.setListImage(null);}
+            else {imageLinks = Arrays.asList(imageLink.split(","));
+                houseLandlordVo.setListImage(imageLinks);}
 
             String service1 = (tuple.get("Service_Name",String.class));
             if (service1 == null || service1.isEmpty()) {
@@ -130,9 +137,12 @@ public class HouseLandlordServiceImpl implements HouseLandlordService {
             }else{
                 houseLandlordVo.setLike(like.intValue());
             }
+
             String imageLink = (tuple.get("Image_Link", String.class));
             if(imageLink == null)
             {houseLandlordVo.setListImage(null);}
+            else {imageLinks = Arrays.asList(imageLink.split(","));
+                houseLandlordVo.setListImage(imageLinks);}
 
             String service1 = (tuple.get("Service_Name",String.class));
             if (service1 == null || service1.isEmpty()) {

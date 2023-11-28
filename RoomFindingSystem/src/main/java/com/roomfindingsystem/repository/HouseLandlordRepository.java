@@ -53,6 +53,7 @@ public interface HouseLandlordRepository extends JpaRepository<HousesEntity,Inte
             "WHERE \n" +
             "    h.userid = ?1 \n" +
             "GROUP BY h.houseid, h.house_name, t.type_name, a.address_details, ward_name, district_name, province_name, h.last_modified_date ",nativeQuery = true)
+    List<Tuple> findHouse(int userId);
 
     @Query(value = "SELECT \n" +
             "    h.houseid, \n" +

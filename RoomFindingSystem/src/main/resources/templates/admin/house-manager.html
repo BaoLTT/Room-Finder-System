@@ -87,6 +87,7 @@
                                             <td style="vertical-align: middle" th:text = "${houses.getHouseName()}"></td>
                                             <td style="vertical-align: middle" th:text = "${houses.addressDetail+', '+houses.ward+', '+houses.district+', '+houses.province}">System Architect</td>
                                             <td style="vertical-align: middle" th:text = "${houses.getTypeHouse()}">Edinburgh</td>
+                                            <td style="vertical-align: middle" th:text = "${houses.getLastModifiedDate()}">61</td>
                                             <td style="vertical-align: middle" th:text = "${houses.lastModifiedBy_firstName+' '+houses.lastModifiedBy_lastName}">2011/04/25</td>
                                             <td >
                                                 <a type="button" th:href = "@{/admin/house-manager/detail/}+${houses.houseID}" class="btn btn-secondary waves-light waves-effect width-md">Chỉnh sửa</a>

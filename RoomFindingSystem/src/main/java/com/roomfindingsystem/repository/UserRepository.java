@@ -38,4 +38,5 @@ public interface UserRepository extends JpaRepository<UserEntity,Integer> {
     @Query("select count(*) from UserEntity u where u.roleId = 'Landlord' or u.roleId = 'User'")
     int countUserInAdmin();
 
+
 }

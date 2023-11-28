@@ -160,6 +160,7 @@
                     </div>
                 </div>
                 <!--end quick-navigation-->
+                <form class="form-submit labels-uppercase" id="form-submit" th:action="@{/manager/save}" method="post" th:object="${house}">
                     <section id="main-information">
                         <div class="title">
                             <h2>Thông tin chính</h2>
@@ -256,7 +257,6 @@
                         </div>
                         <div class="file-upload-previews"></div>
                         <div class="file-upload">
-                            <input type="file" name="file" class="file-upload-input with-preview" multiple title="Click to add files" maxlength="10" accept="gif|jpg|png">
                             <input type="file" name="files[]" class="file-upload-input with-preview" multiple title="Click to add files" maxlength="10" accept="gif|jpg|png">
                             <span>Click to add images</span>
                         </div>

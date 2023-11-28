@@ -6,6 +6,7 @@ import com.roomfindingsystem.entity.HouseImagesEntity;
 import com.roomfindingsystem.entity.HousesEntity;
 import com.roomfindingsystem.entity.ServiceHouseEntity;
 import com.roomfindingsystem.repository.HouseManagerRepository;
+import com.roomfindingsystem.repository.ImagesHouseRepository;
 import com.roomfindingsystem.repository.ServiceHouseRepository;
 import com.roomfindingsystem.service.HouseManagerService;
 import jakarta.transaction.Transactional;
@@ -24,7 +25,9 @@ public class HouseManagerServiceImpl implements HouseManagerService {
         this.houseManagerRepository = houseManagerRepository;
     }
     @Autowired
+    ImagesHouseRepository imagesHouseRepository;
     @Autowired
+    ServiceHouseRepository serviceHouseRepository;
 
     @Override
     public List<HouseManagerTypeVo> findHouseManager() {
@@ -47,15 +50,18 @@ public class HouseManagerServiceImpl implements HouseManagerService {
     }
 
     @Override
+    public void insertHouse(HouseLandlordVo house,int addressID) {
         LocalDate createdDate = LocalDate.now();
         HousesEntity housesEntity = new HousesEntity();
         housesEntity.setHouseName(house.getHouseName());
         housesEntity.setDescription(house.getDescription());
         housesEntity.setCreatedDate(createdDate);
+        housesEntity.setCreatedBy(1);
         housesEntity.setTypeHouseId(house.getTypeHouseID());
         housesEntity.setStatus(house.getStatus());
         housesEntity.setAddressId(addressID);
         housesEntity.setUserId(house.getUserID());
+        housesEntity.setLastModifiedBy(1);
         housesEntity.setLastModifiedDate(createdDate);
         houseManagerRepository.save(housesEntity);
         for(int i =0; i<house.getService().size();i++){
@@ -74,11 +80,15 @@ public class HouseManagerServiceImpl implements HouseManagerService {
     }
 
     @Override
+    public void inserImageHouse(HouseImagesEntity images) {
+        imagesHouseRepository.save(images);
     }
 
     @Transactional
     @Override
+    public void updateHouse(HouseLandlordVo houses, int houseID,List<Integer> service) {
         LocalDate localDate = LocalDate.now();
+        houseManagerRepository.updateHouse(houses.getHouseName(), houses.getTypeHouseID(),houses.getDescription(),1,localDate,houses.getStatus(),houseID);
         serviceHouseRepository.deleteByHouseId(houseID);
         if(!service.contains(0)){
             for(int i =0; i<service.size();i++){
@@ -91,4 +101,5 @@ public class HouseManagerServiceImpl implements HouseManagerService {
             }
         }
     }
+
 }

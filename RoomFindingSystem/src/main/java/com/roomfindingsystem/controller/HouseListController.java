@@ -108,6 +108,7 @@ public class HouseListController {
         System.out.println(totalHouse);
         int totalPage = (int) Math.ceil((double) totalHouse / pageSize);
         model.addAttribute("houseName",houseName);
+
         model.addAttribute("currentPage",pageIndex);
         model.addAttribute("totalPage", totalPage);
         model.addAttribute("houses", list);

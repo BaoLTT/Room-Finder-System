@@ -34,7 +34,10 @@ public class HouseLandlordController {
     HouseManagerService houseManagerService;
 
     @GetMapping("")
+    public String findAll(Model model, HttpSession httpSession){
         List<HouseLandlordVo> listHouse = new ArrayList<>();
+        int userId = 9;
+        listHouse = houseLandlordService.findHouse(userId);
         model.addAttribute("house",listHouse);
         return "managerHouse";
     }
@@ -67,12 +70,15 @@ public class HouseLandlordController {
     }
 
     @PostMapping("/save")
+    public String saveHouse(@ModelAttribute(name = "house") HouseLandlordVo house, Model model, HttpSession httpSession){
         AddressEntity address = new AddressEntity("a",house.getAddressDetail().trim(),house.getProvinceID(),house.getDistrictID(),house.getWardID());
         int addressID = addressService.insertAddress(address);
+        houseManagerService.insertHouse(house,addressID);
         return  "redirect:/manager";
     }
 
     @PostMapping("/update")
+    public String updateHouse(@ModelAttribute(name = "house") HouseLandlordVo house,@RequestParam(name = "service", required = false,defaultValue = "0") List<Integer> service, Model model, HttpSession httpSession){
         if(house.getProvinceID()==0){
             Optional<AddressEntity> newAddress = addressService.findbyId(house.getAddress());
             AddressEntity address = new AddressEntity("a",house.getAddressDetail(),newAddress.get().getProvinceId(),newAddress.get().getDistrictId(),newAddress.get().getWardId());
@@ -82,6 +88,7 @@ public class HouseLandlordController {
             addressService.updateAddress(address,house.getAddress());
         }
         System.out.println(house.getHouseID());
+        houseManagerService.updateHouse(house,house.getHouseID(),service);
 
         return  "redirect:/manager";
     }

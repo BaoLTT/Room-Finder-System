@@ -8,9 +8,7 @@ import com.roomfindingsystem.repository.TypeHouseRepository;
 import com.roomfindingsystem.repository.UserRepository;
 import com.roomfindingsystem.service.*;
 
-
 import com.roomfindingsystem.service.impl.GcsService;
-
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -80,11 +78,8 @@ public class HouseManagerController {
         return "admin/house-manager-detail";
     }
     @PostMapping("/house-manager/update")
-
-
     public String updateHouse(@ModelAttribute("house") HouseLandlordVo house, @RequestParam(name = "service", required = false,defaultValue = "0") List<Integer> service, MultipartFile[] images, Model model, HttpSession httpSession,
                               @RequestParam(name = "latitude1") Double latitude ,@RequestParam(name = "longitude1") Double longitude ) throws IOException {
-
         if(house.getProvinceID()==0){
             Optional<AddressEntity> newAddress = addressService.findbyId(house.getAddress());
             AddressEntity address = new AddressEntity("a",house.getAddressDetail(),newAddress.get().getProvinceId(),newAddress.get().getDistrictId(),newAddress.get().getWardId());
@@ -93,14 +88,6 @@ public class HouseManagerController {
             AddressEntity address = new AddressEntity("a",house.getAddressDetail(),house.getProvinceID(),house.getDistrictID(),house.getWardID());
             addressService.updateAddress(address,house.getAddress());
         }
-
-        System.out.println(house.getHouseID());
-        System.out.println(service);
-
-
-
-
-
 
 
         houseManagerService.updateHouse(house,house.getHouseID(),service);
@@ -111,7 +98,6 @@ public class HouseManagerController {
         housesEntity.setLongitude(longitude);
         houseService.saveHouse(housesEntity);
         System.out.println(housesEntity.toString());
-
 
         return "redirect:/admin/house-manager";
     }
@@ -134,9 +120,7 @@ public class HouseManagerController {
     public String saveHouse(@ModelAttribute(name = "house") HouseLandlordVo house, MultipartFile[] images, Model model, HttpSession httpSession) throws IOException {
         AddressEntity address = new AddressEntity("a",house.getAddressDetail().trim(),house.getProvinceID(),house.getDistrictID(),house.getWardID());
         int addressID = addressService.insertAddress(address);
-
         houseManagerService.insertHouse(house,addressID);
-
         return  "redirect:/admin/house-manager";
     }
 

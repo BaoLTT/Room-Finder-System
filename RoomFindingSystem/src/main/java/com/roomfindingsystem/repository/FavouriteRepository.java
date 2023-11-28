@@ -26,9 +26,12 @@ public interface FavouriteRepository extends JpaRepository<FavouriteEntity,Integ
             "join AddressEntity ad on h.addressId = ad.addressId " +
             "join ProvinceEntity pr on ad.provinceId = pr.provinceId " +
             "join DistrictEntity d on ad.districtId = d.districtId " +
+            "join  WardEntity w on ad.wardId = w.wardId " +
             "order by f.createdDate desc ")
+    List<FavouriteDto> findAllFavourite();
     @Transactional
     @Modifying
     void deleteFavouriteEntitiesByHouseId(int houseid);
 
+    Optional<FavouriteEntity> getAllByHouseId(int houseid);
 }

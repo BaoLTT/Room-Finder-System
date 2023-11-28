@@ -29,6 +29,11 @@ public class FavouriteEntity {
 
 
     @Basic
+    @Column(name = "RoomID")
+    private int roomId;
+
+
+    @Basic
     @Column(name = "UserID")
     private int userId;
 

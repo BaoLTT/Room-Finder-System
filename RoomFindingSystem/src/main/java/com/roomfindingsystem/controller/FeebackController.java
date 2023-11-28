@@ -30,6 +30,8 @@ public class FeebackController {
     }
 
     @RequestMapping(value = "feedback-list-landlord")
+    public String getFeebackListForLandLord(Model model) {
+        List<FeedbackListAdminDto> list = feedbackService.getListFeedbackForLandLord(1);
         model.addAttribute("feedbackList", list);
         return "feedback-list-landlord";
     }
