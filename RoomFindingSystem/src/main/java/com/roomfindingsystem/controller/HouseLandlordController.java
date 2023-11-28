@@ -41,7 +41,12 @@ public class HouseLandlordController {
     public String findAll(Model model, HttpSession httpSession, HttpServletRequest request){
         HttpSession session = request.getSession();
         UserEntity user = (UserEntity) session.getAttribute("user");
-        System.out.println("UserID: "+user.getUserId());
+        if(user == null){
+            return "redirect:/";
+        }
+        if(!user.getRoleId().equals("LANDLORD")){
+            return "redirect:/login";
+        }
         List<HouseLandlordVo> listHouse = new ArrayList<>();
         listHouse = houseLandlordService.findHouseByUser(user.getUserId());
         model.addAttribute("house",listHouse);
