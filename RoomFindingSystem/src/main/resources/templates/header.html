@@ -2,15 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
-    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-<link href="/assets/fonts/font-awesome.css" rel="stylesheet" type="text/css">
-<link href="/assets/fonts/elegant-fonts.css" rel="stylesheet" type="text/css">
-<link href='https://fonts.googleapis.com/css?family=Lato:400,300,700,900,400italic' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.css" type="text/css">
-<link rel="stylesheet" href="/assets/css/zabuto_calendar.min.css" type="text/css">
-<link rel="stylesheet" href="/assets/css/owl.carousel.css" type="text/css">
-<link rel="stylesheet" href="/assets/css/style.css" type="text/css">
+
 
 
 <body>
@@ -93,9 +85,9 @@
                     <li class="active"><a th:href="@{/}">Trang chủ</a></li>
                       <li><a th:if="${session.user != null and session.user.getRoleId() == 'LANDLORD'}" th:href="@{/manager}" >Quản lý phòng trọ</a></li>
                     <li><a th:href="@{/houselist}">Danh sách nhà trọ</a></li>
-                    <li><a th:href="@{/RoomList/1}" class="has-child" id="roomList">Danh sách phòng trọ</a></li>
+                    <li><a th:href="@{/RoomList/1}"  id="roomList">Danh sách phòng trọ</a></li>
 
-                    <li><a href="/blog">Blog</a></li>
+
                   </ul>
                 </nav>
                 <!--end nav-->
@@ -109,44 +101,11 @@
         <!--end header-->
       </div>
 
-
-      <script>
-        document.addEventListener("DOMContentLoaded", function() {
-          // Lấy tất cả các phần tử li trong danh sách
-          var navItems = document.querySelectorAll(".primary-nav ul li");
-
-          // Lặp qua từng phần tử li và thêm sự kiện click cho chúng
-          navItems.forEach(function(item) {
-            item.addEventListener("click", function() {
-              // Xóa lớp 'active' khỏi tất cả các phần tử li
-              navItems.forEach(function(navItem) {
-                navItem.classList.remove("active");
-              });
-
-              // Thêm lớp 'active' cho phần tử li đã được nhấp
-              item.classList.add("active");
-            });
-          });
-        });
-      </script>
+      <a href="#page-header" class="to-top scroll" data-show-after-scroll="600"><i class="arrow_up"></i></a>
 
 
-      <script type="text/javascript" src="/assets/js/jquery-2.2.1.min.js"></script>
-      <script type="text/javascript" src="/assets/js/jquery-migrate-1.2.1.min.js"></script>
-      <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&libraries=places"></script>
-      <script type="text/javascript" src="/assets/js/infobox.js"></script>
-      <script type="text/javascript" src="/assets/js/markerclusterer_packed.js"></script>
-      <script type="text/javascript" src="/assets/js/richmarker-compiled.js"></script>
-      <script type="text/javascript" src="/assets/js/markerwithlabel_packed.js"></script>
-      <script type="text/javascript" src="/assets/bootstrap/js/bootstrap.min.js"></script>
-      <script type="text/javascript" src="/assets/js/jquery.validate.min.js"></script>
-      <script type="text/javascript" src="/assets/js/bootstrap-datepicker.js"></script>
-      <script type="text/javascript" src="/assets/js/icheck.min.js"></script>
-      <script type="text/javascript" src="/assets/js/owl.carousel.js"></script>
-      <script type="text/javascript" src="/assets/js/masonry.pkgd.min.js"></script>
 
-      <script type="text/javascript" src="/assets/js/maps.js"></script>
-      <script type="text/javascript" src="/assets/js/custom.js"></script>
+
 
 
       <script src="/assets/js/ie.js"></script>
