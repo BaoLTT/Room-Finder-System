@@ -24,10 +24,10 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("/admin")
-public class HouseManagerController {
+public class AdminManageHouseController {
     private HouseManagerService houseManagerService;
 
-    public HouseManagerController(HouseManagerService houseManagerService){
+    public AdminManageHouseController(HouseManagerService houseManagerService){
         this.houseManagerService = houseManagerService;
     }
     @Autowired
