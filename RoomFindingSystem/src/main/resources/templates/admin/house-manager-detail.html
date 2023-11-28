@@ -15,7 +15,12 @@
     <link href="/assets_admin/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="/assets_admin/css/icons.min.css" rel="stylesheet" type="text/css" />
     <link href="/assets_admin/css/app.min.css" rel="stylesheet" type="text/css" />
+
     <link href="/assets_admin/css/file-upload.css" rel="stylesheet" type="text/css" />
+
+
+
+
 
 </head>
 
@@ -55,7 +60,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card-box">
-                            <h4 class="header-title">Thông tin trọ</h4>
+                            <h4 class="header-title">House Detail</h4>
 
                             <div class="row">
                                 <div class="col-12">
@@ -79,26 +84,6 @@
                                                 <div class="col-10">
                                                     <input type="text"  name="houseName" class="form-control" placeholder="Tên trọ..." required th:field="*{houseName}" >
                                                 </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-2 col-form-label">Thông tin khác</label>
-                                                <div class="col-3">
-                                                    <label>Tình trạng</label>
-                                                    <select class="form-control" th:field="*{status}">
-                                                        <option value="1"  th:selected="${house.status == 1}" >HOẠT ĐỘNG</option>
-                                                        <option value="0"  th:selected="${house.status == 0}">NGƯNG HOẠT ĐỘNG</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-3">
-                                                    <label for="like">Số lượt thích</label>
-                                                    <input type="text" class="form-control" id="like" readonly th:field="*{like}" style="padding: 10px" >
-                                                </div>
-                                                <div class="col-3">
-                                                    <label for="room">Số lượng phòng</label>
-                                                    <input type="text" class="form-control" id="room" readonly th:field="*{count_room}" style="padding: 10px">
-                                                </div>
-
-
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-2 col-form-label">Người tạo</label>
@@ -144,6 +129,23 @@
                                                 </div>
 
                                             </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-2 col-form-label">Hiện thị trên bản đồ</label>
+                                                <div class="col-10" id = "map-item">
+                                                    <input id="latitude" name="latitude" type="hidden" th:value="${houseLocation.latitude}">
+                                                    <input id="longitude" name="longitude" type="hidden" th:value="${houseLocation.longitude}">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-2 col-form-label">Hiện thị trên bản đồ</label>
+                                                <div class="col-10">
+                                                    <input id="latitude1" name="latitude1"  th:value="${houseLocation.latitude}">
+                                                    <input id="longitude1" name="longitude1"  th:value="${houseLocation.longitude}">
+                                                </div>
+                                            </div>
+
                                             <div class="form-group row">
                                                 <label class="col-2 col-form-label">Ghi chú</label>
                                                 <div class="col-10">
@@ -178,30 +180,12 @@
                                             </div>
 
                                             <div class="form-group row">
-                                                <label class="col-2 col-form-label">Ảnh</label>
-                                                <div class="col-10" >
-                                                <div class="file-upload-previews">
-                                                    <div class="MultiFile-label"  id="imageContainer" th:each="image, iterStat : ${house.listImage}">
-                                                        <a class="MultiFile-remove" th:href="@{'/admin/house-manager/deleteImage/' + ${house.houseID} + '/' + ${image.imageId}}">x</a>
-                                                        <span class="MultiFile-label" title="File selected: abc.png">
-                                                            <img th:src="${image.imageLink}" alt="Ảnh" id="imagePreview" style="width: 100px;height: 100px">
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div class="file-upload">
-                                                    <input  type="file" name="file" class="file-upload-input with-preview" multiple title="Click to add files" maxlength="10" accept="gif|jpg|png">
-                                                    <span>Click to add images</span>
-                                                </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group row">
                                                 <label class="col-2 col-form-label">Dịch vụ</label>
                                                 <div class="col-10" style="display: flex; flex-wrap: wrap;">
                                                     <div class="checkbox checkbox-primary col-2" th:each="listService : ${listService}" th:field="*{service}" style="padding-left: 10px">
                                                         <input th:id="${listService.serviceName}" type="checkbox" name="service"  th:value="${listService.serviceId}" th:checked="${#lists.contains(listChecked,''+ listService.serviceId+'')}">
                                                         <label th:for="${listService.serviceName}" th:text="${listService.serviceName}">
-                                                            <Primary></Primary>
+                                                            Primary
                                                         </label>
                                                     </div>
                                                 </div>
@@ -363,16 +347,6 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-
-<script type="text/javascript" src="/assets/js/jquery-2.2.1.min.js"></script>
-<script type="text/javascript" src="/assets/js/jquery-migrate-1.2.1.min.js"></script>
-<script type="text/javascript" src="/assets/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/assets/js/icheck.min.js"></script>
-<script type="text/javascript" src="/assets/js/jQuery.MultiFile.min.js"></script>
-
-<script type="text/javascript" src="/assets/js/maps.js"></script>
-<script type="text/javascript" src="/assets/js/custom.js"></script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
 <script>
     document.getElementById('provinceName').addEventListener('click', () => {
@@ -426,10 +400,65 @@
             }
         };
     }
+
+</script>
+
+<script th:src="@{'https://maps.googleapis.com/maps/api/js?key='+${key_map}+'&callback=initMap'}" async defer></script>
+
+<script>
+    var map;
+    var marker;
+
+    function initMap() {
+        var latitude = parseFloat(document.getElementById('latitude').value);
+        var longitude = parseFloat(document.getElementById('longitude').value);
+
+        // Tạo map với vị trí ban đầu
+        map = new google.maps.Map(document.getElementById('map-item'), {
+            center: {lat: latitude, lng: longitude},
+            zoom: 16
+        });
+
+
+
+        //marker ban dau
+        marker = new google.maps.Marker({
+            position: {lat: latitude, lng: longitude},
+            map: map
+        });
+
+        // Thêm sự kiện click cho map
+        map.addListener('click', function(event) {
+            placeMarker(event.latLng);
+        });
+
+    }
+
+    function placeMarker(location) {
+
+        // Xóa marker cũ nếu có
+        if (marker) {
+            marker.setMap(null);
+        }
+
+        // Tạo marker mới
+        marker = new google.maps.Marker({
+            position: location,
+            map: map
+        });
+
+        // Hiển thị thông tin vị trí
+        document.getElementById('latitude1').value = location.lat ();
+        document.getElementById('longitude1').value = location.lng();
+    }
+
+
+
+
+
 </script>
 
 
-<!-- App js -->
 
 
 </body>

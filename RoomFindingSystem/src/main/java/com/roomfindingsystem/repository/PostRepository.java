@@ -16,6 +16,4 @@ public interface PostRepository extends JpaRepository<PostEntity,Integer> {
 
     List<PostEntity> findAllByOrderByCreatedDateAsc();
 
-
-
 }

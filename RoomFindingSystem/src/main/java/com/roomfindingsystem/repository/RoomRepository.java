@@ -97,10 +97,4 @@ public interface RoomRepository extends JpaRepository<RoomEntity, Integer> {
             "left join RoomTypeEntity t on t.typeId = r.roomType ")
     List<RoomDto> findRoomsDetail();
 
-    @Query("select new com.roomfindingsystem.dto.RoomDto(r.roomId, r.roomName, t.typeName, r.description, r.price, h.houseName, r.area, case when r.statusId = 1 then 'ACTIVE' else 'INACTIVE' end) " +
-            "from RoomEntity r " +
-            "join HousesEntity h on r.houseId = h.houseId " +
-            "left join RoomTypeEntity t on t.typeId = r.roomType "+
-            "WHERE h.houseId = :houseId")
-    List<RoomDto> findRoomsInHouse(int houseId);
 }
