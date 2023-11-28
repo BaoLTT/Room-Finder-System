@@ -31,12 +31,6 @@ public class FeedbackServiceImpl implements FeedbackService {
     public List<FeedbackDto> getFeedbackByHouseId(int houseId) {
         return feedbackRepository.findFeedbackDtosByHouseId(houseId);
     }
-
-    @Override
-    public List<FeedbackDto> getFeedbackByHouseIdAndStar(int houseId, int star) {
-        return feedbackRepository.findFeedbackDtosByHouseIdAndStar(houseId, star);
-    }
-
     @Override
     public List<FeedbackHomeDto> viewTop4Home() {
         List<FeedbackHomeDto> list = new ArrayList<>();
@@ -74,16 +68,5 @@ public class FeedbackServiceImpl implements FeedbackService {
     @Override
     public void deleteByHouseIdAndMemberId(int houseId, int memberId) {
         feedbackRepository.deleteByHouseIdAndMemberId(houseId, memberId);}
-
-    @Override
-    public void updateStatusToTrue(int feedbackId) {
-        feedbackRepository.updateStatusToTrue(feedbackId);
-    }
-
-    @Override
-    public void updateStatusToFalse(int feedbackId) {
-        feedbackRepository.updateStatusToFalse(feedbackId);
-
-    }
 
 }

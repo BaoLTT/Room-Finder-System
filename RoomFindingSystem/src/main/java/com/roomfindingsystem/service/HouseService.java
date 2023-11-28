@@ -15,7 +15,6 @@ public interface HouseService {
 
 
     List<HouseHomeDto> viewHouseInHome();
-    List<HouseFavouriteDto> viewHouseInHomeInFavourite(int id);
     Optional<HousesEntity> findHouseById(Integer id);
     List<HouseDto> getHouseDetail(int id);
     List<HouseImageLink> getImageById(int id);

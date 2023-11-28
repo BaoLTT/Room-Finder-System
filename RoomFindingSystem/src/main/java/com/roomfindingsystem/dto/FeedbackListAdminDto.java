@@ -10,6 +10,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @ToString
 public class FeedbackListAdminDto {
+
     private int feedbackId;
     private String content;
     private LocalDate createdDate;

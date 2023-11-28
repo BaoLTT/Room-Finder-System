@@ -9,8 +9,10 @@ import com.roomfindingsystem.repository.UserRepository;
 import com.roomfindingsystem.service.AddressService;
 import com.roomfindingsystem.service.HouseLandlordService;
 import com.roomfindingsystem.service.HouseManagerService;
+import com.roomfindingsystem.service.*;
 
-import com.roomfindingsystem.service.ServiceDetailService;
+import com.roomfindingsystem.service.impl.GcsService;
+
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -44,6 +47,10 @@ public class HouseManagerController {
     HouseLandlordService houseLandlordService;
 
 
+    @Autowired
+    GcsService gcsService;
+    @Autowired
+    HouseService houseService;
 
     @GetMapping("/house-manager")
     public String viewHomepage(final Model model, HttpSession httpSession){
@@ -71,10 +78,18 @@ public class HouseManagerController {
         model.addAttribute("listType",listType);
         model.addAttribute("listChecked",listChecked);
         model.addAttribute("listService",listService);
+        model.addAttribute("key_map", gcsService.getMapKey());
+        model.addAttribute("houseLocation", houseService.getHouseById(houseid));
+
         return "admin/house-manager-detail";
     }
     @PostMapping("/house-manager/update")
     public String updateHouse(@ModelAttribute("house") HouseLandlordVo house, @RequestParam(name = "service", required = false,defaultValue = "0") List<Integer> service, MultipartFile[] images, Model model, HttpSession httpSession) throws IOException {
+
+
+    public String updateHouse(@ModelAttribute("house") HouseLandlordVo house, @RequestParam(name = "service", required = false,defaultValue = "0") List<Integer> service, MultipartFile[] images, Model model, HttpSession httpSession,
+                              @RequestParam(name = "latitude1") Double latitude ,@RequestParam(name = "longitude1") Double longitude ) throws IOException {
+
         if(house.getProvinceID()==0){
             Optional<AddressEntity> newAddress = addressService.findbyId(house.getAddress());
             AddressEntity address = new AddressEntity("a",house.getAddressDetail(),newAddress.get().getProvinceId(),newAddress.get().getDistrictId(),newAddress.get().getWardId());
@@ -83,14 +98,29 @@ public class HouseManagerController {
             AddressEntity address = new AddressEntity("a",house.getAddressDetail(),house.getProvinceID(),house.getDistrictID(),house.getWardID());
             addressService.updateAddress(address,house.getAddress());
         }
+
         System.out.println(house.getHouseID());
         System.out.println(service);
 
 <<<<<<< HEAD
         houseManagerService.updateHouse(house,house.getHouseID(),service, images);
 =======
+
+
+
+
+
+
         houseManagerService.updateHouse(house,house.getHouseID(),service);
 >>>>>>> parent of d28a035 (update map)
+
+
+        HousesEntity housesEntity = houseService.getHouseById(house.getHouseID());
+        housesEntity.setLatitude(latitude);
+        housesEntity.setLongitude(longitude);
+        houseService.saveHouse(housesEntity);
+        System.out.println(housesEntity.toString());
+
 
         return "redirect:/admin/house-manager";
     }
@@ -114,6 +144,8 @@ public class HouseManagerController {
         AddressEntity address = new AddressEntity("a",house.getAddressDetail().trim(),house.getProvinceID(),house.getDistrictID(),house.getWardID());
         int addressID = addressService.insertAddress(address);
         houseManagerService.insertHouse(house,addressID,images);
+        houseManagerService.insertHouse(house,addressID);
+
         return  "redirect:/admin/house-manager";
     }
 

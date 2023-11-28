@@ -73,7 +73,6 @@
                                             <th>Chủ trọ</th>
                                             <th>Tên nhà trọ</th>
                                             <th>Địa chỉ</th>
-                                            <th>Tình trạng</th>
                                             <th>Thể loại trọ</th>
                                             <th>Ngày cuối cập nhật</th>
                                             <th>Người cập nhật</th>
@@ -87,9 +86,7 @@
                                             <td style="vertical-align: middle" th:text = "${houses.getUser_firstName()+' '+houses.getUser_lastName()}">2011/04/25</td>
                                             <td style="vertical-align: middle" th:text = "${houses.getHouseName()}"></td>
                                             <td style="vertical-align: middle" th:text = "${houses.addressDetail+', '+houses.ward+', '+houses.district+', '+houses.province}">System Architect</td>
-                                            <td style="vertical-align: middle" th:text="${houses.getStatus() == 1 ? 'HOẠT ĐỘNG' : 'NGƯNG HOẠT ĐỘNG'}">Edinburgh</td>
                                             <td style="vertical-align: middle" th:text = "${houses.getTypeHouse()}">Edinburgh</td>
-                                            <td style="vertical-align: middle" th:text="${#temporals.format(houses.lastModifiedDate, 'dd/MM/yyyy')}">61</td>
                                             <td style="vertical-align: middle" th:text = "${houses.lastModifiedBy_firstName+' '+houses.lastModifiedBy_lastName}">2011/04/25</td>
                                             <td >
                                                 <a type="button" th:href = "@{/admin/house-manager/detail/}+${houses.houseID}" class="btn btn-secondary waves-light waves-effect width-md">Chỉnh sửa</a>

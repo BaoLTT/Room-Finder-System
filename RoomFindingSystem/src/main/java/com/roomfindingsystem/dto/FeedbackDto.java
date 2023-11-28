@@ -20,7 +20,6 @@ public class FeedbackDto {
     private String userImage;
     private int userId;
     private int star;
-    private boolean status;
 
 
 }
