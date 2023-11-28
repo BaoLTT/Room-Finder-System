@@ -38,7 +38,7 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th>Trọ</th>
+                            <th></th>
                             <th>Tình trạng</th>
                             <th>Lượt thích</th>
                             <th>Người tạo</th>
@@ -49,9 +49,7 @@
                         <tr class="my-item" th:each="house:${house}">
                             <td>
                                 <div class="image-wrapper">
-                                    <div class="mark-circle top" data-toggle="tooltip" data-placement="right" title="Top accommodation">
-                                        <i class="fa fa-thumbs-up"></i>
-                                    </div>
+
                                     <div class="image-carousel">
                                         <a th:href="@{/manager/edit/}+${house.houseID}" class="image" th:each="image, iterStat : ${house.listImage}" th:classappend="${iterStat.index eq 0} ? 'active'">
                                             <div class="bg-transfer">
@@ -92,7 +90,7 @@
 
                                 <div class="edit-options">
                                     <a th:href = "@{/manager/edit/}+${house.houseID}" class="link icon"><i class="fa fa-edit"></i>Chỉnh sửa</a>
-                                    <a th:href="@{'/landlord/room/listRoom/' + ${house.houseID}}" class="fa fa-comment">Danh sách phòng</a>
+                                    <a th:href="@{'/landlord/room/listRoom/' + ${house.houseID}}" class="link icon"><i class="fa fa-edit"></i>Danh sách phòng</a>
 <!--                                    <a href="reviews.html" class="link icon"><i class="fa fa-comment"></i>Reviews</a>-->
 <!--                                    <a href="#" class="link icon delete"><i class="fa fa-trash"></i>Delete</a>-->
                                 </div>
