@@ -77,6 +77,7 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 //        http.csrf().disable();
         http
+
             .formLogin(f->f.loginPage("/login")
                     .usernameParameter("username")
                     .passwordParameter("password")
@@ -89,6 +90,7 @@ public class SecurityConfiguration {
                         }
                         response.sendRedirect("/");
                     }))
+
 
                 .authorizeHttpRequests(at ->at.requestMatchers("/login/**", "/login-google", "/","/register","/save","re-send",
                                 "recover","send-otp-recover","otp-check","confirm-otp","send-otp-recover","confirm-otp-recover",
