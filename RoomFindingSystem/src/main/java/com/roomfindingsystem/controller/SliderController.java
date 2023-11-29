@@ -4,11 +4,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@RequestMapping("/post")
+@RequestMapping("/slider")
 @Controller
-public class PostController {
+public class SliderController {
     @GetMapping
     public String view(){
-        return "list_post";
+        return "slider-detail";
     }
 }
