@@ -18,10 +18,8 @@
 
     <style>
         .profile-picture img {
-            max-width: 200px;
-            max-height: 200px;
-            width: auto;
-            height: auto;
+            width: 150px;
+            height: 150px;
         }
     </style>
 </head>
@@ -69,58 +67,88 @@
                             <form class="parsley-examples" action="#" id="myForm" th:action="@{/admin/room/update}"
                                   th:object="${room}" method="post" enctype="multipart/form-data"><input type="hidden"
                                                                                                          th:field="*{roomId}">
-                                <div class="form-group">
-                                    <label>Phòng</label>
-                                    <input type="text" class="form-control" required
-                                           placeholder="Type something" th:field="*{roomName}"/>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Diện tích</label>
-                                    <div>
-                                        <input type="number" id="area" class="form-control" required
-                                               placeholder="56.5656" th:field="*{area}"/>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Phòng</label>
+                                            <input type="text" class="form-control" required
+                                                   placeholder="P101" th:field="*{roomName}"/>
+                                        </div>
                                     </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Giá</label>
-                                    <div>
-                                        <input type="number" class="form-control" required
-                                               placeholder="56.5656" th:field="*{price}"/>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Diện tích</label>
+                                            <div>
+                                                <input type="number" id="area" class="form-control" required
+                                                       placeholder="20" th:field="*{area}"/>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label>Loại phòng</label>
-                                    <div>
-                                        <select class="form-select form-control mb-4 col-4" th:field="*{typeId}"
-                                                aria-label="Default select example">
-                                            <option th:each="type : ${types}" th:value="${type.typeId}"
-                                                    th:utext="${type.typeName}"
-                                                    th:selected="${room.typeName == type.typeName}"/>
-                                        </select>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Giá</label>
+                                            <div>
+                                                <input type="number" class="form-control" required
+                                                       placeholder="2.000.000" th:field="*{price}"/>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label>Mô tả chi tiết</label>
-                                    <input type="text" class="form-control" required
-                                           placeholder="Type something" th:field="*{description}"/>
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <label>Mô tả chi tiết</label>
+                                            <textarea type="text" class="form-control" rows="5"
+                                                      placeholder="Nhập thêm thông tin cho phòng"
+                                                      th:field="*{description}"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Loại phòng</label>
+                                            <div>
+                                                <select class="form-select form-control" th:field="*{typeId}"
+                                                        aria-label="Default select example">
+                                                    <option th:each="type : ${types}" th:value="${type.typeId}"
+                                                            th:utext="${type.typeName}"
+                                                            th:selected="${room.typeName == type.typeName}"/>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Trạng thái</label>
+                                            <div>
+                                                <select class="form-control" id="status" name="status"
+                                                        th:field="*{status}">
+                                                    <option value="ACTIVE" th:selected="${room.status == 'ACTIVE'}">
+                                                        Phòng
+                                                        trống
+                                                    </option>
+                                                    <option value="INACTIVE"
+                                                            th:selected="${room.status == 'INACTIVE'}">
+                                                        Hết phòng
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label>Dịch vụ</label>
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <input type="checkbox" id="fridge" name="serviceNames" value="Tủ lạnh"
+                                            <input type="checkbox" id="fridge" name="serviceNames"
+                                                   value="Tủ lạnh"
                                                    th:checked="*{serviceNames.contains('Tủ lạnh')}">
                                             <label for="fridge">Tủ lạnh</label><br>
 
-                                            <input type="checkbox" id="bed" name="serviceNames" value="Giường ngủ"
+                                            <input type="checkbox" id="bed" name="serviceNames"
+                                                   value="Giường ngủ"
                                                    th:checked="*{serviceNames.contains('Giường ngủ')}">
                                             <label for="bed">Giường ngủ</label><br>
                                         </div>
                                         <div class="col-md-3">
                                             <input type="checkbox" id="washingMachine" name="serviceNames"
-                                                   value="Máy giặt" th:checked="*{serviceNames.contains('Máy giặt')}">
+                                                   value="Máy giặt"
+                                                   th:checked="*{serviceNames.contains('Máy giặt')}">
                                             <label for="washingMachine">Máy giặt</label><br>
 
                                             <input type="checkbox" id="waterHeater" name="serviceNames"
@@ -129,53 +157,42 @@
                                             <label for="waterHeater">Bình nóng lạnh</label><br>
                                         </div>
                                         <div class="col-md-3">
-                                            <input type="checkbox" id="kitchenShelf" name="serviceNames" value="Kệ bếp"
+                                            <input type="checkbox" id="kitchenShelf" name="serviceNames"
+                                                   value="Kệ bếp"
                                                    th:checked="*{serviceNames.contains('Kệ bếp')}">
                                             <label for="kitchenShelf">Kệ bếp</label><br>
 
-                                            <input type="checkbox" id="loftBed" name="serviceNames" value="Gác xép"
+                                            <input type="checkbox" id="loftBed" name="serviceNames"
+                                                   value="Gác xép"
                                                    th:checked="*{serviceNames.contains('Gác xép')}">
                                             <label for="loftBed">Gác xép</label><br>
                                         </div>
                                         <div class="col-md-3">
-                                            <input type="checkbox" id="studyDesk" name="serviceNames" value="Bàn học"
+                                            <input type="checkbox" id="studyDesk" name="serviceNames"
+                                                   value="Bàn học"
                                                    th:checked="*{serviceNames.contains('Bàn học')}">
                                             <label for="studyDesk">Bàn học</label><br>
 
-                                            <input type="checkbox" id="wardrobe" name="serviceNames" value="Tủ quần áo"
+                                            <input type="checkbox" id="wardrobe" name="serviceNames"
+                                                   value="Tủ quần áo"
                                                    th:checked="*{serviceNames.contains('Tủ quần áo')}">
                                             <label for="wardrobe">Tủ quần áo</label><br>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label>Trạng thái</label>
-                                    <div>
-                                        <select class="form-control" id="status" name="status"
-                                                th:field="*{status}">
-                                            <option value="ACTIVE" th:selected="${room.status == 'ACTIVE'}">Phòng trống
-                                            </option>
-                                            <option value="INACTIVE" th:selected="${room.status == 'INACTIVE'}">
-                                                Hết phòng
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
                                 <!-- Pictures -->
-                                <div class="form-group">
+                                <div class="row mb-3">
                                     <div th:each="image, iterStat : ${room.imgs}"
-                                         class="profile-picture single-file-preview">
-                                        <img th:src="${image.imageLink}" alt=""
-                                             class="image">
+                                         class="profile-picture single-file-preview col-md-3">
+                                        <img th:src="${image.imageLink}" alt="" class="image">
                                         <div class="input">
-                                            <input th:name="'file' + ${image.imageId}" type="file" class="d-none">
+                                            <input th:name="'file' + ${image.imageId}" type="file"
+                                                   class="d-none">
                                             <button class="btn btn-danger delete-button" type="button"
                                                     th:attr="data-imageId=${image.imageId}">Xóa
                                             </button>
                                         </div>
                                     </div>
-
-
                                 </div>
                                 <div class="form-group">
                                     <div class="dropzone" id="myAwesomeDropzone">
