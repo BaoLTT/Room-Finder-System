@@ -73,12 +73,23 @@ public class AdminManageHouseController {
     }
 
     @PostMapping ("/house-manager/addType")
-    public String addType(@RequestParam(name = "houseID") Integer houseID,@RequestParam(name = "newType") String newType,HttpSession httpSession){
+    public String addType(@RequestParam(name = "newType") String newType,HttpSession httpSession,HttpServletRequest request){
         TypeHouseEntity typeHouseEntity = new TypeHouseEntity();
         typeHouseEntity.setTypeName(newType);
         typeHouseEntity.setCreatedDate(LocalDate.now());
         houseTypeService.addType(typeHouseEntity);
-        return "redirect:/admin/house-manager/detail/"+ houseID;
+        String referer = request.getHeader("Referer");
+        return "redirect:" + referer;
+    }
+
+    @PostMapping ("/house-manager/addService")
+    public String addService(@RequestParam(name = "newService") String newService,HttpSession httpSession,HttpServletRequest request){
+        ServiceDetailEntity serviceDetailEntity = new ServiceDetailEntity();
+        serviceDetailEntity.setServiceName(newService);
+        serviceDetailEntity.setCreateDate(LocalDate.now());
+        serviceDetailService.save(serviceDetailEntity);
+        String referer = request.getHeader("Referer");
+        return "redirect:" + referer;
     }
 
     @GetMapping("/house-manager/detail/{houseid}")
