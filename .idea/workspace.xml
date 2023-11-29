@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+
     <list default="true" id="1e0562a2-7ad5-40d8-bd96-2e66b43cd15f" name="Changes" comment="update lai phan house detail">
       <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/housedetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/housedetail.html" afterDir="false" />
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +46,7 @@
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
-  </component>
+
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
@@ -68,6 +70,7 @@
     &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;,
     &quot;spring.configuration.checksum&quot;: &quot;cba14e4d5d8ebaea272e92fbdfce9e02&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+
   }
 }</component>
   <component name="RunManager">
@@ -114,7 +117,7 @@
       <workItem from="1700921274829" duration="1086000" />
       <workItem from="1700987445985" duration="7599000" />
       <workItem from="1701009089588" duration="2339000" />
-      <workItem from="1701180034689" duration="2012000" />
+      <workItem from="1701180034689" duration="8573000" />
     </task>
     <task id="LOCAL-00002" summary="update lai">
       <option name="closed" value="true" />
@@ -132,7 +135,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701181571820</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="update lai phan house detail 2">
+      <option name="closed" value="true" />
+      <created>1701182120303</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1701182120303</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -155,7 +166,8 @@
     <MESSAGE value="update map" />
     <MESSAGE value="update lai" />
     <MESSAGE value="update lai phan house detail" />
-    <option name="LAST_COMMIT_MESSAGE" value="update lai phan house detail" />
+    <MESSAGE value="update lai phan house detail 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="update lai phan house detail 2" />
   </component>
   <component name="com.github.evgenys91.machinet.common.dslhistory.DslHistoryState">
     <option name="historyDtoById">
