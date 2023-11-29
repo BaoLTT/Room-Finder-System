@@ -62,7 +62,7 @@ public class OtpController {
                 userEntity.setAddressId(1);
                 userEntity.setFacebookId(null);
                 userEntity.setGmailId(null);
-                userEntity.setImageLink(null);
+                userEntity.setImageLink("https://storage.cloud.google.com/rfs_bucket/User/user_0.jpg");
                 userEntity.setLastModifiedDate(null);
                 userService.saveUser(userEntity);
                 return "redirect:/";
