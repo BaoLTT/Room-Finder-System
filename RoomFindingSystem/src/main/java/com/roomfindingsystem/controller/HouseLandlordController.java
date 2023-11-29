@@ -77,7 +77,7 @@ public class HouseLandlordController {
     }
 
     @PostMapping("/save")
-    public String saveHouse(@ModelAttribute(name = "house") HouseLandlordVo house, @RequestParam("file") MultipartFile[] files, Model model, HttpSession httpSession,HttpServletRequest request) throws IOException {
+    public String saveHouse(@ModelAttribute(name = "house") HouseLandlordVo house, @RequestParam("file") MultipartFile[] files,HttpServletRequest request) throws IOException {
         AddressEntity address = new AddressEntity("a",house.getAddressDetail().trim(),house.getProvinceID(),house.getDistrictID(),house.getWardID());
         int addressID = addressService.insertAddress(address);
         HttpSession session = request.getSession();
