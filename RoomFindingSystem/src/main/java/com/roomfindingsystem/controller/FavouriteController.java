@@ -2,6 +2,7 @@ package com.roomfindingsystem.controller;
 
 import com.roomfindingsystem.dto.FavouriteDto;
 import com.roomfindingsystem.dto.HouseImageLink;
+import com.roomfindingsystem.dto.ReportListDto;
 import com.roomfindingsystem.entity.FavouriteEntity;
 import com.roomfindingsystem.entity.UserEntity;
 import com.roomfindingsystem.service.FavouriteService;
@@ -39,54 +40,74 @@ public class FavouriteController {
     HouseService houseService;
 
 
-
-
     @RequestMapping(value = "favourite-list")
-    public String getFavourite(@RequestParam(name = "id", required = false, defaultValue = "1") int houseId,Model model, HttpSession session, HttpServletRequest request) {
-        session = request.getSession();
-        UserEntity user = (UserEntity) session.getAttribute("user");
+    public String getFavourite(@RequestParam(name = "id", required = false, defaultValue = "1") int houseId, Model model, HttpSession session, HttpServletRequest request) {
+        try {
+            session = request.getSession();
+            UserEntity user = (UserEntity) session.getAttribute("user");
 
-        List<FavouriteDto> list = favouriteService.getListFavourite(user.getUserId());
-        if (list.isEmpty()){
-            model.addAttribute("request",request);
-            return "favourite-null";
-        }
-        System.out.println(list);
-        model.addAttribute("request",request);
-        model.addAttribute("houses", houseService.viewHouseInHomeInFavourite(user.getUserId()));
+            List<FavouriteDto> list = favouriteService.getListFavourite(user.getUserId());
+            if (list.isEmpty()) {
+                model.addAttribute("request", request);
+                return "favourite-null";
+            }
+            System.out.println(list);
+            model.addAttribute("request", request);
+            model.addAttribute("houses", houseService.viewHouseInHomeInFavourite(user.getUserId()));
 //       List<HouseImageLink> houseImageLinks= houseService.getImageById(houseId);
 //        model.addAttribute("houseImageLinks",houseImageLinks);
 //        model.addAttribute("listFavourite",list);
-        return "favourite-list";
+            return "favourite-list";
+
+
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return "404";
+        }
+
+
     }
 
     @RequestMapping(value = "remove-favourite-list")
     public String removeFavourite(@RequestParam("id") Integer id) {
-        favouriteService.removeItemFavourite(id);
-        return "redirect:/favourite-list";
+        try {
+            favouriteService.removeItemFavourite(id);
+            return "redirect:/favourite-list";
+
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return "404";
+        }
+
     }
-
-
 
 
     @RequestMapping(value = "add-favourite-list")
     public String addToFavourite(@RequestParam("id") Integer id, Model model, HttpSession session, HttpServletRequest request) {
-        session = request.getSession();
-        UserEntity user = (UserEntity) session.getAttribute("user");
-        if (!favouriteService.getAllByHouseId(user.getUserId(),id).isPresent()){
-            FavouriteEntity favouriteEntity = new FavouriteEntity();
-            LocalDate now = LocalDate.now();
-            // get session id
-            favouriteEntity.setUserId(user.getUserId());
-            favouriteEntity.setCreatedDate(now);
-            favouriteEntity.setHouseId(id);
-            favouriteService.addToFavourite(favouriteEntity);
-        }else{
-            System.out.println("false");
+        try {
+            session = request.getSession();
+            UserEntity user = (UserEntity) session.getAttribute("user");
+            if (!favouriteService.getAllByHouseId(user.getUserId(), id).isPresent()) {
+                FavouriteEntity favouriteEntity = new FavouriteEntity();
+                LocalDate now = LocalDate.now();
+                // get session id
+                favouriteEntity.setUserId(user.getUserId());
+                favouriteEntity.setCreatedDate(now);
+                favouriteEntity.setHouseId(id);
+                favouriteService.addToFavourite(favouriteEntity);
+            } else {
+                System.out.println("false");
+            }
+
+
+            return "redirect:/houselist";
+
+
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return "404";
         }
 
-
-        return "redirect:/houselist";
     }
 
 
