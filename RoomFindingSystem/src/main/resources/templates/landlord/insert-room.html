@@ -53,7 +53,7 @@
                         <div class="card-box">
                             <h4 class="page-title">Thêm phòng mới</h4>
                             <div class="d-flex justify-content-end">
-                                <form th:action="@{importRooms}" method="post" enctype="multipart/form-data"
+                                <form th:action="@{'importRooms/'+${houseId}}" method="post" enctype="multipart/form-data"
                                       class="my-form">
                                     <div class="form-group">
                                         <input type="file" class="form-control-file" id="fileExcel" name="fileExcel"/>
@@ -64,7 +64,7 @@
                                 </form>
                             </div>
 
-                            <form class="parsley-examples" action="#" th:action="@{/landlord/room/save}"
+                            <form class="parsley-examples" action="#" th:action="@{'/landlord/room/save/'+ ${houseId}}"
                                   th:object="${room}" method="post" enctype="multipart/form-data">
                                 <input type="hidden" th:field="*{roomId}">
                                 <div class="row">

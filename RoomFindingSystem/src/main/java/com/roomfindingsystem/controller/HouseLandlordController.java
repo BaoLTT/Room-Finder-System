@@ -11,6 +11,7 @@ import com.roomfindingsystem.service.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -37,13 +38,14 @@ public class HouseLandlordController {
     @Autowired
     HouseManagerService houseManagerService;
 
+    @Autowired
+    UserService userService;
+
     @GetMapping("")
     public String findAll(Model model, HttpSession httpSession, HttpServletRequest request){
-        HttpSession session = request.getSession();
-        UserEntity user = (UserEntity) session.getAttribute("user");
-        if(user == null){
-            return "redirect:/";
-        }
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserEntity user = userService.findByEmail(email).get();
+        System.out.println(user.getRoleId());
         if(!user.getRoleId().equals("LANDLORD")){
             return "redirect:/login";
         }
@@ -57,7 +59,12 @@ public class HouseLandlordController {
     @GetMapping("/add")
     public String addHouse(Model model,HttpSession httpSession){
         HouseLandlordVo house = new HouseLandlordVo();
-
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserEntity user = userService.findByEmail(email).get();
+        System.out.println(user.getRoleId());
+        if(!user.getRoleId().equals("LANDLORD")){
+            return "redirect:/login";
+        }
         List<TypeHouseEntity> listType = houseTypeService.findAll();
         List<ServiceDetailEntity> listService = serviceDetailService.getAllService();
         model.addAttribute("house",house);
@@ -68,11 +75,9 @@ public class HouseLandlordController {
 
     @GetMapping("/edit/{houseid}")
     public String detailHouse(@PathVariable Integer houseid,Model model, HttpSession httpSession,HttpServletRequest request){
-        HttpSession session = request.getSession();
-        UserEntity user = (UserEntity) session.getAttribute("user");
-        if(user == null){
-            return "redirect:/";
-        }
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserEntity user = userService.findByEmail(email).get();
+        System.out.println(user.getRoleId());
         if(!user.getRoleId().equals("LANDLORD")){
             return "redirect:/login";
         }
@@ -94,8 +99,8 @@ public class HouseLandlordController {
     public String saveHouse(@ModelAttribute(name = "house") HouseLandlordVo house, @RequestParam("file") MultipartFile[] files,HttpServletRequest request) throws IOException {
         AddressEntity address = new AddressEntity("a",house.getAddressDetail().trim(),house.getProvinceID(),house.getDistrictID(),house.getWardID());
         int addressID = addressService.insertAddress(address);
-        HttpSession session = request.getSession();
-        UserEntity user = (UserEntity) session.getAttribute("user");
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserEntity user = userService.findByEmail(email).get();
         house.setUserID(user.getUserId());
         house.setCreatedBy(user.getUserId());
         house.setLastModifiedBy(user.getUserId());
@@ -116,8 +121,8 @@ public class HouseLandlordController {
             addressService.updateAddress(address,house.getAddress());
         }
         System.out.println(house.getHouseID());
-        HttpSession session = request.getSession();
-        UserEntity user = (UserEntity) session.getAttribute("user");
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserEntity user = userService.findByEmail(email).get();
         house.setUserID(user.getUserId());
         house.setCreatedBy(user.getUserId());
         house.setLastModifiedBy(user.getUserId());
