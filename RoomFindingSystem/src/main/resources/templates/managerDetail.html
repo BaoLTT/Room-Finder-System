@@ -25,9 +25,9 @@
     <div id="page-content">
         <div class="container">
             <ol class="breadcrumb">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Listing</a></li>
-                <li class="active">Detail</li>
+                <li><a href="/">Trang chủ</a></li>
+                <li><a href="/manager">Danh sách trọ</a></li>
+                <li class="active">Chi tiết</li>
             </ol>
             <!--end breadcrumb-->
             <div class="main-content">
@@ -85,7 +85,7 @@
                         <div class="row">
                             <div class="col-md-7">
                                 <div class="form-group">
-                                    <label for="form-submit-description">Description<em>*</em></label>
+                                    <label for="form-submit-description">Ghi chú<em>*</em></label>
                                     <textarea class="form-control" id="form-submit-description" rows="5" name="description" required="" placeholder="Ghi chú" th:field="*{description}" >
                                     </textarea>
                                 </div>
@@ -131,7 +131,7 @@
                                         <input class="form-control" th:id="provinceName" th:field="*{province}" />
                                 </div>
                                 <div class="form-group">
-                                        <label for="district">Huyện</label>
+                                        <label for="district">Quận/Huyện</label>
                                         <select class="form-control" id="district" name="district" style="display: none;" th:field="*{districtID}">
                                             <option value="0" selected>Chọn huyện</option>
                                         </select>
@@ -164,7 +164,7 @@
                         </div>
                         <div class="file-upload">
                             <input  type="file" name="file" class="file-upload-input with-preview" multiple title="Click to add files" maxlength="10" accept="gif|jpg|png">
-                            <span>Click to add images</span>
+                            <span>Nhấn để thêm ảnh</span>
                         </div>
                     </section>
                     <section id="facilities">
@@ -172,9 +172,9 @@
                             <h2>Dịch vụ</h2>
                             <aside class="step">4</aside>
                         </div>
-                        <div class="row">
+                        <div class="row" style="margin-top: -20px">
                             <div class="col-md-12">
-                                <h3>Services</h3>
+                                <h3></h3>
                                 <ul class="checkboxes inline list-unstyled" th:each="listService : ${listService}" th:field="*{service}">
                                     <li><label><input type="checkbox" th:text="${listService.serviceName}" name="service" th:value="${listService.serviceId}" th:checked="${#lists.contains(listChecked,''+ listService.serviceId+'')}" > </label></li>
 
@@ -252,49 +252,7 @@
     </div>
     <!--end page-content-->
 
-    <footer id="page-footer">
-        <div class="row-one">
-            <div class="container">
-                <div class="logos">
-                    <div class="logo">
-                        <a href="#"><img src="assets/img/logo-1.png" alt=""></a>
-                    </div>
-                    <!--/ .logo-->
-                    <div class="logo">
-                        <a href="#"><img src="assets/img/logo-2.png" alt=""></a>
-                    </div>
-                    <!--/ .logo-->
-                    <div class="logo">
-                        <a href="#"><img src="assets/img/logo-3.png" alt=""></a>
-                    </div>
-                    <!--/ .logo-->
-                    <div class="logo">
-                        <a href="#"><img src="assets/img/logo-4.png" alt=""></a>
-                    </div>
-                    <!--/ .logo-->
-                    <div class="logo">
-                        <a href="#"><img src="assets/img/logo-5.png" alt=""></a>
-                    </div>
-                    <!--/ .logo-->
-                </div>
-                <!--/ .logos-->
-            </div>
-        </div>
-        <!--end row-one-->
-        <div class="row-two clearfix">
-            <div class="container">
-                <div class="copyright pull-left">(C) 2016 Your Company, All Rights Reserved</div>
-                <div class="footer-nav pull-right">
-                    <a href="index.html">Home</a>
-                    <a href="about-us.html">About Us</a>
-                    <a href="listing.html">Listing</a>
-                    <a href="contact-us.html">Contact Us</a>
-                </div>
-            </div>
-            <div class="bg-transfer"><img src="assets/img/footer-bg.jpg" alt=""></div>
-        </div>
-        <!--end row-two-->
-    </footer>
+    <div th:replace="~{footer :: footerSection}"></div>
     <!--end page-footer-->
 </div>
 <!--end page-wrapper-->

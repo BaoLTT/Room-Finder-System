@@ -54,82 +54,46 @@
                                    style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Miêu tả vấn đề</th>
+                                    <th>Phòng</th>
+                                    <th>Diện tích</th>
+                                    <th>Loại phòng</th>
+                                    <th>Dịch vụ</th>
+                                    <th>Giá</th>
+                                    <th>Trọ</th>
                                     <th>Tình trạng</th>
-                                    <th>Tên Trọ </th>
-                                    <th>Email</th>
-                                    <th>
-                                        Thay Đổi Trạng Thái
-                                    </th>
-                                    <th>Ngày Tạo</th>
-                                    <th>Ngày Giải Quyết</th>
-
+                                    <th></th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each="reportList : ${reportList}">
-                                    <td th:text="${reportList.reportId}">
+                                <tr th:each="room : ${rooms}">
+                                    <td th:text="${room.roomName}">
                                     </td>
 
-                                    <td th:text="${reportList.reportDescription}">
+                                    <td th:text="${room.area}">
                                     </td>
 
-                                    <td th:text="${reportList.reportStatus}">
+                                    <td th:text="${room.typeName}">
                                     </td>
-                                    <td th:text="${reportList.houseName}">
+
+                                    <td th:text="${room.services}">
                                     </td>
-                                    <td th:text="${reportList.email}">
+
+                                    <td th:text="${room.price}">
                                     </td>
+
+                                    <td th:text="${room.houseName}">
+                                    </td>
+
+                                    <td th:text="${room.status}">
+                                    </td>
+
                                     <td>
-                                        <li class="dropdown notification-list">
-                                            <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-
-                                                <span class="ml-1" th:text="${reportList.reportStatus}">Thay Đổi Trạng Thái <i class="mdi mdi-chevron-down"></i> </span>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
-
-
-                                                <!-- item-->
-<!--                                                javascript:void(0);-->
-                                                <a th:href="@{/waiting?id={id}(id=${reportList.reportId})}" class="dropdown-item notify-item">
-                                                    <i class="fe-user"></i>
-                                                    <span style="color: #eea236;">Chờ Xử Lý</span>
-                                                </a>
-                                                <a th:href="@{/handle?id={id}(id=${reportList.reportId})}" class="dropdown-item notify-item">
-                                                    <iconify-icon icon="tdesign:load"></iconify-icon>
-                                                    <span style="color: #4cae4c;" >Đang Xử Lý</span>
-                                                </a>
-                                                <a th:href="@{/processed?id={id}(id=${reportList.reportId})}" class="dropdown-item notify-item">
-                                                    <iconify-icon icon="material-symbols:done"></iconify-icon>
-                                                    <span >Đã Xử Lý</span>
-                                                </a>
-
-                                                <!-- item-->
-                                                <!--                <a href="javascript:void(0);" class="dropdown-item notify-item">-->
-                                                <!--                    <i class="fe-settings"></i>-->
-                                                <!--                    <span>Settings</span>-->
-                                                <!--                </a>-->
-
-                                                <!-- item-->
-
-
-<!--                                                <div class="dropdown-divider"></div>-->
-
-<!--                                                &lt;!&ndash; item&ndash;&gt;-->
-<!--                                                <a href="javascript:void(0);" class="dropdown-item notify-item">-->
-<!--                                                    <i class="fe-log-out"></i>-->
-<!--                                                    <span>Logout</span>-->
-<!--                                                </a>-->
-
-                                            </div>
-                                        </li>
+                                        <a th:href="@{'/room/updateRoom/' + ${room.roomId}}" class="btn btn-warning">Chi tiết</a>
+                                        |
+                                        <button class="btn btn-danger delete-button"
+                                                th:attr="data-roomid=${room.roomId}">Xóa
+                                        </button>
                                     </td>
-                                    <td th:text="${reportList.createdDate}">
-                                    </td>
-                                    <td th:text="${reportList.solvedDate}">
-                                    </td>
-
                                 </tr>
                                 </tbody>
                             </table>
@@ -143,7 +107,16 @@
 
 
         <!-- Footer Start -->
-        <div th:replace="admin/footer_admin :: admin_footer"></div>
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        2017 - 2019 &copy; Abstack theme by <a href="">Coderthemes</a>
+                    </div>
+
+                </div>
+            </div>
+        </footer>
         <!-- end Footer -->
 
     </div>
@@ -270,8 +243,6 @@
 
 <!-- App js -->
 <script th:src="@{/assets_admin/js/app.min.js}"></script>
-
-<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 <script>
     document.querySelectorAll('.delete-button').forEach(function (button) {
         button.addEventListener('click', function () {

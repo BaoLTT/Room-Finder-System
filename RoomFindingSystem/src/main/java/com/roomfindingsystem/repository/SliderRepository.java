@@ -18,6 +18,7 @@ public interface SliderRepository extends JpaRepository<SliderEntity, Integer> {
     SliderEntity getSliderEntitiesBySliderId(int sliderId);
 //    @Query
 //    SliderEntity save();
-
+    @Query("select count(*) from SliderEntity ")
+    int countSliders();
 
 }

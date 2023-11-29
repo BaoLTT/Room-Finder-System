@@ -41,7 +41,7 @@ public class AdminManageUserServiceImpl implements AdminManageUserService {
 
     @Override
     public List<UserDto> getAll() {
-        List<UserEntity> userEntities = userRepository.findAllExceptSuperAdmin();
+        List<UserEntity> userEntities = userRepository.findAll();
         return userEntities.stream().map(user -> {
             UserDto userDto = modelMapper.map(user, UserDto.class);
             if (user.getGender() != null) {

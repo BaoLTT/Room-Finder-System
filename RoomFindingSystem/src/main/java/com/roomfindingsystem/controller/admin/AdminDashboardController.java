@@ -31,15 +31,23 @@ public class  AdminDashboardController {
     RoomService roomService;
 
     @Autowired
-    PostService postService;
+    SliderService sliderService;
 
     @Autowired
     ReportService reportService;
     @GetMapping("/dashboard")
     public String getDashboard(Model model, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        UserEntity user = (UserEntity) session.getAttribute("user");
+        if(user == null){
+            return "redirect:/login";
+        }
+        if(!user.getRoleId().equals("ADMIN") && !user.getRoleId().equals("SUPER_ADMIN")){
+            return "redirect:/login";
+        }
         model.addAttribute("numberOfHouses", houseService.countHousesInAdmin());
         model.addAttribute("numberOfUsers", userService.countUserInAdmin());
-        model.addAttribute("numberOfPosts", postService.countPosts());
+        model.addAttribute("numberOfSliders", sliderService.countSliders());
         model.addAttribute("numberOfReports", reportService.countReports());
         model.addAttribute("roomStatusDto", roomService.getRoomStatusInAdminDashboard());
 
