@@ -6,6 +6,7 @@ import com.roomfindingsystem.service.RoomService;
 import com.roomfindingsystem.service.RoomTypeService;
 import com.roomfindingsystem.service.ServiceDetailService;
 import com.roomfindingsystem.service.ServiceRoomService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,19 +29,21 @@ public class RoomLandlordController {
     @Autowired
     private ServiceDetailService serviceDetailService;
     @GetMapping("/listRoom/{id}")
-    public String getListRoomPage(@PathVariable("id") Integer id, Model model) {
+    public String getListRoomPage(@PathVariable("id") Integer id, Model model, HttpServletRequest request) {
         List<RoomDto> roomDtos = roomService.getRoomsInHouse(id);
         model.addAttribute("houseId", id);
         model.addAttribute("rooms", roomDtos);
+        model.addAttribute("request",request);
         return "landlord/list-room";
     }
 
     @GetMapping("/updateRoom/{id}")
-    public String getFormUpdateRoom(@PathVariable("id") Integer id, Model model){
+    public String getFormUpdateRoom(@PathVariable("id") Integer id, Model model, HttpServletRequest request){
         RoomDto roomDto = roomService.findById(id);
         model.addAttribute("room", roomDto);
         System.out.println(roomDto);
         model.addAttribute("types", roomTypeService.findAll());
+        model.addAttribute("request",request);
         return "landlord/edit-room";
     }
 
@@ -69,12 +72,13 @@ public class RoomLandlordController {
         return "redirect:/landlord/room/listRoom/"+houseId;
     }
     @GetMapping("/insertRoom/{houseId}")
-    public String insertRoomPage(@PathVariable("houseId") Integer id,Model model) {
+    public String insertRoomPage(@PathVariable("houseId") Integer id,Model model, HttpServletRequest request) {
         RoomDto roomDto = new RoomDto();
         model.addAttribute("room", roomDto);
         model.addAttribute("houseId", id);
         model.addAttribute("services", serviceRoomService.findAll());
         model.addAttribute("types", roomTypeService.findAll());
+        model.addAttribute("request",request);
         return "landlord/insert-room";
     }
 
