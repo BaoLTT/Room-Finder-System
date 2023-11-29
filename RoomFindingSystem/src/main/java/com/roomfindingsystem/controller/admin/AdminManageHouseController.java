@@ -170,6 +170,8 @@ public class AdminManageHouseController {
         UserEntity user = (UserEntity) session.getAttribute("user");
         house.setUserID(user.getUserId());
         house.setLastModifiedBy(user.getUserId());
+        house.setStatus(2);
+        //Set mặc định là đang xử lý
         houseManagerService.insertHouse(house,addressID,files);
         return  "redirect:/admin/house-manager";
     }
