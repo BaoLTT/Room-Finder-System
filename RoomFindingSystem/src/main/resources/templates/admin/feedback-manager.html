@@ -23,6 +23,22 @@
     <link href="/assets_admin/css/app.min.css" rel="stylesheet" type="text/css" />
 
 </head>
+<style>
+    .fil{
+        padding-right: 10px;
+        padding-left: 0px;
+        margin-bottom: 10px;
+    }
+    .fil>select{
+        width: 100%;
+    }
+    .buttons-excel{
+        display: none;
+    }
+    .dataTables_filter{
+        display: none;
+    }
+</style>
 
 <body>
 
@@ -63,19 +79,60 @@
                     <div class="col-12">
                         <div class="card-box table-responsive">
                             <div style="display: flow-root;margin-bottom: 10px">
-                                <h4 class="header-title"><b>Quản lý Trọ</b></h4>
+                                <h4 class="header-title"><b>Quản Lý Bình Luận Của Nhà Trọ</b></h4>
+
+
+
 
                             </div>
+                            <form th:action="@{/admin/feedback}" th:method="get" id="filterForm">
+                                <div class="row" style="margin-right: 0px !important; margin-left: 0px !important">
+                                    <div class="col-md-6"></div>
+                                    <div class="col-md-3 fil">
+                                        <span>Số sao: </span>
+                                        <select id="starSelect" name="star">
+                                            <option value="0">Tất cả</option>
+                                            <option value="1" th:selected="${star==1}">1 sao</option>
+                                            <option value="2" th:selected="${star==2}">2 sao</option>
+                                            <option value="3" th:selected="${star==3}">3 sao</option>
+                                            <option value="4" th:selected="${star==4}">4 sao</option>
+                                            <option value="5" th:selected="${star==5}">5 sao</option>
+                                        </select>
+                                        <input name="id" th:value="${houseId}" hidden="">
+                                    </div>
+                                    <div class="col-md-3 fil">
+                                        <span>Lọc theo trạng thái: </span>
+                                        <select id="statusSelect" name="status">
+                                            <option value="true,false">Tất cả</option>
+                                            <option value="true" th:selected="${status!=null && !status.contains(false)}">Hiển thị</option>
+                                            <option value="false" th:selected="${status!=null && !status.contains(true)}">Tạm ẩn</option>
+                                        </select>
+
+
+                                        <input name="id" th:value="${houseId}" hidden="">
+                                    </div>
+                                </div>
+                                <!-- Loại bỏ button type="submit" và thêm sự kiện onClick -->
+                                <div class="text-right" style="text-align: right; margin-right: 10px; margin-bottom: 5px">
+                                    <button type="submit" class="btn btn-danger waves-light waves-effect width-md" style="background-color: #3EC396; border-color:
+                                    #3EC396">Tìm kiếm</button>
+                                </div>
+                            </form>
+
+
+
 
                             <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead>
                                 <tr style="text-align: center">
                                     <th>Người đánh giá</th>
                                     <th>Tiêu đề</th>
+                                    <th>Nội dung</th>
                                     <th>Đánh giá</th>
                                     <th>Ngày cuối cập nhật</th>
                                     <th>Trạng thái</th>
-                                    <th>Hoạt động</th>
+<!--                                    <th>Hoạt động</th>-->
+
                                 </tr>
                                 </thead>
 
@@ -84,16 +141,19 @@
                                 <tr th:each = "feedback : ${feedbacks}" style="text-align: center">
                                     <td style="vertical-align: middle" th:text = "${feedback.getUserFistName()+' '+feedback.getUserLastName()}"></td>
                                     <td style="vertical-align: middle" th:text = "${feedback.getTitle()}"></td>
+                                    <td th:text="${feedback.getContent()}" style="white-space: pre-line;"></td>
                                     <td style="vertical-align: middle" >
                                         <span th:text = "${feedback.getStar()}"></span><i class="fas fa-star" style="color: #FFCE45"></i>
                                     </td>
                                     <td style="vertical-align: middle" th:text = "${feedback.getCreatedDate()}"></td>
                                     <td style="vertical-align: middle" th:text="${feedback.isStatus() ? 'Active' : 'Deactive'}"></td>
-                                    <td style="vertical-align: middle">
-                                        <a th:href="@{updateFalse(fid=${feedback.getFeedbackId()}, houseId=${houseId})}"><button type="button" class="btn btn-danger waves-light waves-effect width-md" th:if="${feedback.isStatus()}" th:text="Deactivate" ></button></a>
+<!--                                    <td style="vertical-align: middle">-->
+<!--                                        <a th:href="@{updateFalse(fid=${feedback.getFeedbackId()}, houseId=${houseId})}"><button type="button" class="btn btn-danger waves-light waves-effect width-md" th:if="${feedback.isStatus()}" th:text="Deactivate" ></button></a>-->
 
-                                        <a th:href="@{updateTrue(fid=${feedback.getFeedbackId()}, houseId=${houseId})}"><button type="button" class="btn btn-secondary waves-light waves-effect width-md" th:if="${not feedback.isStatus()}" th:text="Activate" ></button></a>
-                                    </td>
+<!--                                        <a th:href="@{updateTrue(fid=${feedback.getFeedbackId()}, houseId=${houseId})}"><button type="button" class="btn btn-secondary waves-light waves-effect width-md" th:if="${not feedback.isStatus()}" th:text="Activate" ></button></a>-->
+<!--                                    </td>-->
+
+
 
                                     <!--                                    <td >-->
 <!--                                        <a type="button"  class="btn btn-secondary waves-light waves-effect width-md">Chỉnh sửa</a>-->
@@ -251,5 +311,6 @@
 
 <!-- App js -->
 <script src="/assets_admin/js/app.min.js"></script>
+
 </body>
 </html>
