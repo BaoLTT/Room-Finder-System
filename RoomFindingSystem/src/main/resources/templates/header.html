@@ -81,10 +81,10 @@
               <div class="right">
                 <nav id="primary-nav">
                   <ul>
-                    <li class="active"><a th:href="@{/}">Trang chủ</a></li>
-                      <li><a th:if="${session.user != null and session.user.getRoleId() == 'LANDLORD'}" th:href="@{/manager}" >Quản lý phòng trọ</a></li>
-                    <li><a th:href="@{/houselist}">Danh sách nhà trọ</a></li>
-                    <li><a th:href="@{/RoomList/1}" id="roomList">Danh sách phòng trọ</a></li>
+                    <li th:class="${request.getRequestURI() == '/' ? 'active' : ''}"><a th:href="@{/}">Trang chủ</a></li>
+                      <li th:class="${request.getRequestURI() == '/manager' ? 'active' : ''}"><a th:if="${session.user != null and session.user.getRoleId() == 'LANDLORD'}" th:href="@{/manager}" >Quản lý phòng trọ</a></li>
+                    <li th:class="${request.getRequestURI() == '/houselist' ? 'active' : ''}"><a th:href="@{/houselist}">Danh sách nhà trọ</a></li>
+                    <li th:class="${request.getRequestURI() == '/RoomList/1' ? 'active' : ''}"><a th:href="@{/RoomList/1}" id="roomList">Danh sách phòng trọ</a></li>
 
 
                   </ul>

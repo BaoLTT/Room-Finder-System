@@ -1,6 +1,7 @@
 package com.roomfindingsystem.controller.admin;
 
 import com.roomfindingsystem.dto.FeedbackDto;
+import com.roomfindingsystem.dto.FeedbackDtoAdmin;
 import com.roomfindingsystem.service.FeedbackService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,39 +21,45 @@ public class AdminFeedbackController {
     private FeedbackService feedbackService;
 
     @GetMapping("/feedback")
-    public String getAllFeedback(@RequestParam(name = "id", required = false, defaultValue = "1") int houseId,
-                              @RequestParam(name = "star", required = false, defaultValue = "0") int star,
+    public String getAllFeedback(@RequestParam(name = "star", required = false, defaultValue = "0") int star,
+                              @RequestParam(name = "status", required = false, defaultValue = "true, false") List<Boolean> status,
                               ModelMap model) {
-        List<FeedbackDto> feedbacks;
+
+
+        List<FeedbackDtoAdmin> feedbacks;
+
+
         //nghia code
         if (star==0){
-            feedbacks = feedbackService.getFeedbackByHouseId(houseId);
+            feedbacks = feedbackService.getFeedback(status);
         } else {
-            feedbacks = feedbackService.getFeedbackByHouseIdAndStar(houseId, star);
+            feedbacks = feedbackService.getFeedbackByStar(star, status);
         }
+
+
+
 
         model.addAttribute("feedbacks", feedbacks);
         model.addAttribute("star", star);
-        model.addAttribute("houseId", houseId);
+        model.addAttribute("status", status);
         return "admin/feedback-manager";
 
     }
 
     @GetMapping("/updateTrue")
     public String getTrue(@RequestParam(name = "fid", required = false) int fid,
-                          @RequestParam(name = "houseId", required = false, defaultValue = "1") int houseId,
                                  ModelMap model) {
         feedbackService.updateStatusToTrue(fid);
-        return "redirect:/admin/feedback?id="+houseId  ;
+        return "redirect:/admin/feedback"  ;
 
     }
 
     @GetMapping("/updateFalse")
     public String getFalse(@RequestParam(name = "fid", required = false) int fid,
-                          @RequestParam(name = "houseId", required = false, defaultValue = "1") int houseId,
+
                           ModelMap model) {
         feedbackService.updateStatusToFalse(fid);
-        return "redirect:/admin/feedback?id="+houseId  ;
+        return "redirect:/admin/feedback"  ;
 
     }
 

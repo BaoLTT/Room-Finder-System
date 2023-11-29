@@ -4,6 +4,7 @@ import com.roomfindingsystem.dto.RoomDtoN;
 import com.roomfindingsystem.service.RoomService;
 
 import com.roomfindingsystem.dto.RoomDto;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,7 +27,7 @@ public class RoomListController {
                        @RequestParam(name = "roomName",required = false , defaultValue = "") String roomName,
                        @RequestParam(name = "minPrice",required = false, defaultValue = "0") String minPrice,
                        @RequestParam(name = "maxPrice",required = false, defaultValue = "10") String maxPrice,
-                       @RequestParam(name = "type", required = false,defaultValue = "1, 2, 3") List<String> type, Model model){
+                       @RequestParam(name = "type", required = false,defaultValue = "1, 2, 3") List<String> type, HttpServletRequest request, Model model){
         List<Integer> listType = new ArrayList<>();
         for(String type1: type){
             listType.add(Integer.parseInt(type1));
@@ -54,7 +55,7 @@ public class RoomListController {
         model.addAttribute("minPrice", minPrice);
         model.addAttribute("maxPrice", maxPrice);
         model.addAttribute("type", type);
-
+        model.addAttribute("request",request);
 
         return"room/RoomList";
 

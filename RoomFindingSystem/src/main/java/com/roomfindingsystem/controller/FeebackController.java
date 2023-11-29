@@ -26,9 +26,10 @@ public class FeebackController {
     @Autowired
     private FeedbackService feedbackService;
     @RequestMapping(value = "feedback-list")
-    public String getFeebackList(Model model) {
+    public String getFeebackList(Model model,HttpServletRequest request) {
         List<FeedbackListAdminDto> list = feedbackService.getListFeedback();
         model.addAttribute("feedbackList", list);
+        model.addAttribute("request",request);
         return "feedback-list-admin";
     }
 
@@ -38,6 +39,7 @@ public class FeebackController {
         UserEntity user = (UserEntity) session.getAttribute("user");
         List<FeedbackListAdminDto> list = feedbackService.getListFeedbackForLandLord(user.getUserId());
         model.addAttribute("feedbackList", list);
+        model.addAttribute("request",request);
         return "feedback-list-landlord";
     }
 
