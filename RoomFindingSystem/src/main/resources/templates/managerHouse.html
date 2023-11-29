@@ -74,6 +74,10 @@
                                 </div>
                                 <!--end info-->
                             </td>
+                            <td th:if="${house.getStatus() == 2}"><div class="featured yes">
+                                ĐANG XỬ LÝ
+                                <aside></aside>
+                            </div></td>
                             <td th:if="${house.getStatus() == 1}"><div class="featured yes">
                                 <i class="fa fa-check"></i>
                                 <aside></aside>
