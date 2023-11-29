@@ -18,6 +18,7 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -78,7 +79,16 @@ public class SecurityConfiguration {
         http
             .formLogin(f->f.loginPage("/login")
                     .usernameParameter("username")
-                    .passwordParameter("password"))
+                    .passwordParameter("password")
+                    .successHandler((request, response, authentication) -> {
+                        for (GrantedAuthority auth : authentication.getAuthorities()) {
+                            if ("ROLE_ADMIN".equals(auth.getAuthority())) {
+                                response.sendRedirect("/admin/dashboard");
+                                return;
+                            }
+                        }
+                        response.sendRedirect("/");
+                    }))
 
                 .authorizeHttpRequests(at ->at.requestMatchers("/login/**", "/login-google", "/","/register","/save","re-send",
                                 "recover","send-otp-recover","otp-check","confirm-otp","send-otp-recover","confirm-otp-recover",
