@@ -12,6 +12,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -57,6 +58,11 @@ public interface ReportRepository extends JpaRepository<ReportEntity, Integer> {
     @Transactional
     @Query("UPDATE ReportEntity set reportStatus='Đã Xử Lý' WHERE reportid=?1" )
     int updateStatusReportProcessed(int id);
+
+    @Modifying
+    @Transactional
+    @Query("UPDATE ReportEntity set solvedDate=?1 WHERE reportid=?2")
+    int updateProcessedDate(LocalDate dateSolve,int id);
 
 
 
