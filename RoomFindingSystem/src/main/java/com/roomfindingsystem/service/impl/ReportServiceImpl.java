@@ -1,6 +1,7 @@
 package com.roomfindingsystem.service.impl;
 
 
+import com.roomfindingsystem.dto.ReportDto;
 import com.roomfindingsystem.dto.ReportListDto;
 import com.roomfindingsystem.entity.ReportEntity;
 import com.roomfindingsystem.repository.ReportRepository;
@@ -8,6 +9,7 @@ import com.roomfindingsystem.service.ReportService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ReportServiceImpl implements ReportService {
@@ -65,5 +67,10 @@ public class ReportServiceImpl implements ReportService {
     public int updateStatusWaiting(int id) {
         return reportRepository.updateStatusReportWaiting(id);
 
+    }
+
+    @Override
+    public Optional<ReportDto> getEmailForReply(String houseName) {
+        return reportRepository.getEmailForRepLy(houseName);
     }
 }

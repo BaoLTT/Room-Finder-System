@@ -1,6 +1,7 @@
 package com.roomfindingsystem.repository;
 
 
+import com.roomfindingsystem.dto.ReportDto;
 import com.roomfindingsystem.entity.FeedbackEntity;
 
 import com.roomfindingsystem.dto.ReportListDto;
@@ -12,6 +13,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository("reportRepository")
 public interface ReportRepository extends JpaRepository<ReportEntity, Integer> {
@@ -57,4 +59,9 @@ public interface ReportRepository extends JpaRepository<ReportEntity, Integer> {
     int updateStatusReportProcessed(int id);
 
 
+
+    @Query("select u.email from HousesEntity h join " +
+            "UserEntity u on h.userId = u.userId " +
+            "WHERE h.houseName = ?1 ")
+    Optional<ReportDto> getEmailForRepLy(String houseName);
 }
