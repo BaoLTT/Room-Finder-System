@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en-US" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
 <html lang="en-US">
 <head>
@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="/assets/css/owl.carousel.css" type="text/css">
     <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
 
-    <title>Accommodo - Accommodation HTML Template Full of Useful Features</title>
+
     <title>Xem danh sách phòng trọ</title>
 
 </head>
@@ -308,7 +308,7 @@
                                         <div class="description">
                                             <div class="info">
                                                 <figure class="label label-info" th:text="${room.roomType}"></figure>
-                                                <a href="detail.html"><h3 th:text="${room.roomName}"></h3></a>
+                                                <a th:href="@{/room/}+${room.roomId}"><h3 th:text="${room.roomName}"></h3></a>
                                                 <figure class="location" th:text="${room.houseName}"></figure>
                                                 <figure style="font-weight: bold; color: red" th:with="formattedPrice=${#numbers.formatDecimal(room.price, 0, 'COMMA', 0, 'POINT')}"> <span th:text="${formattedPrice + ' VND'}"></span> </figure>
                                             </div>
@@ -379,50 +379,7 @@
         <!--end container-->
     </div>
     <!--end page-content-->
-
-    <footer id="page-footer">
-        <div class="row-one">
-            <div class="container">
-                <div class="logos">
-                    <div class="logo">
-                        <a href="#"><img src="assets/img/logo-1.png" alt=""></a>
-                    </div>
-                    <!--/ .logo-->
-                    <div class="logo">
-                        <a href="#"><img src="assets/img/logo-2.png" alt=""></a>
-                    </div>
-                    <!--/ .logo-->
-                    <div class="logo">
-                        <a href="#"><img src="assets/img/logo-3.png" alt=""></a>
-                    </div>
-                    <!--/ .logo-->
-                    <div class="logo">
-                        <a href="#"><img src="assets/img/logo-4.png" alt=""></a>
-                    </div>
-                    <!--/ .logo-->
-                    <div class="logo">
-                        <a href="#"><img src="assets/img/logo-5.png" alt=""></a>
-                    </div>
-                    <!--/ .logo-->
-                </div>
-                <!--/ .logos-->
-            </div>
-        </div>
-        <!--end row-one-->
-        <div class="row-two clearfix">
-            <div class="container">
-                <div class="copyright pull-left">(C) 2016 Your Company, All Rights Reserved</div>
-                <div class="footer-nav pull-right">
-                    <a href="Homepage.html">Home</a>
-                    <a href="about-us.html">About Us</a>
-                    <a href="listing.html">Listing</a>
-                    <a href="contact-us.html">Contact Us</a>
-                </div>
-            </div>
-            <div class="bg-transfer"><img src="assets/img/footer-bg.jpg" alt=""></div>
-        </div>
-        <!--end row-two-->
-    </footer>
+    <div th:replace="~{footer :: footerSection}"></div>
     <!--end page-footer-->
 </div>
 <!--end page-wrapper-->
