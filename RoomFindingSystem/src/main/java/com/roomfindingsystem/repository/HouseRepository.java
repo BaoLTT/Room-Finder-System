@@ -27,7 +27,7 @@ public interface HouseRepository extends JpaRepository<HousesEntity, Integer> {
             " SUBSTRING_INDEX( (SELECT GROUP_CONCAT(DISTINCT sd.service_name) FROM service_house sh" +
             "            LEFT JOIN service_detail sd ON sd.serviceid = sh.serviceid" +
             "            WHERE sh.houseid = h.houseid), ',', 2) AS Service_Name, h.last_modified_date," +
-            "(select count(roomid) from room r where r.houseid = h.houseid group by r.houseid)  as count_Room, " +
+            "(select count(roomid) from room r where r.houseid = h.houseid AND r.statusid = 1 group by r.houseid)  as count_Room, " +
             "(select count(likeid) from room_finding_system.like l where l.houseid = h.houseid group by l.houseid)  as like_House " +
             "FROM houses h " +
             "JOIN type_house t ON h.type_houseid = t.typeid " +
@@ -58,7 +58,7 @@ public interface HouseRepository extends JpaRepository<HousesEntity, Integer> {
             " SUBSTRING_INDEX( (SELECT GROUP_CONCAT(DISTINCT sd.service_name) FROM service_house sh" +
             "            LEFT JOIN service_detail sd ON sd.serviceid = sh.serviceid" +
             "            WHERE sh.houseid = h.houseid), ',', 2) AS Service_Name, h.last_modified_date," +
-            "(select count(roomid) from room r where r.houseid = h.houseid group by r.houseid)  as count_Room, " +
+            "(select count(roomid) from room r where r.houseid = h.houseid AND r.statusid = 1 group by r.houseid)  as count_Room, " +
             "(select count(likeid) from room_finding_system.like l where l.houseid = h.houseid group by l.houseid)  as like_House " +
             "FROM houses h " +
             "JOIN type_house t ON h.type_houseid = t.typeid " +

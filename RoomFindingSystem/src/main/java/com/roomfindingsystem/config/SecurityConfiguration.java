@@ -101,18 +101,21 @@ public class SecurityConfiguration {
 //        http.csrf().disable();
         http
 
-                .formLogin(f->f.loginPage("/login")
-                        .usernameParameter("username")
-                        .passwordParameter("password")
-                        .successHandler((request, response, authentication) -> {
-                            for (GrantedAuthority auth : authentication.getAuthorities()) {
-                                if ("ROLE_ADMIN".equals(auth.getAuthority())) {
-                                    response.sendRedirect("/admin/dashboard");
-                                    return;
-                                }
+
+            .formLogin(f->f.loginPage("/login")
+                    .usernameParameter("username")
+                    .passwordParameter("password")
+                    .successHandler((request, response, authentication) -> {
+                        for (GrantedAuthority auth : authentication.getAuthorities()) {
+                            if ("ROLE_ADMIN".equals(auth.getAuthority())) {
+                                response.sendRedirect("/admin/dashboard");
+                                return;
+
                             }
-                            response.sendRedirect("/");
-                        }))
+                        }
+                        response.sendRedirect("/");
+                    }))
+
 
 
                 .authorizeHttpRequests(at ->at.requestMatchers("/login/**", "/login-google", "/","/register","/save","re-send",

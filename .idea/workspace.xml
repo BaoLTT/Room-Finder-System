@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1e0562a2-7ad5-40d8-bd96-2e66b43cd15f" name="Changes" comment="chinh phan login">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/config/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/config/SecurityConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/homepage.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/homepage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/room/RoomDetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/room/RoomDetail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/target/classes/templates/room/RoomDetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/target/classes/templates/room/RoomDetail.html" afterDir="false" />
-    </list>
+    <list default="true" id="1e0562a2-7ad5-40d8-bd96-2e66b43cd15f" name="Changes" comment="them slider detail" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,7 +24,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="BinhNH" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -39,8 +33,8 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectColorInfo">{
-    &quot;associatedIndex&quot;: 0
-    }</component>
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2Yf3N1tccWS06Yk4Yl8pR7ofMP2" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -118,9 +112,6 @@
       <workItem from="1700921274829" duration="1086000" />
       <workItem from="1700987445985" duration="7599000" />
       <workItem from="1701009089588" duration="2339000" />
-      <workItem from="1701072819210" duration="11046000" />
-      <workItem from="1701153341102" duration="7991000" />
-      <workItem from="1701239088762" duration="3221000" />
       <workItem from="1701180034689" duration="8573000" />
       <workItem from="1701237380203" duration="36000" />
       <workItem from="1701253828533" duration="112000" />
@@ -173,15 +164,7 @@
       <option name="project" value="LOCAL" />
       <updated>1701234170770</updated>
     </task>
-    <task id="LOCAL-00008" summary="chinh phan login">
-      <option name="closed" value="true" />
-      <created>1701269311806</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1701269311806</updated>
-    </task>
-    <option name="localTasksCounter" value="9" />
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -208,8 +191,7 @@
     <MESSAGE value="update lai phan header" />
     <MESSAGE value="nối 1 số đường link" />
     <MESSAGE value="them slider detail" />
-    <MESSAGE value="chinh phan login" />
-    <option name="LAST_COMMIT_MESSAGE" value="chinh phan login" />
+    <option name="LAST_COMMIT_MESSAGE" value="them slider detail" />
   </component>
   <component name="com.github.evgenys91.machinet.common.dslhistory.DslHistoryState">
     <option name="historyDtoById">
@@ -226,7 +208,7 @@
               <option name="initiateTms" value="1700903236984" />
               <option name="request" value="what is error" />
               <option name="response" value="" />
-              <option name="responseDescription" value="Based on the code provided, there doesn't seem to be any errors. The code is a configuration class in Java that defines a bean for the SweetAlert class. It uses the @Configuration annotation to indicate that it is a configuration class and the @Bean annotation to define the bean. The SweetAlert bean is created by calling its constructor in the sweetAlert() method." />
+              <option name="responseDescription" value="Based on the code provided, there doesn't seem to be any errors. The code is a configuration class in Java that defines a bean for the SweetAlert class. It uses the `@Configuration` annotation to indicate that it is a configuration class and the `@Bean` annotation to define the bean. The `SweetAlert` bean is created by calling its constructor in the `sweetAlert()` method." />
               <option name="responseFileName" value="" />
               <option name="responseFilePath" value="" />
               <option name="responseTms" value="1700903240683" />

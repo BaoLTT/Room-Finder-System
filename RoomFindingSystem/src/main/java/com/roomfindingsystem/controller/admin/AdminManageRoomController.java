@@ -23,6 +23,7 @@ public class AdminManageRoomController {
     private RoomTypeService roomTypeService;
     @Autowired
     private ServiceDetailService serviceDetailService;
+
     @GetMapping("/listRoom")
     public String getListRoomPage(Model model) {
         List<RoomDto> roomDtos = roomService.getAll();
@@ -63,6 +64,7 @@ public class AdminManageRoomController {
         roomService.deleteById(id);
         return "redirect:/admin/room/listRoom";
     }
+
     @GetMapping("/insertRoom")
     public String insertRoomPage(Model model) {
         RoomDto roomDto = new RoomDto();
@@ -77,16 +79,18 @@ public class AdminManageRoomController {
         try {
             List<ServiceDto> serviceDtos = new ArrayList<>();
             List<String> selects = roomDto.getServiceNames();
-            for (String serviceName : selects) {
-                ServiceDto serviceDto = new ServiceDto();
-                serviceDto.setServiceName(serviceName);
-                System.out.println(serviceName);
-                serviceDto.setServiceId(serviceDetailService.findByName(serviceName).getServiceId());
-                serviceDtos.add(serviceDto);
+            if (!selects.isEmpty()) {
+                for (String serviceName : selects) {
+                    ServiceDto serviceDto = new ServiceDto();
+                    serviceDto.setServiceName(serviceName);
+                    System.out.println(serviceName);
+                    serviceDto.setServiceId(serviceDetailService.findByName(serviceName).getServiceId());
+                    serviceDtos.add(serviceDto);
+                }
             }
             System.out.println(serviceDtos);
             roomDto.setServiceDtos(serviceDtos);
-            roomService.save(roomDto, files);
+            roomService.saveRoomAdmin(roomDto, files);
         } catch (Exception ex) {
         }
         return "redirect:/admin/room/listRoom";
@@ -97,6 +101,7 @@ public class AdminManageRoomController {
         roomService.importRooms(fileExcel);
         return "redirect:/admin/room/listRoom";
     }
+
     @GetMapping("deleteImage/{roomId}/{imageId}")
     public String deleteImage(@PathVariable Integer roomId, @PathVariable Integer imageId) {
         roomService.deleteRoomImage(imageId);
