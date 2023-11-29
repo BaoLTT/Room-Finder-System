@@ -9,6 +9,7 @@ import com.roomfindingsystem.service.impl.Smsservice;
 
 import com.roomfindingsystem.dto.Smsrequest;
 import com.roomfindingsystem.dto.UserDto;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -169,12 +170,13 @@ public class UserController {
 
     }
     @GetMapping("/profile")
-    public String getProfilePage(Model model) {
+    public String getProfilePage(Model model, HttpServletRequest request) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.isAuthenticated()) {
             String email = authentication.getName();
             UserDto userDto = userService.findUserDtoByEmail(email);
             model.addAttribute("user", userDto);
+            model.addAttribute("request",request);
             return "profile";
         } else {
             return "redirect:/login";
