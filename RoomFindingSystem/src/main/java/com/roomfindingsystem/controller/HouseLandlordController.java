@@ -5,8 +5,10 @@ import com.roomfindingsystem.entity.AddressEntity;
 import com.roomfindingsystem.entity.ServiceDetailEntity;
 import com.roomfindingsystem.entity.TypeHouseEntity;
 
+import com.roomfindingsystem.entity.UserEntity;
 import com.roomfindingsystem.service.*;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,10 +38,17 @@ public class HouseLandlordController {
     HouseManagerService houseManagerService;
 
     @GetMapping("")
-    public String findAll(Model model, HttpSession httpSession){
+    public String findAll(Model model, HttpSession httpSession, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        UserEntity user = (UserEntity) session.getAttribute("user");
+        if(user == null){
+            return "redirect:/";
+        }
+        if(!user.getRoleId().equals("LANDLORD")){
+            return "redirect:/login";
+        }
         List<HouseLandlordVo> listHouse = new ArrayList<>();
-        int userId = 9;
-        listHouse = houseLandlordService.findHouseByUser(userId);
+        listHouse = houseLandlordService.findHouseByUser(user.getUserId());
         model.addAttribute("house",listHouse);
         return "managerHouse";
     }
@@ -57,7 +66,15 @@ public class HouseLandlordController {
     }
 
     @GetMapping("/edit/{houseid}")
-    public String detailHouse(@PathVariable Integer houseid,Model model, HttpSession httpSession){
+    public String detailHouse(@PathVariable Integer houseid,Model model, HttpSession httpSession,HttpServletRequest request){
+        HttpSession session = request.getSession();
+        UserEntity user = (UserEntity) session.getAttribute("user");
+        if(user == null){
+            return "redirect:/";
+        }
+        if(!user.getRoleId().equals("LANDLORD")){
+            return "redirect:/login";
+        }
         List<TypeHouseEntity> listType = houseTypeService.findAll();
         List<ServiceDetailEntity> listService = serviceDetailService.getAllService();
 
@@ -73,15 +90,20 @@ public class HouseLandlordController {
     }
 
     @PostMapping("/save")
-    public String saveHouse(@ModelAttribute(name = "house") HouseLandlordVo house, @RequestParam("file") MultipartFile[] files, Model model, HttpSession httpSession) throws IOException {
+    public String saveHouse(@ModelAttribute(name = "house") HouseLandlordVo house, @RequestParam("file") MultipartFile[] files,HttpServletRequest request) throws IOException {
         AddressEntity address = new AddressEntity("a",house.getAddressDetail().trim(),house.getProvinceID(),house.getDistrictID(),house.getWardID());
         int addressID = addressService.insertAddress(address);
+        HttpSession session = request.getSession();
+        UserEntity user = (UserEntity) session.getAttribute("user");
+        house.setUserID(user.getUserId());
+        house.setCreatedBy(user.getUserId());
+        house.setLastModifiedBy(user.getUserId());
         houseManagerService.insertHouse(house,addressID,files);
         return  "redirect:/manager";
     }
 
     @PostMapping("/update")
-    public String updateHouse(@ModelAttribute(name = "house") HouseLandlordVo house,@RequestParam("file") MultipartFile[] files,@RequestParam(name = "service", required = false,defaultValue = "0") List<Integer> service, Model model, HttpSession httpSession) throws IOException {
+    public String updateHouse(@ModelAttribute(name = "house") HouseLandlordVo house,@RequestParam("file") MultipartFile[] files,@RequestParam(name = "service", required = false,defaultValue = "0") List<Integer> service, Model model, HttpSession httpSession,HttpServletRequest request) throws IOException {
         if(house.getProvinceID()==0){
             Optional<AddressEntity> newAddress = addressService.findbyId(house.getAddress());
             AddressEntity address = new AddressEntity("a",house.getAddressDetail(),newAddress.get().getProvinceId(),newAddress.get().getDistrictId(),newAddress.get().getWardId());
@@ -91,6 +113,11 @@ public class HouseLandlordController {
             addressService.updateAddress(address,house.getAddress());
         }
         System.out.println(house.getHouseID());
+        HttpSession session = request.getSession();
+        UserEntity user = (UserEntity) session.getAttribute("user");
+        house.setUserID(user.getUserId());
+        house.setCreatedBy(user.getUserId());
+        house.setLastModifiedBy(user.getUserId());
         houseManagerService.updateHouse(house,house.getHouseID(),service,files);
 
         return  "redirect:/manager";

@@ -73,5 +73,10 @@ public class SliderServiceImpl implements SliderService {
          sliderRepository.deleteById(id);
     }
 
+    @Override
+    public int countSliders() {
+        return sliderRepository.countSliders();
+    }
+
 
 }

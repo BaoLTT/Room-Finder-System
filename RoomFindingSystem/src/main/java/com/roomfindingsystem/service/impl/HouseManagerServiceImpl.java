@@ -63,12 +63,12 @@ public class HouseManagerServiceImpl implements HouseManagerService {
         housesEntity.setHouseName(house.getHouseName());
         housesEntity.setDescription(house.getDescription());
         housesEntity.setCreatedDate(createdDate);
-        housesEntity.setCreatedBy(1);
+        housesEntity.setCreatedBy(house.getCreatedBy());
         housesEntity.setTypeHouseId(house.getTypeHouseID());
         housesEntity.setStatus(house.getStatus());
         housesEntity.setAddressId(addressID);
         housesEntity.setUserId(house.getUserID());
-        housesEntity.setLastModifiedBy(1);
+        housesEntity.setLastModifiedBy(house.getLastModifiedBy());
         housesEntity.setLastModifiedDate(createdDate);
         houseManagerRepository.save(housesEntity);
         for(int i =0; i<house.getService().size();i++){
@@ -110,7 +110,7 @@ public class HouseManagerServiceImpl implements HouseManagerService {
     public void updateHouse(HouseLandlordVo houses, int houseID,List<Integer> service,MultipartFile[] files) throws IOException {
         LocalDate localDate = LocalDate.now();
         List<HouseImagesEntity> houseImagesEntity = houseImageRepository.getImageByHouseId(houseID);
-        houseManagerRepository.updateHouse(houses.getHouseName(), houses.getTypeHouseID(),houses.getDescription(),1,localDate,houses.getStatus(),houseID);
+        houseManagerRepository.updateHouse(houses.getHouseName(), houses.getTypeHouseID(),houses.getDescription(),houses.getLastModifiedBy(),localDate,houses.getStatus(),houseID);
         serviceHouseRepository.deleteByHouseId(houseID);
         if(!service.contains(0)){
             for(int i =0; i<service.size();i++){
@@ -136,4 +136,5 @@ public class HouseManagerServiceImpl implements HouseManagerService {
             }
         }
     }
+
 }

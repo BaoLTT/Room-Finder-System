@@ -19,123 +19,15 @@
 
 <body>
 <div class="page-wrapper">
-    <div id="page-header">
-        <header>
-            <div class="container">
-                <div class="secondary-nav">
-                    <div class="nav-trigger"><a data-toggle="collapse" href="#secondary-nav" aria-expanded="false" aria-controls="secondary-nav"><i class="fa fa-user"></i></a></div>
-                    <div id="secondary-nav">
-                        <nav>
-                            <div class="left opacity-60">
-                                <a href=""><i class="fa fa-phone"></i>+1 781-903-1047</a>
-                                <a href="mailto:hello@example.com"><i class="fa fa-envelope"></i>hello@example.com</a>
-                            </div>
-                            <!--end left-->
-                            <div class="right">
-                                <div class="element">
-                                    <select>
-                                        <option>$</option>
-                                        <option>€</option>
-                                    </select>
-                                </div>
-                                <!--end element-->
-                                <div class="element">
-                                    <a href="#tab-sign-in" data-toggle="modal" data-tab="true" data-target="#sign-in-register-modal">Sign In</a>
-                                </div>
-                                <!--end element-->
-                                <div class="element">
-                                    <a href="#tab-register" data-toggle="modal" data-tab="true" data-target="#sign-in-register-modal">Register</a>
-                                </div>
-                                <!--end element-->
-                                <div class="element">
-                                    <select>
-                                        <option>EN</option>
-                                        <option>DE</option>
-                                        <option>RU</option>
-                                        <option>ES</option>
-                                    </select>
-                                </div>
-                                <!--end element-->
-                            </div>
-                            <!--end right-->
-                        </nav>
-                    </div>
-                </div>
-                <!--end secondary-nav-->
-            </div>
-            <!--end container-->
-            <hr>
-            <div class="container">
-                <div class="primary-nav">
-                    <div class="left">
-                        <a href="index.html" id="brand"><img src="assets/img/logo.png" alt=""></a>
-                        <a class="nav-trigger" data-toggle="collapse" href="#primary-nav" aria-expanded="false" aria-controls="primary-nav"><i class="fa fa-navicon"></i></a>
-                    </div>
-                    <!--end left-->
-                    <div class="right" >
-                        <nav id="primary-nav">
-                            <ul>
-                                <li><a href="index.html">Home</a></li>
-                                <li><a href="about-us.html">About Us</a></li>
-                                <li>
-                                    <a href="#" class="has-child">Listing</a>
-                                    <ul class="child-nav">
-                                        <li><a href="listing.html">List Listing</a></li>
-                                        <li><a href="listing-matrix.html">Matrix Listing</a></li>
-                                    </ul>
-                                </li>
-                                <li class="active">
-                                    <a href="#" class="has-child">Pages</a>
-                                    <ul class="child-nav">
-                                        <li><a href="404.html">404</a></li>
-                                        <li>
-                                            <a href="#" class="has-child">Admin</a>
-                                            <ul class="child-nav">
-                                                <li><a href="edit.html">Edit Accommodation</a></li>
-                                                <li><a href="my-accommodations.html">My Accommodations</a></li>
-                                                <li><a href="profile.html">Profile</a></li>
-                                                <li><a href="reservations.html">Reservations</a></li>
-                                                <li><a href="reviews.html">Reviews</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="about-us.html">About Us</a></li>
-                                        <li><a href="detail.html">Accommodation Detail</a></li>
-                                        <li><a href="become-an-affiliate.html">Become an Affiliate</a></li>
-                                        <li>
-                                            <a href="#" class="has-child">Blog</a>
-                                            <ul class="child-nav">
-                                                <li><a href="blog.html">Blog Listing</a></li>
-                                                <li><a href="blog-detail.html">Blog Detail</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="faq.html">FAQ</a></li>
-                                        <li><a href="grid.html">Grid</a></li>
-                                        <li><a href="sticky-footer.html">Sticky Footer</a></li>
-                                        <li><a href="terms-and-conditions.html">Terms & Conditions</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="contact-us.html">Contact Us</a></li>
-                                <li class="submit"><a href="submit.html"><span>Submit</span><i data-toggle="tooltip" data-placement="top" title="Submit"><img src="assets/img/plus.png" alt=""></i></a></li>
-                            </ul>
-                        </nav>
-                        <!--end nav-->
-                    </div>
-                    <!--end right-->
-                </div>
-                <!--end primary-nav-->
-            </div>
-            <!--end container-->
-        </header>
-        <!--end header-->
-    </div>
+    <div th:replace="~{header :: headerSection}"></div>
     <!--end page-header-->
 
     <div id="page-content">
         <div class="container">
             <ol class="breadcrumb">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Listing</a></li>
-                <li class="active">Detail</li>
+                <li><a href="/">Trang chủ</a></li>
+                <li><a href="/manager">Danh sách trọ</a></li>
+                <li class="active">Chi tiết</li>
             </ol>
             <!--end breadcrumb-->
             <div class="main-content">
@@ -193,7 +85,7 @@
                         <div class="row">
                             <div class="col-md-7">
                                 <div class="form-group">
-                                    <label for="form-submit-description">Description<em>*</em></label>
+                                    <label for="form-submit-description">Ghi chú<em>*</em></label>
                                     <textarea class="form-control" id="form-submit-description" rows="5" name="description" required="" placeholder="Ghi chú" th:field="*{description}" >
                                     </textarea>
                                 </div>
@@ -239,7 +131,7 @@
                                         <input class="form-control" th:id="provinceName" th:field="*{province}" />
                                 </div>
                                 <div class="form-group">
-                                        <label for="district">Huyện</label>
+                                        <label for="district">Quận/Huyện</label>
                                         <select class="form-control" id="district" name="district" style="display: none;" th:field="*{districtID}">
                                             <option value="0" selected>Chọn huyện</option>
                                         </select>
@@ -272,7 +164,7 @@
                         </div>
                         <div class="file-upload">
                             <input  type="file" name="file" class="file-upload-input with-preview" multiple title="Click to add files" maxlength="10" accept="gif|jpg|png">
-                            <span>Click to add images</span>
+                            <span>Nhấn để thêm ảnh</span>
                         </div>
                     </section>
                     <section id="facilities">
@@ -280,9 +172,9 @@
                             <h2>Dịch vụ</h2>
                             <aside class="step">4</aside>
                         </div>
-                        <div class="row">
+                        <div class="row" style="margin-top: -20px">
                             <div class="col-md-12">
-                                <h3>Services</h3>
+                                <h3></h3>
                                 <ul class="checkboxes inline list-unstyled" th:each="listService : ${listService}" th:field="*{service}">
                                     <li><label><input type="checkbox" th:text="${listService.serviceName}" name="service" th:value="${listService.serviceId}" th:checked="${#lists.contains(listChecked,''+ listService.serviceId+'')}" > </label></li>
 
@@ -308,7 +200,7 @@
                                         <div class="form-group-inline">
                                             <div class="form-group">
                                                 <label for="check-in-from">Người Tạo</label>
-                                                <input type="text" class="form-control" id="check-in-from" name="check-in-from" readonly th:value="${house.getCreated_firstName()+ ' '+ house.getLastModifiedBy_lastName()}">
+                                                <input type="text" class="form-control" id="check-in-from" name="check-in-from" readonly th:value="${house.getCreated_firstName()+ ' '+ house.getCreated_lastName()}">
                                             </div>
                                             <!--end form-group-->
                                             <div class="form-group">
@@ -360,49 +252,7 @@
     </div>
     <!--end page-content-->
 
-    <footer id="page-footer">
-        <div class="row-one">
-            <div class="container">
-                <div class="logos">
-                    <div class="logo">
-                        <a href="#"><img src="assets/img/logo-1.png" alt=""></a>
-                    </div>
-                    <!--/ .logo-->
-                    <div class="logo">
-                        <a href="#"><img src="assets/img/logo-2.png" alt=""></a>
-                    </div>
-                    <!--/ .logo-->
-                    <div class="logo">
-                        <a href="#"><img src="assets/img/logo-3.png" alt=""></a>
-                    </div>
-                    <!--/ .logo-->
-                    <div class="logo">
-                        <a href="#"><img src="assets/img/logo-4.png" alt=""></a>
-                    </div>
-                    <!--/ .logo-->
-                    <div class="logo">
-                        <a href="#"><img src="assets/img/logo-5.png" alt=""></a>
-                    </div>
-                    <!--/ .logo-->
-                </div>
-                <!--/ .logos-->
-            </div>
-        </div>
-        <!--end row-one-->
-        <div class="row-two clearfix">
-            <div class="container">
-                <div class="copyright pull-left">(C) 2016 Your Company, All Rights Reserved</div>
-                <div class="footer-nav pull-right">
-                    <a href="index.html">Home</a>
-                    <a href="about-us.html">About Us</a>
-                    <a href="listing.html">Listing</a>
-                    <a href="contact-us.html">Contact Us</a>
-                </div>
-            </div>
-            <div class="bg-transfer"><img src="assets/img/footer-bg.jpg" alt=""></div>
-        </div>
-        <!--end row-two-->
-    </footer>
+    <div th:replace="~{footer :: footerSection}"></div>
     <!--end page-footer-->
 </div>
 <!--end page-wrapper-->
