@@ -72,7 +72,7 @@
                         <div class="card-box table-responsive">
                             <h4 class="page-title">Danh sách phòng</h4>
                             <div class="d-flex justify-content-end">
-                                <button class="btn btn-success mb-1 "><a th:href="@{/landlord/room/insertRoom}"
+                                <button class="btn btn-success mb-1 "><a th:href="@{'/landlord/room/insertRoom/'+ ${houseId}}"
                                                                          style="color: white">Thêm phòng mới</a>
                                 </button>
                             </div>
@@ -114,7 +114,7 @@
                                         <a th:href="@{'/landlord/room/updateRoom/' + ${room.roomId}}"
                                            class="btn btn-warning">Chi tiết</a>
 
-                                        <a th:href="@{'/landlord/room/deleteRoom/' + ${room.roomId}}"
+                                        <a th:href="@{'/landlord/room/deleteRoom/' + ${houseId}+'/' +${room.roomId}}"
                                            class="btn btn-danger">Xóa</a>
                                     </td>
                                 </tr>
