@@ -29,7 +29,7 @@
             <!--end breadcrumb-->
             <div class="main-content">
                 <div class="title">
-                    <h1><a th:href = "@{/manager}">My Accommodations</a></h1>
+                    <h1><a th:href = "@{/manager}">Danh sách phòng trọ</a></h1>
                     <h1 style="float:right; margin-right: 0"> <a th:href = "@{/manager/add}" class="btn btn-primary btn-rounded scroll">Thêm trọ</a></h1>
 
 
@@ -38,9 +38,9 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th>Danh sách trọ</th>
-                            <th>Active</th>
-                            <th>Like</th>
+                            <th></th>
+                            <th>Tình trạng</th>
+                            <th>Lượt thích</th>
                             <th>Người tạo</th>
                             <th>Ngày tạo</th>
                         </tr>
@@ -49,9 +49,7 @@
                         <tr class="my-item" th:each="house:${house}">
                             <td>
                                 <div class="image-wrapper">
-                                    <div class="mark-circle top" data-toggle="tooltip" data-placement="right" title="Top accommodation">
-                                        <i class="fa fa-thumbs-up"></i>
-                                    </div>
+
                                     <div class="image-carousel">
                                         <a th:href="@{/manager/edit/}+${house.houseID}" class="image" th:each="image, iterStat : ${house.listImage}" th:classappend="${iterStat.index eq 0} ? 'active'">
                                             <div class="bg-transfer">
@@ -91,8 +89,8 @@
                                 <span class="last-edit" >Ngày cuối cập nhật: <h th:text="${#temporals.format(house.getLastModifiedDate(), 'dd/MM/yyyy')}"></h></span>
 
                                 <div class="edit-options">
-                                    <a th:href = "@{/manager/edit/}+${house.houseID}" class="link icon"><i class="fa fa-edit"></i>Edit</a>
-                                    <a th:href="@{'/landlord/room/listRoom/' + ${house.houseID}}" class="fa fa-edit">Danh sách phòng</a>
+                                    <a th:href = "@{/manager/edit/}+${house.houseID}" class="link icon"><i class="fa fa-edit"></i>Chỉnh sửa</a>
+                                    <a th:href="@{'/landlord/room/listRoom/' + ${house.houseID}}" class="link icon"><i class="fa fa-edit"></i>Danh sách phòng</a>
 <!--                                    <a href="reviews.html" class="link icon"><i class="fa fa-comment"></i>Reviews</a>-->
 <!--                                    <a href="#" class="link icon delete"><i class="fa fa-trash"></i>Delete</a>-->
                                 </div>
@@ -117,50 +115,7 @@
     </div>
     <!--end page-content-->
 
-    <footer id="page-footer">
-        <div class="row-one">
-            <div class="container">
-                <div class="logos">
-                    <div class="logo">
-                        <a href="#"><img src="/assets/img/logo-1.png" alt=""></a>
-                    </div>
-                    <!--/ .logo-->
-                    <div class="logo">
-                        <a href="#"><img src="/assets/img/logo-2.png" alt=""></a>
-                    </div>
-                    <!--/ .logo-->
-                    <div class="logo">
-                        <a href="#"><img src="/assets/img/logo-3.png" alt=""></a>
-                    </div>
-                    <!--/ .logo-->
-                    <div class="logo">
-                        <a href="#"><img src="/assets/img/logo-4.png" alt=""></a>
-                    </div>
-                    <!--/ .logo-->
-                    <div class="logo">
-                        <a href="#"><img src="/assets/img/logo-5.png" alt=""></a>
-                    </div>
-                    <!--/ .logo-->
-                </div>
-                <!--/ .logos-->
-            </div>
-        </div>
-        <!--end row-one-->
-        <div class="row-two clearfix">
-            <div class="container">
-                <div class="copyright pull-left">(C) 2016 Your Company, All Rights Reserved</div>
-                <div class="footer-nav pull-right">
-                    <a href="index.html">Home</a>
-                    <a href="about-us.html">About Us</a>
-                    <a href="listing.html">Listing</a>
-                    <a href="contact-us.html">Contact Us</a>
-                </div>
-            </div>
-            <div class="bg-transfer"><img src="/assets/img/footer-bg.jpg" alt=""></div>
-        </div>
-        <!--end row-two-->
-    </footer>
-    <!--end page-footer-->
+    <div th:replace="~{footer :: footerSection}"></div>
 </div>
 <!--end page-wrapper-->
 <a href="#page-header" class="to-top scroll" data-show-after-scroll="600"><i class="arrow_up"></i></a>

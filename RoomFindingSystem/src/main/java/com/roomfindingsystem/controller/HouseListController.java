@@ -106,6 +106,7 @@ public class HouseListController {
             totalHouse = houseService.countHouse(2000000,4000000,4000000,6000000,houseName,listType,listService,countService);
         }
 
+
         System.out.println(list.size());
         System.out.println(totalHouse);
         int totalPage = (int) Math.ceil((double) totalHouse / pageSize);
