@@ -23,10 +23,8 @@
 
     <style>
         .profile-picture img {
-            max-width: 200px;
-            max-height: 200px;
-            width: auto;
-            height: auto;
+            width: 150px;
+            height: 150px;
         }
     </style>
 </head>
@@ -55,51 +53,83 @@
                         <div class="card-box">
                             <h4 class="page-title">Thêm phòng mới</h4>
                             <div class="d-flex justify-content-end">
-                                <form th:action="@{importRooms}" method="post" enctype="multipart/form-data"
+                                <form th:action="@{'importRooms/'+${houseId}}" method="post" enctype="multipart/form-data"
                                       class="my-form">
                                     <div class="form-group">
                                         <input type="file" class="form-control-file" id="fileExcel" name="fileExcel"/>
                                     </div>
-                                    <button type="submit" class="btn btn-primary" onclick="event.stopPropagation()">Thêm nhiều phòng
+                                    <button type="submit" class="btn btn-primary" onclick="event.stopPropagation()">Thêm
+                                        nhiều phòng
                                     </button>
                                 </form>
                             </div>
 
-                            <form class="parsley-examples" action="#" th:action="@{/landlord/room/save}" th:object="${room}" method="post" enctype="multipart/form-data">
+                            <form class="parsley-examples" action="#" th:action="@{'/landlord/room/save/'+ ${houseId}}"
+                                  th:object="${room}" method="post" enctype="multipart/form-data">
                                 <input type="hidden" th:field="*{roomId}">
-                                <div class="form-group">
-                                    <label>Phòng</label>
-                                    <input type="text" class="form-control" required
-                                           placeholder="Type something" th:field="*{roomName}"/>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Diện tiích</label>
-                                    <div>
-                                        <input type="number" id="area" class="form-control" required
-                                               placeholder="56.5656" th:field="*{area}"/>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Phòng</label>
+                                            <input type="text" class="form-control" required
+                                                   placeholder="P101" th:field="*{roomName}"/>
+                                        </div>
                                     </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Giá</label>
-                                    <div>
-                                        <input type="number" class="form-control" required
-                                               placeholder="56.5656" th:field="*{price}"/>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Diện tích</label>
+                                            <div>
+                                                <input type="number" id="area" class="form-control" required
+                                                       placeholder="20" th:field="*{area}"/>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label>Loại phòng</label>
-                                    <div>
-                                       <select class="form-select form-control mb-4 col-4" th:field="*{typeId}" aria-label="Default select example">
-                                           <option th:each="type : ${types}" th:value="${type.typeId}" th:utext="${type.typeName}" />
-                                       </select>
-                                   </div>
-                                </div>
-                                <div class="form-group">
-                                    <label>Mô tả chi tiết</label>
-                                    <input type="text" class="form-control" required
-                                           placeholder="Type something" th:field="*{description}"/>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Giá</label>
+                                            <div>
+                                                <input type="number" class="form-control" required
+                                                       placeholder="2.000.000" th:field="*{price}"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <label>Mô tả chi tiết</label>
+                                            <textarea type="text" class="form-control" rows="5"
+                                                      placeholder="Nhập thêm thông tin cho phòng"
+                                                      th:field="*{description}"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Loại phòng</label>
+                                            <div>
+                                                <select class="form-select form-control" th:field="*{typeId}"
+                                                        aria-label="Default select example">
+                                                    <option th:each="type : ${types}" th:value="${type.typeId}"
+                                                            th:utext="${type.typeName}"
+                                                            th:selected="${room.typeName == type.typeName}"/>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Trạng thái</label>
+                                            <div>
+                                                <select class="form-control" id="status" name="status"
+                                                        th:field="*{status}">
+                                                    <option value="ACTIVE" th:selected="${room.status == 'ACTIVE'}">
+                                                        Phòng
+                                                        trống
+                                                    </option>
+                                                    <option value="INACTIVE"
+                                                            th:selected="${room.status == 'INACTIVE'}">
+                                                        Hết phòng
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label>Dịch vụ</label>
@@ -136,29 +166,31 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label>Tình trạng</label>
-                                    <div>
-                                        <select class="form-control" id="status" name="status"
-                                                th:field="*{status}">
-                                            <option value="ACTIVE" th:selected="${room.status == 'ACTIVE'}">Phòng trống
-                                            </option>
-                                            <option value="INACTIVE" th:selected="${room.status == 'INACTIVE'}">
-                                                Hết phòng
-                                            </option>
-                                        </select>
+                                <!-- Pictures -->
+                                <div class="row mb-3">
+                                    <div th:each="image, iterStat : ${room.imgs}"
+                                         class="profile-picture single-file-preview col-md-3">
+                                        <img th:src="${image.imageLink}" alt="" class="image">
+                                        <div class="input">
+                                            <input th:name="'file' + ${image.imageId}" type="file"
+                                                   class="d-none">
+                                            <button class="btn btn-danger delete-button" type="button"
+                                                    th:attr="data-imageId=${image.imageId}">Xóa
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
-								<!-- Pictures -->
-                                <div class="dropzone" id="myAwesomeDropzone">
-                                    <div class="fallback">
-                                        <input name="file" type="file" multiple />
+                                <div class="form-group">
+                                    <div class="dropzone" id="myAwesomeDropzone">
+                                        <div class="fallback">
+                                            <input name="file" type="file" multiple/>
+                                        </div>
+                                        <div class="dz-message needsclick">
+                                            <i class="h1 text-muted dripicons-cloud-upload"></i>
+                                            <h3>Drop files here or click to upload.</h3>
+                                        </div>
                                     </div>
-                                    <div class="dz-message needsclick">
-                                        <i class="h1 text-muted dripicons-cloud-upload"></i>
-                                        <h3>Drop files here or click to upload.</h3>
-                                        <span class="text-muted font-13">(This is just a demo dropzone. Selected files are <strong>not</strong> actually uploaded.)</span>
-                                    </div>
+                                    <div class="image-preview"></div>
                                 </div>
                                 <div class="form-group mb-0">
                                     <div>
