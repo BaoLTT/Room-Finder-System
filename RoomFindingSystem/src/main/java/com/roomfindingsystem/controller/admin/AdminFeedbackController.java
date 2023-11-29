@@ -22,17 +22,22 @@ public class AdminFeedbackController {
     @GetMapping("/feedback")
     public String getAllFeedback(@RequestParam(name = "id", required = false, defaultValue = "1") int houseId,
                               @RequestParam(name = "star", required = false, defaultValue = "0") int star,
+                              @RequestParam(name = "status", required = false, defaultValue = "true, false") List<Boolean> status,
                               ModelMap model) {
         List<FeedbackDto> feedbacks;
         //nghia code
         if (star==0){
-            feedbacks = feedbackService.getFeedbackByHouseId(houseId);
+            feedbacks = feedbackService.getFeedbackByHouseId(houseId, status);
         } else {
-            feedbacks = feedbackService.getFeedbackByHouseIdAndStar(houseId, star);
+            feedbacks = feedbackService.getFeedbackByHouseIdAndStar(houseId, star, status);
         }
+
+
+
 
         model.addAttribute("feedbacks", feedbacks);
         model.addAttribute("star", star);
+        model.addAttribute("status", status);
         model.addAttribute("houseId", houseId);
         return "admin/feedback-manager";
 
