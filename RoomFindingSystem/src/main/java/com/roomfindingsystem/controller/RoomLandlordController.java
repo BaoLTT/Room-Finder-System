@@ -27,9 +27,10 @@ public class RoomLandlordController {
     private RoomTypeService roomTypeService;
     @Autowired
     private ServiceDetailService serviceDetailService;
-    @GetMapping("/listRoom")
-    public String getListRoomPage(Model model) {
-        List<RoomDto> roomDtos = roomService.getAll();
+    @GetMapping("/listRoom/{id}")
+    public String getListRoomPage(@PathVariable("id") Integer id, Model model) {
+        List<RoomDto> roomDtos = roomService.getRoomsInHouse(id);
+        model.addAttribute("houseId", id);
         model.addAttribute("rooms", roomDtos);
         return "landlord/list-room";
     }
@@ -62,10 +63,10 @@ public class RoomLandlordController {
         return "redirect:/landlord/room/updateRoom/" + roomDto.getRoomId();
     }
 
-    @GetMapping("/deleteRoom/{id}")
-    public String delete(@PathVariable("id") Integer id, Model model){
+    @GetMapping("/deleteRoom/{houseId}/{id}")
+    public String delete(@PathVariable("id") Integer id,@PathVariable("houseId") Integer houseId){
         roomService.deleteById(id);
-        return "redirect:/landlord/room/listRoom";
+        return "redirect:/landlord/room/listRoom/"+houseId;
     }
     @GetMapping("/insertRoom")
     public String insertRoomPage(Model model) {

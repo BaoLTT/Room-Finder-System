@@ -70,9 +70,9 @@
                             <form id="form-filter" class="labels-uppercase" method="get"
                                   th:action="@{/houselist(page=1, houseName=${houseName})}">
                                 <div class="form-group">
-                                    <label>Tên trọ</label>
+                                    <label>Nhập thông tin tìm kiếm</label>
                                     <input type="text" class="form-control" name="houseName" th:value="${houseName}"
-                                           id="houseName" placeholder="Tên trọ">
+                                           id="houseName" placeholder="Nhập thông tin...">
                                 </div>
                                 <!--end form-group-->
 
@@ -90,13 +90,13 @@
                                             <ul class="checkboxes list-unstyled">
                                                 <li><label><input type="checkbox" id="price" name="price" value="1"
                                                                   th:checked="${#arrays.contains(listPrice, '1')}">0 -
-                                                    2.000.000</label></li>
+                                                    2,000,000 VND</label></li>
                                                 <li><label><input type="checkbox" id="price-2" name="price" value="2"
-                                                                  th:checked="${#arrays.contains(listPrice, '2')}">2.000.000
-                                                    - 4.000.000</label></li>
+                                                                  th:checked="${#arrays.contains(listPrice, '2')}">2,000,000
+                                                    - 4,000,000 VND</label></li>
                                                 <li><label><input type="checkbox" id="price-3" name="price" value="3"
-                                                                  th:checked="${#arrays.contains(listPrice, '3')}">4.000.000
-                                                    - 6.000.000</label></li>
+                                                                  th:checked="${#arrays.contains(listPrice, '3')}">4,000,000
+                                                    - 6,000,000 VND</label></li>
                                             </ul>
                                             <!--end checkboxes-->
                                         </section>
@@ -119,26 +119,13 @@
                                                                   th:checked="${#arrays.contains(listType, '4')}">Ký túc
                                                     xá</label></li>
                                             </ul>
-                                            <!--                                            <div class="collapse" id="all-property-types">-->
-                                            <!--                                                <ul class="checkboxes">-->
-                                            <!--                                                    <li><label><input type="checkbox" name="ski-center">Ski-->
-                                            <!--                                                        Center</label></li>-->
-                                            <!--                                                    <li><label><input type="checkbox" name="cottage">Cottage</label>-->
-                                            <!--                                                    </li>-->
-                                            <!--                                                    <li><label><input type="checkbox" name="hostel">Hostel</label></li>-->
-                                            <!--                                                    <li><label><input type="checkbox" name="boat">Boat</label></li>-->
-                                            <!--                                                </ul>-->
-                                            <!--                                            </div>-->
-                                            <!--end checkboxes-->
-                                            <a href="#all-property-types" class="link" data-toggle="collapse"
-                                               aria-expanded="false" aria-controls="all-property-types">Show all</a>
                                         </section>
                                         <!--end section-->
                                         <section>
                                             <h3>Tiện ích</h3>
-                                            <ul class="checkboxes no-bottom-margin"
-                                                th:each="listAllService: ${listAllService}">
-                                                <li>
+                                            <ul class="checkboxes no-bottom-margin" id="servicesList">
+                                                <!-- Chỉ hiển thị 4 dịch vụ ban đầu -->
+                                                <li th:each="listAllService, iterStat : ${listAllService}" th:if="${iterStat.index < 4}">
                                                     <label>
                                                         <input type="checkbox"
                                                                name="service"
@@ -148,6 +135,22 @@
                                                     </label>
                                                 </li>
                                             </ul>
+                                            <div class="collapse" id="all-property-types">
+                                                <ul class="checkboxes no-bottom-margin" >
+
+                                                    <li th:each="listAllService, iterStat : ${listAllService}" th:if="${iterStat.index >= 4}">
+                                                        <label>
+                                                            <input type="checkbox"
+                                                                   name="service"
+                                                                   th:text="${listAllService.serviceName}"
+                                                                   th:value="${listAllService.serviceId}"
+                                                                   th:checked="${#lists.contains(listService,''+ listAllService.serviceId+'')}">
+                                                        </label>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <a href="#all-property-types" class="link" data-toggle="collapse"
+                                               aria-expanded="false" aria-controls="all-property-types">Show all</a>
                                             <!--end checkboxes-->
                                         </section>
                                         <!--end section-->
@@ -182,17 +185,13 @@
 
                                 <a  th:href="@{/add-favourite-list?id=}+${houses.houseID}" class="mark-circle" onclick="showSuccessToastAdd()"
                                    data-toggle="tooltip" data-placement="right"
-                                   title="Add to favourite list"><i style="color: white;"
+                                   title="Add to favourite list"><i style="color: Green;"
                                                                     class="fa fa-thumbs-up"></i></a>
 
-                                <div class="image">
-
-
+                                <div class="image" >
                                     <a th:href="@{/detail?id=}+${houses.houseID}" class="wrapper">
                                         <div class="gallery">
-
-                                            <img style="width: 273px; height: 208px;"
-                                                 th:each="image: ${houses.listImage}" th:src="${image}" alt="">
+                                            <img style="width: 273px; height: 208px;" th:each="image, iterStat : ${houses.listImage}" th:src="${image.imageLink}" alt="Ảnh">
                                         </div>
                                     </a>
                                     <div class="map-item">
@@ -230,7 +229,7 @@
 
                                     </p>
 
-                                    <div class="price-info" >Từ<span class="price" th:text="${formattedPrices}" ></span>Triệu
+                                    <div class="price-info" th:with="formattedPrice=${#numbers.formatDecimal(houses.price, 0, 'COMMA', 0, 'POINT')}">Từ<span class="price" th:text="${formattedPrice + ' VND'}" ></span>
                                         <span class="appendix">/tháng</span></div>
 
                                     <a th:href="@{/detail?id=}+${houses.houseID}"
@@ -242,7 +241,7 @@
                         </div>
                         <!--end item-->
 
-                        <div class="center">
+                        <div class="center" th:if="${!houses.isEmpty()}">
                             <ul class="pagination">
                                 <li class="prev">
                                     <a th:href="@{/houselist(page=${currentPage-1}, houseName=${houseName}, price=${listPrice}, type=${listType}, service=${listService})}"
@@ -314,6 +313,8 @@
 <script type="text/javascript" src="/assets/js/masonry.pkgd.min.js"></script>
 <script type="text/javascript" src="/assets/js/maps.js"></script>
 <script type="text/javascript" src="/assets/js/custom.js"></script>
+
+
 
 
 <script type="text/javascript" th:src="@{/assets/js/favorite.js}"></script>
