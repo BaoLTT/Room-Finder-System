@@ -62,105 +62,115 @@ public class HouseController {
     public String getAllHouse(@RequestParam(name = "id", required = false, defaultValue = "1") int houseId,
                               @RequestParam(name = "star", required = false, defaultValue = "0") int star,
                               ModelMap model, HttpServletRequest request) {
-        List<HouseDto> houseDto = houseService.getHouseDetail(houseId);
-        System.out.printf(houseDto.toString());
-
-
-        model.addAttribute("HousesEntity", houseDto);
-        System.out.println(houseDto);
-
-        List<ServiceDto> listService= houseService.getServiceById(houseId);
-        model.addAttribute("HouseService", listService);
-//        houseDto.ifPresent(user -> model.addAttribute("HousesEntity", user));
-        // get Image
-        List<HouseImageLink> listsImage = houseService.getImageById(houseId);
-        System.out.println(listsImage.toString());
-        model.addAttribute("HousesImages", listsImage);
-        List<Boolean> statuss = new ArrayList<>();
-        statuss.add(true);
-
-
-        List<FeedbackDto> feedbacks = new ArrayList<>();
-        //nghia code
-        if (star==0){
-            feedbacks = feedbackService.getFeedbackByHouseId(houseId, statuss);
-        } else {
-            feedbacks = feedbackService.getFeedbackByHouseIdAndStar(houseId, star, statuss);
-        }
-//        List<FeedbackDto> feedbacks = feedbackService.getFeedbackByHouseId(houseId);
-        model.addAttribute("feedbacks", feedbacks);
-        model.addAttribute("star", star);
-
-        //lấy ra tên của user hiện tại -> lấy ra user hiện tại
 
         try {
-            String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
-            UserEntity user = userService.findByEmail(currentUserName).get();
-
-            //set houseId và userid cho feedback
-            FeedbackEntity feedbackEntity = new FeedbackEntity();
-            feedbackEntity.setHouseId(houseId);
-            feedbackEntity.setMemberId(user.getUserId());
-            int count = 0;
-            List<FeedbackEntity> feedbackEntities= feedbackService.getFeedbackEntityByUid(houseId, user.getUserId());
-            count = feedbackEntities.size();
+            List<HouseDto> houseDto = houseService.getHouseDetail(houseId);
+            System.out.printf(houseDto.toString());
 
 
-          if(count>0) feedbackEntity = feedbackEntities.get(0);
+            model.addAttribute("HousesEntity", houseDto);
+            System.out.println(houseDto);
+
+            List<ServiceDto> listService= houseService.getServiceById(houseId);
+            model.addAttribute("HouseService", listService);
+//        houseDto.ifPresent(user -> model.addAttribute("HousesEntity", user));
+            // get Image
+            List<HouseImageLink> listsImage = houseService.getImageById(houseId);
+            System.out.println(listsImage.toString());
+            model.addAttribute("HousesImages", listsImage);
+            List<Boolean> statuss = new ArrayList<>();
+            statuss.add(true);
 
 
-            //set houseId và userid cho feedback
-            ReportEntity reportEntity = new ReportEntity();
-
-            //lấy ra số lượng report của user hiện tai ở bài vieest này
-            int countReport = 0;
-            List<ReportEntity> reportEntities= reportService.getReportEntityByUid(houseId, user.getUserId());
-            countReport = reportEntities.size();
-            int check = 1;// cho bao cao
-
-            if(countReport>0) {
-                reportEntity = reportEntities.get(0);
-                String status = reportEntity.getReportStatus();
-
-                if(reportEntity.getReportStatus().equals("Chờ Xử Lý")
-                ){
-                    check = 0; //ko cho bao cao nua
-                }
+            List<FeedbackDto> feedbacks = new ArrayList<>();
+            //nghia code
+            if (star==0){
+                feedbacks = feedbackService.getFeedbackByHouseId(houseId, statuss);
+            } else {
+                feedbacks = feedbackService.getFeedbackByHouseIdAndStar(houseId, star, statuss);
             }
-            if(check==1)
-                reportEntity=new ReportEntity();
-            reportEntity.setHouseid(houseId);
-            reportEntity.setUserid(user.getUserId());
+//        List<FeedbackDto> feedbacks = feedbackService.getFeedbackByHouseId(houseId);
+            model.addAttribute("feedbacks", feedbacks);
+            model.addAttribute("star", star);
+
+            //lấy ra tên của user hiện tại -> lấy ra user hiện tại
+
+            try {
+                String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
+                UserEntity user = userService.findByEmail(currentUserName).get();
+
+                //set houseId và userid cho feedback
+                FeedbackEntity feedbackEntity = new FeedbackEntity();
+                feedbackEntity.setHouseId(houseId);
+                feedbackEntity.setMemberId(user.getUserId());
+                int count = 0;
+                List<FeedbackEntity> feedbackEntities= feedbackService.getFeedbackEntityByUid(houseId, user.getUserId());
+                count = feedbackEntities.size();
+
+
+                if(count>0) feedbackEntity = feedbackEntities.get(0);
+
+
+                //set houseId và userid cho feedback
+                ReportEntity reportEntity = new ReportEntity();
+
+                //lấy ra số lượng report của user hiện tai ở bài vieest này
+                int countReport = 0;
+                List<ReportEntity> reportEntities= reportService.getReportEntityByUid(houseId, user.getUserId());
+                countReport = reportEntities.size();
+                int check = 1;// cho bao cao
+
+                if(countReport>0) {
+                    reportEntity = reportEntities.get(0);
+                    String status = reportEntity.getReportStatus();
+
+                    if(reportEntity.getReportStatus().equals("Chờ Xử Lý")
+                    ){
+                        check = 0; //ko cho bao cao nua
+                    }
+                }
+                if(check==1)
+                    reportEntity=new ReportEntity();
+                reportEntity.setHouseid(houseId);
+                reportEntity.setUserid(user.getUserId());
 
 
 
 
 
-            model.addAttribute("feedbackEntity", feedbackEntity);
-            model.addAttribute("user", user);
-            model.addAttribute("count", count);
-            model.addAttribute("reportEntity", reportEntity);
-            model.addAttribute("countReport", countReport);
-            model.addAttribute("checkReport", check);
+                model.addAttribute("feedbackEntity", feedbackEntity);
+                model.addAttribute("user", user);
+                model.addAttribute("count", count);
+                model.addAttribute("reportEntity", reportEntity);
+                model.addAttribute("countReport", countReport);
+                model.addAttribute("checkReport", check);
+            }
+            catch(Exception e){
+
+            }
+            //lấy ra số lượng comment của user hiện tai ở bài vieest này
+
+
+            //baoltt code
+            List<RoomHouseDetailDto> roomHouseDetailDtos = roomService.viewRoomInHouse(houseId);
+            model.addAttribute("roomList", roomHouseDetailDtos);
+            model.addAttribute("roomService", roomService);
+            model.addAttribute("houseLocation", houseService.getHouseById(houseId));
+            model.addAttribute("key_map", gcsService.getMapKey());
+            model.addAttribute("request",request);
+            System.out.println(roomHouseDetailDtos.toString());
+
+
+
+            return "housedetail";
+
+
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            model.addAttribute("request",request);
+            return "404";
         }
-        catch(Exception e){
 
-        }
-        //lấy ra số lượng comment của user hiện tai ở bài vieest này
-
-
-        //baoltt code
-        List<RoomHouseDetailDto> roomHouseDetailDtos = roomService.viewRoomInHouse(houseId);
-        model.addAttribute("roomList", roomHouseDetailDtos);
-        model.addAttribute("roomService", roomService);
-        model.addAttribute("houseLocation", houseService.getHouseById(houseId));
-        model.addAttribute("key_map", gcsService.getMapKey());
-        model.addAttribute("request",request);
-        System.out.println(roomHouseDetailDtos.toString());
-
-
-
-        return "housedetail";
     }
 
     // add feedback
