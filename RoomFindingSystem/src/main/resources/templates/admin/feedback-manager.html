@@ -107,9 +107,6 @@
                                             <option value="true" th:selected="${status!=null && !status.contains(false)}">Hiển thị</option>
                                             <option value="false" th:selected="${status!=null && !status.contains(true)}">Tạm ẩn</option>
                                         </select>
-
-
-                                        <input name="id" th:value="${houseId}" hidden="">
                                     </div>
                                 </div>
                                 <!-- Loại bỏ button type="submit" và thêm sự kiện onClick -->
@@ -126,12 +123,14 @@
                                 <thead>
                                 <tr style="text-align: center">
                                     <th>Người đánh giá</th>
+                                    <th>Nhà trọ</th>
                                     <th>Tiêu đề</th>
                                     <th>Nội dung</th>
                                     <th>Đánh giá</th>
                                     <th>Ngày cuối cập nhật</th>
                                     <th>Trạng thái</th>
-<!--                                    <th>Hoạt động</th>-->
+                                    <th>Hoạt động</th>
+
 
                                 </tr>
                                 </thead>
@@ -140,18 +139,21 @@
                                 <tbody>
                                 <tr th:each = "feedback : ${feedbacks}" style="text-align: center">
                                     <td style="vertical-align: middle" th:text = "${feedback.getUserFistName()+' '+feedback.getUserLastName()}"></td>
+                                    <td style="vertical-align: middle" th:text="${feedback.getHouseName()}"></td>
                                     <td style="vertical-align: middle" th:text = "${feedback.getTitle()}"></td>
-                                    <td th:text="${feedback.getContent()}" style="white-space: pre-line;"></td>
+                                    <td th:text="${feedback.getContent()}" style="white-space: pre-line"></td>
                                     <td style="vertical-align: middle" >
                                         <span th:text = "${feedback.getStar()}"></span><i class="fas fa-star" style="color: #FFCE45"></i>
                                     </td>
                                     <td style="vertical-align: middle" th:text = "${feedback.getCreatedDate()}"></td>
                                     <td style="vertical-align: middle" th:text="${feedback.isStatus() ? 'Active' : 'Deactive'}"></td>
-<!--                                    <td style="vertical-align: middle">-->
-<!--                                        <a th:href="@{updateFalse(fid=${feedback.getFeedbackId()}, houseId=${houseId})}"><button type="button" class="btn btn-danger waves-light waves-effect width-md" th:if="${feedback.isStatus()}" th:text="Deactivate" ></button></a>-->
+                                    <td style="vertical-align: middle">
+                                        <a th:href="@{updateFalse(fid=${feedback.getFeedbackId()}, houseId=${houseId})}"><button type="button" class="btn btn-danger waves-light waves-effect width-md" th:if="${feedback.isStatus()}" th:text="Deactivate" ></button></a>
 
-<!--                                        <a th:href="@{updateTrue(fid=${feedback.getFeedbackId()}, houseId=${houseId})}"><button type="button" class="btn btn-secondary waves-light waves-effect width-md" th:if="${not feedback.isStatus()}" th:text="Activate" ></button></a>-->
-<!--                                    </td>-->
+                                        <a th:href="@{updateTrue(fid=${feedback.getFeedbackId()}, houseId=${houseId})}"><button type="button" class="btn btn-secondary waves-light waves-effect width-md" th:if="${not feedback.isStatus()}" th:text="Activate" ></button></a>
+                                    </td>
+
+
 
 
 
