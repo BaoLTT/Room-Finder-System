@@ -73,10 +73,34 @@ public class SecurityConfiguration {
         };
     }
 
+//    @Bean
+//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+////        http.csrf().disable();
+//        http
+//            .formLogin(f->f.loginPage("/login")
+//                    .usernameParameter("username")
+//                    .passwordParameter("password"))
+//
+//                .authorizeHttpRequests(at ->at.requestMatchers("/login/**", "/login-google", "/","/register","/save","re-send",
+//                                "recover","send-otp-recover","otp-check","confirm-otp","send-otp-recover","confirm-otp-recover",
+//
+//                                "save-new-password","detail","change-password","save-change-password","feedback-list",
+//                                "/room/**", "/assets/**", "/houselist","/RoomList/**","/detail").permitAll()
+//
+//                        .requestMatchers("/admin/**", "/test").hasAnyRole("ADMIN", "SUPER_ADMIN")
+////                        .requestMatchers("/profile").hasAnyRole("1,2")
+//                        .anyRequest().authenticated());
+//
+//        return http.build();
+//
+//
+//    }
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 //        http.csrf().disable();
         http
+
                 .formLogin(f->f.loginPage("/login")
                         .usernameParameter("username")
                         .passwordParameter("password")
@@ -90,6 +114,7 @@ public class SecurityConfiguration {
                             response.sendRedirect("/");
                         }))
 
+
                 .authorizeHttpRequests(at ->at.requestMatchers("/login/**", "/login-google", "/","/register","/save","re-send",
                                 "recover","send-otp-recover","otp-check","confirm-otp","send-otp-recover","confirm-otp-recover",
 
@@ -102,6 +127,7 @@ public class SecurityConfiguration {
 
         return http.build();
     }
+
 
 
 }

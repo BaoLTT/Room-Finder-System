@@ -252,7 +252,7 @@
                                 <!--end image-->
                                 <div class="description">
                                     <div class="meta">
-                                        <span th:text="${'Giá tiền: '+room.price+'d'}"></span>
+                                        <span th:with="formattedPrice=${#numbers.formatDecimal(room.price, 0, 'COMMA', 0, 'POINT')}" th:text="${'Giá tiền: '+formattedPrice+' Đ'}"></span>
                                         <span th:text="${room.area}+'m2'"></span>
                                     </div>
 
@@ -344,7 +344,7 @@
                     <div class="description">
 
                         <p th:text="${slider.content}"></p>
-                        <a href="" class="btn btn-default btn-small btn-framed btn-rounded">More</a>
+                        <a th:href="@{/slider/}+${slider.sliderid}" class="btn btn-default btn-small btn-framed btn-rounded">More</a>
                     </div>
                 </div>
 
