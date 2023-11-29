@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -31,7 +32,7 @@ public class AdminManageHouseController {
         this.houseManagerService = houseManagerService;
     }
     @Autowired
-    TypeHouseRepository typeHouseRepository;
+    HouseTypeService houseTypeService;
     @Autowired
     AddressService addressService;
     @Autowired
@@ -71,16 +72,26 @@ public class AdminManageHouseController {
         return "redirect:/admin/house-manager";
     }
 
+    @PostMapping ("/house-manager/addType")
+    public String addType(@RequestParam(name = "houseID") Integer houseID,@RequestParam(name = "newType") String newType,HttpSession httpSession){
+        TypeHouseEntity typeHouseEntity = new TypeHouseEntity();
+        typeHouseEntity.setTypeName(newType);
+        typeHouseEntity.setCreatedDate(LocalDate.now());
+        houseTypeService.addType(typeHouseEntity);
+        return "redirect:/admin/house-manager/detail/"+ houseID;
+    }
+
     @GetMapping("/house-manager/detail/{houseid}")
     public String updateHouse(@PathVariable Integer houseid,final Model model,HttpSession httpSession,HttpServletRequest request){
 
-        List<TypeHouseEntity> listType = typeHouseRepository.findAll();
+        List<TypeHouseEntity> listType = houseTypeService.findAll();
         List<ServiceDetailEntity> listService = serviceDetailService.getAllService();
 
         HouseLandlordVo  house = houseLandlordService.findHouseByID(houseid);
         List<String> listChecked = house.getService();
         System.out.println(listChecked);
         model.addAttribute("house",house);
+        model.addAttribute("houseID",house.getHouseID());
         model.addAttribute("listType",listType);
         model.addAttribute("listChecked",listChecked);
         model.addAttribute("listService",listService);
@@ -130,7 +141,7 @@ public class AdminManageHouseController {
         }
         List<UserEntity> listUser = new ArrayList<>();
         listUser = userRepository.findAll();
-        List<TypeHouseEntity> listType = typeHouseRepository.findAll();
+        List<TypeHouseEntity> listType = houseTypeService.findAll();
         List<ServiceDetailEntity> listService = serviceDetailService.getAllService();
         model.addAttribute("listUser",listUser);
         model.addAttribute("listType",listType);

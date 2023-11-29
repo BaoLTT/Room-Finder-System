@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface HouseTypeService {
     List<TypeHouseEntity> findAll();
+
+    void addType(TypeHouseEntity typeHouseEntity);
 }
