@@ -56,7 +56,7 @@ public class HomeController {
         model.addAttribute("rooms", roomService.viewRoomInHome());
         model.addAttribute("feedbacks", feedbackService.viewTop4Home());
         model.addAttribute("sliders", sliderService.viewTop7Home());
-
+        model.addAttribute("request",request);
         final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
         UserEntity user = null;
         if (userService.findByEmail(currentUserName).isPresent()) {

@@ -50,6 +50,7 @@ public class HouseLandlordController {
         List<HouseLandlordVo> listHouse = new ArrayList<>();
         listHouse = houseLandlordService.findHouseByUser(user.getUserId());
         model.addAttribute("house",listHouse);
+        model.addAttribute("request",request);
         return "landlord/managerHouse";
     }
 

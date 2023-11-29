@@ -5,6 +5,7 @@ import com.roomfindingsystem.entity.ReportEntity;
 import com.roomfindingsystem.entity.UserEntity;
 import com.roomfindingsystem.service.*;
 import com.roomfindingsystem.service.impl.GcsService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import com.roomfindingsystem.dto.*;
 import com.roomfindingsystem.service.FeedbackService;
@@ -60,7 +61,7 @@ public class HouseController {
     @RequestMapping(value = "detail", method = RequestMethod.GET)
     public String getAllHouse(@RequestParam(name = "id", required = false, defaultValue = "1") int houseId,
                               @RequestParam(name = "star", required = false, defaultValue = "0") int star,
-                              ModelMap model) {
+                              ModelMap model, HttpServletRequest request) {
         List<HouseDto> houseDto = houseService.getHouseDetail(houseId);
         System.out.printf(houseDto.toString());
 
@@ -154,7 +155,7 @@ public class HouseController {
         model.addAttribute("roomService", roomService);
         model.addAttribute("houseLocation", houseService.getHouseById(houseId));
         model.addAttribute("key_map", gcsService.getMapKey());
-
+        model.addAttribute("request",request);
         System.out.println(roomHouseDetailDtos.toString());
 
 
