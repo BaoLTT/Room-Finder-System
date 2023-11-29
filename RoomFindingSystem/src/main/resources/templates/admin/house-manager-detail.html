@@ -55,13 +55,7 @@
                                         <form class="form-horizontal" role="form" method="post"
                                               th:action="@{/admin/house-manager/update}" th:object="${house}"
                                               enctype="multipart/form-data">
-                                            <div class="form-group row">
-                                                <label class="col-2 col-form-label">House ID</label>
-                                                <div class="col-10">
-                                                    <p class="form-control-static" th:field="*{houseID}"></p>
-                                                    <input name="houseID" th:field="*{houseID}" type="hidden">
-                                                </div>
-                                            </div>
+                                            <input name="houseID" th:field="*{houseID}" type="hidden">
                                             <div class="form-group row">
                                                 <label class="col-2 col-form-label">Chủ trọ</label>
                                                 <div class="col-10">

@@ -9,7 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Locale;
 
 @Controller
 public class ReportController {
@@ -80,7 +82,9 @@ public class ReportController {
     @RequestMapping(value = "processed")
     public String updateProcessed(Model model, @Param("id") int id) {
         try {
+            java.time.LocalDate now = LocalDate.now();
             reportService.updateStatusProcessed(id);
+            reportService.updateSolve(now, id);
             List<ReportListDto> listReport = reportService.getAllReport();
             String subject = "Chào Bạn, Cảm ơn bạn đã dành thời gian gửi báo cáo nhà trọ : " + listReport.get(id).getHouseName();
 //        String mess = "Chúng Tôi Đã Nhận Được Phản Hồi Với Nội Dung "+" '"+ listReport.get(id).getReportDescription()+" ' ,"+"\n Chúng Tôi Đã đến Xác Minh lại Vấn Đề Trên Với Chủ Nhà Trọ . Mọi Thắc Mắc Mong Bạn Sẽ Liên Hệ Lại với Chúng Tôi Qua Số HOTLINE: 0888848962";

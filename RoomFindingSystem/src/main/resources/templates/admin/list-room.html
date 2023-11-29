@@ -78,8 +78,9 @@
                                     <td th:text="${room.services}">
                                     </td>
 
-                                    <td th:text="${room.price}">
-                                    </td>
+                                    <td class="price-info"
+                                        th:with="formattedPrice=${#numbers.formatDecimal(room.price, 0, 'COMMA', 0, 'POINT')}">
+                                        <span class="price" th:text="${formattedPrice + ' VND'}"></span></td>
 
                                     <td th:text="${room.houseName}">
                                     </td>
