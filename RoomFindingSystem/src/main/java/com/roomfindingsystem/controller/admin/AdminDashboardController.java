@@ -37,14 +37,12 @@ public class  AdminDashboardController {
     ReportService reportService;
     @GetMapping("/dashboard")
     public String getDashboard(Model model, HttpServletRequest request){
-        HttpSession session = request.getSession();
-        UserEntity user = (UserEntity) session.getAttribute("user");
-        if(user == null){
-            return "redirect:/login";
-        }
-        if(!user.getRoleId().equals("ADMIN") && !user.getRoleId().equals("SUPER_ADMIN")){
-            return "redirect:/login";
-        }
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserEntity user = userService.findByEmail(email).get();
+
+//        if(!user.getRoleId().equals("ADMIN") && !user.getRoleId().equals("SUPER_ADMIN")){
+//            return "redirect:/login";
+//        }
         model.addAttribute("numberOfHouses", houseService.countHousesInAdmin());
         model.addAttribute("numberOfUsers", userService.countUserInAdmin());
         model.addAttribute("numberOfSliders", sliderService.countSliders());

@@ -37,8 +37,8 @@ public class FeedbackController {
                                  @RequestParam(name = "status", required = false, defaultValue = "true, false") List<Boolean> status,
                                  ModelMap model) {
 
-        String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
-        UserEntity user = userService.findByEmail(currentUserName).get();
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserEntity user = userService.findByEmail(email).get();
         List<HouseLandlordVo> listHouse = new ArrayList<>();
         listHouse = houseLandlordService.findHouseByUser(user.getUserId());
 
