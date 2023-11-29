@@ -34,7 +34,7 @@
                 <div class="dropdown-divider"></div>
 
                 <!-- item-->
-                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                <a th:href="@{/logout}" class="dropdown-item notify-item">
                     <i class="fe-log-out"></i>
                     <span>Đăng xuất</span>
                 </a>
@@ -91,88 +91,55 @@
                     <li>
                         <a href="/admin/house-manager">
                             <i class="fe-briefcase"></i>
-                            <span> Danh sách nhà trọ </span>
+                            <span> Quản lý nhà trọ </span>
 
                         </a>
                     </li>
 
                     <li>
-                        <a th:href="@{/admin/room/listRoom}">
+                        <a th:href="@{/admin/room}">
                             <i class="fas fa-bed"></i>
-                            <span> Danh sách phòng trọ </span>
+                            <span> Quản lý phòng trọ </span>
                         </a>
                     </li>
 
                     <li>
                         <a th:href="@{/admin/user}">
                             <i class="dripicons-user-group"></i>
-                            <span> Danh sách người dùng </span>
+                            <span> Quản lý người dùng </span>
                         </a>
                     </li>
 
-<!--                    <li>-->
-<!--                        <a href="javascript: void(0);">-->
-<!--                            <i class="fe-mail"></i>-->
-<!--                            <span> Danh sách bài đăng </span>-->
-<!--                            <span class="menu-arrow"></span>-->
-<!--                        </a>-->
-<!--                        <ul class="nav-second-level" aria-expanded="false">-->
-<!--                            <li><a href="email-inbox.html">Inbox</a></li>-->
-<!--                            <li><a href="email-read.html">Read Email</a></li>-->
-<!--                            <li><a href="email-compose.html">Compose Email</a></li>-->
-<!--                        </ul>-->
-<!--                    </li>-->
+                    <li>
+                        <a th:href="@{/admin/sliderList}">
+                            <i class="fe-mail"></i>
+                            <span> Quản lý slider </span>
 
-<!--                    <li>-->
-<!--                        <a href="javascript: void(0);">-->
-<!--                            <i class="fe-disc"></i>-->
-<!--&lt;!&ndash;                            <span class="badge badge-warning badge-pill float-right">09</span>&ndash;&gt;-->
-<!--                            <span class="menu-arrow"></span>-->
-<!--                            <span> Danh sách báo cáo </span>-->
-<!--                        </a>-->
-<!--                        <ul class="nav-second-level" aria-expanded="false">-->
+                        </a>
 
-<!--                            <li><a href="form-elements.html">Form Elements</a></li>-->
-<!--                            <li><a href="form-advanced.html">Form Advanced</a></li>-->
-<!--                            <li><a href="form-validation.html">Form Validation</a></li>-->
-<!--                            <li><a href="form-pickers.html">Form Pickers</a></li>-->
-<!--                            <li><a href="form-wizard.html">Form Wizard</a></li>-->
-<!--                            <li><a href="form-mask.html">Form Masks</a></li>-->
-<!--                            <li><a href="forms-quilljs.html">Quilljs Editor</a></li>-->
-<!--                            <li><a href="form-x-editable.html">X Editable</a></li>-->
-<!--                            <li><a href="form-uploads.html">Multiple File Upload</a></li>-->
-<!--                        </ul>-->
-<!--                    </li>-->
+                    </li>
 
-<!--                    <li>-->
-<!--                        <a href="javascript: void(0);">-->
-<!--                            <i class="fe-layout"></i>-->
-<!--                            <span> Danh sách bình luận </span>-->
-<!--                            <span class="menu-arrow"></span>-->
-<!--                        </a>-->
-<!--                        <ul class="nav-second-level" aria-expanded="false">-->
-<!--                            <li><a href="tables-basic.html">Basic Tables</a></li>-->
-<!--                            <li><a href="tables-datatable.html">Data Tables</a></li>-->
-<!--                            <li><a href="tables-responsive.html">Responsive Table</a></li>-->
-<!--                            <li><a href="tables-tablesaw.html">Tablesaw Tables</a></li>-->
-<!--                            <li><a href="tables-editable.html">Editable Tables</a></li>-->
-<!--                        </ul>-->
-<!--                    </li>-->
 
-<!--&lt;!&ndash;                    <li class="menu-title mt-2">More</li>&ndash;&gt;-->
 
-<!--                    <li>-->
-<!--                        <a href="javascript: void(0);">-->
-<!--                            <i class="fe-map"></i>-->
-<!--                            <span> Danh sách báo cáo</span>-->
-<!--                            <span class="menu-arrow"></span>-->
-<!--                        </a>-->
-<!--                        <ul class="nav-second-level" aria-expanded="false">-->
-<!--                            <li><a href="maps-google.html">Google Maps</a></li>-->
-<!--                            <li><a href="maps-vector.html">Vector Maps</a></li>-->
-<!--                            <li><a href="maps-mapael.html">Mapael Maps</a></li>-->
-<!--                        </ul>-->
-<!--                    </li>-->
+                    <li>
+                        <a th:href="@{/admin/feedback}">
+                            <i class="fe-layout"></i>
+                            <span> Quản lý bình luận </span>
+
+                        </a>
+
+                    </li>
+
+<!--                    <li class="menu-title mt-2">More</li>-->
+
+                    <li>
+                        <a th:href="@{/list-report-admin}">
+                            <i class="fe-map"></i>
+                            <span> Quản lý báo cáo</span>
+
+                        </a>
+
+                    </li>
                 </ul>
 
             </div>

@@ -21,5 +21,7 @@ public interface SliderService {
 
     void deleteById(int id);
 
+    int countSliders();
+
 
 }
