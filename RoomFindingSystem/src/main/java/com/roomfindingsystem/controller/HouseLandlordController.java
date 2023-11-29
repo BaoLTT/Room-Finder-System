@@ -57,7 +57,7 @@ public class HouseLandlordController {
     }
 
     @GetMapping("/add")
-    public String addHouse(Model model,HttpSession httpSession){
+    public String addHouse(Model model,HttpSession httpSession,HttpServletRequest request){
         HouseLandlordVo house = new HouseLandlordVo();
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         UserEntity user = userService.findByEmail(email).get();
@@ -70,6 +70,7 @@ public class HouseLandlordController {
         model.addAttribute("house",house);
         model.addAttribute("listType",listType);
         model.addAttribute("listService",listService);
+        model.addAttribute("request",request);
         return "landlord/managerAdd";
     }
 
@@ -92,6 +93,7 @@ public class HouseLandlordController {
         model.addAttribute("listType",listType);
         model.addAttribute("listChecked",listChecked);
         model.addAttribute("listService",listService);
+        model.addAttribute("request",request);
         return "landlord/managerDetail";
     }
 

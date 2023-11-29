@@ -6,6 +6,7 @@ import com.roomfindingsystem.dto.ReportListDto;
 import com.roomfindingsystem.entity.UserEntity;
 import com.roomfindingsystem.service.EmailSenderService;
 import com.roomfindingsystem.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -39,7 +40,7 @@ public class OtpController {
     }
 
     @RequestMapping(value = "confirm-otp", method = RequestMethod.POST)
-    public String checkOtp(HttpSession session, @RequestParam("otp") String otp, Model model) {
+    public String checkOtp(HttpSession session, @RequestParam("otp") String otp, Model model, HttpServletRequest request) {
         try {
             String otpRegister = (String) session.getAttribute("otp-register");
             if (otp.equals(otpRegister)) {
@@ -62,10 +63,11 @@ public class OtpController {
                 userEntity.setAddressId(1);
                 userEntity.setFacebookId(null);
                 userEntity.setGmailId(null);
-                userEntity.setImageLink(null);
+                userEntity.setImageLink("https://storage.cloud.google.com/rfs_bucket/User/user_0.jpg");
                 userEntity.setLastModifiedDate(null);
                 userService.saveUser(userEntity);
-                return "redirect:/";
+                model.addAttribute("request",request);
+                return "homepage";
             }
             model.addAttribute("mess","OTP is not correct! Please check your email.");
             return "otpConfirm";
