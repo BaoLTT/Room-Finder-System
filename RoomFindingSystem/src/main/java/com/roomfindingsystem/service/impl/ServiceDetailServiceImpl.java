@@ -33,4 +33,9 @@ public class ServiceDetailServiceImpl implements ServiceDetailService {
     public List<ServiceDetailEntity> getAllService() {
         return serviceDetailRepository.findAll();
     }
+
+    @Override
+    public void save(ServiceDetailEntity serviceDetailEntity) {
+        serviceDetailRepository.save(serviceDetailEntity);
+    }
 }

@@ -5,20 +5,20 @@ import com.roomfindingsystem.entity.*;
 
 import com.roomfindingsystem.repository.TypeHouseRepository;
 import com.roomfindingsystem.repository.UserRepository;
-import com.roomfindingsystem.service.AddressService;
-import com.roomfindingsystem.service.HouseLandlordService;
-import com.roomfindingsystem.service.HouseManagerService;
+import com.roomfindingsystem.service.*;
 
-import com.roomfindingsystem.service.ServiceDetailService;
+import com.roomfindingsystem.service.impl.GcsService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -33,7 +33,7 @@ public class AdminManageHouseController {
         this.houseManagerService = houseManagerService;
     }
     @Autowired
-    TypeHouseRepository typeHouseRepository;
+    HouseTypeService houseTypeService;
     @Autowired
     AddressService addressService;
     @Autowired
@@ -43,13 +43,27 @@ public class AdminManageHouseController {
     @Autowired
     HouseLandlordService houseLandlordService;
 
+    @Autowired
+    GcsService gcsService;
+    @Autowired
+    HouseService houseService;
+    @Autowired
+    UserService userService;
 
 
     @GetMapping("/house-manager")
-    public String viewHomepage(final Model model, HttpSession httpSession){
+    public String viewHomepage(final Model model, HttpServletRequest request){
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserEntity user = userService.findByEmail(email).get();
+        System.out.println(user.getRoleId());
+        if(!user.getRoleId().equals("ADMIN") && !user.getRoleId().equals("SUPER_ADMIN")){
+            return "redirect:/login";
+        }
         List<HouseLandlordVo> houseList = houseLandlordService.getAllHouse();
         model.addAttribute("houses", houseList);
         //entries từ 0 đến 5 vào jquery.dataTables.min.js" tìm entries sửa display = 5
+
+
         return "admin/house-manager";
     }
 
@@ -59,22 +73,52 @@ public class AdminManageHouseController {
         return "redirect:/admin/house-manager";
     }
 
+    @PostMapping ("/house-manager/addType")
+    public String addType(@RequestParam(name = "newType") String newType,HttpSession httpSession,HttpServletRequest request){
+        TypeHouseEntity typeHouseEntity = new TypeHouseEntity();
+        typeHouseEntity.setTypeName(newType);
+        typeHouseEntity.setCreatedDate(LocalDate.now());
+        houseTypeService.addType(typeHouseEntity);
+        String referer = request.getHeader("Referer");
+        return "redirect:" + referer;
+    }
+
+    @PostMapping ("/house-manager/addService")
+    public String addService(@RequestParam(name = "newService") String newService,HttpSession httpSession,HttpServletRequest request){
+        ServiceDetailEntity serviceDetailEntity = new ServiceDetailEntity();
+        serviceDetailEntity.setServiceName(newService);
+        serviceDetailEntity.setCreateDate(LocalDate.now());
+        serviceDetailService.save(serviceDetailEntity);
+        String referer = request.getHeader("Referer");
+        return "redirect:" + referer;
+    }
+
     @GetMapping("/house-manager/detail/{houseid}")
-    public String updateHouse(@PathVariable Integer houseid,final Model model,HttpSession httpSession){
-        List<TypeHouseEntity> listType = typeHouseRepository.findAll();
+    public String updateHouse(@PathVariable Integer houseid,final Model model,HttpSession httpSession,HttpServletRequest request){
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserEntity user = userService.findByEmail(email).get();
+        if(!user.getRoleId().equals("ADMIN") && !user.getRoleId().equals("SUPER_ADMIN")){
+            return "redirect:/login";
+        }
+        List<TypeHouseEntity> listType = houseTypeService.findAll();
         List<ServiceDetailEntity> listService = serviceDetailService.getAllService();
 
         HouseLandlordVo  house = houseLandlordService.findHouseByID(houseid);
         List<String> listChecked = house.getService();
         System.out.println(listChecked);
         model.addAttribute("house",house);
+        model.addAttribute("houseID",house.getHouseID());
         model.addAttribute("listType",listType);
         model.addAttribute("listChecked",listChecked);
         model.addAttribute("listService",listService);
+
+        model.addAttribute("key_map", gcsService.getMapKey());
+        model.addAttribute("houseLocation", houseService.getHouseById(houseid));
         return "admin/house-manager-detail";
     }
     @PostMapping("/house-manager/update")
-    public String updateHouse(@ModelAttribute("house") HouseLandlordVo house,@RequestParam("file") MultipartFile[] files, @RequestParam(name = "service", required = false,defaultValue = "0") List<Integer> service, MultipartFile[] images, Model model, HttpSession httpSession,HttpServletRequest request) throws IOException {
+    public String updateHouse(@ModelAttribute("house") HouseLandlordVo house,@RequestParam("file") MultipartFile[] files, @RequestParam(name = "service", required = false,defaultValue = "0") List<Integer> service, MultipartFile[] images, Model model, HttpSession httpSession,HttpServletRequest request,
+                              @RequestParam(name = "latitude1") Double latitude ,@RequestParam(name = "longitude1") Double longitude) throws IOException {
         if(house.getProvinceID()==0){
             Optional<AddressEntity> newAddress = addressService.findbyId(house.getAddress());
             AddressEntity address = new AddressEntity("a",house.getAddressDetail(),newAddress.get().getProvinceId(),newAddress.get().getDistrictId(),newAddress.get().getWardId());
@@ -85,21 +129,32 @@ public class AdminManageHouseController {
         }
         System.out.println(house.getHouseID());
         System.out.println(service);
-        HttpSession session = request.getSession();
-        UserEntity user = (UserEntity) session.getAttribute("user");
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserEntity user = userService.findByEmail(email).get();
         house.setUserID(user.getUserId());
         house.setCreatedBy(user.getUserId());
         house.setLastModifiedBy(user.getUserId());
         houseManagerService.updateHouse(house,house.getHouseID(),service,files);
 
+        HousesEntity housesEntity = houseService.getHouseById(house.getHouseID());
+        housesEntity.setLatitude(latitude);
+        housesEntity.setLongitude(longitude);
+        houseService.saveHouse(housesEntity);
+        System.out.println(housesEntity.toString());
+
         return "redirect:/admin/house-manager";
     }
 
     @GetMapping("/house-manager/add")
-    public String addHouse(final Model model,HttpSession httpSession){
+    public String addHouse(final Model model,HttpSession httpSession,HttpServletRequest request){
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserEntity user = userService.findByEmail(email).get();
+        if(!user.getRoleId().equals("ADMIN") && !user.getRoleId().equals("SUPER_ADMIN")){
+            return "redirect:/login";
+        }
         List<UserEntity> listUser = new ArrayList<>();
         listUser = userRepository.findAll();
-        List<TypeHouseEntity> listType = typeHouseRepository.findAll();
+        List<TypeHouseEntity> listType = houseTypeService.findAll();
         List<ServiceDetailEntity> listService = serviceDetailService.getAllService();
         model.addAttribute("listUser",listUser);
         model.addAttribute("listType",listType);
@@ -113,10 +168,12 @@ public class AdminManageHouseController {
     public String saveHouse(@ModelAttribute(name = "house") HouseLandlordVo house, @RequestParam("file") MultipartFile[] files, Model model, HttpSession httpSession, HttpServletRequest request) throws IOException {
         AddressEntity address = new AddressEntity("a",house.getAddressDetail().trim(),house.getProvinceID(),house.getDistrictID(),house.getWardID());
         int addressID = addressService.insertAddress(address);
-        HttpSession session = request.getSession();
-        UserEntity user = (UserEntity) session.getAttribute("user");
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserEntity user = userService.findByEmail(email).get();
         house.setUserID(user.getUserId());
         house.setLastModifiedBy(user.getUserId());
+        house.setStatus(2);
+        //Set mặc định là đang xử lý
         houseManagerService.insertHouse(house,addressID,files);
         return  "redirect:/admin/house-manager";
     }

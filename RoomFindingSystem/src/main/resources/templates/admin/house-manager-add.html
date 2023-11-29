@@ -16,6 +16,7 @@
     <link href="/assets_admin/css/icons.min.css" rel="stylesheet" type="text/css" />
     <link href="/assets_admin/css/app.min.css" rel="stylesheet" type="text/css" />
     <link href="/assets_admin/css/file-upload.css" rel="stylesheet" type="text/css" />
+    <link href="/assets_admin/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css"/>
 
 
 
@@ -38,33 +39,20 @@
             <div class="container-fluid">
 
                 <!-- start page title -->
-                <div class="row">
-                    <div class="col-12">
-                        <div class="page-title-box">
-                            <div class="page-title-right">
-                                <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Abstack</a></li>
-                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Forms</a></li>
-                                    <li class="breadcrumb-item active">Form Elements</li>
-                                </ol>
-                            </div>
-                            <h4 class="page-title">Form Elements</h4>
-                        </div>
-                    </div>
-                </div>
+
                 <!-- end page title -->
 
                 <div class="row">
                     <div class="col-12">
-                        <div class="card-box">
-                            <h4 class="header-title">Thông tin nhà trọ</h4>
+                        <div class="card-box" style="margin-top: 40px">
+                            <h4 class="header-title">Thêm trọ mới</h4>
 
                             <div class="row">
                                 <div class="col-12">
                                     <div>
                                         <form class="form-horizontal" role="form" method="post" th:action="@{/admin/house-manager/save}" th:object="${house}" enctype="multipart/form-data">
                                             <div class="form-group row">
-                                                <label class="col-2 col-form-label">Chủ trọ</label>
+                                                <label class="col-2 col-form-label">Chủ trọ<em>*</em></label>
                                                 <div class="col-10" >
                                                     <select class="form-control" name="landlord" th:field="*{userID}">
                                                         <option th:each="listUser : ${listUser}"  th:value="${listUser.getUserId()}" th:utext="${listUser.firstName + ' '+ listUser.lastName}"/>
@@ -72,36 +60,36 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-2 col-form-label" >Tên trọ</label>
+                                                <label class="col-2 col-form-label" >Tên trọ<em>*</em></label>
                                                 <div class="col-10">
-                                                    <input type="text"  name="houseName" class="form-control" th:field="*{houseName}">
+                                                    <input type="text" required  name="houseName" class="form-control" th:field="*{houseName}">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-2 col-form-label">Địa chỉ cụ thể</label>
+                                                <label class="col-2 col-form-label">Địa chỉ cụ thể<em>*</em></label>
                                                 <div class="col-10">
-                                                    <input type="text" class="form-control" name="addressDetail" th:field="*{addressDetail}">
+                                                    <input type="text" required class="form-control" name="addressDetail" th:field="*{addressDetail}">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-2 col-form-label">Địa chỉ </label>
+                                                <label class="col-2 col-form-label">Địa chỉ<em>*</em> </label>
                                                 <div class="col-3" >
                                                     <label for="province">Tỉnh</label>
-                                                    <select class="form-control" id="province" name="province" th:field="*{provinceID}">
+                                                    <select class="form-control"  id="province" name="province" th:field="*{provinceID}">
                                                         <option value="0" selected >Chọn tỉnh thành</option>
                                                     </select>
                                                 </div>
 
                                                 <div class="col-3" >
                                                     <label for="district">Huyện</label>
-                                                    <select class="form-control" id="district" name="district" th:field="*{districtID}">
+                                                    <select class="form-control"  id="district" name="district" th:field="*{districtID}">
                                                         <option value="0" selected >Chọn huyện</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-3" >
                                                     <label for="ward">Xã/Phường</label>
-                                                    <select class="form-control" id="ward" name="ward" th:field="*{wardID}">
-                                                        <option value="0" selected >Chọn xã/phường</option>
+                                                    <select class="form-control"  id="ward" name="ward" th:field="*{wardID}">
+                                                        <option value="0"  selected >Chọn xã/phường</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -113,12 +101,17 @@
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-2 col-form-label">Thể loại trọ</label>
-                                                <div class="col-10" >
+                                                <div class="col-9" >
                                                     <select class="form-control" name="houseType" th:field="*{typeHouseID}">
                                                         <option th:each="listType : ${listType}" th:value="${listType.getTypeId()}" th:text="${listType.typeName}"/>
 
                                                     </select>
 
+                                                </div>
+                                                <div class="col-1">
+                                                    <button type="button" class="btn btn-primary btn-xs" id="houseType"
+                                                            style="width: 100%;height: 100%">Thêm thể loại
+                                                    </button>
                                                 </div>
                                             </div>
 
@@ -128,7 +121,7 @@
                                                     <div class="file-upload-previews"></div>
                                                     <div class="file-upload">
                                                         <input  type="file" name="file" class="file-upload-input with-preview" multiple title="Click to add files" maxlength="10" accept="gif|jpg|png">
-                                                        <span>Click to add images</span>
+                                                        <span>Nhấn để thêm ảnh</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -145,6 +138,12 @@
                                                         </label>
                                                     </div>
                                                 </div>
+                                                <label class="col-2 col-form-label"></label>
+                                                <div class="col-10" style="padding-left: 0">
+                                                    <button type="button" class="btn btn-primary btn-xs" id="houseService"
+                                                    >Thêm dịch vụ
+                                                    </button>
+                                                </div>
                                             </div>
 
 
@@ -153,7 +152,7 @@
                                             <div class="form-group row">
                                                 <label class="col-2 col-form-label"></label>
                                                 <div class="col-10" >
-                                                    <button  type="submit" class="btn btn-success waves-light waves-effect width-md"> <span style="color: white">Lưu</span></button>
+                                                    <button  type="submit" class="btn btn-success waves-light waves-effect width-md" style="margin-left: -10px"> <span style="color: white">Lưu</span></button>
                                                     <a  type="button" class="btn btn-danger waves-light waves-effect width-md" href="http://localhost:8080/admin/house-manager"> <span style="color: white">Đóng</span></a>
                                                     <a  type="button" class="btn btn-success waves-light waves-effect width-md" style="float: right"> <span style="color: white">Quản lý phòng</span>  </a>
                                                 </div>
@@ -173,16 +172,107 @@
             </div> <!-- end container-fluid -->
         </div> <!-- end content -->
         <!-- Footer Start -->
-        <footer class="footer">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12">
-                        2017 - 2019 &copy; Abstack theme by <a href="">Coderthemes</a>
-                    </div>
 
+        <div id="inputType" style="display: none">
+            <form th:action="@{/admin/house-manager/addType}" method="post">
+                <div class="swal2-container swal2-center swal2-fade swal2-shown" style="overflow-y: auto;">
+                    <div aria-labelledby="swal2-title" aria-describedby="swal2-content"
+                         class="swal2-popup swal2-modal swal2-show" tabindex="-1" role="dialog" aria-live="assertive"
+                         aria-modal="true" style="display: flex;">
+                        <div class="swal2-header">
+                            <ul class="swal2-progress-steps" style="display: none;"></ul>
+                            <div class="swal2-icon swal2-error" style="display: none;"><span class="swal2-x-mark"><span
+                                    class="swal2-x-mark-line-left"></span><span
+                                    class="swal2-x-mark-line-right"></span></span>
+                            </div>
+                            <div class="swal2-icon swal2-question" style="display: none;"></div>
+                            <div class="swal2-icon swal2-warning" style="display: none;"></div>
+                            <div class="swal2-icon swal2-info" style="display: none;"></div>
+                            <div class="swal2-icon swal2-success" style="display: none;">
+                                <div class="swal2-success-circular-line-left"></div>
+                                <span class="swal2-success-line-tip"></span> <span
+                                    class="swal2-success-line-long"></span>
+                                <div class="swal2-success-ring"></div>
+                                <div class="swal2-success-fix"></div>
+                                <div class="swal2-success-circular-line-right"></div>
+                            </div>
+                            <img class="swal2-image" style="display: none;">
+                            <h2 class="swal2-title" id="swal2-title" style="display: flex;">Vui lòng nhập thể loại
+                                mới</h2>
+                            <button type="button" class="swal2-close" aria-label="Close this dialog"
+                                    style="display: none;">
+                                ×
+                            </button>
+
+                            <input autocapitalize="off" class="swal2-input" required placeholder="Nhập thể loại..." type="text"
+                                   style="display: flex;" name="newType">
+                        </div>
+
+                        <div class="swal2-actions" style="display: flex;">
+                            <button type="submit" class="swal2-confirm swal2-styled" aria-label=""
+                                    style="display: inline-block; border-left-color: rgb(48, 133, 214); border-right-color: rgb(48, 133, 214);">
+                                Lưu
+                            </button>
+                            <button type="button" class="swal2-cancel swal2-styled" aria-label="" onclick="closeInput()"
+                                    style="display: inline-block;">Đóng
+                            </button>
+                        </div>
+                        <div class="swal2-footer" style="display: none;"></div>
+                    </div>
                 </div>
-            </div>
-        </footer>
+            </form>
+        </div>
+
+        <div id="inputService" style="display: none">
+            <form th:action="@{/admin/house-manager/addService}" method="post">
+                <div class="swal2-container swal2-center swal2-fade swal2-shown" style="overflow-y: auto;">
+                    <div aria-labelledby="swal2-title" aria-describedby="swal2-content"
+                         class="swal2-popup swal2-modal swal2-show" tabindex="-1" role="dialog" aria-live="assertive"
+                         aria-modal="true" style="display: flex;">
+                        <div class="swal2-header">
+                            <ul class="swal2-progress-steps" style="display: none;"></ul>
+                            <div class="swal2-icon swal2-error" style="display: none;"><span class="swal2-x-mark"><span
+                                    class="swal2-x-mark-line-left"></span><span
+                                    class="swal2-x-mark-line-right"></span></span>
+                            </div>
+                            <div class="swal2-icon swal2-question" style="display: none;"></div>
+                            <div class="swal2-icon swal2-warning" style="display: none;"></div>
+                            <div class="swal2-icon swal2-info" style="display: none;"></div>
+                            <div class="swal2-icon swal2-success" style="display: none;">
+                                <div class="swal2-success-circular-line-left"></div>
+                                <span class="swal2-success-line-tip"></span> <span
+                                    class="swal2-success-line-long"></span>
+                                <div class="swal2-success-ring"></div>
+                                <div class="swal2-success-fix"></div>
+                                <div class="swal2-success-circular-line-right"></div>
+                            </div>
+                            <img class="swal2-image" style="display: none;">
+                            <h2 class="swal2-title"  style="display: flex;">Vui lòng nhập dịch vụ mới</h2>
+                            <button type="button" class="swal2-close" aria-label="Close this dialog"
+                                    style="display: none;">
+                                ×
+                            </button>
+
+                            <input autocapitalize="off" class="swal2-input" required placeholder="Nhập dịch vụ..." type="text"
+                                   style="display: flex;" name="newService">
+                        </div>
+
+                        <div class="swal2-actions" style="display: flex;">
+                            <button type="submit" class="swal2-confirm swal2-styled" aria-label=""
+                                    style="display: inline-block; border-left-color: rgb(48, 133, 214); border-right-color: rgb(48, 133, 214);">
+                                Lưu
+                            </button>
+                            <button type="button" class="swal2-cancel swal2-styled" aria-label="" onclick="closeInput()"
+                                    style="display: inline-block;">Đóng
+                            </button>
+                        </div>
+                        <div class="swal2-footer" style="display: none;"></div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div th:replace="admin/footer_admin :: admin_footer"></div>
         <!-- end Footer -->
 
     </div>
@@ -192,93 +282,38 @@
     <!-- ============================================================== -->
 
 </div>
-<!-- END wrapper -->
 
-<!-- Right Sidebar -->
-<div class="right-bar">
-    <div class="rightbar-title">
-        <a href="javascript:void(0);" class="right-bar-toggle float-right">
-            <i class="mdi mdi-close"></i>
-        </a>
-        <h5 class="m-0 text-white">Settings</h5>
-    </div>
-    <div class="slimscroll-menu">
-        <hr class="mt-0">
-        <h5 class="pl-3">Basic Settings</h5>
-        <hr class="mb-0" />
+<script>
 
+    function closeInput() {
+        // Ẩn khối div và làm mờ phần đằng sau khi nhấn nút Close
+        var inputType = document.getElementById('inputType');
+        var overlay = document.getElementById('overlay');
+        var inputService = document.getElementById('inputService');
 
-        <div class="p-3">
-            <div class="custom-control custom-checkbox mb-2">
-                <input type="checkbox" class="custom-control-input" id="customCheck1" checked>
-                <label class="custom-control-label" for="customCheck1">Notifications</label>
-            </div>
-            <div class="custom-control custom-checkbox mb-2">
-                <input type="checkbox" class="custom-control-input" id="customCheck2" checked>
-                <label class="custom-control-label" for="customCheck2">API Access</label>
-            </div>
-            <div class="custom-control custom-checkbox mb-2">
-                <input type="checkbox" class="custom-control-input" id="customCheck3">
-                <label class="custom-control-label" for="customCheck3">Auto Updates</label>
-            </div>
-            <div class="custom-control custom-checkbox mb-2">
-                <input type="checkbox" class="custom-control-input" id="customCheck4" checked>
-                <label class="custom-control-label" for="customCheck4">Online Status</label>
-            </div>
-            <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="customCheck5">
-                <label class="custom-control-label" for="customCheck5">Auto Payout</label>
-            </div>
-        </div>
+        inputService.style.display = 'none';
+        inputType.style.display = 'none';
+        overlay.style.display = 'none';
+    }
 
-        <!-- Messages -->
-        <hr class="mt-0" />
-        <h5 class="pl-3 pr-3">Messages <span class="float-right badge badge-pill badge-danger">24</span></h5>
-        <hr class="mb-0" />
-        <div class="p-3">
-            <div class="inbox-widget">
-                <div class="inbox-item">
-                    <div class="inbox-item-img"><img src="assets/images/users/avatar-1.jpg" class="rounded-circle" alt=""></div>
-                    <p class="inbox-item-author"><a href="javascript: void(0);">Chadengle</a></p>
-                    <p class="inbox-item-text">Hey! there I'm available...</p>
-                    <p class="inbox-item-date">13:40 PM</p>
-                </div>
-                <div class="inbox-item">
-                    <div class="inbox-item-img"><img src="assets/images/users/avatar-2.jpg" class="rounded-circle" alt=""></div>
-                    <p class="inbox-item-author"><a href="javascript: void(0);">Tomaslau</a></p>
-                    <p class="inbox-item-text">I've finished it! See you so...</p>
-                    <p class="inbox-item-date">13:34 PM</p>
-                </div>
-                <div class="inbox-item">
-                    <div class="inbox-item-img"><img src="assets/images/users/avatar-3.jpg" class="rounded-circle" alt=""></div>
-                    <p class="inbox-item-author"><a href="javascript: void(0);">Stillnotdavid</a></p>
-                    <p class="inbox-item-text">This theme is awesome!</p>
-                    <p class="inbox-item-date">13:17 PM</p>
-                </div>
+    document.getElementById('houseService').addEventListener('click', function () {
+        // Hiển thị khối div và làm mờ phần đằng sau khi click vào nút "Click me"
+        var inputService = document.getElementById('inputService');
+        var overlay = document.getElementById('overlay');
 
-                <div class="inbox-item">
-                    <div class="inbox-item-img"><img src="assets/images/users/avatar-4.jpg" class="rounded-circle" alt=""></div>
-                    <p class="inbox-item-author"><a href="javascript: void(0);">Kurafire</a></p>
-                    <p class="inbox-item-text">Nice to meet you</p>
-                    <p class="inbox-item-date">12:20 PM</p>
+        inputService.style.display = 'block';
+        overlay.style.display = 'block';
+    });
 
-                </div>
-                <div class="inbox-item">
-                    <div class="inbox-item-img"><img src="assets/images/users/avatar-5.jpg" class="rounded-circle" alt=""></div>
-                    <p class="inbox-item-author"><a href="javascript: void(0);">Shahedk</a></p>
-                    <p class="inbox-item-text">Hey! there I'm available...</p>
-                    <p class="inbox-item-date">10:15 AM</p>
+    document.getElementById('houseType').addEventListener('click', function () {
+        // Hiển thị khối div và làm mờ phần đằng sau khi click vào nút "Click me"
+        var inputType = document.getElementById('inputType');
+        var overlay = document.getElementById('overlay');
 
-                </div>
-            </div> <!-- end inbox-widget -->
-        </div> <!-- end .p-3-->
-
-    </div> <!-- end slimscroll-menu-->
-</div>
-<!-- /Right-bar -->
-
-<!-- Right bar overlay-->
-<div class="rightbar-overlay"></div>
+        inputType.style.display = 'block';
+        overlay.style.display = 'block';
+    });
+</script>
 
 <!-- Vendor js -->
 <script src="/assets_admin/js/vendor.min.js"></script>

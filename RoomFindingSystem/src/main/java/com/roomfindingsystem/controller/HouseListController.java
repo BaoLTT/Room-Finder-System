@@ -5,6 +5,7 @@ import com.roomfindingsystem.repository.ServiceDetailRepository;
 import com.roomfindingsystem.service.HouseService;
 
 import com.roomfindingsystem.dto.HouseTypeVo;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,7 +42,7 @@ public class HouseListController {
     public String list(@RequestParam(name = "page", required = false, defaultValue = "1") Integer pageIndex, @RequestParam(name = "houseName",required = false , defaultValue = "") String houseName,
                        @RequestParam(name = "price",required = false,defaultValue = "0") List<String> price,
                        @RequestParam(name = "type", required = false,defaultValue = "0") List<String> type,
-                       @RequestParam(name = "service", required = false, defaultValue = "0") List<String> service,Model model, HttpSession httpSession){
+                       @RequestParam(name = "service", required = false, defaultValue = "0") List<String> service, Model model, HttpSession httpSession, HttpServletRequest httpServletRequest){
         List<Integer> listType = new ArrayList<>();
         List<Integer> listPrice = new ArrayList<>();
         List<Integer> listService = new ArrayList<>();
@@ -54,6 +55,7 @@ public class HouseListController {
         model.addAttribute("listPrice",price);
         model.addAttribute("listType",type);
         model.addAttribute("listService",service);
+        model.addAttribute("request",httpServletRequest);
         for(String price1: price){
             listPrice.add(Integer.parseInt(price1));
         }
@@ -105,6 +107,7 @@ public class HouseListController {
             list =houseService.findHouse(2000000,4000000,4000000,6000000,houseName,listType,listService,countService,offset, pageSize);
             totalHouse = houseService.countHouse(2000000,4000000,4000000,6000000,houseName,listType,listService,countService);
         }
+
 
         System.out.println(list.size());
         System.out.println(totalHouse);

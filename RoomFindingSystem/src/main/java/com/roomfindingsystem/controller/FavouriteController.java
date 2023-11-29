@@ -48,9 +48,11 @@ public class FavouriteController {
 
         List<FavouriteDto> list = favouriteService.getListFavourite(user.getUserId());
         if (list.isEmpty()){
+            model.addAttribute("request",request);
             return "favourite-null";
         }
         System.out.println(list);
+        model.addAttribute("request",request);
         model.addAttribute("houses", houseService.viewHouseInHomeInFavourite(user.getUserId()));
 //       List<HouseImageLink> houseImageLinks= houseService.getImageById(houseId);
 //        model.addAttribute("houseImageLinks",houseImageLinks);

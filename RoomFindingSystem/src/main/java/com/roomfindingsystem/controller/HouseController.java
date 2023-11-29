@@ -5,6 +5,7 @@ import com.roomfindingsystem.entity.ReportEntity;
 import com.roomfindingsystem.entity.UserEntity;
 import com.roomfindingsystem.service.*;
 import com.roomfindingsystem.service.impl.GcsService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import com.roomfindingsystem.dto.*;
 import com.roomfindingsystem.service.FeedbackService;
@@ -60,7 +61,7 @@ public class HouseController {
     @RequestMapping(value = "detail", method = RequestMethod.GET)
     public String getAllHouse(@RequestParam(name = "id", required = false, defaultValue = "1") int houseId,
                               @RequestParam(name = "star", required = false, defaultValue = "0") int star,
-                              ModelMap model) {
+                              ModelMap model, HttpServletRequest request) {
         List<HouseDto> houseDto = houseService.getHouseDetail(houseId);
         System.out.printf(houseDto.toString());
 
@@ -75,14 +76,16 @@ public class HouseController {
         List<HouseImageLink> listsImage = houseService.getImageById(houseId);
         System.out.println(listsImage.toString());
         model.addAttribute("HousesImages", listsImage);
+        List<Boolean> statuss = new ArrayList<>();
+        statuss.add(true);
 
 
         List<FeedbackDto> feedbacks = new ArrayList<>();
         //nghia code
         if (star==0){
-            feedbacks = feedbackService.getFeedbackByHouseId(houseId);
+            feedbacks = feedbackService.getFeedbackByHouseId(houseId, statuss);
         } else {
-            feedbacks = feedbackService.getFeedbackByHouseIdAndStar(houseId, star);
+            feedbacks = feedbackService.getFeedbackByHouseIdAndStar(houseId, star, statuss);
         }
 //        List<FeedbackDto> feedbacks = feedbackService.getFeedbackByHouseId(houseId);
         model.addAttribute("feedbacks", feedbacks);
@@ -152,7 +155,7 @@ public class HouseController {
         model.addAttribute("roomService", roomService);
         model.addAttribute("houseLocation", houseService.getHouseById(houseId));
         model.addAttribute("key_map", gcsService.getMapKey());
-
+        model.addAttribute("request",request);
         System.out.println(roomHouseDetailDtos.toString());
 
 
@@ -178,7 +181,9 @@ public class HouseController {
             feedbackEntity.setFeedbackId(feedbackService.getFeedbackEntityByUid(houseId, feedbackEntity.getMemberId()).get(0).getFeedbackId());
             feedbackService.save(feedbackEntity);
         }
-        List<FeedbackDto> feedbackDtoList = feedbackService.getFeedbackByHouseId(houseId);
+        List<Boolean> statuss = new ArrayList<>();
+        statuss.add(true);
+        List<FeedbackDto> feedbackDtoList = feedbackService.getFeedbackByHouseId(houseId, statuss);
         for(int i=0; i<feedbackDtoList.size(); i++){
             sum+=feedbackDtoList.get(i).getStar();
         }
@@ -203,7 +208,9 @@ public class HouseController {
         UserEntity user = userService.findByEmail(currentUserName).get();
         feedbackService.deleteByHouseIdAndMemberId(houseId, user.getUserId());
         int sum =0;
-        List<FeedbackDto> feedbackDtoList = feedbackService.getFeedbackByHouseId(houseId);
+        List<Boolean> statuss = new ArrayList<>();
+        statuss.add(true);
+        List<FeedbackDto> feedbackDtoList = feedbackService.getFeedbackByHouseId(houseId, statuss);
         for(int i=0; i<feedbackDtoList.size(); i++){
             sum+=feedbackDtoList.get(i).getStar();
         }

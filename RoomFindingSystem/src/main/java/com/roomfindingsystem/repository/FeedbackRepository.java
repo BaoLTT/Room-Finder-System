@@ -1,6 +1,7 @@
 package com.roomfindingsystem.repository;
 
 
+import com.roomfindingsystem.dto.FeedbackDtoAdmin;
 import com.roomfindingsystem.dto.FeedbackHomeDto;
 import com.roomfindingsystem.dto.FeedbackListAdminDto;
 import com.roomfindingsystem.entity.FeedbackEntity;
@@ -25,12 +26,20 @@ public interface FeedbackRepository extends JpaRepository<FeedbackEntity,Integer
 
 
     @Query("SELECT NEW com.roomfindingsystem.dto.FeedbackDto(f.feedbackId, f.title, f.content, f.createdDate, u.firstName, u.lastName, u.imageLink, u.userId, f.star, f.status) FROM FeedbackEntity f JOIN UserEntity u " +
-            "ON u.userId = f.memberId WHERE f.houseId = :houseId")
-    List<FeedbackDto> findFeedbackDtosByHouseId(int houseId);
+            "ON u.userId = f.memberId WHERE f.houseId = :houseId and f.status IN (:status)")
+    List<FeedbackDto> findFeedbackDtosByHouseId(int houseId, List<Boolean> status);
+
+    @Query("SELECT NEW com.roomfindingsystem.dto.FeedbackDtoAdmin(f.feedbackId, f.title, f.content, f.createdDate, u.firstName, u.lastName, u.imageLink, u.userId, f.star, f.status, h.houseName) FROM FeedbackEntity f JOIN UserEntity u " +
+            "ON u.userId = f.memberId join HousesEntity h ON h.houseId = f.houseId  WHERE f.status IN (:status)")
+    List<FeedbackDtoAdmin> findFeedbackDtos(List<Boolean> status);
 
     @Query("SELECT NEW com.roomfindingsystem.dto.FeedbackDto(f.feedbackId, f.title, f.content, f.createdDate, u.firstName, u.lastName, u.imageLink, u.userId, f.star, f.status) FROM FeedbackEntity f JOIN UserEntity u " +
-            "ON u.userId = f.memberId WHERE f.houseId = :houseId and f.star=:star")
-    List<FeedbackDto> findFeedbackDtosByHouseIdAndStar(int houseId, int star);
+            "ON u.userId = f.memberId WHERE f.houseId = :houseId and f.star = :star and f.status IN (:status)")
+    List<FeedbackDto> findFeedbackDtosByHouseIdAndStar(int houseId, int star, List<Boolean> status);
+
+    @Query("SELECT NEW com.roomfindingsystem.dto.FeedbackDtoAdmin(f.feedbackId, f.title, f.content, f.createdDate, u.firstName, u.lastName, u.imageLink, u.userId, f.star, f.status, h.houseName) FROM FeedbackEntity f JOIN UserEntity u " +
+            "ON u.userId = f.memberId join HousesEntity h ON h.houseId = f.houseId WHERE f.star = :star and f.status IN (:status)")
+    List<FeedbackDtoAdmin> findFeedbackDtosByStar(int star, List<Boolean> status);
 
     @Query("SELECT f FROM FeedbackEntity f WHERE f.houseId = :houseId AND f.memberId = :memberId")
     List<FeedbackEntity> getFeedbackEntityByUid(int houseId, int memberId);

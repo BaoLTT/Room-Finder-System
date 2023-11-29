@@ -2,6 +2,7 @@ package com.roomfindingsystem.service;
 
 
 import com.roomfindingsystem.dto.FeedbackDto;
+import com.roomfindingsystem.dto.FeedbackDtoAdmin;
 import com.roomfindingsystem.dto.FeedbackHomeDto;
 import com.roomfindingsystem.dto.FeedbackListAdminDto;
 import com.roomfindingsystem.entity.FeedbackEntity;
@@ -15,9 +16,12 @@ import java.util.List;
 public interface FeedbackService {
 
 
-    List<FeedbackDto> getFeedbackByHouseId(int houseId);
+    List<FeedbackDto> getFeedbackByHouseId(int houseId, List<Boolean> status);
 
-    List<FeedbackDto> getFeedbackByHouseIdAndStar(int houseId, int star);
+    List<FeedbackDtoAdmin> getFeedback(List<Boolean> status);
+
+    List<FeedbackDto> getFeedbackByHouseIdAndStar(int houseId, int star, List<Boolean> status);
+    List<FeedbackDtoAdmin> getFeedbackByStar(int star, List<Boolean> status);
 
 
     FeedbackEntity save(FeedbackEntity feedbackEntity);

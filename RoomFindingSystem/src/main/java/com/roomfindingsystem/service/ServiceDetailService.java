@@ -9,4 +9,6 @@ public interface ServiceDetailService {
     ServiceDto findByName(String name);
 
     List<ServiceDetailEntity> getAllService();
+
+    void save(ServiceDetailEntity serviceDetailEntity);
 }

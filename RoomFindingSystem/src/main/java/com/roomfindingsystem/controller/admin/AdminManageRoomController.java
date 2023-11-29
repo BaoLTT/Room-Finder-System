@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +32,7 @@ public class AdminManageRoomController {
     }
 
     @GetMapping("/updateRoom/{id}")
-    public String getFormUpdateRoom(@PathVariable("id") Integer id, Model model) {
+    public String getFormUpdateRoom(@PathVariable("id") Integer id, Model model){
         RoomDto roomDto = roomService.findById(id);
         model.addAttribute("room", roomDto);
         System.out.println(roomDto);
@@ -61,7 +60,7 @@ public class AdminManageRoomController {
     }
 
     @GetMapping("/deleteRoom/{id}")
-    public String delete(@PathVariable("id") Integer id) {
+    public String delete(@PathVariable("id") Integer id){
         roomService.deleteById(id);
         return "redirect:/admin/room/listRoom";
     }
