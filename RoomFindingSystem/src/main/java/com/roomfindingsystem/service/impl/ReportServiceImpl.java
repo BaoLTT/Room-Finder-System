@@ -8,6 +8,7 @@ import com.roomfindingsystem.repository.ReportRepository;
 import com.roomfindingsystem.service.ReportService;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -67,6 +68,11 @@ public class ReportServiceImpl implements ReportService {
     public int updateStatusWaiting(int id) {
         return reportRepository.updateStatusReportWaiting(id);
 
+    }
+
+    @Override
+    public int updateSolve(LocalDate solveDate, int id) {
+        return reportRepository.updateProcessedDate(solveDate,id);
     }
 
     @Override
