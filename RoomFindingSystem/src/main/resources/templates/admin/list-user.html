@@ -70,8 +70,9 @@
                                     <td th:text="${user.dob}">
                                     </td>
 
-                                    <td th:text="${user.gender}">
+                                    <td th:text="${user.gender == 'MALE' ? 'Nam' : (user.gender == 'FEMALE' ? 'Nữ' : '')}">
                                     </td>
+
 
                                     <td th:text="${user.createdDate}">
                                     </td>
@@ -79,7 +80,7 @@
                                     <td th:text="${user.role}">
                                     </td>
 
-                                    <td th:text="${user.status}">
+                                    <td th:text="${user.status == 'ACTIVE' ? 'HOẠT ĐỘNG' : (user.status == 'INACTIVE' ? 'NGƯNG HOẠT ĐỘNG': '') }">
                                     </td>
 
                                     <td>
