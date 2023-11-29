@@ -51,12 +51,10 @@ public class RoomLandlordController {
     public String update(@ModelAttribute(name = "room") RoomDto roomDto, @RequestParam("file") MultipartFile[] files) throws IOException {
         List<ServiceDto> serviceDtos = new ArrayList<>();
         List<String> selects = roomDto.getServiceNames();
-//        System.out.println(files.length);
-        if (!selects.isEmpty()) {
+        if (selects!=null) {
             for (String serviceName : selects) {
                 ServiceDto serviceDto = new ServiceDto();
                 serviceDto.setServiceName(serviceName);
-                System.out.println(serviceName);
                 serviceDto.setServiceId(serviceDetailService.findByName(serviceName).getServiceId());
                 serviceDtos.add(serviceDto);
             }
@@ -84,21 +82,21 @@ public class RoomLandlordController {
 
     @PostMapping("/save/{houseId}")
     public String save(@PathVariable("houseId") Integer id,@ModelAttribute(name = "room") RoomDto roomDto, @RequestParam("file") MultipartFile[] files) throws IOException {
-        try {
+
             List<ServiceDto> serviceDtos = new ArrayList<>();
             List<String> selects = roomDto.getServiceNames();
-            for (String serviceName : selects) {
-                ServiceDto serviceDto = new ServiceDto();
-                serviceDto.setServiceName(serviceName);
-                System.out.println(serviceName);
-                serviceDto.setServiceId(serviceDetailService.findByName(serviceName).getServiceId());
-                serviceDtos.add(serviceDto);
+            if (selects!=null){
+                for (String serviceName : selects) {
+                    ServiceDto serviceDto = new ServiceDto();
+                    serviceDto.setServiceName(serviceName);
+                    serviceDto.setServiceId(serviceDetailService.findByName(serviceName).getServiceId());
+                    serviceDtos.add(serviceDto);
+                }
+                roomDto.setServiceDtos(serviceDtos);
             }
-            System.out.println(serviceDtos);
-            roomDto.setServiceDtos(serviceDtos);
             roomService.saveRoomLandlord(roomDto, files);
-        } catch (Exception ex) {
-        }
+
+
         return "redirect:/landlord/room/listRoom/"+ id;
     }
 

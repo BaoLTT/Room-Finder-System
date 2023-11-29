@@ -57,7 +57,7 @@ public class RoomServiceImpl implements RoomService {
     @Override
     public List<RoomDto> getAll() {
         List<RoomDto> roomDtos = roomRepository.findRoomsDetail();
-        for(RoomDto roomDto : roomDtos) {
+        for (RoomDto roomDto : roomDtos) {
             StringBuilder servicesBuilder = new StringBuilder();
             List<ServiceDetailEntity> serviceDetailEntities = roomRepository.getServiceByRoomId(roomDto.getRoomId());
             for (ServiceDetailEntity serviceDetailEntity : serviceDetailEntities) {
@@ -184,11 +184,13 @@ public class RoomServiceImpl implements RoomService {
         for (ServiceRoomEntity serviceRoomEntity : serviceRoomEntities) {
             serviceRoomRepository.deleteByRoomIdAndServiceId(roomDto.getRoomId(), serviceRoomEntity.getServiceId());
         }
-        for (ServiceDto serviceDto : roomDto.getServiceDtos()) {
-            ServiceRoomEntity serviceRoomEntity = new ServiceRoomEntity();
-            serviceRoomEntity.setServiceId(serviceDto.getServiceId());
-            serviceRoomEntity.setRoomId(saveRoom.getRoomid());
-            serviceRoomRepository.save(serviceRoomEntity);
+        if (roomDto.getServiceDtos() != null) {
+            for (ServiceDto serviceDto : roomDto.getServiceDtos()) {
+                ServiceRoomEntity serviceRoomEntity = new ServiceRoomEntity();
+                serviceRoomEntity.setServiceId(serviceDto.getServiceId());
+                serviceRoomEntity.setRoomId(saveRoom.getRoomid());
+                serviceRoomRepository.save(serviceRoomEntity);
+            }
         }
         roomRepository.save(saveRoom);
     }
@@ -228,11 +230,13 @@ public class RoomServiceImpl implements RoomService {
 
         roomRepository.save(saveRoom);
 
-        for (ServiceDto serviceDto : roomDto.getServiceDtos()) {
+        if (roomDto.getServiceDtos() != null) {
+            for (ServiceDto serviceDto : roomDto.getServiceDtos()) {
                 ServiceRoomEntity serviceRoomEntity = new ServiceRoomEntity();
                 serviceRoomEntity.setServiceId(serviceDto.getServiceId());
                 serviceRoomEntity.setRoomId(saveRoom.getRoomid());
                 serviceRoomRepository.save(serviceRoomEntity);
+            }
         }
         int i = 1;
         for (MultipartFile file : files) {
@@ -270,12 +274,13 @@ public class RoomServiceImpl implements RoomService {
         }
 
         roomRepository.save(saveRoom);
-
-        for (ServiceDto serviceDto : roomDto.getServiceDtos()) {
-            ServiceRoomEntity serviceRoomEntity = new ServiceRoomEntity();
-            serviceRoomEntity.setServiceId(serviceDto.getServiceId());
-            serviceRoomEntity.setRoomId(saveRoom.getRoomid());
-            serviceRoomRepository.save(serviceRoomEntity);
+        if (roomDto.getServiceDtos() != null) {
+            for (ServiceDto serviceDto : roomDto.getServiceDtos()) {
+                ServiceRoomEntity serviceRoomEntity = new ServiceRoomEntity();
+                serviceRoomEntity.setServiceId(serviceDto.getServiceId());
+                serviceRoomEntity.setRoomId(saveRoom.getRoomid());
+                serviceRoomRepository.save(serviceRoomEntity);
+            }
         }
         int i = 1;
         for (MultipartFile file : files) {
@@ -292,6 +297,7 @@ public class RoomServiceImpl implements RoomService {
             }
         }
     }
+
     @Override
     public int countRoom(int min, int max, String roomName, List<Integer> type) {
         return roomRepository.countRoom(min, max, roomName, type);
