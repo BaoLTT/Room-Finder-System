@@ -2,6 +2,7 @@ package com.roomfindingsystem.service.impl;
 
 
 
+import com.roomfindingsystem.dto.FeedbackDtoAdmin;
 import com.roomfindingsystem.dto.FeedbackHomeDto;
 import com.roomfindingsystem.dto.FeedbackListAdminDto;
 import com.roomfindingsystem.entity.FeedbackEntity;
@@ -33,8 +34,18 @@ public class FeedbackServiceImpl implements FeedbackService {
     }
 
     @Override
+    public List<FeedbackDtoAdmin> getFeedback(List<Boolean> status) {
+        return feedbackRepository.findFeedbackDtos(status);
+    }
+
+    @Override
     public List<FeedbackDto> getFeedbackByHouseIdAndStar(int houseId, int star, List<Boolean> status) {
         return feedbackRepository.findFeedbackDtosByHouseIdAndStar(houseId, star, status);
+    }
+
+    @Override
+    public List<FeedbackDtoAdmin> getFeedbackByStar(int star, List<Boolean> status) {
+        return feedbackRepository.findFeedbackDtosByStar(star, status);
     }
 
     @Override
