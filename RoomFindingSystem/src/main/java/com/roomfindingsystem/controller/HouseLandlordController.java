@@ -50,7 +50,8 @@ public class HouseLandlordController {
         List<HouseLandlordVo> listHouse = new ArrayList<>();
         listHouse = houseLandlordService.findHouseByUser(user.getUserId());
         model.addAttribute("house",listHouse);
-        return "managerHouse";
+        model.addAttribute("request",request);
+        return "landlord/managerHouse";
     }
 
     @GetMapping("/add")
@@ -62,7 +63,7 @@ public class HouseLandlordController {
         model.addAttribute("house",house);
         model.addAttribute("listType",listType);
         model.addAttribute("listService",listService);
-        return "managerAdd";
+        return "landlord/managerAdd";
     }
 
     @GetMapping("/edit/{houseid}")
@@ -86,7 +87,7 @@ public class HouseLandlordController {
         model.addAttribute("listType",listType);
         model.addAttribute("listChecked",listChecked);
         model.addAttribute("listService",listService);
-        return "managerDetail";
+        return "landlord/managerDetail";
     }
 
     @PostMapping("/save")

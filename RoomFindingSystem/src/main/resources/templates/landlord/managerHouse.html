@@ -49,20 +49,17 @@
                         <tr class="my-item" th:each="house:${house}">
                             <td>
                                 <div class="image-wrapper">
-
                                     <div class="image-carousel">
-                                        <a th:href="@{/manager/edit/}+${house.houseID}" class="image" th:each="image, iterStat : ${house.listImage}" th:classappend="${iterStat.index eq 0} ? 'active'">
+                                        <a th:href="@{/manager/edit/}+${house.houseID}" class="image" th:each="image, iterStat : ${house.listImage}" th:if="${iterStat.index < 1}">
                                             <div class="bg-transfer">
                                                 <img th:src="${image.imageLink}" alt="Ảnh">
                                             </div>
                                         </a>
                                     </div>
-                                    <button class="prev-button" onclick="plusSlides(-1)">❮</button>
-                                    <button class="next-button" style="float: right" onclick="plusSlides(1)">❯</button>
                                 </div>
 
                                 <div class="info">
-                                    <a href="detail.html"><h2  th:text="${house.houseName}" style="display: block">Spring Hotel</h2></a>
+                                    <a href="../detail.html"><h2 th:text="${house.houseName}" style="display: block">Spring Hotel</h2></a>
                                     <figure class="label label-info" th:text="${house.getTypeHouse()}" >Hotel</figure>
                                     <figure class="location" th:text="${house.getService()}">Montenegro</figure>
 
@@ -136,26 +133,6 @@
 <script type="text/javascript" src="/assets/js/maps.js"></script>
 <script type="text/javascript" src="/assets/js/custom.js"></script>
 
-
-<script>
-    var slideIndex = 1;
-    showSlides(slideIndex);
-
-    function plusSlides(n) {
-        showSlides(slideIndex += n);
-    }
-
-    function showSlides(n) {
-        var i;
-        var slides = document.getElementsByClassName("image");
-        if (n > slides.length) { slideIndex = 1 }
-        if (n < 1) { slideIndex = slides.length }
-        for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";
-        }
-        slides[slideIndex - 1].style.display = "block";
-    }
-</script>
 
 <!--[if lte IE 9]>
 <script src="assets/js/ie.js"></script>
