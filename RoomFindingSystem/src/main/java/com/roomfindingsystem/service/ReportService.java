@@ -1,10 +1,12 @@
 package com.roomfindingsystem.service;
 
 
+import com.roomfindingsystem.dto.ReportDto;
 import com.roomfindingsystem.dto.ReportListDto;
 import com.roomfindingsystem.entity.ReportEntity;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ReportService {
     int countReports();
@@ -25,4 +27,6 @@ public interface ReportService {
     int updateStatusProcessed(int id);
     int updateStatusHandle(int id);
     int updateStatusWaiting(int id);
+
+    Optional<ReportDto> getEmailForReply(String houseName);
 }
