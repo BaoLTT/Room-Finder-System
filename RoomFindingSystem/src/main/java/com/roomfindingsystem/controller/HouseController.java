@@ -75,14 +75,16 @@ public class HouseController {
         List<HouseImageLink> listsImage = houseService.getImageById(houseId);
         System.out.println(listsImage.toString());
         model.addAttribute("HousesImages", listsImage);
+        List<Boolean> statuss = new ArrayList<>();
+        statuss.add(true);
 
 
         List<FeedbackDto> feedbacks = new ArrayList<>();
         //nghia code
         if (star==0){
-            feedbacks = feedbackService.getFeedbackByHouseId(houseId);
+            feedbacks = feedbackService.getFeedbackByHouseId(houseId, statuss);
         } else {
-            feedbacks = feedbackService.getFeedbackByHouseIdAndStar(houseId, star);
+            feedbacks = feedbackService.getFeedbackByHouseIdAndStar(houseId, star, statuss);
         }
 //        List<FeedbackDto> feedbacks = feedbackService.getFeedbackByHouseId(houseId);
         model.addAttribute("feedbacks", feedbacks);
@@ -178,7 +180,9 @@ public class HouseController {
             feedbackEntity.setFeedbackId(feedbackService.getFeedbackEntityByUid(houseId, feedbackEntity.getMemberId()).get(0).getFeedbackId());
             feedbackService.save(feedbackEntity);
         }
-        List<FeedbackDto> feedbackDtoList = feedbackService.getFeedbackByHouseId(houseId);
+        List<Boolean> statuss = new ArrayList<>();
+        statuss.add(true);
+        List<FeedbackDto> feedbackDtoList = feedbackService.getFeedbackByHouseId(houseId, statuss);
         for(int i=0; i<feedbackDtoList.size(); i++){
             sum+=feedbackDtoList.get(i).getStar();
         }
@@ -203,7 +207,9 @@ public class HouseController {
         UserEntity user = userService.findByEmail(currentUserName).get();
         feedbackService.deleteByHouseIdAndMemberId(houseId, user.getUserId());
         int sum =0;
-        List<FeedbackDto> feedbackDtoList = feedbackService.getFeedbackByHouseId(houseId);
+        List<Boolean> statuss = new ArrayList<>();
+        statuss.add(true);
+        List<FeedbackDto> feedbackDtoList = feedbackService.getFeedbackByHouseId(houseId, statuss);
         for(int i=0; i<feedbackDtoList.size(); i++){
             sum+=feedbackDtoList.get(i).getStar();
         }

@@ -28,13 +28,13 @@ public class FeedbackServiceImpl implements FeedbackService {
 
 
     @Override
-    public List<FeedbackDto> getFeedbackByHouseId(int houseId) {
-        return feedbackRepository.findFeedbackDtosByHouseId(houseId);
+    public List<FeedbackDto> getFeedbackByHouseId(int houseId, List<Boolean> status) {
+        return feedbackRepository.findFeedbackDtosByHouseId(houseId, status);
     }
 
     @Override
-    public List<FeedbackDto> getFeedbackByHouseIdAndStar(int houseId, int star) {
-        return feedbackRepository.findFeedbackDtosByHouseIdAndStar(houseId, star);
+    public List<FeedbackDto> getFeedbackByHouseIdAndStar(int houseId, int star, List<Boolean> status) {
+        return feedbackRepository.findFeedbackDtosByHouseIdAndStar(houseId, star, status);
     }
 
     @Override

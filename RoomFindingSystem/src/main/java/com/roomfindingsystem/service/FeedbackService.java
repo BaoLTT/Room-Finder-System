@@ -15,9 +15,9 @@ import java.util.List;
 public interface FeedbackService {
 
 
-    List<FeedbackDto> getFeedbackByHouseId(int houseId);
+    List<FeedbackDto> getFeedbackByHouseId(int houseId, List<Boolean> status);
 
-    List<FeedbackDto> getFeedbackByHouseIdAndStar(int houseId, int star);
+    List<FeedbackDto> getFeedbackByHouseIdAndStar(int houseId, int star, List<Boolean> status);
 
 
     FeedbackEntity save(FeedbackEntity feedbackEntity);
