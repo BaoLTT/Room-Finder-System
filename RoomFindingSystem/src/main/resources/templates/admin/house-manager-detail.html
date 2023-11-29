@@ -239,7 +239,7 @@
                                                     <div class="checkbox checkbox-primary col-2"
                                                          th:each="listService : ${listService}" th:field="*{service}"
                                                          style="padding-left: 10px">
-                                                        <input th:id="${listService.serviceName}" type="checkbox"
+                                                        <input th:id="${listService.serviceName}" type="checkbox" style="position: relative"
                                                                name="service" th:value="${listService.serviceId}"
                                                                th:checked="${#lists.contains(listChecked,''+ listService.serviceId+'')}">
                                                         <label th:for="${listService.serviceName}"
@@ -446,9 +446,7 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<script src="/assets_admin/libs/sweetalert2/sweetalert2.min.js"></script>
 
-<script src="/assets_admin/js/pages/sweetalerts.init.js"></script>
 
 <script type="text/javascript" src="/assets/js/jquery-2.2.1.min.js"></script>
 <script type="text/javascript" src="/assets/js/jquery-migrate-1.2.1.min.js"></script>
