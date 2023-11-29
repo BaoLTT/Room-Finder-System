@@ -22,6 +22,8 @@ public interface HouseService {
     List<ServiceDto> getServiceById(int id);
     HousesEntity getHouseByRoomId(int roomId);
 
+    int getHouseIdByUserId(int userId);
+
     //admin
     int countHousesInAdmin();
 

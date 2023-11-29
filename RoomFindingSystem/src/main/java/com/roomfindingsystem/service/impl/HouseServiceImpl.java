@@ -117,6 +117,11 @@ public class HouseServiceImpl implements HouseService {
     }
 
     @Override
+    public int getHouseIdByUserId(int userId) {
+        return houseRepository.findHouseByMemberId(userId);
+    }
+
+    @Override
 
     public int countHousesInAdmin() {
         return houseRepository.countHouses();
