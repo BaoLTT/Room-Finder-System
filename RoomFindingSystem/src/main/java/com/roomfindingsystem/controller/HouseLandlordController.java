@@ -11,6 +11,7 @@ import com.roomfindingsystem.service.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -37,13 +38,14 @@ public class HouseLandlordController {
     @Autowired
     HouseManagerService houseManagerService;
 
+    @Autowired
+    UserService userService;
+
     @GetMapping("")
     public String findAll(Model model, HttpSession httpSession, HttpServletRequest request){
-        HttpSession session = request.getSession();
-        UserEntity user = (UserEntity) session.getAttribute("user");
-        if(user == null){
-            return "redirect:/";
-        }
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserEntity user = userService.findByEmail(email).get();
+        System.out.println(user.getRoleId());
         if(!user.getRoleId().equals("LANDLORD")){
             return "redirect:/login";
         }
