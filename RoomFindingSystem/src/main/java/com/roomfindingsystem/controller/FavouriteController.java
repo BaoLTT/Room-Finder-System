@@ -48,6 +48,7 @@ public class FavouriteController {
 
         List<FavouriteDto> list = favouriteService.getListFavourite(user.getUserId());
         if (list.isEmpty()){
+            model.addAttribute("request",request);
             return "favourite-null";
         }
         System.out.println(list);
