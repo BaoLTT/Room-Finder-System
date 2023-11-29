@@ -64,9 +64,9 @@ public class HomeController {
         }
 
 
-        // Lưu user vào session
-//        HttpSession session = request.getSession();
-//        session.setAttribute("user", user);
+//         Lưu user vào session
+        HttpSession session = request.getSession();
+        session.setAttribute("user", user);
 
 
 
