@@ -49,7 +49,6 @@
                         <tr class="my-item" th:each="house:${house}">
                             <td>
                                 <div class="image-wrapper">
-
                                     <div class="image-carousel">
                                         <a th:href="@{/manager/edit/}+${house.houseID}" class="image" th:each="image, iterStat : ${house.listImage}" th:if="${iterStat.index < 1}">
                                             <div class="bg-transfer">
@@ -57,7 +56,6 @@
                                             </div>
                                         </a>
                                     </div>
-
                                 </div>
 
                                 <div class="info">
@@ -134,8 +132,6 @@
 
 <script type="text/javascript" src="/assets/js/maps.js"></script>
 <script type="text/javascript" src="/assets/js/custom.js"></script>
-
-
 
 
 <!--[if lte IE 9]>
