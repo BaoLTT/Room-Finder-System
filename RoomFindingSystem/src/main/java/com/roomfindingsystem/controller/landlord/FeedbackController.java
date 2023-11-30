@@ -33,16 +33,21 @@ public class FeedbackController {
 
     @GetMapping("/feedback")
     public String getAllFeedback(@RequestParam(name = "star", required = false, defaultValue = "0") int star,
-                                 @RequestParam(name = "houseId", required = false) int houseId,
+                                 @RequestParam(name = "houseId", required = false, defaultValue="0") int houseId,
                                  @RequestParam(name = "status", required = false, defaultValue = "true, false") List<Boolean> status,
                                  ModelMap model) {
 
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         UserEntity user = userService.findByEmail(email).get();
+
         List<HouseLandlordVo> listHouse = new ArrayList<>();
         listHouse = houseLandlordService.findHouseByUser(user.getUserId());
 
         List<FeedbackDto> feedbacks;
+
+        if(houseId==0){
+            houseId=listHouse.get(0).getHouseID();
+        }
 
 
 
@@ -62,7 +67,7 @@ public class FeedbackController {
         model.addAttribute("status", status);
         model.addAttribute("houseId", houseId);
         model.addAttribute("listHouse", listHouse);
-        return "landlord/feedbackForLandlord";
+        return "landlord/landlordFeedback";
 
     }
 }
