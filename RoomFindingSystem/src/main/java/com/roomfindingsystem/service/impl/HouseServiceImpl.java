@@ -48,12 +48,7 @@ public class HouseServiceImpl implements HouseService {
             houseTypeVo.setLast_modified_date(localDate);
             Long count = (tuple.get("count_room", Long.class));
             houseTypeVo.setCount_room(count.intValue());
-            Long like = (tuple.get("like_house", Long.class));
-            if (like == null) {
-                houseTypeVo.setLike(0);
-            } else {
-                houseTypeVo.setLike(like.intValue());
-            }
+            houseTypeVo.setStar (tuple.get("star",Double.class));
             List<HouseImageDto> listHouseImage = new ArrayList<>();
             String imageLink = (tuple.get("Image_Link", String.class));
             String imageId  = (tuple.get("Image_Id",String.class));
