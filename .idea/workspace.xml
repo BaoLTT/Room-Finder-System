@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-
     <list default="true" id="1e0562a2-7ad5-40d8-bd96-2e66b43cd15f" name="Changes" comment="them slider detail">
-      <change afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/auth/login1.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/admin/house-manager-detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/admin/house-manager-detail.html" afterDir="false" />
     </list>
-
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -28,19 +25,6 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <favorite-branches>
-      <branch-storage>
-        <map>
-          <entry type="LOCAL">
-            <value>
-              <list>
-                <branch-info repo="$PROJECT_DIR$" source="BaoLTT" />
-              </list>
-            </value>
-          </entry>
-        </map>
-      </branch-storage>
-    </favorite-branches>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="main" />
@@ -74,7 +58,7 @@
     "WebServerToolWindowFactoryState": "false",
     "com.google.cloudcode.ide_session_index": "20231126_0001",
     "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "nghiant2",
+    "git-widget-placeholder": "BaoLTT",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
@@ -139,9 +123,7 @@
       <workItem from="1701180034689" duration="8573000" />
       <workItem from="1701237380203" duration="36000" />
       <workItem from="1701253828533" duration="112000" />
-
       <workItem from="1701329790453" duration="2693000" />
-
     </task>
     <task id="LOCAL-00002" summary="update lai">
       <option name="closed" value="true" />
