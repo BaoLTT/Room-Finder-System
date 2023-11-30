@@ -125,6 +125,7 @@ public class SecurityConfiguration {
                                 "/room/**", "/assets/**", "/houselist","/RoomList/**","/detail", "/slider/**").permitAll()
 
                         .requestMatchers("/admin/**", "/test").hasAnyRole("ADMIN", "SUPER_ADMIN")
+                        .requestMatchers("/landlord/**").hasAnyRole("LANDLORD", "SUPER_ADMIN")
 //                        .requestMatchers("/profile").hasAnyRole("1,2")
                         .anyRequest().authenticated());
 
