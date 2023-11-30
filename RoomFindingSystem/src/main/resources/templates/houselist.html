@@ -207,7 +207,10 @@
                             <!--end image-->
                             <div class="description">
                                 <div class="meta">
-                                    <span><i class="fa fa-star"></i><h th:text="${houses.getLike()}">a</h></span>
+                                    <span><i class="fa fa-star"></i>
+                                        <h th:if="${houses.getStar() != null}" th:text="${houses.getStar()}">a</h>
+                                        <h th:if="${houses.getStar() == null}" >0</h>
+                                    </span>
                                     <span><i class="fa fa-bed"></i><h th:text="${houses.getCount_room()}"></h></span>
                                 </div>
                                 <!--end meta-->

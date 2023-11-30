@@ -67,7 +67,7 @@ public class HouseLandlordVo {
 
     List<String> service;
 
-    private Integer like;
+    private Double star;
 
     private int status;
 
