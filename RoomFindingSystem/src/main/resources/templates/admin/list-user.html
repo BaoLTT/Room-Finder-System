@@ -56,7 +56,7 @@
                                     <th>Ngày tạo</th>
                                     <th>Chức vụ</th>
                                     <th>Trạng thái</th>
-                                    <th></th>
+                                    <th>Hành động</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -80,7 +80,7 @@
                                     <td th:text="${user.role}">
                                     </td>
 
-                                    <td th:text="${user.status == 'ACTIVE' ? 'HOẠT ĐỘNG' : (user.status == 'INACTIVE' ? 'NGƯNG HOẠT ĐỘNG': '') }">
+                                    <td th:text="${user.status == 'ACTIVE' ? 'HOẠT ĐỘNG' : (user.status == 'INACTIVE' ? 'BỊ KHÓA': '') }">
                                     </td>
 
                                     <td>
