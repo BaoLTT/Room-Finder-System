@@ -41,6 +41,7 @@
             border-radius: 5px;
             text-align: right;
         }
+
         .pagination li a {
             margin-left: 20px;
 
@@ -72,8 +73,9 @@
                         <div class="card-box table-responsive">
                             <h4 class="page-title">Danh sách phòng</h4>
                             <div class="d-flex justify-content-end">
-                                <button class="btn btn-success mb-1 "><a th:href="@{/landlord/room/insertRoom}"
-                                                                         style="color: white">Thêm phòng mới</a>
+                                <button class="btn btn-success mb-1 "><a
+                                        th:href="@{'/landlord/room/insertRoom/'+ ${houseId}}"
+                                        style="color: white">Thêm phòng mới</a>
                                 </button>
                             </div>
                             <table id="datatable-buttons"
@@ -104,8 +106,9 @@
                                     <td th:text="${room.services}">
                                     </td>
 
-                                    <td th:text="${room.price}">
-                                    </td>
+                                    <td class="price-info"
+                                        th:with="formattedPrice=${#numbers.formatDecimal(room.price, 0, 'COMMA', 0, 'POINT')}">
+                                        <span class="price" th:text="${formattedPrice + ' VND'}"></span></td>
 
                                     <td th:text="${room.status}">
                                     </td>

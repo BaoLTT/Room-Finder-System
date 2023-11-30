@@ -11,6 +11,7 @@ import com.roomfindingsystem.service.impl.GcsService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -46,15 +47,15 @@ public class AdminManageHouseController {
     GcsService gcsService;
     @Autowired
     HouseService houseService;
+    @Autowired
+    UserService userService;
 
 
     @GetMapping("/house-manager")
     public String viewHomepage(final Model model, HttpServletRequest request){
-        HttpSession session = request.getSession();
-        UserEntity user = (UserEntity) session.getAttribute("user");
-        if(user == null){
-            return "redirect:/login";
-        }
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserEntity user = userService.findByEmail(email).get();
+        System.out.println(user.getRoleId());
         if(!user.getRoleId().equals("ADMIN") && !user.getRoleId().equals("SUPER_ADMIN")){
             return "redirect:/login";
         }
@@ -94,7 +95,11 @@ public class AdminManageHouseController {
 
     @GetMapping("/house-manager/detail/{houseid}")
     public String updateHouse(@PathVariable Integer houseid,final Model model,HttpSession httpSession,HttpServletRequest request){
-
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserEntity user = userService.findByEmail(email).get();
+        if(!user.getRoleId().equals("ADMIN") && !user.getRoleId().equals("SUPER_ADMIN")){
+            return "redirect:/login";
+        }
         List<TypeHouseEntity> listType = houseTypeService.findAll();
         List<ServiceDetailEntity> listService = serviceDetailService.getAllService();
 
@@ -124,8 +129,8 @@ public class AdminManageHouseController {
         }
         System.out.println(house.getHouseID());
         System.out.println(service);
-        HttpSession session = request.getSession();
-        UserEntity user = (UserEntity) session.getAttribute("user");
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserEntity user = userService.findByEmail(email).get();
         house.setUserID(user.getUserId());
         house.setCreatedBy(user.getUserId());
         house.setLastModifiedBy(user.getUserId());
@@ -142,11 +147,8 @@ public class AdminManageHouseController {
 
     @GetMapping("/house-manager/add")
     public String addHouse(final Model model,HttpSession httpSession,HttpServletRequest request){
-        HttpSession session = request.getSession();
-        UserEntity user = (UserEntity) session.getAttribute("user");
-        if(user == null){
-            return "redirect:/admin/dashboard";
-        }
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserEntity user = userService.findByEmail(email).get();
         if(!user.getRoleId().equals("ADMIN") && !user.getRoleId().equals("SUPER_ADMIN")){
             return "redirect:/login";
         }
@@ -166,8 +168,8 @@ public class AdminManageHouseController {
     public String saveHouse(@ModelAttribute(name = "house") HouseLandlordVo house, @RequestParam("file") MultipartFile[] files, Model model, HttpSession httpSession, HttpServletRequest request) throws IOException {
         AddressEntity address = new AddressEntity("a",house.getAddressDetail().trim(),house.getProvinceID(),house.getDistrictID(),house.getWardID());
         int addressID = addressService.insertAddress(address);
-        HttpSession session = request.getSession();
-        UserEntity user = (UserEntity) session.getAttribute("user");
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserEntity user = userService.findByEmail(email).get();
         house.setUserID(user.getUserId());
         house.setLastModifiedBy(user.getUserId());
         house.setStatus(2);

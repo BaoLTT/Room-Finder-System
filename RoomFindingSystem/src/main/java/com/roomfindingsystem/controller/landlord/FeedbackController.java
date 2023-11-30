@@ -48,11 +48,6 @@ public class FeedbackController {
         if(houseId==0){
             houseId=listHouse.get(0).getHouseID();
         }
-
-
-
-
-        //nghia code
         if (star==0){
             feedbacks = feedbackService.getFeedbackByHouseId(houseId, status);
         } else {

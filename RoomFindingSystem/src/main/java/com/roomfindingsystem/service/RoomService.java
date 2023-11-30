@@ -8,7 +8,6 @@ import com.roomfindingsystem.entity.ServiceDetailEntity;
 import com.roomfindingsystem.dto.*;
 
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -36,7 +35,9 @@ public interface RoomService {
 
     void deleteById(Integer id);
 
-    void save(RoomDto roomDto, MultipartFile[] files) throws IOException;
+    void saveRoomAdmin(RoomDto roomDto, MultipartFile[] files) throws IOException;
+
+    void saveRoomLandlord(RoomDto roomDto, MultipartFile[] files) throws IOException;
 
     int countRoom(int min, int max, String roomName, List<Integer> type);
 

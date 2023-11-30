@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +24,7 @@ public class AdminManageRoomController {
     private RoomTypeService roomTypeService;
     @Autowired
     private ServiceDetailService serviceDetailService;
+
     @GetMapping("/listRoom")
     public String getListRoomPage(Model model) {
         List<RoomDto> roomDtos = roomService.getAll();
@@ -31,7 +33,7 @@ public class AdminManageRoomController {
     }
 
     @GetMapping("/updateRoom/{id}")
-    public String getFormUpdateRoom(@PathVariable("id") Integer id, Model model){
+    public String getFormUpdateRoom(@PathVariable("id") Integer id, Model model) {
         RoomDto roomDto = roomService.findById(id);
         model.addAttribute("room", roomDto);
         System.out.println(roomDto);
@@ -43,7 +45,6 @@ public class AdminManageRoomController {
     public String update(@ModelAttribute(name = "room") RoomDto roomDto, @RequestParam("file") MultipartFile[] files) throws IOException {
         List<ServiceDto> serviceDtos = new ArrayList<>();
         List<String> selects = roomDto.getServiceNames();
-        System.out.println(files.length);
         if (selects != null) {
             for (String serviceName : selects) {
                 ServiceDto serviceDto = new ServiceDto();
@@ -59,10 +60,11 @@ public class AdminManageRoomController {
     }
 
     @GetMapping("/deleteRoom/{id}")
-    public String delete(@PathVariable("id") Integer id){
+    public String delete(@PathVariable("id") Integer id) {
         roomService.deleteById(id);
         return "redirect:/admin/room/listRoom";
     }
+
     @GetMapping("/insertRoom")
     public String insertRoomPage(Model model) {
         RoomDto roomDto = new RoomDto();
@@ -74,21 +76,18 @@ public class AdminManageRoomController {
 
     @PostMapping("/save")
     public String save(@ModelAttribute(name = "room") RoomDto roomDto, @RequestParam("file") MultipartFile[] files) throws IOException {
-        try {
-            List<ServiceDto> serviceDtos = new ArrayList<>();
-            List<String> selects = roomDto.getServiceNames();
+        List<ServiceDto> serviceDtos = new ArrayList<>();
+        List<String> selects = roomDto.getServiceNames();
+        if (selects != null) {
             for (String serviceName : selects) {
                 ServiceDto serviceDto = new ServiceDto();
                 serviceDto.setServiceName(serviceName);
-                System.out.println(serviceName);
                 serviceDto.setServiceId(serviceDetailService.findByName(serviceName).getServiceId());
                 serviceDtos.add(serviceDto);
             }
-            System.out.println(serviceDtos);
-            roomDto.setServiceDtos(serviceDtos);
-            roomService.save(roomDto, files);
-        } catch (Exception ex) {
         }
+        roomDto.setServiceDtos(serviceDtos);
+        roomService.saveRoomAdmin(roomDto, files);
         return "redirect:/admin/room/listRoom";
     }
 
@@ -97,6 +96,7 @@ public class AdminManageRoomController {
         roomService.importRooms(fileExcel);
         return "redirect:/admin/room/listRoom";
     }
+
     @GetMapping("deleteImage/{roomId}/{imageId}")
     public String deleteImage(@PathVariable Integer roomId, @PathVariable Integer imageId) {
         roomService.deleteRoomImage(imageId);

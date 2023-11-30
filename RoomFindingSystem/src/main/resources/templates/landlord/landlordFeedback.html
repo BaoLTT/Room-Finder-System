@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8"/>
     <title>Danh sách phòng</title>
@@ -59,7 +58,7 @@
 <div id="page-wrapper">
 
     <!-- Topbar Start -->
-    <div th:replace="~{header :: headerSection}"></div>
+<!--    <div th:replace="~{header :: headerSection}"></div>-->
     <!-- Left Sidebar End -->
 
     <!-- ============================================================== -->
@@ -192,16 +191,6 @@
 
 <!-- App js -->
 <script th:src="@{/assets_admin/js/app.min.js}"></script>
-<script>
-    document.querySelectorAll('.delete-button').forEach(function (button) {
-        button.addEventListener('click', function () {
-            let roomId = this.getAttribute('data-roomid');
-            if (confirm("Are you sure you want to delete this room?")) {
-                window.location.href = '/room/deleteRoom/' + roomId;
-            }
-        });
-    });
-</script>
 
 </body>
 </html>

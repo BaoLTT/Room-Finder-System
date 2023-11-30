@@ -25,9 +25,9 @@
                       <!-- Hiển thị thông tin người dùng đã đăng nhập -->
 <!--                      <a th:href="@{/profile}"><span>Xin chào, <span th:text="${session.user.lastName+' '+session.user.firstName}"></span></span></a>-->
 
-                        <li class="dropdown notification-list">
+                        <li class="dropdown notification-list list-unstyled">
                             <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown" th:href="@{/profile}" role="button" aria-haspopup="false" aria-expanded="false">
-                                <img class="round-image" src="/assets_admin/images/users/avatar-1.jpg" style=" max-width: 25px;max-height: 25px; " alt="user-image" >
+                                <img class="round-image" th:src="${session.user.getImageLink()}" style=" max-width: 25px;max-height: 25px; " alt="user-image" >
                                 <span class="ml-1" th:text="${session.user.lastName+' '+session.user.firstName}"></span>
 
                             </a>
@@ -38,6 +38,11 @@
                                 <a th:href="@{profile}" class="dropdown-item notify-item">
 
                                     <span>Thông tin cá nhân</span>
+                                </a>
+                                <br>
+                                <a th:href="@{favourite-list}" class="dropdown-item notify-item">
+
+                                    <span>Danh Sách Yêu Thích</span>
                                 </a>
 
                                 <div class="dropdown-divider"></div>
@@ -81,10 +86,10 @@
               <div class="right">
                 <nav id="primary-nav">
                   <ul>
-                    <li class="active"><a th:href="@{/}">Trang chủ</a></li>
-                      <li><a th:if="${session.user != null and session.user.getRoleId() == 'LANDLORD'}" th:href="@{/manager}" >Quản lý phòng trọ</a></li>
-                    <li><a th:href="@{/houselist}">Danh sách nhà trọ</a></li>
-                    <li><a th:href="@{/RoomList/1}" id="roomList">Danh sách phòng trọ</a></li>
+                    <li th:class="${request.getRequestURI() == '/' ? 'active' : ''}"><a th:href="@{/}">Trang chủ</a></li>
+                      <li th:class="${request.getRequestURI() == '/manager' ? 'active' : ''}"><a th:if="${session.user != null and session.user.getRoleId() == 'LANDLORD'}" th:href="@{/manager}" >Quản lý phòng trọ</a></li>
+                    <li th:class="${request.getRequestURI() == '/houselist' ? 'active' : ''}"><a th:href="@{/houselist}">Danh sách nhà trọ</a></li>
+                    <li th:class="${request.getRequestURI() == '/RoomList/1' ? 'active' : ''}"><a th:href="@{/RoomList/1}" id="roomList">Danh sách phòng trọ</a></li>
 
 
                   </ul>
