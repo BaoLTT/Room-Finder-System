@@ -1,6 +1,7 @@
 package com.roomfindingsystem.controller;
 
 
+import com.roomfindingsystem.entity.ReportEntity;
 import com.roomfindingsystem.entity.UserEntity;
 import com.roomfindingsystem.sbgooogle.GooglePojo;
 import com.roomfindingsystem.sbgooogle.GoogleUtils;
@@ -8,6 +9,7 @@ import com.roomfindingsystem.service.UserService;
 
 
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -18,6 +20,8 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
@@ -77,12 +81,13 @@ public class AuthController {
             newUser.setLastName(googlePojo.getGiven_name());
             newUser.setImageLink(googlePojo.getPicture());
             newUser.setFacebookId(accessToken);
+            newUser.setRoleId("USER");
             //setStatus == 0
-            newUser.setUserStatusId(0);
+            newUser.setUserStatusId(1);
             model.addAttribute("newUser", newUser);
 
-            userService.save(newUser);
-//            return "auth/addInfoGoogle";
+//            userService.save(newUser);
+            return "auth/addInfoGoogle";
         }
 
 
@@ -118,6 +123,24 @@ public class AuthController {
     public String logoutPage() {
         SecurityContextHolder.getContext().setAuthentication(null); // Đăng xuất người dùng
         return "redirect:/?logout"; // Chuyển hướng đến trang đăng nhập sau khi đăng xuất
+    }
+
+    @PostMapping("/loginAfterAddInfo")
+    public String AddInfo(Model model, @Valid @ModelAttribute("newUser") UserEntity newUser, HttpServletRequest request) throws IOException {
+        userService.save(newUser);
+
+        GooglePojo googlePojo = googleUtils.getUserInfo(newUser.getFacebookId());
+        UserDetails userDetail = googleUtils.buildUser(googlePojo);
+        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetail, null,
+                userDetail.getAuthorities());
+        authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        HttpSession session = request.getSession(true);
+        SecurityContext securityContext = SecurityContextHolder.getContext();
+        session.setAttribute("SPRING_SECURITY_CONTEXT", securityContext);
+
+        System.out.println("DEBUG");
+        return "redirect:/";
     }
 
 }
