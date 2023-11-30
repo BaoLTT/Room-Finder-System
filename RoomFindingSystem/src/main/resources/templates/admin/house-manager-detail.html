@@ -81,9 +81,9 @@
                                                     </select>
                                                 </div>
                                                 <div class="col-3">
-                                                    <label for="like">Số lượt thích</label>
+                                                    <label for="like">Đánh giá</label>
                                                     <input type="text" class="form-control" id="like" readonly
-                                                           th:field="*{like}" style="padding: 10px">
+                                                           th:field="*{star}" style="padding: 10px">
                                                 </div>
                                                 <div class="col-3">
                                                     <label for="room">Số lượng phòng</label>
@@ -275,7 +275,7 @@
                                                         <span style="color: white">Lưu</span></button>
                                                     <a type="button"
                                                        class="btn btn-danger waves-light waves-effect width-md"
-                                                       href="http://localhost:8080/admin/house-manager"> <span
+                                                       th:href="/admin/house-manager"> <span
                                                             style="color: white">Đóng</span></a>
                                                     <a type="button"
                                                        class="btn btn-success waves-light waves-effect width-md"

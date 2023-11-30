@@ -37,7 +37,7 @@ public class HouseTypeVo {
 
     Integer count_room;
 
-    Integer like;
+    Double star;
 }
 
 

@@ -40,7 +40,7 @@
                         <tr>
                             <th></th>
                             <th>Tình trạng</th>
-                            <th>Lượt thích</th>
+                            <th>Đánh giá</th>
                             <th>Người tạo</th>
                             <th>Ngày tạo</th>
                         </tr>
@@ -83,7 +83,7 @@
                                 <i class="fa fa-close"></i>
                                 <aside></aside>
                             </div></td>
-                            <td class="views" th:text="${house.getLike()}">426</td>
+                            <td class="views" th:text="${house.star}">426</td>
                             <td class="reviews" th:text="${house.created_firstName + ' '+ house.created_lastName}">45</td>
 
                             <td class="last-reservation"><h th:text="${#temporals.format(house.getCreatedDate(), 'dd/MM/yyyy')}"></h>
