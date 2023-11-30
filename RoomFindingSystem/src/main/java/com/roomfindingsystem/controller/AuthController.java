@@ -31,7 +31,7 @@ import java.util.Optional;
 public class AuthController {
     @GetMapping("/login")
     public String showLogin(){
-        return "auth/login";
+        return "auth/login1";
 //        return "login";
     }
 
