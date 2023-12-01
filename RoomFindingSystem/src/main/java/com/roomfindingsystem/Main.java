@@ -1,5 +1,6 @@
 package com.roomfindingsystem;
 
+import com.roomfindingsystem.dto.FeedbackDto;
 import com.roomfindingsystem.repository.FeedbackRepository;
 import com.roomfindingsystem.repository.HouseRepository;
 import org.apache.catalina.LifecycleException;
@@ -11,15 +12,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.awt.print.Pageable;
+import java.util.List;
 
 @SpringBootApplication
-public class Main  {
+public class Main {
+//    CommandLineRunner
 
 
     public static void main(String[] args) {
@@ -27,5 +28,6 @@ public class Main  {
     }
 
 
+    
 
 }

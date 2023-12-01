@@ -43,10 +43,11 @@ public class OtpController {
     public String checkOtp(HttpSession session, @RequestParam("otp") String otp, Model model, HttpServletRequest request) {
         try {
             String otpRegister = (String) session.getAttribute("otp-register");
-            if (otp.equals(otpRegister)) {
+            if (otp.trim().equals(otpRegister)) {
                 UserEntity userEntity = new UserEntity();
                 userEntity.setUserId((Integer) session.getAttribute("userid"));
-                userEntity.setEmail((String) session.getAttribute("email"));
+                String email =(String) session.getAttribute("email");
+                userEntity.setEmail(email.toLowerCase());
                 userEntity.setFirstName((String) session.getAttribute("firstname"));
                 userEntity.setLastName((String) session.getAttribute("lastname"));
 //            userEntity.setDob((LocalDate) session.getAttribute("dob"));
@@ -63,11 +64,12 @@ public class OtpController {
                 userEntity.setAddressId(1);
                 userEntity.setFacebookId(null);
                 userEntity.setGmailId(null);
+                userEntity.setUserStatusId(1);
                 userEntity.setImageLink("https://storage.cloud.google.com/rfs_bucket/User/user_0.jpg");
                 userEntity.setLastModifiedDate(null);
                 userService.saveUser(userEntity);
                 model.addAttribute("request",request);
-                return "homepage";
+                return "redirect:/login";
             }
             model.addAttribute("mess","OTP is not correct! Please check your email.");
             return "otpConfirm";
