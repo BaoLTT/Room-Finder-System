@@ -256,6 +256,7 @@ public class UserServiceImpl implements UserService {
         userDto.setDistrictId(district.getDistrictId());
         userDto.setWardId(ward.getWardId());
         userDto.setAddressDetails(address.getAddressDetails());
+        userDto.setRole(user.getRoleId());
         if (user.getGender() != null) {
             if (user.getGender()) {
                 userDto.setGender("MALE");
