@@ -86,7 +86,6 @@ public class HouseLandlordController {
         List<ServiceDetailEntity> listService = serviceDetailService.getAllService();
 
         HouseLandlordVo  house = houseLandlordService.findHouseByID(houseid);
-        System.out.println(house.getListImage().get(0).getImageLink());
         List<String> listChecked = house.getService();
         System.out.println(listChecked);
                 model.addAttribute("house",house);
