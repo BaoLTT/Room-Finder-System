@@ -19,11 +19,8 @@ import java.awt.print.Pageable;
 import java.util.List;
 
 @SpringBootApplication
-public class Main implements CommandLineRunner {
-    @Autowired
-    FeedbackRepository feedbackRepository;
-    @Autowired
-    HouseRepository houseRepository;
+public class Main {
+//    CommandLineRunner
 
 
     public static void main(String[] args) {
@@ -31,10 +28,6 @@ public class Main implements CommandLineRunner {
     }
 
 
-    @Override
-    public void run(String... args) throws Exception {
-//        System.out.println(houseRepository.findHouseByMemberId(3));
-
-    }
+    
 
 }
