@@ -2,8 +2,11 @@ package com.roomfindingsystem.controller.admin;
 
 import com.roomfindingsystem.dto.FeedbackDto;
 import com.roomfindingsystem.dto.FeedbackDtoAdmin;
+import com.roomfindingsystem.entity.UserEntity;
 import com.roomfindingsystem.service.FeedbackService;
+import com.roomfindingsystem.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,13 +22,16 @@ import java.util.List;
 public class AdminFeedbackController {
     @Autowired
     private FeedbackService feedbackService;
+    @Autowired
+    UserService userService;
 
     @GetMapping("/feedback")
     public String getAllFeedback(@RequestParam(name = "star", required = false, defaultValue = "0") int star,
                               @RequestParam(name = "status", required = false, defaultValue = "true, false") List<Boolean> status,
                               ModelMap model) {
 
-
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserEntity user = userService.findByEmail(email).get();
         List<FeedbackDtoAdmin> feedbacks;
 
 
@@ -38,7 +44,7 @@ public class AdminFeedbackController {
 
 
 
-
+        model.addAttribute("user", user);
         model.addAttribute("feedbacks", feedbacks);
         model.addAttribute("star", star);
         model.addAttribute("status", status);

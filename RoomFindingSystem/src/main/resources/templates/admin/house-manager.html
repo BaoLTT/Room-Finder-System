@@ -77,7 +77,6 @@
                                             <td style="vertical-align: middle" th:text = "${houses.lastModifiedBy_firstName+' '+houses.lastModifiedBy_lastName}">2011/04/25</td>
                                             <td >
                                                 <a type="button" th:href = "@{/admin/house-manager/detail/}+${houses.houseID}" class="btn btn-secondary waves-light waves-effect width-md">Chỉnh sửa</a>
-                                                <button type="button" th:id = "${houses.houseID}" class="btn btn-danger waves-light waves-effect width-md">Xóa</button>
                                             </td>
                                         </tr>
 

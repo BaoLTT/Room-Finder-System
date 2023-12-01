@@ -34,7 +34,9 @@ public class SliderManageController {
     @GetMapping("/sliderList")
     public String viewSlider(Model model){
         model.addAttribute("sliderList", sliderService.viewAll() );
-
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserEntity user = userService.findByEmail(email).get();
+        model.addAttribute("user", user);
         return "/admin/list_slider";
     }
 
@@ -84,6 +86,8 @@ public class SliderManageController {
 
     @GetMapping("sliderList/update/{id}")
     public String viewFormUpdateSlider(Model model, @PathVariable("id") int id){
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserEntity user = userService.findByEmail(email).get();
         SliderEntity slider = sliderService.getSliderById(id);
         if(slider.getStatus()==null) slider.setStatus("Không hoạt động");
         if(slider.getStatus().equals("1")){
@@ -92,6 +96,7 @@ public class SliderManageController {
             slider.setStatus("Không hoạt động");
         };
         model.addAttribute("slider", slider);
+        model.addAttribute("user", user);
         return "/admin/edit_slider";
     }
 
