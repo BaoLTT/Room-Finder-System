@@ -140,7 +140,7 @@ public class AdminManageHouseController {
         housesEntity.setLatitude(latitude);
         housesEntity.setLongitude(longitude);
         houseService.saveHouse(housesEntity);
-        System.out.println(housesEntity.toString());
+
 
         return "redirect:/admin/house-manager";
     }

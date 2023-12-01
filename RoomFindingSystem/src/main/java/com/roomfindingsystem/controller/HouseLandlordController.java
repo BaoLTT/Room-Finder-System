@@ -1,13 +1,11 @@
 package com.roomfindingsystem.controller;
 
 import com.roomfindingsystem.dto.HouseLandlordVo;
-import com.roomfindingsystem.entity.AddressEntity;
-import com.roomfindingsystem.entity.ServiceDetailEntity;
-import com.roomfindingsystem.entity.TypeHouseEntity;
+import com.roomfindingsystem.entity.*;
 
-import com.roomfindingsystem.entity.UserEntity;
 import com.roomfindingsystem.service.*;
 
+import com.roomfindingsystem.service.impl.GcsService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +38,11 @@ public class HouseLandlordController {
 
     @Autowired
     UserService userService;
+    @Autowired
+    HouseService houseService;
+    @Autowired
+    GcsService gcsService;
+
 
     @GetMapping("")
     public String findAll(Model model, HttpSession httpSession, HttpServletRequest request){
@@ -94,6 +97,10 @@ public class HouseLandlordController {
         model.addAttribute("listChecked",listChecked);
         model.addAttribute("listService",listService);
         model.addAttribute("request",request);
+
+
+        model.addAttribute("key_map", gcsService.getMapKey());
+        model.addAttribute("houseLocation", houseService.getHouseById(houseid));
         return "landlord/managerDetail";
     }
 
@@ -109,11 +116,15 @@ public class HouseLandlordController {
         house.setStatus(2);
         //Set mặc định là đang xử lý
         houseManagerService.insertHouse(house,addressID,files);
+
+
         return  "redirect:/manager";
+
     }
 
     @PostMapping("/update")
-    public String updateHouse(@ModelAttribute(name = "house") HouseLandlordVo house,@RequestParam("file") MultipartFile[] files,@RequestParam(name = "service", required = false,defaultValue = "0") List<Integer> service, Model model, HttpSession httpSession,HttpServletRequest request) throws IOException {
+    public String updateHouse(@ModelAttribute(name = "house") HouseLandlordVo house,@RequestParam("file") MultipartFile[] files,@RequestParam(name = "service", required = false,defaultValue = "0") List<Integer> service, Model model, HttpSession httpSession,HttpServletRequest request,
+                              @RequestParam(name = "latitude1") Double latitude ,@RequestParam(name = "longitude1") Double longitude) throws IOException {
         if(house.getProvinceID()==0){
             Optional<AddressEntity> newAddress = addressService.findbyId(house.getAddress());
             AddressEntity address = new AddressEntity("a",house.getAddressDetail(),newAddress.get().getProvinceId(),newAddress.get().getDistrictId(),newAddress.get().getWardId());
@@ -129,6 +140,12 @@ public class HouseLandlordController {
         house.setCreatedBy(user.getUserId());
         house.setLastModifiedBy(user.getUserId());
         houseManagerService.updateHouse(house,house.getHouseID(),service,files);
+
+        HousesEntity housesEntity = houseService.getHouseById(house.getHouseID());
+        housesEntity.setLatitude(latitude);
+        housesEntity.setLongitude(longitude);
+        houseService.saveHouse(housesEntity);
+
 
         return  "redirect:/manager";
     }
