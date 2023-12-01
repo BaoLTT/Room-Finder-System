@@ -58,6 +58,13 @@ function AddToFavorite(id) {
         showNotification("success", "Đã Thêm Vào Danh Sách Yêu Thích!");
       }
 
+      //slider
+function showSuccessSlider() {
+    showNotification("success", "Đã Thêm Slider !");
+}
+
+
+
   function showErrorToast() {
     toast({
       title: "Thất bại!",

@@ -76,7 +76,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserEntity save(UserEntity user) {
-        if(user.getPassword()!=null)
+        if (user.getPassword() != null)
             user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
@@ -91,13 +91,15 @@ public class UserServiceImpl implements UserService {
         UserEntity user = userByUsername.get();
         if (user == null || !user.getEmail().equals(username)) {
             System.out.println("Could not find user with that username: {}");
-            throw new UsernameNotFoundException("Invalid credentials!");        }
+            throw new UsernameNotFoundException("Invalid credentials!");
+        }
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
         grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_" + user.getRoleId())); // Ví dụ, user.getRoleName() trả về tên của vai trò
 
         return new SecurityUser(user.getEmail(), user.getPassword(), true, true, true, true, grantedAuthorities,
                 user.getFirstName(), user.getLastName(), user.getEmail());
     }
+
     @Override
     public UserDto findById(int id) {
         Optional<UserEntity> optionalUser = userRepository.findById(id);
@@ -117,19 +119,22 @@ public class UserServiceImpl implements UserService {
         userDto.setWardId(ward.getWardId());
         userDto.setAddressDetails(address.getAddressDetails());
 
-        if(user.getGender()) {
-            userDto.setGender("MALE");
+        if (user.getGender() != null) {
+            if (user.getGender()) {
+                userDto.setGender("MALE");
+            } else {
+                userDto.setGender("FEMALE");
+            }
         }
-        else {
-            userDto.setGender("FEMALE");
+        if (user.getDob() != null) {
+            userDto.setDob(user.getDob().toString());
         }
-
-        userDto.setDob(user.getDob().toString());
-        if(user.getUserStatusId() == 1) {
-            userDto.setStatus("ACTIVE");
-        }
-        else {
-            userDto.setStatus("INACTIVE");
+        if (user.getUserStatusId() != null) {
+            if (user.getUserStatusId() == 1) {
+                userDto.setStatus("ACTIVE");
+            } else {
+                userDto.setStatus("INACTIVE");
+            }
         }
         return userDto;
     }
@@ -142,8 +147,8 @@ public class UserServiceImpl implements UserService {
         if (!file.isEmpty()) {
             //        Handle Image
             byte[] imageBytes = file.getBytes();
-            gcsService.uploadImage("rfs_bucket", "User/user_"+user.getUserId()+".jpg", imageBytes);
-            saveUser.setImageLink("https://storage.cloud.google.com/rfs_bucket/User/"+"user_"+user.getUserId()+".jpg");
+            gcsService.uploadImage("rfs_bucket", "User/user_" + user.getUserId() + ".jpg", imageBytes);
+            saveUser.setImageLink("https://storage.cloud.google.com/rfs_bucket/User/" + "user_" + user.getUserId() + ".jpg");
         } else {
             saveUser.setImageLink(user.getImageLink());
         }
@@ -174,11 +179,10 @@ public class UserServiceImpl implements UserService {
             AddressEntity saveAddress = addressRepository.findByProvinceIdAndDistrictIdAndWardId(userDto.getProvinceId(), userDto.getDistrictId(), userDto.getWardId()).get();
 
             saveUser.setAddressId(saveAddress.getAddressId());
-        }
-        else {
+        } else {
             AddressEntity findAddress = addressRepository.findById(user.getAddressId()).get();
             Optional<AddressEntity> optionalAddress = addressRepository.findByProvinceIdAndDistrictIdAndWardIdAndAddressDetails(findAddress.getProvinceId(), findAddress.getDistrictId(), findAddress.getWardId(), userDto.getAddressDetails());
-            if(optionalAddress.isEmpty()) {
+            if (optionalAddress.isEmpty()) {
                 AddressEntity newAddress = new AddressEntity();
 
                 newAddress.setProvinceId(findAddress.getProvinceId());
@@ -189,8 +193,7 @@ public class UserServiceImpl implements UserService {
                 newAddress = addressRepository.findByProvinceIdAndDistrictIdAndWardIdAndAddressDetails(findAddress.getProvinceId(), findAddress.getDistrictId(), findAddress.getWardId(), userDto.getAddressDetails()).get();
                 saveUser.setAddressId(newAddress.getAddressId());
 
-            }
-            else {
+            } else {
                 saveUser.setAddressId(user.getAddressId());
             }
         }
@@ -212,17 +215,17 @@ public class UserServiceImpl implements UserService {
         saveUser.setGmailId(user.getGmailId());
         saveUser.setPassword(user.getPassword());
 
-        if(Objects.equals(userDto.getStatus(), "ACTIVE")) {
+        if (Objects.equals(userDto.getStatus(), "ACTIVE")) {
             saveUser.setUserStatusId(1);
-        }
-        else {
+        } else {
             saveUser.setUserStatusId(0);
         }
         userRepository.save(saveUser);
     }
+
     @Override
     public int recoverPassword(String password, String email) {
-        return userRepository.updatePassword(password,email);
+        return userRepository.updatePassword(password, email);
     }
 
     @Override

@@ -33,7 +33,7 @@ public class Main implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        System.out.println(houseRepository.findHouseByMemberId(3));
+//        System.out.println(houseRepository.findHouseByMemberId(3));
 
     }
 

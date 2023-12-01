@@ -32,6 +32,7 @@ public interface HouseLandlordRepository extends JpaRepository<HousesEntity,Inte
             "    u2.first_name AS userFirstName,\n" +
             "    u2.last_name AS userLastName,\n" +
             "    h.status,\n" +
+            "    h.star,\n" +
             "    (SELECT MIN(r.price) FROM room r WHERE r.houseid = h.houseid) AS minPrice, \n" +
             "    (SELECT GROUP_CONCAT(i.image_link) FROM house_images i WHERE i.houseid = h.houseid) AS Image_Link,\n" +
             "    (SELECT GROUP_CONCAT(i.imageid) FROM house_images i WHERE i.houseid = h.houseid) AS Image_Id,\n" +
@@ -39,8 +40,7 @@ public interface HouseLandlordRepository extends JpaRepository<HousesEntity,Inte
             "        LEFT JOIN service_detail sd ON sd.serviceid = sh.serviceid\n" +
             "        WHERE sh.houseid = h.houseid), ',', 3) AS Service_Name,\n" +
             "    h.last_modified_date, \n" +
-            "    (SELECT COUNT(roomid) FROM room r WHERE r.houseid = h.houseid) AS count_Rooms,\n" +
-            "    (SELECT COUNT(likeid) FROM room_finding_system.like l WHERE l.houseid = h.houseid) AS like_House\n" +
+            "    (SELECT COUNT(roomid) FROM room r WHERE r.houseid = h.houseid) AS count_Rooms\n" +
             "FROM houses h \n" +
             "JOIN type_house t ON h.type_houseid = t.typeid \n" +
             "LEFT JOIN room r ON r.houseid = h.houseid \n" +
@@ -78,6 +78,7 @@ public interface HouseLandlordRepository extends JpaRepository<HousesEntity,Inte
             "    u2.first_name AS userFirstName,\n" +
             "    u2.last_name AS userLastName,\n" +
             "    h.status,\n" +
+            "    h.star,\n" +
             "    (SELECT MIN(r.price) FROM room r WHERE r.houseid = h.houseid) AS minPrice, \n" +
             "    (SELECT GROUP_CONCAT(i.image_link) FROM house_images i WHERE i.houseid = h.houseid) AS Image_Link,\n" +
             "    (SELECT GROUP_CONCAT(i.imageid) FROM house_images i WHERE i.houseid = h.houseid) AS Image_Id,\n" +
@@ -85,8 +86,7 @@ public interface HouseLandlordRepository extends JpaRepository<HousesEntity,Inte
             "        LEFT JOIN service_detail sd ON sd.serviceid = sh.serviceid\n" +
             "        WHERE sh.houseid = h.houseid) AS Service_Name,\n" +
             "    h.last_modified_date, \n" +
-            "    (SELECT COUNT(roomid) FROM room r WHERE r.houseid = h.houseid) AS count_Rooms,\n" +
-            "    (SELECT COUNT(likeid) FROM room_finding_system.like l WHERE l.houseid = h.houseid) AS like_House\n" +
+            "    (SELECT COUNT(roomid) FROM room r WHERE r.houseid = h.houseid) AS count_Rooms\n" +
             "FROM houses h \n" +
             "JOIN type_house t ON h.type_houseid = t.typeid \n" +
             "LEFT JOIN room r ON r.houseid = h.houseid \n" +
@@ -124,6 +124,7 @@ public interface HouseLandlordRepository extends JpaRepository<HousesEntity,Inte
             "    u2.first_name AS userFirstName,\n" +
             "    u2.last_name AS userLastName,\n" +
             "    h.status,\n" +
+            "    h.star,\n" +
             "    (SELECT MIN(r.price) FROM room r WHERE r.houseid = h.houseid) AS minPrice, \n" +
             "    (SELECT GROUP_CONCAT(i.image_link) FROM house_images i WHERE i.houseid = h.houseid) AS Image_Link,\n" +
             "    (SELECT GROUP_CONCAT(i.imageid) FROM house_images i WHERE i.houseid = h.houseid) AS Image_Id,\n" +
@@ -131,8 +132,7 @@ public interface HouseLandlordRepository extends JpaRepository<HousesEntity,Inte
             "        LEFT JOIN service_detail sd ON sd.serviceid = sh.serviceid\n" +
             "        WHERE sh.houseid = h.houseid) AS Service_Name,\n" +
             "    h.last_modified_date, \n" +
-            "    (SELECT COUNT(roomid) FROM room r WHERE r.houseid = h.houseid) AS count_Rooms,\n" +
-            "    (SELECT COUNT(likeid) FROM room_finding_system.like l WHERE l.houseid = h.houseid) AS like_House\n" +
+            "    (SELECT COUNT(roomid) FROM room r WHERE r.houseid = h.houseid) AS count_Rooms\n" +
             "FROM houses h \n" +
             "JOIN type_house t ON h.type_houseid = t.typeid \n" +
             "LEFT JOIN room r ON r.houseid = h.houseid \n" +
