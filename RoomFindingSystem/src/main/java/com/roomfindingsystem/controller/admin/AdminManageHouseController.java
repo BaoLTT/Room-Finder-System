@@ -148,7 +148,7 @@ public class AdminManageHouseController {
             return "redirect:/login";
         }
         List<UserEntity> listUser = new ArrayList<>();
-        listUser = userRepository.findAll();
+        listUser = userRepository.findUserByRole("LANDLORD");
         List<TypeHouseEntity> listType = houseTypeService.findAll();
         List<ServiceDetailEntity> listService = serviceDetailService.getAllService();
         model.addAttribute("listUser",listUser);
