@@ -82,7 +82,7 @@ public class AuthController {
             newUser.setImageLink(googlePojo.getPicture());
             newUser.setFacebookId(accessToken);
             newUser.setRoleId("USER");
-            //setStatus == 0
+            //setStatus == 1
             newUser.setUserStatusId(1);
             model.addAttribute("newUser", newUser);
 
