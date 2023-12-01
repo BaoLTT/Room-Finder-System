@@ -4,6 +4,7 @@ import com.roomfindingsystem.dto.RoomDtoN;
 import com.roomfindingsystem.service.RoomService;
 
 import com.roomfindingsystem.dto.RoomDto;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,32 +23,39 @@ public class RoomListController {
     @Autowired
     private RoomService roomService;
     @GetMapping(value={"/{pageIndex}"})
-    public String list(@PathVariable Integer pageIndex, @RequestParam(name = "roomName",required = false , defaultValue = "") String roomName,
-                       @RequestParam(name = "price",required = false,defaultValue = "0") String price,
-                       @RequestParam(name = "type", required = false,defaultValue = "1,2,3,4") List<String> type, Model model, HttpSession httpSession){
+    public String list(@PathVariable Integer pageIndex,
+                       @RequestParam(name = "roomName",required = false , defaultValue = "") String roomName,
+                       @RequestParam(name = "minPrice",required = false, defaultValue = "0") String minPrice,
+                       @RequestParam(name = "maxPrice",required = false, defaultValue = "10") String maxPrice,
+                       @RequestParam(name = "type", required = false,defaultValue = "1, 2, 3") List<String> type, HttpServletRequest request, Model model){
         List<Integer> listType = new ArrayList<>();
         for(String type1: type){
             listType.add(Integer.parseInt(type1));
         }
         int pageSize =12;
-        int totalRoom = roomService.countRoom();
+        int totalRoom = 0;
         int offset = (pageIndex -1)*pageSize;
-        int totalPage = (int) Math.ceil((double) totalRoom / pageSize);
-        List<RoomDtoN>  page= roomService.findRoom1(0,6000000,roomName,listType,offset, pageSize);
-        if(price.equals("1")){
-            page =roomService.findRoom1(0,2000000,roomName,listType,offset, pageSize);
-        }
-        if(price.equals("2")){
-            page =roomService.findRoom1(2000000,4000000,roomName,listType,offset, pageSize);
-        }
-        if(price.equals("3")){
-            page =roomService.findRoom1(4000000,6000000,roomName,listType,offset, pageSize);
+        int totalPage;
+        List<RoomDtoN> roomList = new ArrayList<>();
+        int min = Integer.parseInt(minPrice);
+        int max = Integer.parseInt(maxPrice);
+
+        roomList = (roomService.findRoom1(min*1000000, max*1000000, roomName, listType, offset, pageSize));
+        totalRoom = roomService.countRoom(min*1000000, max*1000000, roomName, listType);
+        if(totalRoom<=pageSize){
+            totalPage=0;
+        }else{
+            totalPage = (int) Math.ceil((double) totalRoom / pageSize);
         }
 
         model.addAttribute("roomName",roomName);
         model.addAttribute("currentPage",pageIndex);
         model.addAttribute("totalPage", totalPage);
-        model.addAttribute("rooms", page);
+        model.addAttribute("rooms", roomList);
+        model.addAttribute("minPrice", minPrice);
+        model.addAttribute("maxPrice", maxPrice);
+        model.addAttribute("type", type);
+        model.addAttribute("request",request);
 
         return"room/RoomList";
 

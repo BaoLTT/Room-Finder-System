@@ -15,12 +15,21 @@ public interface HouseService {
 
 
     List<HouseHomeDto> viewHouseInHome();
+    List<HouseFavouriteDto> viewHouseInHomeInFavourite(int id);
     Optional<HousesEntity> findHouseById(Integer id);
     List<HouseDto> getHouseDetail(int id);
     List<HouseImageLink> getImageById(int id);
     List<ServiceDto> getServiceById(int id);
     HousesEntity getHouseByRoomId(int roomId);
 
+    List<HousesEntity> getHouseIdByUserId(int userId);
+
     //admin
     int countHousesInAdmin();
+
+    void updateStar(double star, int houseId);
+
+    HousesEntity getHouseById(int id);
+
+    void saveHouse(HousesEntity housesEntity);
 }

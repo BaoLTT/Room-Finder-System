@@ -19,7 +19,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -28,7 +27,8 @@ import java.util.*;
 
 @Service
 public class UserServiceImpl implements UserService {
-    private final UserReponsitory userRepository;
+    @Autowired
+    private final UserRepository userRepository;
     private final AddressRepository addressRepository;
     private final ProvinceRepository provinceRepository;
     private final DistrictRepository districtRepository;
@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService {
 
     private final GcsService gcsService;
 
-    public UserServiceImpl(UserReponsitory userRepository, AddressRepository addressRepository, ProvinceRepository provinceRepository, DistrictRepository districtRepository, WardRepository wardRepository, ModelMapper modelMapper, GcsService gcsService) {
+    public UserServiceImpl(UserRepository userRepository, AddressRepository addressRepository, ProvinceRepository provinceRepository, DistrictRepository districtRepository, WardRepository wardRepository, ModelMapper modelMapper, GcsService gcsService) {
         this.userRepository = userRepository;
         this.addressRepository = addressRepository;
         this.provinceRepository = provinceRepository;
@@ -47,11 +47,13 @@ public class UserServiceImpl implements UserService {
         this.gcsService = gcsService;
     }
 
+//    public UserServiceImpl(){};
+
     @Autowired
     @Lazy
     private PasswordEncoder passwordEncoder;
 
-//    chưa xử lý mã hóa code
+    //    chưa xử lý mã hóa code
     @Override
     public void saveUser(UserEntity user) {
         userRepository.save(user);
@@ -74,7 +76,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserEntity save(UserEntity user) {
-        if(user.getPassword()!=null)
+        if (user.getPassword() != null)
             user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
@@ -89,13 +91,15 @@ public class UserServiceImpl implements UserService {
         UserEntity user = userByUsername.get();
         if (user == null || !user.getEmail().equals(username)) {
             System.out.println("Could not find user with that username: {}");
-            throw new UsernameNotFoundException("Invalid credentials!");        }
+            throw new UsernameNotFoundException("Invalid credentials!");
+        }
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
         grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_" + user.getRoleId())); // Ví dụ, user.getRoleName() trả về tên của vai trò
 
         return new SecurityUser(user.getEmail(), user.getPassword(), true, true, true, true, grantedAuthorities,
                 user.getFirstName(), user.getLastName(), user.getEmail());
     }
+
     @Override
     public UserDto findById(int id) {
         Optional<UserEntity> optionalUser = userRepository.findById(id);
@@ -103,7 +107,6 @@ public class UserServiceImpl implements UserService {
         UserDto userDto = modelMapper.map(user, UserDto.class);
 
         AddressEntity address = addressRepository.findById(user.getAddressId()).get();
-
         ProvinceEntity province = provinceRepository.findById(address.getProvinceId()).get();
         DistrictEntity district = districtRepository.findById(address.getDistrictId()).get();
         WardEntity ward = wardRepository.findById(address.getWardId()).get();
@@ -116,17 +119,23 @@ public class UserServiceImpl implements UserService {
         userDto.setWardId(ward.getWardId());
         userDto.setAddressDetails(address.getAddressDetails());
 
-        if(user.getGender()) {
-            userDto.setGender("MALE");
+        if (user.getGender() != null) {
+            if (user.getGender()) {
+                userDto.setGender("MALE");
+            } else {
+                userDto.setGender("FEMALE");
+            }
         }
-        else {
-            userDto.setGender("FEMALE");
+        if (user.getDob() != null) {
+            userDto.setDob(user.getDob().toString());
         }
-
-        userDto.setDob(user.getDob().toString());
-
-        System.out.println(userDto);
-
+        if (user.getUserStatusId() != null) {
+            if (user.getUserStatusId() == 1) {
+                userDto.setStatus("ACTIVE");
+            } else {
+                userDto.setStatus("INACTIVE");
+            }
+        }
         return userDto;
     }
 
@@ -138,8 +147,8 @@ public class UserServiceImpl implements UserService {
         if (!file.isEmpty()) {
             //        Handle Image
             byte[] imageBytes = file.getBytes();
-            gcsService.uploadImage("rfs_bucket", "User/user_"+user.getUserId()+".jpg", imageBytes);
-            saveUser.setImageLink("https://storage.cloud.google.com/rfs_bucket/User/"+"user_"+user.getUserId()+".jpg");
+            gcsService.uploadImage("rfs_bucket", "User/user_" + user.getUserId() + ".jpg", imageBytes);
+            saveUser.setImageLink("https://storage.cloud.google.com/rfs_bucket/User/" + "user_" + user.getUserId() + ".jpg");
         } else {
             saveUser.setImageLink(user.getImageLink());
         }
@@ -170,11 +179,10 @@ public class UserServiceImpl implements UserService {
             AddressEntity saveAddress = addressRepository.findByProvinceIdAndDistrictIdAndWardId(userDto.getProvinceId(), userDto.getDistrictId(), userDto.getWardId()).get();
 
             saveUser.setAddressId(saveAddress.getAddressId());
-        }
-        else {
+        } else {
             AddressEntity findAddress = addressRepository.findById(user.getAddressId()).get();
             Optional<AddressEntity> optionalAddress = addressRepository.findByProvinceIdAndDistrictIdAndWardIdAndAddressDetails(findAddress.getProvinceId(), findAddress.getDistrictId(), findAddress.getWardId(), userDto.getAddressDetails());
-            if(optionalAddress.isEmpty()) {
+            if (optionalAddress.isEmpty()) {
                 AddressEntity newAddress = new AddressEntity();
 
                 newAddress.setProvinceId(findAddress.getProvinceId());
@@ -185,8 +193,7 @@ public class UserServiceImpl implements UserService {
                 newAddress = addressRepository.findByProvinceIdAndDistrictIdAndWardIdAndAddressDetails(findAddress.getProvinceId(), findAddress.getDistrictId(), findAddress.getWardId(), userDto.getAddressDetails()).get();
                 saveUser.setAddressId(newAddress.getAddressId());
 
-            }
-            else {
+            } else {
                 saveUser.setAddressId(user.getAddressId());
             }
         }
@@ -199,6 +206,7 @@ public class UserServiceImpl implements UserService {
         saveUser.setLastName(userDto.getLastName());
         saveUser.setLastModifiedDate(Timestamp.from(Instant.now()));
         saveUser.setPhone(userDto.getPhone());
+        saveUser.setRoleId(userDto.getRole());
 
 //        User:
         saveUser.setUserId(user.getUserId());
@@ -206,13 +214,18 @@ public class UserServiceImpl implements UserService {
         saveUser.setFacebookId(user.getFacebookId());
         saveUser.setGmailId(user.getGmailId());
         saveUser.setPassword(user.getPassword());
-        saveUser.setRoleId(user.getRoleId());
-        saveUser.setUserStatusId(user.getUserStatusId());
+
+        if (Objects.equals(userDto.getStatus(), "ACTIVE")) {
+            saveUser.setUserStatusId(1);
+        } else {
+            saveUser.setUserStatusId(0);
+        }
         userRepository.save(saveUser);
     }
+
     @Override
     public int recoverPassword(String password, String email) {
-        return userRepository.updatePassword(password,email);
+        return userRepository.updatePassword(password, email);
     }
 
     @Override
@@ -223,6 +236,38 @@ public class UserServiceImpl implements UserService {
     @Override
     public int countUserInAdmin() {
         return userRepository.countUserInAdmin();
+    }
+
+    @Override
+    public UserDto findUserDtoByEmail(String email) {
+        Optional<UserEntity> optionalUser = userRepository.findByEmail(email);
+        UserEntity user = optionalUser.get();
+        UserDto userDto = modelMapper.map(user, UserDto.class);
+
+        AddressEntity address = addressRepository.findById(user.getAddressId()).get();
+        ProvinceEntity province = provinceRepository.findById(address.getProvinceId()).get();
+        DistrictEntity district = districtRepository.findById(address.getDistrictId()).get();
+        WardEntity ward = wardRepository.findById(address.getWardId()).get();
+
+        userDto.setProvince(province.getName());
+        userDto.setDistrict(district.getName());
+        userDto.setWard(ward.getName());
+        userDto.setProvinceId(province.getProvinceId());
+        userDto.setDistrictId(district.getDistrictId());
+        userDto.setWardId(ward.getWardId());
+        userDto.setAddressDetails(address.getAddressDetails());
+        userDto.setRole(user.getRoleId());
+        if (user.getGender() != null) {
+            if (user.getGender()) {
+                userDto.setGender("MALE");
+            } else {
+                userDto.setGender("FEMALE");
+            }
+        }
+        if (user.getDob() != null) {
+            userDto.setDob(user.getDob().toString());
+        }
+        return userDto;
     }
 
 }

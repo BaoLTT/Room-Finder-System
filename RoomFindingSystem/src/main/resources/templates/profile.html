@@ -22,19 +22,22 @@
                 height: 270px;
             }
         }
+
         @media (min-width: 992px) and (max-width: 1200px) {
 
             .profile-picture img {
                 height: 220px;
             }
         }
-        @media (min-width: 768px) and (max-width: 992px){
+
+        @media (min-width: 768px) and (max-width: 992px) {
 
             .profile-picture img {
                 height: 165px;
             }
         }
-        @media (max-width: 768px){
+
+        @media (max-width: 768px) {
 
             .profile-picture img {
                 height: auto;
@@ -45,91 +48,12 @@
 
 <body>
 <div class="page-wrapper">
-    <div id="page-header">
-        <header>
-            <div class="container">
-                <div class="secondary-nav">
-                    <div class="nav-trigger"><a data-toggle="collapse" href="#secondary-nav" aria-expanded="false"
-                                                aria-controls="secondary-nav"><i class="fa fa-user"></i></a></div>
-                    <div id="secondary-nav">
-                        <nav>
-                            <div class="left opacity-60">
-                                <a href=""><i class="fa fa-phone"></i>+1 781-903-1047</a>
-                                <a href="mailto:hello@example.com"><i class="fa fa-envelope"></i>hello@example.com</a>
-                            </div>
-                            <!--end left-->
-                            <div class="right">
-                                <div th:if="${session!= null}">
-                                    <!-- Hiển thị thông tin người dùng đã đăng nhập -->
-                                    <a th:href="@{/profile}"><span>Xin chào, <span
-                                            th:text="${session.firstname+' '}+${session.lastname}"></span></span></a>
-                                    <a th:href="@{/logout}">Đăng xuất</a>
-                                </div>
-                                <!--end element-->
-                                <div th:unless="${session!= null}">
-                                    <div class="element">
-                                        <a th:href="@{/login}" href="#tab-sign-in" data-toggle="modal" data-tab="true"
-                                           data-target="#sign-in-register-modal">Đăng nhập</a>
-                                    </div>
-                                    <!--end element-->
-                                    <div class="element">
-                                        <a th:href="@{/register}" data-toggle="modal" data-tab="true"
-                                           data-target="#sign-in-register-modal">Đăng ký</a>
-                                    </div>
-                                    <!--end element-->
-                                </div>
-                                <!--end element-->
-                            </div>
-                            <!--end right-->
-                        </nav>
-                    </div>
-                </div>
-                <!--end secondary-nav-->
-            </div>
-            <!--end container-->
-            <hr>
-            <div class="container">
-                <div class="primary-nav">
-                    <div class="left">
-                        <!--                        <a href="Homepage.html" id="brand"><img src="/assets/img/logo.png" alt=""></a>-->
-                     <a href="homepage.html" id="brand"><img src="/assets/img/logo.png" alt=""></a>-->
-                        <a class="nav-trigger" data-toggle="collapse" href="#primary-nav" aria-expanded="false"
-                           aria-controls="primary-nav"><i class="fa fa-navicon"></i></a>
-                    </div>
-                    <!--end left-->
-                    <div class="right">
-                        <nav id="primary-nav">
-                            <ul>
-                                <li class="active"><a th:href="@{/}">Trang chủ</a></li>
-                                <li><a th:href="@{/houselist/1}">Danh sách nhà trọ</a></li>
-                                <li>
-                                    <a href="#" class="has-child">Danh sách phòng trọ</a>
-                                </li>
-
-                                <li><a href="">Blog</a></li>
-
-                            </ul>
-                        </nav>
-                        <!--end nav-->
-                    </div>
-                    <!--end right-->
-                </div>
-                <!--end primary-nav-->
-            </div>
-            <!--end container-->
-        </header>
-        <!--end header-->
-    </div>
+    <div th:replace="~{header :: headerSection}"></div>
     <!--end page-header-->
 
     <div id="page-content">
+        <br>
         <div class="container">
-            <ol class="breadcrumb">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Listing</a></li>
-                <li class="active">Detail</li>
-            </ol>
-            <!--end breadcrumb-->
             <div class="main-content">
                 <div class="title">
                     <h1><a href="#">Thông tin cá nhân</a></h1>
@@ -138,6 +62,8 @@
                 <div class="row">
                     <form id="form-profile" class="labels-uppercase" method="post" action="#"
                           th:action="@{/user/update}" th:object="${user}" enctype="multipart/form-data">
+                        <input type="hidden" id="userId" name="userId" th:field="*{userId}">
+                        <input type="hidden" id="roleId" name="roleId" th:field="*{role}">
                         <div class="row">
                             <!--Profile Picture-->
                             <div class="col-md-3 col-sm-3">
@@ -174,34 +100,6 @@
                                                        placeholder="Doe" th:value="*{lastName}" required>
                                                 <small class="text-danger error-lastName"></small>
                                             </div>
-                                            <!--end form-group-->
-                                        </div>
-                                        <!--end col-md-6-->
-
-                                        <div class="col-md-6 col-sm-6">
-                                            <div class="form-group">
-                                                <label for="email">Email</label>
-                                                <input type="email" class="form-control" id="email" name="email"
-                                                       pattern="^\w+([\.]?\w+)*@\w+([\.]?\w+)*(\.\w{2,3})+$"
-                                                       placeholder="janedoe@gmail.com" th:value="*{email}">
-                                                <small class="text-danger error-email"></small>
-                                            </div>
-                                            <!--end form-group-->
-                                        </div>
-                                        <!--end col-md-6-->
-                                        <div class="col-md-6 col-sm-6">
-                                            <div class="form-group">
-                                                <label for="phone">Số điện thoại</label>
-                                                <input type="text" class="form-control" id="phone" name="phone"
-                                                       pattern="(84|0[3|5|7|8|9])+([0-9]{8})\b"
-                                                       placeholder="(0)123 456 7890"
-                                                       th:value="*{phone}" required>
-                                                <small class="text-danger error-phone"></small>
-                                            </div>
-                                            <!--end form-group-->
-                                        </div>
-
-                                        <div class="col-md-6 col-sm-6">
                                             <div class="form-group">
                                                 <label for="gender">Giới tính</label>
                                                 <select class="form-control" id="gender" name="gender"
@@ -213,9 +111,25 @@
                                                     </option>
                                                 </select>
                                             </div>
-                                            <!--end form-group-->
                                         </div>
+                                        <!--end col-md-6-->
+
                                         <div class="col-md-6 col-sm-6">
+                                            <div class="form-group">
+                                                <label for="email">Email</label>
+                                                <input type="email" class="form-control" id="email" name="email"
+                                                       pattern="^\w+([\.]?\w+)*@\w+([\.]?\w+)*(\.\w{2,3})+$"
+                                                       placeholder="janedoe@gmail.com" th:value="*{email}" readonly>
+                                                <small class="text-danger error-email"></small>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="phone">Số điện thoại</label>
+                                                <input type="text" class="form-control" id="phone" name="phone"
+                                                       pattern="(84|0[3|5|7|8|9])+([0-9]{8})\b"
+                                                       placeholder="(0)123 456 7890"
+                                                       th:value="*{phone}">
+                                                <small class="text-danger error-phone"></small>
+                                            </div>
                                             <div class="form-group">
                                                 <label for="dob">Ngày sinh</label>
                                                 <input style="height: 36px" type="date" class="form-control"
@@ -224,8 +138,8 @@
                                                        required
                                                        onchange="">
                                             </div>
-                                            <!--end form-group-->
                                         </div>
+                                        <!--end col-md-6-->
                                     </div>
                                 </section>
                                 <section>
@@ -280,156 +194,13 @@
     </div>
     <!--end page-content-->
 
-    <footer id="page-footer">
-        <div class="row-one">
-            <div class="container">
-                <div class="logos">
-                    <div class="logo">
-                        <a href="#"><img th:src="@{/assets/img/logo-1.png}" alt=""></a>
-                    </div>
-                    <!--/ .logo-->
-                    <div class="logo">
-                        <a href="#"><img th:src="@{/assets/img/logo-2.png}" alt=""></a>
-                    </div>
-                    <!--/ .logo-->
-                    <div class="logo">
-                        <a href="#"><img th:src="@{/assets/img/logo-3.png}" alt=""></a>
-                    </div>
-                    <!--/ .logo-->
-                    <div class="logo">
-                        <a href="#"><img th:src="@{/assets/img/logo-4.png}" alt=""></a>
-                    </div>
-                    <!--/ .logo-->
-                    <div class="logo">
-                        <a href="#"><img th:src="@{/assets/img/logo-5.png}" alt=""></a>
-                    </div>
-                    <!--/ .logo-->
-                </div>
-                <!--/ .logos-->
-            </div>
-        </div>
-        <!--end row-one-->
-        <div class="row-two clearfix">
-            <div class="container">
-                <div class="copyright pull-left">(C) 2016 Your Company, All Rights Reserved</div>
-                <div class="footer-nav pull-right">
-                    <a href="index.html">Home</a>
-                    <a href="about-us.html">About Us</a>
-                    <a href="listing.html">Listing</a>
-                    <a href="contact-us.html">Contact Us</a>
-                </div>
-            </div>
-            <div class="bg-transfer"><img th:src="@{/assets/img/footer-bg.jpg}" alt=""></div>
-        </div>
-        <!--end row-two-->
-    </footer>
+
+    <div th:replace="~{footer :: footerSection}"></div>
+
     <!--end page-footer-->
 </div>
 <!--end page-wrapper-->
 <a href="#page-header" class="to-top scroll" data-show-after-scroll="600"><i class="arrow_up"></i></a>
-
-<!-- Modal -->
-<div class="modal fade" id="sign-in-register" tabindex="-1" role="dialog">
-    <div class="wrapper">
-        <div class="inner">
-            <div class="modal-dialog width-400px" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
-                        <!-- Nav tabs -->
-                        <ul class="nav nav-tabs" role="tablist">
-                            <li role="presentation" class="active"><a href="#tab-sign-in" role="tab" data-toggle="tab">
-                                <h1>Sign In</h1></a></li>
-                            <li role="presentation"><a href="#tab-register" role="tab" data-toggle="tab"><h1>
-                                Register</h1></a></li>
-                        </ul>
-                    </div>
-                    <!--end modal-header-->
-                    <div class="modal-body">
-                        <div class="tab-content">
-                            <div role="tabpanel" class="tab-pane fade in active" id="tab-sign-in">
-                                <form id="form-sign">
-                                    <div class="form-group">
-                                        <label for="form-sign-in-email">E-mail</label>
-                                        <input type="text" class="form-control" id="form-sign-in-email"
-                                               name="sign_in_email" placeholder="Login E-mail">
-                                    </div>
-                                    <!--end form-group-->
-                                    <div class="form-group">
-                                        <label for="form-sign-in-password">Password</label>
-                                        <input type="password" class="form-control" id="form-sign-in-password"
-                                               name="sign_in_password" placeholder="*****">
-                                    </div>
-                                    <!--end form-group-->
-                                    <div class="clearfix action">
-                                        <div class="form-group pull-right">
-                                            <button type="submit" class="btn btn-primary btn-rounded">Sign In</button>
-                                        </div>
-                                        <div class="form-group pull-left">
-                                            <label><input type="checkbox" name="1">Login Automatically</label>
-                                        </div>
-                                    </div>
-                                    <!--end action-->
-                                </form>
-                                <!--end form-sign-in-->
-                            </div>
-                            <div role="tabpanel" class="tab-pane fade" id="tab-register">
-                                <form id="form-register">
-                                    <div class="form-group">
-                                        <label for="form-register-name">Name</label>
-                                        <input type="text" class="form-control" id="form-register-name"
-                                               name="register_name" placeholder="John">
-                                    </div>
-                                    <!--end form-group-->
-                                    <div class="form-group">
-                                        <label for="form-register-surname">Surname</label>
-                                        <input type="text" class="form-control" id="form-register-surname"
-                                               name="register_surname" placeholder="Doe">
-                                    </div>
-                                    <!--end form-group-->
-                                    <div class="form-group">
-                                        <label for="form-register-email">E-mail</label>
-                                        <input type="text" class="form-control" id="form-register-email"
-                                               name="register_email" placeholder="Login E-mail">
-                                    </div>
-                                    <!--end form-group-->
-                                    <div class="form-group">
-                                        <label for="form-register-password">Password</label>
-                                        <input type="password" class="form-control" id="form-register-password"
-                                               name="register_password" placeholder="*****">
-                                    </div>
-                                    <!--end form-group-->
-                                    <div class="clearfix action">
-                                        <div class="form-group pull-right">
-                                            <button type="submit" class="btn btn-primary btn-rounded">Sign In</button>
-                                        </div>
-                                        <div class="form-group pull-left">
-                                            <label><input type="checkbox" name="1">Login Automatically</label>
-                                        </div>
-                                    </div>
-                                    <!--end action-->
-                                </form>
-                                <!--end form-sign-in-->
-                            </div>
-                        </div>
-
-                    </div>
-                    <!--end modal-body-->
-                    <div class="modal-footer">
-                        <div class="center">
-                            <div>Lost Password? <a href="#">Reset here</a></div>
-                            <div>New to Accommondo? <a href="#">Register an account</a></div>
-                        </div>
-                    </div>
-                    <!--end modal-footer-->
-                </div>
-                <!--end modal-content-->
-            </div>
-            <!--end modal-dialog-->
-        </div>
-    </div>
-</div>
-<!--end modal-->
 
 <script type="text/javascript" th:src="@{/assets/js/jquery-2.2.1.min.js}"></script>
 <script type="text/javascript" th:src="@{/assets/js/jquery-migrate-1.2.1.min.js}"></script>
@@ -440,13 +211,13 @@
 <script type="text/javascript" th:src="@{/assets/js/icheck.min.js}"></script>
 <script type="text/javascript" th:src="@{/assets/js/owl.carousel.js}"></script>
 <script type="text/javascript" th:src="@{/assets/js/masonry.pkgd.min.js}"></script>
-
 <script type="text/javascript" th:src="@{/assets/js/maps.js}"></script>
 <script type="text/javascript" th:src="@{/assets/js/custom.js}"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    const host = "http://localhost:8080/";
+    const host = "https://timtromoi.com/";
+    // const host = "http://localhost:8080/";
     let provinceTest = -1;
     var callAPI = (api) => {
         return axios.get(api)

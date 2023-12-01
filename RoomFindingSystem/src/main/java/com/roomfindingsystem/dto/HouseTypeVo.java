@@ -29,7 +29,7 @@ public class HouseTypeVo {
 
     Integer price;
 
-    List<String> listImage;
+    List<HouseImageDto> listImage;
 
     List<String> service;
 
@@ -37,7 +37,7 @@ public class HouseTypeVo {
 
     Integer count_room;
 
-    Integer like;
+    Double star;
 }
 
 

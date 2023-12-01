@@ -18,4 +18,9 @@ public class HouseTypeServiceImpl implements HouseTypeService {
     public List<TypeHouseEntity> findAll() {
         return  houseTypeRepository.findAll();
     }
+
+    @Override
+    public void addType(TypeHouseEntity typeHouseEntity) {
+        houseTypeRepository.save(typeHouseEntity);
+    }
 }

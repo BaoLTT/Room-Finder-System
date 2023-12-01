@@ -29,35 +29,40 @@
                             <a href="index.html">
                                 <span><img src="assets/img/logo.jpeg" alt="" height="98"></span>
                             </a>
-                            <h5 class="text-uppercase text-center font-bold mt-4">Register</h5>
+                            <h5 class="text-uppercase text-center font-bold mt-4">Đăng Ký</h5>
                         </div>
 
                         <!-- form -->
                         <form action="mt-3" th:action="@{save}" th:object="${user}" method="post">
 
                             <div class="form-group">
-                                <label>First Name</label>
+                                <label>HỌ ĐỆM</label>
                                 <input class="form-control" type="text"
                                        th:field="*{firstName}"
+                                       pattern="^[a-zA-ZxyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđÁÂĐ ]+$"
                                        id="firstname"
-                                       placeholder="Enter your first name" required/>
+                                       placeholder="Nhập Họ Của Bạn" required/>
                                 <div class="alert alert-warning" th:if="${#fields.hasErrors('firstName')}"
                                      th:errors="*{firstName}">
                                 </div>
+                                <p style="color: red" ></p>
                             </div>
                             <div class="form-group">
-                                <label>Last Name</label>
+                                <label>TÊN</label>
                                 <input class="form-control" type="text" id="lastName" th:field="*{lastName}"
-                                       placeholder="Enter your last name" required>
+                                       pattern="^[a-zA-ZxyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđÁÂĐ ]+$"
+                                       placeholder="Nhập Tên Của Bạn" required>
                                 <div class="alert alert-warning" th:if="${#fields.hasErrors('lastName')}"
                                      th:errors="*{lastName}">
                                 </div>
+                                <p style="color: red" ></p>
                             </div>
                             <div class="form-group">
-                                <label for="email">Email address</label>
+                                <label for="email">ĐỊA CHỈ EMAIL</label>
                                 <input class="form-control" type="email" th:field="*{email}"
                                        id="email" required
-                                       placeholder="Enter your email">
+                                       pattern="^\w+([\.]?\w+)*@\w+([\.]?\w+)*(\.\w{2,3})+$"
+                                       placeholder="Nhập Địa Chỉ Email">
                                 <div class="alert alert-warning" th:if="${#fields.hasErrors('email')}"
                                      th:errors="*{email}">
                                 </div>
@@ -86,13 +91,15 @@
 <!--                                </div>-->
 <!--                            </div>-->
                             <div class="form-group">
-                                <label for="phone">Phone number</label>
+                                <label for="phone">SỐ ĐIỆN THOẠI</label>
                                 <input class="form-control" type="text" th:field="*{phone}"
                                        id="phone" required
-                                       placeholder="Enter your number phone">
+                                       pattern="(84|0[3|5|7|8|9])+([0-9]{8})\b"
+                                       placeholder="Nhập Số Điện Thoại">
                                 <div class="alert alert-warning" th:if="${#fields.hasErrors('phone')}"
                                      th:errors="*{phone}">
                                 </div>
+                                <p style="color: red" ></p>
                             </div>
                             <div class="form-group">
                                 <script>
@@ -108,21 +115,21 @@
                                     }
 
                                 </script>
-                                <label for="password">Password</label>
+                                <label for="password">MẬT KHẨU</label>
                                 <input class="form-control" type="password" th:field="*{password}"
                                        required id="password" name="password"
                                        onkeyup='check();'
-                                       placeholder="Enter your password">
+                                       placeholder="Nhập Mật Khẩu">
                                 <div class="alert alert-warning" th:if="${#fields.hasErrors('password')}"
                                      th:errors="*{password}">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label> Confirm Password</label>
+                                <label> XÁC NHẬN MẬT KHẨU</label>
                                 <input class="form-control" type="password" required id="confirm_password"
                                        name="confirm_password"
                                        onkeyup='check();'
-                                       placeholder="Confirm your password">
+                                       placeholder="Nhập Lại Mật Khẩu">
                                 <span id='message'></span>
                             </div>
                             <div class="form-group">
@@ -134,7 +141,7 @@
                                 </div>
                             </div>
                             <div class="form-group mb-0 text-center">
-                                <button class="btn btn-gradient btn-block" type="submit"> Sign Up Free
+                                <button class="btn btn-gradient btn-block" type="submit"> ĐĂNG Ký
                                 </button>
                             </div>
 
@@ -144,9 +151,8 @@
 
                         <div class="row mt-4">
                             <div class="col-sm-12 text-center">
-                                <p class="text-muted mb-0">Already have an account? <a href="pages-login.html"
-                                                                                       class="text-dark ml-1"><b>Sign
-                                    In</b></a></p>
+                                <p class="text-muted mb-0">Bạn Đã Có Tài Khoản? <a href="pages-login.html"
+                                                                                       class="text-dark ml-1"><b>Đăng Nhập</b></a></p>
                             </div>
                         </div>
 
@@ -169,6 +175,71 @@
 <!-- App js -->
 <script src="assets/js/app.min.js"></script>
 <script src="assets/js/myjs.js"></script>
+<script>
+
+
+    // Lấy phần tử input và small số đt
+    const inputPhone = document.getElementById('phone');
+    const errorPhone = inputPhone.nextElementSibling;
+
+    // Sự kiện blur khỏi input
+    inputPhone.addEventListener('blur', () => {
+
+        // Nếu không thỏa mãn pattern
+        if (!inputPhone.value.match(inputPhone.pattern)) {
+            errorPhone.textContent = 'Số điện thoại gồm 10 số';
+        } else {
+            errorPhone.textContent = ''; // Clear message
+        }
+    });
+
+    // Lấy phần tử input và small email
+    const inputMail = document.getElementById('email');
+    const errorMail = inputMail.nextElementSibling;
+
+    // Sự kiện blur khỏi input
+    inputMail.addEventListener('blur', () => {
+
+        // Nếu không thỏa mãn pattern
+        if (!inputMail.value.match(inputMail.pattern)) {
+            errorMail.textContent = 'Email có dạng "manhhd@gmail.com"';
+        } else {
+            errorMail.textContent = ''; // Clear message
+        }
+    });
+
+    // Lấy phần tử input và small firstName
+    const inputFirstName = document.getElementById('firstname');
+    const errorFirstName = inputFirstName.nextElementSibling;
+
+    // Sự kiện blur khỏi input
+    inputFirstName.addEventListener('blur', () => {
+
+        // Nếu không thỏa mãn pattern
+        if (!inputFirstName.value.match(inputFirstName.pattern)) {
+            errorFirstName.textContent = 'tên không chứa số và kí tự đặc biệt';
+        } else {
+            errorFirstName.textContent = ''; // Clear message
+        }
+    });
+
+    // Lấy phần tử input và small lastName
+    const inputLastName = document.getElementById('lastName');
+    const errorLastName = inputLastName.nextElementSibling;
+
+    // Sự kiện blur khỏi input
+    inputLastName.addEventListener('blur', () => {
+
+        // Nếu không thỏa mãn pattern
+        if (!inputLastName.value.match(inputLastName.pattern)) {
+            errorLastName.textContent = 'tên không chứa số và kí tự đặc biệt';
+        } else {
+            errorLastName.textContent = ''; // Clear message
+        }
+    });
+
+
+</script>
 
 </body>
 

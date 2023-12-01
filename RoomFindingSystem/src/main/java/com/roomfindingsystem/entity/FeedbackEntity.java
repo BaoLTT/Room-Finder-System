@@ -47,6 +47,30 @@ public class FeedbackEntity {
     }
 
     @Basic
+    @Column(name = "star")
+    private int star;
+
+    public int getStar() {
+        return star;
+    }
+
+    public void setStar(int star) {
+        this.star = star;
+    }
+
+    @Basic
+    @Column(name = "status")
+    private boolean status;
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    @Basic
     @Column(name = "Created_Date")
     private LocalDate createdDate;
 
@@ -104,6 +128,6 @@ public class FeedbackEntity {
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackId, content, createdDate, lastModifiedDate, houseId, memberId);
+        return Objects.hash(feedbackId, content, createdDate, lastModifiedDate, houseId, memberId, star);
     }
 }

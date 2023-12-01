@@ -1,3 +1,4 @@
+
 package com.roomfindingsystem.service.impl;
 
 import com.google.auth.oauth2.ServiceAccountCredentials;
@@ -26,10 +27,13 @@ public class GcsService {
 
             // Đọc và cấu hình Storage client với JSON key
             try (InputStream inputStream = new ByteArrayInputStream(jsonBytes)) {
-                // Đọc ServiceAccountCredentials từ InputStream
+                // Đảm bảo rằng bạn đang đọc ServiceAccountCredentials từ InputStream
+                ServiceAccountCredentials credentials = ServiceAccountCredentials.fromStream(inputStream);
+
+                // Sử dụng credentials để cấu hình StorageOptions
                 StorageOptions storageOptions = StorageOptions.newBuilder()
                         .setProjectId("rfs-test-404421")
-                        .setCredentials(ServiceAccountCredentials.fromStream(inputStream))
+                        .setCredentials(credentials)
                         .build();
 
                 // Trả về đối tượng Storage đã được khởi tạo
@@ -47,4 +51,21 @@ public class GcsService {
         BlobInfo blobInfo = BlobInfo.newBuilder(blobId).setContentType("image/jpeg").build();
         Blob blob = storage.create(blobInfo, imageBytes);
     }
+
+
+    public String getMapKey(){
+
+        String bucketName = "rfs_bucket";
+        String filePath = "key_map/key_map.txt"; // Đặt tên đúng của tệp txt trong bucket
+
+        Blob blob = storage.get(bucketName, filePath);
+
+
+        if (blob == null) {
+            throw new RuntimeException("Blob is null. File not found or permission issue.");
+        }
+
+        return new String(blob.getContent());
+    }
 }
+

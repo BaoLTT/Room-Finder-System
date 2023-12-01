@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Update User</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description"/>
+    <meta content="Coderthemes" name="author"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <!-- App favicon -->
+    <link rel="shortcut icon" th:href="@{/assets_admin/images/favicon.ico}">
+
+    <!-- App css -->
+    <link th:href="@{/assets_admin/libs/dropzone/dropzone.min.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/assets_admin/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/assets_admin/css/icons.min.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/assets_admin/css/app.min.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/assets_admin/css/style.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/assets/fonts/font-awesome.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/assets/fonts/elegant-fonts.css}" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700,900,400italic' rel='stylesheet'
+          type='text/css'>
+    <link rel="stylesheet" th:href="@{/assets/bootstrap/css/bootstrap.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/assets/css/owl.carousel.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}" type="text/css">
+    <style>
+        .profile-picture img {
+            max-width: 250px;
+            max-height: 250px;
+            width: auto;
+            height: auto;
+        }
+
+        input[type="file"] {
+            display: block;
+        }
+        html, body {
+            height: 130%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Begin page -->
+<div id="wrapper">
+
+
+    <!-- Topbar Start -->
+    <div th:replace="admin/header_admin :: admin_topbar"></div>
+    <!-- Left Sidebar End -->
+
+    <!-- ============================================================== -->
+    <!-- Start Page Content here -->
+    <!-- ============================================================== -->
+
+    <div class="content-page">
+        <div class="content">
+
+            <!-- Start Content-->
+            <div class="container-fluid">
+
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box">
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item"><a th:href="@{/admin/user}">Danh sách nguời dùng</a></li>
+                                    <li class="breadcrumb-item active">Thông tin chi tiết</li>
+                                </ol>
+                            </div>
+                            <h4 class="page-title">Thông tin chi tiết</h4>
+                        </div>
+                    </div>
+                </div>
+                <!-- end page title -->
+
+
+                <div class="row">
+                    <div class="col-lg">
+                        <div class="card-box">
+                            <form id="form-profile" class="labels-uppercase" method="post" action="#"
+                                  th:action="@{/admin/user/update}" th:object="${user}" enctype="multipart/form-data">
+                                <input type="hidden" th:field="*{userId}">
+                                <div class="row">
+                                    <!--Profile Picture-->
+                                    <div class="col-md-3 col-sm-3">
+                                        <section>
+                                            <div id="profile-picture" class="profile-picture single-file-preview">
+                                                <img th:src="*{imageLink}" alt="" class="image">
+                                                <div>
+                                                    <input name="file" type="file" class="">
+                                                    <span>Chọn ảnh đại diện</span>
+                                                </div>
+                                            </div>
+                                        </section>
+                                    </div>
+                                    <!--end col-md-3-->
+
+                                    <!--Contact Info-->
+                                    <div class="col-md-9 col-sm-9">
+                                        <section>
+                                            <div class="row">
+                                                <div class="col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="firstName">Họ</label>
+                                                        <input type="text" class="form-control" id="firstName"
+                                                               name="firstName"
+                                                               pattern="^[a-zA-ZxyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđÁÂĐ ]+$"
+                                                               placeholder="Jane" th:value="*{firstName}" required>
+                                                        <small class="text-danger error-firstName"></small>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="lastName">Tên</label>
+                                                        <input type="text" class="form-control" id="lastName"
+                                                               name="lastName"
+                                                               pattern="^[a-zA-ZxyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđÁÂĐ ]+$"
+                                                               placeholder="Doe" th:value="*{lastName}" required>
+                                                        <small class="text-danger error-lastName"></small>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="phone">Số điện thoại</label>
+                                                        <input type="text" class="form-control" id="phone" name="phone"
+                                                               pattern="(84|0[3|5|7|8|9])+([0-9]{8})\b"
+                                                               placeholder="(0)123 456 7890"
+                                                               th:value="*{phone}" required>
+                                                        <small class="text-danger error-phone"></small>
+                                                    </div>
+                                                </div>
+
+                                                <!--end col-md-6-->
+
+                                                <div class="col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="email">Email</label>
+                                                        <input type="email" class="form-control" id="email" name="email"
+                                                               pattern="^\w+([\.]?\w+)*@\w+([\.]?\w+)*(\.\w{2,3})+$"
+                                                               placeholder="janedoe@gmail.com" th:value="*{email}"
+                                                               readonly>
+                                                        <small class="text-danger error-email"></small>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="gender">Giới tính</label>
+                                                        <select class="form-control" id="gender" name="gender"
+                                                                th:field="*{gender}">
+                                                            <option value="MALE" th:selected="${user.gender == 'MALE'}">
+                                                                Nam
+                                                            </option>
+                                                            <option value="FEMALE"
+                                                                    th:selected="${user.gender == 'FEMALE'}">
+                                                                Nữ
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="dob">Ngày sinh</label>
+                                                        <input style="height: 36px" type="date" class="form-control"
+                                                               id="dob" name="dob"
+                                                               placeholder="Enter your age (ex: 18)" th:value="*{dob}"
+                                                               required
+                                                               onchange="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="role">Chức vụ</label>
+                                                        <select class="form-control" id="role" name="role"
+                                                                th:field="*{role}">
+                                                            <option value="ADMIN"
+                                                                    th:selected="${user.role == 'ADMIN'}">
+                                                                ADMIN
+                                                            </option>
+                                                            <option value="USER"
+                                                                    th:selected="${user.role == 'USER'}">
+                                                                USER
+                                                            </option>
+                                                            <option value="LANDLORD"
+                                                                    th:selected="${user.role == 'LANDLORD'}">
+                                                                LANDLORD
+                                                            </option>
+                                                        </select>
+                                                    </div>
+
+                                                    <!--end form-group-->
+                                                </div>
+                                                <div class="col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="role">Trạng thái</label>
+                                                        <select class="form-control" id="status" name="status"
+                                                                th:field="*{status}">
+                                                            <option value="ACTIVE"
+                                                                    th:selected="${user.status == 'ACTIVE'}">
+                                                                ACTIVE
+                                                            </option>
+                                                            <option value="INACTIVE"
+                                                                    th:selected="${user.status == 'INACTIVE'}">
+                                                                INACTIVE
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <!--end col-md-6-->
+                                            </div>
+                                        </section>
+                                        <section>
+                                            <h3>Địa chỉ</h3>
+                                            <div class="form-group">
+                                                <label for="province">Tỉnh</label>
+                                                <select class="form-control" name="" id="province" th:text="*{province}"
+                                                        th:field="*{provinceId}" style="display: none;">
+                                                </select>
+                                                <input class="form-control" th:id="provinceName" th:field="*{province}">
+                                            </div>
+                                            <!--end form-group-->
+                                            <div class="form-group">
+                                                <label for="district">Huyện</label>
+                                                <select class="form-control" name="" id="district" th:text="*{district}"
+                                                        th:field="*{districtId}" style="display: none;">
+                                                </select>
+                                                <input class="form-control" th:id="districtName" th:field="*{district}">
+                                            </div>
+                                            <!--end form-group-->
+                                            <div class="form-group">
+                                                <label for="ward">Xã</label>
+                                                <select class="form-control" name="" id="ward" th:text="*{ward}"
+                                                        th:field="*{wardId}" style="display: none;">
+                                                </select>
+                                                <input class="form-control" th:id="wardName" th:field="*{ward}">
+                                            </div>
+                                            <!--end col-md-3-->
+
+                                            <div class="form-group">
+                                                <label for="addressDetails">Địa chỉ chi tiết</label>
+                                                <input type="text" class="form-control" id="addressDetails"
+                                                       name="addressDetails" th:value="*{addressDetails}">
+                                            </div>
+                                            <!--end form-group-->
+                                        </section>
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-large btn-primary btn-rounded"
+                                                    id="submit">
+                                                Lưu thay đổi
+                                            </button>
+                                            <button type="reset" class="btn btn-light waves-effect ml-1">
+                                                <a th:href="@{/admin/user}">Danh sách người dùng</a>
+                                            </button>
+                                        </div>
+                                        <!-- end form-group -->
+                                    </div>
+                                    <!--end col-md-6-->
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- end row -->
+
+
+            </div> <!-- end container-fluid -->
+
+        </div> <!-- end content -->
+
+
+        <!-- Footer Start -->
+        <div th:replace="admin/footer_admin :: admin_footer"></div>
+        <!-- end Footer -->
+
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- End Page content -->
+    <!-- ============================================================== -->
+
+</div>
+<!-- END wrapper -->
+
+<script type="text/javascript" th:src="@{/assets/js/jquery-2.2.1.min.js}"></script>
+<script type="text/javascript" th:src="@{/assets/js/jquery-migrate-1.2.1.min.js}"></script>
+<script type="text/javascript" th:src="@{/assets/bootstrap/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/assets/js/jquery.validate.min.js}"></script>
+<script type="text/javascript" th:src="@{/assets/js/bootstrap-datepicker.js}"></script>
+<script type="text/javascript" th:src="@{/assets/js/icheck.min.js}"></script>
+<script type="text/javascript" th:src="@{/assets/js/owl.carousel.js}"></script>
+<script type="text/javascript" th:src="@{/assets/js/masonry.pkgd.min.js}"></script>
+
+<script type="text/javascript" th:src="@{/assets/js/maps.js}"></script>
+<script type="text/javascript" th:src="@{/assets/js/custom.js}"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Vendor js -->
+<script th:src="@{/assets_admin/js/vendor.min.js}"></script>
+
+<!-- Plugin js-->
+<script th:src="@{/assets_admin/libs/parsleyjs/parsley.min.js}"></script>
+
+<!-- Validation init js-->
+<script th:src="@{/assets_admin/js/pages/form-validation.init.js}"></script>
+
+<!-- App js -->
+<script th:src="@{/assets_admin/js/app.min.js}"></script>
+<script>
+    const host = "https://timtromoi.com/";
+    // const host = "http://localhost:8080/";
+    let provinceTest = -1;
+    var callAPI = (api) => {
+        return axios.get(api)
+            .then((response) => {
+                renderDataProvince(response.data.provinces, "province");
+            });
+    }
+    callAPI(host + "province");
+
+    var callApiDistrict = (api) => {
+        return axios.get(api)
+            .then((response) => {
+                renderDataDistrict(response.data.districts, "district");
+            });
+    }
+    var callApiWard = (api) => {
+        return axios.get(api)
+            .then((response) => {
+                renderDataWard(response.data.wards, "ward");
+            });
+    }
+    var renderDataProvince = (array, select) => {
+        let row = ' <option disable value="">Select</option>';
+        array.forEach(element => {
+            row += `<option value="${element.provinceId}">${element.name}</option>`;
+        });
+        document.querySelector("#" + select).innerHTML = row;
+    }
+    var renderDataDistrict = (array, select) => {
+        let row = ' <option disable value="">Select</option>';
+        array.forEach(element => {
+            row += `<option value="${element.districtId}">${element.name}</option>`;
+        });
+        document.querySelector("#" + select).innerHTML = row;
+    }
+    var renderDataWard = (array, select) => {
+        let row = ' <option disable value="">Select</option>';
+        array.forEach(element => {
+            row += `<option value="${element.wardId}">${element.name}</option>`;
+        });
+        document.querySelector("#" + select).innerHTML = row;
+    }
+
+    $("#province").change(() => {
+        const selectedProvinceValue = $("#province").val();
+        const selectedProvinceText = $("#province option:selected").text();
+        provinceTest = selectedProvinceValue;
+        callApiDistrict(host + "p/" + selectedProvinceValue);
+
+        console.log(host + "p/" + selectedProvinceValue);
+        document.getElementById('provinceName').value = selectedProvinceText;
+
+    });
+    $("#district").change(() => {
+        const selectedDistrictValue = $("#district").val();
+        const selectedDistrictText = $("#district option:selected").text();
+
+        callApiWard(host + "p/" + provinceTest + "/d/" + selectedDistrictValue);
+
+        console.log(host + "p/" + provinceTest + "/d/" + selectedDistrictValue);
+        document.getElementById('districtName').value = selectedDistrictText;
+
+    });
+    $("#ward").change(() => {
+        const selectedWardValue = $("#ward").val();
+        const selectedWardText = $("#ward option:selected").text();
+        console.log("Ward Value: " + selectedWardValue);
+        console.log("Ward Text: " + selectedWardText);
+        document.getElementById('wardName').value = selectedWardText;
+    })
+
+    let province = document.getElementById('province');
+    let district = document.getElementById('district');
+    let ward = document.getElementById('ward');
+    document.getElementById('provinceName').addEventListener('click', () => {
+        document.getElementById('provinceName').style.display = "none";
+        document.getElementById('districtName').style.display = "none";
+        document.getElementById('wardName').style.display = "none";
+
+        document.getElementById('province').style.display = "block";
+        document.getElementById('district').style.display = "block";
+        document.getElementById('ward').style.display = "block";
+    });
+
+    // Lấy phần tử input và small số đt
+    const inputPhone = document.getElementById('phone');
+    const errorPhone = inputPhone.nextElementSibling;
+
+    // Sự kiện blur khỏi input
+    inputPhone.addEventListener('blur', () => {
+
+        // Nếu không thỏa mãn pattern
+        if (!inputPhone.value.match(inputPhone.pattern)) {
+            errorPhone.textContent = 'Số điện thoại gồm 10 số';
+        } else {
+            errorPhone.textContent = ''; // Clear message
+        }
+    });
+
+    // Lấy phần tử input và small email
+    const inputMail = document.getElementById('email');
+    const errorMail = inputMail.nextElementSibling;
+
+    // Sự kiện blur khỏi input
+    inputMail.addEventListener('blur', () => {
+
+        // Nếu không thỏa mãn pattern
+        if (!inputMail.value.match(inputMail.pattern)) {
+            errorMail.textContent = 'Email có dạng "manhhd@gmail.com"';
+        } else {
+            errorMail.textContent = ''; // Clear message
+        }
+    });
+
+    // Lấy phần tử input và small firstName
+    const inputFirstName = document.getElementById('firstName');
+    const errorFirstName = inputFirstName.nextElementSibling;
+
+    // Sự kiện blur khỏi input
+    inputFirstName.addEventListener('blur', () => {
+
+        // Nếu không thỏa mãn pattern
+        if (!inputFirstName.value.match(inputFirstName.pattern)) {
+            errorFirstName.textContent = 'tên không chứa số và kí tự đặc biệt';
+        } else {
+            errorFirstName.textContent = ''; // Clear message
+        }
+    });
+
+    // Lấy phần tử input và small lastName
+    const inputLastName = document.getElementById('lastName');
+    const errorLastName = inputLastName.nextElementSibling;
+
+    // Sự kiện blur khỏi input
+    inputLastName.addEventListener('blur', () => {
+
+        // Nếu không thỏa mãn pattern
+        if (!inputLastName.value.match(inputLastName.pattern)) {
+            errorLastName.textContent = 'tên không chứa số và kí tự đặc biệt';
+        } else {
+            errorLastName.textContent = ''; // Clear message
+        }
+    });
+
+    document.getElementById("dob").addEventListener("change", function () {
+        var dob = new Date(this.value);
+
+        var today = new Date();
+
+        var age = today.getFullYear() - dob.getFullYear();
+
+        if (age >= 18) {
+            document.querySelector('form').removeAttribute("onsubmit");
+        } else {
+            document.querySelector('form').setAttribute("onsubmit", "return false;");
+            alert("You must be 18 or older to enter!");
+        }
+    });
+</script>
+</body>
+</html>

@@ -2,6 +2,7 @@ package com.roomfindingsystem.service.impl;
 
 
 
+import com.roomfindingsystem.dto.FeedbackDtoAdmin;
 import com.roomfindingsystem.dto.FeedbackHomeDto;
 import com.roomfindingsystem.dto.FeedbackListAdminDto;
 import com.roomfindingsystem.entity.FeedbackEntity;
@@ -28,9 +29,25 @@ public class FeedbackServiceImpl implements FeedbackService {
 
 
     @Override
-    public List<FeedbackDto> getFeedbackByHouseId(int houseId) {
-        return feedbackRepository.findFeedbackDtosByHouseId(houseId);
+    public List<FeedbackDto> getFeedbackByHouseId(int houseId, List<Boolean> status) {
+        return feedbackRepository.findFeedbackDtosByHouseId(houseId, status);
     }
+
+    @Override
+    public List<FeedbackDtoAdmin> getFeedback(List<Boolean> status) {
+        return feedbackRepository.findFeedbackDtos(status);
+    }
+
+    @Override
+    public List<FeedbackDto> getFeedbackByHouseIdAndStar(int houseId, int star, List<Boolean> status) {
+        return feedbackRepository.findFeedbackDtosByHouseIdAndStar(houseId, star, status);
+    }
+
+    @Override
+    public List<FeedbackDtoAdmin> getFeedbackByStar(int star, List<Boolean> status) {
+        return feedbackRepository.findFeedbackDtosByStar(star, status);
+    }
+
     @Override
     public List<FeedbackHomeDto> viewTop4Home() {
         List<FeedbackHomeDto> list = new ArrayList<>();
@@ -68,5 +85,16 @@ public class FeedbackServiceImpl implements FeedbackService {
     @Override
     public void deleteByHouseIdAndMemberId(int houseId, int memberId) {
         feedbackRepository.deleteByHouseIdAndMemberId(houseId, memberId);}
+
+    @Override
+    public void updateStatusToTrue(int feedbackId) {
+        feedbackRepository.updateStatusToTrue(feedbackId);
+    }
+
+    @Override
+    public void updateStatusToFalse(int feedbackId) {
+        feedbackRepository.updateStatusToFalse(feedbackId);
+
+    }
 
 }

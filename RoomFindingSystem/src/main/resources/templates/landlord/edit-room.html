@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Thông tin phòng</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description"/>
+    <meta content="Coderthemes" name="author"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+    <link href="/assets/fonts/font-awesome.css" rel="stylesheet" type="text/css">
+    <link href="/assets/fonts/elegant-fonts.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/assets/css/owl.carousel.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="/assets_admin/images/favicon.ico">
+
+    <link href="/assets_admin/libs/dropzone/dropzone.min.css" rel="stylesheet" type="text/css"/>
+    <!-- App css -->
+    <link href="/assets_admin/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets_admin/css/icons.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets_admin/css/app.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets_admin/css/file-upload.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets_admin/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css"/>
+    <style>
+        .input-number .change-button.plus {
+            display: none;
+        }
+
+        .input-number .change-button.minus {
+            display: none;
+        }
+
+        .file-upload-previews .MultiFile-remove:after {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Begin page -->
+<div id="page-wrapper">
+
+    <div th:replace="~{header :: headerSection}"></div>
+
+    <div class="page-content">
+        <div class="container">
+            <!-- Start Content-->
+            <div class="main-content">
+                <div class="row">
+                    <div class="col-lg">
+                        <div class="card-box">
+                            <h4 class="page-title">Thông tin phòng</h4>
+                            <form class="parsley-examples" action="#" id="myForm" th:action="@{/landlord/room/update}"
+                                  th:object="${room}" method="post" enctype="multipart/form-data"><input type="hidden"
+                                                                                                         th:field="*{roomId}">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Phòng</label>
+                                            <input type="text" class="form-control" required
+                                                   placeholder="P101" th:field="*{roomName}"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Diện tích</label>
+                                            <div>
+                                                <input type="number" id="area" class="form-control" required
+                                                       placeholder="20" th:field="*{area}"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Giá</label>
+                                            <div>
+                                                <input type="number" class="form-control" required
+                                                       placeholder="2.000.000" th:field="*{price}"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <label>Mô tả chi tiết</label>
+                                            <textarea type="text" class="form-control" rows="5"
+                                                      placeholder="Nhập thêm thông tin cho phòng"
+                                                      th:field="*{description}"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Loại phòng</label>
+                                            <div>
+                                                <select class="form-select form-control" th:field="*{typeId}"
+                                                        aria-label="Default select example">
+                                                    <option th:each="type : ${types}" th:value="${type.typeId}"
+                                                            th:utext="${type.typeName}"
+                                                            th:selected="${room.typeName == type.typeName}"/>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Trạng thái</label>
+                                            <div>
+                                                <select class="form-control" id="status" name="status"
+                                                        th:field="*{status}">
+                                                    <option value="ACTIVE" th:selected="${room.status == 'ACTIVE'}">
+                                                        Phòng
+                                                        trống
+                                                    </option>
+                                                    <option value="INACTIVE"
+                                                            th:selected="${room.status == 'INACTIVE'}">
+                                                        Hết phòng
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-form-label">Dịch vụ</label>
+                                    <div style="display: flex; flex-wrap: wrap;">
+                                        <div class="checkbox checkbox-primary col-2"
+                                             th:each="listService : ${listService}" th:field="*{services}"
+                                             style="padding-left: 10px">
+                                            <input th:id="${listService.serviceName}" type="checkbox"
+                                                   style="position: relative"
+                                                   name="service" th:value="${listService.serviceId}"
+                                                   th:checked="${#lists.contains(listChecked,''+ listService.serviceId+'')}">
+                                            <label th:for="${listService.serviceName}"
+                                                   th:text="${listService.serviceName}">
+                                            </label>
+                                        </div>
+
+                                    </div>
+                                    <label class="col-2 col-form-label"></label>
+                                    <div class="col-10" style="padding-left: 0">
+                                        <button type="button" class="btn btn-primary btn-xs" id="houseService"
+                                        >Thêm dịch vụ
+                                        </button>
+                                    </div>
+
+                                </div>
+                                <!-- Pictures -->
+                                <div class="form-group">
+                                    <label class="col-form-label">Ảnh</label>
+                                    <div>
+                                        <div class="file-upload-previews">
+                                            <div class="MultiFile-label" id="imageContainer"
+                                                 th:each="image, iterStat : ${room.imgs}">
+                                                <a class="MultiFile-remove"
+                                                   th:href="@{'/admin/room/deleteImage/' + ${room.roomId} + '/' + ${image.imageId}}">x</a>
+                                                <span class="MultiFile-label"
+                                                      title="File selected: abc.png">
+                                                            <img th:src="${image.imageLink}" alt="Ảnh" id="imagePreview"
+                                                                 style="width: 100px;height: 100px">
+                                                        </span>
+                                            </div>
+                                        </div>
+                                        <div class="file-upload">
+                                            <input type="file" name="file"
+                                                   class="file-upload-input with-preview" multiple
+                                                   title="Click to add files" maxlength="10"
+                                                   accept="gif|jpg|png">
+                                            <span>Nhấn để thêm ảnh</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-0">
+                                    <div>
+                                        <button type="submit" class="btn btn-gradient waves-effect waves-light">
+                                            Lưu thay đổi
+                                        </button>
+                                        <button type="reset" class="btn btn-light waves-effect ml-1">
+                                            <a th:href="@{'/landlord/room/listRoom/'+${room.houseId}}">Danh sách phòng</a>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- end row -->
+
+
+            </div> <!-- end container-fluid -->
+
+        </div> <!-- end content -->
+        <div id="inputType" style="display: none">
+            <form th:action="@{/admin/house-manager/addType}" method="post">
+                <div class="swal2-container swal2-center swal2-fade swal2-shown" style="overflow-y: auto;">
+                    <div aria-labelledby="swal2-title" aria-describedby="swal2-content"
+                         class="swal2-popup swal2-modal swal2-show" tabindex="-1" role="dialog" aria-live="assertive"
+                         aria-modal="true" style="display: flex;">
+                        <div class="swal2-header">
+                            <ul class="swal2-progress-steps" style="display: none;"></ul>
+                            <div class="swal2-icon swal2-error" style="display: none;"><span class="swal2-x-mark"><span
+                                    class="swal2-x-mark-line-left"></span><span
+                                    class="swal2-x-mark-line-right"></span></span>
+                            </div>
+                            <div class="swal2-icon swal2-question" style="display: none;"></div>
+                            <div class="swal2-icon swal2-warning" style="display: none;"></div>
+                            <div class="swal2-icon swal2-info" style="display: none;"></div>
+                            <div class="swal2-icon swal2-success" style="display: none;">
+                                <div class="swal2-success-circular-line-left"></div>
+                                <span class="swal2-success-line-tip"></span> <span
+                                    class="swal2-success-line-long"></span>
+                                <div class="swal2-success-ring"></div>
+                                <div class="swal2-success-fix"></div>
+                                <div class="swal2-success-circular-line-right"></div>
+                            </div>
+                            <img class="swal2-image" style="display: none;">
+                            <h2 class="swal2-title" id="swal2-title" style="display: flex;">Vui lòng nhập thể loại
+                                mới</h2>
+                            <button type="button" class="swal2-close" aria-label="Close this dialog"
+                                    style="display: none;">
+                                ×
+                            </button>
+                            <input name="houseID" th:value="${houseID}" type="hidden">
+                            <input autocapitalize="off" class="swal2-input" required placeholder="Nhập thể loại..."
+                                   type="text"
+                                   style="display: flex;" name="newType">
+                        </div>
+
+                        <div class="swal2-actions" style="display: flex;">
+                            <button type="submit" class="swal2-confirm swal2-styled" aria-label=""
+                                    style="display: inline-block; border-left-color: rgb(48, 133, 214); border-right-color: rgb(48, 133, 214);">
+                                Lưu
+                            </button>
+                            <button type="button" class="swal2-cancel swal2-styled" aria-label="" onclick="closeInput()"
+                                    style="display: inline-block;">Đóng
+                            </button>
+                        </div>
+                        <div class="swal2-footer" style="display: none;"></div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div id="inputService" style="display: none">
+            <form th:action="@{/admin/house-manager/addService}" method="post">
+                <div class="swal2-container swal2-center swal2-fade swal2-shown" style="overflow-y: auto;">
+                    <div aria-labelledby="swal2-title" aria-describedby="swal2-content"
+                         class="swal2-popup swal2-modal swal2-show" tabindex="-1" role="dialog" aria-live="assertive"
+                         aria-modal="true" style="display: flex;">
+                        <div class="swal2-header">
+                            <ul class="swal2-progress-steps" style="display: none;"></ul>
+                            <div class="swal2-icon swal2-error" style="display: none;"><span class="swal2-x-mark"><span
+                                    class="swal2-x-mark-line-left"></span><span
+                                    class="swal2-x-mark-line-right"></span></span>
+                            </div>
+                            <div class="swal2-icon swal2-question" style="display: none;"></div>
+                            <div class="swal2-icon swal2-warning" style="display: none;"></div>
+                            <div class="swal2-icon swal2-info" style="display: none;"></div>
+                            <div class="swal2-icon swal2-success" style="display: none;">
+                                <div class="swal2-success-circular-line-left"></div>
+                                <span class="swal2-success-line-tip"></span> <span
+                                    class="swal2-success-line-long"></span>
+                                <div class="swal2-success-ring"></div>
+                                <div class="swal2-success-fix"></div>
+                                <div class="swal2-success-circular-line-right"></div>
+                            </div>
+                            <img class="swal2-image" style="display: none;">
+                            <h2 class="swal2-title" style="display: flex;">Vui lòng nhập dịch vụ mới</h2>
+                            <button type="button" class="swal2-close" aria-label="Close this dialog"
+                                    style="display: none;">
+                                ×
+                            </button>
+                            <input name="houseID" th:value="${houseID}" type="hidden">
+                            <input autocapitalize="off" class="swal2-input" required placeholder="Nhập dịch vụ..."
+                                   type="text"
+                                   style="display: flex;" name="newService">
+                        </div>
+
+                        <div class="swal2-actions" style="display: flex;">
+                            <button type="submit" class="swal2-confirm swal2-styled" aria-label=""
+                                    style="display: inline-block; border-left-color: rgb(48, 133, 214); border-right-color: rgb(48, 133, 214);">
+                                Lưu
+                            </button>
+                            <button type="button" class="swal2-cancel swal2-styled" aria-label="" onclick="closeInput()"
+                                    style="display: inline-block;">Đóng
+                            </button>
+                        </div>
+                        <div class="swal2-footer" style="display: none;"></div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Footer Start -->
+        <div th:replace="~{footer :: footerSection}"></div>
+        <!-- end Footer -->
+
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- End Page content -->
+    <!-- ============================================================== -->
+
+</div>
+<!-- END wrapper -->
+
+<!-- /Right-bar -->
+<script>
+
+    function closeInput() {
+        // Ẩn khối div và làm mờ phần đằng sau khi nhấn nút Close
+        var inputType = document.getElementById('inputType');
+        var overlay = document.getElementById('overlay');
+        var inputService = document.getElementById('inputService');
+
+        inputService.style.display = 'none';
+        inputType.style.display = 'none';
+        overlay.style.display = 'none';
+    }
+
+    document.getElementById('houseService').addEventListener('click', function () {
+        // Hiển thị khối div và làm mờ phần đằng sau khi click vào nút "Click me"
+        var inputService = document.getElementById('inputService');
+        var overlay = document.getElementById('overlay');
+
+        inputService.style.display = 'block';
+        overlay.style.display = 'block';
+    });
+
+    document.getElementById('houseType').addEventListener('click', function () {
+        // Hiển thị khối div và làm mờ phần đằng sau khi click vào nút "Click me"
+        var inputType = document.getElementById('inputType');
+        var overlay = document.getElementById('overlay');
+
+        inputType.style.display = 'block';
+        overlay.style.display = 'block';
+    });
+</script>
+<!-- Right bar overlay-->
+<div class="rightbar-overlay"></div>
+<script src="/assets_admin/js/app.min.js"></script>
+<!-- Vendor js -->
+<script src="/assets_admin/js/vendor.min.js"></script>
+<!-- Plugins js -->
+<script src="/assets_admin/libs/dropzone/dropzone.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+<script type="text/javascript" src="/assets/js/jquery-2.2.1.min.js"></script>
+<script type="text/javascript" src="/assets/js/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="/assets/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/assets/js/icheck.min1.js"></script>
+<script type="text/javascript" src="/assets/js/jQuery.MultiFile.min.js"></script>
+<script type="text/javascript" src="/assets/js/custom.js"></script>
+<script>
+    let roomId = document.querySelector('input[name="roomId"]').value;
+    document.querySelectorAll('.delete-button').forEach(function (button) {
+        button.addEventListener('click', function () {
+            let imageId = this.getAttribute('data-imageId');
+            if (confirm("Are you sure you want to delete this image?")) {
+                window.location.href = '/room/deleteImage/' + roomId + "/" + imageId;
+            }
+        });
+    });
+    $(document).ready(function () {
+        // Customize Dropzone.js options here.
+        Dropzone.options.myAwesomeDropzone = {
+            url: "/upload", // Change this to the correct URL
+            paramName: "file", // Name of the file input field
+            maxFilesize: 5, // Maximum file size in MB
+            maxFiles: 10, // Maximum number of files
+            acceptedFiles: "image/*", // Restrict to image files
+            addRemoveLinks: true, // Display remove links
+            dictRemoveFile: "Remove", // Text for remove link
+
+            // Define a success callback for when files are uploaded successfully
+            success: function (file, response) {
+                // Handle the server response, if needed
+            },
+
+            // Define an addedfile event handler
+            addedfile: function (file) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    var imageElement = document.createElement("img");
+                    imageElement.src = e.target.result;
+                    imageElement.classList.add("preview-image");
+                    var imagePreviewContainer = document.querySelector(".image-preview");
+                    imagePreviewContainer.appendChild(imageElement);
+                };
+                reader.readAsDataURL(file);
+            },
+
+            // Define a removedfile event handler
+            removedfile: function (file) {
+                var imagePreviewContainer = document.querySelector(".image-preview");
+                var previewImages = imagePreviewContainer.getElementsByClassName("preview-image");
+                for (var i = 0; i < previewImages.length; i++) {
+                    if (previewImages[i].src === file.dataURL) {
+                        imagePreviewContainer.removeChild(previewImages[i]);
+                        break;
+                    }
+                }
+            }
+        };
+    });
+
+</script>
+</body>
+</html>

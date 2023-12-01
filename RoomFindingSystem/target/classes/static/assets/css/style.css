@@ -26,6 +26,8 @@ Body copy:		'Lato', sans-serif; 14px;
 Headers:		'Lato', sans-serif;
 
 -------------------------------------------------------------------*/
+
+
 /* 1. Header */
 #page-header header {
   -moz-box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.07);
@@ -359,7 +361,7 @@ body {
   background-color: #f6f6f4;
   color: #1f1f1f;
   font-size: 14px;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Arial', sans-serif;
   position: relative;
 }
 
@@ -1407,6 +1409,7 @@ ul.half li {
 }
 .gallery-carousel .gallery-item .description {
   padding: 20px;
+
 }
 .gallery-carousel .gallery-item .description h3 {
   color: #488f3e;
@@ -1416,6 +1419,13 @@ ul.half li {
 }
 .gallery-carousel .gallery-item .description p {
   margin: 10px 0 20px 0;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: 3; /* Số dòng tối đa bạn muốn hiển thị */
+  text-overflow: ellipsis;
+  display: -webkit-box;
+
+  /*white-space: nowrap;*/
 }
 .gallery-carousel .owl-prev, .gallery-carousel .owl-next {
   -moz-box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.07);
@@ -4871,6 +4881,7 @@ body::before {
   }
   .gallery-carousel .gallery-item .description {
     padding: 15px;
+
   }
   .gallery-carousel .gallery-item .description h3 {
     margin-top: 0;

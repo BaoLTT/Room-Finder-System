@@ -1,12 +1,20 @@
 package com.roomfindingsystem.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @jakarta.persistence.Table(name = "favourite", schema = "room_finding_system", catalog = "")
 public class FavouriteEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,72 +22,24 @@ public class FavouriteEntity {
     @jakarta.persistence.Column(name = "FavouriteID")
     private int favouriteId;
 
-    public int getFavouriteId() {
-        return favouriteId;
-    }
-
-    public void setFavouriteId(int favouriteId) {
-        this.favouriteId = favouriteId;
-    }
 
     @Basic
     @Column(name = "HouseID")
     private int houseId;
 
-    public int getHouseId() {
-        return houseId;
-    }
-
-    public void setHouseId(int houseId) {
-        this.houseId = houseId;
-    }
-
-    @Basic
-    @Column(name = "RoomID")
-    private int roomId;
-
-    public int getRoomId() {
-        return roomId;
-    }
-
-    public void setRoomId(int roomId) {
-        this.roomId = roomId;
-    }
-
     @Basic
     @Column(name = "UserID")
     private int userId;
 
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
 
     @Basic
     @Column(name = "Created_Date")
     private LocalDate createdDate;
+    @Basic
+    @Column(name = "status")
+    private int status;
 
-    public LocalDate getCreatedDate() {
-        return createdDate;
-    }
 
-    public void setCreatedDate(LocalDate createdDate) {
-        this.createdDate = createdDate;
-    }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        FavouriteEntity that = (FavouriteEntity) o;
-        return favouriteId == that.favouriteId && houseId == that.houseId && roomId == that.roomId && userId == that.userId && Objects.equals(createdDate, that.createdDate);
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(favouriteId, houseId, roomId, userId, createdDate);
-    }
 }

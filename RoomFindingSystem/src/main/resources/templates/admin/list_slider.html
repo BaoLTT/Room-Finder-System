@@ -3,7 +3,8 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="utf-8"/>
-    <title>List Room</title>
+    <title>Danh sách slider</title>
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description"/>
     <meta content="Coderthemes" name="author"/>
@@ -20,6 +21,46 @@
     <link th:href="@{/assets_admin/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
     <link th:href="@{/assets_admin/css/icons.min.css}" rel="stylesheet" type="text/css"/>
     <link th:href="@{/assets_admin/css/app.min.css}" rel="stylesheet" type="text/css"/>
+
+    <style>
+        @media (min-width: 1200px) {
+
+            .image-slider img {
+                height: 220px;
+            }
+        }
+        @media (min-width: 992px) and (max-width: 1200px) {
+
+            .image-slider img {
+                height: 165px;
+            }
+        }
+        @media (min-width: 768px) and (max-width: 992px){
+
+            .image-slider img {
+                height: 125px;
+            }
+        }
+        @media (max-width: 768px){
+
+            .image-slider img {
+                height: auto;
+            }
+        }
+
+        .limited-height {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+
+            -webkit-line-clamp: 3; /* Số dòng tối đa bạn muốn hiển thị */
+                max-width: 300px; /* Đặt chiều rộng tối đa mong muốn */
+                overflow: hidden; /* Ẩn phần nội dung vượt quá chiều rộng đã đặt */
+                text-overflow: ellipsis; /* Hiển thị dấu "..." cho nội dung bị ẩn */
+                white-space: nowrap; /* Ngăn chặn xuống dòng để chỉ hiển thị trên một dòng */
+        }
+    </style>
+
+
 
 </head>
 
@@ -51,8 +92,8 @@
                     <div class="col-12">
                         <div class="card-box table-responsive">
                             <div class="d-flex justify-content-end">
-                                <button class="btn btn-success mb-1 "><a
-                                                                         style="color: white">Add New Room</a></button>
+                                <button class="btn btn-success mb-1 "><a th:href="@{/admin/sliderList/insert}"
+                                                                         style="color: white">Thêm mới slider</a></button>
                             </div>
                             <table id="datatable-buttons"
                                    class="table table-striped table-bordered dt-responsive nowrap"
@@ -63,9 +104,9 @@
                                     <th>Tiêu đề</th>
                                     <th>Ảnh</th>
                                     <th>Nội dung</th>
-                                    <th>Người viết</th>
+                                    <th>Tạo bởi(ID)</th>
                                     <th>Trạng thái</th>
-                                    <th>Actions</th>
+                                    <th></th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -76,25 +117,28 @@
                                     <td th:text="${slider.title}">
                                     </td>
 
-                                    <td th:text="${slider.imgLink}">
+                                    <td >
+                                        <div class="image-slider"><img th:src="${slider.imgLink}" ></div>
+
                                     </td>
 
-                                    <td th:text="${slider.content}">
+
+                                    <td >
+                                        <div class="limited-height" th:text="${slider.content}"></div>
                                     </td>
 
                                     <td th:text="${slider.createdBy}">
                                     </td>
 
-                                    <td th:text="${slider.status}">
+                                    <td>
+                                        <span th:if="${slider.status == '0'}">Không hoạt động</span>
+                                        <span th:if="${slider.status == '1'}">Hoạt động</span>
                                     </td>
 
 
                                     <td>
-                                        <a  class="btn btn-warning">Update</a>
-                                        |
-                                        <button class="btn btn-danger delete-button"
-                                                >Delete
-                                        </button>
+                                        <a th:href="@{/admin/sliderList/update/}+${slider.sliderid}"  class="btn btn-warning">Cập nhật</a>
+                                        <button class="btn btn-danger delete-button" th:onclick="'confirmDelete(' + ${slider.sliderid} + ')'" >Xóa</button>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -108,17 +152,12 @@
         </div> <!-- end content -->
 
 
-        <!-- Footer Start -->
-        <footer class="footer">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12">
-                        2017 - 2019 &copy; Abstack theme by <a href="">Coderthemes</a>
-                    </div>
 
-                </div>
-            </div>
-        </footer>
+
+
+
+        <!-- Footer Start -->
+        <div th:replace="admin/footer_admin :: admin_footer"></div>
         <!-- end Footer -->
 
     </div>
@@ -222,39 +261,57 @@
 <div class="rightbar-overlay"></div>
 
 <!-- Vendor js -->
-<script th:src="@{/assets_admin/js/vendor.min.js}"></script>
+<script src="/assets_admin/js/vendor.min.js"></script>
 
 <!-- Required datatable js -->
-<script th:src="@{/assets_admin/libs/datatables/jquery.dataTables.min.js}"></script>
-<script th:src="@{/assets_admin/libs/datatables/dataTables.bootstrap4.min.js}"></script>
+<script src="/assets_admin/libs/datatables/jquery.dataTables.min.js"></script>
+<script src="/assets_admin/libs/datatables/dataTables.bootstrap4.min.js"></script>
 <!-- Buttons examples -->
-<script th:src="@{/assets_admin/libs/datatables/dataTables.buttons.min.js}"></script>
-<script th:src="@{/assets_admin/libs/datatables/buttons.bootstrap4.min.js}"></script>
-<script th:src="@{/assets_admin/libs/jszip/jszip.min.js}"></script>
-<script th:src="@{/assets_admin/libs/pdfmake/pdfmake.min.js}"></script>
-<script th:src="@{/assets_admin/libs/pdfmake/vfs_fonts.js}"></script>
-<script th:src="@{/assets_admin/libs/datatables/buttons.html5.min.js}"></script>
-<script th:src="@{/assets_admin/libs/datatables/buttons.print.min.js}"></script>
+<script src="/assets_admin/libs/datatables/dataTables.buttons.min.js"></script>
+<script src="/assets_admin/libs/datatables/buttons.bootstrap4.min.js"></script>
+<script src="/assets_admin/libs/jszip/jszip.min.js"></script>
+<script src="/assets_admin/libs/pdfmake/pdfmake.min.js"></script>
+<script src="/assets_admin/libs/pdfmake/vfs_fonts.js"></script>
+<script src="/assets_admin/libs/datatables/buttons.html5.min.js"></script>
+<script src="/assets_admin/libs/datatables/buttons.print.min.js"></script>
 
 <!-- Responsive examples -->
-<script th:src="@{/assets_admin/libs/datatables/dataTables.responsive.min.js}"></script>
-<script th:src="@{/assets_admin/libs/datatables/responsive.bootstrap4.min.js}"></script>
+<script src="/assets_admin/libs/datatables/dataTables.responsive.min.js"></script>
+<script src="/assets_admin/libs/datatables/responsive.bootstrap4.min.js"></script>
 
 <!-- Datatables init -->
 <script src="/assets_admin/js/pages/datatables.init.js"></script>
 
 <!-- App js -->
-<script th:src="@{/assets_admin/js/app.min.js}"></script>
+<script src="/assets_admin/js/app.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
 <script>
-    document.querySelectorAll('.delete-button').forEach(function (button) {
-        button.addEventListener('click', function () {
-            let roomId = this.getAttribute('data-roomid');
-            if (confirm("Are you sure you want to delete this room?")) {
-                window.location.href = '/room/deleteRoom/' + roomId;
+    function confirmDelete(sliderId) {
+        // Sử dụng SweetAlert2 để hiển thị thông báo xác nhận
+        Swal.fire({
+            title: 'Bạn có chắc chắn muốn xóa không?',
+            text: 'Hành động này không thể hoàn tác!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Xóa',
+            cancelButtonText: 'Hủy bỏ'
+        }).then((result) => {
+            // Nếu người dùng nhấn vào nút xác nhận (Xóa)
+            if (result.isConfirmed) {
+
+
+                // Thực hiện xóa hoặc gửi yêu cầu xóa dữ liệu
+                window.location.href = '/admin/sliderList/delete/' + sliderId;
+                Swal.fire('Xóa thành công!', '', 'success');
             }
         });
-    });
+    }
 </script>
+
 
 </body>
 </html>

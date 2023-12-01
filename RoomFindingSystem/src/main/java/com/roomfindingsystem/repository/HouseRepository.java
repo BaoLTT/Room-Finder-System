@@ -1,14 +1,15 @@
 package com.roomfindingsystem.repository;
 
-import com.roomfindingsystem.entity.HousesEntity;
-
 
 import com.roomfindingsystem.dto.HouseDto;
 import com.roomfindingsystem.dto.HouseImageLink;
 import com.roomfindingsystem.dto.ServiceDto;
+import com.roomfindingsystem.entity.HousesEntity;
 import jakarta.persistence.Tuple;
+import jakarta.transaction.Transactional;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -20,13 +21,13 @@ import java.util.List;
 @SpringBootApplication
 public interface HouseRepository extends JpaRepository<HousesEntity, Integer> {
 
-    @Query(value = "SELECT h.houseid, h.house_name, t.type_name, a.address_details, w.name AS ward_name, d.name AS district_name, p.name AS province_name, (SELECT MIN(r.price) FROM room r WHERE r.houseid = h.houseid) AS minPrice," +
+    @Query(value = "SELECT h.houseid, h.house_name, t.type_name, a.address_details,h.star, w.name AS ward_name, d.name AS district_name, p.name AS province_name, (SELECT MIN(r.price) FROM room r WHERE r.houseid = h.houseid) AS minPrice," +
             " (SELECT GROUP_CONCAT(i.image_link) FROM house_images i WHERE i.houseid = h.houseid) AS Image_Link," +
+            " (SELECT GROUP_CONCAT(i.imageid) FROM house_images i WHERE i.houseid = h.houseid) AS Image_Id," +
             " SUBSTRING_INDEX( (SELECT GROUP_CONCAT(DISTINCT sd.service_name) FROM service_house sh" +
             "            LEFT JOIN service_detail sd ON sd.serviceid = sh.serviceid" +
             "            WHERE sh.houseid = h.houseid), ',', 2) AS Service_Name, h.last_modified_date," +
-            "(select count(roomid) from room r where r.houseid = h.houseid group by r.houseid)  as count_Room, " +
-            "(select count(likeid) from room_finding_system.like l where l.houseid = h.houseid group by l.houseid)  as like_House " +
+            "(select count(roomid) from room r where r.houseid = h.houseid AND r.statusid = 1 group by r.houseid)  as count_Room " +
             "FROM houses h " +
             "JOIN type_house t ON h.type_houseid = t.typeid " +
             "LEFT JOIN room r ON r.houseid = h.houseid " +
@@ -48,16 +49,15 @@ public interface HouseRepository extends JpaRepository<HousesEntity, Integer> {
             " AND h.type_houseid IN ?6 AND (" +
             "        SELECT COUNT(DISTINCT sh.serviceid) FROM service_house sh " +
             "        WHERE sh.houseid = h.houseid AND sh.serviceid IN ?7 LIMIT 2 ) = ?8 " +
-            "GROUP BY h.houseid, h.house_name, t.type_name, a.address_details, ward_name, district_name, province_name, h.last_modified_date LIMIT ?10 OFFSET ?9 ", nativeQuery = true)
+            "GROUP BY h.houseid, h.house_name, h.star, t.type_name, a.address_details, ward_name, district_name, province_name, h.last_modified_date LIMIT ?10 OFFSET ?9 ", nativeQuery = true)
     List<Tuple> findHouse(int min1, int max1, int min2, int max2, String houseName, List<Integer> type, List<Integer> service,int countService, int pageIndex, int pageSize);
 
-    @Query(value = "SELECT COUNT(*) FROM (SELECT h.houseid, h.house_name, t.type_name, a.address_details, w.name AS ward_name, d.name AS district_name, p.name AS province_name, (SELECT MIN(r.price) FROM room r WHERE r.houseid = h.houseid) AS minPrice," +
+    @Query(value = "SELECT COUNT(*) FROM (SELECT h.houseid, h.house_name, t.type_name, a.address_details, w.name AS ward_name, d.name AS district_name, p.name AS province_name,h.star, (SELECT MIN(r.price) FROM room r WHERE r.houseid = h.houseid) AS minPrice," +
             " (SELECT GROUP_CONCAT(i.image_link) FROM house_images i WHERE i.houseid = h.houseid) AS Image_Link," +
             " SUBSTRING_INDEX( (SELECT GROUP_CONCAT(DISTINCT sd.service_name) FROM service_house sh" +
             "            LEFT JOIN service_detail sd ON sd.serviceid = sh.serviceid" +
             "            WHERE sh.houseid = h.houseid), ',', 2) AS Service_Name, h.last_modified_date," +
-            "(select count(roomid) from room r where r.houseid = h.houseid group by r.houseid)  as count_Room, " +
-            "(select count(likeid) from room_finding_system.like l where l.houseid = h.houseid group by l.houseid)  as like_House " +
+            "(select count(roomid) from room r where r.houseid = h.houseid AND r.statusid = 1 group by r.houseid)  as count_Room " +
             "FROM houses h " +
             "JOIN type_house t ON h.type_houseid = t.typeid " +
             "LEFT JOIN room r ON r.houseid = h.houseid " +
@@ -79,10 +79,10 @@ public interface HouseRepository extends JpaRepository<HousesEntity, Integer> {
             " AND h.type_houseid IN ?6 AND (" +
             "        SELECT COUNT(DISTINCT sh.serviceid) FROM service_house sh " +
             "        WHERE sh.houseid = h.houseid AND sh.serviceid IN ?7 LIMIT 2 ) = ?8 " +
-            "GROUP BY h.houseid, h.house_name, t.type_name, a.address_details, ward_name, district_name, province_name, h.last_modified_date) as subquery", nativeQuery = true)
+            "GROUP BY h.houseid, h.house_name, h.star, t.type_name, a.address_details, ward_name, district_name, province_name, h.last_modified_date) as subquery", nativeQuery = true)
     int countHouse(int min1, int max1, int min2, int max2, String houseName, List<Integer> type, List<Integer> service,int countService);
 
-    @Query("SELECT new com.roomfindingsystem.dto.HouseDto( h.houseId, h.houseName,h.description,h.createdDate, u.lastName,u.firstName , u.phone,a.addressDetails, t.typeName ,p.name,d.name,w.name)\n" +
+    @Query("SELECT new com.roomfindingsystem.dto.HouseDto( h.houseId, h.houseName,h.description,h.createdDate, u.lastName,u.firstName , u.phone,a.addressDetails, t.typeName ,p.name,d.name,w.name, h.star)\n" +
             "FROM HousesEntity as h \n" +
             "left join UserEntity as u on h.userId = u.userId \n" +
             "left join AddressEntity as a on h.addressId = a.addressId\n" +
@@ -102,6 +102,9 @@ public interface HouseRepository extends JpaRepository<HousesEntity, Integer> {
     @Query("SELECT h from HousesEntity h join RoomEntity r on r.houseId = h.houseId where r.roomId=:roomid")
     HousesEntity findHouseByRoomId(int roomid);
 
+    @Query("SELECT h from HousesEntity h where h.userId=:userId")
+    List<HousesEntity> findHouseByMemberId(int userId);
+
     @Query(value = "SELECT houses.houseid FROM houses WHERE house_name = :name", nativeQuery = true)
     Integer findHousesEntityByHouseName(@Param("name") String name);
 
@@ -115,12 +118,40 @@ public interface HouseRepository extends JpaRepository<HousesEntity, Integer> {
             "LEFT JOIN province p ON a.provinceid = p.provinceid " +
             "LEFT JOIN district d ON a.districtid = d.districtid " +
             "LEFT JOIN ward w ON a.wardid = w.wardid " +
-            "GROUP BY h.houseid, h.house_name, t.type_name, a.address_details, ward_name, district_name, province_name, h.last_modified_by LIMIT 6 OFFSET 0 ", nativeQuery = true)
+            "GROUP BY h.houseid, h.house_name, t.type_name, a.address_details, ward_name, district_name, province_name, h.last_modified_by LIMIT 8 OFFSET 0 ", nativeQuery = true)
     List<Tuple> viewHouseInHome();
+
+    @Query(value = "SELECT u.userid,h.houseId, h.house_name,th.type_name,ad.address_details,pr.name AS province_name,d.name AS district_name,w.name AS ward_name ,\n" +
+            "(SELECT GROUP_CONCAT(i.image_link) FROM house_images i WHERE i.houseid = h.houseid) AS Image_Link, h.last_modified_date  \n" +
+            "FROM room_finding_system.favourite f\n" +
+            "join room_finding_system.user u on f.userid = u.userid\n" +
+            "join room_finding_system.houses h on f.houseid = h.houseid\n" +
+            "join room_finding_system.type_house th on h.type_houseid = th.typeid \n" +
+            "join room_finding_system.address ad on h.addressid = ad.addressid \n" +
+            "join room_finding_system.province pr on pr.provinceid = ad.provinceid\n" +
+            "join room_finding_system.district d on  d.districtid = ad.districtid \n" +
+            "join room_finding_system.ward w on ad.wardid = w.wardid where u.userid=?1  order by f.created_date desc;", nativeQuery = true)
+    List<Tuple> viewHouseInHomeInFavourite(int id);
 
     //admin
     @Query("select count(*) from HousesEntity")
     int countHouses();
+
+    @Transactional
+    @Modifying
+    @Query(value = "UPDATE room_finding_system.houses SET star = ?1 WHERE houseid = ?2", nativeQuery = true)
+    void updateStarHouse(double star, Integer houseId);
+
+
+//    @Query("select h from HousesEntity where houseId = ?1")
+    HousesEntity getHousesEntitiesByHouseId(int id);
+
+
+
+
+
+
+
 
 
 }

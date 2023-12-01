@@ -1,8 +1,12 @@
 package com.roomfindingsystem.controller.admin;
 
 
+import com.roomfindingsystem.entity.UserEntity;
 import com.roomfindingsystem.service.*;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,15 +31,25 @@ public class  AdminDashboardController {
     RoomService roomService;
 
     @Autowired
-    PostService postService;
+    SliderService sliderService;
 
     @Autowired
     ReportService reportService;
     @GetMapping("/dashboard")
-    public String getDashboard(Model model){
+    public String getDashboard(Model model, HttpServletRequest request){
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserEntity user = userService.findByEmail(email).get();
+
+        //         Lưu user vào session
+        HttpSession session = request.getSession();
+        session.setAttribute("user", user);
+
+//        if(!user.getRoleId().equals("ADMIN") && !user.getRoleId().equals("SUPER_ADMIN")){
+//            return "redirect:/login";
+//        }
         model.addAttribute("numberOfHouses", houseService.countHousesInAdmin());
         model.addAttribute("numberOfUsers", userService.countUserInAdmin());
-        model.addAttribute("numberOfPosts", postService.countPosts());
+        model.addAttribute("numberOfSliders", sliderService.countSliders());
         model.addAttribute("numberOfReports", reportService.countReports());
         model.addAttribute("roomStatusDto", roomService.getRoomStatusInAdminDashboard());
 
@@ -43,6 +57,7 @@ public class  AdminDashboardController {
         statusList.add(1);  statusList.add(2);  statusList.add(3);
 
         model.addAttribute("statusList", statusList);
+
         return "admin/adminDashboard";
     }
 
