@@ -70,10 +70,13 @@ public class HouseLandlordController {
         }
         List<TypeHouseEntity> listType = houseTypeService.findAll();
         List<ServiceDetailEntity> listService = serviceDetailService.getAllService();
+        house.setLatitude(21.0130252);
+        house.setLongitude(105.5239285);
         model.addAttribute("house",house);
         model.addAttribute("listType",listType);
         model.addAttribute("listService",listService);
         model.addAttribute("request",request);
+        model.addAttribute("key_map", gcsService.getMapKey());
         return "landlord/managerAdd";
     }
 
@@ -105,7 +108,8 @@ public class HouseLandlordController {
     }
 
     @PostMapping("/save")
-    public String saveHouse(@ModelAttribute(name = "house") HouseLandlordVo house, @RequestParam("file") MultipartFile[] files,HttpServletRequest request) throws IOException {
+    public String saveHouse(@ModelAttribute(name = "house") HouseLandlordVo house, @RequestParam("file") MultipartFile[] files,HttpServletRequest request,
+                            @RequestParam(name = "latitude1") Double latitude ,@RequestParam(name = "longitude1") Double longitude) throws IOException {
         AddressEntity address = new AddressEntity("a",house.getAddressDetail().trim(),house.getProvinceID(),house.getDistrictID(),house.getWardID());
         int addressID = addressService.insertAddress(address);
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -115,7 +119,18 @@ public class HouseLandlordController {
         house.setLastModifiedBy(user.getUserId());
         house.setStatus(2);
         //Set mặc định là đang xử lý
+        if(latitude==null&& longitude==null){
+            house.setLatitude(21.0130252);
+            house.setLongitude(105.5239285);
+        }
+        else{
+            house.setLatitude(latitude);
+            house.setLongitude(longitude);
+        }
+
+
         houseManagerService.insertHouse(house,addressID,files);
+
 
 
         return  "redirect:/manager";

@@ -170,8 +170,7 @@ public class AdminManageHouseController {
     }
 
     @PostMapping("/house-manager/save")
-    public String saveHouse(@ModelAttribute(name = "house") HouseLandlordVo house, @RequestParam("file") MultipartFile[] files, Model model, HttpSession httpSession, HttpServletRequest request
-                            ) throws IOException {
+    public String saveHouse(@ModelAttribute(name = "house") HouseLandlordVo house, @RequestParam("file") MultipartFile[] files, Model model, HttpSession httpSession, HttpServletRequest request) throws IOException {
         AddressEntity address = new AddressEntity("a",house.getAddressDetail().trim(),house.getProvinceID(),house.getDistrictID(),house.getWardID());
         int addressID = addressService.insertAddress(address);
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -184,10 +183,7 @@ public class AdminManageHouseController {
 
 
         //them toa do cua map
-//        HousesEntity housesEntity = houseService.getHouseById(house.getHouseID());
-//        housesEntity.setLatitude(latitude);
-//        housesEntity.setLongitude(longitude);
-//        houseService.saveHouse(housesEntity);
+
         return  "redirect:/admin/house-manager";
     }
 

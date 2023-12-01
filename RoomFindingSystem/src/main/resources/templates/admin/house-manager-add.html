@@ -103,26 +103,26 @@
                                             <div class="form-group row">
                                                 <label class="col-2 col-form-label">Hiện thị trên bản đồ</label>
                                                 <div class="col-10" id="map-item">
-                                                    <label>Vĩ độ</label>
-                                                    <input  id="latitude" name="latitude"
+
+                                                    <input  id="latitude" name="latitude" type="hidden"
                                                            th:value="${house.latitude}">
 
-                                                    <label>Kinh độ</label>
-                                                    <input  id="longitude" name="longitude"
+
+                                                    <input  id="longitude" name="longitude" type="hidden"
                                                            th:value="${house.longitude}">
 
                                                 </div>
                                             </div>
 
                                             <div class="form-group row">
-                                                <label class="col-2 col-form-label">Hiện thị trên bản đồ</label>
+                                                <label class="col-2 col-form-label"></label>
                                                 <div class="col-10" >
                                                     <label>Vĩ độ</label>
-                                                    <input th:field="*{latitude}" id="latitude1" name="latitude1"
+                                                    <input  id="latitude1" name="latitude1"
                                                            th:value="${house.latitude}">
 
                                                     <label>Kinh độ</label>
-                                                    <input th:field="*{longitude}" id="longitude1" name="longitude1"
+                                                    <input  id="longitude1" name="longitude1"
                                                            th:value="${house.longitude}">
 
                                                 </div>
