@@ -1,4 +1,4 @@
-package com.roomfindingsystem.controller;
+package com.roomfindingsystem.controller.landlord;
 
 import com.roomfindingsystem.dto.HouseLandlordVo;
 import com.roomfindingsystem.entity.*;
@@ -92,7 +92,6 @@ public class HouseLandlordController {
         List<ServiceDetailEntity> listService = serviceDetailService.getAllService();
 
         HouseLandlordVo  house = houseLandlordService.findHouseByID(houseid);
-        System.out.println(house.getListImage().get(0).getImageLink());
         List<String> listChecked = house.getService();
         System.out.println(listChecked);
                 model.addAttribute("house",house);

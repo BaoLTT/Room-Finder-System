@@ -71,14 +71,18 @@ public class HouseManagerServiceImpl implements HouseManagerService {
         housesEntity.setLastModifiedBy(house.getLastModifiedBy());
         housesEntity.setLastModifiedDate(createdDate);
         houseManagerRepository.save(housesEntity);
-        for(int i =0; i<house.getService().size();i++){
-            ServiceHouseEntity serviceHouseEntity = new ServiceHouseEntity();
-            serviceHouseEntity.setHouseId( housesEntity.getHouseId());
-            int serviceid = Integer.parseInt(house.getService().get(i));
-            serviceHouseEntity.setServiceId(serviceid);
+        List<String> service = house.getService();
+        if(service != null && !service.isEmpty()){
+            for(int i =0; i<house.getService().size();i++){
+                ServiceHouseEntity serviceHouseEntity = new ServiceHouseEntity();
+                serviceHouseEntity.setHouseId( housesEntity.getHouseId());
+                int serviceid = Integer.parseInt(house.getService().get(i));
+                serviceHouseEntity.setServiceId(serviceid);
 
-            serviceHouseRepository.save(serviceHouseEntity);
+                serviceHouseRepository.save(serviceHouseEntity);
+            }
         }
+
         int i = 1;
         for (MultipartFile file : files) {
             if (!file.isEmpty()) {

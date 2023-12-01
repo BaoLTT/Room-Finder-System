@@ -67,11 +67,6 @@ public class AdminManageHouseController {
         return "admin/house-manager";
     }
 
-    @GetMapping("/house-manager/delete/{houseid}")
-    public String deleteHouse(@PathVariable Integer houseid,HttpSession httpSession){
-        houseManagerService.deleteHouse(houseid);
-        return "redirect:/admin/house-manager";
-    }
 
     @PostMapping ("/house-manager/addType")
     public String addType(@RequestParam(name = "newType") String newType,HttpSession httpSession,HttpServletRequest request){
@@ -131,8 +126,6 @@ public class AdminManageHouseController {
         System.out.println(service);
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         UserEntity user = userService.findByEmail(email).get();
-        house.setUserID(user.getUserId());
-        house.setCreatedBy(user.getUserId());
         house.setLastModifiedBy(user.getUserId());
         houseManagerService.updateHouse(house,house.getHouseID(),service,files);
 
@@ -175,7 +168,7 @@ public class AdminManageHouseController {
         int addressID = addressService.insertAddress(address);
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         UserEntity user = userService.findByEmail(email).get();
-        house.setUserID(user.getUserId());
+        house.setCreatedBy(user.getUserId());
         house.setLastModifiedBy(user.getUserId());
         house.setStatus(2);
         //Set mặc định là đang xử lý
