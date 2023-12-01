@@ -58,7 +58,7 @@
 <div id="page-wrapper">
 
     <!-- Topbar Start -->
-<!--    <div th:replace="~{header :: headerSection}"></div>-->
+    <div th:replace="~{header :: headerSection}"></div>
     <!-- Left Sidebar End -->
 
     <!-- ============================================================== -->
@@ -75,7 +75,7 @@
                         <div class="card-box table-responsive">
                             <h4 class="page-title">Danh sách đánh giá</h4>
                             <div class="d-flex justify-content-end">
-                                <button class="btn btn-success mb-1 ">
+
 <!--                                    <a th:href="@{/landlord/room/insertRoom}"-->
 <!--                                                                         style="color: white">Thêm phòng mới</a>-->
                                 </button>
@@ -87,10 +87,8 @@
                                         <span>Nhà trọ: </span>
                                         <select id="houseIdSelect" name="houseId" >
                                             <div th:each = "house : ${listHouse}">
-                                                <option th:text = "${house.getHouseName()}" th:value="${house.getHouseID()}" th:selected="${house.getHouseID()==houseId}"></option>
+                                                <option th:text = "${house.getHouseName()}" th:value="${house.getHouseId()}" th:selected="${house.getHouseId()==houseId}"></option>
                                             </div>
-
-
                                         </select>
                                     </div>
                                     <div class="col-md-3 fil">
