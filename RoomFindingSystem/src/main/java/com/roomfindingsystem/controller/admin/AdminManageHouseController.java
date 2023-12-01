@@ -160,12 +160,18 @@ public class AdminManageHouseController {
         model.addAttribute("listType",listType);
         model.addAttribute("listService",listService);
         HouseLandlordVo house = new HouseLandlordVo();
+        house.setLatitude(21.0130252);
+        house.setLongitude(105.5239285);
         model.addAttribute("house",house);
+        model.addAttribute("key_map", gcsService.getMapKey());
+
+
         return "admin/house-manager-add";
     }
 
     @PostMapping("/house-manager/save")
-    public String saveHouse(@ModelAttribute(name = "house") HouseLandlordVo house, @RequestParam("file") MultipartFile[] files, Model model, HttpSession httpSession, HttpServletRequest request) throws IOException {
+    public String saveHouse(@ModelAttribute(name = "house") HouseLandlordVo house, @RequestParam("file") MultipartFile[] files, Model model, HttpSession httpSession, HttpServletRequest request
+                            ) throws IOException {
         AddressEntity address = new AddressEntity("a",house.getAddressDetail().trim(),house.getProvinceID(),house.getDistrictID(),house.getWardID());
         int addressID = addressService.insertAddress(address);
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -175,6 +181,13 @@ public class AdminManageHouseController {
         house.setStatus(2);
         //Set mặc định là đang xử lý
         houseManagerService.insertHouse(house,addressID,files);
+
+
+        //them toa do cua map
+//        HousesEntity housesEntity = houseService.getHouseById(house.getHouseID());
+//        housesEntity.setLatitude(latitude);
+//        housesEntity.setLongitude(longitude);
+//        houseService.saveHouse(housesEntity);
         return  "redirect:/admin/house-manager";
     }
 
