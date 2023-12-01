@@ -41,6 +41,7 @@ public interface HouseRepository extends JpaRepository<HousesEntity, Integer> {
             "        (r.price BETWEEN ?3 AND ?4 )" +
             "    )" +
             "    AND r.price = (SELECT MIN(price) FROM room r2 WHERE r2.houseid = h.houseid)" +
+            "    AND h.status= 1 " +
             " AND (h.house_name LIKE '%' ?5 '%' " +
             "        OR p.name LIKE '%' ?5 '%' " +
             "        OR d.name LIKE '%' ?5 '%' " +
@@ -71,6 +72,7 @@ public interface HouseRepository extends JpaRepository<HousesEntity, Integer> {
             "        (r.price BETWEEN ?3 AND ?4 )" +
             "    )" +
             "    AND r.price = (SELECT MIN(price) FROM room r2 WHERE r2.houseid = h.houseid)" +
+            "    AND h.status= 1 " +
             " AND (h.house_name LIKE '%' ?5 '%' " +
             "        OR p.name LIKE '%' ?5 '%' " +
             "        OR d.name LIKE '%' ?5 '%' " +
