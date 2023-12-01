@@ -18,6 +18,12 @@
     <link href="/assets_admin/css/file-upload.css" rel="stylesheet" type="text/css" />
     <link href="/assets_admin/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css"/>
 
+    <style>
+        #map-item {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
 
 
 </head>
@@ -93,6 +99,35 @@
                                                     </select>
                                                 </div>
                                             </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-2 col-form-label">Hiện thị trên bản đồ</label>
+                                                <div class="col-10" id="map-item">
+
+<!--                                                    <input  id="latitude" name="latitude" type="hidden"-->
+<!--                                                           th:field="*{latitude}">-->
+
+
+<!--                                                    <input  id="longitude" name="longitude" type="hidden"-->
+<!--                                                           th:field="*{longitude}">-->
+
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-2 col-form-label"></label>
+                                                <div class="col-10" >
+                                                    <label>Vĩ độ</label>
+                                                    <input  id="latitude1" name="latitude1"
+                                                           th:field="*{latitude}">
+
+                                                    <label>Kinh độ</label>
+                                                    <input  id="longitude1" name="longitude1"
+                                                           th:field="*{longitude}">
+
+                                                </div>
+                                            </div>
+
                                             <div class="form-group row">
                                                 <label class="col-2 col-form-label">Ghi chú</label>
                                                 <div class="col-10">
@@ -379,6 +414,55 @@
 
 <!-- App js -->
 
+
+<script th:src="@{'https://maps.googleapis.com/maps/api/js?key='+${key_map}+'&callback=initMap'}" async defer></script>
+
+<script>
+    var map;
+    var marker;
+
+    function initMap() {
+        var latitude = parseFloat(document.getElementById('latitude1').value);
+        var longitude = parseFloat(document.getElementById('longitude1').value);
+
+        // Tạo map với vị trí ban đầu
+        map = new google.maps.Map(document.getElementById('map-item'), {
+            center: {lat: latitude, lng: longitude},
+            zoom: 16
+        });
+
+
+        //marker ban dau
+        marker = new google.maps.Marker({
+            position: {lat: latitude, lng: longitude},
+            map: map
+        });
+
+        // Thêm sự kiện click cho map
+        map.addListener('click', function (event) {
+            placeMarker(event.latLng);
+        });
+
+    }
+
+    function placeMarker(location) {
+
+        // Xóa marker cũ nếu có
+        if (marker) {
+            marker.setMap(null);
+        }
+
+        // Tạo marker mới
+        marker = new google.maps.Marker({
+            position: location,
+            map: map
+        });
+
+        // Hiển thị thông tin vị trí
+        document.getElementById('latitude1').value = location.lat();
+        document.getElementById('longitude1').value = location.lng();
+    }
+</script>
 
 
 </body>
