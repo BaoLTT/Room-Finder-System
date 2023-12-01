@@ -62,7 +62,8 @@
                 <div class="row">
                     <form id="form-profile" class="labels-uppercase" method="post" action="#"
                           th:action="@{/user/update}" th:object="${user}" enctype="multipart/form-data">
-                        <input type="hidden" id="userId" name="userId" th:value="*{userId}">
+                        <input type="hidden" id="userId" name="userId" th:field="*{userId}">
+                        <input type="hidden" id="roleId" name="roleId" th:field="*{role}">
                         <div class="row">
                             <!--Profile Picture-->
                             <div class="col-md-3 col-sm-3">
