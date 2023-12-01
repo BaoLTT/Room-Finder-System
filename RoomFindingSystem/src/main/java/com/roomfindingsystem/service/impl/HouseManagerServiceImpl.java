@@ -70,6 +70,9 @@ public class HouseManagerServiceImpl implements HouseManagerService {
         housesEntity.setUserId(house.getUserID());
         housesEntity.setLastModifiedBy(house.getLastModifiedBy());
         housesEntity.setLastModifiedDate(createdDate);
+        //map
+        housesEntity.setLatitude(house.getLatitude());
+        housesEntity.setLongitude(house.getLongitude());
         houseManagerRepository.save(housesEntity);
         List<String> service = house.getService();
         if(service != null && !service.isEmpty()){
@@ -114,7 +117,7 @@ public class HouseManagerServiceImpl implements HouseManagerService {
     public void updateHouse(HouseLandlordVo houses, int houseID,List<Integer> service,MultipartFile[] files) throws IOException {
         LocalDate localDate = LocalDate.now();
         List<HouseImagesEntity> houseImagesEntity = houseImageRepository.getImageByHouseId(houseID);
-        houseManagerRepository.updateHouse(houses.getHouseName(), houses.getTypeHouseID(),houses.getDescription(),houses.getLastModifiedBy(),localDate,houses.getStatus(),houseID);
+        houseManagerRepository.updateHouse(houses.getHouseName(), houses.getTypeHouseID(),houses.getDescription(),houses.getLastModifiedBy(),localDate,houses.getStatus(),houseID, houses.getLatitude(), houses.getLongitude());
         serviceHouseRepository.deleteByHouseId(houseID);
         if(!service.contains(0)){
             for(int i =0; i<service.size();i++){

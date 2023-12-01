@@ -149,30 +149,21 @@
                                             <div class="form-group row">
                                                 <label class="col-2 col-form-label">Hiện thị trên bản đồ</label>
                                                 <div class="col-10" id="map-item">
-                                                    <input th:if="${houseLocation.latitude == null}" id="latitude" name="latitude" type="hidden"
-                                                           value="21.0130252">
-                                                    <input th:if="${houseLocation.latitude != null}" id="latitude" name="latitude" type="hidden"
-                                                           th:value="${houseLocation.latitude}">
-                                                    <input th:if="${houseLocation.longitude == null}" id="longitude" name="longitude" type="hidden"
-                                                           value="105.5239285">
-                                                    <input th:if="${houseLocation.longitude != null}" id="longitude" name="longitude" type="hidden"
-                                                           th:value="${houseLocation.longitude}">
+
                                                 </div>
                                             </div>
 
                                             <div class="form-group row">
-                                                <label class="col-2 col-form-label">Hiện thị trên bản đồ</label>
+                                                <label class="col-2 col-form-label"></label>
                                                 <div class="col-10">
                                                     <label>Vĩ độ</label>
-                                                    <input th:if="${houseLocation.latitude == null}" id="latitude1" name="latitude1"
-                                                           value="21.0130252">
-                                                    <input th:if="${houseLocation.latitude != null}" id="latitude1" name="latitude1"
-                                                           th:value="${houseLocation.latitude}">
+
+                                                    <input th:if="${house.latitude != null}" id="latitude" name="latitude"
+                                                           th:field="*{latitude}">
                                                     <label>Kinh độ</label>
-                                                    <input th:if="${houseLocation.longitude == null}" id="longitude1" name="longitude1"
-                                                           value="105.5239285">
-                                                    <input th:if="${houseLocation.longitude != null}" id="longitude1" name="longitude1"
-                                                           th:value="${houseLocation.longitude}">
+
+                                                    <input th:if="${house.longitude != null}" id="longitude" name="longitude"
+                                                           th:field="*{longitude}">
                                                 </div>
                                             </div>
 
@@ -565,8 +556,8 @@
         });
 
         // Hiển thị thông tin vị trí
-        document.getElementById('latitude1').value = location.lat();
-        document.getElementById('longitude1').value = location.lng();
+        document.getElementById('latitude').value = location.lat();
+        document.getElementById('longitude').value = location.lng();
     }
 </script>
 
