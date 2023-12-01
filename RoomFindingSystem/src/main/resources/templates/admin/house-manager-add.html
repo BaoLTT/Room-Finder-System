@@ -118,11 +118,11 @@
                                                 <label class="col-2 col-form-label"></label>
                                                 <div class="col-10" >
                                                     <label>Vĩ độ</label>
-                                                    <input  id="latitude1" name="latitude1"
+                                                    <input  id="latitude" name="latitude"
                                                            th:field="*{latitude}">
 
                                                     <label>Kinh độ</label>
-                                                    <input  id="longitude1" name="longitude1"
+                                                    <input  id="longitude" name="longitude"
                                                            th:field="*{longitude}">
 
                                                 </div>
@@ -422,8 +422,8 @@
     var marker;
 
     function initMap() {
-        var latitude = parseFloat(document.getElementById('latitude1').value);
-        var longitude = parseFloat(document.getElementById('longitude1').value);
+        var latitude = parseFloat(document.getElementById('latitude').value);
+        var longitude = parseFloat(document.getElementById('longitude').value);
 
         // Tạo map với vị trí ban đầu
         map = new google.maps.Map(document.getElementById('map-item'), {
@@ -459,8 +459,8 @@
         });
 
         // Hiển thị thông tin vị trí
-        document.getElementById('latitude1').value = location.lat();
-        document.getElementById('longitude1').value = location.lng();
+        document.getElementById('latitude').value = location.lat();
+        document.getElementById('longitude').value = location.lng();
     }
 </script>
 

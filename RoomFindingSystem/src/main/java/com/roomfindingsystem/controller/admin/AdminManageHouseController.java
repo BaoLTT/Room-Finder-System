@@ -102,8 +102,7 @@ public class AdminManageHouseController {
 
         HouseLandlordVo  house = houseLandlordService.findHouseByID(houseid);
         List<String> listChecked = house.getService();
-        System.out.println(house.getLatitude());
-        System.out.println(house.getLongitude());
+
         model.addAttribute("house",house);
         model.addAttribute("houseID",house.getHouseID());
         model.addAttribute("listType",listType);
