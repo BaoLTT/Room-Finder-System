@@ -1,4 +1,4 @@
-package com.roomfindingsystem.controller;
+package com.roomfindingsystem.controller.landlord;
 
 import com.roomfindingsystem.dto.RoomDto;
 import com.roomfindingsystem.dto.ServiceDto;
@@ -41,8 +41,9 @@ public class RoomLandlordController {
     public String getFormUpdateRoom(@PathVariable("id") Integer id, Model model, HttpServletRequest request){
         RoomDto roomDto = roomService.findById(id);
         model.addAttribute("room", roomDto);
-        System.out.println(roomDto);
         model.addAttribute("types", roomTypeService.findAll());
+        model.addAttribute("listService", serviceDetailService.getAllService());
+        model.addAttribute("listChecked", roomDto.getServices());
         model.addAttribute("request",request);
         return "landlord/edit-room";
     }
@@ -74,7 +75,7 @@ public class RoomLandlordController {
         RoomDto roomDto = new RoomDto();
         model.addAttribute("room", roomDto);
         model.addAttribute("houseId", id);
-        model.addAttribute("services", serviceRoomService.findAll());
+        model.addAttribute("services", serviceDetailService.getAllService());
         model.addAttribute("types", roomTypeService.findAll());
         model.addAttribute("request",request);
         return "landlord/insert-room";

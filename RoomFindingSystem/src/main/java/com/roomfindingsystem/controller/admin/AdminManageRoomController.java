@@ -50,7 +50,6 @@ public class AdminManageRoomController {
             for (String serviceName : selects) {
                 ServiceDto serviceDto = new ServiceDto();
                 serviceDto.setServiceName(serviceName);
-                System.out.println(serviceName);
                 serviceDto.setServiceId(serviceDetailService.findByName(serviceName).getServiceId());
                 serviceDtos.add(serviceDto);
             }
