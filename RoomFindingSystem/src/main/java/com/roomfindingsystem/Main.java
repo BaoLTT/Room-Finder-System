@@ -20,10 +20,10 @@ import java.util.List;
 
 @SpringBootApplication
 public class Main implements CommandLineRunner {
-    @Autowired
-    FeedbackRepository feedbackRepository;
-    @Autowired
-    HouseRepository houseRepository;
+//    @Autowired
+//    FeedbackRepository feedbackRepository;
+//    @Autowired
+//    HouseRepository houseRepository;
 
 
     public static void main(String[] args) {
