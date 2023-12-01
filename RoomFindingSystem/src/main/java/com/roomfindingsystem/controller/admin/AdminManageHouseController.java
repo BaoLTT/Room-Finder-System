@@ -100,7 +100,8 @@ public class AdminManageHouseController {
 
         HouseLandlordVo  house = houseLandlordService.findHouseByID(houseid);
         List<String> listChecked = house.getService();
-        System.out.println(listChecked);
+        System.out.println(house.getLatitude());
+        System.out.println(house.getLongitude());
         model.addAttribute("house",house);
         model.addAttribute("houseID",house.getHouseID());
         model.addAttribute("listType",listType);
@@ -108,12 +109,11 @@ public class AdminManageHouseController {
         model.addAttribute("listService",listService);
 
         model.addAttribute("key_map", gcsService.getMapKey());
-        model.addAttribute("houseLocation", houseService.getHouseById(houseid));
+
         return "admin/house-manager-detail";
     }
     @PostMapping("/house-manager/update")
-    public String updateHouse(@ModelAttribute("house") HouseLandlordVo house,@RequestParam("file") MultipartFile[] files, @RequestParam(name = "service", required = false,defaultValue = "0") List<Integer> service, MultipartFile[] images, Model model, HttpSession httpSession,HttpServletRequest request,
-                              @RequestParam(name = "latitude1") Double latitude ,@RequestParam(name = "longitude1") Double longitude) throws IOException {
+    public String updateHouse(@ModelAttribute("house") HouseLandlordVo house,@RequestParam("file") MultipartFile[] files, @RequestParam(name = "service", required = false,defaultValue = "0") List<Integer> service, MultipartFile[] images, Model model, HttpSession httpSession,HttpServletRequest request)throws IOException {
         if(house.getProvinceID()==0){
             Optional<AddressEntity> newAddress = addressService.findbyId(house.getAddress());
             AddressEntity address = new AddressEntity("a",house.getAddressDetail(),newAddress.get().getProvinceId(),newAddress.get().getDistrictId(),newAddress.get().getWardId());
@@ -129,10 +129,7 @@ public class AdminManageHouseController {
         house.setLastModifiedBy(user.getUserId());
         houseManagerService.updateHouse(house,house.getHouseID(),service,files);
 
-        HousesEntity housesEntity = houseService.getHouseById(house.getHouseID());
-        housesEntity.setLatitude(latitude);
-        housesEntity.setLongitude(longitude);
-        houseService.saveHouse(housesEntity);
+
 
 
         return "redirect:/admin/house-manager";
@@ -171,11 +168,13 @@ public class AdminManageHouseController {
         house.setCreatedBy(user.getUserId());
         house.setLastModifiedBy(user.getUserId());
         house.setStatus(2);
+
         //Set mặc định là đang xử lý
         houseManagerService.insertHouse(house,addressID,files);
 
 
         //them toa do cua map
+
 
         return  "redirect:/admin/house-manager";
     }

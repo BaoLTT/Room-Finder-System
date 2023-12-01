@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -158,6 +159,7 @@ public class HouseLandlordController {
         HousesEntity housesEntity = houseService.getHouseById(house.getHouseID());
         housesEntity.setLatitude(latitude);
         housesEntity.setLongitude(longitude);
+        housesEntity.setLastModifiedDate(LocalDate.now());
         houseService.saveHouse(housesEntity);
 
 

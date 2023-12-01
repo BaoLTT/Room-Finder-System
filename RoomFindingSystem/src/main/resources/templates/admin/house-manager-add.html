@@ -104,12 +104,12 @@
                                                 <label class="col-2 col-form-label">Hiện thị trên bản đồ</label>
                                                 <div class="col-10" id="map-item">
 
-                                                    <input  id="latitude" name="latitude" type="hidden"
-                                                           th:value="${house.latitude}">
+<!--                                                    <input  id="latitude" name="latitude" type="hidden"-->
+<!--                                                           th:field="*{latitude}">-->
 
 
-                                                    <input  id="longitude" name="longitude" type="hidden"
-                                                           th:value="${house.longitude}">
+<!--                                                    <input  id="longitude" name="longitude" type="hidden"-->
+<!--                                                           th:field="*{longitude}">-->
 
                                                 </div>
                                             </div>
@@ -119,11 +119,11 @@
                                                 <div class="col-10" >
                                                     <label>Vĩ độ</label>
                                                     <input  id="latitude1" name="latitude1"
-                                                           th:value="${house.latitude}">
+                                                           th:field="*{latitude}">
 
                                                     <label>Kinh độ</label>
                                                     <input  id="longitude1" name="longitude1"
-                                                           th:value="${house.longitude}">
+                                                           th:field="*{longitude}">
 
                                                 </div>
                                             </div>
@@ -422,8 +422,8 @@
     var marker;
 
     function initMap() {
-        var latitude = parseFloat(document.getElementById('latitude').value);
-        var longitude = parseFloat(document.getElementById('longitude').value);
+        var latitude = parseFloat(document.getElementById('latitude1').value);
+        var longitude = parseFloat(document.getElementById('longitude1').value);
 
         // Tạo map với vị trí ban đầu
         map = new google.maps.Map(document.getElementById('map-item'), {
