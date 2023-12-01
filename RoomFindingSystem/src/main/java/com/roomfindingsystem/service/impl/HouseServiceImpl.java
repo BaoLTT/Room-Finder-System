@@ -117,7 +117,7 @@ public class HouseServiceImpl implements HouseService {
     }
 
     @Override
-    public int getHouseIdByUserId(int userId) {
+    public List<HousesEntity> getHouseIdByUserId(int userId) {
         return houseRepository.findHouseByMemberId(userId);
     }
 
