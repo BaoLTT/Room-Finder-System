@@ -65,7 +65,7 @@ public class HouseLandlordVo {
 
     List<HouseImageDto> listImage;
 
-    List<String> service;
+    List<String> service = null;
 
     private Double star;
 
