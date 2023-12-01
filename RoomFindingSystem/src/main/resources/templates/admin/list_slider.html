@@ -4,32 +4,7 @@
 <head>
     <meta charset="utf-8"/>
     <title>Danh sách slider</title>
-    <style>
-        @media (min-width: 1200px) {
 
-            .image-slider img {
-                height: 270px;
-            }
-        }
-        @media (min-width: 992px) and (max-width: 1200px) {
-
-            .image-slider img {
-                height: 220px;
-            }
-        }
-        @media (min-width: 768px) and (max-width: 992px){
-
-            .image-slider img {
-                height: 165px;
-            }
-        }
-        @media (max-width: 768px){
-
-            .image-slider img {
-                height: auto;
-            }
-        }
-    </style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description"/>
     <meta content="Coderthemes" name="author"/>
@@ -46,6 +21,46 @@
     <link th:href="@{/assets_admin/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
     <link th:href="@{/assets_admin/css/icons.min.css}" rel="stylesheet" type="text/css"/>
     <link th:href="@{/assets_admin/css/app.min.css}" rel="stylesheet" type="text/css"/>
+
+    <style>
+        @media (min-width: 1200px) {
+
+            .image-slider img {
+                height: 220px;
+            }
+        }
+        @media (min-width: 992px) and (max-width: 1200px) {
+
+            .image-slider img {
+                height: 165px;
+            }
+        }
+        @media (min-width: 768px) and (max-width: 992px){
+
+            .image-slider img {
+                height: 125px;
+            }
+        }
+        @media (max-width: 768px){
+
+            .image-slider img {
+                height: auto;
+            }
+        }
+
+        .limited-height {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+
+            -webkit-line-clamp: 3; /* Số dòng tối đa bạn muốn hiển thị */
+                max-width: 300px; /* Đặt chiều rộng tối đa mong muốn */
+                overflow: hidden; /* Ẩn phần nội dung vượt quá chiều rộng đã đặt */
+                text-overflow: ellipsis; /* Hiển thị dấu "..." cho nội dung bị ẩn */
+                white-space: nowrap; /* Ngăn chặn xuống dòng để chỉ hiển thị trên một dòng */
+        }
+    </style>
+
+
 
 </head>
 
@@ -108,7 +123,8 @@
                                     </td>
 
 
-                                    <td th:text="${slider.content}">
+                                    <td >
+                                        <div class="limited-height" th:text="${slider.content}"></div>
                                     </td>
 
                                     <td th:text="${slider.createdBy}">
@@ -122,9 +138,7 @@
 
                                     <td>
                                         <a th:href="@{/admin/sliderList/update/}+${slider.sliderid}"  class="btn btn-warning">Cập nhật</a>
-                                        <button class="btn btn-danger delete-button"
-                                                th:attr="data-sliderid=${slider.sliderid}">Xóa
-                                        </button>
+                                        <button class="btn btn-danger delete-button" th:onclick="'confirmDelete(' + ${slider.sliderid} + ')'" >Xóa</button>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -136,25 +150,11 @@
             </div> <!-- end container-fluid -->
 
         </div> <!-- end content -->
-        <div class="modal" id="deleteConfirmationModal" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Xác nhận xóa</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Bạn có chắc chắn muốn xóa không?</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                        <button type="button" class="btn btn-danger" id="deleteButton">Xóa</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+
+
+
+
 
         <!-- Footer Start -->
         <div th:replace="admin/footer_admin :: admin_footer"></div>
@@ -261,56 +261,57 @@
 <div class="rightbar-overlay"></div>
 
 <!-- Vendor js -->
-<script th:src="@{/assets_admin/js/vendor.min.js}"></script>
+<script src="/assets_admin/js/vendor.min.js"></script>
 
 <!-- Required datatable js -->
-<script th:src="@{/assets_admin/libs/datatables/jquery.dataTables.min.js}"></script>
-<script th:src="@{/assets_admin/libs/datatables/dataTables.bootstrap4.min.js}"></script>
+<script src="/assets_admin/libs/datatables/jquery.dataTables.min.js"></script>
+<script src="/assets_admin/libs/datatables/dataTables.bootstrap4.min.js"></script>
 <!-- Buttons examples -->
-<script th:src="@{/assets_admin/libs/datatables/dataTables.buttons.min.js}"></script>
-<script th:src="@{/assets_admin/libs/datatables/buttons.bootstrap4.min.js}"></script>
-<script th:src="@{/assets_admin/libs/jszip/jszip.min.js}"></script>
-<script th:src="@{/assets_admin/libs/pdfmake/pdfmake.min.js}"></script>
-<script th:src="@{/assets_admin/libs/pdfmake/vfs_fonts.js}"></script>
-<script th:src="@{/assets_admin/libs/datatables/buttons.html5.min.js}"></script>
-<script th:src="@{/assets_admin/libs/datatables/buttons.print.min.js}"></script>
+<script src="/assets_admin/libs/datatables/dataTables.buttons.min.js"></script>
+<script src="/assets_admin/libs/datatables/buttons.bootstrap4.min.js"></script>
+<script src="/assets_admin/libs/jszip/jszip.min.js"></script>
+<script src="/assets_admin/libs/pdfmake/pdfmake.min.js"></script>
+<script src="/assets_admin/libs/pdfmake/vfs_fonts.js"></script>
+<script src="/assets_admin/libs/datatables/buttons.html5.min.js"></script>
+<script src="/assets_admin/libs/datatables/buttons.print.min.js"></script>
 
 <!-- Responsive examples -->
-<script th:src="@{/assets_admin/libs/datatables/dataTables.responsive.min.js}"></script>
-<script th:src="@{/assets_admin/libs/datatables/responsive.bootstrap4.min.js}"></script>
+<script src="/assets_admin/libs/datatables/dataTables.responsive.min.js"></script>
+<script src="/assets_admin/libs/datatables/responsive.bootstrap4.min.js"></script>
 
 <!-- Datatables init -->
 <script src="/assets_admin/js/pages/datatables.init.js"></script>
 
 <!-- App js -->
-<script th:src="@{/assets_admin/js/app.min.js}"></script>
+<script src="/assets_admin/js/app.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        var deleteButtons = document.querySelectorAll(".delete-button");
+    function confirmDelete(sliderId) {
+        // Sử dụng SweetAlert2 để hiển thị thông báo xác nhận
+        Swal.fire({
+            title: 'Bạn có chắc chắn muốn xóa không?',
+            text: 'Hành động này không thể hoàn tác!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Xóa',
+            cancelButtonText: 'Hủy bỏ'
+        }).then((result) => {
+            // Nếu người dùng nhấn vào nút xác nhận (Xóa)
+            if (result.isConfirmed) {
 
-        deleteButtons.forEach(function (button) {
-            button.addEventListener("click", function () {
-                // Lấy sliderId từ thuộc tính data-sliderid
-                var sliderId = button.getAttribute("data-sliderid");
 
-                // Hiển thị modal và gán sliderId vào nút Xóa trong modal
-                $('#deleteConfirmationModal').modal('show');
-                document.getElementById("deleteButton").setAttribute("data-sliderid", sliderId);
-            });
+                // Thực hiện xóa hoặc gửi yêu cầu xóa dữ liệu
+                window.location.href = '/admin/sliderList/delete/' + sliderId;
+                Swal.fire('Xóa thành công!', '', 'success');
+            }
         });
-
-        document.getElementById("deleteButton").addEventListener("click", function () {
-            // Lấy sliderId từ thuộc tính data-sliderid của nút Xóa trong modal
-            var sliderId = this.getAttribute("data-sliderid");
-
-            // Thực hiện xóa hoặc gửi yêu cầu xóa dữ liệu
-            window.location.href = '/admin/sliderList/delete/' + sliderId;
-
-            // Sau khi xóa xong, đóng modal
-            $('#deleteConfirmationModal').modal('hide');
-        });
-    });
+    }
 </script>
+
 
 </body>
 </html>

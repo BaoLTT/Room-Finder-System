@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="/assets/css/owl.carousel.css" type="text/css">
     <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
 
-    <title>Accommodo - Accommodation HTML Template Full of Useful Features</title>
+    <title>Cập nhật thông tin trọ</title>
 </head>
 
 <body>
@@ -93,8 +93,9 @@
                             </div>
                             <div class="col-md-5">
                                 <div class="form-group" style="float: left;width: inherit">
-                                    <label>Số lượt thích</label>
-                                    <input type="text" readonly th:field="*{like}" style="padding: 10px" >
+                                    <label>Đánh giá</label>
+                                        <input type="text" th:if="${house.star == null}" readonly value="Chưa đánh giá" style="padding: 10px" >
+                                    <input type="text" th:if="${house.star != null}" readonly th:field="*{star}" style="padding: 10px" >
                                 </div>
                                 <div class="form-group" style="float: right;width: inherit">
                                     <label>Số lượng phòng</label>
@@ -102,10 +103,11 @@
                                 </div>
                                 <div class="form-group" style="float: left;width: inherit">
                                     <label>Tình trạng</label>
-                                    <input type="text" th:if="${house.status==2}" readonly value="ĐANG XỬ LÝ" style="padding: 10px">
-                                    <select class="form-control" th:field="*{status}" th:if="${house.status!=2}">
-                                        <option value="1"  th:selected="${house.status == 1}" >HOẠT ĐỘNG</option>
-                                        <option value="0"  th:selected="${house.status == 0}">NGƯNG HOẠT ĐỘNG</option>
+<!--                                    <input type="text" th:if="${house.status==2}"  th:field="*{status}" readonly th:value="${house.status==2 ? 'Đang xử lý' : house.status}" th:readonly="${house.status==2}" style="padding: 10px">-->
+                                    <select class="form-control" th:field="*{status}">
+                                        <option value="2" th:if="${house.status==2}"  th:selected="${house.status == 2}">ĐANG XỬ LÝ</option>
+                                        <option value="1" th:if="${house.status==0 || house.status==1}" th:selected="${house.status == 1}" >HOẠT ĐỘNG</option>
+                                        <option value="0" th:if="${house.status==0 || house.status==1}" th:selected="${house.status == 0}">NGƯNG HOẠT ĐỘNG</option>
                                     </select>
                                 </div>
                             </div>

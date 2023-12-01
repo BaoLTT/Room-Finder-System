@@ -1,4 +1,4 @@
-package com.roomfindingsystem.controller;
+package com.roomfindingsystem.controller.landlord;
 
 import com.roomfindingsystem.dto.HouseLandlordVo;
 import com.roomfindingsystem.entity.AddressEntity;

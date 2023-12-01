@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
-    <title>Abstack - Responsive Bootstrap 4 Admin Dashboard</title>
+    <title>Quản lý nhà trọ</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description"/>
     <meta content="Coderthemes" name="author"/>
@@ -81,9 +81,9 @@
                                                     </select>
                                                 </div>
                                                 <div class="col-3">
-                                                    <label for="like">Số lượt thích</label>
+                                                    <label for="like">Đánh giá</label>
                                                     <input type="text" class="form-control" id="like" readonly
-                                                           th:field="*{like}" style="padding: 10px">
+                                                           th:field="*{star}" style="padding: 10px">
                                                 </div>
                                                 <div class="col-3">
                                                     <label for="room">Số lượng phòng</label>
@@ -149,9 +149,13 @@
                                             <div class="form-group row">
                                                 <label class="col-2 col-form-label">Hiện thị trên bản đồ</label>
                                                 <div class="col-10" id="map-item">
-                                                    <input id="latitude" name="latitude" type="hidden"
+                                                    <input th:if="${houseLocation.latitude == null}" id="latitude" name="latitude" type="hidden"
+                                                           value="21.0130252">
+                                                    <input th:if="${houseLocation.latitude != null}" id="latitude" name="latitude" type="hidden"
                                                            th:value="${houseLocation.latitude}">
-                                                    <input id="longitude" name="longitude" type="hidden"
+                                                    <input th:if="${houseLocation.longitude == null}" id="longitude" name="longitude" type="hidden"
+                                                           value="105.5239285">
+                                                    <input th:if="${houseLocation.longitude != null}" id="longitude" name="longitude" type="hidden"
                                                            th:value="${houseLocation.longitude}">
                                                 </div>
                                             </div>
@@ -160,10 +164,14 @@
                                                 <label class="col-2 col-form-label">Hiện thị trên bản đồ</label>
                                                 <div class="col-10">
                                                     <label>Vĩ độ</label>
-                                                    <input id="latitude1" name="latitude1"
+                                                    <input th:if="${houseLocation.latitude == null}" id="latitude1" name="latitude1"
+                                                           value="21.0130252">
+                                                    <input th:if="${houseLocation.latitude != null}" id="latitude1" name="latitude1"
                                                            th:value="${houseLocation.latitude}">
                                                     <label>Kinh độ</label>
-                                                    <input id="longitude1" name="longitude1"
+                                                    <input th:if="${houseLocation.longitude == null}" id="longitude1" name="longitude1"
+                                                           value="105.5239285">
+                                                    <input th:if="${houseLocation.longitude != null}" id="longitude1" name="longitude1"
                                                            th:value="${houseLocation.longitude}">
                                                 </div>
                                             </div>
@@ -239,7 +247,7 @@
                                                     <div class="checkbox checkbox-primary col-2"
                                                          th:each="listService : ${listService}" th:field="*{service}"
                                                          style="padding-left: 10px">
-                                                        <input th:id="${listService.serviceName}" type="checkbox"
+                                                        <input th:id="${listService.serviceName}" type="checkbox" style="position: relative"
                                                                name="service" th:value="${listService.serviceId}"
                                                                th:checked="${#lists.contains(listChecked,''+ listService.serviceId+'')}">
                                                         <label th:for="${listService.serviceName}"
@@ -267,7 +275,7 @@
                                                         <span style="color: white">Lưu</span></button>
                                                     <a type="button"
                                                        class="btn btn-danger waves-light waves-effect width-md"
-                                                       href="http://localhost:8080/admin/house-manager"> <span
+                                                       th:href="@{/admin/house-manager}"> <span
                                                             style="color: white">Đóng</span></a>
                                                     <a type="button"
                                                        class="btn btn-success waves-light waves-effect width-md"
@@ -446,14 +454,12 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<script src="/assets_admin/libs/sweetalert2/sweetalert2.min.js"></script>
 
-<script src="/assets_admin/js/pages/sweetalerts.init.js"></script>
 
 <script type="text/javascript" src="/assets/js/jquery-2.2.1.min.js"></script>
 <script type="text/javascript" src="/assets/js/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="/assets/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/assets/js/icheck.min.js"></script>
+<script type="text/javascript" src="/assets/js/icheck.min1.js"></script>
 <script type="text/javascript" src="/assets/js/jQuery.MultiFile.min.js"></script>
 
 <script type="text/javascript" src="/assets/js/maps.js"></script>

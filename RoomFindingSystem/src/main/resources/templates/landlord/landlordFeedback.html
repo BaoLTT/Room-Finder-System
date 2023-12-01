@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8"/>
     <title>Danh sách phòng</title>
@@ -41,10 +40,13 @@
             border-radius: 5px;
             text-align: right;
         }
-
         .pagination li a {
             margin-left: 20px;
 
+        }
+        select{
+            width: 100%;
+            border: 1px solid grey;
         }
 
     </style>
@@ -71,55 +73,73 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card-box table-responsive">
-                            <h4 class="page-title">Danh sách phòng</h4>
+                            <h4 class="page-title">Danh sách đánh giá</h4>
                             <div class="d-flex justify-content-end">
-                                <button class="btn btn-success mb-1 "><a
-                                        th:href="@{'/landlord/room/insertRoom/'+ ${houseId}}"
-                                        style="color: white">Thêm phòng mới</a>
+
+<!--                                    <a th:href="@{/landlord/room/insertRoom}"-->
+<!--                                                                         style="color: white">Thêm phòng mới</a>-->
                                 </button>
                             </div>
+                            <form th:action="@{/landlord/feedback}" th:method="get" id="filterForm">
+                                <div class="row" style="margin-right: 0px !important; margin-left: 0px !important">
+                                    <div class="col-md-3"></div>
+                                    <div class="col-md-3 fil">
+                                        <span>Nhà trọ: </span>
+                                        <select id="houseIdSelect" name="houseId" >
+                                            <div th:each = "house : ${listHouse}">
+                                                <option th:text = "${house.getHouseName()}" th:value="${house.getHouseId()}" th:selected="${house.getHouseId()==houseId}"></option>
+                                            </div>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3 fil">
+                                        <span>Số sao: </span>
+                                        <select id="starSelect" name="star">
+                                            <option value="0">Tất cả</option>
+                                            <option value="1" th:selected="${star==1}">1 sao</option>
+                                            <option value="2" th:selected="${star==2}">2 sao</option>
+                                            <option value="3" th:selected="${star==3}">3 sao</option>
+                                            <option value="4" th:selected="${star==4}">4 sao</option>
+                                            <option value="5" th:selected="${star==5}">5 sao</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3 fil">
+                                        <span>Lọc theo trạng thái: </span>
+                                        <select id="statusSelect" name="status">
+                                            <option value="true,false">Tất cả</option>
+                                            <option value="true" th:selected="${status!=null && !status.contains(false)}">Hiển thị</option>
+                                            <option value="false" th:selected="${status!=null && !status.contains(true)}">Tạm ẩn</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!-- Loại bỏ button type="submit" và thêm sự kiện onClick -->
+                                <div class="text-right" style="text-align: right; margin-right: 10px; margin-bottom: 5px">
+                                    <button type="submit" class="btn btn-danger waves-light waves-effect width-md" style="background-color: #3EC396; border-color:
+                                    #3EC396">Tìm kiếm</button>
+                                </div>
+                            </form>
                             <table id="datatable-buttons"
                                    class="table table-striped table-bordered dt-responsive nowrap"
                                    style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead>
                                 <tr>
-                                    <th>Phòng</th>
-                                    <th>Diện tích</th>
-                                    <th>Loại phòng</th>
-                                    <th>Dịch vụ</th>
-                                    <th>Giá</th>
-                                    <th>Tình trạng</th>
-                                    <th>Hành động</th>
+                                    <th>Người đánh giá</th>
+                                    <th>Tiêu đề</th>
+                                    <th>Nội dung</th>
+                                    <th>Đánh giá</th>
+                                    <th>Ngày cuối cập nhật</th>
+                                    <th>Trạng thái</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each="room : ${rooms}">
-                                    <td th:text="${room.roomName}">
+                                <tr th:each = "feedback : ${feedbacks}" style="text-align: center">
+                                    <td style="vertical-align: middle" th:text = "${feedback.getUserFistName()+' '+feedback.getUserLastName()}"></td>
+                                    <td style="vertical-align: middle" th:text = "${feedback.getTitle()}"></td>
+                                    <td th:text="${feedback.getContent()}" style="white-space: pre-line"></td>
+                                    <td style="vertical-align: middle" >
+                                        <span th:text = "${feedback.getStar()}"></span><i class="fas fa-star" style="color: #FFCE45"></i>
                                     </td>
-
-                                    <td th:text="${room.area}">
-                                    </td>
-
-                                    <td th:text="${room.typeName}">
-                                    </td>
-
-                                    <td th:text="${room.services}">
-                                    </td>
-
-                                    <td class="price-info"
-                                        th:with="formattedPrice=${#numbers.formatDecimal(room.price, 0, 'COMMA', 0, 'POINT')}">
-                                        <span class="price" th:text="${formattedPrice + ' VND'}"></span></td>
-
-                                    <td th:text="${room.status == 'ACTIVE' ? 'Còn trống' : (room.status == 'INACTIVE' ? 'Hết phòng': '') }">
-                                    </td>
-
-                                    <td>
-                                        <a th:href="@{'/landlord/room/updateRoom/' + ${room.roomId}}"
-                                           class="btn btn-warning">Chi tiết</a>
-
-                                        <a th:href="@{'/landlord/room/deleteRoom/' + ${houseId}+'/' +${room.roomId}}"
-                                           class="btn btn-danger">Xóa</a>
-                                    </td>
+                                    <td style="vertical-align: middle" th:text = "${feedback.getCreatedDate()}"></td>
+                                    <td style="vertical-align: middle" th:text="${feedback.isStatus() ? 'Hiển thị' : 'Tạm ẩn'}"></td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -169,16 +189,6 @@
 
 <!-- App js -->
 <script th:src="@{/assets_admin/js/app.min.js}"></script>
-<script>
-    document.querySelectorAll('.delete-button').forEach(function (button) {
-        button.addEventListener('click', function () {
-            let roomId = this.getAttribute('data-roomid');
-            if (confirm("Are you sure you want to delete this room?")) {
-                window.location.href = '/room/deleteRoom/' + roomId;
-            }
-        });
-    });
-</script>
 
 </body>
 </html>

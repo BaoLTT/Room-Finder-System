@@ -74,13 +74,7 @@ public class HouseLandlordServiceImpl implements HouseLandlordService {
             }else{
                 houseLandlordVo.setCount_room(count.intValue());
             }
-
-            Long like = (tuple.get("like_House",Long.class));
-            if(like == null){
-                houseLandlordVo.setLike(0);
-            }else{
-                houseLandlordVo.setLike(like.intValue());
-            }
+            houseLandlordVo.setStar (tuple.get("star",Double.class));
             List<HouseImageDto> listHouseImage = new ArrayList<>();
             String imageLink = (tuple.get("Image_Link", String.class));
             String imageId  = (tuple.get("Image_Id",String.class));
@@ -157,13 +151,7 @@ public class HouseLandlordServiceImpl implements HouseLandlordService {
             }else{
                 houseLandlordVo.setCount_room(count.intValue());
             }
-
-            Long like = (tuple.get("like_House",Long.class));
-            if(like == null){
-                houseLandlordVo.setLike(0);
-            }else{
-                houseLandlordVo.setLike(like.intValue());
-            }
+            houseLandlordVo.setStar (tuple.get("star",Double.class));
             List<HouseImageDto> listHouseImage = new ArrayList<>();
             String imageLink = (tuple.get("Image_Link", String.class));
             String imageId  = (tuple.get("Image_Id",String.class));

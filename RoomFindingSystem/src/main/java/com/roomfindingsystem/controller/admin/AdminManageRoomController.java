@@ -36,8 +36,9 @@ public class AdminManageRoomController {
     public String getFormUpdateRoom(@PathVariable("id") Integer id, Model model) {
         RoomDto roomDto = roomService.findById(id);
         model.addAttribute("room", roomDto);
-        System.out.println(roomDto);
         model.addAttribute("types", roomTypeService.findAll());
+        model.addAttribute("listService", serviceDetailService.getAllService());
+        model.addAttribute("listChecked", roomDto.getServices());
         return "admin/edit-room";
     }
 
@@ -49,7 +50,6 @@ public class AdminManageRoomController {
             for (String serviceName : selects) {
                 ServiceDto serviceDto = new ServiceDto();
                 serviceDto.setServiceName(serviceName);
-                System.out.println(serviceName);
                 serviceDto.setServiceId(serviceDetailService.findByName(serviceName).getServiceId());
                 serviceDtos.add(serviceDto);
             }
@@ -69,7 +69,7 @@ public class AdminManageRoomController {
     public String insertRoomPage(Model model) {
         RoomDto roomDto = new RoomDto();
         model.addAttribute("room", roomDto);
-        model.addAttribute("services", serviceRoomService.findAll());
+        model.addAttribute("services", serviceDetailService.getAllService());
         model.addAttribute("types", roomTypeService.findAll());
         return "admin/insert-room";
     }
