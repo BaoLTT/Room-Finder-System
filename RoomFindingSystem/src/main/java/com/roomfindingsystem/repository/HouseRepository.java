@@ -102,8 +102,8 @@ public interface HouseRepository extends JpaRepository<HousesEntity, Integer> {
     @Query("SELECT h from HousesEntity h join RoomEntity r on r.houseId = h.houseId where r.roomId=:roomid")
     HousesEntity findHouseByRoomId(int roomid);
 
-    @Query("SELECT h.houseId from HousesEntity h  where h.userId=:userId")
-    Integer findHouseByMemberId(int userId);
+    @Query("SELECT h from HousesEntity h where h.userId=:userId")
+    List<HousesEntity> findHouseByMemberId(int userId);
 
     @Query(value = "SELECT houses.houseid FROM houses WHERE house_name = :name", nativeQuery = true)
     Integer findHousesEntityByHouseName(@Param("name") String name);
@@ -145,6 +145,10 @@ public interface HouseRepository extends JpaRepository<HousesEntity, Integer> {
 
 //    @Query("select h from HousesEntity where houseId = ?1")
     HousesEntity getHousesEntitiesByHouseId(int id);
+
+
+
+
 
 
 
