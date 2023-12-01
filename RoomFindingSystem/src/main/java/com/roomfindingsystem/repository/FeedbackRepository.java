@@ -40,8 +40,8 @@ public interface FeedbackRepository extends JpaRepository<FeedbackEntity,Integer
     int countFeedbackDtosByHouseIdP(int houseId, List<Boolean> status);
 
 //
-    @Query("SELECT COUNT(f) FROM FeedbackEntity f WHERE f.houseId = :houseId and f.status IN (:status)")
-    long countFeedbacksByHouseId(int houseId, List<Boolean> status);
+//    @Query("SELECT COUNT(f) FROM FeedbackEntity f WHERE f.houseId = :houseId and f.status IN (:status)")
+//    long countFeedbacksByHouseId(int houseId, List<Boolean> status);
 
 
     @Query("SELECT NEW com.roomfindingsystem.dto.FeedbackDtoAdmin(f.feedbackId, f.title, f.content, f.createdDate, u.firstName, u.lastName, u.imageLink, u.userId, f.star, f.status, h.houseName) FROM FeedbackEntity f JOIN UserEntity u " +
