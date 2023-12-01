@@ -55,12 +55,14 @@ public class AdminManageHouseController {
     public String viewHomepage(final Model model, HttpServletRequest request){
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         UserEntity user = userService.findByEmail(email).get();
-        System.out.println(user.getRoleId());
+        System.out.println(user.getImageLink());
+
         if(!user.getRoleId().equals("ADMIN") && !user.getRoleId().equals("SUPER_ADMIN")){
             return "redirect:/login";
         }
         List<HouseLandlordVo> houseList = houseLandlordService.getAllHouse();
         model.addAttribute("houses", houseList);
+        model.addAttribute("user", user);
         //entries từ 0 đến 5 vào jquery.dataTables.min.js" tìm entries sửa display = 5
 
 
@@ -106,7 +108,7 @@ public class AdminManageHouseController {
         model.addAttribute("listType",listType);
         model.addAttribute("listChecked",listChecked);
         model.addAttribute("listService",listService);
-
+        model.addAttribute("user", user);
         model.addAttribute("key_map", gcsService.getMapKey());
         model.addAttribute("houseLocation", houseService.getHouseById(houseid));
         return "admin/house-manager-detail";
@@ -154,6 +156,7 @@ public class AdminManageHouseController {
         model.addAttribute("listService",listService);
         HouseLandlordVo house = new HouseLandlordVo();
         model.addAttribute("house",house);
+        model.addAttribute("user", user);
         return "admin/house-manager-add";
     }
 
