@@ -63,6 +63,7 @@ public class HomeController {
              user = userService.findByEmail(currentUserName).get();
         }
 
+        model.addAttribute("user",user);
 
 //         Lưu user vào session
         HttpSession session = request.getSession();
