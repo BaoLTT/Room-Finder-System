@@ -39,11 +39,11 @@ public class AuthController {
 //        return "login";
     }
 
-    @RequestMapping("/")
+    @RequestMapping("/ok")
     public String dinhvan(Model model){
 //        final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
 //        model.addAttribute("currentUserName", currentUserName);
-        return "redirect:/home";
+        return "test";
     }
 
 

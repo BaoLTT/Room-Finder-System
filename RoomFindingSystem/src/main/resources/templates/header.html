@@ -1,6 +1,22 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<head>
+    <style>
+        .round-image {
+            width: 50px; /* Đặt kích thước bất kỳ tùy theo nhu cầu của bạn */
+            height: 50px; /* Đặt kích thước bất kỳ tùy theo nhu cầu của bạn */
+            border-radius: 50%; /* Đặt bán kính bo góc thành 50% (hình tròn) */
+            overflow: hidden; /* Ẩn các phần nằm ngoài phạm vi của hình tròn */
+        }
+
+        .round-image img {
+            width: 100%; /* Đảm bảo bức ảnh luôn kích thước bằng với phần bọc */
+            height: auto; /* Để tỷ lệ khung hình không bị thay đổi */
+        }
+    </style>
+</head>
 
 
 
@@ -27,7 +43,7 @@
 
                         <li class="dropdown notification-list list-unstyled">
                             <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown" th:href="@{/profile}" role="button" aria-haspopup="false" aria-expanded="false">
-                                <img class="round-image" th:src="${session.user.getImageLink()}" style=" max-width: 25px;max-height: 25px; " alt="user-image" >
+                                <img class="round-image" th:src="${session.user.getImageLink()}" style=" max-width: 25px;max-height: 25px; "  >
                                 <span class="ml-1" th:text="${session.user.lastName+' '+session.user.firstName}"></span>
 
                             </a>

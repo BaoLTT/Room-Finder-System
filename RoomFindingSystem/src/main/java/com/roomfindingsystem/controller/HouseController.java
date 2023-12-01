@@ -59,7 +59,8 @@ public class HouseController {
     }
 
     @RequestMapping(value = "detail", method = RequestMethod.GET)
-    public String getAllHouse(@RequestParam(name = "id", required = false, defaultValue = "1") int houseId,
+    public String getAllHouse(@RequestParam(name = "page", required = false, defaultValue = "1") int page,
+            @RequestParam(name = "id", required = false, defaultValue = "1") int houseId,
                               @RequestParam(name = "star", required = false, defaultValue = "0") int star,
                               ModelMap model, HttpServletRequest request) {
 
