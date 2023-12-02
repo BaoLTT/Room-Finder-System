@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="en-US">
 <head>
     <meta charset="utf-8"/>
     <title>Admin Profile</title>
@@ -8,7 +10,7 @@
     <meta content="Coderthemes" name="author"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <!-- App favicon -->
-    <link rel="shortcut icon" th:href="@{/assets_admin/images/favicon.ico}">
+    <link rel="shortcut icon"  th:href="@{/assets/img/favicon.ico}">
 
     <!-- App css -->
     <link th:href="@{/assets_admin/libs/dropzone/dropzone.min.css}" rel="stylesheet" type="text/css"/>
@@ -65,7 +67,14 @@
                 <!-- start page title -->
                 <div class="row">
                     <div class="col-12">
-                            <h4 class="page-title">Thông tin cá nhân</h4>
+                        <div class="page-title-box">
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item"><a th:href="@{/admin/dashboard}">Trang chủ</a></li>
+                                    <li class="breadcrumb-item active">Trang cá nhân</li>
+                                </ol>
+                            </div>
+                            <h4 class="page-title">Trang cá nhân</h4>
                         </div>
                     </div>
                 </div>
