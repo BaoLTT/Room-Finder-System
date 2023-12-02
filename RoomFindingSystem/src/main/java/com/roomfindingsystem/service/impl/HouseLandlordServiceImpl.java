@@ -113,6 +113,15 @@ public class HouseLandlordServiceImpl implements HouseLandlordService {
             } else {
                 houseLandlordVo.setPrice(price.intValue());
             }
+            Double latitude =  tuple.get("latitude",Double.class);
+            Double longitude = tuple.get("longitude",Double.class);
+
+            if(latitude==null||longitude==null){
+                houseLandlordVo.setLatitude(21.0130252);
+                houseLandlordVo.setLatitude(105.5239285);
+            }
+
+
 
             houseLandlord1.add(houseLandlordVo);
         }
@@ -189,6 +198,18 @@ public class HouseLandlordServiceImpl implements HouseLandlordService {
                 houseLandlordVo.setPrice(0);
             } else {
                 houseLandlordVo.setPrice(price.intValue());
+            }
+
+            Double latitude =  tuple.get("latitude",Double.class);
+            Double longitude = tuple.get("longitude",Double.class);
+
+            if(latitude==null||longitude==null){
+                houseLandlordVo.setLatitude(21.0130252);
+                houseLandlordVo.setLongitude(105.5239285);
+            }
+            else{
+                houseLandlordVo.setLatitude(latitude);
+                houseLandlordVo.setLongitude(longitude);
             }
 
 

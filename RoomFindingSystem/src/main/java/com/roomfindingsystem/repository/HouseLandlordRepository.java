@@ -33,6 +33,8 @@ public interface HouseLandlordRepository extends JpaRepository<HousesEntity,Inte
             "    u2.last_name AS userLastName,\n" +
             "    h.status,\n" +
             "    h.star,\n" +
+            "    h.latitude,\n" +
+            "    h.longitude,\n" +
             "    (SELECT MIN(r.price) FROM room r WHERE r.houseid = h.houseid) AS minPrice, \n" +
             "    (SELECT GROUP_CONCAT(i.image_link) FROM house_images i WHERE i.houseid = h.houseid) AS Image_Link,\n" +
             "    (SELECT GROUP_CONCAT(i.imageid) FROM house_images i WHERE i.houseid = h.houseid) AS Image_Id,\n" +
@@ -79,6 +81,8 @@ public interface HouseLandlordRepository extends JpaRepository<HousesEntity,Inte
             "    u2.last_name AS userLastName,\n" +
             "    h.status,\n" +
             "    h.star,\n" +
+            "    h.latitude,\n" +
+            "    h.longitude,\n" +
             "    (SELECT MIN(r.price) FROM room r WHERE r.houseid = h.houseid) AS minPrice, \n" +
             "    (SELECT GROUP_CONCAT(i.image_link) FROM house_images i WHERE i.houseid = h.houseid) AS Image_Link,\n" +
             "    (SELECT GROUP_CONCAT(i.imageid) FROM house_images i WHERE i.houseid = h.houseid) AS Image_Id,\n" +
@@ -125,6 +129,8 @@ public interface HouseLandlordRepository extends JpaRepository<HousesEntity,Inte
             "    u2.last_name AS userLastName,\n" +
             "    h.status,\n" +
             "    h.star,\n" +
+            "    h.latitude,\n" +
+            "    h.longitude,\n" +
             "    (SELECT MIN(r.price) FROM room r WHERE r.houseid = h.houseid) AS minPrice, \n" +
             "    (SELECT GROUP_CONCAT(i.image_link) FROM house_images i WHERE i.houseid = h.houseid) AS Image_Link,\n" +
             "    (SELECT GROUP_CONCAT(i.imageid) FROM house_images i WHERE i.houseid = h.houseid) AS Image_Id,\n" +
