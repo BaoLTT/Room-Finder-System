@@ -32,7 +32,6 @@ public class RoomDto {
         this.price = price;
         this.houseName = houseName;
         this.area = area;
-        this.services = services;
         this.status = status;
     }
 }

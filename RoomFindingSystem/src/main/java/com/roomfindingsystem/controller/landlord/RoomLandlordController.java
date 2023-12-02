@@ -43,7 +43,7 @@ public class RoomLandlordController {
         model.addAttribute("room", roomDto);
         model.addAttribute("types", roomTypeService.findAll());
         model.addAttribute("listService", serviceDetailService.getAllService());
-        model.addAttribute("listChecked", roomDto.getServices());
+        model.addAttribute("listChecked", roomDto.getServiceNames());
         model.addAttribute("request",request);
         return "landlord/edit-room";
     }
@@ -110,7 +110,7 @@ public class RoomLandlordController {
     @GetMapping("deleteImage/{roomId}/{imageId}")
     public String deleteImage(@PathVariable Integer roomId, @PathVariable Integer imageId) {
         roomService.deleteRoomImage(imageId);
-        return "redirect:/updateRoom/" + roomId;
+        return "redirect:/landlord/room/updateRoom/" + roomId;
     }
 }
 

@@ -152,10 +152,10 @@
                                     <label>Dịch vụ</label>
                                     <div style="display: flex; flex-wrap: wrap;">
                                         <div class="checkbox checkbox-primary col-2"
-                                             th:each="listService : ${services}" th:field="*{services}"
+                                             th:each="listService : ${services}" th:field="*{serviceNames}"
                                              style="padding-left: 10px">
-                                            <input th:id="${listService.serviceName}" type="checkbox" name="service"
-                                                   th:value="${listService.serviceId}">
+                                            <input th:id="${listService.serviceName}" type="checkbox" name="serviceNames"
+                                                   th:value="${listService.serviceName}">
                                             <label th:for="${listService.serviceName}"
                                                    th:text="${listService.serviceName}">
                                             </label>

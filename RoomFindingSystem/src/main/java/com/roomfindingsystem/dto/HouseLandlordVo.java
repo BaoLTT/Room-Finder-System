@@ -75,7 +75,7 @@ public class HouseLandlordVo {
 
     private double longitude;
 
-    public HouseLandlordVo(int houseID, String houseName, String description, LocalDate createdDate, String created_firstName, String created_lastName, String addressDetail, int address, String ward, String district, String province, int wardID, int districtID, int provinceID, String typeHouse, int typeHouseID, LocalDate lastModifiedDate, String lastModifiedBy_firstName, String lastModifiedBy_lastName, String user_firstName, String user_lastName, int status) {
+    public HouseLandlordVo(int houseID, String houseName, String description, LocalDate createdDate, String created_firstName, String created_lastName, String addressDetail, int address, String ward, String district, String province, int wardID, int districtID, int provinceID, String typeHouse, int typeHouseID, LocalDate lastModifiedDate, String lastModifiedBy_firstName, String lastModifiedBy_lastName, String user_firstName, String user_lastName, int status, double latitude, double longitude) {
         this.houseID = houseID;
         this.houseName = houseName;
         this.description = description;
@@ -98,5 +98,7 @@ public class HouseLandlordVo {
         this.user_firstName = user_firstName;
         this.user_lastName = user_lastName;
         this.status = status;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 }

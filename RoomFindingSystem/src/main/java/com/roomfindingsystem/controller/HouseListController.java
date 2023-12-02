@@ -1,10 +1,12 @@
 package com.roomfindingsystem.controller;
 
 import com.roomfindingsystem.entity.ServiceDetailEntity;
+import com.roomfindingsystem.entity.TypeHouseEntity;
 import com.roomfindingsystem.repository.ServiceDetailRepository;
 import com.roomfindingsystem.service.HouseService;
 
 import com.roomfindingsystem.dto.HouseTypeVo;
+import com.roomfindingsystem.service.HouseTypeService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +31,8 @@ public class HouseListController {
     }
     @Autowired
     private ServiceDetailRepository serviceDetailRepository;
+    @Autowired
+    HouseTypeService houseTypeService;
 
 //    @RequestMapping(value="", method = RequestMethod.GET)
 //    public String getAll(ModelMap modelMap){
@@ -47,6 +51,8 @@ public class HouseListController {
         List<Integer> listPrice = new ArrayList<>();
         List<Integer> listService = new ArrayList<>();
         List<ServiceDetailEntity> listAllService = new ArrayList<>();
+        List<TypeHouseEntity> listAllType = new ArrayList<>();
+        listAllType = houseTypeService.findAll();
         List<HouseTypeVo>  list = new ArrayList<>();
         int totalHouse = 0;
         int pageSize =4;
@@ -60,10 +66,10 @@ public class HouseListController {
             listPrice.add(Integer.parseInt(price1));
         }
         if (type.contains("0")) {
-            listType.add(1);
-            listType.add(2);
-            listType.add(3);
-            listType.add(4);
+            for (TypeHouseEntity typeHouseEntity : listAllType) {
+                listType.add(typeHouseEntity.getTypeId());
+            }
+
         }else{
             for(String type1: type){
                 listType.add(Integer.parseInt(type1));
@@ -116,6 +122,9 @@ public class HouseListController {
         model.addAttribute("currentPage",pageIndex);
         model.addAttribute("totalPage", totalPage);
         model.addAttribute("houses", list);
+
+
+        model.addAttribute("listAllType", listAllType);
 
         listAllService = serviceDetailRepository.getAll();
         model.addAttribute("listAllService", listAllService);

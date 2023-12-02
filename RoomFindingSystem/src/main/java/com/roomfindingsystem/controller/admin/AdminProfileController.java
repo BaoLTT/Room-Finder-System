@@ -1,6 +1,7 @@
 package com.roomfindingsystem.controller.admin;
 
 import com.roomfindingsystem.dto.UserDto;
+import com.roomfindingsystem.entity.UserEntity;
 import com.roomfindingsystem.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -25,6 +26,9 @@ public class AdminProfileController {
             UserDto userDto = userService.findUserDtoByEmail(email);
             model.addAttribute("user", userDto);
         }
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserEntity user = userService.findByEmail(email).get();
+        model.addAttribute("user", user);
         return "admin/adminProfile";
     }
 
