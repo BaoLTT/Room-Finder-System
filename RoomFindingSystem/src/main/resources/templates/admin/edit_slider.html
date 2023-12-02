@@ -17,6 +17,16 @@
     <link th:href="@{/assets_admin/css/app.min.css}" rel="stylesheet" type="text/css"/>
     <link href="/assets_admin/css/file-upload.css" rel="stylesheet" type="text/css"/>
 
+    <style>
+        #removeImage {
+            display: none; /* Ẩn nút xóa ảnh ban đầu */
+        }
+
+        #imageContainer {
+            display: none; /* Ẩn khối div preview khi không có ảnh */
+        }
+    </style>
+
 
 </head>
 
@@ -60,7 +70,7 @@
 
 
                             <form class="parsley-examples"  id="myForm" th:action="@{/admin/slider/update}" th:object="${slider}" method="post"  enctype="multipart/form-data" >
-                                <input type="hidden" th:field = "*{sliderid}">
+                                <input name="id" type="hidden" th:field = "*{sliderid}">
 
 
                                 <div class="form-group">
@@ -92,26 +102,20 @@
 
                                 <!-- Pictures -->
 
+
                                 <div class="form-group">
                                     <label class="col-form-label">Ảnh</label>
-                                    <div >
-                                        <div class="file-upload-previews">
-                                            <div class="MultiFile-label" id="imageContainer"
-                                                >
-                                                <a class="MultiFile-remove"
-                                                   >x</a>
-                                                <span class="MultiFile-label"
-                                                      title="File selected: abc.png">
-                                                            <img th:src="${slider.imgLink}" alt="Ảnh" id="imagePreview"
-                                                                 style="width: 100px;height: 100px">
-                                                        </span>
+                                    <div>
+                                        <div class="file-upload-previews" id="imageContainer">
+                                            <div class="MultiFile-label" >
+                                                <a class="MultiFile-remove" th:href="@{'/admin/sliderList/deleteImage/'+${slider.sliderid}}" id="removeImage">x</a>
+                                                <span class="MultiFile-label" title="File selected: abc.png">
+                                                        <img th:src="${slider.imgLink}" alt="Ảnh" id="imagePreview" style="width: 100px; height: 100px">
+                                                    </span>
                                             </div>
                                         </div>
                                         <div class="file-upload">
-                                            <input type="file" name="file"
-                                                   class="file-upload-input with-preview" multiple
-                                                   title="Click to add files" maxlength="10"
-                                                   accept="gif|jpg|png">
+                                            <input type="file" name="file" id="fileInput" class="file-upload-input with-preview" title="Click to add files" accept="image/*">
                                             <span>Nhấn để thêm ảnh</span>
                                         </div>
                                     </div>
@@ -121,8 +125,8 @@
                                         <button type="submit" class="btn btn-gradient waves-effect waves-light">
                                             Cập nhật
                                         </button>
-                                        <button type="reset" class="btn btn-light waves-effect ml-1">
-<!--                                            <a th:href="@{/room/listRoomPage}">Danh sách phòng</a>-->
+                                        <button type="reset" class="btn btn-gradient waves-effect waves-classic" style="background-color: red">
+                                            <a th:href="@{/admin/sliderList}"> Đóng</a>
                                         </button>
                                     </div>
                                 </div>
@@ -266,6 +270,45 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
 <script src="/assets_admin/libs/dropzone/dropzone.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script type="text/javascript" src="/assets/js/jQuery.MultiFile.min.js"></script>
+
+
+<script>
+    // Khi người dùng chọn tệp
+    $('#fileInput').on('change', function (e) {
+        var fileInput = e.target;
+        var file = fileInput.files[0];
+
+        if (file) {
+            // Hiển thị ảnh trước khi tải lên
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#imagePreview').attr('src', e.target.result);
+            };
+            reader.readAsDataURL(file);
+
+            // Hiển thị nút xóa ảnh và khối div preview
+            $('#removeImage').show();
+            $('#imageContainer').show();
+        } else {
+            // Ẩn nút xóa ảnh và khối div preview nếu không có ảnh được chọn
+            $('#removeImage').hide();
+            $('#imageContainer').hide();
+        }
+    });
+
+    // Khi người dùng nhấn vào nút xóa ảnh
+    $('#removeImage').on('click', function (e) {
+        // Xóa dữ liệu ảnh, ẩn nút xóa và khối div preview
+        $('#imagePreview').attr('src', '');
+        $('#removeImage').hide();
+        $('#imageContainer').hide();
+
+        // Đặt giá trị trống cho input file để đảm bảo sự kiện change được kích hoạt khi chọn lại cùng một tệp
+        $('#fileInput').val('');
+    });
+</script>
+
 </body>
 </html>
