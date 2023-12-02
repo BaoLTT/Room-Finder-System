@@ -143,7 +143,7 @@
                                             <div class="MultiFile-label" id="imageContainer"
                                                  th:each="image, iterStat : ${room.imgs}">
                                                 <a class="MultiFile-remove"
-                                                   th:href="@{'/admin/room/deleteImage/' + ${room.roomId} + '/' + ${image.imageId}}">x</a>
+                                                   th:href="@{'/landlord/room/deleteImage/' + ${room.roomId} + '/' + ${image.imageId}}">x</a>
                                                 <span class="MultiFile-label"
                                                       title="File selected: abc.png">
                                                             <img th:src="${image.imageLink}" alt="Ảnh" id="imagePreview"
