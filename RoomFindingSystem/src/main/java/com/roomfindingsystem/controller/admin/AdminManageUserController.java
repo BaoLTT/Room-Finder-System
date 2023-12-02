@@ -1,8 +1,10 @@
 package com.roomfindingsystem.controller.admin;
 
 import com.roomfindingsystem.dto.UserDto;
+import com.roomfindingsystem.entity.UserEntity;
 import com.roomfindingsystem.service.AdminManageUserService;
 import com.roomfindingsystem.service.UserService;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +28,9 @@ public class AdminManageUserController {
     public String getListUserForm(Model model) {
         List<UserDto> users = adminManageUserService.getAll();
         model.addAttribute("users", users);
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserEntity user = userService.findByEmail(email).get();
+        model.addAttribute("user", user);
         return "admin/list-user";
     }
 
@@ -33,6 +38,9 @@ public class AdminManageUserController {
     public String getInsertPage(Model model) {
         UserDto userDto = new UserDto();
         model.addAttribute("user", userDto);
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserEntity user = userService.findByEmail(email).get();
+        model.addAttribute("user", user);
         return "admin/insert-user";
     }
 
@@ -47,6 +55,9 @@ public class AdminManageUserController {
     public String getFormUpdate(@PathVariable(name = "id")Integer id, Model model) {
         UserDto userDto = userService.findById(id);
         model.addAttribute("user", userDto);
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserEntity user = userService.findByEmail(email).get();
+        model.addAttribute("user", user);
         return "admin/edit-user";
     }
 

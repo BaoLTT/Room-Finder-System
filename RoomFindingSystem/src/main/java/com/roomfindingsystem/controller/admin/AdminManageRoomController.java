@@ -2,8 +2,10 @@ package com.roomfindingsystem.controller.admin;
 
 import com.roomfindingsystem.dto.RoomDto;
 import com.roomfindingsystem.dto.ServiceDto;
+import com.roomfindingsystem.entity.UserEntity;
 import com.roomfindingsystem.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -24,11 +26,16 @@ public class AdminManageRoomController {
     private RoomTypeService roomTypeService;
     @Autowired
     private ServiceDetailService serviceDetailService;
+    @Autowired
+    UserService userService;
 
     @GetMapping("/listRoom")
     public String getListRoomPage(Model model) {
         List<RoomDto> roomDtos = roomService.getAll();
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserEntity user = userService.findByEmail(email).get();
         model.addAttribute("rooms", roomDtos);
+        model.addAttribute("user", user);
         return "admin/list-room";
     }
 
@@ -39,6 +46,9 @@ public class AdminManageRoomController {
         model.addAttribute("types", roomTypeService.findAll());
         model.addAttribute("listService", serviceDetailService.getAllService());
         model.addAttribute("listChecked", roomDto.getServices());
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserEntity user = userService.findByEmail(email).get();
+        model.addAttribute("user", user);
         return "admin/edit-room";
     }
 
@@ -71,6 +81,9 @@ public class AdminManageRoomController {
         model.addAttribute("room", roomDto);
         model.addAttribute("services", serviceDetailService.getAllService());
         model.addAttribute("types", roomTypeService.findAll());
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserEntity user = userService.findByEmail(email).get();
+        model.addAttribute("user", user);
         return "admin/insert-room";
     }
 
@@ -100,7 +113,7 @@ public class AdminManageRoomController {
     @GetMapping("deleteImage/{roomId}/{imageId}")
     public String deleteImage(@PathVariable Integer roomId, @PathVariable Integer imageId) {
         roomService.deleteRoomImage(imageId);
-        return "redirect:/updateRoom/" + roomId;
+        return "redirect:/admin/room/updateRoom/" + roomId;
     }
 }
 

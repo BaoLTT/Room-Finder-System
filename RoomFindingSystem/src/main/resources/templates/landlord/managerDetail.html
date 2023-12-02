@@ -15,7 +15,15 @@
     <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
 
     <title>Cập nhật thông tin trọ</title>
+
+    <style>
+        #map-item {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
 </head>
+
 
 <body>
 <div class="page-wrapper">
@@ -114,40 +122,63 @@
                         </div>
                     </section>
                     <section id="location">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <div class="title">
+                                <h2>Địa chỉ</h2>
+                                <aside class="step">2</aside>
+                            </div>
+                            <div class="form-group">
+                                <label for="addressDetail">Địa chỉ cụ thể<em>*</em></label>
+                                <input type="text" class="form-control" id="addressDetail" placeholder="Address Detail..." required="" th:field="*{addressDetail}">
+                            </div>
+                            <input type="hidden" name="addressid" th:field="*{address}">
+                            <div class="form-group">
+                                <label for="province">Tỉnh</label>
+                                <select class="form-control" name="province" id="province" style="display: none;" th:field="*{provinceID}">
+                                    <option value="0" selected >Chọn tỉnh thành</option>
+                                </select>
+                                <!-- Hiển thị giá trị -->
+                                <input class="form-control" th:id="provinceName" th:field="*{province}" />
+                            </div>
+                            <div class="form-group">
+                                <label for="district">Quận/Huyện</label>
+                                <select class="form-control" id="district" name="district" style="display: none;" th:field="*{districtID}">
+                                    <option value="0" selected>Chọn huyện</option>
+                                </select>
+                                <!-- Hiển thị giá trị -->
+                                <input class="form-control" th:id="districtName" th:field="*{district}" />
+                            </div>
+                            <div class="form-group">
+                                <label for="ward">Xã/Phường</label>
+                                <select class="form-control" name="ward" id="ward" style="display: none;" th:field="*{wardID}">
+                                    <option value="0" selected>Chọn xã</option>
+                                </select>
+                                <input class="form-control" th:id="wardName" th:field="*{ward}">
+                            </div>
+                        </div>
+                    </div>
+                    <!--end row-->
+                </section>
+                    <section id="map">
                         <div class="row">
                             <div class="col-md-10">
                                 <div class="title">
-                                    <h2>Địa chỉ</h2>
-                                    <aside class="step">2</aside>
+                                    <h2>Hiện thị trên bản đồ</h2>
+                                    <aside class="step">3</aside>
                                 </div>
-                                <div class="form-group">
-                                    <label for="addressDetail">Địa chỉ cụ thể<em>*</em></label>
-                                    <input type="text" class="form-control" id="addressDetail" placeholder="Address Detail..." required="" th:field="*{addressDetail}">
+                                <div id="map-item">
+
                                 </div>
-                                <input type="hidden" name="addressid" th:field="*{address}">
-                                <div class="form-group">
-                                        <label for="province">Tỉnh</label>
-                                        <select class="form-control" name="province" id="province" style="display: none;" th:field="*{provinceID}">
-                                            <option value="0" selected >Chọn tỉnh thành</option>
-                                        </select>
-                                        <!-- Hiển thị giá trị -->
-                                        <input class="form-control" th:id="provinceName" th:field="*{province}" />
-                                </div>
-                                <div class="form-group">
-                                        <label for="district">Quận/Huyện</label>
-                                        <select class="form-control" id="district" name="district" style="display: none;" th:field="*{districtID}">
-                                            <option value="0" selected>Chọn huyện</option>
-                                        </select>
-                                        <!-- Hiển thị giá trị -->
-                                        <input class="form-control" th:id="districtName" th:field="*{district}" />
-                                </div>
-                                <div class="form-group">
-                                        <label for="ward">Xã/Phường</label>
-                                        <select class="form-control" name="ward" id="ward" style="display: none;" th:field="*{wardID}">
-                                            <option value="0" selected>Chọn xã</option>
-                                        </select>
-                                        <input class="form-control" th:id="wardName" th:field="*{ward}">
-                                </div>
+                                <label>Vĩ độ</label>
+
+                                <input th:if="${house.latitude != null}" id="latitude" name="latitude"
+                                       th:field="*{latitude}">
+                                <label>Kinh độ</label>
+
+                                <input th:if="${house.longitude != null}" id="longitude" name="longitude"
+                                       th:field="*{longitude}">
+
                             </div>
                         </div>
                         <!--end row-->
@@ -155,7 +186,7 @@
                     <section id="gallery">
                         <div class="title">
                             <h2>Ảnh</h2>
-                            <aside class="step">3</aside>
+                            <aside class="step">4</aside>
                         </div>
                         <div class="file-upload-previews">
                             <div class="MultiFile-label"  id="imageContainer" th:each="image, iterStat : ${house.listImage}">
@@ -173,7 +204,7 @@
                     <section id="facilities">
                         <div class="title">
                             <h2>Dịch vụ</h2>
-                            <aside class="step">4</aside>
+                            <aside class="step">5</aside>
                         </div>
                         <div class="row" style="margin-top: -20px">
                             <div class="col-md-12">
@@ -192,7 +223,7 @@
                     <section id="additional-information">
                         <div class="title">
                             <h2>Thông tin thêm</h2>
-                            <aside class="step">5</aside>
+                            <aside class="step">6</aside>
                         </div>
                         <!--end title-->
                         <div class="row">
@@ -460,11 +491,62 @@
 
 <![endif]-->
 
+<!--<script>-->
+<!--    var _latitude = 48.47292127;-->
+<!--    var _longitude = 4.28672791;-->
+<!--    var element = "map-item";-->
+<!--    var markerDrag = true;-->
+<!--    simpleMap(_latitude,_longitude, element, markerDrag);-->
+<!--</script>-->
+
+
+<script th:src="@{'https://maps.googleapis.com/maps/api/js?key='+${key_map}+'&callback=initMap'}" async defer></script>
+
 <script>
-    var _latitude = 48.47292127;
-    var _longitude = 4.28672791;
-    var element = "map-item";
-    var markerDrag = true;
-    simpleMap(_latitude,_longitude, element, markerDrag);
+    var map;
+    var marker;
+
+    function initMap() {
+        var latitude = parseFloat(document.getElementById('latitude').value);
+        var longitude = parseFloat(document.getElementById('longitude').value);
+
+        // Tạo map với vị trí ban đầu
+        map = new google.maps.Map(document.getElementById('map-item'), {
+            center: {lat: latitude, lng: longitude},
+            zoom: 16
+        });
+
+
+        //marker ban dau
+        marker = new google.maps.Marker({
+            position: {lat: latitude, lng: longitude},
+            map: map
+        });
+
+        // Thêm sự kiện click cho map
+        map.addListener('click', function (event) {
+            placeMarker(event.latLng);
+        });
+
+    }
+
+    function placeMarker(location) {
+
+        // Xóa marker cũ nếu có
+        if (marker) {
+            marker.setMap(null);
+        }
+
+        // Tạo marker mới
+        marker = new google.maps.Marker({
+            position: location,
+            map: map
+        });
+
+        // Hiển thị thông tin vị trí
+        document.getElementById('latitude').value = location.lat();
+        document.getElementById('longitude').value = location.lng();
+    }
 </script>
+
 </body>

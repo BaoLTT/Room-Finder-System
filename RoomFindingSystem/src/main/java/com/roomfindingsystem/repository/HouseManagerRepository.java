@@ -46,9 +46,11 @@ public interface HouseManagerRepository extends JpaRepository<HousesEntity,Integ
             "description = ?3 ," +
             "last_modified_by = ?4 ," +
             "last_modified_date = ?5 ," +
-            "status = ?6 " +
+            "status = ?6 ," +
+            "latitude = ?8 ," +
+            "longitude = ?9 " +
             "WHERE houseid = ?7 ;",nativeQuery = true)
-    void updateHouse(String houseName, Integer typeHouse, String description, Integer lastBy, LocalDate lastDate, Integer status, Integer id);
+    void updateHouse(String houseName, Integer typeHouse, String description, Integer lastBy, LocalDate lastDate, Integer status, Integer id, Double latitude, Double longitude);
 
 
 
