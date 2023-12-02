@@ -237,9 +237,12 @@
                         <div class="row">
                             <div class="col-md-6 col-sm-6">
                                 <h2 th:text="${HousesEntity.houseName}" style="display: inline-block;"></h2>
-                                <a href="#reviews" style="display: inline-block; margin-left: 10px;">
+                                <a href="#reviews" style="display: inline-block; margin-left: 10px;" th:if="${HousesEntity.star}!=0">
                                     <span th:text="'(Đánh giá: ' + ${HousesEntity.star} + ' '"></span><i
                                         class="fa fa-star" style="color: #FFCE45"></i><span>)</span>
+                                </a>
+                                <a href="#reviews" style="display: inline-block; margin-left: 10px;" th:if="${HousesEntity.star}==0">
+                                    <span>Chưa có đánh giá</span>
                                 </a>
                             </div>
 
