@@ -137,12 +137,12 @@
                                     <label class="col-form-label">Dịch vụ</label>
                                     <div style="display: flex; flex-wrap: wrap;">
                                         <div class="checkbox checkbox-primary col-2"
-                                             th:each="listService : ${listService}" th:field="*{services}"
+                                             th:each="listService : ${listService}" th:field="*{serviceNames}"
                                              style="padding-left: 10px">
                                             <input th:id="${listService.serviceName}" type="checkbox"
                                                    style="position: relative"
-                                                   name="service" th:value="${listService.serviceId}"
-                                                   th:checked="${#lists.contains(listChecked,''+ listService.serviceId+'')}">
+                                                   name="serviceNames" th:value="${listService.serviceName}"
+                                                   th:checked="${#lists.contains(listChecked,''+ listService.serviceName+'')}">
                                             <label th:for="${listService.serviceName}"
                                                    th:text="${listService.serviceName}">
                                             </label>
