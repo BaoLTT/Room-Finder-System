@@ -104,21 +104,35 @@
                                         <section>
                                             <h3>Thể loại phòng </h3>
                                             <ul class="checkboxes">
-                                                <li><label><input type="checkbox" name="type" value="1"
-                                                                  th:checked="${#arrays.contains(listType, '1')}">Chung
-                                                    cư</label>
+                                                <li th:each="listAllType, iterStat : ${listAllType}" th:if="${iterStat.index < 4}">
+                                                    <label>
+                                                        <input type="checkbox"
+                                                               name="type"
+                                                               th:text="${listAllType.typeName}"
+                                                               th:value="${listAllType.typeId}"
+                                                               th:checked="${#lists.contains(listType,''+ listAllType.typeId+'')}">
+                                                    </label>
                                                 </li>
-                                                <li><label><input type="checkbox" name="type" value="2"
-                                                                  th:checked="${#arrays.contains(listType, '2')}">Phòng
-                                                    cho
-                                                    thuê</label></li>
-                                                <li><label><input type="checkbox" name="type" value="3"
-                                                                  th:checked="${#arrays.contains(listType, '3')}">Căn hộ</label>
-                                                </li>
-                                                <li><label><input type="checkbox" name="type" value="4"
-                                                                  th:checked="${#arrays.contains(listType, '4')}">Ký túc
-                                                    xá</label></li>
                                             </ul>
+
+                                            <div class="collapse" id="all-property-types">
+                                                <ul class="checkboxes no-bottom-margin" >
+
+                                                    <li th:each="listAllType, iterStat : ${listAllType}" th:if="${iterStat.index >= 4}">
+                                                        <label>
+                                                            <input type="checkbox"
+                                                                   name="type"
+                                                                   th:text="${listAllType.typeName}"
+                                                                   th:value="${listAllType.typeId}"
+                                                                   th:checked="${#lists.contains(listType,''+ listAllType.typeId+'')}">
+                                                        </label>
+
+                                                    </li>
+                                                </ul>
+
+                                            </div>
+                                            <a href="#all-property-types" class="link" data-toggle="collapse"
+                                               aria-expanded="false" aria-controls="all-property-types">Show all</a>
                                         </section>
                                         <!--end section-->
                                         <section>
@@ -135,7 +149,7 @@
                                                     </label>
                                                 </li>
                                             </ul>
-                                            <div class="collapse" id="all-property-types">
+                                            <div class="collapse" id="all-property-services">
                                                 <ul class="checkboxes no-bottom-margin" >
 
                                                     <li th:each="listAllService, iterStat : ${listAllService}" th:if="${iterStat.index >= 4}">
@@ -149,7 +163,7 @@
                                                     </li>
                                                 </ul>
                                             </div>
-                                            <a href="#all-property-types" class="link" data-toggle="collapse"
+                                            <a href="#all-property-services" class="link" data-toggle="collapse"
                                                aria-expanded="false" aria-controls="all-property-types">Show all</a>
                                             <!--end checkboxes-->
                                         </section>

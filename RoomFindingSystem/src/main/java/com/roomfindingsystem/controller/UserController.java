@@ -153,13 +153,15 @@ public class UserController {
             //        passwordEncoder.encode(oldPassword).equals(userService.getUserForChangePass("binhnhhe153478@fpt.edu.vn").toString());
             System.out.println(passwordEncoder.matches(oldPassword, userService.getUserForChangePass("binhnhhe153478@fpt.edu.vn").toString()));
             System.out.println(passwordEncoder.encode(oldPassword));
-            if (passwordEncoder.matches(oldPassword, userService.getUserForChangePass("binhnhhe153478@fpt.edu.vn"))) {
-                userService.recoverPassword(passwordEncoder.encode(newPassword),"binhnhhe153478@fpt.edu.vn");
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            String email = authentication.getName();
+            System.out.println(email);
+            if (passwordEncoder.matches(oldPassword, userService.getUserForChangePass(email))) {
+                userService.recoverPassword(passwordEncoder.encode(newPassword),email);
                 model.addAttribute("mess", "Mật Khẩu đã được đổi thành công");
-                System.out.println("Remove success");
                 return "change-password-form";
             }
-            model.addAttribute("mess", "Mật Khẩu cũ Không Trùng");
+            model.addAttribute("mess1", "Mật Khẩu cũ Không Trùng");
             System.out.println("Remove faild");
             return "change-password-form";
 

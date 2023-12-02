@@ -65,22 +65,21 @@
 
                                     <div class="meta">
                                         <span><i class="fa fa-bed" ></i><h th:text="${house.getCount_room()}"></h></span>
-                                        <span class="price-info">From <span class="price" th:text="${house.getPrice()}">$32</span><span class="appendix">/Tháng</span></span>
+                                        <span class="price-info" th:with="formattedPrice=${#numbers.formatDecimal(house.price, 0, 'COMMA', 0, 'POINT')}">From <span class="price" th:text="${formattedPrice + ' VND'}">$32</span><span class="appendix">/Tháng</span></span>
                                     </div>
                                     <!--end meta-->
                                 </div>
                                 <!--end info-->
                             </td>
-                            <td th:if="${house.getStatus() == 2}"><div class="featured yes">
+                            <td th:if="${house.getStatus() == 2}"><div style="color:#eea236 ">
                                 ĐANG XỬ LÝ
                                 <aside></aside>
                             </div></td>
-                            <td th:if="${house.getStatus() == 1}"><div class="featured yes">
+                            <td th:if="${house.getStatus() == 1}"><div class="featured yes"> Hoạt Động
                                 <i class="fa fa-check"></i>
                                 <aside></aside>
                             </div></td>
-                            <td th:if="${house.getStatus() == 0}"><div class="featured yes" style="color: red">
-                                <i class="fa fa-close"></i>
+                            <td th:if="${house.getStatus() == 0}"><div class="featured yes" style="color: red"> Ngưng Hoạt Động
                                 <aside></aside>
                             </div></td>
                             <td class="views" th:if="${house.star!=null}" th:text="${house.getStar()}">426</td>

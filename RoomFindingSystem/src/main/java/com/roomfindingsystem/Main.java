@@ -19,18 +19,13 @@ import java.awt.print.Pageable;
 import java.util.List;
 
 @SpringBootApplication
-public class Main implements CommandLineRunner{
+public class Main{
 //    CommandLineRunner
-    @Autowired
-    HouseRepository houseRepository;
 
 
     public static void main(String[] args) {
         SpringApplication.run(Main.class, args);
     }
 
-    @Override
-    public void run(String... args) throws Exception {
-        System.out.println(houseRepository.findAllDetail(2).get(0));
-    }
+
 }
