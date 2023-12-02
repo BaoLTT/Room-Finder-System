@@ -18,6 +18,7 @@ import java.io.IOException;
 public class AdminProfileController {
     @Autowired
     private UserService userService;
+
     @GetMapping("/profile")
     public String getProfilePage(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -25,11 +26,10 @@ public class AdminProfileController {
             String email = authentication.getName();
             UserDto userDto = userService.findUserDtoByEmail(email);
             model.addAttribute("user", userDto);
+            return "admin/adminProfile";
+        } else {
+            return "redirect:/login";
         }
-        String email = SecurityContextHolder.getContext().getAuthentication().getName();
-        UserEntity user = userService.findByEmail(email).get();
-        model.addAttribute("user", user);
-        return "admin/adminProfile";
     }
 
     @PostMapping("/profile/update")

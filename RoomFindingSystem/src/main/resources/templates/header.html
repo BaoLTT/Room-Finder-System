@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="shortcut icon"  th:href="@{/assets/img/favicon.ico}">
 <head>
     <style>
         .round-image {
@@ -59,6 +60,11 @@
                                 <a th:href="@{favourite-list}" class="dropdown-item notify-item">
 
                                     <span>Danh Sách Yêu Thích</span>
+                                </a>
+                                <br>
+                                <a th:href="@{feedback-list-landlord}" class="dropdown-item notify-item">
+
+                                    <span>Danh Sách Bình Luận</span>
                                 </a>
                                 <br>
                                 <a th:href="@{change-password}" class="dropdown-item notify-item">
