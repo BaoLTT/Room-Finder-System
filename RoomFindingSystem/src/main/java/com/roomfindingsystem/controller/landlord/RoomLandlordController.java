@@ -110,7 +110,7 @@ public class RoomLandlordController {
     @GetMapping("deleteImage/{roomId}/{imageId}")
     public String deleteImage(@PathVariable Integer roomId, @PathVariable Integer imageId) {
         roomService.deleteRoomImage(imageId);
-        return "redirect:/updateRoom/" + roomId;
+        return "redirect:/landlord/room/updateRoom/" + roomId;
     }
 }
 
