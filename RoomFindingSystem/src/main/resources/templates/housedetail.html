@@ -237,14 +237,17 @@
                         <div class="row">
                             <div class="col-md-6 col-sm-6">
                                 <h2 th:text="${HousesEntity.houseName}" style="display: inline-block;"></h2>
-                                <a href="#reviews" style="display: inline-block; margin-left: 10px;">
+                                <a href="#reviews" style="display: inline-block; margin-left: 10px;" th:if="${HousesEntity.star}!=0">
                                     <span th:text="'(Đánh giá: ' + ${HousesEntity.star} + ' '"></span><i
                                         class="fa fa-star" style="color: #FFCE45"></i><span>)</span>
+                                </a>
+                                <a href="#reviews" style="display: inline-block; margin-left: 10px;" th:if="${HousesEntity.star}==0">
+                                    <span>Chưa có đánh giá</span>
                                 </a>
                             </div>
 
 
-                            <div class="col-md-6 col-sm-6 text-right" th:if="${session.user != null}">
+                            <div class="col-md-6 col-sm-6 text-right" th:if="${user != null}">
                                 <!-- Chia cột, dính về bên phải -->
                                 <button type="button" class="btn btn-primary" data-toggle="modal"
                                         data-target="#reportModalCenter" style="background-color: red"
@@ -260,7 +263,7 @@
                                 </button>
 
                             </div>
-                            <div th:if="${session.user != null}" class="modal fade" id="reportModalCenter" tabindex="-1"
+                            <div th:if="${user != null}" class="modal fade" id="reportModalCenter" tabindex="-1"
                                  role="dialog" aria-labelledby="reportModalCenterTitle" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
@@ -593,7 +596,7 @@
                         <section id="reviews">
                             <div class="title">
                                 <h2 class="pull-left">Đánh giá</h2>
-                                <div th:if="${session.user != null}">
+                                <div th:if="${user != null}">
                                     <a class="btn btn-primary btn-rounded pull-right scroll" type="button"
                                        data-toggle="modal" data-target="#exampleModal" th:if="${count == 0}">Viết đánh
                                         giá</a>
@@ -651,7 +654,7 @@
                                                             th:text="${feedback.getTitle()}"></h4>
 
                                                         <!-- Trong ví dụ này, chúng tôi sử dụng Thymeleaf để hiển thị hoặc ẩn nút dựa trên điều kiện -->
-                                                        <div th:if="${session.user != null}">
+                                                        <div th:if="${user != null}">
                                                             <button type="button" class="btn btn-primary"
                                                                     data-toggle="modal" data-target="#exampleModal"
                                                                     style="background-color: #FFFFFF"

@@ -35,6 +35,9 @@ public interface UserRepository extends JpaRepository<UserEntity,Integer> {
     int updatePassword(String password, String email);
     @Query("select u.password from UserEntity u where u.email=?1")
     String getUserEntitiesByUserId(String email);
+
+    @Query(value = "SELECT * FROM room_finding_system.user where user.roleid= ?1 and user.user_statusid=1 ",nativeQuery = true)
+    List<UserEntity> findUserByRole(String role);
     @Query("select count(*) from UserEntity u where u.roleId = 'Landlord' or u.roleId = 'User'")
     int countUserInAdmin();
 
