@@ -95,10 +95,10 @@ public class HouseController {
             model.addAttribute("star", star);
 
             //lấy ra tên của user hiện tại -> lấy ra user hiện tại
-
+            UserEntity user = null;
             try {
                 String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
-                UserEntity user = userService.findByEmail(currentUserName).get();
+                user = userService.findByEmail(currentUserName).get();
 
                 //set houseId và userid cho feedback
                 FeedbackEntity feedbackEntity = new FeedbackEntity();
@@ -140,7 +140,7 @@ public class HouseController {
 
 
                 model.addAttribute("feedbackEntity", feedbackEntity);
-                model.addAttribute("user", user);
+
                 model.addAttribute("count", count);
                 model.addAttribute("reportEntity", reportEntity);
                 model.addAttribute("countReport", countReport);
@@ -159,6 +159,8 @@ public class HouseController {
             model.addAttribute("houseLocation", houseService.getHouseById(houseId));
             model.addAttribute("key_map", gcsService.getMapKey());
             model.addAttribute("request",request);
+            model.addAttribute("user", user);
+
             System.out.println(roomHouseDetailDtos.toString());
 
 

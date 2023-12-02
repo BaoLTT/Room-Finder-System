@@ -19,7 +19,7 @@ import java.awt.print.Pageable;
 import java.util.List;
 
 @SpringBootApplication
-public class Main {
+public class Main{
 //    CommandLineRunner
 
 
@@ -27,7 +27,5 @@ public class Main {
         SpringApplication.run(Main.class, args);
     }
 
-
-    
 
 }
