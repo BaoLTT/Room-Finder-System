@@ -38,9 +38,6 @@ public class AdminManageUserController {
     public String getInsertPage(Model model) {
         UserDto userDto = new UserDto();
         model.addAttribute("user", userDto);
-        String email = SecurityContextHolder.getContext().getAuthentication().getName();
-        UserEntity user = userService.findByEmail(email).get();
-        model.addAttribute("user", user);
         return "admin/insert-user";
     }
 
@@ -55,17 +52,14 @@ public class AdminManageUserController {
     public String getFormUpdate(@PathVariable(name = "id")Integer id, Model model) {
         UserDto userDto = userService.findById(id);
         model.addAttribute("user", userDto);
-        String email = SecurityContextHolder.getContext().getAuthentication().getName();
-        UserEntity user = userService.findByEmail(email).get();
-        model.addAttribute("user", user);
         return "admin/edit-user";
     }
 
-    @GetMapping("/deleteUser/{id}")
-    public String delete(@PathVariable("id") Integer id, Model model){
-        adminManageUserService.deleteById(id);
-        return "redirect:/admin/user";
-    }
+//    @GetMapping("/deleteUser/{id}")
+//    public String delete(@PathVariable("id") Integer id, Model model){
+//        adminManageUserService.deleteById(id);
+//        return "redirect:/admin/user";
+//    }
 
     @PostMapping("/update")
     public String updateUserByAdmin(@ModelAttribute(name = "user") UserDto userDto, @RequestParam("file") MultipartFile file) throws IOException {
