@@ -43,7 +43,7 @@ public class RoomLandlordController {
         model.addAttribute("room", roomDto);
         model.addAttribute("types", roomTypeService.findAll());
         model.addAttribute("listService", serviceDetailService.getAllService());
-        model.addAttribute("listChecked", roomDto.getServices());
+        model.addAttribute("listChecked", roomDto.getServiceNames());
         model.addAttribute("request",request);
         return "landlord/edit-room";
     }
