@@ -18,11 +18,13 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class UserRegisterTest {
+public class UserServiceTest {
     @Mock
     UserRepository userRepository;
     @InjectMocks
     UserServiceImpl userService;
+
+    //Test findByEmail()
     @Test
     void testFindByEmail() {
         UserEntity userEntity = new UserEntity();

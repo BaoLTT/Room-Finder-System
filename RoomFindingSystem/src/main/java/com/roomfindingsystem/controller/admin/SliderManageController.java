@@ -31,17 +31,24 @@ public class SliderManageController {
 
     @Autowired
     private UserService userService;
+
+
     @GetMapping("/sliderList")
     public String viewSlider(Model model){
         model.addAttribute("sliderList", sliderService.viewAll() );
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         UserEntity user = userService.findByEmail(email).get();
+
         model.addAttribute("user", user);
+        model.addAttribute("userService",userService);
         return "/admin/list_slider";
     }
 
     @GetMapping("sliderList/insert")
-    public String viewNewSlider(){
+    public String viewNewSlider(Model model)
+    {   String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserEntity user = userService.findByEmail(email).get();
+        model.addAttribute("user", user);
         return "/admin/insert_slider";
     }
     @PostMapping("slider/save")
@@ -133,5 +140,14 @@ public class SliderManageController {
     String deleteSlider(@PathVariable("id") int id){
         sliderService.deleteById(id);
         return "redirect:/admin/sliderList";
+    }
+
+    @GetMapping("/sliderList/deleteImage/{id}")
+    public String deleteImage(@PathVariable(name = "id") Integer id){
+        SliderEntity slider = sliderService.getSliderById(id);
+        slider.setImgLink(null);
+        sliderService.save(slider);
+
+        return "redirect:/admin/sliderList/update/"+id;
     }
 }
