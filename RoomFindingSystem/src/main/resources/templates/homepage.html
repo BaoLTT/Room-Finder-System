@@ -92,10 +92,10 @@
                                                     <div class="form-group">
                                                         <label>Tiền phòng</label>
                                                         <select class="form-control framed white">
-                                                            <option name="price" value="1">0 - 2.000.000</option>
-                                                            <option name="price" value="2">2.000.000 - 4.000.000
+                                                            <option name="price" value="1">Dưới 2,000,000 VND</option>
+                                                            <option name="price" value="2">2,000,000 VND - 4,000,000 VND
                                                             </option>
-                                                            <option name="price" value="3">4.000.000 -></option>
+                                                            <option name="price" value="3">Hơn 4.000.000 VND</option>
                                                         </select>
                                                     </div>
                                                     <!--end form-group-->
@@ -345,7 +345,7 @@
                     <div class="description">
 
                         <p th:text="${slider.content}"></p>
-                        <a th:href="@{/slider/}+${slider.sliderid}" class="btn btn-default btn-small btn-framed btn-rounded">More</a>
+                        <a th:href="@{/slider/}+${slider.sliderid}" class="btn btn-default btn-small btn-framed btn-rounded">Xem chi tiết</a>
                     </div>
                 </div>
 

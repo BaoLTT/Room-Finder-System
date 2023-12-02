@@ -72,6 +72,11 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
+    public int countRoom(int houseId) {
+        return roomRepository.countRoomEntityByHouseId(houseId);
+    }
+
+    @Override
     public List<RoomHomeDto> viewRoomInHome() {
         List<Tuple> tuples = roomRepository.viewRoomInHome();
         List<RoomHomeDto> roomHomeDtos = new ArrayList<>();
