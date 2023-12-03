@@ -16,8 +16,17 @@
     <link th:href="@{/assets_admin/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
     <link th:href="@{/assets_admin/css/icons.min.css}" rel="stylesheet" type="text/css"/>
     <link th:href="@{/assets_admin/css/app.min.css}" rel="stylesheet" type="text/css"/>
+    <link href="/assets_admin/css/file-upload.css" rel="stylesheet" type="text/css"/>
 
+    <style>
+        #removeImage {
+            display: none; /* Ẩn nút xóa ảnh ban đầu */
+        }
 
+        #imageContainer {
+            display: none; /* Ẩn khối div preview khi không có ảnh */
+        }
+    </style>
 </head>
 
 <body>
@@ -87,23 +96,33 @@
                                 <!-- Pictures -->
 
                                 <div class="form-group">
-                                    <label>Chọn ảnh</label>
-                                    <div class="dropzone" id="myAwesomeDropzone">
-                                        <div class="fallback">
-                                            <input name="file" type="file"  id="imageInput" onchange="previewImage()" multiple/>
+                                    <label class="col-form-label">Ảnh</label>
+                                    <div>
+                                        <div class="file-upload-previews" id="imageContainer">
+                                            <div class="MultiFile-label" >
+                                                <a class="MultiFile-remove" href="" id="removeImage">x</a>
+                                                <span class="MultiFile-label" title="File selected: abc.png">
+                                                        <img src="" alt="Ảnh" id="imagePreview" style="width: 100px; height: 100px">
+                                                    </span>
+                                            </div>
+                                        </div>
+                                        <div class="file-upload">
+                                            <input type="file" name="file" id="fileInput" class="file-upload-input with-preview" title="Click to add files" accept="image/*">
+                                            <span>Nhấn để thêm ảnh</span>
                                         </div>
                                     </div>
-                                    <div id="imagePreview"></div>
-                                    <div class="image-preview"></div>
                                 </div>
                                 <div class="form-group mb-0">
                                     <div>
                                         <button type="submit" class="btn btn-gradient waves-effect waves-light">
                                             Tạo mới
                                         </button>
-<!--                                        <button type="reset" class="btn btn-light waves-effect ml-1">-->
-<!--&lt;!&ndash;                                            <a th:href="@{/room/listRoomPage}">Danh sách phòng</a>&ndash;&gt;-->
+<!--                                        <button  th:href="@{/admin/sliderList}" class="btn btn-gradient waves-effect waves-classic" style="background-color: red">-->
+<!--                                            Đóng-->
 <!--                                        </button>-->
+                                        <button type="reset" class="btn btn-gradient waves-effect waves-classic" style="background-color: red">
+                                            <a th:href="@{/admin/sliderList}"> Đóng</a>
+                                        </button>
                                     </div>
                                 </div>
                             </form>
@@ -234,27 +253,42 @@
 
 <!-- App js -->
 <script src="/assets_admin/js/app.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
 <script>
-    function previewImage() {
-        var input = document.getElementById('imageInput');
-        var preview = document.getElementById('imagePreview');
+    // Khi người dùng chọn tệp
+    $('#fileInput').on('change', function (e) {
+        var fileInput = e.target;
+        var file = fileInput.files[0];
 
-        // Kiểm tra xem có file được chọn hay không
-        if (input.files && input.files[0]) {
+        if (file) {
+            // Hiển thị ảnh trước khi tải lên
             var reader = new FileReader();
-
-            // Đọc URL của hình ảnh
             reader.onload = function (e) {
-                preview.innerHTML = '<img src="' + e.target.result + '" alt="Preview Image" style="max-width: 100%; max-height: 200px;"/>';
+                $('#imagePreview').attr('src', e.target.result);
             };
+            reader.readAsDataURL(file);
 
-            // Đọc file như là một URL
-            reader.readAsDataURL(input.files[0]);
+            // Hiển thị nút xóa ảnh và khối div preview
+            $('#removeImage').show();
+            $('#imageContainer').show();
         } else {
-            // Nếu không có file, xóa nội dung xem trước
-            preview.innerHTML = '';
+            // Ẩn nút xóa ảnh và khối div preview nếu không có ảnh được chọn
+            $('#removeImage').hide();
+            $('#imageContainer').hide();
         }
-    }
+    });
+
+    // Khi người dùng nhấn vào nút xóa ảnh
+    $('#removeImage').on('click', function (e) {
+        // Xóa dữ liệu ảnh, ẩn nút xóa và khối div preview
+        $('#imagePreview').attr('src', '');
+        $('#removeImage').hide();
+        $('#imageContainer').hide();
+
+        // Đặt giá trị trống cho input file để đảm bảo sự kiện change được kích hoạt khi chọn lại cùng một tệp
+        $('#fileInput').val('');
+    });
 </script>
 </body>
 </html>

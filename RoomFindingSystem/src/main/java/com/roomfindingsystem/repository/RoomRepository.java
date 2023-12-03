@@ -103,4 +103,7 @@ public interface RoomRepository extends JpaRepository<RoomEntity, Integer> {
             "left join RoomTypeEntity t on t.typeId = r.roomType "+
             "WHERE h.houseId = :houseId")
     List<RoomDto> findRoomsInHouse(int houseId);
+
+    @Query("select count(*) from RoomEntity r where r.houseId = ?1")
+    int countRoomEntityByHouseId(int id);
 }

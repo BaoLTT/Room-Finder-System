@@ -26,7 +26,7 @@ public interface RoomService {
 
     //Homepage
 
-
+    int countRoom(int houseId);
     List<RoomHomeDto> viewRoomInHome();
 
     RoomDto findById(Integer id);
