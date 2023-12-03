@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1e0562a2-7ad5-40d8-bd96-2e66b43cd15f" name="Changes" comment="fix title front end">
+
+    <list default="true" id="1e0562a2-7ad5-40d8-bd96-2e66b43cd15f" name="Changes" comment="update chinh homepage">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/housedetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/housedetail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/admin/SliderManageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/admin/SliderManageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/admin/edit_slider.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/admin/edit_slider.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/admin/list_slider.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/admin/list_slider.html" afterDir="false" />
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,8 +23,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="HTML File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -71,7 +75,39 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Spring Boot.Main">
+    <configuration name="HouseServiceTest.testGetHouseDetailInvalidId" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="RoomFindingSystem" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.roomfindingsystem.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.roomfindingsystem.service" />
+      <option name="MAIN_CLASS_NAME" value="com.example.roomfindingsystem.service.HouseServiceTest" />
+      <option name="METHOD_NAME" value="testGetHouseDetailInvalidId" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HouseServiceTest.testGetHouseDetailNotEmpty" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="RoomFindingSystem" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.roomfindingsystem.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.roomfindingsystem.service" />
+      <option name="MAIN_CLASS_NAME" value="com.example.roomfindingsystem.service.HouseServiceTest" />
+      <option name="METHOD_NAME" value="testGetHouseDetailNotEmpty" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="RoomFindingSystem" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.roomfindingsystem.Main" />
@@ -88,8 +124,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.Main" />
-        <item itemvalue="Spring Boot.Main" />
-        <item itemvalue="Spring Boot.Main" />
+        <item itemvalue="JUnit.HouseServiceTest.testGetHouseDetailInvalidId" />
+        <item itemvalue="JUnit.HouseServiceTest.testGetHouseDetailNotEmpty" />
         <item itemvalue="Spring Boot.Main" />
         <item itemvalue="Spring Boot.Main" />
       </list>
@@ -130,10 +166,15 @@
       <workItem from="1701415114616" duration="3460000" />
       <workItem from="1701448026538" duration="5492000" />
       <workItem from="1701454406060" duration="1970000" />
-      <workItem from="1701527077479" duration="5191000" />
-      <workItem from="1701583496750" duration="282000" />
-      <workItem from="1701595523814" duration="4120000" />
-      <workItem from="1701617113099" duration="4106000" />
+
+      <workItem from="1701494326554" duration="10057000" />
+      <workItem from="1701549072369" duration="2974000" />
+      <workItem from="1701568435533" duration="1240000" />
+      <workItem from="1701597630144" duration="3230000" />
+      <workItem from="1701606844751" duration="1379000" />
+      <workItem from="1701609514091" duration="6923000" />
+      <workItem from="1701621705825" duration="3415000" />
+
     </task>
     <task id="LOCAL-00002" summary="update lai">
       <option name="closed" value="true" />
@@ -247,55 +288,17 @@
       <option name="project" value="LOCAL" />
       <updated>1701512036142</updated>
     </task>
-    <task id="LOCAL-00016" summary="favicon list">
+
+    <task id="LOCAL-00016" summary="update chinh homepage">
       <option name="closed" value="true" />
-      <created>1701512256996</created>
+      <created>1701618714219</created>
       <option name="number" value="00016" />
       <option name="presentableId" value="LOCAL-00016" />
       <option name="project" value="LOCAL" />
-      <updated>1701512256996</updated>
+      <updated>1701618714220</updated>
     </task>
-    <task id="LOCAL-00017" summary="fix front end">
-      <option name="closed" value="true" />
-      <created>1701512302996</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1701512302996</updated>
-    </task>
-    <task id="LOCAL-00018" summary="fix front end">
-      <option name="closed" value="true" />
-      <created>1701512392546</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1701512392546</updated>
-    </task>
-    <task id="LOCAL-00019" summary="fix front end favicon">
-      <option name="closed" value="true" />
-      <created>1701516184817</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1701516184817</updated>
-    </task>
-    <task id="LOCAL-00020" summary="fix front favicon">
-      <option name="closed" value="true" />
-      <created>1701536585432</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1701536585433</updated>
-    </task>
-    <task id="LOCAL-00021" summary="fix feedback landlord">
-      <option name="closed" value="true" />
-      <created>1701537959707</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1701537959707</updated>
-    </task>
-    <option name="localTasksCounter" value="22" />
+    <option name="localTasksCounter" value="17" />
+
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -329,13 +332,12 @@
     <MESSAGE value="update hien map" />
     <MESSAGE value="update" />
     <MESSAGE value="them map trong house admin" />
-    <MESSAGE value="favicon" />
-    <MESSAGE value="favicon list" />
-    <MESSAGE value="fix front end" />
-    <MESSAGE value="fix front end favicon" />
-    <MESSAGE value="fix front favicon" />
-    <MESSAGE value="fix feedback landlord" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix feedback landlord" />
+
+    <MESSAGE value="update phan slider" />
+    <MESSAGE value="update homepage" />
+    <MESSAGE value="update chinh homepage" />
+    <option name="LAST_COMMIT_MESSAGE" value="update chinh homepage" />
+
   </component>
   <component name="com.github.evgenys91.machinet.common.dslhistory.DslHistoryState">
     <option name="historyDtoById">

@@ -52,7 +52,7 @@ public class SliderManageController {
         return "/admin/insert_slider";
     }
     @PostMapping("slider/save")
-    public String viewSliderDetail(Model model, @RequestParam(name = "title",required = false , defaultValue = "") String title,
+    public String saveSlider(Model model, @RequestParam(name = "title",required = false , defaultValue = "") String title,
                                    @RequestParam(name = "content",required = false , defaultValue = "") String content,  @RequestParam(name = "file", required = false) MultipartFile file,
                                    @RequestParam(name = "status", required = false) String status) throws IOException {
         SliderEntity sliderEntity = new SliderEntity();
@@ -69,7 +69,7 @@ public class SliderManageController {
             //        Handle Image
             byte[] imageBytes = file.getBytes();
             gcsService.uploadImage("rfs_bucket", "Slider/slider_"+formattedTimestamp+".jpg", imageBytes);
-            imgLink = "https://storage.cloud.google.com/rfs_bucket/Slider/"+"slider_"+formattedTimestamp+".jpg";
+            imgLink = "/rfs_bucket/Slider/"+"slider_"+formattedTimestamp+".jpg";
         }
         sliderEntity.setImgLink(imgLink);
         sliderEntity.setTitle(title);

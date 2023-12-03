@@ -66,11 +66,11 @@ public class HouseController {
 
         try {
             List<HouseDto> houseDto = houseService.getHouseDetail(houseId);
-            System.out.printf(houseDto.toString());
+
 
 
             model.addAttribute("HousesEntity", houseDto);
-            System.out.println(houseDto);
+
 
             List<ServiceDto> listService= houseService.getServiceById(houseId);
             model.addAttribute("HouseService", listService);
