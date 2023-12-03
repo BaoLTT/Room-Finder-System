@@ -36,13 +36,14 @@ public class  AdminDashboardController {
     @Autowired
     ReportService reportService;
     @GetMapping("/dashboard")
-    public String getDashboard(Model model,HttpSession session, HttpServletRequest request){
+    public String getDashboard(Model model, HttpServletRequest request){
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         UserEntity user = userService.findByEmail(email).get();
 
         //         Lưu user vào session
 
-        model.addAttribute("user", user);
+        HttpSession session = request.getSession();
+        session.setAttribute("user", user);
 
 //        if(!user.getRoleId().equals("ADMIN") && !user.getRoleId().equals("SUPER_ADMIN")){
 //            return "redirect:/login";
