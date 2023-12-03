@@ -52,7 +52,7 @@ public class SliderManageController {
         return "/admin/insert_slider";
     }
     @PostMapping("slider/save")
-    public String viewSliderDetail(Model model, @RequestParam(name = "title",required = false , defaultValue = "") String title,
+    public String saveSlider(Model model, @RequestParam(name = "title",required = false , defaultValue = "") String title,
                                    @RequestParam(name = "content",required = false , defaultValue = "") String content,  @RequestParam(name = "file", required = false) MultipartFile file,
                                    @RequestParam(name = "status", required = false) String status) throws IOException {
         SliderEntity sliderEntity = new SliderEntity();
