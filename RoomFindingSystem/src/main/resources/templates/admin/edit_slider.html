@@ -111,7 +111,7 @@
                                             <div class="MultiFile-label" >
                                                 <a class="MultiFile-remove" th:href="@{'/admin/sliderList/deleteImage/'+${slider.sliderid}}" id="removeImage">x</a>
                                                 <span class="MultiFile-label" title="File selected: abc.png">
-                                                        <img th:src="${slider.imgLink}" alt="Ảnh" id="imagePreview" style="width: 100px; height: 100px">
+                                                        <img th:src="@{'https://storage.cloud.google.com'+slider.imgLink}" alt="Ảnh" id="imagePreview" style="width: 100px; height: 100px">
                                                     </span>
                                             </div>
                                         </div>

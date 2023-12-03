@@ -69,7 +69,7 @@ public class SliderManageController {
             //        Handle Image
             byte[] imageBytes = file.getBytes();
             gcsService.uploadImage("rfs_bucket", "Slider/slider_"+formattedTimestamp+".jpg", imageBytes);
-            imgLink = "https://storage.cloud.google.com/rfs_bucket/Slider/"+"slider_"+formattedTimestamp+".jpg";
+            imgLink = "/rfs_bucket/Slider/"+"slider_"+formattedTimestamp+".jpg";
         }
         sliderEntity.setImgLink(imgLink);
         sliderEntity.setTitle(title);
@@ -118,7 +118,7 @@ public class SliderManageController {
             //        Handle Image
             byte[] imageBytes = file.getBytes();
             gcsService.uploadImage("rfs_bucket", "Slider/slider_"+sliderEntity.getSliderid()+".jpg", imageBytes);
-            imgLink = "https://storage.cloud.google.com/rfs_bucket/Slider/"+"slider_"+sliderEntity.getSliderid()+".jpg";
+            imgLink = "/rfs_bucket/Slider/"+"slider_"+sliderEntity.getSliderid()+".jpg";
         }
         sliderEntity.setImgLink(imgLink);
 
