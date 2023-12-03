@@ -294,14 +294,14 @@
                                             <div th:if="${room.roomImages != null && room.roomImages.size() > 1}">
                                                 <a href="" class="wrapper">
                                                     <div class="gallery" >
-                                                        <img style="width: 273px; height: 208px;" th:each = "image: ${room.roomImages}" th:src="${image}" alt="">
+                                                        <img style="width: 273px; height: 208px;" th:each = "image: ${room.roomImages}" th:src="'https://storage.googleapis.com'+${image}" alt="">
 
                                                     </div>
                                                 </a>
                                                 <div class="owl-navigation"></div>
                                             </div>
                                             <div th:if="${room.roomImages != null && room.roomImages.size() == 1}">
-                                                <img style="width: 273px; height: 208px;" th:src="${room.roomImages.get(0)}" alt="">
+                                                <img style="width: 273px; height: 208px;" th:src="'https://storage.googleapis.com'+${room.roomImages.get(0)}" alt="">
                                             </div>
                                             <!--end owl-navigation-->
                                         </div>
@@ -309,7 +309,7 @@
                                         <div class="description">
                                             <div class="info">
                                                 <figure class="label label-info" th:text="${room.roomType}"></figure>
-                                                <a th:href="@{/room/}+${room.roomId}"><h3 th:text="${room.roomName}"></h3></a>
+                                                <a th:href="@{/}+${room.houseName}+'/room/'+${room.roomId}"><h3 th:text="${room.roomName}"></h3></a>
                                                 <figure class="location" th:text="${room.houseName}"></figure>
                                                 <figure style="font-weight: bold; color: red" th:with="formattedPrice=${#numbers.formatDecimal(room.price, 0, 'COMMA', 0, 'POINT')}"> <span th:text="${formattedPrice + ' VND'}"></span> </figure>
                                             </div>
@@ -340,8 +340,8 @@
                                 <li th:if="${currentPage > 2}">
                                     <a th:href="@{/RoomList/} + '1' + '?price=' + ${#strings.arrayJoin(price, ',')} + '&type=' + ${#strings.arrayJoin(type, ',')}" th:text="1" class="page-number">1</a>
                                 </li>
-                                <li th:if="${currentPage > 3}">
-                                    <span>...</span>
+                                <li th:if="${currentPage > 3}" style="pointer-events: none">
+                                    <span style="border: none;background-color: unset">...</span>
                                 </li>
                                 <li th:each="pageIndex: ${#numbers.sequence(currentPage - 1, currentPage + 1)}"
                                     th:unless="${pageIndex < 1 || pageIndex > totalPage}"
@@ -349,8 +349,8 @@
                                     <a th:href="@{/RoomList/} + ${pageIndex} + '?price=' + ${#strings.arrayJoin(price, ',')} + '&type=' + ${#strings.arrayJoin(type, ',')}"
                                        th:text="${pageIndex}" class="page-number"></a>
                                 </li>
-                                <li th:if="${currentPage < totalPage - 2}">
-                                    <span>...</span>
+                                <li th:if="${currentPage < totalPage - 2}" style="pointer-events: none">
+                                    <span style="border: none;background-color: unset">...</span>
                                 </li>
                                 <li th:if="${currentPage <= totalPage - 2}">
                                     <a th:text="${totalPage}"

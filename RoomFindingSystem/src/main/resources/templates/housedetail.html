@@ -645,7 +645,7 @@
                                     </table>
                                 </div>
                                 <!--                                <form th:each="room: ${roomList}" th:action="@{'/room/' + ${room.roomId}}" >-->
-                                <form th:each="room: ${roomList}" th:action="@{/room/houseDetail}" method="post">
+                                <form th:each="room: ${roomList}" th:action="@{/houseDetail}" method="post">
                                     <table class="table">
                                         <tbody>
                                         <tr class="room">
@@ -662,7 +662,7 @@
 
                                             <!--                                            <td class="persons">2<i class="fa fa-user"></i></td>-->
                                             <td th:text="${room.price}"></td>
-
+                                            <input type="hidden" name="houseName" th:value="${HousesEntity.houseName}">
                                             <td class="rooms">
                                                 <select name="roomId" class="framed">
                                                     <option th:each="id : ${room.roomList}" th:value="${id}"
@@ -693,7 +693,7 @@
                                 <h2 class="pull-left">Đánh giá</h2>
                                 <div th:if="${user != null}">
                                     <a class="btn btn-primary btn-rounded pull-right scroll" type="button"
-                                       data-toggle="modal" data-target="#exampleModal" th:if="${count == 0}">Viết đánh
+                                       data-toggle="modal" data-target="#exampleModal" th:if="${count == 0}" style="color: white">Viết đánh
                                         giá</a>
                                 </div>
 
