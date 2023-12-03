@@ -47,6 +47,13 @@
         <div class="container">
             <!-- Start Content-->
             <div class="main-content">
+                <ol class="breadcrumb">
+                    <li><a th:href="@{/manager}">Quản lý trọ</a></li>
+                    <li style="margin: 0 5px;">/</li>
+                    <li><a th:href="@{'/landlord/room/listRoom/'+${room.houseId}}">Danh sách phòng</a></li>
+                    <li style="margin: 0 5px;">/</li>
+                    <li>Thông tin phòng</li>
+                </ol>
                 <div class="row">
                     <div class="col-lg">
                         <div class="card-box">
