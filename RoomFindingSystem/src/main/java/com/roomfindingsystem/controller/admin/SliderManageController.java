@@ -113,12 +113,12 @@ public class SliderManageController {
                                @RequestParam(name = "status", required = false) String status) throws IOException {
 
         String imgLink = null;
-
+        
         if (!file.isEmpty()) {
             //        Handle Image
             byte[] imageBytes = file.getBytes();
             gcsService.uploadImage("rfs_bucket", "Slider/slider_"+sliderEntity.getSliderid()+".jpg", imageBytes);
-            imgLink = "https://storage.cloud.google.com/rfs_bucket/Slider/"+"slider_"+sliderEntity.getSliderid()+".jpg";
+            imgLink = "/rfs_bucket/Slider/"+"slider_"+sliderEntity.getSliderid()+".jpg";
         }
         sliderEntity.setImgLink(imgLink);
 

@@ -205,7 +205,7 @@
                                 <div class="image" >
                                     <a th:href="@{/}+${houses.houseName}+'?id='+${houses.houseID}" class="wrapper">
                                         <div class="gallery">
-                                            <img style="width: 273px; height: 208px;" th:each="image, iterStat : ${houses.listImage}" th:src="${image.imageLink}" alt="Ảnh">
+                                            <img style="width: 273px; height: 208px;" th:each="image, iterStat : ${houses.listImage}" th:src="'https://storage.googleapis.com'+${image.imageLink}"  alt="Ảnh">
                                         </div>
                                     </a>
                                     <div class="map-item">
@@ -230,7 +230,7 @@
                                 <!--end meta-->
                                 <div class="info">
 
-                                    <a th:href="@{/detail?id=}+${houses.houseID}"><h3 style="display: block"
+                                    <a th:href="@{/}+${houses.houseName}+'?id='+${houses.houseID}"><h3 style="display: block"
                                                                                       th:text="${houses.houseName}">
                                         Spring Hotel</h3></a>
 
@@ -241,19 +241,19 @@
                                     <div style="margin-top: 10px">
                                     <figure class="location" th:each="service : ${houses.getService()}" style="display: inline-block">
                                         <i th:if="${service.getServiceName() eq 'Tự do'}" class="fa-solid fa-clock" style="margin-left: 5px"></i>
-                                        <span th:if="${service.getServiceName() eq 'Tự do'}">Tự do</span>
+                                        <a th:if="${service.getServiceName() eq 'Tự do'}" style="color: #0f0f0f" th:href="@{/houselist?service=1}">Tự do</a>
 
                                         <i th:if="${service.getServiceName() eq 'Không chung chủ'}" class="fa-solid fa-user-xmark" style="margin-left: 5px"></i>
-                                        <span th:if="${service.getServiceName() eq 'Không chung chủ'}">Không chung chủ</span>
+                                        <a th:if="${service.getServiceName() eq 'Không chung chủ'}" style="color: #0f0f0f" th:href="@{/houselist?service=2}">Không chung chủ</a>
 
                                         <i th:if="${service.getServiceName() eq 'Bảo vệ'}" class="fa-solid fa-user-shield" style="margin-left: 5px"></i>
-                                        <span th:if="${service.getServiceName() eq 'Bảo vệ'}">Bảo vệ</span>
+                                        <a th:if="${service.getServiceName() eq 'Bảo vệ'}" style="color: #0f0f0f" th:href="@{/houselist?service=3}">Bảo vệ</a>
 
                                         <i th:if="${service.getServiceName() eq 'Khóa vân tay'}" class="fa-solid fa-fingerprint" style="margin-left: 5px"></i>
-                                        <span th:if="${service.getServiceName() eq 'Khóa vân tay'}">Khóa Vân tay</span>
+                                        <a th:if="${service.getServiceName() eq 'Khóa vân tay'}" style="color: #0f0f0f" th:href="@{/houselist?service=4}">Khóa Vân tay</a>
 
                                         <i th:if="${service.getServiceName() eq 'Wifi'}" class="fa fa-wifi" aria-hidden="true" style="margin-left: 5px"></i>
-                                        <span th:if="${service.getServiceName() eq 'Wifi'}">Wifi</span>
+                                        <a th:if="${service.getServiceName() eq 'Wifi'}" style="color: #0f0f0f" th:href="@{/houselist?service=14}">Wifi</a>
 
 
                                     </figure>
@@ -289,8 +289,8 @@
                                     <a th:text="1"
                                        th:href="@{/houselist(page=1, houseName=${houseName}, price=${listPrice}, type=${listType}, service=${listService})}">1</a>
                                 </li>
-                                <li th:if="${currentPage > 3}">
-                                    <span>...</span>
+                                <li th:if="${currentPage > 3}" style="pointer-events: none">
+                                    <span style="border: none;background-color: unset">...</span>
                                 </li>
 
                                 <li th:each="pageIndex: ${#numbers.sequence(currentPage - 1, currentPage + 1)}"
@@ -301,8 +301,8 @@
                                        class="page-number">${pageIndex}</a>
                                 </li>
 
-                                <li th:if="${currentPage < totalPage - 2}">
-                                    <span>...</span>
+                                <li th:if="${currentPage < totalPage - 2}" style="pointer-events: none">
+                                    <span style="border: none;background-color: unset">...</span>
                                 </li>
                                 <li th:if="${currentPage <= totalPage - 2}">
                                     <a th:text="${totalPage}"

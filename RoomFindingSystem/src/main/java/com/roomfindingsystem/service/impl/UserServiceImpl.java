@@ -148,7 +148,7 @@ public class UserServiceImpl implements UserService {
             //        Handle Image
             byte[] imageBytes = file.getBytes();
             gcsService.uploadImage("rfs_bucket", "User/user_" + user.getUserId() + ".jpg", imageBytes);
-            saveUser.setImageLink("https://storage.cloud.google.com/rfs_bucket/User/" + "user_" + user.getUserId() + ".jpg");
+            saveUser.setImageLink("/rfs_bucket/User/" + "user_" + user.getUserId() + ".jpg");
         } else {
             saveUser.setImageLink(user.getImageLink());
         }
