@@ -15,7 +15,20 @@
     <link rel="stylesheet" href="/assets/css/owl.carousel.css" type="text/css">
     <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
     <link rel="shortcut icon" href="/assets/img/favicon.ico">
+    <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+          integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+          crossorigin="anonymous"/>
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
 
     <link th:href="@{/assets_admin/libs/datatables/dataTables.bootstrap4.css}" rel="stylesheet" type="text/css"/>
     <link th:href="@{/assets_admin/libs/datatables/buttons.bootstrap4.css}" rel="stylesheet" type="text/css"/>
@@ -78,9 +91,9 @@
             color: #FFCE45;
         }
 
-         body {
-             font-family: 'Arial', sans-serif;
-         }
+        body {
+            font-family: 'Arial', sans-serif;
+        }
     </style>
 
     <title>Xem chi tiết nhà trọ</title>
@@ -133,6 +146,7 @@
                                             <li th:text="${HouseService.description}"></li>
                                         </ul>
                                         <!--end checkboxes-->
+
                                     </section>
                                     <!--end section-->
                                     <!--                                        <section>-->
@@ -194,6 +208,78 @@
                         </div>
                         <!--end filter-->
                         <div class="box">
+                            <div style="margin-top: 10px">
+                                <figure class="location" style="display: inline-block"
+                                        th:each="HouseService : ${HouseService}">
+                                    <iconify-icon th:if="${HouseService.getServiceName() eq 'Tự do'}"
+                                                  style="margin-left: 5px" icon="mingcute:time-fill"></iconify-icon>
+                                    <span th:if="${HouseService.getServiceName() eq 'Tự do'}">Tự do</span>
+
+                                    <!--                                    <i  class="fa-solid fa-user-xmark" style="margin-left: 5px"></i>-->
+                                    <iconify-icon th:if="${HouseService.getServiceName() eq 'Không chung chủ'}"
+                                                  style="margin-left: 5px" icon="uiw:user-delete"></iconify-icon>
+                                    <span th:if="${HouseService.getServiceName() eq 'Không chung chủ'}">Không chung chủ</span>
+
+                                    <iconify-icon th:if="${HouseService.getServiceName() eq 'Bảo vệ'}"
+                                                  style="margin-left: 5px"
+                                                  icon="mingcute:user-security-fill"></iconify-icon>
+                                    <span th:if="${HouseService.getServiceName() eq 'Bảo vệ'}">Bảo vệ</span>
+
+                                    <iconify-icon th:if="${HouseService.getServiceName() eq 'Khóa vân tay'}"
+                                                  style="margin-left: 5px"
+                                                  icon="material-symbols:fingerprint"></iconify-icon>
+                                    <span th:if="${HouseService.getServiceName() eq 'Khóa vân tay'}">Khóa Vân tay</span>
+
+                                    <i th:if="${HouseService.getServiceName() eq 'Wifi'}" class="fa fa-wifi"
+                                       aria-hidden="true" style="margin-left: 5px"></i>
+                                    <span th:if="${HouseService.getServiceName() eq 'Wifi'}">Wifi</span>
+
+                                    <iconify-icon th:if="${HouseService.getServiceName() eq 'Camera an ninh'}"
+                                                  style="margin-left: 5px" icon="pepicons-print:camera"></iconify-icon>
+                                    <span th:if="${HouseService.getServiceName() eq 'Camera an ninh'}">Camera an ninh</span>
+
+                                    <iconify-icon th:if="${HouseService.getServiceName() eq 'Tủ lạnh'}"
+                                                  style="margin-left: 5px" icon="mdi:fridge"></iconify-icon>
+                                    <span th:if="${HouseService.getServiceName() eq 'Tủ lạnh'}">Tủ lạnh</span>
+
+                                    <iconify-icon th:if="${HouseService.getServiceName() eq 'Giường ngủ'}"
+                                                  style="margin-left: 5px" icon="material-symbols:bed"></iconify-icon>
+                                    <span th:if="${HouseService.getServiceName() eq 'Giường ngủ'}">Giường ngủ</span>
+
+                                    <iconify-icon th:if="${HouseService.getServiceName() eq 'Máy giặt'}"
+                                                  style="margin-left: 5px" icon="mdi:washing-machine"></iconify-icon>
+                                    <span th:if="${HouseService.getServiceName() eq 'Máy giặt'}">Máy giặt</span>
+
+                                    <iconify-icon th:if="${HouseService.getServiceName() eq 'Kệ bếp'}"
+                                                  style="margin-left: 5px"
+                                                  icon="material-symbols:soup-kitchen-outline-rounded"></iconify-icon>
+                                    <span th:if="${HouseService.getServiceName() eq 'Kệ bếp'}">Kệ bếp</span>
+
+                                    <iconify-icon th:if="${HouseService.getServiceName() eq 'Bình nóng lạnh'}"
+                                                  style="margin-left: 5px"
+                                                  icon="material-symbols-light:water-heater-outline"></iconify-icon>
+                                    <span th:if="${HouseService.getServiceName() eq 'Bình nóng lạnh'}">Bình nóng lạnh</span>
+
+                                    <iconify-icon th:if="${HouseService.getServiceName() eq 'Gác xép'}"
+                                                  style="margin-left: 5px"
+                                                  icon="material-symbols:stairs"></iconify-icon>
+                                    <span th:if="${HouseService.getServiceName() eq 'Gác xép'}">Gác xép</span>
+
+                                    <iconify-icon th:if="${HouseService.getServiceName() eq 'Bàn học'}"
+                                                  style="margin-left: 5px" icon="ic:outline-table-bar"></iconify-icon>
+                                    <span th:if="${HouseService.getServiceName() eq 'Bàn học'}">Bàn học</span>
+
+                                    <iconify-icon th:if="${HouseService.getServiceName() eq 'Tủ quần áo'}"
+                                                  style="margin-left: 5px" icon="mdi:wardrobe-outline"></iconify-icon>
+                                    <span th:if="${HouseService.getServiceName() eq 'Tủ quần áo'}">Tủ quần áo</span>
+
+                                    <iconify-icon th:if="${HouseService.getServiceName() eq 'Bếp Gas'}"
+                                                  style="margin-left: 5px" icon="game-icons:gas-stove"></iconify-icon>
+                                    <span th:if="${HouseService.getServiceName() eq 'Bếp Gas'}">Bếp Gas</span>
+
+
+                                </figure>
+                            </div>
                             <!--                            <h2>Weather in Destination</h2>-->
                             <!--                            <div id="weather" class="weather weather-detail"></div>-->
                             <!--end weather-->
@@ -239,11 +325,13 @@
                         <div class="row">
                             <div class="col-md-6 col-sm-6">
                                 <h2 th:text="${HousesEntity.houseName}" style="display: inline-block;"></h2>
-                                <a href="#reviews" style="display: inline-block; margin-left: 10px;" th:if="${HousesEntity.star}!=0">
+                                <a href="#reviews" style="display: inline-block; margin-left: 10px;"
+                                   th:if="${HousesEntity.star}!=0">
                                     <span th:text="'(Đánh giá: ' + ${HousesEntity.star} + ' '"></span><i
                                         class="fa fa-star" style="color: #FFCE45"></i><span>)</span>
                                 </a>
-                                <a href="#reviews" style="display: inline-block; margin-left: 10px;" th:if="${HousesEntity.star}==0">
+                                <a href="#reviews" style="display: inline-block; margin-left: 10px;"
+                                   th:if="${HousesEntity.star}==0">
                                     <span>Chưa có đánh giá</span>
                                 </a>
                             </div>
@@ -333,19 +421,19 @@
                         <div class="one-item-carousel">
 
                             <!-- Carousel container -->
-<!--                            <section id="gallery" th:each="HousesImages : ${HousesImages}">-->
-<!--                                <div class="gallery-detail">-->
-<!--                                    &lt;!&ndash;                                    <div class="ribbon"><div class="offer-number">20%</div><figure>Off Today!</figure></div>&ndash;&gt;-->
-<!--                                    <div class="one-item-carousel">-->
-<!--                                        <div class="image">-->
+                            <!--                            <section id="gallery" th:each="HousesImages : ${HousesImages}">-->
+                            <!--                                <div class="gallery-detail">-->
+                            <!--                                    &lt;!&ndash;                                    <div class="ribbon"><div class="offer-number">20%</div><figure>Off Today!</figure></div>&ndash;&gt;-->
+                            <!--                                    <div class="one-item-carousel">-->
+                            <!--                                        <div class="image">-->
 
-<!--                                            <img width="847" height="501" th:src="${HousesImages.houseImagesEntities}"-->
-<!--                                                 alt="">-->
-<!--                                        </div>-->
+                            <!--                                            <img width="847" height="501" th:src="${HousesImages.houseImagesEntities}"-->
+                            <!--                                                 alt="">-->
+                            <!--                                        </div>-->
 
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </section>-->
+                            <!--                                    </div>-->
+                            <!--                                </div>-->
+                            <!--                            </section>-->
                             <!--                            end title-->
 
                         </div>
@@ -356,11 +444,12 @@
                                 <div class="item big equal-height" data-map-latitude="48.87" data-map-longitude="2.29"
                                      data-id="1">
                                     <div class="item-wrapper">
-                                        <div class="image" style="height: 500px;" >
+                                        <div class="image" style="height: 500px;">
                                             <a class="wrapper">
                                                 <div class="gallery">
                                                     <img style="width:100%;height:100% "
-                                                         th:each="HousesImages : ${HousesImages}" th:src="'https://storage.googleapis.com'+ ${HousesImages.houseImagesEntities}" alt="">
+                                                         th:each="HousesImages : ${HousesImages}"
+                                                         th:src="${HousesImages.houseImagesEntities}" alt="">
                                                 </div>
                                             </a>
                                             <div class="owl-navigation"></div>
@@ -392,28 +481,29 @@
                                     <h3 style="color: rgba(31, 31, 31, 0.8);" th:text="${HousesEntity.description}">
                                         Spend Great Time in Our Hotel!</h3>
                                 </section>
-                                <section id="facilities">
-                                    <h2>Dịch Vụ</h2>
-                                    <ul class="bullets half" th:each="HouseService : ${HouseService}">
-                                        <!--                                        th:text="${HousesEntity.serviceName}"-->
-                                        <!--                                        th:text="${HousesEntity.serviceName}"-->
-                                        <li th:text="${HouseService.serviceName}">Sauna</li>
-                                        <!--                                        <li>Fireplace or fire pit</li>-->
-                                        <!--                                        <li>Outdoor Kitchen</li>-->
-                                        <!--                                        <li>-->
-                                        <!--                                            <div><img th:src="@{img/logo.jpeg}" alt=""></div>-->
-                                        <!--                                        </li>-->
-                                        <!--                                        <li>Trees and Landscaping</li>-->
-                                        <!--                                        <li>Sun Room</li>-->
-                                        <!--                                        <li>Family Room</li>-->
-                                        <!--                                        <li>Concrete Flooring</li>-->
-                                    </ul>
-                                </section>
+                                <!--                                <section id="facilities">-->
+                                <!--                                    <h2>Dịch Vụ</h2>-->
+                                <!--                                    <ul class="bullets half" th:each="HouseService : ${HouseService}">-->
+                                <!--                                        &lt;!&ndash;                                        th:text="${HousesEntity.serviceName}"&ndash;&gt;-->
+                                <!--                                        &lt;!&ndash;                                        th:text="${HousesEntity.serviceName}"&ndash;&gt;-->
+                                <!--                                        <li th:text="${HouseService.serviceName}">Sauna</li>-->
+                                <!--                                        &lt;!&ndash;                                        <li>Fireplace or fire pit</li>&ndash;&gt;-->
+                                <!--                                        &lt;!&ndash;                                        <li>Outdoor Kitchen</li>&ndash;&gt;-->
+                                <!--                                        &lt;!&ndash;                                        <li>&ndash;&gt;-->
+                                <!--                                        &lt;!&ndash;                                            <div><img th:src="@{img/logo.jpeg}" alt=""></div>&ndash;&gt;-->
+                                <!--                                        &lt;!&ndash;                                        </li>&ndash;&gt;-->
+                                <!--                                        &lt;!&ndash;                                        <li>Trees and Landscaping</li>&ndash;&gt;-->
+                                <!--                                        &lt;!&ndash;                                        <li>Sun Room</li>&ndash;&gt;-->
+                                <!--                                        &lt;!&ndash;                                        <li>Family Room</li>&ndash;&gt;-->
+                                <!--                                        &lt;!&ndash;                                        <li>Concrete Flooring</li>&ndash;&gt;-->
+                                <!--                                    </ul>-->
+                                <!--                                </section>-->
 
                                 <!--                                                                <section id="map">-->
                                 <!--                                                                    <h2>Map</h2>-->
                                 <!--                                                                    <div id="map-item" class="map height-300 box"></div>-->
-                                <div id="map" th:if="${houseLocation.latitude == null || houseLocation.longitude== null }">
+                                <div id="map"
+                                     th:if="${houseLocation.latitude == null || houseLocation.longitude== null }">
                                     <h2>Map</h2>
                                     <span>Nhà trọ chưa cập nhật vị trí trên google map</span>
                                 </div>
@@ -423,7 +513,9 @@
                                         <div id="map-item" class="map height-300 box"></div>
                                         <input id="latitude" type="hidden" th:value="${houseLocation.latitude}">
                                         <input id="longitude" type="hidden" th:value="${houseLocation.longitude}">
-                                        <button type="button" class="btn btn-primary btn-rounded scroll" onclick="showDirections()">Chỉ đường</button>
+                                        <button type="button" class="btn btn-primary btn-rounded scroll"
+                                                onclick="showDirections()">Chỉ đường
+                                        </button>
 
                                     </section>
                                 </div>
@@ -440,15 +532,17 @@
                                     </aside>
                                     <aside class="box">
                                         <h3><strong> Địa Chỉ Nhà Trọ:</strong></h3>
-                                        <p>cụ thể: </p>
-                                        <dl th:text="${HousesEntity.addressDetail}"></dl>
-                                        <p>Xã: </p>
-                                        <dl th:text="${HousesEntity.ward}"></dl>
-                                        <p>Huyện: </p>
-                                        <dl th:text="${HousesEntity.district}"></dl>
-                                        <p>(Thành Phố / Tỉnh)</p>
-                                        <dl th:text="${HousesEntity.province}">
+                                        <dl th:text="${HousesEntity.addressDetail+', '+HousesEntity.ward+',
+                                            '+HousesEntity.district+', '+HousesEntity.province}">
                                         </dl>
+<!--                                        <dl th:text="${HousesEntity.addressDetail}"></dl>-->
+<!--                                        <p>Xã: </p>-->
+<!--                                        <dl th:text="${HousesEntity.ward}"></dl>-->
+<!--                                        <p>Huyện: </p>-->
+<!--                                        <dl th:text="${HousesEntity.district}"></dl>-->
+<!--                                        <p>(Thành Phố / Tỉnh)</p>-->
+<!--                                        <dl th:text="${HousesEntity.province}">-->
+<!--                                        </dl>-->
                                     </aside>
 
                                 </div>
@@ -622,7 +716,6 @@
                                     <button type="submit" style="display:none;"></button>
                                 </form>
                             </div>
-
 
 
                             <div class="reviews">
@@ -811,7 +904,7 @@
                                     </div>
                                 </div>
 
-<!--                                -->
+                                <!--                                -->
 
                             </div>
                             <!--end reviews-->
@@ -993,6 +1086,7 @@
     }
 
 
+
 </script>
 
 <script>
@@ -1000,6 +1094,7 @@
         // Khi giá trị của dropdown thay đổi, tự động gửi form
         document.getElementById("filterForm").submit();
     }
+
 </script>
 <!--<script>-->
 <!--    document.addEventListener('DOMContentLoaded', function() {-->
@@ -1155,6 +1250,7 @@
         // Thêm thông tin vào bản đồ
         map.controls[google.maps.ControlPosition.TOP_LEFT].push(infoContainer);
     }
+
 
 
 
