@@ -43,7 +43,7 @@
                             <th>Tình trạng</th>
                             <th>Đánh giá</th>
                             <th>Người tạo</th>
-                            <th>Ngày tạo</th>
+                            <th style="padding-right: 55px">Ngày tạo</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -83,11 +83,11 @@
                             <td th:if="${house.getStatus() == 0}"><div class="featured yes" style="color: red"> Ngưng Hoạt Động
                                 <aside></aside>
                             </div></td>
-                            <td class="views" th:if="${house.star!=null}" th:text="${house.getStar()}">426</td>
+                            <td class="views" th:if="${house.star!=null}" th:text="${house.getStar()}" style="padding-left: 20px">426</td>
                             <td class="views" th:if="${house.star==null}">Chưa đánh giá</td>
                             <td class="reviews" th:text="${house.created_firstName + ' '+ house.created_lastName}">45</td>
 
-                            <td class="last-reservation"><h th:text="${#temporals.format(house.getCreatedDate(), 'dd/MM/yyyy')}"></h>
+                            <td class="last-reservation" style="padding-right: 55px"><h th:text="${#temporals.format(house.getCreatedDate(), 'dd/MM/yyyy')}"></h>
                                 <span class="last-edit" >Ngày cuối cập nhật: <h th:text="${#temporals.format(house.getLastModifiedDate(), 'dd/MM/yyyy')}"></h></span>
 
                                 <div class="edit-options">
