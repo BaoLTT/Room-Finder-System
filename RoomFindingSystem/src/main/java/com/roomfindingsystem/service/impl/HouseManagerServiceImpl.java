@@ -92,7 +92,7 @@ public class HouseManagerServiceImpl implements HouseManagerService {
                 HouseImagesEntity houseImagesEntity = new HouseImagesEntity();
                 byte[] imageBytes = file.getBytes();
                 gcsService.uploadImage("rfs_bucket", "House/house_" + i + "_"+housesEntity.getHouseId()+".jpg", imageBytes);
-                houseImagesEntity.setImageLink("https://storage.cloud.google.com/rfs_bucket/House/"+"house_"+i + "_"+housesEntity.getHouseId()+".jpg");
+                houseImagesEntity.setImageLink("/rfs_bucket/House/"+"house_"+i + "_"+housesEntity.getHouseId()+".jpg");
                 i++;
                 houseImagesEntity.setHouseId(housesEntity.getHouseId());
                 houseImagesEntity.setCreatedDate(LocalDate.now());
@@ -135,7 +135,7 @@ public class HouseManagerServiceImpl implements HouseManagerService {
                 HouseImagesEntity houseImages = new HouseImagesEntity();
                 byte[] imageBytes = file.getBytes();
                 gcsService.uploadImage("rfs_bucket", "House/house_" + i + "_"+houseID+".jpg", imageBytes);
-                houseImages.setImageLink("https://storage.cloud.google.com/rfs_bucket/House/"+"house_"+i + "_"+houseID+".jpg");
+                houseImages.setImageLink("/rfs_bucket/House/"+"house_"+i + "_"+houseID+".jpg");
                 i++;
                 houseImages.setHouseId(houseID);
                 houseImages.setCreatedDate(LocalDate.now());

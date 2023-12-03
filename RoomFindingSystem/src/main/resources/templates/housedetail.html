@@ -360,7 +360,7 @@
                                             <a class="wrapper">
                                                 <div class="gallery">
                                                     <img style="width:100%;height:100% "
-                                                         th:each="HousesImages : ${HousesImages}" th:src="${HousesImages.houseImagesEntities}" alt="">
+                                                         th:each="HousesImages : ${HousesImages}" th:src="'https://storage.googleapis.com'+ ${HousesImages.houseImagesEntities}" alt="">
                                                 </div>
                                             </a>
                                             <div class="owl-navigation"></div>
