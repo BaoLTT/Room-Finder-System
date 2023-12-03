@@ -448,7 +448,8 @@
                                             <a class="wrapper">
                                                 <div class="gallery">
                                                     <img style="width:100%;height:100% "
-                                                         th:each="HousesImages : ${HousesImages}" th:src="'https://storage.googleapis.com'+ ${HousesImages.houseImagesEntities}" alt="">
+                                                         th:each="HousesImages : ${HousesImages}"
+                                                         th:src="'https://storage.googleapis.com'+${HousesImages.houseImagesEntities}" alt="">
                                                 </div>
                                             </a>
                                             <div class="owl-navigation"></div>
@@ -531,8 +532,7 @@
                                     </aside>
                                     <aside class="box">
                                         <h3><strong> Địa Chỉ Nhà Trọ:</strong></h3>
-                                        <dl th:text="${HousesEntity.addressDetail+', '+HousesEntity.ward+',
-                                            '+HousesEntity.district+', '+HousesEntity.province}">
+                                        <dl th:text="${HousesEntity.addressDetail+', '+HousesEntity.ward+','+HousesEntity.district+', '+HousesEntity.province}">
                                         </dl>
 <!--                                        <dl th:text="${HousesEntity.addressDetail}"></dl>-->
 <!--                                        <p>Xã: </p>-->
@@ -725,7 +725,7 @@
                                             <div class="col-md-3">
                                                 <div class="row">
                                                     <div class="col-md-3 col-xs-2">
-                                                        <img class="round-image" th:src="${feedback.getUserImage()}"
+                                                        <img class="round-image" th:src="'https://storage.googleapis.com'+${feedback.getUserImage()}"
                                                              style="margin-top: 15px; border-right: 10px">
                                                     </div>
                                                     <div class="col-md-9 col-xs-10">
