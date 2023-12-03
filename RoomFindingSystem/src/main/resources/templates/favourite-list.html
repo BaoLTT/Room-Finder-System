@@ -85,13 +85,13 @@
                                     <div class="item-wrapper">
                                         <a th:href="@{/remove-favourite-list?id=}+${house.houseId}"
                                            onclick="showSuccessToast()" class="mark-circle" data-toggle="tooltip"
-                                           data-placement="right" title="Removed from favorites list"><i
+                                           data-placement="right" title="Removed from favorites list" style="background-color: white;margin: 8px"><i
                                                 style="color: #488f3e;" class="fa fa-trash"></i></a>
                                         <div class="image">
                                             <a th:href="@{/detail?id=}+${house.houseId}" class="wrapper">
                                                 <div class="gallery">
                                                     <img style="width: 273px; height: 208px;"
-                                                         th:each="image: ${house.listImage}" th:src="${image}" alt="">
+                                                         th:each="image: ${house.listImage}" th:src="'https://storage.googleapis.com'+${image}" alt="">
                                                 </div>
                                             </a>
                                             <div class="owl-navigation"></div>
