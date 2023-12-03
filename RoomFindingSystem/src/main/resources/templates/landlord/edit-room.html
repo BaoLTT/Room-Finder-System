@@ -47,6 +47,13 @@
         <div class="container">
             <!-- Start Content-->
             <div class="main-content">
+                <ol class="breadcrumb">
+                    <li><a th:href="@{/manager}">Quản lý trọ</a></li>
+                    <li style="margin: 0 5px;">/</li>
+                    <li><a th:href="@{'/landlord/room/listRoom/'+${room.houseId}}">Danh sách phòng</a></li>
+                    <li style="margin: 0 5px;">/</li>
+                    <li>Thông tin phòng</li>
+                </ol>
                 <div class="row">
                     <div class="col-lg">
                         <div class="card-box">
@@ -145,7 +152,7 @@
                                                    th:href="@{'/landlord/room/deleteImage/' + ${room.roomId} + '/' + ${image.imageId}}">x</a>
                                                 <span class="MultiFile-label"
                                                       title="File selected: abc.png">
-                                                            <img th:src="${image.imageLink}" alt="Ảnh" id="imagePreview"
+                                                            <img th:src="'https://storage.googleapis.com'+${image.imageLink}" alt="Ảnh" id="imagePreview"
                                                                  style="width: 100px;height: 100px">
                                                         </span>
                                             </div>

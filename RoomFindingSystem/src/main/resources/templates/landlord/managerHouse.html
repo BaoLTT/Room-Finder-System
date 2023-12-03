@@ -43,7 +43,7 @@
                             <th>Tình trạng</th>
                             <th>Đánh giá</th>
                             <th>Người tạo</th>
-                            <th>Ngày tạo</th>
+                            <th style="padding-right: 55px">Ngày tạo</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -53,7 +53,7 @@
                                     <div class="image-carousel">
                                         <a th:href="@{/manager/edit/}+${house.houseID}" class="image" th:each="image, iterStat : ${house.listImage}" th:if="${iterStat.index < 1}">
                                             <div class="bg-transfer">
-                                                <img th:src="${image.imageLink}" alt="Ảnh">
+                                                <img th:src="'https://storage.googleapis.com'+${image.imageLink}" alt="Ảnh">
                                             </div>
                                         </a>
                                     </div>
@@ -66,7 +66,7 @@
 
                                     <div class="meta">
                                         <span><i class="fa fa-bed" ></i><h th:text="${house.getCount_room()}"></h></span>
-                                        <span class="price-info" th:with="formattedPrice=${#numbers.formatDecimal(house.price, 0, 'COMMA', 0, 'POINT')}">From <span class="price" th:text="${formattedPrice + ' VND'}">$32</span><span class="appendix">/Tháng</span></span>
+                                        <span class="price-info" th:with="formattedPrice=${#numbers.formatDecimal(house.price, 0, 'COMMA', 0, 'POINT')}">Từ <span class="price" th:text="${formattedPrice + ' VND'}">$32</span><span class="appendix">/Tháng</span></span>
                                     </div>
                                     <!--end meta-->
                                 </div>
@@ -83,11 +83,11 @@
                             <td th:if="${house.getStatus() == 0}"><div class="featured yes" style="color: red"> Ngưng Hoạt Động
                                 <aside></aside>
                             </div></td>
-                            <td class="views" th:if="${house.star!=null}" th:text="${house.getStar()}">426</td>
+                            <td class="views" th:if="${house.star!=null}" th:text="${house.getStar()}" style="padding-left: 20px">426</td>
                             <td class="views" th:if="${house.star==null}">Chưa đánh giá</td>
                             <td class="reviews" th:text="${house.created_firstName + ' '+ house.created_lastName}">45</td>
 
-                            <td class="last-reservation"><h th:text="${#temporals.format(house.getCreatedDate(), 'dd/MM/yyyy')}"></h>
+                            <td class="last-reservation" style="padding-right: 55px"><h th:text="${#temporals.format(house.getCreatedDate(), 'dd/MM/yyyy')}"></h>
                                 <span class="last-edit" >Ngày cuối cập nhật: <h th:text="${#temporals.format(house.getLastModifiedDate(), 'dd/MM/yyyy')}"></h></span>
 
                                 <div class="edit-options">

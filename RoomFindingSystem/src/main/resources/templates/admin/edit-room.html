@@ -169,7 +169,7 @@
                                                    th:href="@{'/admin/room/deleteImage/' + ${room.roomId} + '/' + ${image.imageId}}">x</a>
                                                 <span class="MultiFile-label"
                                                       title="File selected: abc.png">
-                                                            <img th:src="${image.imageLink}" alt="Ảnh" id="imagePreview"
+                                                            <img th:src="'https://storage.googleapis.com'+${image.imageLink}" alt="Ảnh" id="imagePreview"
                                                                  style="width: 100px;height: 100px">
                                                         </span>
                                             </div>

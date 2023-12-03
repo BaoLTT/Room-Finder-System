@@ -78,7 +78,7 @@
                             <div class="col-md-6">
                                 <div class="w3-content w3-display-container" >
                                     <div th:each="image: ${roomImages}">
-                                        <img class="mySlides" th:src="${image.getImageLink()}" style="width:100%">
+                                        <img class="mySlides" th:src="'https://storage.googleapis.com'+${image.getImageLink()}" style="width:100%">
 
                                     </div>
 

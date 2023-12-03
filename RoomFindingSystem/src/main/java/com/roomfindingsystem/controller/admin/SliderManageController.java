@@ -113,7 +113,7 @@ public class SliderManageController {
                                @RequestParam(name = "status", required = false) String status) throws IOException {
 
         String imgLink = null;
-
+        
         if (!file.isEmpty()) {
             //        Handle Image
             byte[] imageBytes = file.getBytes();

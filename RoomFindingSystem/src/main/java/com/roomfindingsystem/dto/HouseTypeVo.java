@@ -31,7 +31,7 @@ public class HouseTypeVo {
 
     List<HouseImageDto> listImage;
 
-    List<String> service;
+    List<HouseServiceDto> service;
 
     LocalDate last_modified_date;
 

@@ -18,12 +18,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping("/RoomList")
+@RequestMapping("/roomlist")
 public class RoomListController {
     @Autowired
     private RoomService roomService;
-    @GetMapping(value={"/{pageIndex}"})
-    public String list(@PathVariable Integer pageIndex,
+    @GetMapping(value={""})
+    public String list(@RequestParam(name = "page", required = false, defaultValue = "1") Integer pageIndex,
                        @RequestParam(name = "roomName",required = false , defaultValue = "") String roomName,
                        @RequestParam(name = "minPrice",required = false, defaultValue = "0") String minPrice,
                        @RequestParam(name = "maxPrice",required = false, defaultValue = "10") String maxPrice,

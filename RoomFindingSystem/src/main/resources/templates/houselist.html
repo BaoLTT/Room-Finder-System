@@ -90,14 +90,13 @@
                                             <h3>Giá</h3>
                                             <ul class="checkboxes list-unstyled">
                                                 <li><label><input type="checkbox" id="price" name="price" value="1"
-                                                                  th:checked="${#arrays.contains(listPrice, '1')}">0 -
+                                                                  th:checked="${#arrays.contains(listPrice, '1')}">Dưới
                                                     2,000,000 VND</label></li>
                                                 <li><label><input type="checkbox" id="price-2" name="price" value="2"
                                                                   th:checked="${#arrays.contains(listPrice, '2')}">2,000,000
                                                     - 4,000,000 VND</label></li>
                                                 <li><label><input type="checkbox" id="price-3" name="price" value="3"
-                                                                  th:checked="${#arrays.contains(listPrice, '3')}">4,000,000
-                                                    - 6,000,000 VND</label></li>
+                                                                  th:checked="${#arrays.contains(listPrice, '3')}">Trên 4,000,000 VND</label></li>
                                             </ul>
                                             <!--end checkboxes-->
                                         </section>
@@ -200,13 +199,13 @@
 
                                 <a  th:href="@{/add-favourite-list?id=}+${houses.houseID}" class="mark-circle" onclick="showSuccessToastAdd()"
                                    data-toggle="tooltip" data-placement="right"
-                                   title="Add to favourite list"><i style="color: Green;"
+                                   title="Add to favourite list" style="background-color: white;margin: 8px"><i style="color: Green"
                                                                     class="fa fa-thumbs-up"></i></a>
 
                                 <div class="image" >
-                                    <a th:href="@{/detail?id=}+${houses.houseID}" class="wrapper">
+                                    <a th:href="@{/}+${houses.houseName}+'?id='+${houses.houseID}" class="wrapper">
                                         <div class="gallery">
-                                            <img style="width: 273px; height: 208px;" th:each="image, iterStat : ${houses.listImage}" th:src="${image.imageLink}" alt="Ảnh">
+                                            <img style="width: 273px; height: 208px;" th:each="image, iterStat : ${houses.listImage}" th:src="'https://storage.googleapis.com'+${image.imageLink}"  alt="Ảnh">
                                         </div>
                                     </a>
                                     <div class="map-item">
@@ -231,7 +230,7 @@
                                 <!--end meta-->
                                 <div class="info">
 
-                                    <a th:href="@{/detail?id=}+${houses.houseID}"><h3 style="display: block"
+                                    <a th:href="@{/}+${houses.houseName}+'?id='+${houses.houseID}"><h3 style="display: block"
                                                                                       th:text="${houses.houseName}">
                                         Spring Hotel</h3></a>
 
@@ -239,10 +238,30 @@
                                     <figure class="label label-info" th:text="${#temporals.format(houses.last_modified_date, 'dd/MM/yyyy')}"
                                             style="position: absolute;right: 0;margin-top: 7px;margin-right: 30px">Hotel
                                     </figure>
-                                    <figure class="location" th:text="${houses.getService()}">Montenegro</figure>
+                                    <div style="margin-top: 10px">
+                                    <figure class="location" th:each="service : ${houses.getService()}" style="display: inline-block">
+                                        <i th:if="${service.getServiceName() eq 'Tự do'}" class="fa-solid fa-clock" style="margin-left: 5px"></i>
+                                        <a th:if="${service.getServiceName() eq 'Tự do'}" style="color: #0f0f0f" th:href="@{/houselist?service=1}">Tự do</a>
+
+                                        <i th:if="${service.getServiceName() eq 'Không chung chủ'}" class="fa-solid fa-user-xmark" style="margin-left: 5px"></i>
+                                        <a th:if="${service.getServiceName() eq 'Không chung chủ'}" style="color: #0f0f0f" th:href="@{/houselist?service=2}">Không chung chủ</a>
+
+                                        <i th:if="${service.getServiceName() eq 'Bảo vệ'}" class="fa-solid fa-user-shield" style="margin-left: 5px"></i>
+                                        <a th:if="${service.getServiceName() eq 'Bảo vệ'}" style="color: #0f0f0f" th:href="@{/houselist?service=3}">Bảo vệ</a>
+
+                                        <i th:if="${service.getServiceName() eq 'Khóa vân tay'}" class="fa-solid fa-fingerprint" style="margin-left: 5px"></i>
+                                        <a th:if="${service.getServiceName() eq 'Khóa vân tay'}" style="color: #0f0f0f" th:href="@{/houselist?service=4}">Khóa Vân tay</a>
+
+                                        <i th:if="${service.getServiceName() eq 'Wifi'}" class="fa fa-wifi" aria-hidden="true" style="margin-left: 5px"></i>
+                                        <a th:if="${service.getServiceName() eq 'Wifi'}" style="color: #0f0f0f" th:href="@{/houselist?service=14}">Wifi</a>
+
+
+                                    </figure>
+                                        </div>
+
 
                                     <!--                                    <figure class="live-info">3 Persons watching now!</figure>-->
-                                    <p th:text="${houses.addressDetail+', '+houses.ward+', '+houses.district+', '+houses.province}">
+                                    <p style="margin: 8px 0" th:text="${houses.addressDetail+', '+houses.ward+', '+houses.district+', '+houses.province}">
 
 
                                     </p>
@@ -250,7 +269,7 @@
                                     <div class="price-info" th:with="formattedPrice=${#numbers.formatDecimal(houses.price, 0, 'COMMA', 0, 'POINT')}">Từ<span class="price" th:text="${formattedPrice + ' VND'}" ></span>
                                         <span class="appendix">/tháng</span></div>
 
-                                    <a th:href="@{/detail?id=}+${houses.houseID}"
+                                    <a th:href="@{/}+${houses.houseName}+'?id='+${houses.houseID}"
                                        class="btn btn-rounded btn-default btn-framed btn-small">View detail</a>
                                 </div>
                                 <!--end info-->
@@ -270,8 +289,8 @@
                                     <a th:text="1"
                                        th:href="@{/houselist(page=1, houseName=${houseName}, price=${listPrice}, type=${listType}, service=${listService})}">1</a>
                                 </li>
-                                <li th:if="${currentPage > 3}">
-                                    <span>...</span>
+                                <li th:if="${currentPage > 3}" style="pointer-events: none">
+                                    <span style="border: none;background-color: unset">...</span>
                                 </li>
 
                                 <li th:each="pageIndex: ${#numbers.sequence(currentPage - 1, currentPage + 1)}"
@@ -282,8 +301,8 @@
                                        class="page-number">${pageIndex}</a>
                                 </li>
 
-                                <li th:if="${currentPage < totalPage - 2}">
-                                    <span>...</span>
+                                <li th:if="${currentPage < totalPage - 2}" style="pointer-events: none">
+                                    <span style="border: none;background-color: unset">...</span>
                                 </li>
                                 <li th:if="${currentPage <= totalPage - 2}">
                                     <a th:text="${totalPage}"
