@@ -43,6 +43,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
             crossorigin="anonymous"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 
     <title>Xem danh sách nhà trọ</title>
 
@@ -239,7 +240,7 @@
                                             style="position: absolute;right: 0;margin-top: 7px;margin-right: 30px">Hotel
                                     </figure>
                                     <div style="margin-top: 10px">
-                                    <figure class="location" th:each="service : ${houses.getService()}" style="display: inline-block">
+                                    <figure class="location" th:each="service : ${houses.getService()}" style="display: inline-block;font-size: 15px">
                                         <i th:if="${service.getServiceName() eq 'Tự do'}" class="fa-solid fa-clock" style="margin-left: 5px"></i>
                                         <a th:if="${service.getServiceName() eq 'Tự do'}" style="color: #0f0f0f" th:href="@{/houselist?service=1}">Tự do</a>
 
@@ -254,6 +255,21 @@
 
                                         <i th:if="${service.getServiceName() eq 'Wifi'}" class="fa fa-wifi" aria-hidden="true" style="margin-left: 5px"></i>
                                         <a th:if="${service.getServiceName() eq 'Wifi'}" style="color: #0f0f0f" th:href="@{/houselist?service=14}">Wifi</a>
+
+<!--                                        <iconify-icon th:if="${service.getServiceName() eq 'Tự do'}"  style="margin-left: 5px" icon="mingcute:time-fill"></iconify-icon>-->
+<!--                                        <a th:if="${service.getServiceName() eq 'Tự do'}" style="color: #0f0f0f" th:href="@{/houselist?service=1}">Tự do</a>-->
+
+<!--                                        <iconify-icon th:if="${service.getServiceName() eq 'Không chung chủ'}"  style="margin-left: 5px" icon="uiw:user-delete"></iconify-icon>-->
+<!--                                        <a th:if="${service.getServiceName() eq 'Không chung chủ'}" style="color: #0f0f0f" th:href="@{/houselist?service=2}">Không chung chủ</a>-->
+
+<!--                                        <iconify-icon th:if="${service.getServiceName() eq 'Bảo vệ'}"  style="margin-left: 5px" icon="mdi:security-account"></iconify-icon>-->
+<!--                                        <a th:if="${service.getServiceName() eq 'Bảo vệ'}" style="color: #0f0f0f" th:href="@{/houselist?service=3}">Bảo vệ</a>-->
+
+<!--                                        <iconify-icon th:if="${service.getServiceName() eq 'Khóa vân tay'}"  style="margin-left: 5px" icon="material-symbols:fingerprint"></iconify-icon>-->
+<!--                                        <a th:if="${service.getServiceName() eq 'Khóa vân tay'}" style="color: #0f0f0f" th:href="@{/houselist?service=4}">Khóa Vân tay</a>-->
+
+<!--                                        <iconify-icon th:if="${service.getServiceName() eq 'Wifi'}"  style="margin-left: 5px" icon="material-symbols:wifi"></iconify-icon>-->
+<!--                                        <a th:if="${service.getServiceName() eq 'Wifi'}" style="color: #0f0f0f" th:href="@{/houselist?service=14}">Wifi</a>-->
 
 
                                     </figure>

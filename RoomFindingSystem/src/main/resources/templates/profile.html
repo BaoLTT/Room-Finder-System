@@ -69,6 +69,7 @@
                           th:action="@{/user/update}" th:object="${user}" enctype="multipart/form-data">
                         <input type="hidden" id="userId" name="userId" th:field="*{userId}">
                         <input type="hidden" id="roleId" name="roleId" th:field="*{role}">
+                        <input type="hidden" id="addressID" name="addressID" th:field="*{addressID}">
                         <div class="row">
                             <!--Profile Picture-->
                             <div class="col-md-3 col-sm-3">
@@ -151,29 +152,31 @@
                                     <h3>Địa chỉ</h3>
                                     <div class="form-group">
                                         <label for="province">Tỉnh</label>
-                                        <select class="form-control" name="province" id="province"
-                                                th:field="*{provinceId}" style="display: none;">
+                                        <input type="hidden" id="provinceValue" th:value="${user.provinceId}">
+                                        <select class="form-control" name="provinceId" id="province"
+                                                th:field="*{provinceId}" th:style="${user.provinceId != 0} ? 'display:none' : ''">
                                             <option value="0" selected>Chọn Thành Phố</option>
                                         </select>
-                                        <input class="form-control" th:id="provinceName" th:field="*{province}">
+                                        <input class="form-control" th:if="${user.province!=null}" th:id="provinceName" th:field="*{province}">
                                     </div>
                                     <!--end form-group-->
                                     <div class="form-group">
                                         <label for="district">Huyện</label>
-                                        <select class="form-control" name="district" id="district"
-                                                th:field="*{districtId}" style="display: none;">
+                                        <select class="form-control" name="districtId" id="district"
+                                                th:field="*{districtId}" th:style="${user.districtId != 0} ? 'display:none' : ''">
                                             <option value="0" selected>Chọn Quận/Huyện</option>
                                         </select>
-                                        <input class="form-control" th:id="districtName" th:field="*{district}">
+
+                                        <input class="form-control" th:if="${user.district!=null}"  th:id="districtName" th:field="*{district}">
                                     </div>
                                     <!--end form-group-->
                                     <div class="form-group">
                                         <label for="ward">Xã</label>
-                                        <select class="form-control" name="ward" id="ward"
-                                                th:field="*{wardId}" style="display: none;">
+                                        <select class="form-control" name="wardId" id="ward"
+                                                th:field="*{wardId}" th:style="${user.wardId != 0} ? 'display:none' : ''">
                                             <option value="0" selected>Chọn Xã/Phường</option>
                                         </select>
-                                        <input class="form-control" th:id="wardName" th:field="*{ward}">
+                                        <input class="form-control" th:if="${user.ward!=null}"  th:id="wardName" th:field="*{ward}">
                                     </div>
                                     <!--end col-md-3-->
 
@@ -225,16 +228,18 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
 <script>
+    var provinceValue = document.getElementById('provinceValue').value;
+    if(provinceValue!=="0"){
         document.getElementById('provinceName').addEventListener('click', () => {
-        document.getElementById('province').style.display = "block";
-        document.getElementById('district').style.display = "block";
-        document.getElementById('ward').style.display = "block";
-        document.getElementById('provinceName').style.display = "none";
-        document.getElementById('districtName').style.display = "none";
-        document.getElementById('wardName').style.display = "none";
+            document.getElementById('province').style.display = "block";
+            document.getElementById('district').style.display = "block";
+            document.getElementById('ward').style.display = "block";
+            document.getElementById('provinceName').style.display = "none";
+            document.getElementById('districtName').style.display = "none";
+            document.getElementById('wardName').style.display = "none";
+        });
+    }
 
-
-    });
         var citis = document.getElementById("province");
         var districts = document.getElementById("district");
         var wards = document.getElementById("ward");

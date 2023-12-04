@@ -66,6 +66,7 @@ public class SliderManageController {
         String formattedTimestamp = dateFormat.format(new Date(timestamp));
 
         if (!file.isEmpty()) {
+
             //        Handle Image
             byte[] imageBytes = file.getBytes();
             gcsService.uploadImage("rfs_bucket", "Slider/slider_"+formattedTimestamp+".jpg", imageBytes);
@@ -113,12 +114,15 @@ public class SliderManageController {
                                @RequestParam(name = "status", required = false) String status) throws IOException {
 
         String imgLink = null;
+        long timestamp = System.currentTimeMillis();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss");
+        String formattedTimestamp = dateFormat.format(new Date(timestamp));
         
         if (!file.isEmpty()) {
             //        Handle Image
             byte[] imageBytes = file.getBytes();
-            gcsService.uploadImage("rfs_bucket", "Slider/slider_"+sliderEntity.getSliderid()+".jpg", imageBytes);
-            imgLink = "/rfs_bucket/Slider/"+"slider_"+sliderEntity.getSliderid()+".jpg";
+            gcsService.uploadImage("rfs_bucket", "Slider/slider_"+formattedTimestamp+".jpg", imageBytes);
+            imgLink = "/rfs_bucket/Slider/"+"slider_"+formattedTimestamp+".jpg";
         }
         sliderEntity.setImgLink(imgLink);
 

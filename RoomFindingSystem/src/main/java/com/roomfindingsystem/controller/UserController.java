@@ -2,7 +2,9 @@ package com.roomfindingsystem.controller;
 
 
 import com.roomfindingsystem.dto.ReportListDto;
+import com.roomfindingsystem.entity.AddressEntity;
 import com.roomfindingsystem.entity.UserEntity;
+import com.roomfindingsystem.service.AddressService;
 import com.roomfindingsystem.service.EmailSenderService;
 import com.roomfindingsystem.service.UserService;
 import com.roomfindingsystem.service.impl.Smsservice;
@@ -24,6 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class UserController {
@@ -35,6 +38,8 @@ public class UserController {
     private EmailSenderService emailSenderService;
     @Autowired
      private Smsservice smsservice;
+    @Autowired
+    private AddressService addressService;
 
 
     public UserController(EmailSenderService emailSenderService) {
@@ -187,6 +192,19 @@ public class UserController {
 
     @PostMapping("/user/update")
     public String updateUser(@ModelAttribute(name = "user") UserDto userDto, @RequestParam("file") MultipartFile file) throws IOException {
+        if(userDto.getAddressID()==0){
+            AddressEntity address = new AddressEntity("a",userDto.getAddressDetails().trim(),userDto.getProvinceId(),userDto.getDistrictId(),userDto.getWardId());
+            userDto.setAddressID(addressService.insertAddress(address));
+        }else{
+            if(userDto.getProvinceId()==0){
+                Optional<AddressEntity> newAddress = addressService.findbyId(userDto.getAddressID());
+                AddressEntity address = new AddressEntity("a",userDto.getAddressDetails(),newAddress.get().getProvinceId(),newAddress.get().getDistrictId(),newAddress.get().getWardId());
+                addressService.updateAddress(address,userDto.getAddressID());
+            }else{
+                AddressEntity address = new AddressEntity("a",userDto.getAddressDetails(),userDto.getProvinceId(),userDto.getDistrictId(),userDto.getWardId());
+                addressService.updateAddress(address,userDto.getAddressID());
+            }
+        }
         userService.updateProfile(userDto, file);
         return "redirect:/profile";
     }
