@@ -158,46 +158,8 @@ public class UserServiceImpl implements UserService {
         } else {
             saveUser.setGender(false);
         }
-//            Handle when not edit address
-        if (userDto.getProvinceId() != null && userDto.getDistrictId() != null && userDto.getWardId() != null) {
-            //       Begin Handle Address
-            Optional<AddressEntity> optionalAddress = addressRepository.findByProvinceIdAndDistrictIdAndWardId(userDto.getProvinceId(), userDto.getDistrictId(), userDto.getWardId());
-            AddressEntity address = new AddressEntity();
-            if (optionalAddress.isEmpty()) {
-//                Update toan bo
-                address.setProvinceId(userDto.getProvinceId());
-                address.setDistrictId(userDto.getDistrictId());
-                address.setWardId(userDto.getWardId());
-                address.setAddressDetails(userDto.getAddressDetails());
 
-            } else {
-//                Chi update detail
-                address = optionalAddress.get();
-                address.setAddressDetails(userDto.getAddressDetails());
-            }
-            addressRepository.save(address);
-            AddressEntity saveAddress = addressRepository.findByProvinceIdAndDistrictIdAndWardId(userDto.getProvinceId(), userDto.getDistrictId(), userDto.getWardId()).get();
-
-            saveUser.setAddressId(saveAddress.getAddressId());
-        } else {
-            AddressEntity findAddress = addressRepository.findById(user.getAddressId()).get();
-            Optional<AddressEntity> optionalAddress = addressRepository.findByProvinceIdAndDistrictIdAndWardIdAndAddressDetails(findAddress.getProvinceId(), findAddress.getDistrictId(), findAddress.getWardId(), userDto.getAddressDetails());
-            if (optionalAddress.isEmpty()) {
-                AddressEntity newAddress = new AddressEntity();
-
-                newAddress.setProvinceId(findAddress.getProvinceId());
-                newAddress.setDistrictId(findAddress.getDistrictId());
-                newAddress.setWardId(findAddress.getWardId());
-                newAddress.setAddressDetails(userDto.getAddressDetails());
-                addressRepository.save(newAddress);
-                newAddress = addressRepository.findByProvinceIdAndDistrictIdAndWardIdAndAddressDetails(findAddress.getProvinceId(), findAddress.getDistrictId(), findAddress.getWardId(), userDto.getAddressDetails()).get();
-                saveUser.setAddressId(newAddress.getAddressId());
-
-            } else {
-                saveUser.setAddressId(user.getAddressId());
-            }
-        }
-
+        saveUser.setAddressId(userDto.getAddressID());
 //            Begin Mapping
 //            UserDto:
         saveUser.setDob(LocalDate.parse(userDto.getDob()));
