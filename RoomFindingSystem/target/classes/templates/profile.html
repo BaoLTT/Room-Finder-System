@@ -69,6 +69,7 @@
                           th:action="@{/user/update}" th:object="${user}" enctype="multipart/form-data">
                         <input type="hidden" id="userId" name="userId" th:field="*{userId}">
                         <input type="hidden" id="roleId" name="roleId" th:field="*{role}">
+                        <input type="hidden" id="addressID" name="addressID" th:field="*{addressID}">
                         <div class="row">
                             <!--Profile Picture-->
                             <div class="col-md-3 col-sm-3">

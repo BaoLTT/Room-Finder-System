@@ -20,6 +20,7 @@ public class UserDto {
     private String password;
     private String createdDate;
     private String lastName;
+    private Integer addressID;
     private String province;
     private String district;
     private String ward;
