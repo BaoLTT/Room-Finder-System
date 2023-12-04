@@ -5,11 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1e0562a2-7ad5-40d8-bd96-2e66b43cd15f" name="Changes" comment="update chinh homepage">
-      <change afterPath="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/example/roomfindingsystem/controller/UserProfileControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/example/roomfindingsystem/controller/RoomControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/example/roomfindingsystem/service/RoomServiceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/example/roomfindingsystem/controller/UserControllerTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/example/roomfindingsystem/service/UserServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/example/roomfindingsystem/service/UserServiceImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/repository/ReportRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/repository/ReportRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,8 +79,8 @@
       <recent name="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/example/roomfindingsystem/controller" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.UserProfileControllerTest">
-    <configuration name="UserProfileControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Spring Boot.Main">
+    <configuration name="RoomControllerTest.getRoomById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RoomFindingSystem" />
       <extension name="coverage">
         <pattern>
@@ -90,83 +89,80 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.example.roomfindingsystem.controller" />
-      <option name="MAIN_CLASS_NAME" value="com.example.roomfindingsystem.controller.UserProfileControllerTest" />
+      <option name="MAIN_CLASS_NAME" value="com.example.roomfindingsystem.controller.RoomControllerTest" />
+      <option name="METHOD_NAME" value="getRoomById" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RoomControllerTest.getRoomById1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="RoomFindingSystem" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.roomfindingsystem.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.roomfindingsystem.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.example.roomfindingsystem.controller.RoomControllerTest" />
+      <option name="METHOD_NAME" value="getRoomById1" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RoomControllerTest.getRoomsInHouseId" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="RoomFindingSystem" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.roomfindingsystem.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.roomfindingsystem.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.example.roomfindingsystem.controller.RoomControllerTest" />
+      <option name="METHOD_NAME" value="getRoomsInHouseId" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RoomServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="RoomFindingSystem" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.roomfindingsystem.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.roomfindingsystem.service" />
+      <option name="MAIN_CLASS_NAME" value="com.example.roomfindingsystem.service.RoomServiceTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserProfileControllerTest.testCreateUserDtoWhenValidUserDtoThenReturnCreatedUserDto" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="Main" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="RoomFindingSystem" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.roomfindingsystem.Main" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.example.roomfindingsystem.controller.*" />
+          <option name="PATTERN" value="com.roomfindingsystem.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.example.roomfindingsystem.controller" />
-      <option name="MAIN_CLASS_NAME" value="com.example.roomfindingsystem.controller.UserProfileControllerTest" />
-      <option name="METHOD_NAME" value="testCreateUserDtoWhenValidUserDtoThenReturnCreatedUserDto" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UserProfileControllerTest.testFindByEmailExits" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="RoomFindingSystem" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.roomfindingsystem.controller.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.example.roomfindingsystem.controller" />
-      <option name="MAIN_CLASS_NAME" value="com.example.roomfindingsystem.controller.UserProfileControllerTest" />
-      <option name="METHOD_NAME" value="testFindByEmailExits" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UserProfileControllerTest.testFindByIdWhenInvalidIdThenThrowException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="RoomFindingSystem" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.roomfindingsystem.controller.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.example.roomfindingsystem.controller" />
-      <option name="MAIN_CLASS_NAME" value="com.example.roomfindingsystem.controller.UserProfileControllerTest" />
-      <option name="METHOD_NAME" value="testFindByIdWhenInvalidIdThenThrowException" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UserProfileControllerTest.testFindUserDtoByEmailWhenUserFoundThenReturnUserDto" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="RoomFindingSystem" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.roomfindingsystem.controller.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.example.roomfindingsystem.controller" />
-      <option name="MAIN_CLASS_NAME" value="com.example.roomfindingsystem.controller.UserProfileControllerTest" />
-      <option name="METHOD_NAME" value="testFindUserDtoByEmailWhenUserFoundThenReturnUserDto" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.UserProfileControllerTest" />
-        <item itemvalue="JUnit.UserProfileControllerTest.testCreateUserDtoWhenValidUserDtoThenReturnCreatedUserDto" />
-        <item itemvalue="JUnit.UserProfileControllerTest.testFindByIdWhenInvalidIdThenThrowException" />
-        <item itemvalue="JUnit.UserProfileControllerTest.testFindUserDtoByEmailWhenUserFoundThenReturnUserDto" />
-        <item itemvalue="JUnit.UserProfileControllerTest.testFindByEmailExits" />
+        <item itemvalue="Spring Boot.Main" />
+        <item itemvalue="JUnit.RoomServiceTest" />
+        <item itemvalue="JUnit.RoomControllerTest.getRoomsInHouseId" />
+        <item itemvalue="JUnit.RoomControllerTest.getRoomById1" />
+        <item itemvalue="JUnit.RoomControllerTest.getRoomById" />
       </list>
     </recent_temporary>
   </component>
@@ -333,7 +329,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701618714220</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="update test for user controller">
+      <option name="closed" value="true" />
+      <created>1701690611647</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1701690611647</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -370,7 +374,8 @@
     <MESSAGE value="update phan slider" />
     <MESSAGE value="update homepage" />
     <MESSAGE value="update chinh homepage" />
-    <option name="LAST_COMMIT_MESSAGE" value="update chinh homepage" />
+    <MESSAGE value="update test for user controller" />
+    <option name="LAST_COMMIT_MESSAGE" value="update test for user controller" />
   </component>
   <component name="com.github.evgenys91.machinet.common.dslhistory.DslHistoryState">
     <option name="historyDtoById">
@@ -553,6 +558,92 @@
                   <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/entity/AddressEntity.java" />
                   <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/entity/UserEntity.java" />
                   <option value="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/example/roomfindingsystem/service/UserServiceImplTest.java" />
+                </list>
+              </option>
+            </ChatHistoryModel>
+          </value>
+        </entry>
+        <entry key="da1f6d">
+          <value>
+            <ChatHistoryModel>
+              <option name="contextFilesPaths">
+                <list>
+                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/landlord/RoomLandlordController.java" />
+                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/dto/RoomDto.java" />
+                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/dto/ServiceDto.java" />
+                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/RoomService.java" />
+                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/RoomTypeService.java" />
+                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/ServiceDetailService.java" />
+                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/ServiceRoomService.java" />
+                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/dto/RoomImageDto.java" />
+                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/entity/RoomEntity.java" />
+                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/entity/RoomImagesEntity.java" />
+                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/entity/ServiceDetailEntity.java" />
+                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/dto/RoomTypeDto.java" />
+                </list>
+              </option>
+              <option name="id" value="da1f6d" />
+              <option name="initiateTms" value="1701701883526" />
+              <option name="request" value="   @Autowired&#10;    private RoomService roomService;&#10;    @Autowired&#10;    private ServiceRoomService serviceRoomService;&#10;    @Autowired&#10;    private RoomTypeService roomTypeService;&#10;    @Autowired&#10;    private ServiceDetailService serviceDetailService;&#10;    @GetMapping(&quot;/listRoom/{id}&quot;)&#10;    public String getListRoomPage(@PathVariable(&quot;id&quot;) Integer id, Model model, HttpServletRequest request) {&#10;        List&lt;RoomDto&gt; roomDtos = roomService.getRoomsInHouse(id);&#10;        model.addAttribute(&quot;houseId&quot;, id);&#10;        model.addAttribute(&quot;rooms&quot;, roomDtos);&#10;        model.addAttribute(&quot;request&quot;,request);&#10;        return &quot;landlord/list-room&quot;;&#10;    } viết test case" />
+              <option name="response" value="package com.roomfindingsystem.controller.landlord;&#10;&#10;import com.roomfindingsystem.dto.RoomDto;&#10;import com.roomfindingsystem.service.RoomService;&#10;import org.junit.jupiter.api.BeforeEach;&#10;import org.junit.jupiter.api.Test;&#10;import org.junit.jupiter.api.extension.ExtendWith;&#10;import org.mockito.InjectMocks;&#10;import org.mockito.Mock;&#10;import org.springframework.beans.factory.annotation.Autowired;&#10;import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;&#10;import org.springframework.test.context.junit.jupiter.SpringExtension;&#10;import org.springframework.test.web.servlet.MockMvc;&#10;import org.springframework.ui.Model;&#10;&#10;import java.util.Collections;&#10;import java.util.List;&#10;&#10;import static org.hamcrest.Matchers.*;&#10;import static org.mockito.Mockito.*;&#10;import static org.mockito.MockitoAnnotations.openMocks;&#10;import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;&#10;import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;&#10;&#10;@ExtendWith(SpringExtension.class)&#10;@WebMvcTest(RoomLandlordController.class)&#10;class RoomLandlordControllerTest {&#10;&#10;    @Autowired&#10;    private MockMvc mockMvc;&#10;&#10;    @Mock&#10;    private RoomService roomService;&#10;&#10;    @InjectMocks&#10;    private RoomLandlordController roomLandlordController;&#10;&#10;    @BeforeEach&#10;    void setUp() {&#10;        openMocks(this);&#10;    }&#10;&#10;    @Test&#10;    void testGetListRoomPageWhenValidHouseIdThenReturnListRoomView() throws Exception {&#10;        Integer houseId = 1;&#10;        List&lt;RoomDto&gt; roomDtos = List.of(new RoomDto()); // Assuming RoomDto has a no-args constructor&#10;        when(roomService.getRoomsInHouse(houseId)).thenReturn(roomDtos);&#10;&#10;        mockMvc.perform(get(&quot;/landlord/room/listRoom/{id}&quot;, houseId))&#10;                .andExpect(status().isOk())&#10;                .andExpect(view().name(&quot;landlord/list-room&quot;))&#10;                .andExpect(model().attribute(&quot;houseId&quot;, houseId))&#10;                .andExpect(model().attribute(&quot;rooms&quot;, hasSize(1)))&#10;                .andExpect(model().attribute(&quot;rooms&quot;, hasItem(any(RoomDto.class))));&#10;&#10;        verify(roomService).getRoomsInHouse(houseId);&#10;    }&#10;&#10;    @Test&#10;    void testGetListRoomPageWhenInvalidHouseIdThenReturnListRoomViewWithEmptyList() throws Exception {&#10;        Integer houseId = 999; // Assuming 999 is an invalid house ID&#10;        when(roomService.getRoomsInHouse(houseId)).thenReturn(Collections.emptyList());&#10;&#10;        mockMvc.perform(get(&quot;/landlord/room/listRoom/{id}&quot;, houseId))&#10;                .andExpect(status().isOk())&#10;                .andExpect(view().name(&quot;landlord/list-room&quot;))&#10;                .andExpect(model().attribute(&quot;houseId&quot;, houseId))&#10;                .andExpect(model().attribute(&quot;rooms&quot;, hasSize(0)));&#10;&#10;        verify(roomService).getRoomsInHouse(houseId);&#10;    }&#10;&#10;    @Test&#10;    void testGetListRoomPageWhenNullHouseIdThenReturnListRoomViewWithNullHouseId() throws Exception {&#10;        mockMvc.perform(get(&quot;/landlord/room/listRoom/{id}&quot;, (Object) null))&#10;                .andExpect(status().isNotFound()); // A null path variable should result in a 404 Not Found status&#10;&#10;        verify(roomService, never()).getRoomsInHouse(anyInt());&#10;    }&#10;}&#10;" />
+              <option name="responseDescription" value="&lt;em&gt;Unit Test Agent: generating unit tests for getListRoomPage.&lt;br/&gt;&lt;/em&gt;&lt;em&gt;&lt;br/&gt;Let's test the following cases for you:&lt;br/&gt;testGetListRoomPageWhenValidHouseIdThenReturnListRoomView - Test the getListRoomPage method with a valid house ID.&lt;br/&gt;testGetListRoomPageWhenInvalidHouseIdThenReturnListRoomViewWithEmptyList - Test the getListRoomPage method with an invalid house ID.&lt;br/&gt;testGetListRoomPageWhenNullHouseIdThenReturnListRoomViewWithNullHouseId - Test the getListRoomPage method with a null house ID.&lt;br/&gt;&lt;br/&gt;&lt;/em&gt;&lt;em&gt;I have figured out how to test it.&lt;br/&gt;&lt;br/&gt;&lt;/em&gt;```java&#10;package com.roomfindingsystem.controller.landlord;&#10;&#10;import com.roomfindingsystem.dto.RoomDto;&#10;import com.roomfindingsystem.service.RoomService;&#10;import org.junit.jupiter.api.BeforeEach;&#10;import org.junit.jupiter.api.Test;&#10;import org.junit.jupiter.api.extension.ExtendWith;&#10;import org.mockito.InjectMocks;&#10;import org.mockito.Mock;&#10;import org.springframework.beans.factory.annotation.Autowired;&#10;import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;&#10;import org.springframework.test.context.junit.jupiter.SpringExtension;&#10;import org.springframework.test.web.servlet.MockMvc;&#10;import org.springframework.ui.Model;&#10;&#10;import java.util.Collections;&#10;import java.util.List;&#10;&#10;import static org.hamcrest.Matchers.*;&#10;import static org.mockito.Mockito.*;&#10;import static org.mockito.MockitoAnnotations.openMocks;&#10;import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;&#10;import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;&#10;&#10;@ExtendWith(SpringExtension.class)&#10;@WebMvcTest(RoomLandlordController.class)&#10;class RoomLandlordControllerTest {&#10;&#10;    @Autowired&#10;    private MockMvc mockMvc;&#10;&#10;    @Mock&#10;    private RoomService roomService;&#10;&#10;    @InjectMocks&#10;    private RoomLandlordController roomLandlordController;&#10;&#10;    @BeforeEach&#10;    void setUp() {&#10;        openMocks(this);&#10;    }&#10;&#10;    @Test&#10;    void testGetListRoomPageWhenValidHouseIdThenReturnListRoomView() throws Exception {&#10;        Integer houseId = 1;&#10;        List&lt;RoomDto&gt; roomDtos = List.of(new RoomDto()); // Assuming RoomDto has a no-args constructor&#10;        when(roomService.getRoomsInHouse(houseId)).thenReturn(roomDtos);&#10;&#10;        mockMvc.perform(get(&quot;/landlord/room/listRoom/{id}&quot;, houseId))&#10;                .andExpect(status().isOk())&#10;                .andExpect(view().name(&quot;landlord/list-room&quot;))&#10;                .andExpect(model().attribute(&quot;houseId&quot;, houseId))&#10;                .andExpect(model().attribute(&quot;rooms&quot;, hasSize(1)))&#10;                .andExpect(model().attribute(&quot;rooms&quot;, hasItem(any(RoomDto.class))));&#10;&#10;        verify(roomService).getRoomsInHouse(houseId);&#10;    }&#10;&#10;    @Test&#10;    void testGetListRoomPageWhenInvalidHouseIdThenReturnListRoomViewWithEmptyList() throws Exception {&#10;        Integer houseId = 999; // Assuming 999 is an invalid house ID&#10;        when(roomService.getRoomsInHouse(houseId)).thenReturn(Collections.emptyList());&#10;&#10;        mockMvc.perform(get(&quot;/landlord/room/listRoom/{id}&quot;, houseId))&#10;                .andExpect(status().isOk())&#10;                .andExpect(view().name(&quot;landlord/list-room&quot;))&#10;                .andExpect(model().attribute(&quot;houseId&quot;, houseId))&#10;                .andExpect(model().attribute(&quot;rooms&quot;, hasSize(0)));&#10;&#10;        verify(roomService).getRoomsInHouse(houseId);&#10;    }&#10;&#10;    @Test&#10;    void testGetListRoomPageWhenNullHouseIdThenReturnListRoomViewWithNullHouseId() throws Exception {&#10;        mockMvc.perform(get(&quot;/landlord/room/listRoom/{id}&quot;, (Object) null))&#10;                .andExpect(status().isNotFound()); // A null path variable should result in a 404 Not Found status&#10;&#10;        verify(roomService, never()).getRoomsInHouse(anyInt());&#10;    }&#10;}&#10;```&lt;em&gt;&lt;br/&gt;&lt;br/&gt;Here are the generated unit tests. Do you want to make changes to the code?&lt;br/&gt;&lt;/em&gt; ```file was provided```" />
+              <option name="responseFileName" value="RoomLandlordControllerTest.java" />
+              <option name="responseFilePath" value="src/test/java/com/roomfindingsystem/controller/landlord/" />
+              <option name="responseTms" value="1701701978893" />
+              <option name="usedFilesPaths">
+                <list>
+                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/dto/ServiceDto.java" />
+                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/entity/ServiceDetailEntity.java" />
+                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/landlord/RoomLandlordController.java" />
+                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/ServiceDetailService.java" />
+                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/dto/RoomDto.java" />
+                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/dto/RoomTypeDto.java" />
+                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/entity/RoomEntity.java" />
+                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/RoomTypeService.java" />
+                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/impl/ServiceDetailServiceImpl.java" />
+                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/RoomService.java" />
+                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/impl/ServiceRoomServiceImpl.java" />
+                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/entity/RoomImagesEntity.java" />
+                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/ServiceRoomService.java" />
+                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/dto/RoomImageDto.java" />
+                </list>
+              </option>
+            </ChatHistoryModel>
+          </value>
+        </entry>
+        <entry key="dc1595">
+          <value>
+            <ChatHistoryModel>
+              <option name="contextFilesPaths">
+                <list>
+                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/landlord/RoomLandlordController.java" />
+                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/dto/RoomDtoN.java" />
+                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/dto/RoomDto.java" />
+                </list>
+              </option>
+              <option name="id" value="dc1595" />
+              <option name="initiateTms" value="1701703685522" />
+              <option name="request" value=" @GetMapping(&quot;/updateRoom/{id}&quot;)&#10;    public String getFormUpdateRoom(@PathVariable(&quot;id&quot;) Integer id, Model model, HttpServletRequest request){&#10;        RoomDto roomDto = roomService.findById(id);&#10;        model.addAttribute(&quot;room&quot;, roomDto);&#10;        model.addAttribute(&quot;types&quot;, roomTypeService.findAll());&#10;        model.addAttribute(&quot;listService&quot;, serviceDetailService.getAllService());&#10;        model.addAttribute(&quot;listChecked&quot;, roomDto.getServiceNames());&#10;        model.addAttribute(&quot;request&quot;,request);&#10;        return &quot;landlord/edit-room&quot;;&#10;    }" />
+              <option name="response" value="" />
+              <option name="responseDescription" value="```java&#10;package com.roomfindingsystem.controller.landlord;&#10;&#10;import com.roomfindingsystem.dto.RoomDto;&#10;import com.roomfindingsystem.service.RoomService;&#10;import com.roomfindingsystem.service.RoomTypeService;&#10;import com.roomfindingsystem.service.ServiceDetailService;&#10;import jakarta.servlet.http.HttpServletRequest;&#10;import org.junit.jupiter.api.BeforeEach;&#10;import org.junit.jupiter.api.Test;&#10;import org.junit.jupiter.api.extension.ExtendWith;&#10;import org.mockito.InjectMocks;&#10;import org.mockito.Mock;&#10;import org.springframework.beans.factory.annotation.Autowired;&#10;import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;&#10;import org.springframework.test.context.junit.jupiter.SpringExtension;&#10;import org.springframework.test.web.servlet.MockMvc;&#10;import org.springframework.ui.Model;&#10;&#10;import static org.hamcrest.Matchers.*;&#10;import static org.mockito.Mockito.*;&#10;import static org.mockito.MockitoAnnotations.openMocks;&#10;import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;&#10;import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;&#10;&#10;@ExtendWith(SpringExtension.class)&#10;@WebMvcTest(RoomLandlordController.class)&#10;class RoomLandlordControllerTest {&#10;&#10;    @Autowired&#10;    private MockMvc mockMvc;&#10;&#10;    @Mock&#10;    private RoomService roomService;&#10;&#10;    @Mock&#10;    private RoomTypeService roomTypeService;&#10;&#10;    @Mock&#10;    private ServiceDetailService serviceDetailService;&#10;&#10;    @InjectMocks&#10;    private RoomLandlordController roomLandlordController;&#10;&#10;    @BeforeEach&#10;    void setUp() {&#10;        openMocks(this);&#10;    }&#10;&#10;    @Test&#10;    void testGetFormUpdateRoomWhenValidIdThenReturnEditRoomView() throws Exception {&#10;        Integer roomId = 1;&#10;        RoomDto roomDto = new RoomDto(); // Assuming RoomDto has a no-args constructor&#10;        when(roomService.findById(roomId)).thenReturn(roomDto);&#10;        when(roomTypeService.findAll()).thenReturn(Collections.emptyList());&#10;        when(serviceDetailService.getAllService()).thenReturn(Collections.emptyList());&#10;&#10;        mockMvc.perform(get(&quot;/landlord/room/updateRoom/{id}&quot;, roomId))&#10;                .andExpect(status().isOk())&#10;                .andExpect(view().name(&quot;landlord/edit-room&quot;))&#10;                .andExpect(model().attribute(&quot;room&quot;, roomDto))&#10;                .andExpect(model().attribute(&quot;types&quot;, hasSize(0)))&#10;                .andExpect(model().attribute(&quot;listService&quot;, hasSize(0)))&#10;                .andExpect(model().attribute(&quot;listChecked&quot;, nullValue()))&#10;                .andExpect(model().attribute(&quot;request&quot;, any(HttpServletRequest.class)));&#10;&#10;        verify(roomService).findById(roomId);&#10;        verify(roomTypeService).findAll();&#10;        verify(serviceDetailService).getAllService();&#10;    }&#10;&#10;    @Test&#10;    void testGetFormUpdateRoomWhenInvalidIdThenReturnEditRoomViewWithNullRoom() throws Exception {&#10;        Integer roomId = 999; // Assuming 999 is an invalid room ID&#10;        when(roomService.findById(roomId)).thenReturn(null);&#10;&#10;        mockMvc.perform(get(&quot;/landlord/room/updateRoom/{id}&quot;, roomId))&#10;                .andExpect(status().isOk())&#10;                .andExpect(view().name(&quot;landlord/edit-room&quot;))&#10;                .andExpect(model().attribute(&quot;room&quot;, nullValue()))&#10;                .andExpect(model().attribute(&quot;types&quot;, hasSize(0)))&#10;                .andExpect(model().attribute(&quot;listService&quot;, hasSize(0)))&#10;                .andExpect(model().attribute(&quot;listChecked&quot;, nullValue()))&#10;                .andExpect(model().attribute(&quot;request&quot;, any(HttpServletRequest.class)));&#10;&#10;        verify(roomService).findById(roomId);&#10;        verify(roomTypeService, never()).findAll();&#10;        verify(serviceDetailService, never()).getAllService();&#10;    }&#10;&#10;    @Test&#10;    void testGetFormUpdateRoomWhenNullIdThenReturnEditRoomViewWithNullRoom() throws Exception {&#10;        mockMvc.perform(get(&quot;/landlord/room/updateRoom/{id}&quot;, (Object) null))&#10;                .andExpect(status().isNotFound()); // A null path variable should result in a 404 Not Found status&#10;&#10;        verify(roomService, never()).findById(anyInt());&#10;        verify(roomTypeService, never()).findAll();&#10;        verify(serviceDetailService,```java&#10;package com.roomfindingsystem.controller.landlord;&#10;&#10;import com.roomfindingsystem.dto.RoomDto;&#10;import com.roomfindingsystem.service.RoomService;&#10;import com.roomfindingsystem.service.RoomTypeService;&#10;import com.roomfindingsystem.service.ServiceDetailService;&#10;import jakarta.servlet.http.HttpServletRequest;&#10;import org.junit.jupiter.api.BeforeEach;&#10;import org.junit.jupiter.api.Test;&#10;import org.junit.jupiter.api.extension.ExtendWith;&#10;import org.mockito.InjectMocks;&#10;import org.mockito.Mock;&#10;import org.springframework.beans.factory.annotation.Autowired;&#10;import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;&#10;import org.springframework.test.context.junit.jupiter.SpringExtension;&#10;import org.springframework.test.web.servlet.MockMvc;&#10;import org.springframework.ui.Model;&#10;&#10;import static org.hamcrest.Matchers.*;&#10;import static org.mockito.Mockito.*;&#10;import static org.mockito.MockitoAnnotations.openMocks;&#10;import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;&#10;import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;&#10;&#10;@ExtendWith(SpringExtension.class)&#10;@WebMvcTest(RoomLandlordController.class)&#10;class RoomLandlordControllerTest {&#10;&#10;    @Autowired&#10;    private MockMvc mockMvc;&#10;&#10;    @Mock&#10;    private RoomService roomService;&#10;&#10;    @Mock&#10;    private RoomTypeService roomTypeService;&#10;&#10;    @Mock&#10;    private ServiceDetailService serviceDetailService;&#10;&#10;    @InjectMocks&#10;    private RoomLandlordController roomLandlordController;&#10;&#10;    @BeforeEach&#10;    void setUp() {&#10;        openMocks(this);&#10;    }&#10;&#10;    @Test&#10;    void testGetFormUpdateRoomWhenValidIdThenReturnEditRoomView() throws Exception {&#10;        Integer roomId = 1;&#10;        RoomDto roomDto = new RoomDto(); // Assuming RoomDto has a no-args constructor&#10;        when(roomService.findById(roomId)).thenReturn(roomDto);&#10;        when(roomTypeService.findAll()).thenReturn(Collections.emptyList());&#10;        when(serviceDetailService.getAllService()).thenReturn(Collections.emptyList());&#10;&#10;        mockMvc.perform(get(&quot;/landlord/room/updateRoom/{id}&quot;, roomId))&#10;                .andExpect(status().isOk())&#10;                .andExpect(view().name(&quot;landlord/edit-room&quot;))&#10;                .andExpect(model().attribute(&quot;room&quot;, roomDto))&#10;                .andExpect(model().attribute(&quot;types&quot;, hasSize(0)))&#10;                .andExpect(model().attribute(&quot;listService&quot;, hasSize(0)))&#10;                .andExpect(model().attribute(&quot;listChecked&quot;, nullValue()))&#10;                .andExpect(model().attribute(&quot;request&quot;, any(HttpServletRequest.class)));&#10;&#10;        verify(roomService).findById(roomId);&#10;        verify(roomTypeService).findAll();&#10;        verify(serviceDetailService).getAllService();&#10;    }&#10;&#10;    @Test&#10;    void testGetFormUpdateRoomWhenInvalidIdThenReturnEditRoomViewWithNullRoom() throws Exception {&#10;        Integer roomId = 999; // Assuming 999 is an invalid room ID&#10;        when(roomService.findById(roomId)).thenReturn(null);&#10;&#10;        mockMvc.perform(get(&quot;/landlord/room/updateRoom/{id}&quot;, roomId))&#10;                .andExpect(status().isOk())&#10;                .andExpect(view().name(&quot;landlord/edit-room&quot;))&#10;                .andExpect(model().attribute(&quot;room&quot;, nullValue()))&#10;                .andExpect(model().attribute(&quot;types&quot;, hasSize(0)))&#10;                .andExpect(model().attribute(&quot;listService&quot;, hasSize(0)))&#10;                .andExpect(model().attribute(&quot;listChecked&quot;, nullValue()))&#10;                .andExpect(model().attribute(&quot;request&quot;, any(HttpServletRequest.class)));&#10;&#10;        verify(roomService).findById(roomId);&#10;        verify(roomTypeService, never()).findAll();&#10;        verify(serviceDetailService, never()).getAllService();&#10;    }&#10;&#10;    @Test&#10;    void testGetFormUpdateRoomWhenNullIdThenReturnEditRoomViewWithNullRoom() throws Exception {&#10;        mockMvc.perform(get(&quot;/landlord/room/updateRoom/{id}&quot;, (Object) null))&#10;                .andExpect(status().isNotFound()); // A null path variable should result in a 404 Not Found status&#10;&#10;        verify(roomService, never()).findById(anyInt());&#10;        verify(roomTypeService, never()).findAll();&#10;        verify(serviceDetailService,never()).getAllService();&#10;    }&#10;}&#10;```&#10;&#10;In the above code, I have provided a test case for the `getFormUpdateRoom` method in the `RoomLandlordController` class. This test case uses the `MockMvc` framework to perform a GET request to the `/landlord/room/updateRoom/{id}` endpoint and verifies the expected behavior.&#10;&#10;Here's a breakdown of the test case:&#10;&#10;1. We set up the necessary mocks using the `@Mock` and `@InjectMocks` annotations.&#10;2. In the `setUp` method, we initialize the mocks using `openMocks(this)`.&#10;3. In the first test, we assume a valid `roomId` and create a `RoomDto` object. We then mock the necessary methods of the `roomService`, `roomTypeService`, and `serviceDetailService` to return the expected values.&#10;4. We perform a GET request to the `/landlord/room/updateRoom/{id}` endpoint with the valid `roomId`.&#10;5. We use the `andExpect` methods to verify the expected behavior of the controller method. We check the status, view name, and model attributes.&#10;6. We also verify that the necessary methods of the mocked services were called.&#10;&#10;I have provided a test case for the valid `roomId` scenario. You can add additional test cases to cover other scenarios, such as an invalid `roomId` or a null `id`.&#10;&#10;Make sure to import the necessary classes and dependencies for the test case to compile and run successfully." />
+              <option name="responseFileName" value="" />
+              <option name="responseFilePath" value="" />
+              <option name="responseTms" value="1701703737997" />
+              <option name="usedFilesPaths">
+                <list>
+                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/dto/ServiceDto.java" />
+                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/entity/ServiceDetailEntity.java" />
+                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/landlord/RoomLandlordController.java" />
+                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/ServiceDetailService.java" />
+                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/dto/RoomDto.java" />
+                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/dto/RoomTypeDto.java" />
+                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/entity/RoomEntity.java" />
+                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/dto/RoomDtoN.java" />
+                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/RoomTypeService.java" />
+                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/RoomService.java" />
+                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/entity/RoomImagesEntity.java" />
+                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/ServiceRoomService.java" />
+                  <option value="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/dto/RoomImageDto.java" />
                 </list>
               </option>
             </ChatHistoryModel>
