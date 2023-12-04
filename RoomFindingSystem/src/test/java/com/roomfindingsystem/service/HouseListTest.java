@@ -1,4 +1,4 @@
-package com.example.roomfindingsystem.service;
+package com.roomfindingsystem.service;
 
 import com.roomfindingsystem.dto.*;
 import com.roomfindingsystem.entity.HousesEntity;

@@ -1,4 +1,4 @@
-package com.example.roomfindingsystem.controller;
+package com.roomfindingsystem.controller;
 
 import com.roomfindingsystem.controller.HouseListController;
 import com.roomfindingsystem.dto.HouseTypeVo;
