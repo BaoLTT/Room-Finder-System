@@ -205,19 +205,25 @@ public class UserServiceImpl implements UserService {
         Optional<UserEntity> optionalUser = userRepository.findByEmail(email);
         UserEntity user = optionalUser.get();
         UserDto userDto = modelMapper.map(user, UserDto.class);
+        if(user.getAddressId()!=0){
+            AddressEntity address = addressRepository.findById(user.getAddressId()).get();
+            ProvinceEntity province = provinceRepository.findById(address.getProvinceId()).get();
+            DistrictEntity district = districtRepository.findById(address.getDistrictId()).get();
+            WardEntity ward = wardRepository.findById(address.getWardId()).get();
 
-        AddressEntity address = addressRepository.findById(user.getAddressId()).get();
-        ProvinceEntity province = provinceRepository.findById(address.getProvinceId()).get();
-        DistrictEntity district = districtRepository.findById(address.getDistrictId()).get();
-        WardEntity ward = wardRepository.findById(address.getWardId()).get();
+            userDto.setProvince(province.getName());
+            userDto.setDistrict(district.getName());
+            userDto.setWard(ward.getName());
+            userDto.setProvinceId(province.getProvinceId());
+            userDto.setDistrictId(district.getDistrictId());
+            userDto.setWardId(ward.getWardId());
+            userDto.setAddressDetails(address.getAddressDetails());
+        }else{
+            userDto.setProvinceId(0);
+            userDto.setDistrictId(0);
+            userDto.setWardId(0);
+        }
 
-        userDto.setProvince(province.getName());
-        userDto.setDistrict(district.getName());
-        userDto.setWard(ward.getName());
-        userDto.setProvinceId(province.getProvinceId());
-        userDto.setDistrictId(district.getDistrictId());
-        userDto.setWardId(ward.getWardId());
-        userDto.setAddressDetails(address.getAddressDetails());
         userDto.setRole(user.getRoleId());
         if (user.getGender() != null) {
             if (user.getGender()) {
