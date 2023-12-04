@@ -319,7 +319,7 @@ public class RoomServiceImpl implements RoomService {
 
         for (Tuple tuple : tuples) {
 //            int houseId = tuple.get("HouseID", Integer.class);
-            int typeId = tuple.get("TypeID", Integer.class);
+            Integer typeId = tuple.get("TypeID", Integer.class);
             String pair = houseId + "-" + typeId;
 
             // Kiểm tra xem cặp (HouseID, TypeID) đã xuất hiện chưa
