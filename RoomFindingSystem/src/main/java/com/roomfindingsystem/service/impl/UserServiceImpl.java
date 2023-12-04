@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.util.*;
@@ -144,11 +145,14 @@ public class UserServiceImpl implements UserService {
         UserEntity user = userRepository.findById(userDto.getUserId()).get();
 
         UserEntity saveUser = new UserEntity();
+        long timestamp = System.currentTimeMillis();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss");
+        String formattedTimestamp = dateFormat.format(new Date(timestamp));
         if (!file.isEmpty()) {
             //        Handle Image
             byte[] imageBytes = file.getBytes();
-            gcsService.uploadImage("rfs_bucket", "User/user_" + user.getUserId() + ".jpg", imageBytes);
-            saveUser.setImageLink("/rfs_bucket/User/" + "user_" + user.getUserId() + ".jpg");
+            gcsService.uploadImage("rfs_bucket", "User/user_" + user.getUserId()+formattedTimestamp + ".jpg", imageBytes);
+            saveUser.setImageLink("/rfs_bucket/User/" + "user_" + user.getUserId()+formattedTimestamp + ".jpg");
         } else {
             saveUser.setImageLink(user.getImageLink());
         }
