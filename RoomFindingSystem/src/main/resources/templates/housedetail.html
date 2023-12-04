@@ -210,7 +210,7 @@
                         <div class="box">
                             <div style="margin-top: 10px">
                                 <figure class="location" style="display: inline-block"
-                                        th:each="HouseService : ${HouseService}">
+                                        th:each="HouseService,itestart : ${HouseService}" th:if="${itestart.index <= 15}">
                                     <iconify-icon th:if="${HouseService.getServiceName() eq 'Tự do'}"
                                                   style="margin-left: 5px" icon="mingcute:time-fill"></iconify-icon>
                                     <span th:if="${HouseService.getServiceName() eq 'Tự do'}">Tự do</span>
@@ -222,7 +222,7 @@
 
                                     <iconify-icon th:if="${HouseService.getServiceName() eq 'Bảo vệ'}"
                                                   style="margin-left: 5px"
-                                                  icon="mingcute:user-security-fill"></iconify-icon>
+                                                  icon="mdi:security-account"></iconify-icon>
                                     <span th:if="${HouseService.getServiceName() eq 'Bảo vệ'}">Bảo vệ</span>
 
                                     <iconify-icon th:if="${HouseService.getServiceName() eq 'Khóa vân tay'}"
@@ -277,8 +277,11 @@
                                                   style="margin-left: 5px" icon="game-icons:gas-stove"></iconify-icon>
                                     <span th:if="${HouseService.getServiceName() eq 'Bếp Gas'}">Bếp Gas</span>
 
-
                                 </figure>
+                                <div th:each="HouseService,itestart : ${HouseService}" th:if="${HouseService.getServiceId() > 15}">
+                                    <span>Dịch vụ khác: </span>
+                                    <span th:text="${HouseService.getServiceName()}+', '"></span>
+                                </div>
                             </div>
                             <!--                            <h2>Weather in Destination</h2>-->
                             <!--                            <div id="weather" class="weather weather-detail"></div>-->
