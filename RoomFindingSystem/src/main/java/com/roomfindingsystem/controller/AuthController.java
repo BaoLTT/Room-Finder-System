@@ -1,6 +1,7 @@
 package com.roomfindingsystem.controller;
 
 
+import com.roomfindingsystem.entity.HouseImagesEntity;
 import com.roomfindingsystem.entity.ReportEntity;
 import com.roomfindingsystem.entity.UserEntity;
 import com.roomfindingsystem.sbgooogle.GooglePojo;
@@ -8,6 +9,7 @@ import com.roomfindingsystem.sbgooogle.GoogleUtils;
 import com.roomfindingsystem.service.UserService;
 
 
+import com.roomfindingsystem.service.impl.GcsService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import jakarta.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Optional;
 
 
@@ -52,6 +55,8 @@ public class AuthController {
     @Autowired
     @Lazy
     private UserService userService;
+    @Autowired
+    GcsService gcsService;
 
     @RequestMapping("/login-google")
     public String loginGoogle(HttpServletRequest request, Model model) throws Exception {
@@ -80,6 +85,10 @@ public class AuthController {
             newUser.setFirstName(googlePojo.getFamily_name());
             newUser.setLastName(googlePojo.getGiven_name());
             newUser.setImageLink(googlePojo.getPicture());
+//            byte[] imageBytes = googlePojo.getPicture().getBytes();
+//            gcsService.uploadImage("rfs_bucket", "User/user_" +googlePojo.getId()+".jpg", imageBytes);
+//            newUser.setImageLink("/rfs_bucket/User/"+"user_"+googlePojo.getId()+".jpg");
+
             newUser.setFacebookId(accessToken);
             newUser.setRoleId("USER");
             //setStatus == 1
