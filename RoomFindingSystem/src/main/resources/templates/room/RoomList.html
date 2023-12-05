@@ -142,6 +142,15 @@
     .mark-circle{
         display: none;
     }
+    .rounded-circle {
+        display: inline-block;
+
+        background-color: #F6F6F4 !important; /* Đặt màu nền mong muốn */
+        border-radius: 50%; /* Chuyển thành hình tròn */
+    }
+    .rounded-circle:hover {
+        background-color: #F6F6F4 !important; /* Giữ màu nền khi hover */
+    }
 
 
 </style>
@@ -340,7 +349,7 @@
                                     <a th:href="@{/RoomList/} + '1' + '?price=' + ${#strings.arrayJoin(price, ',')} + '&type=' + ${#strings.arrayJoin(type, ',')}" th:text="1" class="page-number">1</a>
                                 </li>
                                 <li th:if="${currentPage > 3}">
-                                    <span>...</span>
+                                    <span class="rounded-circle">...</span>
                                 </li>
                                 <li th:each="pageIndex: ${#numbers.sequence(currentPage - 1, currentPage + 1)}"
                                     th:unless="${pageIndex < 1 || pageIndex > totalPage}"
@@ -349,7 +358,7 @@
                                        th:text="${pageIndex}" class="page-number"></a>
                                 </li>
                                 <li th:if="${currentPage < totalPage - 2}">
-                                    <span>...</span>
+                                    <span class="rounded-circle">...</span>
                                 </li>
                                 <li th:if="${currentPage <= totalPage - 2}">
                                     <a th:text="${totalPage}"
