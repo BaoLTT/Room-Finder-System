@@ -9,6 +9,7 @@ import java.util.List;
 
 @Repository("NewsRepository")
 public interface NewsRepository extends JpaRepository<NewsEntity, Integer> {
+    @Query("select n from NewsEntity n where n.status = '1'")
     List<NewsEntity> findAll();
 
     @Query
