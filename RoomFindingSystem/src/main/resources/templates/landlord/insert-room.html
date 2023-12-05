@@ -62,7 +62,7 @@
                         <div class="card-box">
                             <h4 class="page-title">Thêm phòng mới</h4>
                             <div class="d-flex justify-content-end">
-                                <form th:action="@{'importRooms/'+ ${houseId}}" method="post"
+                                <form th:action="@{'/landlord/room/importRooms/'+ ${houseId}}" method="post"
                                       enctype="multipart/form-data"
                                       class="my-form">
                                     <div class="form-group">
