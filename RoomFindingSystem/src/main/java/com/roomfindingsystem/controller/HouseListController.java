@@ -87,8 +87,8 @@ public class HouseListController {
         }
 
         System.out.println(listService.size());
-        list =houseService.findHouse(0,0,0,6000000,houseName,listType,listService,countService,offset, pageSize);
-        totalHouse = houseService.countHouse(0,0,0,6000000,houseName,listType,listService,countService);
+        list =houseService.findHouse(0,0,0,Integer.MAX_VALUE,houseName,listType,listService,countService,offset, pageSize);
+        totalHouse = houseService.countHouse(0,0,0,Integer.MAX_VALUE,houseName,listType,listService,countService);
         if(listPrice.contains(1)){
             list =houseService.findHouse(0,0,0,2000000,houseName,listType,listService,countService,offset, pageSize);
             totalHouse = houseService.countHouse(0,0,0,2000000,houseName,listType,listService,countService);
