@@ -31,7 +31,7 @@ public class  AdminDashboardController {
     RoomService roomService;
 
     @Autowired
-    SliderService sliderService;
+    NewsService newsService;
 
     @Autowired
     ReportService reportService;
@@ -50,7 +50,7 @@ public class  AdminDashboardController {
 //        }
         model.addAttribute("numberOfHouses", houseService.countHousesInAdmin());
         model.addAttribute("numberOfUsers", userService.countUserInAdmin());
-        model.addAttribute("numberOfSliders", sliderService.countSliders());
+        model.addAttribute("numberOfSliders", newsService.countNews());
         model.addAttribute("numberOfReports", reportService.countReports());
         model.addAttribute("roomStatusDto", roomService.getRoomStatusInAdminDashboard());
 

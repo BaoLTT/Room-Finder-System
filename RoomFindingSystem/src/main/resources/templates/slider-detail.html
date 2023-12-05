@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
     <link rel="shortcut icon" href="/assets/img/favicon.ico">
 
-    <title>Xem slider</title>
+    <title>Xem news</title>
 
 </head>
 
@@ -30,7 +30,7 @@
             <ol class="breadcrumb">
                 <li><a th:href="@{/}">Trang chủ</a></li>
 <!--                <li><a href="#">Listing</a></li>-->
-                <li class="active">Xem slider</li>
+                <li class="active">Xem tin</li>
             </ol>
             <!--end breadcrumb-->
             <div class="row">
@@ -41,16 +41,16 @@
 <!--                        </div>-->
                         <!--end title-->
                         <article class="blog-post">
-                            <a th:if="${slider.imgLink== null}"><img style="width: 100%" src="/assets/img/items/01_b.jpg"></a>
-                            <a th:if="${slider.imgLink!= null}"><img style="width: 100%" th:src="${slider.imgLink}"></a>
-                            <header><a th:href="@{/slider/}+${slider.sliderid}"><h2 th:text="${slider.title}"></h2></a></header>
+                            <a th:if="${news.imgLink== null}"><img style="width: 100%" src="/assets/img/items/01_b.jpg"></a>
+                            <a th:if="${news.imgLink!= null}"><img style="width: 100%" th:src="${news.imgLink}"></a>
+                            <header><a th:href="@{/news/}+${news.newsid}"><h2 th:text="${news.title}"></h2></a></header>
                             <figure class="meta">
                                 <a class="link-icon"><i class="fa fa-user"></i>Admin</a>
-                                <a class="link-icon" th:if="${slider.createdDate!= null}">
+                                <a class="link-icon" th:if="${news.createdDate!= null}">
                                     <i class="fa fa-calendar"></i>
-                                    <span th:text="${slider.createdDate}"></span>
+                                    <span th:text="${news.createdDate}"></span>
                                 </a>
-                                <a class="link-icon" th:if="${slider.createdDate == null}">
+                                <a class="link-icon" th:if="${news.createdDate == null}">
                                     <i class="fa fa-calendar"></i>
 
                                 </a>
@@ -60,7 +60,7 @@
 <!--                                    <a href="#" class="tag article">Trend</a>-->
 <!--                                </div>-->
                             </figure>
-                            <p id="sliderContent" style="white-space: pre-line;" th:text="${slider.content}">
+                            <p id="newsContent" style="white-space: pre-line;" th:text="${news.content}">
                             </p>
 <!--                            <h3>Parahraph Headline</h3>-->
 <!--                            <p>-->
@@ -149,8 +149,8 @@
 <![endif]-->
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        // Lấy nội dung từ phần tử có ID là 'sliderContent'
-        var contentElement = document.getElementById('sliderContent');
+        // Lấy nội dung từ phần tử có ID là 'newsContent'
+        var contentElement = document.getElementById('newsContent');
         var content = contentElement.innerText;
 
         // Tách nội dung thành từng dòng
