@@ -29,21 +29,21 @@
         <div class="container">
             <ol class="breadcrumb">
                 <li><a th:href="@{/}">Trang chủ</a></li>
+
 <!--                <li><a href="#">Listing</a></li>-->
                 <li class="active">Xem tin</li>
+
             </ol>
             <!--end breadcrumb-->
             <div class="row">
                 <div class="col-md-12">
                     <div class="main-content">
-<!--                        <div class="title">-->
-<!--                            <h1 ></h1>-->
-<!--                        </div>-->
-                        <!--end title-->
                         <article class="blog-post">
+
                             <a th:if="${news.imgLink== null}"><img style="width: 100%" src="/assets/img/items/01_b.jpg"></a>
                             <a th:if="${news.imgLink!= null}"><img style="width: 100%" th:src="'https://storage.googleapis.com'+${news.imgLink}"></a>
                             <header><a th:href="@{/news/}+${news.newsid}"><h2 th:text="${news.title}"></h2></a></header>
+
                             <figure class="meta">
                                 <a class="link-icon"><i class="fa fa-user"></i>Admin</a>
                                 <a class="link-icon" th:if="${news.createdDate!= null}">
