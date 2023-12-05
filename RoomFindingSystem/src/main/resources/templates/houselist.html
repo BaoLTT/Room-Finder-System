@@ -196,7 +196,7 @@
                         <!--end title-->
 
                         <div class="item list" data-map-latitude="48.87" data-map-longitude="2.29" data-id="1"
-                             th:each="houses: ${houses}">
+                             th:each="houses: ${houses}" th:if="${houses.getCount_room()>0}">
                             <div class="image-wrapper">
 
                                 <a  th:href="@{/add-favourite-list?id=}+${houses.houseID}" class="mark-circle" onclick="showSuccessToastAdd()"
