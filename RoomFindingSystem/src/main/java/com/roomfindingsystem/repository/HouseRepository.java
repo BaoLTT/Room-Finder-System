@@ -119,6 +119,7 @@ public interface HouseRepository extends JpaRepository<HousesEntity, Integer> {
             "LEFT JOIN province p ON a.provinceid = p.provinceid " +
             "LEFT JOIN district d ON a.districtid = d.districtid " +
             "LEFT JOIN ward w ON a.wardid = w.wardid " +
+            "WHERE h.status = 1 " +
             "GROUP BY h.houseid, h.house_name, t.type_name, a.address_details, ward_name, district_name, province_name, h.last_modified_by ", nativeQuery = true)
     List<Tuple> viewHouseInHome();
 
