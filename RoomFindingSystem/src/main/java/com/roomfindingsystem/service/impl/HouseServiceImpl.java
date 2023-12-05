@@ -50,7 +50,12 @@ public class HouseServiceImpl implements HouseService {
             LocalDate localDate = sqlDate.toLocalDate();
             houseTypeVo.setLast_modified_date(localDate);
             Long count = (tuple.get("count_room", Long.class));
-            houseTypeVo.setCount_room(count.intValue());
+            if(count==null){
+                houseTypeVo.setCount_room(0);
+            }else{
+                houseTypeVo.setCount_room(count.intValue());
+            }
+
             houseTypeVo.setStar (tuple.get("star",Double.class));
             List<HouseImageDto> listHouseImage = new ArrayList<>();
             String imageLink = (tuple.get("Image_Link", String.class));

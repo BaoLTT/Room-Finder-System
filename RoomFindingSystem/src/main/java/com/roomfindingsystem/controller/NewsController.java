@@ -1,7 +1,8 @@
 package com.roomfindingsystem.controller;
 
-import com.roomfindingsystem.entity.SliderEntity;
-import com.roomfindingsystem.service.SliderService;
+import com.roomfindingsystem.entity.NewsEntity;
+
+import com.roomfindingsystem.service.NewsService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,24 +10,21 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import java.time.format.DateTimeFormatter;
-
-@RequestMapping("/slider")
+@RequestMapping("/news")
 @Controller
-public class SliderController {
+public class NewsController {
     @Autowired
-    SliderService sliderService;
+    NewsService newsService;
     @GetMapping("/{id}")
     public String view(Model model, @PathVariable("id") int id, HttpServletRequest request){
-        SliderEntity slider = sliderService.getSliderById(id);
+        NewsEntity news = newsService.getNewsById(id);
 //        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 //        String formattedDate = slider.getCreatedDate().format(formatter);
 //        model.addAttribute("formattedDate", formattedDate);
-        model.addAttribute("slider", slider);
+        model.addAttribute("news", news);
         model.addAttribute("request",request);
-        return "slider-detail";
+        return "news-detail";
     }
 
 

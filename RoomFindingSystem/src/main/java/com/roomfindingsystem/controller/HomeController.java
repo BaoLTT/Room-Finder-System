@@ -5,6 +5,7 @@ import com.roomfindingsystem.service.*;
 import com.roomfindingsystem.service.impl.GcsService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,36 +14,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class HomeController {
+    @Autowired
     private HouseService houseService;
-
+    @Autowired
     private RoomService roomService;
-
+    @Autowired
     private FeedbackService feedbackService;
-
-    private SliderService sliderService;
-
+    @Autowired
+    private NewsService newsService;
+    @Autowired
     private HouseTypeService houseTypeService;
-
+    @Autowired
     private ServiceDetailService serviceDetailService;
-
+    @Autowired
     private UserService userService;
 
 
-
-    public HomeController(HouseService houseService, RoomService roomService,
-                          FeedbackService feedbackService, SliderService sliderService,
-                          HouseTypeService houseTypeService, ServiceDetailService serviceDetailService,
-                          UserService userService){
-        super();
-        this.houseService = houseService;
-        this.roomService = roomService;
-        this.feedbackService  = feedbackService;
-        this.sliderService = sliderService;
-        this.houseTypeService = houseTypeService;
-        this.serviceDetailService = serviceDetailService;
-        this.userService = userService;
-
-    }
 
     @GetMapping("")
     public String viewHomepage(
@@ -55,7 +42,7 @@ public class HomeController {
         model.addAttribute("houseservices", serviceDetailService.getAllService());
         model.addAttribute("rooms", roomService.viewRoomInHome());
         model.addAttribute("feedbacks", feedbackService.viewTop4Home());
-        model.addAttribute("sliders", sliderService.viewTop7Home());
+        model.addAttribute("news", newsService.viewTop7Home());
         model.addAttribute("request",request);
         final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
         UserEntity user = null;

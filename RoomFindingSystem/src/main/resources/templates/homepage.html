@@ -338,14 +338,14 @@
             </div>
             <!--end title-->
             <div class="gallery-carousel">
-                <div class="gallery-item" th:each="slider: ${sliders}">
-                    <a href="">
-                        <div class="image"><img th:src="'https://storage.googleapis.com'+${slider.imgLink}" alt=""></div>
+                <div th:href="@{/news/}+${news.newsid}" class="gallery-item" th:each="news: ${news}">
+                    <a th:href="@{/news/}+${news.newsid}">
+                        <div class="image"><img th:src="'https://storage.googleapis.com'+${news.imgLink}" alt=""></div>
                     </a>
                     <div class="description">
 
-                        <p th:text="${slider.content}"></p>
-                        <a th:href="@{/slider/}+${slider.sliderid}" class="btn btn-default btn-small btn-framed btn-rounded">Xem chi tiết</a>
+                        <p th:text="${news.content}"></p>
+                        <a th:href="@{/news/}+${news.newsid}" class="btn btn-default btn-small btn-framed btn-rounded">Xem chi tiết</a>
                     </div>
                 </div>
 
