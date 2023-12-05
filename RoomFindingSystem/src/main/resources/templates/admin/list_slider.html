@@ -10,7 +10,7 @@
     <meta content="Coderthemes" name="author"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <!-- App favicon -->
-    <link rel="shortcut icon" th:href="@{/assets_admin/images/favicon.ico}">
+    <link rel="shortcut icon"  th:href="@{/assets/img/favicon.ico}">
 
     <!-- third party css -->
     <link th:href="@{/assets_admin/libs/datatables/dataTables.bootstrap4.css}" rel="stylesheet" type="text/css"/>
@@ -92,6 +92,7 @@
                     <div class="col-12">
                         <div class="card-box table-responsive">
                             <div class="d-flex justify-content-end">
+                                <h4 class="header-title"><b>Quản lý slider</b></h4>
                                 <button class="btn btn-success mb-1 "><a th:href="@{/admin/sliderList/insert}"
                                                                          style="color: white">Thêm mới slider</a></button>
                             </div>
@@ -118,7 +119,9 @@
                                     </td>
 
                                     <td >
-                                        <div class="image-slider"><img th:src="${slider.imgLink}" ></div>
+
+                                        <div class="image-slider"><img th:src="'https://storage.googleapis.com'+${slider.imgLink}" ></div>
+
 
                                     </td>
 

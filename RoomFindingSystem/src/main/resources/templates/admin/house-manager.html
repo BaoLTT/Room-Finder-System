@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="utf-8" />
     <title>Quản lý nhà trọ</title>
@@ -8,7 +9,7 @@
     <meta content="Coderthemes" name="author" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <!-- App favicon -->
-    <link rel="shortcut icon" href="/assets_admin/images/favicon.ico">
+    <link rel="shortcut icon"  th:href="@{/assets/img/favicon.ico}">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
             crossorigin="anonymous"></script>
@@ -41,13 +42,20 @@
 
                     <!-- Start Content-->
                     <div class="container-fluid">
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box">
+                                    <h4 class="page-title">Quản lý nhà trọ</h4>
+                                </div>
+                            </div>
+                        </div>
                         <!-- end page title -->
 
                         <div class="row">
                             <div class="col-12">
-                                <div class="card-box table-responsive" style="margin-top: 40px">
+                                <div class="card-box table-responsive">
                                     <div style="display: flow-root;margin-bottom: 10px">
-                                        <h4 class="header-title"><b>Quản lý nhà trọ</b></h4>
                                         <a type="button" th:href = "@{/admin/house-manager/add}" class="btn btn-success waves-light waves-effect width-md" style="float: right">Thêm trọ</a>
                                     </div>
 

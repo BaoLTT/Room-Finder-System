@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="/assets/css/zabuto_calendar.min.css" type="text/css">
     <link rel="stylesheet" href="/assets/css/owl.carousel.css" type="text/css">
     <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
+    <link rel="shortcut icon" href="/assets/img/favicon.ico">
 
 
     <title>Xem danh sách phòng trọ</title>
@@ -173,7 +174,7 @@
                     <div class="sidebar">
                         <div class="box filter">
                             <h2>Tìm kiếm</h2>
-                            <form id="form-filter" class="labels-uppercase" method="get" th:action = "@{/RoomList/1}">
+                            <form id="form-filter" class="labels-uppercase" method="get" th:action = "@{/roomlist(page=1)}">
                                 <div class="form-group">
                                     <label>Nhập thông tin tìm kiếm</label>
                                     <input type="text" class="form-control" name="roomName" th:value ="${roomName}" id="roomName" placeholder="Nhập tên trọ hoặc tên phòng">
@@ -251,7 +252,7 @@
                                                 </li>
                                                 <li>
                                                     <label>
-                                                        <input type="checkbox" name="type" value="3" th:checked="${#arrays.contains(type, '3')}">Phòng ba người ở
+                                                        <input type="checkbox" name="type" value="3" th:checked="${#arrays.contains(type, '3')}">Khác
                                                     </label>
                                                 </li>
                                             </ul>
@@ -302,14 +303,14 @@
                                             <div th:if="${room.roomImages != null && room.roomImages.size() > 1}">
                                                 <a href="" class="wrapper">
                                                     <div class="gallery" >
-                                                        <img style="width: 273px; height: 208px;" th:each = "image: ${room.roomImages}" th:src="${image}" alt="">
+                                                        <img style="width: 273px; height: 208px;" th:each = "image: ${room.roomImages}" th:src="'https://storage.googleapis.com'+${image}" alt="">
 
                                                     </div>
                                                 </a>
                                                 <div class="owl-navigation"></div>
                                             </div>
                                             <div th:if="${room.roomImages != null && room.roomImages.size() == 1}">
-                                                <img style="width: 273px; height: 208px;" th:src="${room.roomImages.get(0)}" alt="">
+                                                <img style="width: 273px; height: 208px;" th:src="'https://storage.googleapis.com'+${room.roomImages.get(0)}" alt="">
                                             </div>
                                             <!--end owl-navigation-->
                                         </div>
@@ -317,7 +318,7 @@
                                         <div class="description">
                                             <div class="info">
                                                 <figure class="label label-info" th:text="${room.roomType}"></figure>
-                                                <a th:href="@{/room/}+${room.roomId}"><h3 th:text="${room.roomName}"></h3></a>
+                                                <a th:href="@{/}+${room.houseName}+'/room/'+${room.roomId}"><h3 th:text="${room.roomName}"></h3></a>
                                                 <figure class="location" th:text="${room.houseName}"></figure>
                                                 <figure style="font-weight: bold; color: red" th:with="formattedPrice=${#numbers.formatDecimal(room.price, 0, 'COMMA', 0, 'POINT')}"> <span th:text="${formattedPrice + ' VND'}"></span> </figure>
                                             </div>
@@ -341,32 +342,36 @@
                         <div class="center">
                             <ul class="pagination">
                                 <li class="prev">
-                                    <a th:href="@{/RoomList/} + ${currentPage - 1} + '?price=' + ${#strings.arrayJoin(price, ',')} + '&type=' + ${#strings.arrayJoin(type, ',')}" th:if="${currentPage != 1}">
+                                    <a th:href="@{/roomlist?page=} +${currentPage - 1} + '&price=' + ${#strings.arrayJoin(price, ',')} + '&type=' + ${#strings.arrayJoin(type, ',')}" th:if="${currentPage != 1}">
                                         <i class="arrow_left"></i>
                                     </a>
                                 </li>
                                 <li th:if="${currentPage > 2}">
-                                    <a th:href="@{/RoomList/} + '1' + '?price=' + ${#strings.arrayJoin(price, ',')} + '&type=' + ${#strings.arrayJoin(type, ',')}" th:text="1" class="page-number">1</a>
+                                    <a th:href="@{/roomlist?page=} + '1' + '&price=' + ${#strings.arrayJoin(price, ',')} + '&type=' + ${#strings.arrayJoin(type, ',')}" th:text="1" class="page-number">1</a>
                                 </li>
-                                <li th:if="${currentPage > 3}">
-                                    <span class="rounded-circle">...</span>
+
+                                <li th:if="${currentPage > 3}" style="pointer-events: none">
+                                    <span style="border: none;background-color: unset">...</span>
+
                                 </li>
                                 <li th:each="pageIndex: ${#numbers.sequence(currentPage - 1, currentPage + 1)}"
                                     th:unless="${pageIndex < 1 || pageIndex > totalPage}"
                                     th:class="${pageIndex == currentPage ? 'active' : ''}">
-                                    <a th:href="@{/RoomList/} + ${pageIndex} + '?price=' + ${#strings.arrayJoin(price, ',')} + '&type=' + ${#strings.arrayJoin(type, ',')}"
+                                    <a th:href="@{/roomlist?page=} + ${pageIndex} + '&price=' + ${#strings.arrayJoin(price, ',')} + '&type=' + ${#strings.arrayJoin(type, ',')}"
                                        th:text="${pageIndex}" class="page-number"></a>
                                 </li>
-                                <li th:if="${currentPage < totalPage - 2}">
-                                    <span class="rounded-circle">...</span>
+
+                                <li th:if="${currentPage < totalPage - 2}" style="pointer-events: none">
+                                    <span style="border: none;background-color: unset">...</span>
+
                                 </li>
                                 <li th:if="${currentPage <= totalPage - 2}">
                                     <a th:text="${totalPage}"
-                                       th:href="@{/RoomList/} + ${totalPage} + '?price=' + ${#strings.arrayJoin(price, ',')} + '&type=' + ${#strings.arrayJoin(type, ',')}"
+                                       th:href="@{/roomlist?page=} + ${totalPage} + '&price=' + ${#strings.arrayJoin(price, ',')} + '&type=' + ${#strings.arrayJoin(type, ',')}"
                                        class="page-number">${totalPage}</a>
                                 </li>
                                 <li class="next">
-                                    <a th:href="@{/RoomList/} + ${currentPage + 1} + '?price=' + ${#strings.arrayJoin(price, ',')} + '&type=' + ${#strings.arrayJoin(type, ',')}" th:if="${currentPage != totalPage}">
+                                    <a th:href="@{/roomlist?page=} + ${currentPage + 1} + '&price=' + ${#strings.arrayJoin(price, ',')} + '&type=' + ${#strings.arrayJoin(type, ',')}" th:if="${currentPage != totalPage}">
                                         <i class="arrow_right"></i>
                                     </a>
                                 </li>

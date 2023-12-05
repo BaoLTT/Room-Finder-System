@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="shortcut icon"  th:href="@{/assets/img/favicon.ico}">
 </head>
 <body>
 <div th:fragment="admin_topbar">
@@ -16,8 +17,8 @@
 
         <li class="dropdown notification-list list-unstyled">
             <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown" th:href="@{/profile}" role="button" aria-haspopup="false" aria-expanded="false">
-                <img class="round-image" th:src="${user.imageLink}" style=" max-width: 25px;max-height: 25px; " alt="user-image" >
-                <span class="ml-1" th:text="${user.firstName+' '+user.lastName}"></span>
+                <img class="round-image" th:src="${session.user.getImageLink()}" style=" max-width: 25px;max-height: 25px; " alt="user-image" >
+                <span class="ml-1" th:text="${session.user.lastName+' '+session.user.firstName}"></span>
 
             </a>
             <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
@@ -48,7 +49,7 @@
     <div class="logo-box">
         <a href="/admin/dashboard" class="logo text-center">
                         <span class="logo-lg">
-                            <img src="/assets_admin/images/logo-light.png" alt="" height="16">
+                            <img src="/assets/img/logo.jpe" alt="" height="16">
                             <!-- <span class="logo-lg-text-light">UBold</span> -->
                         </span>
             <span class="logo-sm">

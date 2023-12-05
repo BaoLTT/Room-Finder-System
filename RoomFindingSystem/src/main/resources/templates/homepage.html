@@ -6,6 +6,7 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="ThemeStarz">
+    <link rel="shortcut icon"  th:href="@{/assets/img/favicon.ico}">
 
     <link href="/assets/fonts/font-awesome.css" rel="stylesheet" type="text/css">
     <link href="/assets/fonts/elegant-fonts.css" rel="stylesheet" type="text/css">
@@ -91,10 +92,10 @@
                                                     <div class="form-group">
                                                         <label>Tiền phòng</label>
                                                         <select class="form-control framed white">
-                                                            <option name="price" value="1">0 - 2.000.000</option>
-                                                            <option name="price" value="2">2.000.000 - 4.000.000
+                                                            <option name="price" value="1">Dưới 2,000,000 VND</option>
+                                                            <option name="price" value="2">2,000,000 VND - 4,000,000 VND
                                                             </option>
-                                                            <option name="price" value="3">4.000.000 -></option>
+                                                            <option name="price" value="3">Trên 4.000.000 VND</option>
                                                         </select>
                                                     </div>
                                                     <!--end form-group-->
@@ -175,7 +176,7 @@
                                     <a th:href="@{/detail?id=}+${house.houseID}" class="wrapper">
                                         <div class="gallery">
                                             <img style="width: 273px; height: 208px;"
-                                                 th:each="image: ${house.listImage}" th:src="${image}" alt="">
+                                                 th:each="image: ${house.listImage}" th:src="'https://storage.googleapis.com'+${image}" alt="">
                                         </div>
                                     </a>
                                     <div class="owl-navigation"></div>
@@ -214,7 +215,7 @@
 <!--                        </a>-->
 <!--                    </div>-->
                 </div>
-                <a th:href="@{/houselist}" class="pull-right">View All</a>
+                <a th:href="@{/houselist}" class="pull-right">Xem tất cả</a>
 
             </div>
             <!--end row-->
@@ -245,7 +246,7 @@
                                     </div>
                                     <div class="wrapper">
                                         <!--                                            <div class="gallery">-->
-                                        <img style="" th:each="image : ${room.roomImageLink}" th:src="${image}" alt="">
+                                        <img style="" th:each="image : ${room.roomImageLink}" th:src="'https://storage.googleapis.com'+${image}" alt="">
                                         <!--                                            </div>-->
                                     </div>
                                 </div>
@@ -264,7 +265,7 @@
 
                     </div>
                     <!--end row-->
-                    <a th:href="@{/RoomList/1}" class="pull-right">View All</a>
+                    <a th:href="@{/RoomList/1}" class="pull-right">Xem tất cả</a>
                 </div>
 <!--                <div class="col-md-3 col-sm-4">-->
 <!--                    <a href="#" class="advertising-banner">-->
@@ -339,12 +340,12 @@
             <div class="gallery-carousel">
                 <div class="gallery-item" th:each="slider: ${sliders}">
                     <a href="">
-                        <div class="image"><img th:src="${slider.imgLink}" alt=""></div>
+                        <div class="image"><img th:src="'https://storage.googleapis.com'+${slider.imgLink}" alt=""></div>
                     </a>
                     <div class="description">
 
                         <p th:text="${slider.content}"></p>
-                        <a th:href="@{/slider/}+${slider.sliderid}" class="btn btn-default btn-small btn-framed btn-rounded">More</a>
+                        <a th:href="@{/slider/}+${slider.sliderid}" class="btn btn-default btn-small btn-framed btn-rounded">Xem chi tiết</a>
                     </div>
                 </div>
 

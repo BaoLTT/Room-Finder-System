@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="shortcut icon"  th:href="@{/assets/img/favicon.ico}">
 <head>
     <style>
         .round-image {
@@ -51,17 +52,18 @@
                                 <!-- item-->
 
                                 <!-- item-->
-                                <a th:href="@{profile}" class="dropdown-item notify-item">
+                                <a th:href="@{/profile}" class="dropdown-item notify-item">
 
                                     <span>Thông tin cá nhân</span>
                                 </a>
                                 <br>
-                                <a th:href="@{favourite-list}" class="dropdown-item notify-item">
+                                <a th:href="@{/favourite-list}" class="dropdown-item notify-item">
 
                                     <span>Danh Sách Yêu Thích</span>
                                 </a>
+
                                 <br>
-                                <a th:href="@{change-password}" class="dropdown-item notify-item">
+                                <a th:href="@{/change-password}" class="dropdown-item notify-item">
 
                                     <span>Thay Đổi Mật Khẩu</span>
                                 </a>
@@ -110,7 +112,7 @@
                     <li th:class="${request.getRequestURI() == '/' ? 'active' : ''}"><a th:href="@{/}">Trang chủ</a></li>
                       <li th:class="${request.getRequestURI() == '/manager' ? 'active' : ''}"><a th:if="${session.user != null and session.user.getRoleId() == 'LANDLORD'}" th:href="@{/manager}" >Quản lý phòng trọ</a></li>
                     <li th:class="${request.getRequestURI() == '/houselist' ? 'active' : ''}"><a th:href="@{/houselist}">Danh sách nhà trọ</a></li>
-                    <li th:class="${request.getRequestURI() == '/RoomList/1' ? 'active' : ''}"><a th:href="@{/RoomList/1}" id="roomList">Danh sách phòng trọ</a></li>
+                    <li th:class="${request.getRequestURI() == '/roomlist' ? 'active' : ''}"><a th:href="@{/roomlist}" id="roomList" style="padding: 5px">Danh sách phòng trọ</a></li>
 
 
                   </ul>

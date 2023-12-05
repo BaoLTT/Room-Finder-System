@@ -58,7 +58,7 @@ public class HouseController {
         return "templates";
     }
 
-    @RequestMapping(value = "detail", method = RequestMethod.GET)
+    @RequestMapping(value = "{housename}", method = RequestMethod.GET)
     public String getAllHouse(@RequestParam(name = "page", required = false, defaultValue = "1") int page,
             @RequestParam(name = "id", required = false, defaultValue = "1") int houseId,
                               @RequestParam(name = "star", required = false, defaultValue = "0") int star,
@@ -66,11 +66,11 @@ public class HouseController {
 
         try {
             List<HouseDto> houseDto = houseService.getHouseDetail(houseId);
-            System.out.printf(houseDto.toString());
+
 
 
             model.addAttribute("HousesEntity", houseDto);
-            System.out.println(houseDto);
+
 
             List<ServiceDto> listService= houseService.getServiceById(houseId);
             model.addAttribute("HouseService", listService);

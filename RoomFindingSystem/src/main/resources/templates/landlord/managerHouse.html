@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-
-<html lang="en-US">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,8 +13,9 @@
     <link rel="stylesheet" href="/assets/css/zabuto_calendar.min.css" type="text/css">
     <link rel="stylesheet" href="/assets/css/owl.carousel.css" type="text/css">
     <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
+    <link rel="shortcut icon" href="/assets/img/favicon.ico">
 
-    <title>Quản lý nhà trọ</title>
+    <title>Quản lý trọ</title>
 
 </head>
 
@@ -25,13 +26,16 @@
 
     <div id="page-content" >
         <div class="container" style="margin-top: 15px">
-
+            <ol class="breadcrumb">
+                <li><a href="/">Trang chủ</a></li>
+                <li>Quản lý trọ</li>
+            </ol>
             <!--end breadcrumb-->
             <div class="main-content">
                 <div class="title">
-                    <h1><a th:href = "@{/manager}">Danh sách phòng trọ</a></h1>
-                    <h1 style="float:right; margin-right: 0"> <a th:href = "@{/manager/add}" class="btn btn-primary btn-rounded scroll">Thêm trọ</a></h1>
-
+                    <h1><a th:href = "@{/manager}">Quản lý trọ</a></h1>
+                    <h1 style="float:right; margin-right: 0"> <a th:href = "@{/landlord/feedback}" class="btn btn-primary btn-rounded scroll">Danh sách bình luận</a></h1>
+                    <h1 style="float:right; margin-right: 20px"> <a th:href = "@{/manager/add}" class="btn btn-primary btn-rounded scroll">Thêm trọ</a></h1>
 
                 </div>
                 <div class="my-items table-responsive">
@@ -42,7 +46,7 @@
                             <th>Tình trạng</th>
                             <th>Đánh giá</th>
                             <th>Người tạo</th>
-                            <th>Ngày tạo</th>
+                            <th style="padding-right: 55px">Ngày tạo</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -52,7 +56,7 @@
                                     <div class="image-carousel">
                                         <a th:href="@{/manager/edit/}+${house.houseID}" class="image" th:each="image, iterStat : ${house.listImage}" th:if="${iterStat.index < 1}">
                                             <div class="bg-transfer">
-                                                <img th:src="${image.imageLink}" alt="Ảnh">
+                                                <img th:src="'https://storage.googleapis.com'+${image.imageLink}" alt="Ảnh">
                                             </div>
                                         </a>
                                     </div>
@@ -65,7 +69,7 @@
 
                                     <div class="meta">
                                         <span><i class="fa fa-bed" ></i><h th:text="${house.getCount_room()}"></h></span>
-                                        <span class="price-info" th:with="formattedPrice=${#numbers.formatDecimal(house.price, 0, 'COMMA', 0, 'POINT')}">From <span class="price" th:text="${formattedPrice + ' VND'}">$32</span><span class="appendix">/Tháng</span></span>
+                                        <span class="price-info" th:with="formattedPrice=${#numbers.formatDecimal(house.price, 0, 'COMMA', 0, 'POINT')}">Từ <span class="price" th:text="${formattedPrice + ' VND'}">$32</span><span class="appendix">/Tháng</span></span>
                                     </div>
                                     <!--end meta-->
                                 </div>
@@ -82,11 +86,11 @@
                             <td th:if="${house.getStatus() == 0}"><div class="featured yes" style="color: red"> Ngưng Hoạt Động
                                 <aside></aside>
                             </div></td>
-                            <td class="views" th:if="${house.star!=null}" th:text="${house.getStar()}">426</td>
+                            <td class="views" th:if="${house.star!=null}" th:text="${house.getStar()}" style="padding-left: 20px">426</td>
                             <td class="views" th:if="${house.star==null}">Chưa đánh giá</td>
                             <td class="reviews" th:text="${house.created_firstName + ' '+ house.created_lastName}">45</td>
 
-                            <td class="last-reservation"><h th:text="${#temporals.format(house.getCreatedDate(), 'dd/MM/yyyy')}"></h>
+                            <td class="last-reservation" style="padding-right: 55px"><h th:text="${#temporals.format(house.getCreatedDate(), 'dd/MM/yyyy')}"></h>
                                 <span class="last-edit" >Ngày cuối cập nhật: <h th:text="${#temporals.format(house.getLastModifiedDate(), 'dd/MM/yyyy')}"></h></span>
 
                                 <div class="edit-options">

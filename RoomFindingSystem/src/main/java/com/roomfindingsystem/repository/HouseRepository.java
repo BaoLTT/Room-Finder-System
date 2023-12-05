@@ -24,9 +24,9 @@ public interface HouseRepository extends JpaRepository<HousesEntity, Integer> {
     @Query(value = "SELECT h.houseid, h.house_name, t.type_name, a.address_details,h.star, w.name AS ward_name, d.name AS district_name, p.name AS province_name, (SELECT MIN(r.price) FROM room r WHERE r.houseid = h.houseid) AS minPrice," +
             " (SELECT GROUP_CONCAT(i.image_link) FROM house_images i WHERE i.houseid = h.houseid) AS Image_Link," +
             " (SELECT GROUP_CONCAT(i.imageid) FROM house_images i WHERE i.houseid = h.houseid) AS Image_Id," +
-            " SUBSTRING_INDEX( (SELECT GROUP_CONCAT(DISTINCT sd.service_name) FROM service_house sh" +
+            "(SELECT GROUP_CONCAT(DISTINCT sd.service_name) FROM service_house sh" +
             "            LEFT JOIN service_detail sd ON sd.serviceid = sh.serviceid" +
-            "            WHERE sh.houseid = h.houseid), ',', 2) AS Service_Name, h.last_modified_date," +
+            "            WHERE sh.houseid = h.houseid) AS Service_Name, h.last_modified_date," +
             "(select count(roomid) from room r where r.houseid = h.houseid AND r.statusid = 1 group by r.houseid)  as count_Room " +
             "FROM houses h " +
             "JOIN type_house t ON h.type_houseid = t.typeid " +
@@ -55,9 +55,9 @@ public interface HouseRepository extends JpaRepository<HousesEntity, Integer> {
 
     @Query(value = "SELECT COUNT(*) FROM (SELECT h.houseid, h.house_name, t.type_name, a.address_details, w.name AS ward_name, d.name AS district_name, p.name AS province_name,h.star, (SELECT MIN(r.price) FROM room r WHERE r.houseid = h.houseid) AS minPrice," +
             " (SELECT GROUP_CONCAT(i.image_link) FROM house_images i WHERE i.houseid = h.houseid) AS Image_Link," +
-            " SUBSTRING_INDEX( (SELECT GROUP_CONCAT(DISTINCT sd.service_name) FROM service_house sh" +
+            " (SELECT GROUP_CONCAT(DISTINCT sd.service_name) FROM service_house sh" +
             "            LEFT JOIN service_detail sd ON sd.serviceid = sh.serviceid" +
-            "            WHERE sh.houseid = h.houseid), ',', 2) AS Service_Name, h.last_modified_date," +
+            "            WHERE sh.houseid = h.houseid) AS Service_Name, h.last_modified_date," +
             "(select count(roomid) from room r where r.houseid = h.houseid AND r.statusid = 1 group by r.houseid)  as count_Room " +
             "FROM houses h " +
             "JOIN type_house t ON h.type_houseid = t.typeid " +
@@ -119,7 +119,7 @@ public interface HouseRepository extends JpaRepository<HousesEntity, Integer> {
             "LEFT JOIN province p ON a.provinceid = p.provinceid " +
             "LEFT JOIN district d ON a.districtid = d.districtid " +
             "LEFT JOIN ward w ON a.wardid = w.wardid " +
-            "GROUP BY h.houseid, h.house_name, t.type_name, a.address_details, ward_name, district_name, province_name, h.last_modified_by LIMIT 8 OFFSET 0 ", nativeQuery = true)
+            "GROUP BY h.houseid, h.house_name, t.type_name, a.address_details, ward_name, district_name, province_name, h.last_modified_by ", nativeQuery = true)
     List<Tuple> viewHouseInHome();
 
     @Query(value = "SELECT u.userid,h.houseId, h.house_name,th.type_name,ad.address_details,pr.name AS province_name,d.name AS district_name,w.name AS ward_name ,\n" +

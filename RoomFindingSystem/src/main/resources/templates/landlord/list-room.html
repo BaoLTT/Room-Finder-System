@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="utf-8"/>
     <title>Danh sách phòng</title>
@@ -12,6 +11,7 @@
     <link href="/assets/fonts/elegant-fonts.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="/assets/css/owl.carousel.css" type="text/css">
     <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
+    <link rel="shortcut icon" href="/assets/img/favicon.ico">
 
     <!-- third party css -->
     <link th:href="@{/assets_admin/libs/datatables/dataTables.bootstrap4.css}" rel="stylesheet" type="text/css"/>
@@ -68,6 +68,10 @@
 
             <!-- Start Content-->
             <div class="main-content">
+                <ol class="breadcrumb">
+                    <li><a th:href="@{/manager}">Quản lý phòng trọ</a></li>
+                    <li style="margin-left: 5px;">/ Danh sách phòng</li>
+                </ol>
                 <div class="row">
                     <div class="col-12">
                         <div class="card-box table-responsive">
@@ -125,26 +129,22 @@
                             </table>
                         </div>
                     </div>
-                </div>
-                <!-- end row -->
+                </div> <!-- end row -->
             </div> <!-- end container-fluid -->
+        </div>
+    </div><!-- end content -->
 
-        </div> <!-- end content -->
-
-
-        <!-- Footer Start -->
-        <div th:replace="~{footer :: footerSection}"></div>
-        <!-- end Footer -->
-
-    </div>
-
-    <!-- ============================================================== -->
-    <!-- End Page content -->
-    <!-- ============================================================== -->
+    <!-- Footer Start -->
+    <div th:replace="~{footer :: footerSection}"></div>
+    <!-- end Footer -->
 
 </div>
 <!-- END wrapper -->
-
+<script type="text/javascript" src="/assets/js/jquery-2.2.1.min.js"></script>
+<script type="text/javascript" src="/assets/js/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="/assets/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/assets/js/icheck.min1.js"></script>
+<script type="text/javascript" src="/assets/js/custom.js"></script>
 <!-- Vendor js -->
 <script th:src="@{/assets_admin/js/vendor.min.js}"></script>
 

@@ -1,4 +1,4 @@
-package com.example.roomfindingsystem.controller;
+package com.roomfindingsystem.controller;
 
 import com.roomfindingsystem.controller.UserController;
 import com.roomfindingsystem.dto.Smsrequest;

@@ -31,21 +31,28 @@ public class SliderManageController {
 
     @Autowired
     private UserService userService;
+
+
     @GetMapping("/sliderList")
     public String viewSlider(Model model){
         model.addAttribute("sliderList", sliderService.viewAll() );
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         UserEntity user = userService.findByEmail(email).get();
+
         model.addAttribute("user", user);
+        model.addAttribute("userService",userService);
         return "/admin/list_slider";
     }
 
     @GetMapping("sliderList/insert")
-    public String viewNewSlider(){
+    public String viewNewSlider(Model model)
+    {   String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserEntity user = userService.findByEmail(email).get();
+        model.addAttribute("user", user);
         return "/admin/insert_slider";
     }
     @PostMapping("slider/save")
-    public String viewSliderDetail(Model model, @RequestParam(name = "title",required = false , defaultValue = "") String title,
+    public String saveSlider(Model model, @RequestParam(name = "title",required = false , defaultValue = "") String title,
                                    @RequestParam(name = "content",required = false , defaultValue = "") String content,  @RequestParam(name = "file", required = false) MultipartFile file,
                                    @RequestParam(name = "status", required = false) String status) throws IOException {
         SliderEntity sliderEntity = new SliderEntity();
@@ -59,10 +66,11 @@ public class SliderManageController {
         String formattedTimestamp = dateFormat.format(new Date(timestamp));
 
         if (!file.isEmpty()) {
+
             //        Handle Image
             byte[] imageBytes = file.getBytes();
             gcsService.uploadImage("rfs_bucket", "Slider/slider_"+formattedTimestamp+".jpg", imageBytes);
-            imgLink = "https://storage.cloud.google.com/rfs_bucket/Slider/"+"slider_"+formattedTimestamp+".jpg";
+            imgLink = "/rfs_bucket/Slider/"+"slider_"+formattedTimestamp+".jpg";
         }
         sliderEntity.setImgLink(imgLink);
         sliderEntity.setTitle(title);
@@ -106,12 +114,15 @@ public class SliderManageController {
                                @RequestParam(name = "status", required = false) String status) throws IOException {
 
         String imgLink = null;
-
+        long timestamp = System.currentTimeMillis();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss");
+        String formattedTimestamp = dateFormat.format(new Date(timestamp));
+        
         if (!file.isEmpty()) {
             //        Handle Image
             byte[] imageBytes = file.getBytes();
-            gcsService.uploadImage("rfs_bucket", "Slider/slider_"+sliderEntity.getSliderid()+".jpg", imageBytes);
-            imgLink = "https://storage.cloud.google.com/rfs_bucket/Slider/"+"slider_"+sliderEntity.getSliderid()+".jpg";
+            gcsService.uploadImage("rfs_bucket", "Slider/slider_"+formattedTimestamp+".jpg", imageBytes);
+            imgLink = "/rfs_bucket/Slider/"+"slider_"+formattedTimestamp+".jpg";
         }
         sliderEntity.setImgLink(imgLink);
 
@@ -133,5 +144,14 @@ public class SliderManageController {
     String deleteSlider(@PathVariable("id") int id){
         sliderService.deleteById(id);
         return "redirect:/admin/sliderList";
+    }
+
+    @GetMapping("/sliderList/deleteImage/{id}")
+    public String deleteImage(@PathVariable(name = "id") Integer id){
+        SliderEntity slider = sliderService.getSliderById(id);
+        slider.setImgLink(null);
+        sliderService.save(slider);
+
+        return "redirect:/admin/sliderList/update/"+id;
     }
 }

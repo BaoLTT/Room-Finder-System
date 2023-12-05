@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="/assets/css/jquery.datepick.css" type="text/css">
     <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="shortcut icon" href="/assets/img/favicon.ico">
 
     <title>Accommodo - Accommodation HTML Template Full of Useful Features</title>
 
@@ -77,7 +78,7 @@
                             <div class="col-md-6">
                                 <div class="w3-content w3-display-container" >
                                     <div th:each="image: ${roomImages}">
-                                        <img class="mySlides" th:src="${image.getImageLink()}" style="width:100%">
+                                        <img class="mySlides" th:src="'https://storage.googleapis.com'+${image.getImageLink()}" style="width:100%">
 
                                     </div>
 

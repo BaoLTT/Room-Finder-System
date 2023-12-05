@@ -7,7 +7,9 @@ import com.roomfindingsystem.repository.HouseRepository;
 
 import com.roomfindingsystem.service.HouseService;
 
+import com.roomfindingsystem.service.RoomService;
 import jakarta.persistence.Tuple;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -15,13 +17,13 @@ import java.util.*;
 
 @Service("houseService")
 public class HouseServiceImpl implements HouseService {
+    @Autowired
     private HouseRepository houseRepository;
 
+//    @Autowired
+//    private RoomService roomService;
 
-    public HouseServiceImpl(HouseRepository houseRepository) {
-        super();
-        this.houseRepository = houseRepository;
-    }
+
 
     @Override
 
@@ -36,6 +38,7 @@ public class HouseServiceImpl implements HouseService {
         List<String> imageLinks;
         List<String> services;
         List<String> imageIds;
+
 
         for (Tuple tuple : tuples) {
             HouseTypeVo houseTypeVo = new HouseTypeVo();
@@ -65,13 +68,18 @@ public class HouseServiceImpl implements HouseService {
                 }
                 houseTypeVo.setListImage(listHouseImage);
             }
-
+            List<HouseServiceDto> listService = new ArrayList<>();
             String service1 = (tuple.get("Service_Name", String.class));
             if (service1.isEmpty()) {
                 houseTypeVo.setService(null);
             } else {
                 services = Arrays.asList(service1.split(","));
-                houseTypeVo.setService(services);
+                for (int i = 0; i < services.size(); i++) {
+                    HouseServiceDto houseServiceDto = new HouseServiceDto();
+                    houseServiceDto.setServiceName(services.get(i));
+                    listService.add(houseServiceDto);
+                }
+                houseTypeVo.setService(listService);
             }
             houseTypeVo.setProvince(tuple.get("province_name", String.class));
             houseTypeVo.setDistrict(tuple.get("district_name", String.class));
@@ -182,11 +190,23 @@ public class HouseServiceImpl implements HouseService {
                 houseHomeDto.setCountEmptyRooms(0L);
             } else houseHomeDto.setCountEmptyRooms(tuple.get("count_Empty_Rooms", Long.class));
 
-            houseHomeDtos.add(houseHomeDto);
+            if(tuple.get("count_Empty_Rooms", Long.class) != null){
+                houseHomeDtos.add(houseHomeDto);
+            }
+
+
+
+        }
+        List<HouseHomeDto> houseList = new ArrayList<>();
+        if(houseHomeDtos.size()<8) return houseHomeDtos;
+        else {
+            for(int i=0;i<8;i++){
+                houseList.add(houseHomeDtos.get(i));
+            }
+            return houseList;
         }
 
 
-        return houseHomeDtos;
     }
 
     @Override

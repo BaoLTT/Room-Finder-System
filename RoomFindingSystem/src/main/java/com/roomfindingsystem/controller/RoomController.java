@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@RequestMapping("/room")
+@RequestMapping("")
 @Controller
 public class RoomController {
     @Autowired
@@ -26,7 +26,7 @@ public class RoomController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/{id}")
+    @GetMapping("/{houseName}/room/{id}")
     public String getRoom(Model model, @PathVariable("id") int id, HttpServletRequest request){
         RoomEntity room = roomService.getRoomById(id);
         List<RoomImagesEntity> roomImagesEntities = roomService.roomImageByRoomId(id);
@@ -40,8 +40,9 @@ public class RoomController {
     }
 
     @PostMapping("/houseDetail")
-    public String getRoomInHouseDetail(Model model, @RequestParam(name = "roomId") String id){
+    public String getRoomInHouseDetail(Model model, @RequestParam(name = "roomId") String id,@RequestParam(name = "houseName") String houseName){
         int id1 = Integer.parseInt(id);
-        return "redirect:/room/"+id1;
+        System.out.println(houseName);
+        return "redirect:/"+houseName+"/room/"+id1;
     }
 }

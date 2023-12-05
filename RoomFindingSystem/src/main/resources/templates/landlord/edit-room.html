@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8"/>
     <title>Thông tin phòng</title>
@@ -13,7 +12,7 @@
     <link rel="stylesheet" href="/assets/css/owl.carousel.css" type="text/css">
     <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
     <!-- App favicon -->
-    <link rel="shortcut icon" href="/assets_admin/images/favicon.ico">
+    <link rel="shortcut icon"  th:href="@{/assets/img/favicon.ico}">
 
     <link href="/assets_admin/libs/dropzone/dropzone.min.css" rel="stylesheet" type="text/css"/>
     <!-- App css -->
@@ -48,6 +47,13 @@
         <div class="container">
             <!-- Start Content-->
             <div class="main-content">
+                <ol class="breadcrumb">
+                    <li><a th:href="@{/manager}">Quản lý trọ</a></li>
+                    <li style="margin: 0 5px;">/</li>
+                    <li><a th:href="@{'/landlord/room/listRoom/'+${room.houseId}}">Danh sách phòng</a></li>
+                    <li style="margin: 0 5px;">/</li>
+                    <li>Thông tin phòng</li>
+                </ol>
                 <div class="row">
                     <div class="col-lg">
                         <div class="card-box">
@@ -146,7 +152,7 @@
                                                    th:href="@{'/landlord/room/deleteImage/' + ${room.roomId} + '/' + ${image.imageId}}">x</a>
                                                 <span class="MultiFile-label"
                                                       title="File selected: abc.png">
-                                                            <img th:src="${image.imageLink}" alt="Ảnh" id="imagePreview"
+                                                            <img th:src="'https://storage.googleapis.com'+${image.imageLink}" alt="Ảnh" id="imagePreview"
                                                                  style="width: 100px;height: 100px">
                                                         </span>
                                             </div>
