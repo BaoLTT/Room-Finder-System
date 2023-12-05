@@ -29,20 +29,15 @@
         <div class="container">
             <ol class="breadcrumb">
                 <li><a th:href="@{/}">Trang chủ</a></li>
-<!--                <li><a href="#">Listing</a></li>-->
-                <li class="active">Xem slider</li>
+                <li class="active">Xem tin tức</li>
             </ol>
             <!--end breadcrumb-->
             <div class="row">
                 <div class="col-md-12">
                     <div class="main-content">
-<!--                        <div class="title">-->
-<!--                            <h1 ></h1>-->
-<!--                        </div>-->
-                        <!--end title-->
                         <article class="blog-post">
                             <a th:if="${slider.imgLink== null}"><img style="width: 100%" src="/assets/img/items/01_b.jpg"></a>
-                            <a th:if="${slider.imgLink!= null}"><img style="width: 100%" th:src="${slider.imgLink}"></a>
+                            <a th:if="${slider.imgLink!= null}"><img style="width: 100%" th:src="'https://storage.googleapis.com'+${slider.imgLink}"></a>
                             <header><a th:href="@{/slider/}+${slider.sliderid}"><h2 th:text="${slider.title}"></h2></a></header>
                             <figure class="meta">
                                 <a class="link-icon"><i class="fa fa-user"></i>Admin</a>
