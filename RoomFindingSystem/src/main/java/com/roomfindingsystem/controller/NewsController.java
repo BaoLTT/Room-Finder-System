@@ -24,7 +24,7 @@ public class NewsController {
 //        model.addAttribute("formattedDate", formattedDate);
         model.addAttribute("news", news);
         model.addAttribute("request",request);
-        return "slider-detail";
+        return "news-detail";
     }
 
 

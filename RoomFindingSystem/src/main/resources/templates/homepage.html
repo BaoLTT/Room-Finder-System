@@ -338,8 +338,8 @@
             </div>
             <!--end title-->
             <div class="gallery-carousel">
-                <div class="gallery-item" th:each="news: ${news}">
-                    <a href="">
+                <div th:href="@{/news/}+${news.newsid}" class="gallery-item" th:each="news: ${news}">
+                    <a th:href="@{/news/}+${news.newsid}">
                         <div class="image"><img th:src="'https://storage.googleapis.com'+${news.imgLink}" alt=""></div>
                     </a>
                     <div class="description">

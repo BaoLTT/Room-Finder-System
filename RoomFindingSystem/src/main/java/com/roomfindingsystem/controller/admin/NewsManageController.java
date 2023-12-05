@@ -19,7 +19,7 @@ import java.util.Date;
 
 @Controller
 @RequestMapping("/admin")
-public class SliderManageController {
+public class NewsManageController {
     @Autowired
     private NewsService newsService;
 
@@ -38,7 +38,7 @@ public class SliderManageController {
 
         model.addAttribute("user", user);
         model.addAttribute("userService",userService);
-        return "/admin/list_slider";
+        return "admin/list_news";
     }
 
     @GetMapping("newsList/insert")
@@ -46,7 +46,7 @@ public class SliderManageController {
     {   String email = SecurityContextHolder.getContext().getAuthentication().getName();
         UserEntity user = userService.findByEmail(email).get();
         model.addAttribute("user", user);
-        return "/admin/insert_slider";
+        return "admin/insert_news";
     }
     @PostMapping("news/save")
     public String saveNews(Model model, @RequestParam(name = "title",required = false , defaultValue = "") String title,
@@ -102,7 +102,7 @@ public class SliderManageController {
         };
         model.addAttribute("news", news);
         model.addAttribute("user", user);
-        return "/admin/edit_news";
+        return "admin/edit_news";
     }
 
     @PostMapping("news/update")
