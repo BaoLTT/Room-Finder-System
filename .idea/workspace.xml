@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1e0562a2-7ad5-40d8-bd96-2e66b43cd15f" name="Changes" comment="update chinh homepage">
+    <list default="true" id="1e0562a2-7ad5-40d8-bd96-2e66b43cd15f" name="Changes" comment="update slider =&gt; news, sua duoc phan admin">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/config/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/config/SecurityConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/repository/NewsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/repository/NewsRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/admin/adminDashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/admin/adminDashboard.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,6 +50,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "DefaultHtmlFileTemplate": "HTML File",
+    "JPA.DatabaseSchemaImportDialog": "0917dbb1-b63e-4827-b1df-c0aa7f40a31c",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
@@ -58,7 +60,7 @@
     "WebServerToolWindowFactoryState": "false",
     "com.google.cloudcode.ide_session_index": "20231203_0002",
     "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "nghiant2",
+    "git-widget-placeholder": "BaoLTT",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
@@ -75,8 +77,27 @@
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.roomfindingsystem.repository" />
     </key>
+    <key name="ImportMappingsDialog.RecentPackages">
+      <recent name="com.roomfindingsystem.entity" />
+    </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.Main">
+  <component name="RunManager">
+    <configuration name="ReportRepositoryTest.testGetReportEntityByUidWithValidInput" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="RoomFindingSystem" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.roomfindingsystem.repository.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.roomfindingsystem.repository" />
+      <option name="MAIN_CLASS_NAME" value="com.roomfindingsystem.repository.ReportRepositoryTest" />
+      <option name="METHOD_NAME" value="testGetReportEntityByUidWithValidInput" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="RoomRepositoryTest.testViewRoomInHouseWithEmptyResult" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RoomFindingSystem" />
       <extension name="coverage">
@@ -141,27 +162,28 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+    <configuration name="UserServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RoomFindingSystem" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.roomfindingsystem.Main" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.roomfindingsystem.*" />
+          <option name="PATTERN" value="com.roomfindingsystem.repository.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="com.roomfindingsystem.repository" />
+      <option name="MAIN_CLASS_NAME" value="com.roomfindingsystem.repository.UserServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.Main" />
         <item itemvalue="JUnit.RoomRepositoryTest.testViewRoomInHouseWithEmptyResult" />
         <item itemvalue="JUnit.RoomRepositoryTest.testViewRoomInHouseWithValidInput" />
         <item itemvalue="JUnit.RoomServiceTest.testViewRoomInHouseWithValidInput" />
         <item itemvalue="JUnit.RoomServiceTest.testViewRoomInHouseWithEmptyResult" />
+        <item itemvalue="JUnit.ReportRepositoryTest.testGetReportEntityByUidWithValidInput" />
       </list>
     </recent_temporary>
   </component>
@@ -209,7 +231,8 @@
       <workItem from="1701621705825" duration="3415000" />
       <workItem from="1701643945197" duration="1101000" />
       <workItem from="1701681764611" duration="10994000" />
-      <workItem from="1701695349349" duration="20366000" />
+      <workItem from="1701695349349" duration="20660000" />
+      <workItem from="1701772494187" duration="7118000" />
     </task>
     <task id="LOCAL-00002" summary="update lai">
       <option name="closed" value="true" />
@@ -331,7 +354,39 @@
       <option name="project" value="LOCAL" />
       <updated>1701618714220</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="update test">
+      <option name="closed" value="true" />
+      <created>1701721694898</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1701721694898</updated>
+    </task>
+    <task id="LOCAL-00018" summary="update slider =&gt; news, sua duoc phan user">
+      <option name="closed" value="true" />
+      <created>1701776299277</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1701776299277</updated>
+    </task>
+    <task id="LOCAL-00019" summary="update slider =&gt; news, sua duoc phan admin">
+      <option name="closed" value="true" />
+      <created>1701779112610</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1701779112610</updated>
+    </task>
+    <task id="LOCAL-00020" summary="update slider =&gt; news, sua duoc phan admin">
+      <option name="closed" value="true" />
+      <created>1701779206090</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1701779206090</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -369,7 +424,9 @@
     <MESSAGE value="update homepage" />
     <MESSAGE value="update chinh homepage" />
     <MESSAGE value="update test for user controller" />
-    <option name="LAST_COMMIT_MESSAGE" value="update test for user controller" />
+    <MESSAGE value="update slider =&gt; news, sua duoc phan user" />
+    <MESSAGE value="update slider =&gt; news, sua duoc phan admin" />
+    <option name="LAST_COMMIT_MESSAGE" value="update slider =&gt; news, sua duoc phan admin" />
   </component>
   <component name="com.github.evgenys91.machinet.common.dslhistory.DslHistoryState">
     <option name="historyDtoById">
