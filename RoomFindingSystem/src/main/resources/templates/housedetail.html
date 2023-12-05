@@ -759,119 +759,7 @@
                                                                 <i class="fa fa-edit"
                                                                    style="margin-bottom: 16px; font-size: 21px; color: #0f0f0f"></i>
                                                             </button>
-                                                            <div class="modal fade" id="exampleModal" tabindex="-1"
-                                                                 role="dialog" aria-labelledby="exampleModalLabel"
-                                                                 aria-hidden="true">
-                                                                <div class="modal-dialog" role="document">
-                                                                    <div class="modal-content">
-                                                                        <div class="modal-header">
-                                                                            <h5 class="modal-title"
-                                                                                id="exampleModalLabel">Chỉnh sửa đánh
-                                                                                giá</h5>
-                                                                            <button type="button" class="close"
-                                                                                    data-dismiss="modal"
-                                                                                    aria-label="Close">
-                                                                                <span aria-hidden="true">&times;</span>
-                                                                            </button>
-                                                                        </div>
-                                                                        <div class="modal-body">
-                                                                            <form class="labels-uppercase clearfix"
-                                                                                  th:object="${feedbackEntity}"
-                                                                                  th:action="@{/detail}" method="post">
-                                                                                <!--                                <div class="alert alert-dark fade in center" role="alert">-->
-                                                                                <!--                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"-->
-                                                                                <!--                                            data-switch="#review-write">-->
-                                                                                <!--                                        <span aria-hidden="true">&times;</span>-->
-                                                                                <!--                                    </button>-->
-                                                                                <!--                                    <span class="sr-only">Error:</span>-->
-                                                                                <!--                                    <a href="#tab-sign-in" data-toggle="modal" data-tab="true"-->
-                                                                                <!--                                       data-target="#sign-in-register-modal">Xin mời đăng nhập để đánh giá</a>-->
-                                                                                <!--                                </div>-->
-                                                                                <div class="review write">
-                                                                                    <span class="name">Tên người dùng: </span><span
-                                                                                        th:text="${user.getFirstName()}"></span><span> </span><span
-                                                                                        th:text="${user.getLastName()}"></span>
 
-
-                                                                                    <div class="comment"
-                                                                                         style="margin-top: 10px">
-                                                                                        <div class="comment-title">
-                                                                                            <h4>Đánh giá về khu trọ</h4>
-                                                                                        </div>
-                                                                                        <!--end title-->
-                                                                                        <div class="form-group">
-                                                                                            <label>Tiêu đề đánh
-                                                                                                giá<em>*</em></label>
-                                                                                            <input type="text"
-                                                                                                   class="form-control"
-                                                                                                   name="name"
-                                                                                                   placeholder="Viết tiêu đề ở đây"
-                                                                                                   required=""
-                                                                                                   th:field="*{title}">
-                                                                                        </div>
-                                                                                        <div class="form-group">
-                                                                                            <label>Mô
-                                                                                                tả<em>*</em></label>
-                                                                                            <textarea
-                                                                                                    class="form-control"
-                                                                                                    rows="8"
-                                                                                                    name="answer"
-                                                                                                    required=""
-                                                                                                    placeholder="Viết mô tả ở đây"
-                                                                                                    th:field="*{content}"></textarea>
-                                                                                        </div>
-                                                                                        <!--end title-->
-                                                                                        <div class="comment-title">
-                                                                                            <h4>Đánh giá: </h4>
-                                                                                            <input type="text"
-                                                                                                   id="ratingInput1"
-                                                                                                   hidden=""
-                                                                                                   oninput="updateRating(1, this.value)"
-                                                                                                   th:field="*{star}"
-                                                                                                   th:value="5">
-                                                                                            <span onclick="gfg(1, 1)"
-                                                                                                  class="star">★</span>
-                                                                                            <span onclick="gfg(2, 1)"
-                                                                                                  class="star">★</span>
-                                                                                            <span onclick="gfg(3, 1)"
-                                                                                                  class="star">★</span>
-                                                                                            <span onclick="gfg(4, 1)"
-                                                                                                  class="star">★</span>
-                                                                                            <span onclick="gfg(5, 1)"
-                                                                                                  class="star">★</span>
-                                                                                        </div>
-
-                                                                                        <!--end form-group-->
-                                                                                        <div class="form-group pull-right">
-                                                                                            <button type="submit"
-                                                                                                    class="btn btn-primary btn-rounded">
-                                                                                                Gửi đánh giá
-                                                                                            </button>
-                                                                                            <a th:href="@{deleteHouseCmt(houseId=*{houseId})}">
-                                                                                                <button class="btn btn-primary btn-rounded"
-                                                                                                        type="button"
-                                                                                                        style="background-color: red">
-                                                                                                    Xóa
-                                                                                                </button>
-                                                                                            </a>
-                                                                                        </div>
-
-                                                                                        <!--end form-group-->
-                                                                                        <!--end col-md-4-->
-                                                                                        <!--end row-->
-                                                                                    </div>
-                                                                                    <!--end comment-->
-                                                                                </div>
-                                                                                <input type="hidden"
-                                                                                       th:field="*{memberId}">
-                                                                                <input type="hidden"
-                                                                                       th:field="*{houseId}">
-                                                                                <!--end review-->
-                                                                            </form>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
                                                         </div>
 
                                                     </div>
@@ -903,6 +791,119 @@
                                             <!--end col-md-9-->
                                         </div>
                                         <!--end row-->
+                                    </div>
+                                </div>
+                                <div class="modal fade" id="exampleModal" tabindex="-1"
+                                     role="dialog" aria-labelledby="exampleModalLabel"
+                                     aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title"
+                                                    id="exampleModalLabel">Chỉnh sửa đánh
+                                                    giá</h5>
+                                                <button type="button" class="close"
+                                                        data-dismiss="modal"
+                                                        aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form class="labels-uppercase clearfix"
+                                                      th:object="${feedbackEntity}"
+                                                      th:action="@{/detail}" method="post">
+                                                    <!--                                <div class="alert alert-dark fade in center" role="alert">-->
+                                                    <!--                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"-->
+                                                    <!--                                            data-switch="#review-write">-->
+                                                    <!--                                        <span aria-hidden="true">&times;</span>-->
+                                                    <!--                                    </button>-->
+                                                    <!--                                    <span class="sr-only">Error:</span>-->
+                                                    <!--                                    <a href="#tab-sign-in" data-toggle="modal" data-tab="true"-->
+                                                    <!--                                       data-target="#sign-in-register-modal">Xin mời đăng nhập để đánh giá</a>-->
+                                                    <!--                                </div>-->
+                                                    <div class="review write">
+                                                        <span class="name">Tên người dùng: </span><span
+                                                            th:text="${user.getFirstName()}"></span><span> </span><span
+                                                            th:text="${user.getLastName()}"></span>
+
+
+                                                        <div class="comment"
+                                                             style="margin-top: 10px">
+                                                            <div class="comment-title">
+                                                                <h4>Đánh giá về khu trọ</h4>
+                                                            </div>
+                                                            <!--end title-->
+                                                            <div class="form-group">
+                                                                <label>Tiêu đề đánh
+                                                                    giá<em>*</em></label>
+                                                                <input type="text"
+                                                                       class="form-control"
+                                                                       name="name"
+                                                                       placeholder="Viết tiêu đề ở đây"
+                                                                       required=""
+                                                                       th:field="*{title}">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>Mô
+                                                                    tả<em>*</em></label>
+                                                                <textarea
+                                                                        class="form-control"
+                                                                        rows="8"
+                                                                        name="answer"
+                                                                        required=""
+                                                                        placeholder="Viết mô tả ở đây"
+                                                                        th:field="*{content}"></textarea>
+                                                            </div>
+                                                            <!--end title-->
+                                                            <div class="comment-title">
+                                                                <h4>Đánh giá: </h4>
+                                                                <input type="text"
+                                                                       id="ratingInput1"
+                                                                       hidden=""
+                                                                       oninput="updateRating(1, this.value)"
+                                                                       th:field="*{star}"
+                                                                       th:value="5">
+                                                                <span onclick="gfg(1, 1)"
+                                                                      class="star">★</span>
+                                                                <span onclick="gfg(2, 1)"
+                                                                      class="star">★</span>
+                                                                <span onclick="gfg(3, 1)"
+                                                                      class="star">★</span>
+                                                                <span onclick="gfg(4, 1)"
+                                                                      class="star">★</span>
+                                                                <span onclick="gfg(5, 1)"
+                                                                      class="star">★</span>
+                                                            </div>
+
+                                                            <!--end form-group-->
+                                                            <div class="form-group pull-right">
+                                                                <button type="submit"
+                                                                        class="btn btn-primary btn-rounded">
+                                                                    Gửi đánh giá
+                                                                </button>
+                                                                <a th:href="@{deleteHouseCmt(houseId=*{houseId})}">
+                                                                    <button class="btn btn-primary btn-rounded"
+                                                                            type="button"
+                                                                            style="background-color: red">
+                                                                        Xóa
+                                                                    </button>
+                                                                </a>
+                                                            </div>
+
+                                                            <!--end form-group-->
+                                                            <!--end col-md-4-->
+                                                            <!--end row-->
+                                                        </div>
+                                                        <!--end comment-->
+                                                    </div>
+                                                    <input type="hidden"
+                                                           th:field="*{memberId}">
+                                                    <input type="hidden"
+                                                           th:field="*{houseId}">
+                                                    <!--end review-->
+                                                </form>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
