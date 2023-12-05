@@ -3,7 +3,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="utf-8"/>
-    <title>Chỉnh sửa slider</title>
+    <title>Thêm mới tin</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description"/>
     <meta content="Coderthemes" name="author"/>
@@ -27,8 +27,6 @@
             display: none; /* Ẩn khối div preview khi không có ảnh */
         }
     </style>
-
-
 </head>
 
 <body>
@@ -53,11 +51,11 @@
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
                                     <li class="breadcrumb-item"><a th:href="@{/admin/dashboard}">Dashboard</a></li>
-                                    <li class="breadcrumb-item"><a th:href="@{/admin/sliderList}">Danh sách slider</a></li>
-                                    <li class="breadcrumb-item active">Cập nhật slider</li>
+                                    <li class="breadcrumb-item"><a th:href="@{/admin/newsList}">Danh sách tin tức</a></li>
+                                    <li class="breadcrumb-item active">Thêm mới tin</li>
                                 </ol>
                             </div>
-                            <h4 class="page-title">Cập nhật slider</h4>
+                            <h4 class="page-title">Thêm mới tin</h4>
                         </div>
                     </div>
                 </div>
@@ -70,14 +68,18 @@
                             <h4 class="header-title"></h4>
 
 
-                            <form class="parsley-examples"  id="myForm" th:action="@{/admin/slider/update}" th:object="${slider}" method="post"  enctype="multipart/form-data" >
-                                <input name="id" type="hidden" th:field = "*{sliderid}">
-
+                            <form class="parsley-examples"  id="myForm" th:action="@{/admin/news/save}" method="post"  enctype="multipart/form-data">
+                                <input type="hidden" >
+<!--                                <div class="form-group">-->
+<!--                                    <label>news ID</label>-->
+<!--                                    <input type="text" class="form-control" name="" required-->
+<!--                                           placeholder="Type something" />-->
+<!--                                </div>-->
 
                                 <div class="form-group">
                                     <label>Chủ đề</label>
                                         <input type="text" class="form-control" name="title" required
-                                           placeholder="Type something" th:value = "${slider.title}"/>
+                                           placeholder="Type something" />
                                     <div>
 
                                     </div>
@@ -86,32 +88,21 @@
                                 <div class="form-group">
                                     <label>Nội dung</label>
                                     <div >
-                                        <textarea class="form-control" rows="15" name="content" th:text="${slider.content ?: 'Default Value'}" ></textarea>
+                                        <textarea class="form-control" rows="15" name="content"  ></textarea>
                                     </div>
                                 </div>
 
-
-                                <div class="form-group">
-                                    <label>Trạng thái</label>
-                                    <div >
-                                        <select name="status">
-                                            <option value="Hoạt động" th:selected="${slider.status == 'Hoạt động'}">Hoạt động</option>
-                                            <option value="Không hoạt động" th:selected="${slider.status == 'Không hoạt động'}">Không hoạt động</option>
-                                        </select>
-                                    </div>
-                                </div>
 
                                 <!-- Pictures -->
-
 
                                 <div class="form-group">
                                     <label class="col-form-label">Ảnh</label>
                                     <div>
                                         <div class="file-upload-previews" id="imageContainer">
                                             <div class="MultiFile-label" >
-                                                <a class="MultiFile-remove" th:href="@{'/admin/sliderList/deleteImage/'+${slider.sliderid}}" id="removeImage">x</a>
+                                                <a class="MultiFile-remove" href="" id="removeImage">x</a>
                                                 <span class="MultiFile-label" title="File selected: abc.png">
-                                                        <img th:src="@{'https://storage.cloud.google.com'+slider.imgLink}" alt="Ảnh" id="imagePreview" style="width: 100px; height: 100px">
+                                                        <img src="" alt="Ảnh" id="imagePreview" style="width: 100px; height: 100px">
                                                     </span>
                                             </div>
                                         </div>
@@ -124,10 +115,13 @@
                                 <div class="form-group mb-0">
                                     <div>
                                         <button type="submit" class="btn btn-gradient waves-effect waves-light">
-                                            Cập nhật
+                                            Tạo mới
                                         </button>
+<!--                                        <button  th:href="@{/admin/newsList}" class="btn btn-gradient waves-effect waves-classic" style="background-color: red">-->
+<!--                                            Đóng-->
+<!--                                        </button>-->
                                         <button type="reset" class="btn btn-gradient waves-effect waves-classic" style="background-color: red">
-                                            <a th:href="@{/admin/sliderList}"> Đóng</a>
+                                            <a th:href="@{/admin/newsList}"> Đóng</a>
                                         </button>
                                     </div>
                                 </div>
@@ -145,16 +139,7 @@
 
 
         <!-- Footer Start -->
-        <footer class="footer">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12">
-                        2017 - 2019 &copy; Abstack theme by <a href="">Coderthemes</a>
-                    </div>
-
-                </div>
-            </div>
-        </footer>
+        <div th:replace="admin/footer_admin :: admin_footer"></div>
         <!-- end Footer -->
 
     </div>
@@ -268,12 +253,7 @@
 
 <!-- App js -->
 <script src="/assets_admin/js/app.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
-<script src="/assets_admin/libs/dropzone/dropzone.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script type="text/javascript" src="/assets/js/jQuery.MultiFile.min.js"></script>
-
 
 <script>
     // Khi người dùng chọn tệp
@@ -310,6 +290,5 @@
         $('#fileInput').val('');
     });
 </script>
-
 </body>
 </html>
