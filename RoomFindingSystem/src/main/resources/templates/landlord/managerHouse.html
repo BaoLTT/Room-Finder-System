@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
     <link rel="shortcut icon" href="/assets/img/favicon.ico">
 
-    <title>Quản lý nhà trọ</title>
+    <title>Quản lý trọ</title>
 
 </head>
 
@@ -26,13 +26,16 @@
 
     <div id="page-content" >
         <div class="container" style="margin-top: 15px">
-
+            <ol class="breadcrumb">
+                <li><a href="/">Trang chủ</a></li>
+                <li>Quản lý trọ</li>
+            </ol>
             <!--end breadcrumb-->
             <div class="main-content">
                 <div class="title">
-                    <h1><a th:href = "@{/manager}">Danh sách phòng trọ</a></h1>
-                    <h1 style="float:right; margin-right: 0"> <a th:href = "@{/manager/add}" class="btn btn-primary btn-rounded scroll">Thêm trọ</a></h1>
-
+                    <h1><a th:href = "@{/manager}">Quản lý trọ</a></h1>
+                    <h1 style="float:right; margin-right: 0"> <a th:href = "@{/landlord/feedback}" class="btn btn-primary btn-rounded scroll">Danh sách bình luận</a></h1>
+                    <h1 style="float:right; margin-right: 20px"> <a th:href = "@{/manager/add}" class="btn btn-primary btn-rounded scroll">Thêm trọ</a></h1>
 
                 </div>
                 <div class="my-items table-responsive">
