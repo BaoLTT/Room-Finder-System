@@ -110,7 +110,7 @@
                 <nav id="primary-nav">
                   <ul>
                     <li th:class="${request.getRequestURI() == '/' ? 'active' : ''}"><a th:href="@{/}">Trang chủ</a></li>
-                      <li th:class="${request.getRequestURI() == '/manager' ? 'active' : ''}"><a th:if="${session.user != null and session.user.getRoleId() == 'LANDLORD'}" th:href="@{/manager}" >Quản lý phòng trọ</a></li>
+                      <li th:class="${request.getRequestURI() == '/manager' ? 'active' : ''}"><a th:if="${session.user != null and session.user.getRoleId() == 'LANDLORD'}" th:href="@{/manager}" >Quản lý nhà trọ</a></li>
                     <li th:class="${request.getRequestURI() == '/houselist' ? 'active' : ''}"><a th:href="@{/houselist}">Danh sách nhà trọ</a></li>
                     <li th:class="${request.getRequestURI() == '/roomlist' ? 'active' : ''}"><a th:href="@{/roomlist}" id="roomList" style="padding: 5px">Danh sách phòng trọ</a></li>
 

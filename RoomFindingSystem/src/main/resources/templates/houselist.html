@@ -134,7 +134,7 @@
 
                                             </div>
                                             <a href="#all-property-types" class="link" data-toggle="collapse"
-                                               aria-expanded="false" aria-controls="all-property-types">Show all</a>
+                                               aria-expanded="false" aria-controls="all-property-types">Hiển thị thêm</a>
                                         </section>
                                         <!--end section-->
                                         <section>
@@ -166,7 +166,7 @@
                                                 </ul>
                                             </div>
                                             <a href="#all-property-services" class="link" data-toggle="collapse"
-                                               aria-expanded="false" aria-controls="all-property-types">Show all</a>
+                                               aria-expanded="false" aria-controls="all-property-types">Hiển thị thêm</a>
                                             <!--end checkboxes-->
                                         </section>
                                         <!--end section-->
@@ -232,7 +232,7 @@
                                 <!--end meta-->
                                 <div class="info">
 
-                                    <a th:href="@{/}+${houses.houseName}+'?id='+${houses.houseID}"><h3 style="display: block"
+                                    <a th:href="@{/}+${houses.houseName}+'?id='+${houses.houseID}"><h3 style="display: block;text-transform: uppercase"
                                                                                       th:text="${houses.houseName}">
                                         Spring Hotel</h3></a>
 
@@ -240,22 +240,22 @@
                                     <figure class="label label-info" th:text="${#temporals.format(houses.last_modified_date, 'dd/MM/yyyy')}"
                                             style="position: absolute;right: 0;margin-top: 7px;margin-right: 30px">Hotel
                                     </figure>
-                                    <div style="margin-top: 10px">
-                                    <figure class="location" th:each="service : ${houses.getService()}" style="display: inline-block;font-size: 15px">
+                                    <div style="margin-top: 10px" th:if="${houses.service != null}">
+                                    <figure class="location"  th:each="service,iterstart : ${houses.getService()}" style="display: inline-block;font-size: 14px">
                                         <i th:if="${service.getServiceName() eq 'Tự do'}" class="fa-solid fa-clock" style="margin-left: 5px"></i>
                                         <a th:if="${service.getServiceName() eq 'Tự do'}" style="color: #0f0f0f" th:href="@{/houselist?service=1}">Tự do</a>
 
-                                        <i th:if="${service.getServiceName() eq 'Không chung chủ'}" class="fa-solid fa-user-xmark" style="margin-left: 5px"></i>
+                                        <i th:if="${service.getServiceName() eq 'Không chung chủ'}" class="fa-solid fa-user-xmark" style="margin-left: 4px"></i>
                                         <a th:if="${service.getServiceName() eq 'Không chung chủ'}" style="color: #0f0f0f" th:href="@{/houselist?service=2}">Không chung chủ</a>
 
-                                        <i th:if="${service.getServiceName() eq 'Bảo vệ'}" class="fa-solid fa-user-shield" style="margin-left: 5px"></i>
+                                        <i th:if="${service.getServiceName() eq 'Bảo vệ'}" class="fa-solid fa-user-shield" style="margin-left: 4px"></i>
                                         <a th:if="${service.getServiceName() eq 'Bảo vệ'}" style="color: #0f0f0f" th:href="@{/houselist?service=3}">Bảo vệ</a>
 
-                                        <i th:if="${service.getServiceName() eq 'Khóa vân tay'}" class="fa-solid fa-fingerprint" style="margin-left: 5px"></i>
+                                        <i th:if="${service.getServiceName() eq 'Khóa vân tay'}" class="fa-solid fa-fingerprint" style="margin-left: 4px"></i>
                                         <a th:if="${service.getServiceName() eq 'Khóa vân tay'}" style="color: #0f0f0f" th:href="@{/houselist?service=4}">Khóa Vân tay</a>
 
-                                        <i th:if="${service.getServiceName() eq 'Wifi'}" class="fa fa-wifi" aria-hidden="true" style="margin-left: 5px"></i>
-                                        <a th:if="${service.getServiceName() eq 'Wifi'}" style="color: #0f0f0f" th:href="@{/houselist?service=14}">Wifi</a>
+                                        <iconify-icon th:if="${service.getServiceName() eq 'Camera an ninh'}" icon="bxs:cctv" th:style="${service.getServiceName() eq 'Camera an ninh'} ? 'margin-bottom: -3px;font-size:16px;margin-left:4px' : ''"></iconify-icon>
+                                        <a th:if="${service.getServiceName() eq 'Camera an ninh'}" style="color: #0f0f0f" th:href="@{/houselist?service=14}">Camera an ninh</a>
 
 <!--                                        <iconify-icon th:if="${service.getServiceName() eq 'Tự do'}"  style="margin-left: 5px" icon="mingcute:time-fill"></iconify-icon>-->
 <!--                                        <a th:if="${service.getServiceName() eq 'Tự do'}" style="color: #0f0f0f" th:href="@{/houselist?service=1}">Tự do</a>-->
@@ -287,7 +287,7 @@
                                         <span class="appendix">/tháng</span></div>
 
                                     <a th:href="@{/}+${houses.houseName}+'?id='+${houses.houseID}"
-                                       class="btn btn-rounded btn-default btn-framed btn-small">View detail</a>
+                                       class="btn btn-rounded btn-default btn-framed btn-small">Xem chi tiết</a>
                                 </div>
                                 <!--end info-->
                             </div>
