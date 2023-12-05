@@ -67,9 +67,6 @@
 
 <!--                                <h3><a href="#">Adress</a></h3>-->
                             </div>
-                            <div class="right">
-                                <a href="#map" class="icon scroll"><i class="fa fa-map-marker"></i>See on the map</a>
-                            </div>
                         </div>
                         <!--end title-->
 <!--                        Add vong lap-->
@@ -137,8 +134,9 @@
 <!-- end slider-->
 
 
-                        <h2 style="margin-top: 30px">Description</h2>
-                        <p th:if="${room.getDescription() != null}" th:utext="${room.getDescription().replaceAll('\n', '<p/>')}" style="font-size: 12px; font-style: italic"></p>
+                        <h2 style="margin-top: 30px">Mô tả</h2>
+                        <p th:if="${room.getDescription().length()!=0 && room.getDescription() != null}" th:utext="${room.getDescription().replaceAll('\n', '<p/>')}" style="font-size: 12px; font-style: italic"></p>
+                        <p th:if="${room.getDescription() == null}" th:text="Hiện tại chưa có thông tin mô tả" style="font-size: 12px; font-style: italic"></p>
 
 
                         <h2>Review</h2>
@@ -158,43 +156,13 @@
 
     <!--end page-content-->
 
-    <footer id="page-footer">
-        <!--end row-one-->
-        <div class="row-two clearfix">
-            <div class="container">
-                <div class="copyright pull-left">(C) 2016 Your Company, All Rights Reserved</div>
-                <div class="footer-nav pull-right">
-                    <a href="index.html">Home</a>
-                    <a href="about-us.html">About Us</a>
-                    <a href="listing.html">Listing</a>
-                    <a href="contact-us.html">Contact Us</a>
-                </div>
-            </div>
-            <div class="bg-transfer"><img src="/assets/img/footer-bg.jpg" alt=""></div>
-        </div>
-        <!--end row-two-->
-    </footer>
+    <div th:replace="~{footer :: footerSection}"></div>
     <!--end page-footer-->
 </div>
 <!--end page-wrapper-->
 <a href="#page-header" class="to-top scroll" data-show-after-scroll="600"><i class="arrow_up"></i></a>
 
 
-<div class="message-popup bottom-left" data-show-after-time="2000" data-close-after-time="5000">
-    <div class="close"><i class="fa fa-times"></i></div>
-    <p>15 people are watching this accommodation.</p>
-</div>
-
-<div class="message-popup bottom-left featured" data-show-after-time="4000" data-close-after-time="5000">
-    <div class="close"><i class="fa fa-times"></i></div>
-    <div class="title">Just Booked!</div>
-    <p>Hurry up! This accommodation was just booked. Don’t miss the chance!</p>
-</div>
-
-<div class="message-popup bottom-left" data-show-after-time="5000" data-close-after-time="5000">
-    <div class="close"><i class="fa fa-times"></i></div>
-    <p>Last booking was from <strong>France</strong></p>
-</div>
 
 <script type="text/javascript" src="/assets/js/jquery-2.2.1.min.js"></script>
 <script type="text/javascript" src="/assets/js/jquery-migrate-1.2.1.min.js"></script>
