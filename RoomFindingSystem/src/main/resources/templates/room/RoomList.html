@@ -143,6 +143,15 @@
     .mark-circle{
         display: none;
     }
+    .rounded-circle {
+        display: inline-block;
+
+        background-color: #F6F6F4 !important; /* Đặt màu nền mong muốn */
+        border-radius: 50%; /* Chuyển thành hình tròn */
+    }
+    .rounded-circle:hover {
+        background-color: #F6F6F4 !important; /* Giữ màu nền khi hover */
+    }
 
 
 </style>
@@ -170,7 +179,13 @@
                                     <label>Nhập thông tin tìm kiếm</label>
                                     <input type="text" class="form-control" name="roomName" th:value ="${roomName}" id="roomName" placeholder="Nhập tên trọ hoặc tên phòng">
                                 </div>
-                                <div class="collapse in" id="filter-advanced-search">
+                                <div class="center">
+                                    <a href="#filter-advanced-search" class="link icon collapsed" data-toggle="collapse"
+                                       aria-expanded="false" aria-controls="filter-advanced-search" id="toggleLink" onclick="changeText()">
+                                        Thêm</a>
+
+                                </div>
+                                <div class="collapse" id="filter-advanced-search" aria-expanded="false">
                                     <div class="wrapper">
                                         <section>
                                             <h3>Giá phòng (triệu đồng/tháng)</h3>
@@ -340,8 +355,10 @@
                                 <li th:if="${currentPage > 2}">
                                     <a th:href="@{/roomlist?page=} + '1' + '&price=' + ${#strings.arrayJoin(price, ',')} + '&type=' + ${#strings.arrayJoin(type, ',')}" th:text="1" class="page-number">1</a>
                                 </li>
+
                                 <li th:if="${currentPage > 3}" style="pointer-events: none">
                                     <span style="border: none;background-color: unset">...</span>
+
                                 </li>
                                 <li th:each="pageIndex: ${#numbers.sequence(currentPage - 1, currentPage + 1)}"
                                     th:unless="${pageIndex < 1 || pageIndex > totalPage}"
@@ -349,8 +366,10 @@
                                     <a th:href="@{/roomlist?page=} + ${pageIndex} + '&price=' + ${#strings.arrayJoin(price, ',')} + '&type=' + ${#strings.arrayJoin(type, ',')}"
                                        th:text="${pageIndex}" class="page-number"></a>
                                 </li>
+
                                 <li th:if="${currentPage < totalPage - 2}" style="pointer-events: none">
                                     <span style="border: none;background-color: unset">...</span>
+
                                 </li>
                                 <li th:if="${currentPage <= totalPage - 2}">
                                     <a th:text="${totalPage}"
@@ -501,6 +520,21 @@
     // Call the function to update slider positions initially
     updateSliderPositions();
 
+
+</script>
+<script>
+    function changeText() {
+        var link = document.getElementById("toggleLink");
+
+        // Kiểm tra xem lớp collapsed có tồn tại hay không
+        if (link.classList.contains("collapsed")) {
+            // Nếu có, thay đổi nội dung thành "Ẩn bớt" hoặc bất kỳ văn bản nào bạn muốn
+            link.innerHTML = "Ẩn bớt";
+        } else {
+            // Ngược lại, chuyển về văn bản ban đầu "Thêm"
+            link.innerHTML = "Thêm";
+        }
+    }
 
 </script>
 

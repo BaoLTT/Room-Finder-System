@@ -137,6 +137,7 @@ public class AuthController {
     @PostMapping("/loginAfterAddInfo")
     public String AddInfo(Model model, @Valid @ModelAttribute("newUser") UserEntity newUser, HttpServletRequest request) throws IOException {
         userService.save(newUser);
+        System.out.println("ok");
 
         GooglePojo googlePojo = googleUtils.getUserInfo(newUser.getFacebookId());
         UserDetails userDetail = googleUtils.buildUser(googlePojo);
