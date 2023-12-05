@@ -138,8 +138,8 @@
                                                 <td>
                                                     <select name="status">
                                                         <option value="Còn trống" th:selected="${room.status == 'Còn trống'}">Còn trống</option>
-                                                        <option value="Đã có người ở" th:selected="${room.status == 'Đã có người ở'}">Đã có người ở</option>
-                                                        <option value="Tìm người ở ghép" th:selected="${room.status == 'Tìm người ở ghép'}">Tìm người ở ghép</option>
+                                                        <option value="Hết phòng" th:selected="${room.status == 'Hết phòng'}">Hết phòng</option>
+
                                                     </select>
                                                 </td>
                                                 <td th:text="${room.statusUpdateDate}"></td>
