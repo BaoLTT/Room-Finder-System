@@ -50,7 +50,7 @@ public class  AdminDashboardController {
 //        }
         model.addAttribute("numberOfHouses", houseService.countHousesInAdmin());
         model.addAttribute("numberOfUsers", userService.countUserInAdmin());
-        model.addAttribute("numberOfSliders", newsService.countNews());
+        model.addAttribute("numberOfNews", newsService.countNews());
         model.addAttribute("numberOfReports", reportService.countReports());
         model.addAttribute("roomStatusDto", roomService.getRoomStatusInAdminDashboard());
 
