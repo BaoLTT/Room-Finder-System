@@ -122,7 +122,7 @@ public class SecurityConfiguration {
                                 "recover","send-otp-recover","otp-check","confirm-otp","send-otp-recover","confirm-otp-recover",
 
                                 "save-new-password","detail","change-password","save-change-password","feedback-list",
-                                "/room/**", "/assets/**", "/houselist","/roomList/**","/detail", "/slider/**", "/loginAfterAddInfo").permitAll()
+                                "/room/**", "/assets/**", "/houselist","roomList","/detail", "/slider/**", "/loginAfterAddInfo").permitAll()
 
 
                         .requestMatchers("/admin/**", "/test").hasAnyRole("ADMIN", "SUPER_ADMIN")
