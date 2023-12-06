@@ -11,6 +11,11 @@
       <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/room/RoomDetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/room/RoomDetail.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RoomFindingSystem/target/classes/templates/room/RoomDetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/target/classes/templates/room/RoomDetail.html" afterDir="false" />
     </list>
+    <list default="true" id="1e0562a2-7ad5-40d8-bd96-2e66b43cd15f" name="Changes" comment="update slider =&gt; news, sua duoc phan admin">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/repository/NewsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/repository/NewsRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/admin/adminDashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/admin/adminDashboard.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -52,6 +57,7 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;JPA.DatabaseSchemaImportDialog&quot;: &quot;0917dbb1-b63e-4827-b1df-c0aa7f40a31c&quot;,
     &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
     &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
     &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
@@ -61,7 +67,7 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;com.google.cloudcode.ide_session_index&quot;: &quot;20231203_0002&quot;,
     &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;nghiant2&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;BaoLTT&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
@@ -77,6 +83,9 @@
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.roomfindingsystem.repository" />
+    </key>
+    <key name="ImportMappingsDialog.RecentPackages">
+      <recent name="com.roomfindingsystem.entity" />
     </key>
   </component>
   <component name="RunManager" selected="Spring Boot.Main">
@@ -216,6 +225,8 @@
       <workItem from="1701775219554" duration="3775000" />
       <workItem from="1701789912783" duration="7308000" />
       <workItem from="1701848584119" duration="13095000" />
+      <workItem from="1701695349349" duration="20660000" />
+      <workItem from="1701772494187" duration="7118000" />
     </task>
     <task id="LOCAL-00002" summary="update lai">
       <option name="closed" value="true" />
@@ -337,7 +348,39 @@
       <option name="project" value="LOCAL" />
       <updated>1701618714220</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="update test">
+      <option name="closed" value="true" />
+      <created>1701721694898</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1701721694898</updated>
+    </task>
+    <task id="LOCAL-00018" summary="update slider =&gt; news, sua duoc phan user">
+      <option name="closed" value="true" />
+      <created>1701776299277</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1701776299277</updated>
+    </task>
+    <task id="LOCAL-00019" summary="update slider =&gt; news, sua duoc phan admin">
+      <option name="closed" value="true" />
+      <created>1701779112610</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1701779112610</updated>
+    </task>
+    <task id="LOCAL-00020" summary="update slider =&gt; news, sua duoc phan admin">
+      <option name="closed" value="true" />
+      <created>1701779206090</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1701779206090</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -375,7 +418,9 @@
     <MESSAGE value="update homepage" />
     <MESSAGE value="update chinh homepage" />
     <MESSAGE value="update test for user controller" />
-    <option name="LAST_COMMIT_MESSAGE" value="update test for user controller" />
+    <MESSAGE value="update slider =&gt; news, sua duoc phan user" />
+    <MESSAGE value="update slider =&gt; news, sua duoc phan admin" />
+    <option name="LAST_COMMIT_MESSAGE" value="update slider =&gt; news, sua duoc phan admin" />
   </component>
   <component name="com.github.evgenys91.machinet.common.dslhistory.DslHistoryState">
     <option name="historyDtoById">

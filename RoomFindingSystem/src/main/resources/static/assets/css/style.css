@@ -2886,9 +2886,9 @@ ul.half li {
 .my-items table tbody tr td {
   border: none;
   padding: 0;
-  width: 8%;
+  width: 10%;
   vertical-align: middle;
-  font-size: 12px;
+  font-size: 13px;
 }
 .my-items table tbody tr td:first-child {
   width: 50%;

@@ -7,12 +7,12 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
-@Table(name = "slider", schema = "room_finding_system", catalog = "")
-public class SliderEntity {
+@Table(name = "news", schema = "room_finding_system", catalog = "")
+public class NewsEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "sliderid")
-    private int sliderId;
+    @Column(name = "newsid")
+    private int newsid;
     @Basic
     @Column(name = "created_by")
     private Integer createdBy;
@@ -38,15 +38,12 @@ public class SliderEntity {
     @Column(name = "status")
     private String status;
 
-    public SliderEntity() {
-     }
-
-    public int getSliderid() {
-        return sliderId;
+    public int getNewsid() {
+        return newsid;
     }
 
-    public void setSliderid(int sliderid) {
-        this.sliderId = sliderid;
+    public void setNewsid(int newsid) {
+        this.newsid = newsid;
     }
 
     public Integer getCreatedBy() {
@@ -117,18 +114,12 @@ public class SliderEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        SliderEntity that = (SliderEntity) o;
-        return sliderId == that.sliderId && Objects.equals(createdBy, that.createdBy) && Objects.equals(createdDate, that.createdDate) && Objects.equals(imgLink, that.imgLink) && Objects.equals(lastModifiedDate, that.lastModifiedDate) && Objects.equals(roomid, that.roomid) && Objects.equals(title, that.title) && Objects.equals(content, that.content) && Objects.equals(status, that.status);
+        NewsEntity that = (NewsEntity) o;
+        return newsid == that.newsid && Objects.equals(createdBy, that.createdBy) && Objects.equals(createdDate, that.createdDate) && Objects.equals(imgLink, that.imgLink) && Objects.equals(lastModifiedDate, that.lastModifiedDate) && Objects.equals(roomid, that.roomid) && Objects.equals(title, that.title) && Objects.equals(content, that.content) && Objects.equals(status, that.status);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(sliderId, createdBy, createdDate, imgLink, lastModifiedDate, roomid, title, content, status);
-    }
-
-    public SliderEntity(String imgLink, String title, String content) {
-        this.imgLink = imgLink;
-        this.title = title;
-        this.content = content;
+        return Objects.hash(newsid, createdBy, createdDate, imgLink, lastModifiedDate, roomid, title, content, status);
     }
 }

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="utf-8"/>
+    <title>Chỉnh sửa tin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description"/>
+    <meta content="Coderthemes" name="author"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <!-- App favicon -->
+    <link rel="shortcut icon"  th:href="@{/assets/img/favicon.ico}">
+
+    <!-- App css -->
+    <link th:href="@{/assets_admin/libs/dropzone/dropzone.min.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/assets_admin/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/assets_admin/css/icons.min.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/assets_admin/css/app.min.css}" rel="stylesheet" type="text/css"/>
+    <link href="/assets_admin/css/file-upload.css" rel="stylesheet" type="text/css"/>
+
+    <style>
+        #removeImage {
+            display: none; /* Ẩn nút xóa ảnh ban đầu */
+        }
+
+        #imageContainer {
+            display: none; /* Ẩn khối div preview khi không có ảnh */
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+<!-- Begin page -->
+<div id="wrapper">
+
+
+    <div th:replace="admin/header_admin :: admin_topbar"></div>
+
+
+    <div class="content-page">
+        <div class="content">
+
+            <!-- Start Content-->
+            <div class="container-fluid">
+
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box">
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item"><a th:href="@{/admin/dashboard}">Dashboard</a></li>
+                                    <li class="breadcrumb-item"><a th:href="@{/admin/newsList}">Danh sách tin</a></li>
+                                    <li class="breadcrumb-item active">Cập nhật tin tức</li>
+                                </ol>
+                            </div>
+                            <h4 class="page-title">Cập nhật tin</h4>
+                        </div>
+                    </div>
+                </div>
+                <!-- end page title -->
+
+
+                <div class="row">
+                    <div class="col-lg">
+                        <div class="card-box">
+                            <h4 class="header-title"></h4>
+
+
+                            <form class="parsley-examples"  id="myForm" th:action="@{/admin/news/update}" th:object="${news}" method="post"  enctype="multipart/form-data" >
+                                <input name="id" type="hidden" th:field = "*{newsid}">
+
+
+                                <div class="form-group">
+                                    <label>Chủ đề</label>
+                                        <input type="text" class="form-control" name="title" required
+                                           placeholder="Type something" th:value = "${news.title}"/>
+                                    <div>
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Nội dung</label>
+                                    <div >
+                                        <textarea class="form-control" rows="15" name="content" th:text="${news.content ?: 'Default Value'}" ></textarea>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label>Trạng thái</label>
+                                    <div >
+                                        <select name="status">
+                                            <option value="Hoạt động" th:selected="${news.status == 'Hoạt động'}">Hoạt động</option>
+                                            <option value="Không hoạt động" th:selected="${news.status == 'Không hoạt động'}">Không hoạt động</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Pictures -->
+
+
+                                <div class="form-group">
+                                    <label class="col-form-label">Ảnh</label>
+                                    <div>
+                                        <div class="file-upload-previews" id="imageContainer">
+                                            <div class="MultiFile-label" >
+                                                <a class="MultiFile-remove" th:href="@{'/admin/newsList/deleteImage/'+${news.newsid}}" id="removeImage">x</a>
+                                                <span class="MultiFile-label" title="File selected: abc.png">
+                                                        <img th:src="@{'https://storage.cloud.google.com'+news.imgLink}" alt="Ảnh" id="imagePreview" style="width: 100px; height: 100px">
+                                                    </span>
+                                            </div>
+                                        </div>
+                                        <div class="file-upload">
+                                            <input type="file" name="file" id="fileInput" class="file-upload-input with-preview" title="Click to add files" accept="image/*">
+                                            <span>Nhấn để thêm ảnh</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-0">
+                                    <div>
+                                        <button type="submit" class="btn btn-gradient waves-effect waves-light">
+                                            Cập nhật
+                                        </button>
+                                        <button type="reset" class="btn btn-gradient waves-effect waves-classic" style="background-color: red">
+                                            <a th:href="@{/admin/newsList}"> Đóng</a>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- end row -->
+
+
+            </div> <!-- end container-fluid -->
+
+        </div> <!-- end content -->
+
+
+        <!-- Footer Start -->
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        2017 - 2019 &copy; Abstack theme by <a href="">Coderthemes</a>
+                    </div>
+
+                </div>
+            </div>
+        </footer>
+        <!-- end Footer -->
+
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- End Page content -->
+    <!-- ============================================================== -->
+
+</div>
+<!-- END wrapper -->
+
+<!-- Right Sidebar -->
+<div class="right-bar">
+    <div class="rightbar-title">
+        <a href="javascript:void(0);" class="right-bar-toggle float-right">
+            <i class="mdi mdi-close"></i>
+        </a>
+        <h5 class="m-0 text-white">Settings</h5>
+    </div>
+    <div class="slimscroll-menu">
+        <hr class="mt-0">
+        <h5 class="pl-3">Basic Settings</h5>
+        <hr class="mb-0"/>
+
+
+        <div class="p-3">
+            <div class="custom-control custom-checkbox mb-2">
+                <input type="checkbox" class="custom-control-input" id="customCheck1" checked>
+                <label class="custom-control-label" for="customCheck1">Notifications</label>
+            </div>
+            <div class="custom-control custom-checkbox mb-2">
+                <input type="checkbox" class="custom-control-input" id="customCheck2" checked>
+                <label class="custom-control-label" for="customCheck2">API Access</label>
+            </div>
+            <div class="custom-control custom-checkbox mb-2">
+                <input type="checkbox" class="custom-control-input" id="customCheck3">
+                <label class="custom-control-label" for="customCheck3">Auto Updates</label>
+            </div>
+            <div class="custom-control custom-checkbox mb-2">
+                <input type="checkbox" class="custom-control-input" id="customCheck4" checked>
+                <label class="custom-control-label" for="customCheck4">Online Status</label>
+            </div>
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="customCheck5">
+                <label class="custom-control-label" for="customCheck5">Auto Payout</label>
+            </div>
+        </div>
+
+        <!-- Messages -->
+        <hr class="mt-0"/>
+        <h5 class="pl-3 pr-3">Messages <span class="float-right badge badge-pill badge-danger">24</span></h5>
+        <hr class="mb-0"/>
+        <div class="p-3">
+            <div class="inbox-widget">
+                <div class="inbox-item">
+                    <div class="inbox-item-img"><img th:src="@{/assets_admin/images/users/avatar-1.jpg}"
+                                                     class="rounded-circle" alt=""></div>
+                    <p class="inbox-item-author"><a href="javascript: void(0);">Chadengle</a></p>
+                    <p class="inbox-item-text">Hey! there I'm available...</p>
+                    <p class="inbox-item-date">13:40 PM</p>
+                </div>
+                <div class="inbox-item">
+                    <div class="inbox-item-img"><img th:src="@{/assets_admin/images/users/avatar-2.jpg}"
+                                                     class="rounded-circle" alt=""></div>
+                    <p class="inbox-item-author"><a href="javascript: void(0);">Tomaslau</a></p>
+                    <p class="inbox-item-text">I've finished it! See you so...</p>
+                    <p class="inbox-item-date">13:34 PM</p>
+                </div>
+                <div class="inbox-item">
+                    <div class="inbox-item-img"><img th:src="@{/assets_admin/images/users/avatar-3.jpg}"
+                                                     class="rounded-circle" alt=""></div>
+                    <p class="inbox-item-author"><a href="javascript: void(0);">Stillnotdavid</a></p>
+                    <p class="inbox-item-text">This theme is awesome!</p>
+                    <p class="inbox-item-date">13:17 PM</p>
+                </div>
+
+                <div class="inbox-item">
+                    <div class="inbox-item-img"><img th:src="@{/assets_admin/images/users/avatar-4.jpg}"
+                                                     class="rounded-circle" alt=""></div>
+                    <p class="inbox-item-author"><a href="javascript: void(0);">Kurafire</a></p>
+                    <p class="inbox-item-text">Nice to meet you</p>
+                    <p class="inbox-item-date">12:20 PM</p>
+
+                </div>
+                <div class="inbox-item">
+                    <div class="inbox-item-img"><img th:src="@{/assets_admin/images/users/avatar-5.jpg}"
+                                                     class="rounded-circle" alt=""></div>
+                    <p class="inbox-item-author"><a href="javascript: void(0);">Shahedk</a></p>
+                    <p class="inbox-item-text">Hey! there I'm available...</p>
+                    <p class="inbox-item-date">10:15 AM</p>
+
+                </div>
+            </div> <!-- end inbox-widget -->
+        </div> <!-- end .p-3-->
+
+    </div> <!-- end slimscroll-menu-->
+</div>
+<!-- /Right-bar -->
+
+<!-- Right bar overlay-->
+<div class="rightbar-overlay"></div>
+
+<!-- Vendor js -->
+<script src="/assets_admin/js/vendor.min.js"></script>
+
+<!-- Plugin js-->
+<script src="/assets_admin/libs/parsleyjs/parsley.min.js"></script>
+
+<!-- Validation init js-->
+<script src="/assets_admin/js/pages/form-validation.init.js"></script>
+
+<!-- App js -->
+<script src="/assets_admin/js/app.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+<script src="/assets_admin/libs/dropzone/dropzone.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script type="text/javascript" src="/assets/js/jQuery.MultiFile.min.js"></script>
+
+
+<script>
+    // Khi người dùng chọn tệp
+    $('#fileInput').on('change', function (e) {
+        var fileInput = e.target;
+        var file = fileInput.files[0];
+
+        if (file) {
+            // Hiển thị ảnh trước khi tải lên
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#imagePreview').attr('src', e.target.result);
+            };
+            reader.readAsDataURL(file);
+
+            // Hiển thị nút xóa ảnh và khối div preview
+            $('#removeImage').show();
+            $('#imageContainer').show();
+        } else {
+            // Ẩn nút xóa ảnh và khối div preview nếu không có ảnh được chọn
+            $('#removeImage').hide();
+            $('#imageContainer').hide();
+        }
+    });
+
+    // Khi người dùng nhấn vào nút xóa ảnh
+    $('#removeImage').on('click', function (e) {
+        // Xóa dữ liệu ảnh, ẩn nút xóa và khối div preview
+        $('#imagePreview').attr('src', '');
+        $('#removeImage').hide();
+        $('#imageContainer').hide();
+
+        // Đặt giá trị trống cho input file để đảm bảo sự kiện change được kích hoạt khi chọn lại cùng một tệp
+        $('#fileInput').val('');
+    });
+</script>
+
+</body>
+</html>

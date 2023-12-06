@@ -35,7 +35,7 @@
         <div class="container">
             <ol class="breadcrumb">
                 <li><a href="/static">Trang chủ</a></li>
-                <li><a href="/manager">Quản lý trọ</a></li>
+                <li><a href="/manager">Quản lý nhà trọ</a></li>
                 <li class="active">Thông tin trọ</li>
             </ol>
             <!--end breadcrumb-->
@@ -47,7 +47,7 @@
                 <!--end title-->
                 <div class="info">
                     <strong>Tên trọ:</strong>
-                    <h2 class="no-margin" ><a href="../detail.html" th:text="${house.houseName}">Spring Hotel</a></h2>
+                    <h2 class="no-margin" th:text="${house.houseName}" style="color:#488f3e;font-weight: bold;text-transform: uppercase ">Spring Hote</h2>
                     <hr>
                 </div>
                 <!--end info-->
@@ -56,6 +56,7 @@
                         <ul>
                             <li><a href="#main-information" class="scroll">Thông tin chính</a></li>
                             <li><a href="#location" class="scroll">Địa chỉ</a></li>
+                            <li><a href="#map" class="scroll">Bản đồ</a></li>
                             <li><a href="#gallery" class="scroll">Ảnh</a></li>
                             <li><a href="#facilities" class="scroll">Dịch vụ</a></li>
                             <li><a href="#additional-information" class="scroll">Thông tin thêm</a></li>
