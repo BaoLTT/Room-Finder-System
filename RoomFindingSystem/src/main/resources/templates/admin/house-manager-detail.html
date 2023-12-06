@@ -24,6 +24,12 @@
             height: 400px;
             width: 100%;
         }
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+        }
+
+
     </style>
 </head>
 
@@ -44,7 +50,7 @@
             <div class="container-fluid">
                 <!-- start page title -->
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-md-12">
                         <div class="page-title-box">
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
@@ -59,33 +65,33 @@
                 <!-- end page title -->
 
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-md-12">
                         <div class="card-box">
 
                             <div class="row">
-                                <div class="col-12">
+                                <div class="col-md-12">
                                     <div th:object="${house}">
                                         <form class="form-horizontal" role="form" method="post"
                                               th:action="@{/admin/house-manager/update}" th:object="${house}"
                                               enctype="multipart/form-data">
                                             <input name="houseID" th:field="*{houseID}" type="hidden">
                                             <div class="form-group row">
-                                                <label class="col-2 col-form-label">Chủ trọ</label>
-                                                <div class="col-10">
+                                                <label class="col-md-2 col-md-form-label">Chủ trọ</label>
+                                                <div class="col-md-10">
                                                     <input type="text" class="form-control" readonly=""
                                                            th:value="*{user_firstName+' '+user_lastName}">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-2 col-form-label">Tên trọ<em>*</em></label>
-                                                <div class="col-10">
+                                                <label class="col-md-2 col-md-form-label">Tên trọ<em>*</em></label>
+                                                <div class="col-md-10">
                                                     <input type="text" name="houseName" class="form-control"
                                                            placeholder="Tên trọ..." required th:field="*{houseName}">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-2 col-form-label">Thông tin khác</label>
-                                                <div class="col-3">
+                                                <label class="col-md-2 col-md-form-label">Thông tin khác</label>
+                                                <div class="col-md ">
                                                     <label>Tình trạng</label>
                                                     <select class="form-control" th:field="*{status}">
                                                         <option value="2" th:selected="${house.status == 2}">ĐANG XỬ LÝ</option>
@@ -93,37 +99,41 @@
                                                         <option value="0" th:selected="${house.status == 0}">NGƯNG HOẠT ĐỘNG</option>
                                                     </select>
                                                 </div>
-                                                <div class="col-3">
+                                                <div class="col-md">
                                                     <label for="like">Đánh giá</label>
-                                                    <input type="text" class="form-control" id="like" readonly
+                                                    <input th:if="${house.star!=0}" type="text" class="form-control" id="like" readonly
                                                            th:field="*{star}" style="padding: 10px">
+                                                    <input th:if="${house.star==0}" type="text" class="form-control"  readonly
+                                                            style="padding: 10px" value="Chưa đánh giá">
                                                 </div>
-                                                <div class="col-3">
+                                                <div class="col-md">
                                                     <label for="room">Số lượng phòng</label>
-                                                    <input type="text" class="form-control" id="room" readonly
+                                                    <input th:if="${house.count_room!=0}" type="text" class="form-control" id="room" readonly
                                                            th:field="*{count_room}" style="padding: 10px">
+                                                    <input th:if="${house.count_room==0}" type="text" class="form-control" id="room" readonly
+                                                           value="Chưa có phòng" style="padding: 10px">
                                                 </div>
 
 
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-2 col-form-label">Người tạo</label>
-                                                <div class="col-10">
+                                                <label class="col-md-2 col-md-form-label">Người tạo</label>
+                                                <div class="col-md-10">
                                                     <input type="text" class="form-control" readonly=""
                                                            th:value="*{created_firstName+' '+created_lastName}">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-2 col-form-label">Địa chỉ cụ thể<em>*</em></label>
-                                                <div class="col-10">
+                                                <label class="col-md-2 col-md-form-label">Địa chỉ cụ thể<em>*</em></label>
+                                                <div class="col-md-10">
                                                     <input type="text" name="addressDetail" class="form-control"
                                                            placeholder="Địa chỉ cụ thể..." th:field="*{addressDetail}">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-2 col-form-label">Địa chỉ </label>
+                                                <label class="col-md-2 col-md-form-label">Địa chỉ </label>
                                                 <input type="hidden" name="addressid" th:field="*{address}">
-                                                <div class="col-3">
+                                                <div class="col-md">
                                                     <label for="province">Tỉnh</label>
                                                     <select class="form-control" name="province" id="province"
                                                             style="display: none;" th:field="*{provinceID}">
@@ -135,7 +145,7 @@
 
                                                 </div>
 
-                                                <div class="col-3">
+                                                <div class="col-md">
                                                     <label for="district">Quận/Huyện</label>
                                                     <select class="form-control" id="district" name="district"
                                                             style="display: none;" th:field="*{districtID}">
@@ -146,7 +156,7 @@
                                                            th:field="*{district}"/>
 
                                                 </div>
-                                                <div class="col-3">
+                                                <div class="col-md">
                                                     <label for="ward">Xã/Phường</label>
                                                     <select class="form-control" name="ward" id="ward"
                                                             style="display: none;" th:field="*{wardID}">
@@ -160,15 +170,15 @@
                                             </div>
 
                                             <div class="form-group row">
-                                                <label class="col-2 col-form-label">Hiện thị trên bản đồ</label>
-                                                <div class="col-10" id="map-item">
+                                                <label class="col-md-2 col-md-form-label">Hiện thị trên bản đồ</label>
+                                                <div class="col-md-10" id="map-item">
 
                                                 </div>
                                             </div>
 
                                             <div class="form-group row">
-                                                <label class="col-2 col-form-label"></label>
-                                                <div class="col-10">
+                                                <label class="col-md-2 col-md-form-label"></label>
+                                                <div class="col-md-10">
                                                     <label>Vĩ độ</label>
 
                                                     <input th:if="${house.latitude != null}" id="latitude" name="latitude"
@@ -181,23 +191,23 @@
                                             </div>
 
                                             <div class="form-group row">
-                                                <label class="col-2 col-form-label">Ghi chú</label>
-                                                <div class="col-10">
+                                                <label class="col-md-2 col-md-form-label">Ghi chú</label>
+                                                <div class="col-md-10">
                                                     <textarea class="form-control" rows="3" placeholder="Ghi chú..."
                                                               th:field="*{description}"> </textarea>
                                                 </div>
                                             </div>
 
                                             <div class="form-group row">
-                                                <label class="col-2 col-form-label">Ngày tạo</label>
-                                                <div class="col-10">
+                                                <label class="col-md-2 col-md-form-label">Ngày tạo</label>
+                                                <div class="col-md-10">
                                                     <input type="date" class="form-control" readonly=""
                                                            th:value="*{createdDate}">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-2 col-form-label">Ngày cuối cập nhật</label>
-                                                <div class="col-10">
+                                                <label class="col-md-2 col-md-form-label">Ngày cuối cập nhật</label>
+                                                <div class="col-md-10">
                                                     <input type="date" class="form-control" readonly=""
                                                            th:value="*{lastModifiedDate}">
                                                 </div>
@@ -205,24 +215,24 @@
 
 
                                             <div class="form-group row">
-                                                <label class="col-2 col-form-label">Thể loại trọ</label>
-                                                <div class="col-9">
+                                                <label class="col-md-2 col-md-form-label">Thể loại trọ</label>
+                                                <div class="col-md-9">
                                                     <select class="form-control" th:field="*{typeHouseID}">
                                                         <option th:each="listType : ${listType}"
                                                                 th:value="${listType.getTypeId()}"
                                                                 th:text="${listType.typeName}"/>
                                                     </select>
                                                 </div>
-                                                <div class="col-1">
+                                                <div class="col-md-1 flex-md-grow-0">
                                                     <button type="button" class="btn btn-primary btn-xs" id="houseType"
-                                                            style="width: 100%;height: 100%">Thêm thể loại
+                                                            style="width: 100%;height: 100%;border-radius: 5px">Thêm thể loại
                                                     </button>
                                                 </div>
                                             </div>
 
                                             <div class="form-group row">
-                                                <label class="col-2 col-form-label">Ảnh</label>
-                                                <div class="col-10">
+                                                <label class="col-md-2 col-md-form-label">Ảnh</label>
+                                                <div class="col-md-10">
                                                     <div class="file-upload-previews">
                                                         <div class="MultiFile-label" id="imageContainer"
                                                              th:each="image, iterStat : ${house.listImage}">
@@ -246,34 +256,36 @@
                                             </div>
 
                                             <div class="form-group row">
-                                                <label class="col-2 col-form-label">Dịch vụ</label>
-                                                <div class="col-10" style="display: flex; flex-wrap: wrap;">
-                                                    <div class="checkbox checkbox-primary col-2"
-                                                         th:each="listService : ${listService}" th:field="*{service}"
-                                                         style="padding-left: 10px">
-                                                        <input th:id="${listService.serviceName}" type="checkbox" style="position: relative"
-                                                               name="service" th:value="${listService.serviceId}"
-                                                               th:checked="${#lists.contains(listChecked,''+ listService.serviceId+'')}">
-                                                        <label th:for="${listService.serviceName}"
-                                                               th:text="${listService.serviceName}">
-                                                            <Primary></Primary>
-                                                        </label>
+                                                <label class="col-md-2 col-md-form-label">Dịch vụ</label>
+                                                <div class="col-md-10">
+                                                    <div class="row">
+                                                        <div th:each="listService : ${listService}" class="col-md-4 col-md-2 mb-2">
+                                                            <div class="checkbox checkbox-primary" style="padding-left: 10px">
+                                                                <input th:id="${listService.serviceName}" type="checkbox" style="position: relative"
+                                                                       name="service" th:value="${listService.serviceId}"
+                                                                       th:checked="${#lists.contains(listChecked,''+ listService.serviceId+'')}">
+                                                                <label th:for="${listService.serviceName}" class="checkbox-label">
+                                                                    <span th:text="${listService.serviceName}"></span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
                                                     </div>
-
                                                 </div>
-                                                <label class="col-2 col-form-label"></label>
-                                                <div class="col-10" style="padding-left: 0">
-                                                    <button type="button" class="btn btn-primary btn-xs" id="houseService"
-                                                    >Thêm dịch vụ
+                                                <label class="col-md-2 col-md-form-label"></label>
+                                                <div class="col-md-10" style="padding-left: 0">
+                                                    <button type="button" class="btn btn-primary btn-xs" id="houseService" style="border-radius: 5px">
+                                                        Thêm dịch vụ
                                                     </button>
                                                 </div>
-
                                             </div>
 
 
+
+
+
                                             <div class="form-group row">
-                                                <label class="col-2 col-form-label"></label>
-                                                <div class="col-10">
+                                                <label class="col-md-2 col-md-form-label"></label>
+                                                <div class="col-md-10">
                                                     <button type="submit"
                                                             class="btn btn-success waves-light waves-effect width-md" style="margin-left: -10px">
                                                         <span style="color: white">Lưu</span></button>
