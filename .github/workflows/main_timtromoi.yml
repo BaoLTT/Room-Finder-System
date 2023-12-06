@@ -31,14 +31,6 @@ jobs:
           name: RoomFindingSystem-0.0.1-SNAPSHOT
           path: '${{ github.workspace }}/RoomFindingSystem/target/*.war'
 
-#
-      - name: Check if artifact exists
-        uses: actions/check-run-action@v2
-        id: check_artifact
-        with:
-          name: RoomFindingSystem-0.0.1-SNAPSHOT
-          #
-
   deploy:
     runs-on: ubuntu-latest
     needs: build
