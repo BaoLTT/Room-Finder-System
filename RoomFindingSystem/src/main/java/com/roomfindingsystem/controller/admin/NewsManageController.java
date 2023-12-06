@@ -32,7 +32,7 @@ public class NewsManageController {
 
     @GetMapping("/newsList")
     public String viewNews(Model model){
-        model.addAttribute("newsList", newsService.viewAll() );
+        model.addAttribute("newsList", newsService.viewAllInAdmin() );
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         UserEntity user = userService.findByEmail(email).get();
 

@@ -133,8 +133,11 @@
                                                 </ul>
 
                                             </div>
-                                            <a href="#all-property-types" class="link" data-toggle="collapse"
-                                               aria-expanded="false" aria-controls="all-property-types">Hiển thị thêm</a>
+<!--                                            <a href="#filter-advanced-search" class="link icon collapsed" data-toggle="collapse"-->
+<!--                                               aria-expanded="false" aria-controls="filter-advanced-search" id="toggleLink" onclick="changeText()">-->
+<!--                                                Thêm</a>-->
+                                            <a href="#all-property-types" class="link1 icon collapsed" data-toggle="collapse" id="collapse1" onclick="changeText1()"
+                                               aria-expanded="false" aria-controls="all-property-types">Thêm</a>
                                         </section>
                                         <!--end section-->
                                         <section>
@@ -165,8 +168,8 @@
                                                     </li>
                                                 </ul>
                                             </div>
-                                            <a href="#all-property-services" class="link" data-toggle="collapse"
-                                               aria-expanded="false" aria-controls="all-property-types">Hiển thị thêm</a>
+                                            <a href="#all-property-services" class="link2" data-toggle="collapse"  id="collapse2" onclick="changeText2()"
+                                               aria-expanded="false" aria-controls="all-property-types">Thêm</a>
                                             <!--end checkboxes-->
                                         </section>
                                         <!--end section-->
@@ -196,7 +199,7 @@
                         <!--end title-->
 
                         <div class="item list" data-map-latitude="48.87" data-map-longitude="2.29" data-id="1"
-                             th:each="houses: ${houses}">
+                             th:each="houses: ${houses}" th:if="${houses.getCount_room()>0}">
                             <div class="image-wrapper">
 
                                 <a  th:href="@{/add-favourite-list?id=}+${houses.houseID}" class="mark-circle" onclick="showSuccessToastAdd()"
@@ -223,7 +226,7 @@
                             <!--end image-->
                             <div class="description">
                                 <div class="meta">
-                                    <span><i class="fa fa-star"></i>
+                                    <span><i  class="fa fa-star"></i>
                                         <h th:if="${houses.getStar() != 0}" th:text="${houses.getStar()}">a</h>
                                         <h th:if="${houses.getStar() == 0}" >Chưa có đánh giá</h>
                                     </span>
@@ -283,7 +286,7 @@
 
                                     </p>
 
-                                    <div class="price-info" th:with="formattedPrice=${#numbers.formatDecimal(houses.price, 0, 'COMMA', 0, 'POINT')}">Từ<span class="price" th:text="${formattedPrice + ' VND'}" ></span>
+                                    <div class="price-info"  th:with="formattedPrice=${#numbers.formatDecimal(houses.price, 0, 'COMMA', 0, 'POINT')}">Từ<span class="price" style="color: red" th:text="${formattedPrice + ' VND'}" ></span>
                                         <span class="appendix">/tháng</span></div>
 
                                     <a th:href="@{/}+${houses.houseName}+'?id='+${houses.houseID}"
@@ -353,6 +356,7 @@
 <!--end page-wrapper-->
 <a href="#page-header" class="to-top scroll" data-show-after-scroll="600"><i class="arrow_up"></i></a>
 <script>
+
     function changeText() {
         var link = document.getElementById("toggleLink");
 
@@ -364,6 +368,39 @@
             // Ngược lại, chuyển về văn bản ban đầu "Thêm"
             link.innerHTML = "Thêm";
         }
+    }
+
+    function changeText1() {
+        var link1 = document.getElementById("collapse1");
+
+        // Toggle the "link1" class
+
+
+        // Check if the "link1" class is present after toggling
+        if (link1.classList.contains("link1")) {
+            // If it's present, change the text to "Ẩn bớt"
+            link1.innerHTML = "Ẩn bớt";
+        } else {
+            // If it's not present, change the text to "Thêm"
+            link1.innerHTML = "Thêm";
+        }
+        link1.classList.toggle("link1");
+    }
+
+
+    function changeText2() {
+        var link2 = document.getElementById("collapse2");
+
+        // Kiểm tra xem lớp collapsed có tồn tại hay không
+
+        if (link2.classList.contains("link2")) {
+            // Nếu có, thay đổi nội dung thành "Ẩn bớt" hoặc bất kỳ văn bản nào bạn muốn
+            link2.innerHTML = "Ẩn bớt";
+        } else {
+            // Ngược lại, chuyển về văn bản ban đầu "Thêm"
+            link2.innerHTML = "Thêm";
+        }
+        link2.classList.toggle("link2");
     }
 
 </script>

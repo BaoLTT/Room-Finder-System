@@ -276,6 +276,20 @@
 
 
 <script>
+    $(document).ready(function () {
+        // Kiểm tra nếu có đường dẫn ảnh sẵn có trong cơ sở dữ liệu
+        var existingImage = $('#imagePreview').attr('src');
+
+        if (existingImage && existingImage.length > 0) {
+            // Hiển thị nút xóa ảnh và khối div preview
+            $('#removeImage').show();
+            $('#imageContainer').show();
+        } else {
+            // Ẩn nút xóa ảnh và khối div preview nếu không có ảnh
+            $('#removeImage').hide();
+            $('#imageContainer').hide();
+        }
+    });
     // Khi người dùng chọn tệp
     $('#fileInput').on('change', function (e) {
         var fileInput = e.target;

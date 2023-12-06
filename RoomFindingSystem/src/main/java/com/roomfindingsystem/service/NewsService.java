@@ -8,7 +8,8 @@ import java.util.List;
 public interface NewsService {
     List<NewsEntity> viewTop7Home();
 
-    List<NewsEntity> viewAll();
+
+    List<NewsEntity> viewAllInAdmin();
 
     NewsEntity getNewsById(int newsId);
 
