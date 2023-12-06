@@ -213,7 +213,7 @@
                                             <!--end form-group-->
                                             <div class="form-group">
                                                 <label for="district">Huyện</label>
-                                                <select class="form-control" name="districId" id="district" th:text="*{district}"
+                                                <select class="form-control" name="districtId" id="district"
                                                         th:field="*{districtId}">
                                                     <option value="0" selected>Chọn Quận/Huyện</option>
                                                 </select>
@@ -222,7 +222,7 @@
                                             <!--end form-group-->
                                             <div class="form-group">
                                                 <label for="ward">Xã</label>
-                                                <select class="form-control" name="wardId" id="ward" th:text="*{ward}"
+                                                <select class="form-control" name="wardId" id="ward"
                                                         th:field="*{wardId}">
                                                     <option value="0" selected>Chọn Xã/Phường</option>
                                                 </select>
@@ -233,7 +233,7 @@
                                             <div class="form-group">
                                                 <label for="addressDetails">Địa chỉ chi tiết</label>
                                                 <input type="text" class="form-control" id="addressDetails"
-                                                       name="addressDetails" th:field="*{addressDetails}">
+                                                       name="addressDetails" th:field="*{addressDetails}" placeholder="Nhập địa chỉ cụ thể...">
                                             </div>
                                             <!--end form-group-->
                                         </section>
@@ -300,6 +300,7 @@
 
 <!-- App js -->
 <script th:src="@{/assets_admin/js/app.min.js}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
 <script>
     var citis = document.getElementById("province");
     var districts = document.getElementById("district");
