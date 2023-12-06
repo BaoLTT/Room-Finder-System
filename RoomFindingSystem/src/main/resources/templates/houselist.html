@@ -81,7 +81,7 @@
                                 <div class="center">
                                     <a href="#filter-advanced-search" class="link icon collapsed" data-toggle="collapse"
                                        aria-expanded="false" aria-controls="filter-advanced-search" id="toggleLink" onclick="changeText()">
-                                        Thêm</a>
+                                        Thêm +</a>
 
                                 </div>
                                 <div class="collapse" id="filter-advanced-search" aria-expanded="false">
@@ -137,7 +137,7 @@
 <!--                                               aria-expanded="false" aria-controls="filter-advanced-search" id="toggleLink" onclick="changeText()">-->
 <!--                                                Thêm</a>-->
                                             <a href="#all-property-types" class="link1 icon collapsed" data-toggle="collapse" id="collapse1" onclick="changeText1()"
-                                               aria-expanded="false" aria-controls="all-property-types">Thêm</a>
+                                               aria-expanded="false" aria-controls="all-property-types">Thêm +</a>
                                         </section>
                                         <!--end section-->
                                         <section>
@@ -169,7 +169,7 @@
                                                 </ul>
                                             </div>
                                             <a href="#all-property-services" class="link2" data-toggle="collapse"  id="collapse2" onclick="changeText2()"
-                                               aria-expanded="false" aria-controls="all-property-types">Thêm</a>
+                                               aria-expanded="false" aria-controls="all-property-types">Thêm +</a>
                                             <!--end checkboxes-->
                                         </section>
                                         <!--end section-->
@@ -179,7 +179,7 @@
                                 <!--end collapse-->
                                 <div class="form-group center">
                                     <button type="submit" class="btn btn-primary btn-rounded form-control"
-                                            id="search-button">Tìm kiếm
+                                            id="search-button" style="border-radius: 5px">Tìm kiếm
                                     </button>
                                 </div>
                             </form>
@@ -370,7 +370,7 @@
             link.innerHTML = "Ẩn bớt";
         } else {
             // Ngược lại, chuyển về văn bản ban đầu "Thêm"
-            link.innerHTML = "Thêm";
+            link.innerHTML = "Thêm +";
         }
     }
 
@@ -386,7 +386,7 @@
             link1.innerHTML = "Ẩn bớt";
         } else {
             // If it's not present, change the text to "Thêm"
-            link1.innerHTML = "Thêm";
+            link1.innerHTML = "Thêm +";
         }
         link1.classList.toggle("link1");
     }
@@ -402,7 +402,7 @@
             link2.innerHTML = "Ẩn bớt";
         } else {
             // Ngược lại, chuyển về văn bản ban đầu "Thêm"
-            link2.innerHTML = "Thêm";
+            link2.innerHTML = "Thêm +";
         }
         link2.classList.toggle("link2");
     }
