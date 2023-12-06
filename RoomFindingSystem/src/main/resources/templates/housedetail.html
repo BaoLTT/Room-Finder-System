@@ -34,10 +34,7 @@
     <link th:href="@{/assets_admin/libs/datatables/buttons.bootstrap4.css}" rel="stylesheet" type="text/css"/>
     <link th:href="@{/assets_admin/libs/datatables/responsive.bootstrap4.css}" rel="stylesheet" type="text/css"/>
 
-    <!-- App css -->
-    <link th:href="@{/assets_admin/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
-    <link th:href="@{/assets_admin/css/icons.min.css}" rel="stylesheet" type="text/css"/>
-    <link th:href="@{/assets_admin/css/app.min.css}" rel="stylesheet" type="text/css"/>
+
     <title>Chi Tiết Nhà Trọ</title>
 
     <style>
@@ -213,7 +210,7 @@
                             </div>
                             <!--end collapse-->
                             <div class="form-group center">
-                                <button type="submit" class="btn btn-primary btn-rounded form-control">Liên Hệ
+                                <button type="submit" class="btn btn-primary btn-rounded form-control" style="border-radius: 5px">Liên Hệ
                                 </button>
                             </div>
                             </form>
@@ -352,7 +349,7 @@
                             </div>
                             <div class="right">
                                 <a href="#map" class="icon scroll"><i class="fa fa-map-marker"></i>Tìm Trên Bản Đồ</a>
-                                <a href="#availability" class="btn btn-primary btn-rounded scroll">Danh sách Phòng</a>
+                                <a href="#availability" class="btn btn-primary btn-rounded scroll" style="border-radius: 5px">Danh sách Phòng</a>
                             </div>
                         </div>
 
@@ -375,7 +372,7 @@
                             <div class="col-md-6 col-sm-6 text-right" th:if="${user != null}">
                                 <!-- Chia cột, dính về bên phải -->
                                 <button type="button" class="btn btn-primary" data-toggle="modal"
-                                        data-target="#reportModalCenter" style="background-color: red"
+                                        data-target="#reportModalCenter" style="background-color: red;border-radius: 5px"
                                         th:if="${checkReport==1}">
                                     <i class="fa fa-flag" style="color: #FFFFFF"></i><span style="color: #FFFFFF"
                                                                                            th:if="${checkReport==1}">  Báo cáo</span>
@@ -699,7 +696,7 @@
                                             <td th:text="${room.price}"></td>
                                             <input type="hidden" name="houseName" th:value="${HousesEntity.houseName}">
                                             <td class="rooms">
-                                                <select name="roomId" class="framed">
+                                                <select name="roomId" class="framed" style="padding-right: 20px">
                                                     <option th:each="id : ${room.roomList}" th:value="${id}"
                                                             th:text="${roomService.getRoomNameById(id)}"></option>
 
@@ -707,7 +704,7 @@
                                             </td>
                                             <td>
                                                 <div class="form-group">
-                                                    <button type="submit" class="btn btn-primary btn-rounded">Xem chi
+                                                    <button type="submit" class="btn btn-primary btn-rounded" style="border-radius: 5px">Xem chi
                                                         tiết
                                                     </button>
                                                 </div>
@@ -728,7 +725,7 @@
                                 <h2 class="pull-left">Đánh giá</h2>
                                 <div th:if="${user != null}">
                                     <a class="btn btn-primary btn-rounded pull-right scroll" type="button"
-                                       data-toggle="modal" data-target="#exampleModal" th:if="${count == 0}" style="color: white">Viết đánh
+                                       data-toggle="modal" data-target="#exampleModal" th:if="${count == 0}" style="color: white;border-radius: 5px">Viết đánh
                                         giá</a>
                                 </div>
 
@@ -1048,19 +1045,19 @@
 <!--    <div class="close"><i class="fa fa-times"></i></div>-->
 <!--    <p>Last booking was from <strong>France</strong></p>-->
 <!--</div>-->
-<script type="text/javascript" src="assets/js/jquery-2.2.1.min.js"></script>
-<script type="text/javascript" src="assets/js/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="/assets/js/jquery-2.2.1.min.js"></script>
+<script type="text/javascript" src="/assets/js/jquery-migrate-1.2.1.min.js"></script>
 <!--<script type="text/javascript" src="https://maps.google.com/maps/api/js"></script>-->
-<script type="text/javascript" src="assets/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="assets/js/jquery.validate.min.js"></script>
-<script type="text/javascript" src="assets/js/bootstrap-datepicker.js"></script>
-<script type="text/javascript" src="assets/js/icheck.min.js"></script>
-<script type="text/javascript" src="assets/js/markerwithlabel_packed.js"></script>
-<script type="text/javascript" src="assets/js/owl.carousel.js"></script>
-<script type="text/javascript" src="assets/js/masonry.pkgd.min.js"></script>
-<script type="text/javascript" src="assets/js/jquery.simpleWeather.min.js"></script>
+<script type="text/javascript" src="/assets/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/assets/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/assets/js/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="/assets/js/icheck.min.js"></script>
+<script type="text/javascript" src="/assets/js/markerwithlabel_packed.js"></script>
+<script type="text/javascript" src="/assets/js/owl.carousel.js"></script>
+<script type="text/javascript" src="/assets/js/masonry.pkgd.min.js"></script>
+<script type="text/javascript" src="/assets/js/jquery.simpleWeather.min.js"></script>
 <!--<script type="text/javascript" src="/assets/js/maps.js"></script>-->
-<script type="text/javascript" src="assets/js/custom.js"></script>
+<script type="text/javascript" src="/assets/js/custom.js"></script>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
