@@ -5,9 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1e0562a2-7ad5-40d8-bd96-2e66b43cd15f" name="Changes" comment="update slider =&gt; news, sua duoc phan admin">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/repository/NewsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/repository/NewsRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/admin/adminDashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/admin/adminDashboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/example/roomfindingsystem/controller/RoomControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/roomfindingsystem/controller/RoomControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/example/roomfindingsystem/controller/UserProfileControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/roomfindingsystem/controller/UserProfileControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/example/roomfindingsystem/service/RoomServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/roomfindingsystem/service/RoomTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/example/roomfindingsystem/service/UserServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/roomfindingsystem/service/UserServiceImplTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,41 +49,43 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "JPA.DatabaseSchemaImportDialog": "0917dbb1-b63e-4827-b1df-c0aa7f40a31c",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "com.google.cloudcode.ide_session_index": "20231203_0002",
-    "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "BaoLTT",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "SDKs",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.keymap",
-    "show.migrate.to.gradle.popup": "false",
-    "spring.configuration.checksum": "cba14e4d5d8ebaea272e92fbdfce9e02",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;JPA.DatabaseSchemaImportDialog&quot;: &quot;0917dbb1-b63e-4827-b1df-c0aa7f40a31c&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.google.cloudcode.ide_session_index&quot;: &quot;20231203_0002&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;BaoLTT&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
+    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;cba14e4d5d8ebaea272e92fbdfce9e02&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.roomfindingsystem.controller" />
+      <recent name="com.roomfindingsystem.service" />
       <recent name="com.roomfindingsystem.repository" />
     </key>
     <key name="ImportMappingsDialog.RecentPackages">
       <recent name="com.roomfindingsystem.entity" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.ReportRepositoryTest.testGetReportEntityByUidWithValidInput">
     <configuration name="ReportRepositoryTest.testGetReportEntityByUidWithValidInput" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RoomFindingSystem" />
       <extension name="coverage">
