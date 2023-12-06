@@ -86,7 +86,9 @@
                                                 <label class="col-md-2 col-md-form-label">Tên trọ<em>*</em></label>
                                                 <div class="col-md-10">
                                                     <input type="text" name="houseName" class="form-control"
-                                                           placeholder="Tên trọ..." required th:field="*{houseName}">
+                                                           placeholder="Tên trọ..." required id="inputField"  oninput="removeWhitespace(this)"
+                                                           pattern="^[a-zA-Z0-9xyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđÁÂĐ ]+$"
+                                                           th:field="*{houseName}">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -110,7 +112,7 @@
                                                     <label for="room">Số lượng phòng</label>
                                                     <input th:if="${house.count_room!=0}" type="text" class="form-control" id="room" readonly
                                                            th:field="*{count_room}" style="padding: 10px">
-                                                    <input th:if="${house.count_room==0}" type="text" class="form-control" id="room" readonly
+                                                    <input th:if="${house.count_room==0}" type="text" class="form-control"  readonly
                                                            value="Chưa có phòng" style="padding: 10px">
                                                 </div>
 
@@ -127,7 +129,9 @@
                                                 <label class="col-md-2 col-md-form-label">Địa chỉ cụ thể<em>*</em></label>
                                                 <div class="col-md-10">
                                                     <input type="text" name="addressDetail" class="form-control"
-                                                           placeholder="Địa chỉ cụ thể..." th:field="*{addressDetail}">
+                                                           placeholder="Địa chỉ cụ thể..." id="inputField2"  oninput="removeWhitespace2(this)"
+                                                           pattern="^[a-zA-Z0-9xyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđÁÂĐ]+$"
+                                                           th:field="*{addressDetail}">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -344,8 +348,9 @@
                                 ×
                             </button>
                             <input name="houseID" th:value="${houseID}" type="hidden">
-                            <input autocapitalize="off" class="swal2-input" required placeholder="Nhập thể loại..." type="text"
-                                   style="display: flex;" name="newType">
+                            <input autocapitalize="off" class="swal2-input" required id="inputField3"  oninput="removeWhitespace3(this)"
+                                   pattern="^[a-zA-Z0-9xyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđÁÂĐ ]+$"
+                                   placeholder="Nhập thể loại..." type="text" style="display: flex;" name="newType">
                         </div>
 
                         <div class="swal2-actions" style="display: flex;">
@@ -393,7 +398,8 @@
                                 ×
                             </button>
                             <input name="houseID" th:value="${houseID}" type="hidden">
-                            <input autocapitalize="off" class="swal2-input" required placeholder="Nhập dịch vụ..." type="text"
+                            <input autocapitalize="off" class="swal2-input" required placeholder="Nhập dịch vụ..." type="text" id="inputField4"  oninput="removeWhitespace4(this)"
+                                   pattern="^[a-zA-Z0-9xyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđÁÂĐ ]+$"
                                    style="display: flex;" name="newService">
                         </div>
 
@@ -425,6 +431,63 @@
 </div>
 <!-- END wrapper -->
 
+<script>
+    function removeWhitespace(inputField) {
+        var inputValue = inputField.value.trim();
+
+        // Kiểm tra nếu giá trị là khoảng trắng
+        if (inputValue === '') {
+            // Set custom validity để hiển thị thông báo lỗi
+            inputField.setCustomValidity('Vui lòng nhập tên.');
+        } else {
+            // Reset custom validity nếu không có lỗi
+            inputField.setCustomValidity('');
+        }
+
+    }
+
+    function removeWhitespace2(inputField2) {
+        var inputValue = inputField2.value.trim();
+
+        // Kiểm tra nếu giá trị là khoảng trắng
+        if (inputValue === '') {
+            // Set custom validity để hiển thị thông báo lỗi
+            inputField2.setCustomValidity('Vui lòng nhập địa chỉ.');
+        } else {
+            // Reset custom validity nếu không có lỗi
+            inputField2.setCustomValidity('');
+        }
+
+    }
+
+    function removeWhitespace3(inputField3) {
+        var inputValue = inputField3.value.trim();
+
+        // Kiểm tra nếu giá trị là khoảng trắng
+        if (inputValue === '') {
+            // Set custom validity để hiển thị thông báo lỗi
+            inputField3.setCustomValidity('Vui lòng nhập thể loại.');
+        } else {
+            // Reset custom validity nếu không có lỗi
+            inputField3.setCustomValidity('');
+        }
+
+    }
+
+    function removeWhitespace4(inputField4) {
+        var inputValue = inputField4.value.trim();
+
+        // Kiểm tra nếu giá trị là khoảng trắng
+        if (inputValue === '') {
+            // Set custom validity để hiển thị thông báo lỗi
+            inputField4.setCustomValidity('Vui lòng nhập dịch vụ.');
+        } else {
+            // Reset custom validity nếu không có lỗi
+            inputField4.setCustomValidity('');
+        }
+
+    }
+</script>
 <!-- /Right-bar -->
 <script>
 
