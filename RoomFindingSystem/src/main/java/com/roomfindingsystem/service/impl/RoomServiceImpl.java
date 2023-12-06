@@ -161,7 +161,7 @@ public class RoomServiceImpl implements RoomService {
                 RoomImagesEntity roomImagesEntity = new RoomImagesEntity();
                 byte[] imageBytes = file.getBytes();
                 gcsService.uploadImage("rfs_bucket", "Room/room_" + i + "_" + room.getRoomid() + ".jpg", imageBytes);
-                roomImagesEntity.setImageLink("https://storage.cloud.google.com/rfs_bucket/Room/" + "room_" + i + "_" + room.getRoomid() + ".jpg");
+                roomImagesEntity.setImageLink("/rfs_bucket/Room/" + "room_" + i + "_" + room.getRoomid() + ".jpg");
                 i++;
                 roomImagesEntity.setRoomId(roomDto.getRoomId());
                 roomImagesEntity.setCreatedDate(LocalDate.now());
@@ -249,7 +249,7 @@ public class RoomServiceImpl implements RoomService {
                 RoomImagesEntity roomImagesEntity = new RoomImagesEntity();
                 byte[] imageBytes = file.getBytes();
                 gcsService.uploadImage("rfs_bucket", "Room/room_" + i + "_" + saveRoom.getRoomid() + ".jpg", imageBytes);
-                roomImagesEntity.setImageLink("https://storage.cloud.google.com/rfs_bucket/Room/" + "room_" + i + "_" + saveRoom.getRoomid() + ".jpg");
+                roomImagesEntity.setImageLink("/rfs_bucket/Room/" + "room_" + i + "_" + saveRoom.getRoomid() + ".jpg");
                 i++;
                 roomImagesEntity.setRoomId(saveRoom.getRoomid());
                 roomImagesEntity.setCreatedDate(LocalDate.now());
@@ -293,7 +293,7 @@ public class RoomServiceImpl implements RoomService {
                 RoomImagesEntity roomImagesEntity = new RoomImagesEntity();
                 byte[] imageBytes = file.getBytes();
                 gcsService.uploadImage("rfs_bucket", "Room/room_" + i + "_" + saveRoom.getRoomid() + ".jpg", imageBytes);
-                roomImagesEntity.setImageLink("https://storage.cloud.google.com/rfs_bucket/Room/" + "room_" + i + "_" + saveRoom.getRoomid() + ".jpg");
+                roomImagesEntity.setImageLink("/rfs_bucket/Room/" + "room_" + i + "_" + saveRoom.getRoomid() + ".jpg");
                 i++;
                 roomImagesEntity.setRoomId(saveRoom.getRoomid());
                 roomImagesEntity.setCreatedDate(LocalDate.now());
