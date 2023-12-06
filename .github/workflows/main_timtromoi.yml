@@ -29,7 +29,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: RoomFindingSystem-0.0.1-SNAPSHOT
-          path: '${{ github.workspace }}/RoomFindingSystem/target/*.war'
+          path: '${{ github.workspace }}/Room-Finding-System/RoomFindingSystem/target/*.war'
 
   deploy:
     runs-on: ubuntu-latest
