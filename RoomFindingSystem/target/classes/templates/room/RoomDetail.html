@@ -50,6 +50,7 @@
     <div id="page-content">
         <div class="container">
             <ol class="breadcrumb">
+
                 <li><a th:href="@{/}">Trang chủ</a></li>
                 <li><a th:href="@{/house/}+${house.houseName}+'?id='+${house.houseId}"><span th:text="${house.getHouseName()}"></span></a></li>
                 <li class="active">Phòng trọ</li>
@@ -77,7 +78,7 @@
                             <div class="col-md-6" >
                                 <div class="w3-content w3-display-container" style="background-color: darkgrey">
                                     <div th:each="image: ${roomImages}" th:if="${roomImages.size()!=0}">
-                                        <img class="mySlides" th:src="${image.getImageLink()}" style="height: 354px; max-width: 100%; display: block; margin: 0 auto;">
+                                        <img class="mySlides" th:src="'https://storage.googleapis.com'+${image.getImageLink()}" style="height: 354px; max-width: 100%; display: block; margin: 0 auto;">
 
                                     </div>
                                     <div th:each="image: ${houseImages}" th:if="${roomImages.size()==0}">
@@ -160,7 +161,7 @@
                                             <iconify-icon icon="game-icons:desk" th:if="${service.getServiceName()} eq 'Bàn học'"></iconify-icon>
                                             <iconify-icon icon="mdi:closet-outline" th:if="${service.getServiceName()} eq 'Tủ quần áo'"></iconify-icon>
                                             <iconify-icon icon="material-symbols:wifi" th:if="${service.getServiceName()} eq 'Wifi'"></iconify-icon>
-                                            <iconify-icon icon="mdi:gas" th:if="${service.getServiceName()} eq 'Bếp gas'"></iconify-icon >
+                                            <iconify-icon icon="mdi:gas" th:if="${service.getServiceName()} eq 'Bếp Gas'"></iconify-icon >
                                             <iconify-icon icon="solar:tv-broken" th:if="${service.getServiceName()} eq 'Tivi'"></iconify-icon>
                                             <iconify-icon icon="streamline:pet-paw" th:if="${service.getServiceName()} eq 'có nuôi thêm pet'"></iconify-icon>
                                             <span th:text="${service.getServiceName()}"></span>
