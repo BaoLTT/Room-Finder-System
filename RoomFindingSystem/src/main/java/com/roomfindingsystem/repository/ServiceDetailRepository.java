@@ -16,4 +16,10 @@ public interface ServiceDetailRepository extends CrudRepository<ServiceDetailEnt
 
     @Query(value = "SELECT * FROM room_finding_system.service_detail",nativeQuery = true)
     List<ServiceDetailEntity> getAll();
+
+    @Query(value = "select sd.service_name from houses h \n" +
+            "left join service_house sh on h.houseid = sh.houseid\n" +
+            "left join service_detail sd on sh.serviceid = sd.serviceid\n" +
+            "where h.houseid = ?1", nativeQuery = true )
+    List<String> getServiceNameByHouseId(int houseId);
 }
