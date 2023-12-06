@@ -32,7 +32,7 @@
 
     <div id="page-content">
         <div class="hero-section" data-height="600">
-            <form id="form-hero" th:action="@{/houselist}">
+            <form id="form-hero" th:action="@{/houselist}" class="switch">
                 <div class="hero-inner">
                     <div class="hero-wrapper">
                         <div class="caption">
@@ -176,7 +176,7 @@
                             <div class="item-wrapper">
 
                                 <div class="image">
-                                    <a th:href="@{/detail?id=}+${house.houseID}" class="wrapper">
+                                    <a th:href="@{/house/}+${house.houseName}+'?id='+${house.houseID}" class="wrapper">
                                         <div class="gallery">
                                             <img style="width: 273px; height: 208px;"
                                                  th:each="image: ${house.listImage}" th:src="'https://storage.googleapis.com'+${image}" alt="">
@@ -195,7 +195,7 @@
 
                                     <div class="info">
                                         <figure class="label label-info" th:text="${house.typeHouse}"></figure>
-                                        <a th:href="@{/detail?id=}+${house.houseID}"><h3
+                                        <a th:href="@{/house/}+${house.houseName}+'?id='+${house.houseID}"><h3
                                                 th:text="${house.houseName}"></h3></a>
                                         <figure class=""
                                                 th:text="${house.addressDetail+', '+house.ward+', '+house.district+', '+house.province}"></figure>
@@ -237,7 +237,7 @@
                 <div class="col-md-12 col-sm-12">
                     <div class="row">
                         <div class="col-md-3 col-sm-6" th:each="room: ${rooms}">
-                            <a th:href="@{/room/}+${room.roomId}" class="item small">
+                            <a th:href="@{/house/}+${room.houseName}+'/room/'+${room.roomId}" class="item small">
                                 <div class="image">
                                     <div class="info">
                                         <figure class="label label-info" th:text="${room.roomType}">Hotel</figure>

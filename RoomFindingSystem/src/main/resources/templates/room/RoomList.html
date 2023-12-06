@@ -165,7 +165,7 @@
         <div class="container">
             <ol class="breadcrumb">
                 <li><a href="/">Trang chủ</a></li>
-                <li><a href="#">Danh sách phòng trọ</a></li>
+                <li>Danh sách phòng trọ</li>
 
             </ol>
             <!--end breadcrumb-->
@@ -324,7 +324,7 @@
                                         <div class="description">
                                             <div class="info">
                                                 <figure class="label label-info" th:text="${room.roomType}"></figure>
-                                                <a th:href="@{/}+${room.houseName}+'/room/'+${room.roomId}"><h3 th:text="${room.roomName}"></h3></a>
+                                                <a th:href="@{/house/}+${room.houseName}+'/room/'+${room.roomId}"><h3 th:text="${room.roomName}"></h3></a>
                                                 <figure class="location" th:text="${room.houseName}"></figure>
                                                 <figure style="font-weight: bold; color: red" th:with="formattedPrice=${#numbers.formatDecimal(room.price, 0, 'COMMA', 0, 'POINT')}"> <span th:text="${formattedPrice + ' VND'}"></span> </figure>
                                             </div>

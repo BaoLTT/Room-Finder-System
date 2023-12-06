@@ -4,6 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+
     <list default="true" id="1e0562a2-7ad5-40d8-bd96-2e66b43cd15f" name="Changes" comment="update fix loi">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/admin/AdminManageRoomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/admin/AdminManageRoomController.java" afterDir="false" />
@@ -12,6 +13,7 @@
       <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/ServiceDetailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/ServiceDetailService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/impl/ServiceDetailServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/impl/ServiceDetailServiceImpl.java" afterDir="false" />
     </list>
+
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -31,7 +33,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="BinhNH" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -88,7 +90,7 @@
       <recent name="com.roomfindingsystem.entity" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Spring Boot.Main">
     <configuration name="ReportRepositoryTest.testGetReportEntityByUidWithValidInput" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RoomFindingSystem" />
       <extension name="coverage">
@@ -137,22 +139,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RoomServiceTest.testViewRoomInHouseWithEmptyResult" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="RoomFindingSystem" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.roomfindingsystem.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.roomfindingsystem.service" />
-      <option name="MAIN_CLASS_NAME" value="com.roomfindingsystem.service.RoomServiceTest" />
-      <option name="METHOD_NAME" value="testViewRoomInHouseWithEmptyResult" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="RoomServiceTest.testViewRoomInHouseWithValidInput" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RoomFindingSystem" />
       <extension name="coverage">
@@ -169,28 +155,26 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="Main" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="RoomFindingSystem" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.roomfindingsystem.Main" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.roomfindingsystem.repository.*" />
+          <option name="PATTERN" value="com.roomfindingsystem.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.roomfindingsystem.repository" />
-      <option name="MAIN_CLASS_NAME" value="com.roomfindingsystem.repository.UserServiceTest" />
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Spring Boot.Main" />
         <item itemvalue="JUnit.ReportRepositoryTest.testGetReportEntityByUidWithValidInput" />
         <item itemvalue="JUnit.RoomRepositoryTest.testViewRoomInHouseWithEmptyResult" />
         <item itemvalue="JUnit.RoomRepositoryTest.testViewRoomInHouseWithValidInput" />
         <item itemvalue="JUnit.RoomServiceTest.testViewRoomInHouseWithValidInput" />
-        <item itemvalue="JUnit.RoomServiceTest.testViewRoomInHouseWithEmptyResult" />
       </list>
     </recent_temporary>
   </component>
