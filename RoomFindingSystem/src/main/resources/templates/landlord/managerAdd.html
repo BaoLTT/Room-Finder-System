@@ -64,7 +64,8 @@
                             <div class="col-md-7">
                                 <div class="form-group">
                                     <label for="form-submit-title">Tên trọ<em>*</em></label>
-                                    <input type="text" class="form-control" id="form-submit-title" name="houseName" placeholder="Tên trọ..." required="" th:field="*{houseName}">
+                                    <input type="text" class="form-control" id="form-submit-title" name="houseName" placeholder="Tên trọ..." required=""
+                                           pattern="^[a-zA-Z0-9xyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđÁÂĐ]+$" th:field="*{houseName}">
                                 </div>
                                 <!--end form-group-->
                             </div>
@@ -85,7 +86,7 @@
                             <div class="col-md-7">
                                 <div class="form-group">
                                     <label for="form-submit-description">Ghi chú<em>*</em></label>
-                                    <textarea class="form-control" id="form-submit-description" rows="5" name="description" required="" placeholder="Ghi chú..." th:field="*{description}" >
+                                    <textarea class="form-control" id="form-submit-description" rows="5" name="description" placeholder="Ghi chú..." th:field="*{description}" >
                                     </textarea>
                                 </div>
                                 <!--end form-group-->
@@ -102,7 +103,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="addressDetail">Địa chỉ cụ thể<em>*</em></label>
-                                    <input type="text" class="form-control" id="addressDetail" name="addressDetail" placeholder="Địa chỉ cụ thể..." required="" th:filed="*{addressDetail}">
+                                    <input type="text" class="form-control" id="addressDetail" name="addressDetail" placeholder="Địa chỉ cụ thể..." required=""
+                                           pattern="^[a-zA-Z0-9xyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđÁÂĐ]+$" th:filed="*{addressDetail}">
                                 </div>
 
                                 <div class="form-group">
