@@ -79,7 +79,7 @@
                                 <div class="form-group">
                                     <label>Chủ đề</label>
                                         <input type="text" class="form-control" name="title" required
-                                           placeholder="Type something" />
+                                           placeholder="Vui lòng nhập chủ đề.." />
                                     <div>
 
                                     </div>
@@ -88,7 +88,7 @@
                                 <div class="form-group">
                                     <label>Nội dung</label>
                                     <div >
-                                        <textarea class="form-control" rows="15" name="content"  ></textarea>
+                                        <textarea class="form-control" rows="15" name="content" required placeholder="Vui lòng nhập nội dung..."  ></textarea>
                                     </div>
                                 </div>
 
@@ -114,14 +114,14 @@
                                 </div>
                                 <div class="form-group mb-0">
                                     <div>
-                                        <button type="submit" class="btn btn-gradient waves-effect waves-light">
+                                        <button type="submit" class="btn btn-gradient waves-effect waves-light" style="border-radius: 5px">
                                             Tạo mới
                                         </button>
 <!--                                        <button  th:href="@{/admin/newsList}" class="btn btn-gradient waves-effect waves-classic" style="background-color: red">-->
 <!--                                            Đóng-->
 <!--                                        </button>-->
-                                        <button type="reset" class="btn btn-gradient waves-effect waves-classic" style="background-color: red">
-                                            <a th:href="@{/admin/newsList}"> Đóng</a>
+                                        <button type="reset" class="btn btn-light waves-effect ml-1">
+                                            <a th:href="@{/admin/newsList}" style="border-radius: 5px"> Đóng</a>
                                         </button>
                                     </div>
                                 </div>
@@ -288,6 +288,29 @@
 
         // Đặt giá trị trống cho input file để đảm bảo sự kiện change được kích hoạt khi chọn lại cùng một tệp
         $('#fileInput').val('');
+    });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script>
+    document.getElementById('myForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        Swal.fire({
+            title: 'Bạn có chắc chắn muốn lưu không?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3ec396',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Lưu',
+            cancelButtonText: 'Hủy bỏ'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Manually submit the form
+                event.target.submit();
+                Swal.fire('Lưu thành công!', '', 'success');
+            }
+        });
     });
 </script>
 </body>

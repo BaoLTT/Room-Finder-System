@@ -55,7 +55,7 @@ public class  AdminDashboardController {
         model.addAttribute("roomStatusDto", roomService.getRoomStatusInAdminDashboard());
 
         List<Integer> statusList = new ArrayList<>();
-        statusList.add(1);  statusList.add(2);  statusList.add(3);
+        statusList.add(1);  statusList.add(0);
 
         model.addAttribute("statusList", statusList);
 
@@ -69,9 +69,9 @@ public class  AdminDashboardController {
             int statusId = 1;
             if(Objects.equals(status, "Còn trống")) {
                 statusId = 1;
-            } else if (Objects.equals(status, "Đã có người ở")) {
-                statusId = 2;
-            } else if (Objects.equals(status, "Tìm người ở ghép")) statusId = 3;
+            } else if (Objects.equals(status, "Hết phòng")) {
+                statusId = 0;
+            }
             roomService.updateStatusDate(roomId, statusId);
         } catch (Exception e) {
             // Xử lý lỗi ở đây, ví dụ:

@@ -33,9 +33,9 @@ public class NewsServiceImpl implements NewsService {
 
     }
 
-    @Override
-    public List<NewsEntity> viewAll() {
-        return newsRepository.findAll();
+
+    public List<NewsEntity> viewAllInAdmin() {
+        return newsRepository.findAllInAdmin();
     }
 
     @Override

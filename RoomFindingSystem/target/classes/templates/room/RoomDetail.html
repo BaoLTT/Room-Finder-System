@@ -50,8 +50,9 @@
     <div id="page-content">
         <div class="container">
             <ol class="breadcrumb">
-                <li><a th:href="@{/}" style="color: #3ec396">Trang chủ</a></li>
-                <li><a th:href="@{/detail?id=}+${house.houseId}" style="color: #3ec396"><span th:text="${house.getHouseName()}"></span></a></li>
+
+                <li><a th:href="@{/}">Trang chủ</a></li>
+                <li><a th:href="@{/house/}+${house.houseName}+'?id='+${house.houseId}"><span th:text="${house.getHouseName()}"></span></a></li>
                 <li class="active">Phòng trọ</li>
             </ol>
             <!--end breadcrumb-->

@@ -46,7 +46,9 @@ public interface RoomRepository extends JpaRepository<RoomEntity, Integer> {
             "            LEFT JOIN province p ON a.provinceid = p.provinceid \n" +
             "            LEFT JOIN district d ON a.districtid = d.districtid \n" +
             "            LEFT JOIN ward w ON a.wardid = w.wardid \n" +
-            "\t\t\tGROUP BY r.roomid, r.room_name, h.house_name , t.type_name, r.price, a.address_details, r.area LIMIT 8 OFFSET 0", nativeQuery = true)
+            "            WHERE r.statusid = 1" +
+            "\t\t\tGROUP BY r.roomid, r.room_name, h.house_name , t.type_name, r.price, a.address_details, r.area ORDER BY\n" +
+            "    RAND() LIMIT 8 OFFSET 0", nativeQuery = true)
     List<Tuple> viewRoomInHome();
 
 

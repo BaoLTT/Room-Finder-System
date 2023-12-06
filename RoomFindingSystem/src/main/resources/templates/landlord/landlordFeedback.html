@@ -67,10 +67,14 @@
     <!-- ============================================================== -->
 
     <div class="page-content">
-        <div class="container">
+        <div class="container" >
 
             <!-- Start Content-->
             <div class="main-content">
+                <ol class="breadcrumb">
+                    <li><a th:href="@{/manager}">Quản lý phòng trọ</a></li>
+                    <li style="margin-left: 5px;">/ Danh sách đánh giá</li>
+                </ol>
                 <div class="row">
                     <div class="col-12">
                         <div class="card-box table-responsive">
@@ -86,7 +90,7 @@
                                     <div class="col-md-3"></div>
                                     <div class="col-md-3 fil">
                                         <span>Nhà trọ: </span>
-                                        <select id="houseIdSelect" name="houseId" >
+                                        <select id="houseIdSelect" name="houseId" style="padding: 5px">
                                             <div th:each = "house : ${listHouse}">
                                                 <option th:text = "${house.getHouseName()}" th:value="${house.getHouseId()}" th:selected="${house.getHouseId()==houseId}"></option>
                                             </div>
@@ -94,7 +98,7 @@
                                     </div>
                                     <div class="col-md-3 fil">
                                         <span>Số sao: </span>
-                                        <select id="starSelect" name="star">
+                                        <select id="starSelect" name="star" style="padding: 5px">
                                             <option value="0">Tất cả</option>
                                             <option value="1" th:selected="${star==1}">1 sao</option>
                                             <option value="2" th:selected="${star==2}">2 sao</option>
@@ -105,7 +109,7 @@
                                     </div>
                                     <div class="col-md-3 fil">
                                         <span>Lọc theo trạng thái: </span>
-                                        <select id="statusSelect" name="status">
+                                        <select id="statusSelect" name="status" style="padding: 5px">
                                             <option value="true,false">Tất cả</option>
                                             <option value="true" th:selected="${status!=null && !status.contains(false)}">Hiển thị</option>
                                             <option value="false" th:selected="${status!=null && !status.contains(true)}">Tạm ẩn</option>
@@ -114,8 +118,7 @@
                                 </div>
                                 <!-- Loại bỏ button type="submit" và thêm sự kiện onClick -->
                                 <div class="text-right" style="text-align: right; margin-right: 10px; margin-bottom: 5px">
-                                    <button type="submit" class="btn btn-danger waves-light waves-effect width-md" style="background-color: #3EC396; border-color:
-                                    #3EC396">Tìm kiếm</button>
+                                    <button type="submit" class="btn btn-danger waves-light waves-effect width-md" style="background-color: #3EC396; border-color:#3EC396;margin-top: 10px;border-radius: 5px">Tìm kiếm</button>
                                 </div>
                             </form>
                             <table id="datatable-buttons"

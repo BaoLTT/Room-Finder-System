@@ -1,4 +1,4 @@
-package com.example.roomfindingsystem.service;
+package com.roomfindingsystem.service;
 
 import com.roomfindingsystem.dto.RoomDto;
 import com.roomfindingsystem.entity.RoomEntity;
@@ -26,7 +26,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class RoomServiceTest {
+public class RoomTest {
     @Mock
     private UserRepository userRepository;
 

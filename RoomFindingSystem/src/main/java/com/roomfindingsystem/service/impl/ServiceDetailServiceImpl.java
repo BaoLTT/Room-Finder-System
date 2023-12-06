@@ -8,6 +8,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ServiceDetailServiceImpl implements ServiceDetailService {
@@ -34,8 +35,21 @@ public class ServiceDetailServiceImpl implements ServiceDetailService {
         return serviceDetailRepository.findAll();
     }
 
+
+
     @Override
     public void save(ServiceDetailEntity serviceDetailEntity) {
         serviceDetailRepository.save(serviceDetailEntity);
+    }
+
+    @Override
+    public List<ServiceDetailEntity> getServiceExceptHouseService(int houseId) {
+        List<ServiceDetailEntity> entityList = serviceDetailRepository.findAll();
+        List<String> stringList = serviceDetailRepository.getServiceNameByHouseId(houseId);
+
+        List<ServiceDetailEntity> filteredEntities = entityList.stream()
+                                .filter(entity -> !stringList.contains(entity.getServiceName()))
+                                .toList();
+        return filteredEntities;
     }
 }

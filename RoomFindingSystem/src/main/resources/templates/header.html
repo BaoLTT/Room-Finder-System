@@ -44,7 +44,7 @@
 
                         <li class="dropdown notification-list list-unstyled">
                             <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown" th:href="@{/profile}" role="button" aria-haspopup="false" aria-expanded="false">
-                                <img class="round-image" th:src="${session.user.getImageLink()}" style=" max-width: 25px;max-height: 25px; "  >
+                                <img class="round-image" th:src="'https://storage.googleapis.com'+${session.user.getImageLink()}" style=" max-width: 25px;max-height: 25px; "  >
                                 <span class="ml-1" th:text="${session.user.lastName+' '+session.user.firstName}"></span>
 
                             </a>
