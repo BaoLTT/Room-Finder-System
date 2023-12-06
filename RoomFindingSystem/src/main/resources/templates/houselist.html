@@ -72,9 +72,9 @@
                             <form id="form-filter" class="labels-uppercase" method="get"
                                   th:action="@{/houselist(page=1, houseName=${houseName})}">
                                 <div class="form-group">
-                                    <label>Nhập thông tin tìm kiếm</label>
+
                                     <input type="text" class="form-control" name="houseName" th:value="${houseName}"
-                                           id="houseName" placeholder="Nhập thông tin...">
+                                           id="houseName" placeholder="Nhập thông tin tìm kiếm...">
                                 </div>
                                 <!--end form-group-->
 
@@ -141,7 +141,7 @@
                                         </section>
                                         <!--end section-->
                                         <section>
-                                            <h3>Tiện ích</h3>
+                                            <h3>Dịch vụ</h3>
                                             <ul class="checkboxes no-bottom-margin" id="servicesList">
                                                 <!-- Chỉ hiển thị 4 dịch vụ ban đầu -->
                                                 <li th:each="listAllService, iterStat : ${listAllService}" th:if="${iterStat.index < 4}">
