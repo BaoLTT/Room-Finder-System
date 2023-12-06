@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1e0562a2-7ad5-40d8-bd96-2e66b43cd15f" name="Changes" comment="update house detail">
+    <list default="true" id="1e0562a2-7ad5-40d8-bd96-2e66b43cd15f" name="Changes" comment="update pop-up thong bao cho slider">
+      <change afterPath="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/roomfindingsystem/controller/HouseControllerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/admin/edit_news.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/admin/edit_news.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/admin/insert_news.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/admin/insert_news.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/housedetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/housedetail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/roomfindingsystem/controller/HouseDetailControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/roomfindingsystem/controller/HouseDetailControllerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,91 +86,93 @@
       <recent name="com.roomfindingsystem.entity" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.Main">
-    <configuration name="ReportRepositoryTest.testGetReportEntityByUidWithValidInput" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager">
+    <configuration name="HouseControllerTest.testGetAllHouse" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RoomFindingSystem" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.roomfindingsystem.repository.*" />
+          <option name="PATTERN" value="com.roomfindingsystem.controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.roomfindingsystem.repository" />
-      <option name="MAIN_CLASS_NAME" value="com.roomfindingsystem.repository.ReportRepositoryTest" />
-      <option name="METHOD_NAME" value="testGetReportEntityByUidWithValidInput" />
+      <option name="PACKAGE_NAME" value="com.roomfindingsystem.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.roomfindingsystem.controller.HouseControllerTest" />
+      <option name="METHOD_NAME" value="testGetAllHouse" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RoomRepositoryTest.testViewRoomInHouseWithEmptyResult" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="HouseDetailControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RoomFindingSystem" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.roomfindingsystem.repository.*" />
+          <option name="PATTERN" value="com.roomfindingsystem.controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.roomfindingsystem.repository" />
-      <option name="MAIN_CLASS_NAME" value="com.roomfindingsystem.repository.RoomRepositoryTest" />
-      <option name="METHOD_NAME" value="testViewRoomInHouseWithEmptyResult" />
+      <option name="PACKAGE_NAME" value="com.roomfindingsystem.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.roomfindingsystem.controller.HouseDetailControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HouseDetailControllerTest.testGetAllHouse" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="RoomFindingSystem" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.roomfindingsystem.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.roomfindingsystem.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.roomfindingsystem.controller.HouseDetailControllerTest" />
+      <option name="METHOD_NAME" value="testGetAllHouse" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RoomRepositoryTest.testViewRoomInHouseWithValidInput" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="UserRegisterControllerTest.testSave_ValidUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RoomFindingSystem" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.roomfindingsystem.repository.*" />
+          <option name="PATTERN" value="com.roomfindingsystem.controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.roomfindingsystem.repository" />
-      <option name="MAIN_CLASS_NAME" value="com.roomfindingsystem.repository.RoomRepositoryTest" />
-      <option name="METHOD_NAME" value="testViewRoomInHouseWithValidInput" />
+      <option name="PACKAGE_NAME" value="com.roomfindingsystem.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.roomfindingsystem.controller.UserRegisterControllerTest" />
+      <option name="METHOD_NAME" value="testSave_ValidUser" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RoomServiceTest.testViewRoomInHouseWithValidInput" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="YourControllerTest.testGetAllHouse" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RoomFindingSystem" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.roomfindingsystem.service.*" />
+          <option name="PATTERN" value="com.roomfindingsystem.controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.roomfindingsystem.service" />
-      <option name="MAIN_CLASS_NAME" value="com.roomfindingsystem.service.RoomServiceTest" />
-      <option name="METHOD_NAME" value="testViewRoomInHouseWithValidInput" />
+      <option name="PACKAGE_NAME" value="com.roomfindingsystem.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.roomfindingsystem.controller.YourControllerTest" />
+      <option name="METHOD_NAME" value="testGetAllHouse" />
       <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Main" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <module name="RoomFindingSystem" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.roomfindingsystem.Main" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.roomfindingsystem.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.Main" />
-        <item itemvalue="JUnit.ReportRepositoryTest.testGetReportEntityByUidWithValidInput" />
-        <item itemvalue="JUnit.RoomRepositoryTest.testViewRoomInHouseWithEmptyResult" />
-        <item itemvalue="JUnit.RoomRepositoryTest.testViewRoomInHouseWithValidInput" />
-        <item itemvalue="JUnit.RoomServiceTest.testViewRoomInHouseWithValidInput" />
+        <item itemvalue="JUnit.HouseDetailControllerTest.testGetAllHouse" />
+        <item itemvalue="JUnit.HouseDetailControllerTest" />
+        <item itemvalue="JUnit.YourControllerTest.testGetAllHouse" />
+        <item itemvalue="JUnit.HouseControllerTest.testGetAllHouse" />
+        <item itemvalue="JUnit.UserRegisterControllerTest.testSave_ValidUser" />
       </list>
     </recent_temporary>
   </component>
@@ -221,7 +224,8 @@
       <workItem from="1701772494187" duration="7118000" />
       <workItem from="1701789288232" duration="8451000" />
       <workItem from="1701798573197" duration="19000" />
-      <workItem from="1701859241364" duration="10756000" />
+      <workItem from="1701859241364" duration="19463000" />
+      <workItem from="1701884655507" duration="1788000" />
     </task>
     <task id="LOCAL-00002" summary="update lai">
       <option name="closed" value="true" />
@@ -407,7 +411,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701867119647</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="update pop-up thong bao cho slider">
+      <option name="closed" value="true" />
+      <created>1701875866406</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1701875866406</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -425,7 +437,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update report admin" />
     <MESSAGE value="update map" />
     <MESSAGE value="update lai" />
     <MESSAGE value="update lai phan house detail" />
@@ -450,7 +461,8 @@
     <MESSAGE value="update fix loi" />
     <MESSAGE value="update fix add service" />
     <MESSAGE value="update house detail" />
-    <option name="LAST_COMMIT_MESSAGE" value="update house detail" />
+    <MESSAGE value="update pop-up thong bao cho slider" />
+    <option name="LAST_COMMIT_MESSAGE" value="update pop-up thong bao cho slider" />
   </component>
   <component name="com.github.evgenys91.machinet.common.dslhistory.DslHistoryState">
     <option name="historyDtoById">
