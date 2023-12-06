@@ -4,10 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1e0562a2-7ad5-40d8-bd96-2e66b43cd15f" name="Changes" comment="update house detail">
+    <list default="true" id="1e0562a2-7ad5-40d8-bd96-2e66b43cd15f" name="Changes" comment="update chinh homepage">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/admin/edit_news.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/admin/edit_news.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/admin/insert_news.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/admin/insert_news.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/config/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/config/SecurityConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/RoomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/RoomController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/room/RoomDetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/room/RoomDetail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/target/classes/templates/room/RoomDetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/target/classes/templates/room/RoomDetail.html" afterDir="false" />
+    </list>
+    <list default="true" id="1e0562a2-7ad5-40d8-bd96-2e66b43cd15f" name="Changes" comment="update slider =&gt; news, sua duoc phan admin">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/repository/NewsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/repository/NewsRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/admin/adminDashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/admin/adminDashboard.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,7 +35,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="BinhNH" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -61,7 +68,6 @@
     &quot;com.google.cloudcode.ide_session_index&quot;: &quot;20231203_0002&quot;,
     &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;BaoLTT&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Intellij project/Room-Finding-System/RoomFindingSystem/src/main/resources/static/assets/img&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
@@ -75,9 +81,6 @@
   }
 }</component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Intellij project\Room-Finding-System\RoomFindingSystem\src\main\resources\static\assets\img" />
-    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.roomfindingsystem.repository" />
     </key>
@@ -86,22 +89,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Spring Boot.Main">
-    <configuration name="ReportRepositoryTest.testGetReportEntityByUidWithValidInput" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="RoomFindingSystem" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.roomfindingsystem.repository.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.roomfindingsystem.repository" />
-      <option name="MAIN_CLASS_NAME" value="com.roomfindingsystem.repository.ReportRepositoryTest" />
-      <option name="METHOD_NAME" value="testGetReportEntityByUidWithValidInput" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="RoomRepositoryTest.testViewRoomInHouseWithEmptyResult" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RoomFindingSystem" />
       <extension name="coverage">
@@ -134,6 +121,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="RoomServiceTest.testViewRoomInHouseWithEmptyResult" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="RoomFindingSystem" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.roomfindingsystem.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.roomfindingsystem.service" />
+      <option name="MAIN_CLASS_NAME" value="com.roomfindingsystem.service.RoomServiceTest" />
+      <option name="METHOD_NAME" value="testViewRoomInHouseWithEmptyResult" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="RoomServiceTest.testViewRoomInHouseWithValidInput" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RoomFindingSystem" />
       <extension name="coverage">
@@ -151,6 +154,7 @@
       </method>
     </configuration>
     <configuration name="Main" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="RoomFindingSystem" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.roomfindingsystem.Main" />
       <extension name="coverage">
@@ -166,10 +170,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.Main" />
-        <item itemvalue="JUnit.ReportRepositoryTest.testGetReportEntityByUidWithValidInput" />
         <item itemvalue="JUnit.RoomRepositoryTest.testViewRoomInHouseWithEmptyResult" />
         <item itemvalue="JUnit.RoomRepositoryTest.testViewRoomInHouseWithValidInput" />
         <item itemvalue="JUnit.RoomServiceTest.testViewRoomInHouseWithValidInput" />
+        <item itemvalue="JUnit.RoomServiceTest.testViewRoomInHouseWithEmptyResult" />
       </list>
     </recent_temporary>
   </component>
@@ -217,11 +221,12 @@
       <workItem from="1701621705825" duration="3415000" />
       <workItem from="1701643945197" duration="1101000" />
       <workItem from="1701681764611" duration="10994000" />
+      <workItem from="1701695349349" duration="20366000" />
+      <workItem from="1701775219554" duration="3775000" />
+      <workItem from="1701789912783" duration="7308000" />
+      <workItem from="1701848584119" duration="13095000" />
       <workItem from="1701695349349" duration="20660000" />
       <workItem from="1701772494187" duration="7118000" />
-      <workItem from="1701789288232" duration="8451000" />
-      <workItem from="1701798573197" duration="19000" />
-      <workItem from="1701859241364" duration="10756000" />
     </task>
     <task id="LOCAL-00002" summary="update lai">
       <option name="closed" value="true" />
@@ -375,39 +380,7 @@
       <option name="project" value="LOCAL" />
       <updated>1701779206090</updated>
     </task>
-    <task id="LOCAL-00021" summary="update fix loi">
-      <option name="closed" value="true" />
-      <created>1701796478015</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1701796478015</updated>
-    </task>
-    <task id="LOCAL-00022" summary="update fix loi">
-      <option name="closed" value="true" />
-      <created>1701796523008</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1701796523008</updated>
-    </task>
-    <task id="LOCAL-00023" summary="update fix add service">
-      <option name="closed" value="true" />
-      <created>1701865819041</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1701865819041</updated>
-    </task>
-    <task id="LOCAL-00024" summary="update house detail">
-      <option name="closed" value="true" />
-      <created>1701867119647</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1701867119647</updated>
-    </task>
-    <option name="localTasksCounter" value="25" />
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -425,6 +398,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="update lai homepage" />
     <MESSAGE value="update report admin" />
     <MESSAGE value="update map" />
     <MESSAGE value="update lai" />
@@ -446,11 +420,7 @@
     <MESSAGE value="update test for user controller" />
     <MESSAGE value="update slider =&gt; news, sua duoc phan user" />
     <MESSAGE value="update slider =&gt; news, sua duoc phan admin" />
-    <MESSAGE value="sua phan news" />
-    <MESSAGE value="update fix loi" />
-    <MESSAGE value="update fix add service" />
-    <MESSAGE value="update house detail" />
-    <option name="LAST_COMMIT_MESSAGE" value="update house detail" />
+    <option name="LAST_COMMIT_MESSAGE" value="update slider =&gt; news, sua duoc phan admin" />
   </component>
   <component name="com.github.evgenys91.machinet.common.dslhistory.DslHistoryState">
     <option name="historyDtoById">
