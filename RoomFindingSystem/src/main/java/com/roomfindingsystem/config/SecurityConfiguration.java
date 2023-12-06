@@ -120,7 +120,10 @@ public class SecurityConfiguration {
                                 "/room/**", "/assets/**", "/houselist","roomList","/detail", "/slider/**", "/loginAfterAddInfo").permitAll()
                         .requestMatchers("/admin/**", "/test").hasAnyRole("ADMIN", "SUPER_ADMIN")
                         .requestMatchers("/landlord/**").hasAnyRole("LANDLORD", "SUPER_ADMIN")
-                        .anyRequest().authenticated());
+                        .anyRequest().authenticated())
+                .exceptionHandling(e -> e
+                        .accessDeniedPage("/403")); // Chuyển hướng đến trang 403.html khi không có quyền
+        ;
         return http.build();
     }
 
