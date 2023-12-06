@@ -44,7 +44,7 @@ public class AdminManageRoomController {
         RoomDto roomDto = roomService.findById(id);
         model.addAttribute("room", roomDto);
         model.addAttribute("types", roomTypeService.findAll());
-        model.addAttribute("listService", serviceDetailService.getAllService());
+        model.addAttribute("listService", serviceDetailService.getServiceExceptHouseService(roomDto.getHouseId()));
         model.addAttribute("listChecked", roomDto.getServices());
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         UserEntity user = userService.findByEmail(email).get();

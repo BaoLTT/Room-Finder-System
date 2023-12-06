@@ -116,7 +116,9 @@ public class SecurityConfiguration {
                     }))
                 .authorizeHttpRequests(at ->at.requestMatchers("/login/**", "/login-google", "/","/register","/save","re-send",
                                 "recover","send-otp-recover","otp-check","confirm-otp","send-otp-recover","confirm-otp-recover",
-                                "save-new-password","detail","change-password","save-change-password","feedback-list", "/**",
+                               "save-new-password","detail","change-password","save-change-password","feedback-list","house/**",
+
+
                                 "/room/**", "/assets/**", "/houselist","roomList","/detail", "/slider/**", "/loginAfterAddInfo").permitAll()
                         .requestMatchers("/admin/**", "/test").hasAnyRole("ADMIN", "SUPER_ADMIN")
                         .requestMatchers("/landlord/**").hasAnyRole("LANDLORD", "SUPER_ADMIN")
