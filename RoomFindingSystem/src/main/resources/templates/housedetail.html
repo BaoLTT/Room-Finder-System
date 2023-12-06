@@ -95,6 +95,19 @@
             font-family: 'Arial', sans-serif;
         }
     </style>
+    <style>
+        div.wrapper ul {
+            position: sticky;
+            top: 0;
+            padding: 10px;
+            /*font-size: 10px;*/
+        }
+        .sidebar {
+            position: absolute;
+            top: 0;
+        }
+
+    </style>
 
     <title>Xem chi tiết nhà trọ</title>
 
@@ -115,7 +128,7 @@
             </ol>
             <!--end breadcrumb-->
             <div class="row">
-                <div class="col-md-3 col-sm-4">
+                <div class=" col-md-3 col-sm-4">
                     <div class="sidebar">
                         <div class="box filter">
 
@@ -288,6 +301,25 @@
                             <!--end weather-->
                         </div>
                         <!--end box-->
+                        <aside class="box">
+                            <h3><strong> Loại nhà trọ:</strong></h3>
+                            <dl th:text="${HousesEntity.typeName}">
+
+                            </dl>
+                        </aside>
+                        <aside class="box">
+                            <h3><strong> Địa Chỉ Nhà Trọ:</strong></h3>
+                            <dl th:text="${HousesEntity.addressDetail+', '+HousesEntity.ward+','+HousesEntity.district+', '+HousesEntity.province}">
+                            </dl>
+                            <!--                                        <dl th:text="${HousesEntity.addressDetail}"></dl>-->
+                            <!--                                        <p>Xã: </p>-->
+                            <!--                                        <dl th:text="${HousesEntity.ward}"></dl>-->
+                            <!--                                        <p>Huyện: </p>-->
+                            <!--                                        <dl th:text="${HousesEntity.district}"></dl>-->
+                            <!--                                        <p>(Thành Phố / Tỉnh)</p>-->
+                            <!--                                        <dl th:text="${HousesEntity.province}">-->
+                            <!--                                        </dl>-->
+                        </aside>
                         <!--                        <a href="#" class="advertising-banner">-->
                         <!--                            <span class="banner-badge">Advertising</span>-->
                         <!--                            <img src="assets/img/ad-banner-02.jpg" alt="">-->
@@ -479,7 +511,7 @@
                         <!--                        <p th:text="${HousesEntity.houseImagesEntities}"></p>-->
                         <!--                        <img th:src="${HousesEntity.houseImagesEntities}" alt="">-->
                         <div class="row" th:object="${HousesEntity}">
-                            <div class="col-md-8">
+                            <div class="col-md-12" >
                                 <section id="description">
                                     <h3 style="color: rgba(31, 31, 31, 0.8);" th:text="${HousesEntity.description}">
                                         Spend Great Time in Our Hotel!</h3>
@@ -516,7 +548,7 @@
                                         <div id="map-item" class="map height-300 box"></div>
                                         <input id="latitude" type="hidden" th:value="${houseLocation.latitude}">
                                         <input id="longitude" type="hidden" th:value="${houseLocation.longitude}">
-                                        <button type="button" class="btn btn-primary btn-rounded scroll"
+                                        <button type="button" class="btn btn-primary btn-rounded scroll" style="margin-top: 20px;border-radius: 5px;"
                                                 onclick="showDirections()">Chỉ đường
                                         </button>
 
@@ -525,27 +557,27 @@
 
                             </div>
                             <!--end col-md-8-->
-                            <div class="col-md-4">
+                            <div class="col-md-0">
                                 <div class="sidebar">
-                                    <aside class="box">
-                                        <h3><strong> Loại nhà trọ:</strong></h3>
-                                        <dl th:text="${HousesEntity.typeName}">
+<!--                                    <aside class="box">-->
+<!--                                        <h3><strong> Loại nhà trọ:</strong></h3>-->
+<!--                                        <dl th:text="${HousesEntity.typeName}">-->
 
-                                        </dl>
-                                    </aside>
-                                    <aside class="box">
-                                        <h3><strong> Địa Chỉ Nhà Trọ:</strong></h3>
-                                        <dl th:text="${HousesEntity.addressDetail+', '+HousesEntity.ward+','+HousesEntity.district+', '+HousesEntity.province}">
-                                        </dl>
-<!--                                        <dl th:text="${HousesEntity.addressDetail}"></dl>-->
-<!--                                        <p>Xã: </p>-->
-<!--                                        <dl th:text="${HousesEntity.ward}"></dl>-->
-<!--                                        <p>Huyện: </p>-->
-<!--                                        <dl th:text="${HousesEntity.district}"></dl>-->
-<!--                                        <p>(Thành Phố / Tỉnh)</p>-->
-<!--                                        <dl th:text="${HousesEntity.province}">-->
 <!--                                        </dl>-->
-                                    </aside>
+<!--                                    </aside>-->
+<!--                                    <aside class="box">-->
+<!--                                        <h3><strong> Địa Chỉ Nhà Trọ:</strong></h3>-->
+<!--                                        <dl th:text="${HousesEntity.addressDetail+', '+HousesEntity.ward+','+HousesEntity.district+', '+HousesEntity.province}">-->
+<!--                                        </dl>-->
+<!--&lt;!&ndash;                                        <dl th:text="${HousesEntity.addressDetail}"></dl>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <p>Xã: </p>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <dl th:text="${HousesEntity.ward}"></dl>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <p>Huyện: </p>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <dl th:text="${HousesEntity.district}"></dl>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <p>(Thành Phố / Tỉnh)</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <dl th:text="${HousesEntity.province}">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        </dl>&ndash;&gt;-->
+<!--                                    </aside>-->
 
                                 </div>
                                 <!--end sidebar-->
@@ -554,9 +586,9 @@
                         </div>
                         <!--end row-->
                         <section>
-                            <div><h2 style="display: inline-block ">Tại sao chọn</h2>  <strong><u><h2
-                                    style="display: inline-block " th:text="${HousesEntity.houseName}"></h2>
-                            </u></strong></div>
+<!--                            <div><h2 style="display: inline-block ">Tại sao chọn</h2>  <strong><u><h2-->
+<!--                                    style="display: inline-block " th:text="${HousesEntity.houseName}"></h2>-->
+<!--                            </u></strong></div>-->
                             <div class="row">
                                 <div class="col-md-4 col-sm-4">
                                     <div class="feature">
