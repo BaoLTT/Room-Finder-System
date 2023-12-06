@@ -208,7 +208,7 @@
                                                                     class="fa fa-thumbs-up"></i></a>
 
                                 <div class="image" >
-                                    <a th:href="@{/}+${houses.houseName}+'?id='+${houses.houseID}" class="wrapper">
+                                    <a th:href="@{/house/}+${houses.houseName}+'?id='+${houses.houseID}" class="wrapper">
                                         <div class="gallery">
                                             <img style="width: 273px; height: 208px;" th:each="image, iterStat : ${houses.listImage}" th:src="'https://storage.googleapis.com'+${image.imageLink}"  alt="Ảnh">
                                         </div>
@@ -239,7 +239,7 @@
                                 <!--end meta-->
                                 <div class="info">
 
-                                    <a th:href="@{/}+${houses.houseName}+'?id='+${houses.houseID}"><h3 style="display: block;text-transform: uppercase"
+                                    <a th:href="@{/house/}+${houses.houseName}+'?id='+${houses.houseID}"><h3 style="display: block;text-transform: uppercase"
                                                                                       th:text="${houses.houseName}">
                                         Spring Hotel</h3></a>
 
@@ -293,7 +293,7 @@
                                     <div class="price-info"  th:with="formattedPrice=${#numbers.formatDecimal(houses.price, 0, 'COMMA', 0, 'POINT')}">Từ<span class="price" style="color: red" th:text="${formattedPrice + ' VND'}" ></span>
                                         <span class="appendix">/tháng</span></div>
 
-                                    <a th:href="@{/}+${houses.houseName}+'?id='+${houses.houseID}"
+                                    <a th:href="@{/house/}+${houses.houseName}+'?id='+${houses.houseID}"
                                        class="btn btn-rounded btn-default btn-framed btn-small">Xem chi tiết</a>
                                 </div>
                                 <!--end info-->
