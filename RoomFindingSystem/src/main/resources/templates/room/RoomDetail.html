@@ -40,7 +40,7 @@
         <div class="container">
             <ol class="breadcrumb">
                 <li><a th:href="@{/}">Trang chủ</a></li>
-                <li><a th:href="@{/detail?id=}+${house.houseId}">Nhà trọ</a></li>
+                <li><a th:href="@{/house/}+${house.houseName}+'?id='+${house.houseId}">Nhà trọ</a></li>
                 <li class="active">Phòng trọ</li>
             </ol>
             <!--end breadcrumb-->
