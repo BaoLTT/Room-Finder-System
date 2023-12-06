@@ -230,7 +230,11 @@
                                         <h th:if="${houses.getStar() != 0}" th:text="${houses.getStar()}">a</h>
                                         <h th:if="${houses.getStar() == 0}" >Chưa có đánh giá</h>
                                     </span>
-                                    <span><i class="fa fa-bed"></i><h th:text="${houses.getCount_room()}"></h></span>
+                                    <span>
+<!--                                        <i class="fa fa-bed"></i>-->
+                                        <iconify-icon  icon="fontisto:room" th:style="${houses.getCount_room() > 0} ? 'margin-bottom: -3px;font-size:16px;margin-left:4px' : ''"></iconify-icon>
+                                        <h th:text="${houses.getCount_room()}"></h>
+                                    </span>
                                 </div>
                                 <!--end meta-->
                                 <div class="info">
