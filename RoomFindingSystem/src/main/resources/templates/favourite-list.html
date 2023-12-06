@@ -88,7 +88,7 @@
                                            data-placement="right" title="Removed from favorites list" style="background-color: white;margin: 8px"><i
                                                 style="color: #488f3e;" class="fa fa-trash"></i></a>
                                         <div class="image">
-                                            <a th:href="@{/detail?id=}+${house.houseId}" class="wrapper">
+                                            <a th:href="@{/house/}+${house.houseName}+'?id='+${house.houseId}" class="wrapper">
                                                 <div class="gallery">
                                                     <img style="width: 273px; height: 208px;"
                                                          th:each="image: ${house.listImage}" th:src="'https://storage.googleapis.com'+${image}" alt="">
@@ -105,7 +105,7 @@
 
                                             <div class="info">
                                                 <figure class="label label-info" th:text="${house.typeHouse}"></figure>
-                                                <a th:href="@{/detail?id=}+${house.houseId}"><h3
+                                                <a th:href="@{/house/}+${house.houseName}+'?id='+${house.houseId}"><h3
                                                         th:text="${house.houseName}"></h3></a>
                                                 <figure class=""
                                                         th:text="${house.addressDetail+', '+house.ward+', '+house.district+', '+house.province}"></figure>
