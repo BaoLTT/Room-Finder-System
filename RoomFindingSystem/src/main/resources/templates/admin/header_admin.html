@@ -105,8 +105,8 @@
                         </a>
                     </li>
 
-                    <li>
-                        <a th:href="@{/admin/user}">
+                    <li th:if="${session.user.getRoleId()=='SUPER_ADMIN'}">
+                        <a  th:href="@{/admin/user}">
                             <i class="dripicons-user-group"></i>
                             <span> Quản lý người dùng </span>
                         </a>

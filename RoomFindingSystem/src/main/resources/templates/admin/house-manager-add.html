@@ -17,13 +17,27 @@
     <link href="/assets_admin/css/icons.min.css" rel="stylesheet" type="text/css" />
     <link href="/assets_admin/css/app.min.css" rel="stylesheet" type="text/css" />
     <link href="/assets_admin/css/file-upload.css" rel="stylesheet" type="text/css" />
-    <link href="/assets_admin/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets_admin/libs/sweetalert2/sweetalert2.min.css" type="text/css"/>
+
+    <!-- Bootstrap CSS -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+
 
     <style>
         #map-item {
             height: 400px;
             width: 100%;
         }
+        /* Custom styles for dropdown */
+        .bootstrap-select .dropdown-menu {
+            max-height: 200px ;/* Set your preferred max height for the dropdown */
+            overflow-y: auto !important;
+        }
+
     </style>
 
 
@@ -67,12 +81,12 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div>
-                                        <form class="form-horizontal" role="form" method="post" th:action="@{/admin/house-manager/save}" th:object="${house}" enctype="multipart/form-data">
+                                        <form class="form-horizontal" role="form" id="myForm" method="post" th:action="@{/admin/house-manager/save}" th:object="${house}" enctype="multipart/form-data">
                                             <div class="form-group row">
                                                 <label class="col-md-2 col-md-form-label">Chủ trọ<em>*</em></label>
-                                                <div class="col-md-10" >
-                                                    <select class="form-control" name="landlord" th:field="*{userID}"  >
-                                                        <option th:each="listUser : ${listUser}"  th:value="${listUser.getUserId()}" th:utext="${listUser.firstName + ' '+ listUser.lastName}"/>
+                                                <div class="col-md-10">
+                                                    <select class="form-control selectpicker" name="landlord" id="landlordSelect" th:field="*{userID}" data-live-search="true">
+                                                        <option th:each="user : ${listUser}" th:value="${user.getUserId()}" th:utext="${user.getFirstName()+' '+user.getLastName()}"/>
                                                     </select>
                                                 </div>
                                             </div>
@@ -96,20 +110,20 @@
                                                 <label class="col-md-2 col-md-form-label">Địa chỉ<em>*</em> </label>
                                                 <div class="col-md" >
                                                     <label for="province">Tỉnh</label>
-                                                    <select class="form-control"  id="province" name="province" th:field="*{provinceID}">
+                                                    <select class="form-control"  id="province" name="province" th:field="*{provinceID}" required title="Vui lòng chọn tỉnh thành">
                                                         <option value="0" selected >Chọn tỉnh thành</option>
                                                     </select>
                                                 </div>
 
                                                 <div class="col-md" >
                                                     <label for="district">Huyện</label>
-                                                    <select class="form-control"  id="district" name="district" th:field="*{districtID}">
+                                                    <select class="form-control"  id="district" name="district" th:field="*{districtID}" required title="Vui lòng chọn tỉnh thành">
                                                         <option value="0" selected >Chọn huyện</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-md" >
                                                     <label for="ward">Xã/Phường</label>
-                                                    <select class="form-control"  id="ward" name="ward" th:field="*{wardID}">
+                                                    <select class="form-control"  id="ward" name="ward" th:field="*{wardID}" required title="Vui lòng chọn tỉnh thành">
                                                         <option value="0"  selected >Chọn xã/phường</option>
                                                     </select>
                                                 </div>
@@ -206,8 +220,8 @@
                                             <div class="form-group row">
                                                 <label class="col-md-2 col-md-form-label"></label>
                                                 <div class="col-md-10" >
-                                                    <button  type="submit" class="btn btn-success waves-light waves-effect width-md" style="margin-left: -10px"> <span style="color: white">Lưu</span></button>
-                                                    <a  type="button" class="btn btn-danger waves-light waves-effect width-md" href="http://localhost:8080/admin/house-manager"> <span style="color: white">Đóng</span></a>
+                                                    <button  type="submit" class="btn btn-success waves-light waves-effect width-md"  id="saveButton"  style="margin-left: -10px"> <span style="color: white">Lưu</span></button>
+                                                    <a  type="button" class="btn btn-danger waves-light waves-effect width-md" th:href="@{/admin/house-manager}"> <span style="color: white">Đóng</span></a>
 
                                                 </div>
                                             </div>
@@ -338,6 +352,43 @@
     <!-- ============================================================== -->
 
 </div>
+<!-- ... (các trường khác) ... -->
+
+<!-- ... (các trường khác) ... -->
+
+<script>
+    document.getElementById("myForm").addEventListener("submit", function (event) {
+        var selectedProvince = citis.value;
+        var selectedDistrict = districts.value;
+        var selectedWard = wards.value;
+
+        if (selectedProvince === "0" || selectedDistrict === "0" || selectedWard === "0") {
+            // Đặt thông báo lỗi cho các trường
+            citis.setCustomValidity("Vui lòng chọn giá trị hợp lệ.");
+            districts.setCustomValidity("Vui lòng chọn giá trị hợp lệ.");
+            wards.setCustomValidity("Vui lòng chọn giá trị hợp lệ.");
+
+            // Hiển thị thông báo lỗi
+            alert("Vui lòng chọn giá trị hợp lệ cho tất cả các trường!");
+
+            event.preventDefault(); // Ngăn chặn form được submit
+        }
+    });
+
+    // Xóa thông báo lỗi khi giá trị thay đổi
+    citis.addEventListener("change", function () {
+        citis.setCustomValidity("");
+    });
+
+    districts.addEventListener("change", function () {
+        districts.setCustomValidity("");
+    });
+
+    wards.addEventListener("change", function () {
+        wards.setCustomValidity("");
+    });
+</script>
+
 
 <script>
     function removeWhitespace(inputField) {
