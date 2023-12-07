@@ -1,22 +1,34 @@
-// $(document).ready(function () {
-//     // Khởi tạo DataTable cho bảng có id "datatable"
-//     $("#datatable").DataTable();
-//
-//     // Khởi tạo DataTable cho bảng có id "datatable-buttons" và cấu hình các nút
-//     $("#datatable-buttons").DataTable({
-//       lengthChange: false,
-//       buttons: ["copy", "excel", "pdf"],
-//     });
-//
-//     // Di chuyển nút xuất và sao chép vào vị trí mong muốn
-//     $("#datatable-buttons_wrapper .col-md-6:eq(0)").append(
-//       $("#datatable-buttons_wrapper .dt-buttons")
-//     );
-//   });
-
 $(document).ready(function () {
-    $("#datatable").DataTable(), $("#datatable-buttons").DataTable({
-        lengthChange: !1,
-        buttons: ["excel"]
-    }).buttons().container().appendTo("#datatable-buttons_wrapper .col-md-6:eq(0)")
+    $("#datatable-users").DataTable({
+        columnDefs: [
+            {
+                orderable: false,
+                targets: 1
+            },
+            {
+                orderable: false,
+                targets: 2
+            },
+            {
+                orderable: false,
+                targets: 6
+            }
+        ],
+        lengthChange: !1
+    }).buttons().container().appendTo("#datatable-buttons_wrapper .col-md-6:eq(0)"),
+
+        $("#datatable-buttons").DataTable({
+            columnDefs: [
+                {
+                    orderable: false,
+                    targets: 3
+                },
+                {
+                    orderable: false,
+                    targets: 7
+                }
+            ],
+            lengthChange: !1,
+            buttons: ["excel"]
+        }).buttons().container().appendTo("#datatable-buttons_wrapper .col-md-6:eq(0)")
 });

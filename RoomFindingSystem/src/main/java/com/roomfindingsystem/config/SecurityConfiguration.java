@@ -110,27 +110,20 @@ public class SecurityConfiguration {
                             if ("ROLE_ADMIN".equals(auth.getAuthority())) {
                                 response.sendRedirect("/admin/dashboard");
                                 return;
-
                             }
                         }
                         response.sendRedirect("/");
                     }))
-
-
-
                 .authorizeHttpRequests(at ->at.requestMatchers("/login/**", "/login-google", "/","/register","/save","re-send",
                                 "recover","send-otp-recover","otp-check","confirm-otp","send-otp-recover","confirm-otp-recover",
-
-                                "save-new-password","detail","change-password","save-change-password","feedback-list","house/**",
-
+                               "save-new-password","detail","change-password","save-change-password","feedback-list","house/**",
                                 "/room/**", "/assets/**", "/houselist","roomList","/detail", "/slider/**", "/loginAfterAddInfo").permitAll()
-
-
-
                         .requestMatchers("/admin/**", "/test").hasAnyRole("ADMIN", "SUPER_ADMIN")
                         .requestMatchers("/landlord/**").hasAnyRole("LANDLORD", "SUPER_ADMIN")
-//                        .requestMatchers("/profile").hasAnyRole("1,2")
-                        .anyRequest().authenticated());
+                        .anyRequest().authenticated())
+                .exceptionHandling(e -> e
+                        .accessDeniedPage("/403")); // Chuyển hướng đến trang 403.html khi không có quyền
+        ;
         return http.build();
     }
 

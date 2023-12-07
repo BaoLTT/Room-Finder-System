@@ -74,8 +74,9 @@
                         <div class="row">
                             <div class="col-md-7">
                                 <div class="form-group">
-                                    <label for="form-submit-title">Tên trọ<em>*</em></label>
-                                    <input type="text" class="form-control" id="form-submit-title" name="houseName" placeholder="Tên trọ..." required="" th:field="*{houseName}">
+                                    <label >Tên trọ<em>*</em></label>
+                                    <input type="text" class="form-control"  name="houseName" placeholder="Tên trọ..." id="inputField"  oninput="removeWhitespace(this)"
+                                           pattern="^[a-zA-Z0-9xyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđÁÂĐ ]+$" required="" th:field="*{houseName}">
                                 </div>
                                 <!--end form-group-->
                             </div>
@@ -96,7 +97,7 @@
                             <div class="col-md-7">
                                 <div class="form-group">
                                     <label for="form-submit-description">Ghi chú<em>*</em></label>
-                                    <textarea class="form-control" id="form-submit-description" rows="5" name="description" required="" placeholder="Ghi chú" th:field="*{description}" >
+                                    <textarea class="form-control" id="form-submit-description" rows="5" name="description" placeholder="Ghi chú" th:field="*{description}" >
                                     </textarea>
                                 </div>
                                 <!--end form-group-->
@@ -131,8 +132,9 @@
                                 <aside class="step">2</aside>
                             </div>
                             <div class="form-group">
-                                <label for="addressDetail">Địa chỉ cụ thể<em>*</em></label>
-                                <input type="text" class="form-control" id="addressDetail" placeholder="Address Detail..." required="" th:field="*{addressDetail}">
+                                <label >Địa chỉ cụ thể<em>*</em></label>
+                                <input type="text" class="form-control"  placeholder="Address Detail..." id="inputField2"  oninput="removeWhitespace2(this)"
+                                       pattern="^[a-zA-Z0-9xyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđÁÂĐ ]+$" required="" th:field="*{addressDetail}">
                             </div>
                             <input type="hidden" name="addressid" th:field="*{address}">
                             <div class="form-group">
@@ -422,6 +424,37 @@
 
 <script type="text/javascript" src="/assets/js/maps.js"></script>
 <script type="text/javascript" src="/assets/js/custom.js"></script>
+
+
+<script>
+    function removeWhitespace(inputField) {
+        var inputValue = inputField.value.trim();
+
+        // Kiểm tra nếu giá trị là khoảng trắng
+        if (inputValue === '') {
+            // Set custom validity để hiển thị thông báo lỗi
+            inputField.setCustomValidity('Vui lòng nhập tên.');
+        } else {
+            // Reset custom validity nếu không có lỗi
+            inputField.setCustomValidity('');
+        }
+
+    }
+
+    function removeWhitespace2(inputField2) {
+        var inputValue = inputField2.value.trim();
+
+        // Kiểm tra nếu giá trị là khoảng trắng
+        if (inputValue === '') {
+            // Set custom validity để hiển thị thông báo lỗi
+            inputField2.setCustomValidity('Vui lòng nhập địa chỉ.');
+        } else {
+            // Reset custom validity nếu không có lỗi
+            inputField2.setCustomValidity('');
+        }
+
+    }
+</script>
 
 <script>
     // Sử dụng jQuery để xử lý sự kiện click
