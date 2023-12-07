@@ -46,6 +46,8 @@ jobs:
         shell: bash
         run: |
           ls
+          cd RoomFindingSystem
+          ls
       
       
       - name: Deploy to Azure Web App
