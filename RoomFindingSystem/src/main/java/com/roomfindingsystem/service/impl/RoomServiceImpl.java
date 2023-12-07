@@ -92,7 +92,8 @@ public class RoomServiceImpl implements RoomService {
             roomHomeDto.setAddressDetail(tuple.get("Address_Details", String.class));
             String imageLink = (tuple.get("Image_Link", String.class));
             if (imageLink == null) {
-                roomHomeDto.setRoomImageLink(null);
+                List<HouseImagesEntity> houseImagesEntities = roomRepository.getImageHouseByRoomId(roomHomeDto.getRoomId());
+                roomHomeDto.setRoomImageLink(houseImagesEntities.get(0).getImageLink());
             } else {
                 imageLinks = Arrays.asList(imageLink.split(","));
                 roomHomeDto.setRoomImageLink(imageLinks.get(0));
@@ -115,6 +116,7 @@ public class RoomServiceImpl implements RoomService {
         List<RoomHomeDto> roomHomeDtos = new ArrayList<>();
         List<String> imageLinks;
 
+
         for (Tuple tuple : tuples) {
             RoomHomeDto roomHomeDto = new RoomHomeDto();
             roomHomeDto.setRoomId(tuple.get("RoomID", Integer.class));
@@ -124,7 +126,8 @@ public class RoomServiceImpl implements RoomService {
             roomHomeDto.setAddressDetail(tuple.get("Address_Details", String.class));
             String imageLink = (tuple.get("Image_Link", String.class));
             if (imageLink == null) {
-                roomHomeDto.setRoomImageLink(null);
+                List<HouseImagesEntity> houseImagesEntities = roomRepository.getImageHouseByRoomId(roomHomeDto.getRoomId());
+                roomHomeDto.setRoomImageLink(houseImagesEntities.get(0).getImageLink());
             } else {
                 imageLinks = Arrays.asList(imageLink.split(","));
                 roomHomeDto.setRoomImageLink(imageLinks.get(0));

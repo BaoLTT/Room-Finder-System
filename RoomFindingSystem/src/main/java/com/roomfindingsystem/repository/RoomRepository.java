@@ -2,6 +2,7 @@ package com.roomfindingsystem.repository;
 
 import com.roomfindingsystem.dto.RoomDto;
 import com.roomfindingsystem.dto.RoomDtoN;
+import com.roomfindingsystem.entity.HouseImagesEntity;
 import com.roomfindingsystem.entity.RoomEntity;
 import com.roomfindingsystem.entity.RoomImagesEntity;
 import com.roomfindingsystem.entity.ServiceDetailEntity;
@@ -30,6 +31,9 @@ public interface RoomRepository extends JpaRepository<RoomEntity, Integer> {
 
     @Query("SELECT i FROM RoomImagesEntity i WHERE i.roomId = :roomId")
     List<RoomImagesEntity> getImageByRoomId(int roomId);
+
+    @Query("SELECT i FROM HouseImagesEntity i join HousesEntity h on h.houseId = i.houseId join RoomEntity r on h.houseId = r.houseId WHERE r.roomId = :roomId")
+    List<HouseImagesEntity> getImageHouseByRoomId(int roomId);
 
     @Query("SELECT s\n" +
             "FROM ServiceDetailEntity s\n" +
@@ -115,6 +119,8 @@ public interface RoomRepository extends JpaRepository<RoomEntity, Integer> {
             "ORDER BY ABS(r.price - :targetPrice) ASC\n" +
             "LIMIT 4 OFFSET 0", nativeQuery = true)
     List<Tuple> findRoomsNearPrice(@Param("targetPrice") BigDecimal targetPrice);
+
+
 
 
 
