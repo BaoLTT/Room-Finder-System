@@ -109,7 +109,7 @@ public class HouseLandlordController {
 
     @PostMapping("/save")
     public String saveHouse(@ModelAttribute(name = "house") HouseLandlordVo house, @RequestParam("file") MultipartFile[] files,HttpServletRequest request) throws IOException {
-        AddressEntity address = new AddressEntity("a",house.getAddressDetail().trim(),house.getProvinceID(),house.getDistrictID(),house.getWardID());
+        AddressEntity address = new AddressEntity("a",house.getAddressDetail().trim().replaceAll("\\s+", " "),house.getProvinceID(),house.getDistrictID(),house.getWardID());
         int addressID = addressService.insertAddress(address);
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         UserEntity user = userService.findByEmail(email).get();
@@ -133,10 +133,10 @@ public class HouseLandlordController {
     public String updateHouse(@ModelAttribute(name = "house") HouseLandlordVo house,@RequestParam("file") MultipartFile[] files,@RequestParam(name = "service", required = false,defaultValue = "0") List<Integer> service, Model model, HttpSession httpSession,HttpServletRequest request) throws IOException {
         if(house.getProvinceID()==0){
             Optional<AddressEntity> newAddress = addressService.findbyId(house.getAddress());
-            AddressEntity address = new AddressEntity("a",house.getAddressDetail(),newAddress.get().getProvinceId(),newAddress.get().getDistrictId(),newAddress.get().getWardId());
+            AddressEntity address = new AddressEntity("a",house.getAddressDetail().trim().replaceAll("\\s+", " "),newAddress.get().getProvinceId(),newAddress.get().getDistrictId(),newAddress.get().getWardId());
             addressService.updateAddress(address,house.getAddress());
         }else{
-            AddressEntity address = new AddressEntity("a",house.getAddressDetail(),house.getProvinceID(),house.getDistrictID(),house.getWardID());
+            AddressEntity address = new AddressEntity("a",house.getAddressDetail().trim().replaceAll("\\s+", " "),house.getProvinceID(),house.getDistrictID(),house.getWardID());
             addressService.updateAddress(address,house.getAddress());
         }
         System.out.println(house.getHouseID());

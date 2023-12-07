@@ -69,8 +69,8 @@
                         <div class="page-title-box">
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0" style="background-color: unset">
-                                    <li class="breadcrumb-item"><a th:href="@{/admin/user}">Danh sách người dùng</a></li>
-                                    <li class="breadcrumb-item active">Trang cá nhân</li>
+                                    <li class="breadcrumb-item"><a th:href="@{/admin/user}">Quản lý người dùng</a></li>
+                                    <li class="breadcrumb-item active">Thông tin chi tiết</li>
                                 </ol>
                             </div>
                             <h4 class="page-title">Thông tin chi tiết</h4>
@@ -104,8 +104,8 @@
 
                                     <!--Contact Info-->
                                     <div class="col-md-9 col-sm-9">
-                                        <section style=" background-color: #f6f8f9;padding: 30px;border-radius: 30px;box-shadow: 7px 9px 7px black">
-                                            <h3>Thông tin cá nhân</h3>
+                                        <section style=" background-color: #f6f8f9;padding: 25px;border-radius: 30px">
+                                            <h4>Thông tin cá nhân</h4>
                                             <div class="row">
                                                 <div class="col-md-6 col-sm-6">
                                                     <div class="form-group">
@@ -208,8 +208,8 @@
                                                 <!--end col-md-6-->
                                             </div>
                                         </section>
-                                        <section style=" background-color: #f6f8f9;padding: 30px;border-radius: 30px;box-shadow: 7px 9px 7px black;;margin-top: 50px">
-                                            <h3>Địa chỉ</h3>
+                                        <section style=" background-color: #f6f8f9;padding: 25px;border-radius: 30px;margin-top: 40px">
+                                            <h4>Địa chỉ</h4>
                                             <div class="form-group">
                                                 <label for="province">Tỉnh</label>
                                                 <input type="hidden" id="provinceValue" th:value="${user.provinceId}">
@@ -247,13 +247,10 @@
                                             </div>
                                             <!--end form-group-->
                                         </section>
-                                        <div class="form-group" style="margin-top: 50px;float: right">
+                                        <div class="form-group" style="margin-top: 40px;float: right">
                                             <button type="submit" class="btn btn-large btn-primary btn-rounded" style="border-radius: 5px"
                                                     id="submit">
                                                 Lưu thay đổi
-                                            </button>
-                                            <button type="reset" class="btn btn-light waves-effect btn-rounded" style="margin-left: 5px;background-color: #e8e9e2;font-size: 16px;padding: 10px;border-radius: 5px">
-                                                <a th:href="@{/admin/user}">Danh sách người dùng</a>
                                             </button>
                                         </div>
                                         <!-- end form-group -->
