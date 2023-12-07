@@ -65,12 +65,11 @@
                         <div class="page-title-box">
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Abstack</a></li>
-                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Tables</a></li>
-                                    <li class="breadcrumb-item active">Datatable</li>
+                                    <li class="breadcrumb-item"><a th:href="@{/admin/newsList/insert}">Thống kê</a></li>
+                                    <li class="breadcrumb-item active">Quản lý bình luận</li>
                                 </ol>
                             </div>
-                            <h4 class="page-title">Datatable</h4>
+                            <h4 class="page-title">Quản lý bình luận</h4>
                         </div>
                     </div>
                 </div>
@@ -91,7 +90,7 @@
                                     <div class="col-md-6"></div>
                                     <div class="col-md-3 fil">
                                         <span>Số sao: </span>
-                                        <select id="starSelect" name="star">
+                                        <select id="starSelect" name="star" style="padding: 5px">
                                             <option value="0">Tất cả</option>
                                             <option value="1" th:selected="${star==1}">1 sao</option>
                                             <option value="2" th:selected="${star==2}">2 sao</option>
@@ -103,17 +102,16 @@
                                     </div>
                                     <div class="col-md-3 fil">
                                         <span>Lọc theo trạng thái: </span>
-                                        <select id="statusSelect" name="status">
-                                            <option value="true,false">Tất cả</option>
-                                            <option value="true" th:selected="${status!=null && !status.contains(false)}">Hiển thị</option>
-                                            <option value="false" th:selected="${status!=null && !status.contains(true)}">Tạm ẩn</option>
+                                        <select id="statusSelect" name="status" style="padding: 5px">
+                                            <option value="true,false" >Tất cả</option>
+                                            <option value="true" th:selected="${status!=null && !status.contains(false)}">Hoạt động</option>
+                                            <option value="false" th:selected="${status!=null && !status.contains(true)}">Không hoạt động</option>
                                         </select>
                                     </div>
                                 </div>
                                 <!-- Loại bỏ button type="submit" và thêm sự kiện onClick -->
                                 <div class="text-right" style="text-align: right; margin-right: 10px; margin-bottom: 5px">
-                                    <button type="submit" class="btn btn-danger waves-light waves-effect width-md" style="background-color: #3EC396; border-color:
-                                    #3EC396">Tìm kiếm</button>
+                                    <button type="submit" class="btn btn-danger waves-light waves-effect width-md" style="background-color: #3EC396; border-color:#3EC396;border-radius: 5px">Tìm kiếm</button>
                                 </div>
                             </form>
 
@@ -130,7 +128,7 @@
                                     <th>Đánh giá</th>
                                     <th>Ngày cuối cập nhật</th>
                                     <th>Trạng thái</th>
-                                    <th>Hoạt động</th>
+<!--                                    <th>Hoạt động</th>-->
 
 
                                 </tr>
@@ -144,14 +142,14 @@
                                     <td style="vertical-align: middle" th:text = "${feedback.getTitle()}"></td>
                                     <td th:text="${feedback.getContent()}" style="white-space: pre-line"></td>
                                     <td style="vertical-align: middle" >
-                                        <span th:text = "${feedback.getStar()}"></span><i class="fas fa-star" style="color: #FFCE45"></i>
+                                        <span th:text = "${feedback.getStar()}"></span> <i class="fas fa-star" style="color: #FFCE45"></i>
                                     </td>
                                     <td style="vertical-align: middle" th:text = "${feedback.getCreatedDate()}"></td>
-                                    <td style="vertical-align: middle" th:text="${feedback.isStatus() ? 'Active' : 'Deactive'}"></td>
+<!--                                        <td style="vertical-align: middle" th:text="${feedback.isStatus() ? 'HOẠT ĐỘNG' : 'KHÔNG HOẠT ĐỘNG'}"></td>-->
                                     <td style="vertical-align: middle">
-                                        <a th:href="@{updateFalse(fid=${feedback.getFeedbackId()}, houseId=${houseId})}"><button type="button" class="btn btn-danger waves-light waves-effect width-md" th:if="${feedback.isStatus()}" th:text="Deactivate" ></button></a>
+                                        <a th:href="@{updateFalse(fid=${feedback.getFeedbackId()}, houseId=${houseId})}"><button type="button" class="btn btn-danger waves-light waves-effect width-md" th:if="${feedback.isStatus()}"   >HOẠT ĐỘNG</button></a>
 
-                                        <a th:href="@{updateTrue(fid=${feedback.getFeedbackId()}, houseId=${houseId})}"><button type="button" class="btn btn-secondary waves-light waves-effect width-md" th:if="${not feedback.isStatus()}" th:text="Activate" ></button></a>
+                                        <a th:href="@{updateTrue(fid=${feedback.getFeedbackId()}, houseId=${houseId})}"><button type="button" class="btn btn-secondary waves-light waves-effect width-md" th:if="${not feedback.isStatus()}" >KHÔNG HOẠT ĐỘNG</button></a>
                                     </td>
 
 

@@ -47,7 +47,7 @@
 
                 <!-- start page title -->
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-md-12">
                         <div class="page-title-box">
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
@@ -62,48 +62,52 @@
                 <!-- end page title -->
 
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-md-12">
                         <div class="card-box">
                             <div class="row">
-                                <div class="col-12">
+                                <div class="col-md-12">
                                     <div>
                                         <form class="form-horizontal" role="form" method="post" th:action="@{/admin/house-manager/save}" th:object="${house}" enctype="multipart/form-data">
                                             <div class="form-group row">
-                                                <label class="col-2 col-form-label">Chủ trọ<em>*</em></label>
-                                                <div class="col-10" >
-                                                    <select class="form-control" name="landlord" th:field="*{userID}">
+                                                <label class="col-md-2 col-md-form-label">Chủ trọ<em>*</em></label>
+                                                <div class="col-md-10" >
+                                                    <select class="form-control" name="landlord" th:field="*{userID}"  >
                                                         <option th:each="listUser : ${listUser}"  th:value="${listUser.getUserId()}" th:utext="${listUser.firstName + ' '+ listUser.lastName}"/>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-2 col-form-label" >Tên trọ<em>*</em></label>
-                                                <div class="col-10">
-                                                    <input type="text" required  name="houseName" class="form-control" th:field="*{houseName}">
+                                                <label class="col-md-2 col-md-form-label" >Tên trọ<em>*</em></label>
+                                                <div class="col-md-10">
+                                                    <input type="text" required  name="houseName" class="form-control" id="inputField"  oninput="removeWhitespace(this)"
+                                                           pattern="^[a-zA-Z0-9xyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđÁÂĐ ]+$" th:field="*{houseName}">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-2 col-form-label">Địa chỉ cụ thể<em>*</em></label>
-                                                <div class="col-10">
-                                                    <input type="text" required class="form-control" name="addressDetail" th:field="*{addressDetail}">
+                                                <label class="col-md-2 col-md-form-label">Địa chỉ cụ thể<em>*</em></label>
+                                                <div class="col-md-10">
+
+                                                    <input type="text" required class="form-control" name="addressDetail" id="inputField2"  oninput="removeWhitespace2(this)"
+                                                           pattern="^[a-zA-Z0-9xyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđÁÂĐ ]+$"
+                                                           th:field="*{addressDetail}">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-2 col-form-label">Địa chỉ<em>*</em> </label>
-                                                <div class="col-3" >
+                                                <label class="col-md-2 col-md-form-label">Địa chỉ<em>*</em> </label>
+                                                <div class="col-md" >
                                                     <label for="province">Tỉnh</label>
                                                     <select class="form-control"  id="province" name="province" th:field="*{provinceID}">
                                                         <option value="0" selected >Chọn tỉnh thành</option>
                                                     </select>
                                                 </div>
 
-                                                <div class="col-3" >
+                                                <div class="col-md" >
                                                     <label for="district">Huyện</label>
                                                     <select class="form-control"  id="district" name="district" th:field="*{districtID}">
                                                         <option value="0" selected >Chọn huyện</option>
                                                     </select>
                                                 </div>
-                                                <div class="col-3" >
+                                                <div class="col-md" >
                                                     <label for="ward">Xã/Phường</label>
                                                     <select class="form-control"  id="ward" name="ward" th:field="*{wardID}">
                                                         <option value="0"  selected >Chọn xã/phường</option>
@@ -112,8 +116,8 @@
                                             </div>
 
                                             <div class="form-group row">
-                                                <label class="col-2 col-form-label">Hiện thị trên bản đồ</label>
-                                                <div class="col-10" id="map-item">
+                                                <label class="col-md-2 col-md-form-label">Hiện thị trên bản đồ</label>
+                                                <div class="col-md-10" id="map-item">
 
 <!--                                                    <input  id="latitude" name="latitude" type="hidden"-->
 <!--                                                           th:field="*{latitude}">-->
@@ -126,8 +130,8 @@
                                             </div>
 
                                             <div class="form-group row">
-                                                <label class="col-2 col-form-label"></label>
-                                                <div class="col-10" >
+                                                <label class="col-md-2 col-md-form-label"></label>
+                                                <div class="col-md-10" >
                                                     <label>Vĩ độ</label>
                                                     <input  id="latitude" name="latitude"
                                                            th:field="*{latitude}">
@@ -140,21 +144,21 @@
                                             </div>
 
                                             <div class="form-group row">
-                                                <label class="col-2 col-form-label">Ghi chú</label>
-                                                <div class="col-10">
+                                                <label class="col-md-2 col-md-form-label">Ghi chú</label>
+                                                <div class="col-md-10">
                                                     <textarea class="form-control" rows="3" name="description"> </textarea>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-2 col-form-label">Thể loại trọ</label>
-                                                <div class="col-9" >
+                                                <label class="col-md-2 col-md-form-label">Thể loại trọ</label>
+                                                <div class="col-md-9" >
                                                     <select class="form-control" name="houseType" th:field="*{typeHouseID}">
                                                         <option th:each="listType : ${listType}" th:value="${listType.getTypeId()}" th:text="${listType.typeName}"/>
 
                                                     </select>
 
                                                 </div>
-                                                <div class="col-1">
+                                                <div class="col-md-1 flex-md-grow-0">
                                                     <button type="button" class="btn btn-primary btn-xs" id="houseType"
                                                             style="width: 100%;height: 100%">Thêm thể loại
                                                     </button>
@@ -162,8 +166,8 @@
                                             </div>
 
                                             <div class="form-group row">
-                                                <label class="col-2 col-form-label">Ảnh</label>
-                                                <div class="col-10" >
+                                                <label class="col-md-2 col-md-form-label">Ảnh</label>
+                                                <div class="col-md-10" >
                                                     <div class="file-upload-previews"></div>
                                                     <div class="file-upload">
                                                         <input  type="file" name="file" class="file-upload-input with-preview" multiple title="Click to add files" maxlength="10" accept="gif|jpg|png">
@@ -175,17 +179,20 @@
 
 
                                             <div class="form-group row">
-                                                <label class="col-2 col-form-label">Dịch vụ</label>
-                                                <div class="col-10" style="display: flex; flex-wrap: wrap;">
-                                                    <div class="checkbox checkbox-primary col-2" th:each="listService : ${listService}" th:field="*{service}" style="padding-left: 10px">
-                                                        <input th:id="${listService.serviceName}" type="checkbox" name="service"  th:value="${listService.serviceId}" >
-                                                        <label th:for="${listService.serviceName}" th:text="${listService.serviceName}">
-                                                            <Primary></Primary>
-                                                        </label>
+                                                <label class="col-md-2 col-md-form-label">Dịch vụ</label>
+                                                <div class="col-md-10">
+                                                    <div class="row">
+                                                        <div th:each="listService : ${listService}" th:field="*{service}" class="col-md-2 mb-2">
+                                                            <div class="checkbox checkbox-primary" style="padding-left: 10px" >
+                                                                <input th:id="${listService.serviceName}" type="checkbox" name="service"   style="position: relative" th:value="${listService.serviceId}" >
+                                                                <label th:for="${listService.serviceName}" th:text="${listService.serviceName}">
+                                                                </label>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <label class="col-2 col-form-label"></label>
-                                                <div class="col-10" style="padding-left: 0">
+                                                <label class="col-md-2 col-md-form-label"></label>
+                                                <div class="col-md-10" style="padding-left: 0">
                                                     <button type="button" class="btn btn-primary btn-xs" id="houseService"
                                                     >Thêm dịch vụ
                                                     </button>
@@ -195,9 +202,10 @@
 
 
 
+
                                             <div class="form-group row">
-                                                <label class="col-2 col-form-label"></label>
-                                                <div class="col-10" >
+                                                <label class="col-md-2 col-md-form-label"></label>
+                                                <div class="col-md-10" >
                                                     <button  type="submit" class="btn btn-success waves-light waves-effect width-md" style="margin-left: -10px"> <span style="color: white">Lưu</span></button>
                                                     <a  type="button" class="btn btn-danger waves-light waves-effect width-md" href="http://localhost:8080/admin/house-manager"> <span style="color: white">Đóng</span></a>
 
@@ -250,7 +258,8 @@
                                 ×
                             </button>
 
-                            <input autocapitalize="off" class="swal2-input" required placeholder="Nhập thể loại..." type="text"
+                            <input autocapitalize="off" class="swal2-input" required placeholder="Nhập thể loại..." type="text" id="inputField3"  oninput="removeWhitespace3(this)"
+                                   pattern="^[a-zA-Z0-9xyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđÁÂĐ ]+$"
                                    style="display: flex;" name="newType">
                         </div>
 
@@ -299,7 +308,8 @@
                                 ×
                             </button>
 
-                            <input autocapitalize="off" class="swal2-input" required placeholder="Nhập dịch vụ..." type="text"
+                            <input autocapitalize="off" class="swal2-input" required placeholder="Nhập dịch vụ..." type="text" id="inputField4"  oninput="removeWhitespace4(this)"
+                                   pattern="^[a-zA-Z0-9xyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđÁÂĐ ]+$"
                                    style="display: flex;" name="newService">
                         </div>
 
@@ -328,6 +338,64 @@
     <!-- ============================================================== -->
 
 </div>
+
+<script>
+    function removeWhitespace(inputField) {
+        var inputValue = inputField.value.trim();
+
+        // Kiểm tra nếu giá trị là khoảng trắng
+        if (inputValue === '') {
+            // Set custom validity để hiển thị thông báo lỗi
+            inputField.setCustomValidity('Vui lòng nhập tên.');
+        } else {
+            // Reset custom validity nếu không có lỗi
+            inputField.setCustomValidity('');
+        }
+
+    }
+
+    function removeWhitespace2(inputField2) {
+        var inputValue = inputField2.value.trim();
+
+        // Kiểm tra nếu giá trị là khoảng trắng
+        if (inputValue === '') {
+            // Set custom validity để hiển thị thông báo lỗi
+            inputField2.setCustomValidity('Vui lòng nhập địa chỉ.');
+        } else {
+            // Reset custom validity nếu không có lỗi
+            inputField2.setCustomValidity('');
+        }
+
+    }
+
+    function removeWhitespace3(inputField3) {
+        var inputValue = inputField3.value.trim();
+
+        // Kiểm tra nếu giá trị là khoảng trắng
+        if (inputValue === '') {
+            // Set custom validity để hiển thị thông báo lỗi
+            inputField3.setCustomValidity('Vui lòng nhập thể loại.');
+        } else {
+            // Reset custom validity nếu không có lỗi
+            inputField3.setCustomValidity('');
+        }
+
+    }
+
+    function removeWhitespace4(inputField4) {
+        var inputValue = inputField4.value.trim();
+
+        // Kiểm tra nếu giá trị là khoảng trắng
+        if (inputValue === '') {
+            // Set custom validity để hiển thị thông báo lỗi
+            inputField4.setCustomValidity('Vui lòng nhập dịch vụ.');
+        } else {
+            // Reset custom validity nếu không có lỗi
+            inputField4.setCustomValidity('');
+        }
+
+    }
+</script>
 
 <script>
 

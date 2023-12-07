@@ -74,7 +74,7 @@
                                     <div class="form-group">
                                         <input type="file" class="form-control-file" id="fileExcel" name="fileExcel"/>
                                     </div>
-                                    <button type="submit" class="btn btn-primary" onclick="event.stopPropagation()">Thêm
+                                    <button type="submit" class="btn btn-primary" onclick="event.stopPropagation()" style="border-radius: 5px">Thêm
                                         nhiều phòng
                                     </button>
                                 </form>
@@ -151,8 +151,9 @@
                                 <!-- Service-->
                                 <div class="form-group">
                                     <label>Dịch vụ</label>
-                                    <div style="display: flex; flex-wrap: wrap;">
-                                        <div class="checkbox checkbox-primary col-2"
+                                    <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="checkbox checkbox-primary col-md-2  mb-2"
                                              th:each="listService : ${services}" th:field="*{serviceNames}"
                                              style="padding-left: 10px">
                                             <input th:id="${listService.serviceName}" type="checkbox" name="serviceNames"
@@ -162,9 +163,10 @@
                                             </label>
                                         </div>
                                     </div>
+                                    </div>
                                     <label class="col-2 col-form-label"></label>
                                     <div class="col-10" style="padding-left: 0">
-                                        <button type="button" class="btn btn-primary btn-xs" id="houseService"
+                                        <button type="button" class="btn btn-gradient waves-effect waves-light" id="houseService" style="border-radius: 5px"
                                         >Thêm dịch vụ
                                         </button>
                                     </div>
@@ -184,10 +186,10 @@
                                 </div>
                                 <div class="form-group mb-0">
                                     <div>
-                                        <button type="submit" class="btn btn-gradient waves-effect waves-light">
+                                        <button type="submit" class="btn btn-gradient waves-effect waves-light" style="border-radius: 5px">
                                             Lưu thông tin
                                         </button>
-                                        <button type="reset" class="btn btn-light waves-effect ml-1">
+                                        <button type="reset" class="btn btn-light waves-effect ml-1" style="border-radius: 5px">
                                             <a th:href="@{/admin/room/listRoom}">Danh sách phòng</a>
                                         </button>
                                     </div>

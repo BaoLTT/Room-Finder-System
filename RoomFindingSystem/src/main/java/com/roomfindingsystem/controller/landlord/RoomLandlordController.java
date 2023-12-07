@@ -42,7 +42,7 @@ public class RoomLandlordController {
         RoomDto roomDto = roomService.findById(id);
         model.addAttribute("room", roomDto);
         model.addAttribute("types", roomTypeService.findAll());
-        model.addAttribute("listService", serviceDetailService.getAllService());
+        model.addAttribute("listService",serviceDetailService.getServiceExceptHouseService(roomDto.getHouseId()));
         model.addAttribute("listChecked", roomDto.getServiceNames());
         model.addAttribute("request",request);
         return "landlord/edit-room";
@@ -75,7 +75,7 @@ public class RoomLandlordController {
         RoomDto roomDto = new RoomDto();
         model.addAttribute("room", roomDto);
         model.addAttribute("houseId", id);
-        model.addAttribute("services", serviceDetailService.getAllService());
+        model.addAttribute("services", serviceDetailService.getServiceExceptHouseService(id));
         model.addAttribute("types", roomTypeService.findAll());
         model.addAttribute("request",request);
         return "landlord/insert-room";

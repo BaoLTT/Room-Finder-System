@@ -1,10 +1,10 @@
 package com.roomfindingsystem.controller;
 
 
+import com.roomfindingsystem.dto.HouseImageLink;
 import com.roomfindingsystem.dto.RoomDto;
 import com.roomfindingsystem.dto.ServiceDto;
-import com.roomfindingsystem.entity.RoomEntity;
-import com.roomfindingsystem.entity.RoomImagesEntity;
+import com.roomfindingsystem.entity.*;
 import com.roomfindingsystem.service.*;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,15 +26,22 @@ public class RoomController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/{houseName}/room/{id}")
+    @GetMapping("/house/{houseName}/room/{id}")
     public String getRoom(Model model, @PathVariable("id") int id, HttpServletRequest request){
         RoomEntity room = roomService.getRoomById(id);
         List<RoomImagesEntity> roomImagesEntities = roomService.roomImageByRoomId(id);
-        model.addAttribute("room", roomService.getRoomById(id));
-        model.addAttribute("roomImages", roomService.roomImageByRoomId(id));
-        model.addAttribute("roomServices", roomService.getServiceByRoomId(id));
-        model.addAttribute("house", houseService.getHouseByRoomId(id));
-        model.addAttribute("user", userService.getUserByRoomId(id));
+        List<ServiceDetailEntity> roomServices = roomService.getServiceByRoomId(id);
+        HousesEntity house = houseService.getHouseByRoomId(id);
+        UserEntity user = userService.getUserByRoomId(id);
+        List <HouseImageLink> houseImages = houseService.getImageById(house.getHouseId());
+
+
+        model.addAttribute("room", room);
+        model.addAttribute("roomImages", roomImagesEntities);
+        model.addAttribute("houseImages", houseImages);
+        model.addAttribute("roomServices", roomServices);
+        model.addAttribute("house", house);
+        model.addAttribute("user", user);
         model.addAttribute("request",request);
         return "room/RoomDetail";
     }
@@ -43,6 +50,6 @@ public class RoomController {
     public String getRoomInHouseDetail(Model model, @RequestParam(name = "roomId") String id,@RequestParam(name = "houseName") String houseName){
         int id1 = Integer.parseInt(id);
         System.out.println(houseName);
-        return "redirect:/"+houseName+"/room/"+id1;
+        return "redirect:/house/"+houseName+"/room/"+id1;
     }
 }

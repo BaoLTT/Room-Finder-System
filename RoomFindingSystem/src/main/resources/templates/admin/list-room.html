@@ -46,6 +46,12 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="page-title-box">
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item"><a th:href="@{/admin/newsList/insert}">Thống kê</a></li>
+                                    <li class="breadcrumb-item active">Quản lý phòng trọ</li>
+                                </ol>
+                            </div>
                             <h4 class="page-title">Quản lý phòng trọ</h4>
                         </div>
                     </div>
@@ -55,7 +61,7 @@
                     <div class="col-12">
                         <div class="card-box table-responsive">
                             <div class="d-flex justify-content-end">
-                                <button class="btn btn-success mb-1 "><a th:href="@{/admin/room/insertRoom}"
+                                <button class="btn btn-success mb-1 " style="border-radius: 5px"><a th:href="@{/admin/room/insertRoom}"
                                                                          style="color: white">Thêm phòng mới</a></button>
                             </div>
                             <table id="datatable-buttons"
@@ -98,8 +104,8 @@
                                     </td>
 
                                     <td>
-                                        <a th:href="@{'/admin/room/updateRoom/' + ${room.roomId}}" class="btn btn-warning">Chi tiết</a>
-                                        <a th:href="@{'/admin/room/deleteRoom/' + ${room.roomId}}" class="btn btn-danger">Xóa</a>
+                                        <a th:href="@{'/admin/room/updateRoom/' + ${room.roomId}}" class="btn btn-warning" style="border-radius: 5px">Chi tiết</a>
+                                        <a th:href="@{'/admin/room/deleteRoom/' + ${room.roomId}}" class="btn btn-danger" style="border-radius: 5px">Xóa</a>
                                     </td>
                                 </tr>
                                 </tbody>

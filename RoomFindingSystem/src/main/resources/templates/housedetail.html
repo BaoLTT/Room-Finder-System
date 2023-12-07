@@ -34,10 +34,8 @@
     <link th:href="@{/assets_admin/libs/datatables/buttons.bootstrap4.css}" rel="stylesheet" type="text/css"/>
     <link th:href="@{/assets_admin/libs/datatables/responsive.bootstrap4.css}" rel="stylesheet" type="text/css"/>
 
-    <!-- App css -->
-    <link th:href="@{/assets_admin/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
-    <link th:href="@{/assets_admin/css/icons.min.css}" rel="stylesheet" type="text/css"/>
-    <link th:href="@{/assets_admin/css/app.min.css}" rel="stylesheet" type="text/css"/>
+
+
     <title>Chi Tiết Nhà Trọ</title>
 
     <style>
@@ -95,6 +93,19 @@
             font-family: 'Arial', sans-serif;
         }
     </style>
+    <style>
+        div.wrapper ul {
+            position: sticky;
+            top: 0;
+            padding: 10px;
+            /*font-size: 10px;*/
+        }
+        .sidebar {
+            position: absolute;
+            top: 0;
+        }
+
+    </style>
 
     <title>Xem chi tiết nhà trọ</title>
 
@@ -115,7 +126,7 @@
             </ol>
             <!--end breadcrumb-->
             <div class="row">
-                <div class="col-md-3 col-sm-4">
+                <div class=" col-md-3 col-sm-4">
                     <div class="sidebar">
                         <div class="box filter">
 
@@ -133,9 +144,8 @@
                             </aside>
                             <!--end form-group-inline-->
                             <div class="center">
-                                <a href="#filter-advanced-search" class="link icon" data-toggle="collapse"
-                                   aria-expanded="false" aria-controls="filter-advanced-search">Xem Chi Tiết Dịch Vụ<i
-                                        class="fa fa-plus"></i></a>
+                                <a href="#filter-advanced-search" class="link icon collapsed" data-toggle="collapse"
+                                   aria-expanded="false" aria-controls="filter-advanced-search" id="toggleLink" onclick="changeText()"> XEM CHI TIẾT DỊCH VỤ +</a>
                             </div>
                             <div class="collapse" id="filter-advanced-search">
                                 <div class="wrapper">
@@ -200,7 +210,7 @@
                             </div>
                             <!--end collapse-->
                             <div class="form-group center">
-                                <button type="submit" class="btn btn-primary btn-rounded form-control">Liên Hệ
+                                <button type="submit" class="btn btn-primary btn-rounded form-control" style="border-radius: 5px">Liên Hệ
                                 </button>
                             </div>
                             </form>
@@ -235,7 +245,7 @@
                                     <span th:if="${HouseService.getServiceName() eq 'Wifi'}">Wifi</span>
 
                                     <iconify-icon th:if="${HouseService.getServiceName() eq 'Camera an ninh'}"
-                                                  style="margin-left: 5px" icon="pepicons-print:camera"></iconify-icon>
+                                                  style="margin-left: 5px" icon="bxs:cctv"></iconify-icon>
                                     <span th:if="${HouseService.getServiceName() eq 'Camera an ninh'}">Camera an ninh</span>
 
                                     <iconify-icon th:if="${HouseService.getServiceName() eq 'Tủ lạnh'}"
@@ -288,6 +298,25 @@
                             <!--end weather-->
                         </div>
                         <!--end box-->
+                        <aside class="box">
+                            <h3><strong> Loại nhà trọ:</strong></h3>
+                            <dl th:text="${HousesEntity.typeName}">
+
+                            </dl>
+                        </aside>
+                        <aside class="box">
+                            <h3><strong> Địa Chỉ Nhà Trọ:</strong></h3>
+                            <dl th:text="${HousesEntity.addressDetail+', '+HousesEntity.ward+','+HousesEntity.district+', '+HousesEntity.province}">
+                            </dl>
+                            <!--                                        <dl th:text="${HousesEntity.addressDetail}"></dl>-->
+                            <!--                                        <p>Xã: </p>-->
+                            <!--                                        <dl th:text="${HousesEntity.ward}"></dl>-->
+                            <!--                                        <p>Huyện: </p>-->
+                            <!--                                        <dl th:text="${HousesEntity.district}"></dl>-->
+                            <!--                                        <p>(Thành Phố / Tỉnh)</p>-->
+                            <!--                                        <dl th:text="${HousesEntity.province}">-->
+                            <!--                                        </dl>-->
+                        </aside>
                         <!--                        <a href="#" class="advertising-banner">-->
                         <!--                            <span class="banner-badge">Advertising</span>-->
                         <!--                            <img src="assets/img/ad-banner-02.jpg" alt="">-->
@@ -320,7 +349,7 @@
                             </div>
                             <div class="right">
                                 <a href="#map" class="icon scroll"><i class="fa fa-map-marker"></i>Tìm Trên Bản Đồ</a>
-                                <a href="#availability" class="btn btn-primary btn-rounded scroll">Danh sách Phòng</a>
+                                <a href="#availability" class="btn btn-primary btn-rounded scroll" style="border-radius: 5px">Danh sách Phòng</a>
                             </div>
                         </div>
 
@@ -343,7 +372,7 @@
                             <div class="col-md-6 col-sm-6 text-right" th:if="${user != null}">
                                 <!-- Chia cột, dính về bên phải -->
                                 <button type="button" class="btn btn-primary" data-toggle="modal"
-                                        data-target="#reportModalCenter" style="background-color: red"
+                                        data-target="#reportModalCenter" style="background-color: red;border-radius: 5px"
                                         th:if="${checkReport==1}">
                                     <i class="fa fa-flag" style="color: #FFFFFF"></i><span style="color: #FFFFFF"
                                                                                            th:if="${checkReport==1}">  Báo cáo</span>
@@ -479,7 +508,7 @@
                         <!--                        <p th:text="${HousesEntity.houseImagesEntities}"></p>-->
                         <!--                        <img th:src="${HousesEntity.houseImagesEntities}" alt="">-->
                         <div class="row" th:object="${HousesEntity}">
-                            <div class="col-md-8">
+                            <div class="col-md-12" >
                                 <section id="description">
                                     <h3 style="color: rgba(31, 31, 31, 0.8);" th:text="${HousesEntity.description}">
                                         Spend Great Time in Our Hotel!</h3>
@@ -516,7 +545,7 @@
                                         <div id="map-item" class="map height-300 box"></div>
                                         <input id="latitude" type="hidden" th:value="${houseLocation.latitude}">
                                         <input id="longitude" type="hidden" th:value="${houseLocation.longitude}">
-                                        <button type="button" class="btn btn-primary btn-rounded scroll"
+                                        <button type="button" class="btn btn-primary btn-rounded scroll" style="margin-top: 20px;border-radius: 5px;"
                                                 onclick="showDirections()">Chỉ đường
                                         </button>
 
@@ -525,27 +554,27 @@
 
                             </div>
                             <!--end col-md-8-->
-                            <div class="col-md-4">
+                            <div class="col-md-0">
                                 <div class="sidebar">
-                                    <aside class="box">
-                                        <h3><strong> Loại nhà trọ:</strong></h3>
-                                        <dl th:text="${HousesEntity.typeName}">
+<!--                                    <aside class="box">-->
+<!--                                        <h3><strong> Loại nhà trọ:</strong></h3>-->
+<!--                                        <dl th:text="${HousesEntity.typeName}">-->
 
-                                        </dl>
-                                    </aside>
-                                    <aside class="box">
-                                        <h3><strong> Địa Chỉ Nhà Trọ:</strong></h3>
-                                        <dl th:text="${HousesEntity.addressDetail+', '+HousesEntity.ward+','+HousesEntity.district+', '+HousesEntity.province}">
-                                        </dl>
-<!--                                        <dl th:text="${HousesEntity.addressDetail}"></dl>-->
-<!--                                        <p>Xã: </p>-->
-<!--                                        <dl th:text="${HousesEntity.ward}"></dl>-->
-<!--                                        <p>Huyện: </p>-->
-<!--                                        <dl th:text="${HousesEntity.district}"></dl>-->
-<!--                                        <p>(Thành Phố / Tỉnh)</p>-->
-<!--                                        <dl th:text="${HousesEntity.province}">-->
 <!--                                        </dl>-->
-                                    </aside>
+<!--                                    </aside>-->
+<!--                                    <aside class="box">-->
+<!--                                        <h3><strong> Địa Chỉ Nhà Trọ:</strong></h3>-->
+<!--                                        <dl th:text="${HousesEntity.addressDetail+', '+HousesEntity.ward+','+HousesEntity.district+', '+HousesEntity.province}">-->
+<!--                                        </dl>-->
+<!--&lt;!&ndash;                                        <dl th:text="${HousesEntity.addressDetail}"></dl>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <p>Xã: </p>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <dl th:text="${HousesEntity.ward}"></dl>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <p>Huyện: </p>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <dl th:text="${HousesEntity.district}"></dl>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <p>(Thành Phố / Tỉnh)</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <dl th:text="${HousesEntity.province}">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        </dl>&ndash;&gt;-->
+<!--                                    </aside>-->
 
                                 </div>
                                 <!--end sidebar-->
@@ -554,9 +583,9 @@
                         </div>
                         <!--end row-->
                         <section>
-                            <div><h2 style="display: inline-block ">Tại sao chọn</h2>  <strong><u><h2
-                                    style="display: inline-block " th:text="${HousesEntity.houseName}"></h2>
-                            </u></strong></div>
+<!--                            <div><h2 style="display: inline-block ">Tại sao chọn</h2>  <strong><u><h2-->
+<!--                                    style="display: inline-block " th:text="${HousesEntity.houseName}"></h2>-->
+<!--                            </u></strong></div>-->
                             <div class="row">
                                 <div class="col-md-4 col-sm-4">
                                     <div class="feature">
@@ -667,7 +696,7 @@
                                             <td th:text="${room.price}"></td>
                                             <input type="hidden" name="houseName" th:value="${HousesEntity.houseName}">
                                             <td class="rooms">
-                                                <select name="roomId" class="framed">
+                                                <select name="roomId" class="framed" style="padding-right: 20px">
                                                     <option th:each="id : ${room.roomList}" th:value="${id}"
                                                             th:text="${roomService.getRoomNameById(id)}"></option>
 
@@ -675,7 +704,7 @@
                                             </td>
                                             <td>
                                                 <div class="form-group">
-                                                    <button type="submit" class="btn btn-primary btn-rounded">Xem chi
+                                                    <button type="submit" class="btn btn-primary btn-rounded" style="border-radius: 5px">Xem chi
                                                         tiết
                                                     </button>
                                                 </div>
@@ -696,7 +725,7 @@
                                 <h2 class="pull-left">Đánh giá</h2>
                                 <div th:if="${user != null}">
                                     <a class="btn btn-primary btn-rounded pull-right scroll" type="button"
-                                       data-toggle="modal" data-target="#exampleModal" th:if="${count == 0}" style="color: white">Viết đánh
+                                       data-toggle="modal" data-target="#exampleModal" th:if="${count == 0}" style="color: white;border-radius: 5px">Viết đánh
                                         giá</a>
                                 </div>
 
@@ -1016,19 +1045,19 @@
 <!--    <div class="close"><i class="fa fa-times"></i></div>-->
 <!--    <p>Last booking was from <strong>France</strong></p>-->
 <!--</div>-->
-<script type="text/javascript" src="assets/js/jquery-2.2.1.min.js"></script>
-<script type="text/javascript" src="assets/js/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="/assets/js/jquery-2.2.1.min.js"></script>
+<script type="text/javascript" src="/assets/js/jquery-migrate-1.2.1.min.js"></script>
 <!--<script type="text/javascript" src="https://maps.google.com/maps/api/js"></script>-->
-<script type="text/javascript" src="assets/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="assets/js/jquery.validate.min.js"></script>
-<script type="text/javascript" src="assets/js/bootstrap-datepicker.js"></script>
-<script type="text/javascript" src="assets/js/icheck.min.js"></script>
-<script type="text/javascript" src="assets/js/markerwithlabel_packed.js"></script>
-<script type="text/javascript" src="assets/js/owl.carousel.js"></script>
-<script type="text/javascript" src="assets/js/masonry.pkgd.min.js"></script>
-<script type="text/javascript" src="assets/js/jquery.simpleWeather.min.js"></script>
+<script type="text/javascript" src="/assets/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/assets/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/assets/js/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="/assets/js/icheck.min.js"></script>
+<script type="text/javascript" src="/assets/js/markerwithlabel_packed.js"></script>
+<script type="text/javascript" src="/assets/js/owl.carousel.js"></script>
+<script type="text/javascript" src="/assets/js/masonry.pkgd.min.js"></script>
+<script type="text/javascript" src="/assets/js/jquery.simpleWeather.min.js"></script>
 <!--<script type="text/javascript" src="/assets/js/maps.js"></script>-->
-<script type="text/javascript" src="assets/js/custom.js"></script>
+<script type="text/javascript" src="/assets/js/custom.js"></script>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -1155,7 +1184,21 @@
 <!--        }-->
 <!--    }-->
 <!--</script>-->
+<script>
+    function changeText() {
+        var link = document.getElementById("toggleLink");
 
+        // Kiểm tra xem lớp collapsed có tồn tại hay không
+        if (link.classList.contains("collapsed")) {
+            // Nếu có, thay đổi nội dung thành "Ẩn bớt" hoặc bất kỳ văn bản nào bạn muốn
+            link.innerHTML = "Ẩn bớt";
+        } else {
+            // Ngược lại, chuyển về văn bản ban đầu "Thêm"
+            link.innerHTML = " XEM CHI TIẾT DỊCH VỤ +";
+        }
+    }
+
+</script>
 
 <script th:src="@{'https://maps.googleapis.com/maps/api/js?key='+${key_map}+'&callback=initMap'}" async defer></script>
 

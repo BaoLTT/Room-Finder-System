@@ -52,8 +52,8 @@
                         <div class="page-title-box">
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a th:href="@{/admin/dashboard}">Dashboard</a></li>
-                                    <li class="breadcrumb-item"><a th:href="@{/admin/newsList}">Danh sách tin</a></li>
+                                    <li class="breadcrumb-item"><a th:href="@{/admin/dashboard}">Thống kê</a></li>
+                                    <li class="breadcrumb-item"><a th:href="@{/admin/newsList}">Danh sách tin tức</a></li>
                                     <li class="breadcrumb-item active">Cập nhật tin tức</li>
                                 </ol>
                             </div>
@@ -86,7 +86,7 @@
                                 <div class="form-group">
                                     <label>Nội dung</label>
                                     <div >
-                                        <textarea class="form-control" rows="15" name="content" th:text="${news.content ?: 'Default Value'}" ></textarea>
+                                        <textarea class="form-control" rows="15" name="content" required th:text="${news.content ?: 'Default Value'}" ></textarea>
                                     </div>
                                 </div>
 
@@ -94,8 +94,8 @@
                                 <div class="form-group">
                                     <label>Trạng thái</label>
                                     <div >
-                                        <select name="status">
-                                            <option value="Hoạt động" th:selected="${news.status == 'Hoạt động'}">Hoạt động</option>
+                                        <select name="status" style="padding: 10px">
+                                            <option value="Hoạt động" th:selected="${news.status == 'Hoạt động'}" >Hoạt động</option>
                                             <option value="Không hoạt động" th:selected="${news.status == 'Không hoạt động'}">Không hoạt động</option>
                                         </select>
                                     </div>
@@ -111,7 +111,7 @@
                                             <div class="MultiFile-label" >
                                                 <a class="MultiFile-remove" th:href="@{'/admin/newsList/deleteImage/'+${news.newsid}}" id="removeImage">x</a>
                                                 <span class="MultiFile-label" title="File selected: abc.png">
-                                                        <img th:src="@{'https://storage.cloud.google.com'+news.imgLink}" alt="Ảnh" id="imagePreview" style="width: 100px; height: 100px">
+                                                        <img th:src="'https://storage.googleapis.com'+${news.imgLink}" alt="Ảnh" id="imagePreview" style="width: 100px; height: 100px">
                                                     </span>
                                             </div>
                                         </div>
@@ -123,10 +123,10 @@
                                 </div>
                                 <div class="form-group mb-0">
                                     <div>
-                                        <button type="submit" class="btn btn-gradient waves-effect waves-light">
+                                        <button type="submit" class="btn btn-gradient waves-effect waves-light" th:onclick="'confirmUpdate()'" style="border-radius: 5px">
                                             Cập nhật
                                         </button>
-                                        <button type="reset" class="btn btn-gradient waves-effect waves-classic" style="background-color: red">
+                                        <button type="reset" class="btn btn-light waves-effect ml-1" style="border-radius: 5px">
                                             <a th:href="@{/admin/newsList}"> Đóng</a>
                                         </button>
                                     </div>
@@ -145,16 +145,7 @@
 
 
         <!-- Footer Start -->
-        <footer class="footer">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12">
-                        2017 - 2019 &copy; Abstack theme by <a href="">Coderthemes</a>
-                    </div>
-
-                </div>
-            </div>
-        </footer>
+        <div th:replace="admin/footer_admin :: admin_footer"></div>
         <!-- end Footer -->
 
     </div>
@@ -322,6 +313,29 @@
 
         // Đặt giá trị trống cho input file để đảm bảo sự kiện change được kích hoạt khi chọn lại cùng một tệp
         $('#fileInput').val('');
+    });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script>
+    document.getElementById('myForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        Swal.fire({
+            title: 'Bạn có chắc chắn muốn cập nhật không?',
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonColor: '#3ec396',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Cập nhật',
+            cancelButtonText: 'Hủy bỏ'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Manually submit the form
+                event.target.submit();
+                Swal.fire('Cập nhật thành công!', '', 'success');
+            }
+        });
     });
 </script>
 
