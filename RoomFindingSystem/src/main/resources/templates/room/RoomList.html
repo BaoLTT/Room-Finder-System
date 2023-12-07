@@ -302,21 +302,8 @@
 <!--                                    <div class="ribbon"><div class="offer-number">20%</div><figure>Off Today!</figure></div>-->
                                     <div class="item-wrapper">
                                         <div class="image">
-<!--                                            <div class="mark-circle description" data-toggle="tooltip" data-placement="right" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis erat vel quam aliquet hendrerit semper eget elit. Aenean tincidunt ultrices bibendum. Proin nisi erat, iaculis non pulvinar a, scelerisque ut est. "><i class="fa fa-question"></i></div>-->
-<!--                                            <div class="mark-circle map" data-toggle="tooltip" data-placement="right" title="Show on map"><i class="fa fa-map-marker"></i></div>-->
-<!--                                            <div class="mark-circle top" data-toggle="tooltip" data-placement="right" title="Top accommodation"><i class="fa fa-thumbs-up"></i></div>-->
-
-                                            <div th:if="${room.roomImages != null && room.roomImages.size() > 1}">
-                                                <a href="" class="wrapper">
-                                                    <div class="gallery" >
-                                                        <img style="width: 273px; height: 208px;" th:each = "image: ${room.roomImages}" th:src="'https://storage.googleapis.com'+${image}" alt="">
-
-                                                    </div>
-                                                </a>
-                                                <div class="owl-navigation"></div>
-                                            </div>
-                                            <div th:if="${room.roomImages != null && room.roomImages.size() == 1}">
-                                                <img style="width: 273px; height: 208px;" th:src="'https://storage.googleapis.com'+${room.roomImages.get(0)}" alt="">
+                                            <div>
+                                                <img style="width: 273px; height: 208px;" th:src="'https://storage.googleapis.com'+${room.roomImages}" alt="">
                                             </div>
                                             <!--end owl-navigation-->
                                         </div>

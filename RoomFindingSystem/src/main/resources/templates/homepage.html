@@ -157,7 +157,7 @@
                 <!--end plate-->
 <!--                <div id="map-item" class="map height-100"></div>-->
                 <div>
-                    <img src="/assets/img/FPT-1.jpg" style="width: 100%; height: 100%;" alt="">
+                    <img src="/assets/img/FPT.jpg" style="width: 100%; height: 100%;" alt="">
                 </div>
 
             </div>
@@ -230,7 +230,7 @@
     <div class="block">
         <div class="container">
             <div class="title">
-                <h2 class="pull-left">Phòng trọ nổi bật</h2>
+                <h2 class="pull-left">Phòng trọ</h2>
             </div>
             <!--end title-->
             <div class="row">
@@ -240,8 +240,9 @@
                             <a th:href="@{/house/}+${room.houseName}+'/room/'+${room.roomId}" class="item small">
                                 <div class="image">
                                     <div class="info">
-                                        <figure class="label label-info" th:text="${room.roomType}">Hotel</figure>
+
                                         <aside>
+                                            <h3 th:text="${room.roomName}">Celestial Hotel & Spa</h3>
                                             <h3 th:text="${room.houseName}">Celestial Hotel & Spa</h3>
                                             <figure class="location"
                                                     th:text="${room.addressDetail+', '+room.ward+', '+room.district+', '+room.province}"></figure>
@@ -255,9 +256,15 @@
                                 </div>
                                 <!--end image-->
                                 <div class="description">
+
                                     <div class="meta">
-                                        <span th:with="formattedPrice=${#numbers.formatDecimal(room.price, 0, 'COMMA', 0, 'POINT')}" th:text="${'Giá tiền: '+formattedPrice+' Đ'}"></span>
-                                        <span th:text="${room.area}+'m2'"></span>
+                                        <figure class="label label-info" th:text="${room.roomType}" style="font-size: 12px;"></figure>
+                                        <br>
+                                        <div style="margin-top: 10px">
+                                            <span th:with="formattedPrice=${#numbers.formatDecimal(room.price, 0, 'COMMA', 0, 'POINT')}" th:text="${'Giá tiền: '+formattedPrice+' Đ'}"></span>
+                                            <span th:text="${room.area}+'m2'"></span>
+                                        </div>
+
                                     </div>
 
                                 </div>
@@ -265,73 +272,73 @@
                             </a>
                             <!--end item-->
                         </div>
-
+                        <a th:href="@{/roomlist}" class="pull-right">Xem tất cả</a>
                     </div>
                     <!--end row-->
-                    <a th:href="@{/roomlist}" class="pull-right">Xem tất cả</a>
+
                 </div>
-<!--                <div class="col-md-3 col-sm-4">-->
-<!--                    <a href="#" class="advertising-banner">-->
-<!--                        <img src="assets/img/ad-banner-02.jpg" alt="">-->
-<!--                    </a>-->
-<!--                </div>-->
+                <!--                <div class="col-md-3 col-sm-4">-->
+                <!--                    <a href="#" class="advertising-banner">-->
+                <!--                        <img src="assets/img/ad-banner-02.jpg" alt="">-->
+                <!--                    </a>-->
+                <!--                </div>-->
             </div>
         </div>
         <!--end container-->
     </div>
     <!--end block-->
 
-    <div class="block">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 col-sm-4">
-                    <div class="feature">
-                        <aside class="circle">
-                            <i class="icon_house_alt"></i>
-                        </aside>
-                        <figure>
-                            <h3>Nhà trọ thoải mái</h3>
-                            <p>
-                            </p>
-                        </figure>
-                    </div>
-                    <!--end feature-->
-                </div>
-                <!--end col-md-4-->
-                <div class="col-md-4 col-sm-4">
-                    <div class="feature">
-                        <aside class="circle">
-                            <i class="icon_box-checked"></i>
-                        </aside>
-                        <figure>
-                            <h3>Hệ thống tiện lợi</h3>
-                            <p>
-                            </p>
-                        </figure>
-                    </div>
-                    <!--end feature-->
-                </div>
-                <!--end col-md-4-->
-                <div class="col-md-4 col-sm-4">
-                    <div class="feature">
-                        <aside class="circle">
-                            <i class="icon_headphones"></i>
-                        </aside>
-                        <figure>
-                            <h3>Thông tin chi tiết</h3>
-                            <p>
-                            </p>
-                        </figure>
-                    </div>
-                    <!--end feature-->
-                </div>
-                <!--end col-md-4-->
-            </div>
-            <!--end row-->
-        </div>
-        <!--end container-->
-        <div class="space"></div>
-    </div>
+<!--    <div class="block">-->
+<!--        <div class="container">-->
+<!--            <div class="row">-->
+<!--                <div class="col-md-4 col-sm-4">-->
+<!--                    <div class="feature">-->
+<!--                        <aside class="circle">-->
+<!--                            <i class="icon_house_alt"></i>-->
+<!--                        </aside>-->
+<!--                        <figure>-->
+<!--                            <h3>Nhà trọ thoải mái</h3>-->
+<!--                            <p>-->
+<!--                            </p>-->
+<!--                        </figure>-->
+<!--                    </div>-->
+<!--                    &lt;!&ndash;end feature&ndash;&gt;-->
+<!--                </div>-->
+<!--                &lt;!&ndash;end col-md-4&ndash;&gt;-->
+<!--                <div class="col-md-4 col-sm-4">-->
+<!--                    <div class="feature">-->
+<!--                        <aside class="circle">-->
+<!--                            <i class="icon_box-checked"></i>-->
+<!--                        </aside>-->
+<!--                        <figure>-->
+<!--                            <h3>Hệ thống tiện lợi</h3>-->
+<!--                            <p>-->
+<!--                            </p>-->
+<!--                        </figure>-->
+<!--                    </div>-->
+<!--                    &lt;!&ndash;end feature&ndash;&gt;-->
+<!--                </div>-->
+<!--                &lt;!&ndash;end col-md-4&ndash;&gt;-->
+<!--                <div class="col-md-4 col-sm-4">-->
+<!--                    <div class="feature">-->
+<!--                        <aside class="circle">-->
+<!--                            <i class="icon_headphones"></i>-->
+<!--                        </aside>-->
+<!--                        <figure>-->
+<!--                            <h3>Thông tin chi tiết</h3>-->
+<!--                            <p>-->
+<!--                            </p>-->
+<!--                        </figure>-->
+<!--                    </div>-->
+<!--                    &lt;!&ndash;end feature&ndash;&gt;-->
+<!--                </div>-->
+<!--                &lt;!&ndash;end col-md-4&ndash;&gt;-->
+<!--            </div>-->
+<!--            &lt;!&ndash;end row&ndash;&gt;-->
+<!--        </div>-->
+<!--        &lt;!&ndash;end container&ndash;&gt;-->
+<!--        <div class="space"></div>-->
+<!--    </div>-->
     <!--end block-->
 
     <div class="block">

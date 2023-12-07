@@ -132,7 +132,7 @@ public class UserController {
     public String sendMailForgotPass(@RequestParam("emailaddress") String email, HttpSession session) {
         try {
             String subject = "Hello Here Is Your Code OTP!";
-            String mess = "Hi You@" + " " + "Here is your OTP Code: " + otpCode() + " Plaese input to form!" + "\n Thanks!";
+            String mess = "Hi You@" + " " + "Here is your OTP Code: " + otpCode() + " Please input to form!" + "\n Thanks!";
             this.emailSenderService.sendEmail(email, subject, mess);
             session.setAttribute("recoverOtp", otpCode());
             session.setMaxInactiveInterval(360);
@@ -156,8 +156,8 @@ public class UserController {
 
         try {
             //        passwordEncoder.encode(oldPassword).equals(userService.getUserForChangePass("binhnhhe153478@fpt.edu.vn").toString());
-            System.out.println(passwordEncoder.matches(oldPassword, userService.getUserForChangePass("binhnhhe153478@fpt.edu.vn").toString()));
-            System.out.println(passwordEncoder.encode(oldPassword));
+//            System.out.println(passwordEncoder.matches(oldPassword, userService.getUserForChangePass("binhnhhe153478@fpt.edu.vn").toString()));
+//            System.out.println(passwordEncoder.encode(oldPassword));
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
             String email = authentication.getName();
             System.out.println(email);

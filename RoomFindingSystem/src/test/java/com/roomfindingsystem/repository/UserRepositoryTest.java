@@ -15,8 +15,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @SpringBootTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -118,4 +117,60 @@ public class UserRepositoryTest {
 
    }
 
+   //save()
+   @Test
+   public void testSaveUser_Success() {
+      // Arrange
+      UserEntity user = new UserEntity();
+      user.setFirstName("Le"); user.setLastName("Kaka");
+      UserEntity userToSave = userRepository.save(user);
+
+      UserEntity savedUser = userRepository.findById(userToSave.getUserId()).orElse(null);
+      assertNotNull(savedUser);
+      // Kiểm tra các thông tin khác của user nếu cần
+      assertEquals(userToSave.getLastName(), savedUser.getLastName());
+   }
+
+   //getUserForChangePass
+   @Test
+   void testGetUserForChangePass_ValidEmail() {
+      // Arrange
+      String email = "test@example.com";
+      UserEntity userEntity = new UserEntity();
+      userEntity.setEmail(email);
+
+
+      String result = userRepository.getUserEntitiesByUserId(email);
+
+      // Assert
+      assertEquals(userEntity.getPassword(), result);
+
+   }
+
+   @Test
+   void testGetUserForChangePass_InvalidEmail() {
+      // Arrange
+      String email = "nonexistent@example.com";
+
+
+      // Act
+      String result = userRepository.getUserEntitiesByUserId(email);
+
+      // Assert
+      assertNull(result);
+
+   }
+
+   @Test
+   void testGetUserForChangePass_NullEmail() {
+      // Arrange
+      String email = null;
+
+      // Act
+      String result = userRepository.getUserEntitiesByUserId(email);
+
+      // Assert
+      assertNull(result);
+//        verify(userRepository, never()).getUserEntitiesByUserId(email);
+   }
 }

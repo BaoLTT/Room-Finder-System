@@ -1,4 +1,4 @@
-//package com.example.roomfindingsystem.controller;
+package com.roomfindingsystem.controller;//package com.example.roomfindingsystem.controller;
 //
 //import com.roomfindingsystem.controller.HouseController;
 //import com.roomfindingsystem.dto.*;

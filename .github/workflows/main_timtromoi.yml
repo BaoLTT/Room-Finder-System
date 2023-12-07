@@ -29,7 +29,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: RoomFindingSystem-0.0.1-SNAPSHOT
-          path: '${{ github.workspace }}/RoomFindingSystem/target/*.war'
+          path: '${{ github.workspace }}/RoomFindingSystem/target/RoomFindingSystem-0.0.1-SNAPSHOT.jar'
 
   deploy:
     runs-on: ubuntu-latest
@@ -42,8 +42,13 @@ jobs:
       - uses: actions/checkout@v3
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
-        with:
-          name: RoomFindingSystem-0.0.1-SNAPSHOT
+      - name: Print the final result
+        shell: bash
+        run: |
+          ls
+          cd RoomFindingSystem
+          ls
+      
       
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
@@ -51,5 +56,5 @@ jobs:
         with:
           app-name: 'Timtromoi'
           slot-name: 'Production'
-          package: '*.war'
+          package: '/RoomFindingSystem/target/RoomFindingSystem-0.0.1-SNAPSHOT.jar'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_5D6AB64ABB0C4E86A58E31EEC2C26559 }}
