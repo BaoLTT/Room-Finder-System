@@ -1,6 +1,8 @@
 package com.roomfindingsystem.repository;
 
 import com.roomfindingsystem.dto.RoomDto;
+import com.roomfindingsystem.dto.RoomDtoN;
+import com.roomfindingsystem.entity.HouseImagesEntity;
 import com.roomfindingsystem.entity.RoomEntity;
 import com.roomfindingsystem.entity.RoomImagesEntity;
 import com.roomfindingsystem.entity.ServiceDetailEntity;
@@ -10,8 +12,10 @@ import jakarta.persistence.Tuple;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Repository
@@ -28,11 +32,30 @@ public interface RoomRepository extends JpaRepository<RoomEntity, Integer> {
     @Query("SELECT i FROM RoomImagesEntity i WHERE i.roomId = :roomId")
     List<RoomImagesEntity> getImageByRoomId(int roomId);
 
+    @Query("SELECT i FROM HouseImagesEntity i join HousesEntity h on h.houseId = i.houseId join RoomEntity r on h.houseId = r.houseId WHERE r.roomId = :roomId")
+    List<HouseImagesEntity> getImageHouseByRoomId(int roomId);
+
     @Query("SELECT s\n" +
             "FROM ServiceDetailEntity s\n" +
             "JOIN ServiceRoomEntity rs ON s.serviceId = rs.serviceId\n" +
             "WHERE rs.roomId = :roomId")
     List<ServiceDetailEntity> getServiceByRoomId(int roomId);
+
+
+
+    @Query("SELECT s\n" +
+            "FROM ServiceDetailEntity s\n" +
+            "JOIN ServiceRoomEntity rs ON s.serviceId = rs.serviceId\n" +
+            "WHERE rs.roomId = :roomId\n" +
+            "UNION\n" +
+            "SELECT s\n" +
+            "FROM ServiceDetailEntity s\n" +
+            "JOIN ServiceHouseEntity hs ON s.serviceId = hs.serviceId\n" +
+            "JOIN HousesEntity h ON h.houseId = hs.houseId\n" +
+            "JOIN RoomEntity r ON r.houseId = h.houseId\n" +
+            "WHERE r.roomId = :roomId")
+    List<ServiceDetailEntity> getAllServicesByRoomId(int roomId);
+
 
 
 
@@ -98,6 +121,26 @@ public interface RoomRepository extends JpaRepository<RoomEntity, Integer> {
             "join HousesEntity h on r.houseId = h.houseId " +
             "left join RoomTypeEntity t on t.typeId = r.roomType ")
     List<RoomDto> findRoomsDetail();
+
+    @Query(value = "SELECT r.roomid, r.room_name, h.house_name, t.type_name, r.price, (SELECT GROUP_CONCAT(i.image_link) FROM room_images i WHERE i.roomid = r.roomid) AS Image_Link, a.address_details, w.name AS ward_name, d.name AS district_name, p.name AS province_name, r.area\n" +
+            "FROM room r\n" +
+            "LEFT JOIN room_type t ON r.room_type = t.typeid\n" +
+            "LEFT JOIN houses h ON r.houseid = h.houseid\n" +
+            "LEFT JOIN address a ON h.addressid = a.addressid\n" +
+            "LEFT JOIN province p ON a.provinceid = p.provinceid\n" +
+            "LEFT JOIN district d ON a.districtid = d.districtid\n" +
+            "LEFT JOIN ward w ON a.wardid = w.wardid\n" +
+            "WHERE r.statusid = 1\n" +
+            "GROUP BY r.roomid, r.room_name, h.house_name, t.type_name, r.price, a.address_details, r.area\n" +
+            "ORDER BY ABS(r.price - :targetPrice) ASC\n" +
+            "LIMIT 4 OFFSET 0", nativeQuery = true)
+    List<Tuple> findRoomsNearPrice(@Param("targetPrice") BigDecimal targetPrice);
+
+
+
+
+
+
 
     @Query("select new com.roomfindingsystem.dto.RoomDto(r.roomId, r.roomName, t.typeName, r.description, r.price, h.houseName, r.area, case when r.statusId = 1 then 'ACTIVE' else 'INACTIVE' end) " +
             "from RoomEntity r " +

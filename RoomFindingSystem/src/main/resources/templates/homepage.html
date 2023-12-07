@@ -240,8 +240,9 @@
                             <a th:href="@{/house/}+${room.houseName}+'/room/'+${room.roomId}" class="item small">
                                 <div class="image">
                                     <div class="info">
-                                        <figure class="label label-info" th:text="${room.roomType}">Hotel</figure>
+
                                         <aside>
+                                            <h3 th:text="${room.roomName}">Celestial Hotel & Spa</h3>
                                             <h3 th:text="${room.houseName}">Celestial Hotel & Spa</h3>
                                             <figure class="location"
                                                     th:text="${room.addressDetail+', '+room.ward+', '+room.district+', '+room.province}"></figure>
@@ -255,9 +256,15 @@
                                 </div>
                                 <!--end image-->
                                 <div class="description">
+
                                     <div class="meta">
-                                        <span th:with="formattedPrice=${#numbers.formatDecimal(room.price, 0, 'COMMA', 0, 'POINT')}" th:text="${'Giá tiền: '+formattedPrice+' Đ'}"></span>
-                                        <span th:text="${room.area}+'m2'"></span>
+                                        <figure class="label label-info" th:text="${room.roomType}" style="font-size: 12px;"></figure>
+                                        <br>
+                                        <div style="margin-top: 10px">
+                                            <span th:with="formattedPrice=${#numbers.formatDecimal(room.price, 0, 'COMMA', 0, 'POINT')}" th:text="${'Giá tiền: '+formattedPrice+' Đ'}"></span>
+                                            <span th:text="${room.area}+'m2'"></span>
+                                        </div>
+
                                     </div>
 
                                 </div>
@@ -268,13 +275,13 @@
 
                     </div>
                     <!--end row-->
-                    <a th:href="@{/roomlist}" class="pull-right">Xem tất cả</a>
+
                 </div>
-<!--                <div class="col-md-3 col-sm-4">-->
-<!--                    <a href="#" class="advertising-banner">-->
-<!--                        <img src="assets/img/ad-banner-02.jpg" alt="">-->
-<!--                    </a>-->
-<!--                </div>-->
+                <!--                <div class="col-md-3 col-sm-4">-->
+                <!--                    <a href="#" class="advertising-banner">-->
+                <!--                        <img src="assets/img/ad-banner-02.jpg" alt="">-->
+                <!--                    </a>-->
+                <!--                </div>-->
             </div>
         </div>
         <!--end container-->

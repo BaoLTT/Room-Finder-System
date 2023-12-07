@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -51,7 +52,7 @@ public class RoomServiceImpl implements RoomService {
 
     @Override
     public List<ServiceDetailEntity> getServiceByRoomId(int roomId) {
-        return roomRepository.getServiceByRoomId(roomId);
+        return roomRepository.getAllServicesByRoomId(roomId);
     }
 
     @Override
@@ -91,7 +92,8 @@ public class RoomServiceImpl implements RoomService {
             roomHomeDto.setAddressDetail(tuple.get("Address_Details", String.class));
             String imageLink = (tuple.get("Image_Link", String.class));
             if (imageLink == null) {
-                roomHomeDto.setRoomImageLink(null);
+                List<HouseImagesEntity> houseImagesEntities = roomRepository.getImageHouseByRoomId(roomHomeDto.getRoomId());
+                roomHomeDto.setRoomImageLink(houseImagesEntities.get(0).getImageLink());
             } else {
                 imageLinks = Arrays.asList(imageLink.split(","));
                 roomHomeDto.setRoomImageLink(imageLinks.get(0));
@@ -106,6 +108,39 @@ public class RoomServiceImpl implements RoomService {
         }
         return roomHomeDtos;
 
+    }
+
+    @Override
+    public List<RoomHomeDto> viewRoomNearPrice(int price) {
+        List<Tuple> tuples = roomRepository.findRoomsNearPrice(BigDecimal.valueOf(price));
+        List<RoomHomeDto> roomHomeDtos = new ArrayList<>();
+        List<String> imageLinks;
+
+
+        for (Tuple tuple : tuples) {
+            RoomHomeDto roomHomeDto = new RoomHomeDto();
+            roomHomeDto.setRoomId(tuple.get("RoomID", Integer.class));
+            roomHomeDto.setRoomName(tuple.get("Room_Name", String.class));
+            roomHomeDto.setHouseName(tuple.get("House_Name", String.class));
+            roomHomeDto.setRoomType(tuple.get("Type_Name", String.class));
+            roomHomeDto.setAddressDetail(tuple.get("Address_Details", String.class));
+            String imageLink = (tuple.get("Image_Link", String.class));
+            if (imageLink == null) {
+                List<HouseImagesEntity> houseImagesEntities = roomRepository.getImageHouseByRoomId(roomHomeDto.getRoomId());
+                roomHomeDto.setRoomImageLink(houseImagesEntities.get(0).getImageLink());
+            } else {
+                imageLinks = Arrays.asList(imageLink.split(","));
+                roomHomeDto.setRoomImageLink(imageLinks.get(0));
+            }
+            roomHomeDto.setProvince(tuple.get("province_name", String.class));
+            roomHomeDto.setDistrict(tuple.get("district_name", String.class));
+            roomHomeDto.setWard(tuple.get("ward_name", String.class));
+            roomHomeDto.setArea(tuple.get("area", Double.class));
+            roomHomeDto.setPrice(tuple.get("price", Integer.class));
+
+            roomHomeDtos.add(roomHomeDto);
+        }
+        return roomHomeDtos;
     }
 
     @Override
@@ -378,10 +413,11 @@ public class RoomServiceImpl implements RoomService {
             roomDto.setRoomType(tuple.get("type_name", String.class));
             String imageLink = (tuple.get("images", String.class));
             if (imageLink == null) {
-                roomDto.setRoomImages(null);
+                List<HouseImagesEntity> houseImagesEntities = roomRepository.getImageHouseByRoomId(roomDto.getRoomId());
+                roomDto.setRoomImages(houseImagesEntities.get(0).getImageLink());
             } else {
                 imageLinks = Arrays.asList(imageLink.split(","));
-                roomDto.setRoomImages(imageLinks);
+                roomDto.setRoomImages(imageLinks.get(0));
             }
 
 
