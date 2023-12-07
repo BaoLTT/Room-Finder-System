@@ -54,5 +54,5 @@ jobs:
         with:
           app-name: 'Timtromoi'
           slot-name: 'Production'
-          package: '*.war'
+          package: '${{ github.workspace }}/RoomFindingSystem/target/RoomFindingSystem-0.0.1-SNAPSHOT.war'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_5D6AB64ABB0C4E86A58E31EEC2C26559 }}
