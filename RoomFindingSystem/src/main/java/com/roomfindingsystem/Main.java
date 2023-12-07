@@ -3,6 +3,7 @@ package com.roomfindingsystem;
 import com.roomfindingsystem.dto.FeedbackDto;
 import com.roomfindingsystem.repository.FeedbackRepository;
 import com.roomfindingsystem.repository.HouseRepository;
+import com.roomfindingsystem.repository.RoomRepository;
 import org.apache.catalina.LifecycleException;
 import org.apache.catalina.valves.rewrite.RewriteValve;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +17,13 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
 
 import java.awt.print.Pageable;
+import java.math.BigDecimal;
 import java.util.List;
 
 @SpringBootApplication
 public class Main implements CommandLineRunner{
+    @Autowired
+    RoomRepository roomRepository;
 //    CommandLineRunner
 
 
@@ -30,6 +34,6 @@ public class Main implements CommandLineRunner{
 
     @Override
     public void run(String... args) throws Exception {
-
+        System.out.println(roomRepository.findRoomsNearPrice(BigDecimal.valueOf(2000000)).size());
     }
 }

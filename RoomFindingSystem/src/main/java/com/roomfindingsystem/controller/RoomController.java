@@ -43,6 +43,7 @@ public class RoomController {
         model.addAttribute("house", house);
         model.addAttribute("user", user);
         model.addAttribute("request",request);
+        model.addAttribute("rooms", roomService.viewRoomNearPrice(room.getPrice()));
         return "room/RoomDetail";
     }
 

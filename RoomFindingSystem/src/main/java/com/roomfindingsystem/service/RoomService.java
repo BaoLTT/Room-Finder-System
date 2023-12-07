@@ -29,6 +29,8 @@ public interface RoomService {
     int countRoom(int houseId);
     List<RoomHomeDto> viewRoomInHome();
 
+    List<RoomHomeDto> viewRoomNearPrice(int price);
+
     RoomDto findById(Integer id);
 
     void update(RoomDto roomDto, MultipartFile[] files) throws IOException;
