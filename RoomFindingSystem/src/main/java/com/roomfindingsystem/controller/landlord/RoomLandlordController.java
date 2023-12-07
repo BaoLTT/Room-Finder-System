@@ -104,7 +104,7 @@ public class RoomLandlordController {
     @PostMapping("/importRooms/{houseId}")
     public String importRoom(@PathVariable("houseId") Integer id,@RequestParam("fileExcel") MultipartFile fileExcel) {
         roomService.importRooms(fileExcel);
-        return "redirect:/landlord/room/listRoom"+ id;
+        return "redirect:/landlord/room/listRoom/"+ id;
     }
 
     @GetMapping("deleteImage/{roomId}/{imageId}")
