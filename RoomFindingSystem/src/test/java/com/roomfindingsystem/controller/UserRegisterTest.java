@@ -1,13 +1,8 @@
 package com.roomfindingsystem.controller;
 
-import com.roomfindingsystem.controller.UserController;
-import com.roomfindingsystem.dto.Smsrequest;
 import com.roomfindingsystem.entity.UserEntity;
-import com.roomfindingsystem.service.EmailSenderService;
 import com.roomfindingsystem.service.UserService;
 import com.roomfindingsystem.service.impl.EmailSenderServiceImpl;
-import com.roomfindingsystem.service.impl.Smsservice;
-import com.roomfindingsystem.service.impl.UserServiceImpl;
 import jakarta.servlet.http.HttpSession;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,9 +10,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 
@@ -29,7 +22,7 @@ import static org.mockito.Mockito.*;
 
 
 @ExtendWith(MockitoExtension.class)
-public class UserRegisterControllerTest {
+public class UserRegisterTest {
 
     @Mock
     private UserService userService;
