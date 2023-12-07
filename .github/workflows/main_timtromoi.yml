@@ -42,9 +42,7 @@ jobs:
       - uses: actions/checkout@v3
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
-        with:
-          name: RoomFindingSystem-0.0.1-SNAPSHOT
-          path: '${{ github.workspace }}/RoomFindingSystem/target/'
+      
       
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
