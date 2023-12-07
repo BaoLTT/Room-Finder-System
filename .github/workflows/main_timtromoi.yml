@@ -26,9 +26,9 @@ jobs:
         run: mvn clean install -DskipTests
 
       - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v3.0.2
         with:
-          name: RoomFindingSystem-0.0.1-SNAPSHOT
+          name: RoomFindingSystem
           path: '${{ github.workspace }}/RoomFindingSystem/target/*.war'
 
   deploy:
@@ -43,7 +43,7 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v3.0.2
         with:
-          name: RoomFindingSystem-0.0.1-SNAPSHOT
+          name: RoomFindingSystem
       
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
