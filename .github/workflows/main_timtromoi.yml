@@ -28,7 +28,7 @@ jobs:
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
-          name: RoomFindingSystem
+          name: RoomFindingSystem-0.0.1-SNAPSHOT
           path: '${{ github.workspace }}/RoomFindingSystem/target/*.war'
 
   deploy:
@@ -43,7 +43,7 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
         with:
-          name: RoomFindingSystem
+          name: RoomFindingSystem-0.0.1-SNAPSHOT
           path: '${{ github.workspace }}/RoomFindingSystem/target/*.war'
       
       - name: Deploy to Azure Web App
