@@ -48,6 +48,8 @@ jobs:
           ls
           cd RoomFindingSystem
           ls
+          cd target
+          ls
       
       
       - name: Deploy to Azure Web App
