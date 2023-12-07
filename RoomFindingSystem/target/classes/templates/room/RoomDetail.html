@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="shortcut icon" href="/assets/img/favicon.ico">
 
-    <title>Accommodo - Accommodation HTML Template Full of Useful Features</title>
+    <title>Chi tiết phòng trọ</title>
 
 
 
@@ -53,7 +53,7 @@
 
                 <li><a th:href="@{/}">Trang chủ</a></li>
                 <li><a th:href="@{/house/}+${house.houseName}+'?id='+${house.houseId}"><span th:text="${house.getHouseName()}"></span></a></li>
-                <li class="active">Phòng trọ</li>
+                <li class="active"><span th:text="${room.getRoomName()}"></span></li>
             </ol>
             <!--end breadcrumb-->
 
@@ -148,30 +148,33 @@
 
 
 
-                        <section id="additional-information" style="margin-top: 50px">
-                            <h2>Chi tiết dịch vụ</h2>
-                            <dl class="info">
-                                <dt>Dịch vụ phòng trọ:</dt>
-                                <dd><span th:each="service, iterStat : ${roomServices}">
-                                        <span>
-                                            <iconify-icon icon="mdi:refrigerator-outline" th:if="${service.getServiceName()} eq 'Tủ lạnh'"></iconify-icon>
-                                            <iconify-icon icon="mdi:bed-outline" th:if="${service.getServiceName()} eq 'Giường ngủ'"></iconify-icon>
-                                            <iconify-icon icon="icon-park-twotone:washing-machine-one" th:if="${service.getServiceName()} eq 'Máy giặt'"></iconify-icon>
-                                            <iconify-icon icon="mdi:electric-water-heater" th:if="${service.getServiceName()} eq 'Bình nóng lạnh'"></iconify-icon>
-                                            <iconify-icon icon="tabler:air-conditioning" th:if="${service.getServiceName()} eq 'Điều hòa'"></iconify-icon>
-                                            <iconify-icon icon="openmoji:stairway" th:if="${service.getServiceName()} eq 'Gác xép'"></iconify-icon>
-                                            <iconify-icon icon="game-icons:desk" th:if="${service.getServiceName()} eq 'Bàn học'"></iconify-icon>
-                                            <iconify-icon icon="mdi:closet-outline" th:if="${service.getServiceName()} eq 'Tủ quần áo'"></iconify-icon>
-                                            <iconify-icon icon="material-symbols:wifi" th:if="${service.getServiceName()} eq 'Wifi'"></iconify-icon>
-                                            <iconify-icon icon="mdi:gas" th:if="${service.getServiceName()} eq 'Bếp Gas'"></iconify-icon >
-                                            <iconify-icon icon="solar:tv-broken" th:if="${service.getServiceName()} eq 'Tivi'"></iconify-icon>
-                                            <iconify-icon icon="streamline:pet-paw" th:if="${service.getServiceName()} eq 'có nuôi thêm pet'"></iconify-icon>
-                                            <span th:text="${service.getServiceName()}"></span>
-                                            <span th:if="${!iterStat.last}">,</span>
-                                        </span>
-                                    </span></dd>
+                        <section id="additional-information" style="margin-top: 50px; background-color: #FFFFFF;padding: 30px;  box-shadow:inherit; box-shadow:5px 5px 7px grey">
+                            <h2 style=" font-weight: bold; margin-bottom: 40px">Chi tiết dịch vụ</h2>
+                            <div class="row"  style="text-align: center">
+                                <div class="col-md-4" th:each="service: ${roomServices}" style="margin-bottom: 20px; font-size: 15px">
+                                    <span>
+                                        <iconify-icon icon="mdi:clock" th:if="${service.getServiceName()} eq 'Tự do'"></iconify-icon>
+                                        <iconify-icon th:if="${service.getServiceName() eq 'Không chung chủ'}"icon="uiw:user-delete"></iconify-icon>
+                                        <iconify-icon th:if="${service.getServiceName() eq 'Bảo vệ'}"icon="mdi:security-account"></iconify-icon>
+                                        <iconify-icon th:if="${service.getServiceName() eq 'Khóa vân tay'}"icon="material-symbols:fingerprint"></iconify-icon>
+                                        <iconify-icon th:if="${service.getServiceName() eq 'Camera an ninh'}" icon="bxs:cctv"></iconify-icon>
+                                        <iconify-icon icon="mdi:refrigerator-outline" th:if="${service.getServiceName()} eq 'Tủ lạnh'"></iconify-icon>
+                                        <iconify-icon icon="mdi:bed-outline" th:if="${service.getServiceName()} eq 'Giường ngủ'"></iconify-icon>
+                                        <iconify-icon icon="icon-park-twotone:washing-machine-one" th:if="${service.getServiceName()} eq 'Máy giặt'"></iconify-icon>
+                                        <iconify-icon icon="mdi:electric-water-heater" th:if="${service.getServiceName()} eq 'Bình nóng lạnh'"></iconify-icon>
+                                        <iconify-icon icon="tabler:air-conditioning" th:if="${service.getServiceName()} eq 'Điều hòa'"></iconify-icon>
+                                        <iconify-icon icon="openmoji:stairway" th:if="${service.getServiceName()} eq 'Gác xép'"></iconify-icon>
+                                        <iconify-icon icon="game-icons:desk" th:if="${service.getServiceName()} eq 'Bàn học'"></iconify-icon>
+                                        <iconify-icon icon="mdi:closet-outline" th:if="${service.getServiceName()} eq 'Tủ quần áo'"></iconify-icon>
+                                        <iconify-icon icon="material-symbols:wifi" th:if="${service.getServiceName()} eq 'Wifi'"></iconify-icon>
+                                        <iconify-icon icon="mdi:gas" th:if="${service.getServiceName()} eq 'Bếp Gas'"></iconify-icon >
+                                        <iconify-icon icon="solar:tv-broken" th:if="${service.getServiceName()} eq 'Tivi'"></iconify-icon>
+                                        <iconify-icon icon="streamline:pet-paw" th:if="${service.getServiceName()} eq 'có nuôi thêm pet'"></iconify-icon>
+                                        <span th:text="${service.getServiceName()}"></span>
+                                    </span>
+                                </div>
 
-                            </dl>
+                            </div>
                             <!--end info-->
                         </section>
                         <h2>Tham khảo phòng trọ khác</h2>
@@ -185,8 +188,9 @@
                                         <a th:href="@{/house/}+${room.houseName}+'/room/'+${room.roomId}" class="item small">
                                             <div class="image">
                                                 <div class="info">
-                                                    <figure class="label label-info" th:text="${room.roomType}">Hotel</figure>
+
                                                     <aside>
+                                                        <h3 th:text="${room.roomName}">Celestial Hotel & Spa</h3>
                                                         <h3 th:text="${room.houseName}">Celestial Hotel & Spa</h3>
                                                         <figure class="location"
                                                                 th:text="${room.addressDetail+', '+room.ward+', '+room.district+', '+room.province}"></figure>
@@ -200,9 +204,15 @@
                                             </div>
                                             <!--end image-->
                                             <div class="description">
+
                                                 <div class="meta">
-                                                    <span th:with="formattedPrice=${#numbers.formatDecimal(room.price, 0, 'COMMA', 0, 'POINT')}" th:text="${'Giá tiền: '+formattedPrice+' Đ'}"></span>
-                                                    <span th:text="${room.area}+'m2'"></span>
+                                                    <figure class="label label-info" th:text="${room.roomType}" style="font-size: 12px;"></figure>
+                                                    <br>
+                                                    <div style="margin-top: 10px">
+                                                        <span th:with="formattedPrice=${#numbers.formatDecimal(room.price, 0, 'COMMA', 0, 'POINT')}" th:text="${'Giá tiền: '+formattedPrice+' Đ'}"></span>
+                                                        <span th:text="${room.area}+'m2'"></span>
+                                                    </div>
+
                                                 </div>
 
                                             </div>

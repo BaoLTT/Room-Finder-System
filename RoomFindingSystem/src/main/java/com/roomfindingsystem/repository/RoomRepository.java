@@ -43,6 +43,22 @@ public interface RoomRepository extends JpaRepository<RoomEntity, Integer> {
 
 
 
+    @Query("SELECT s\n" +
+            "FROM ServiceDetailEntity s\n" +
+            "JOIN ServiceRoomEntity rs ON s.serviceId = rs.serviceId\n" +
+            "WHERE rs.roomId = :roomId\n" +
+            "UNION\n" +
+            "SELECT s\n" +
+            "FROM ServiceDetailEntity s\n" +
+            "JOIN ServiceHouseEntity hs ON s.serviceId = hs.serviceId\n" +
+            "JOIN HousesEntity h ON h.houseId = hs.houseId\n" +
+            "JOIN RoomEntity r ON r.houseId = h.houseId\n" +
+            "WHERE r.roomId = :roomId")
+    List<ServiceDetailEntity> getAllServicesByRoomId(int roomId);
+
+
+
+
     //homepage
 
     @Query(value = "SELECT r.roomid, r.room_name, h.house_name , t.type_name, r.price, (SELECT GROUP_CONCAT(i.image_link) FROM room_images i WHERE i.roomid = r.roomid) AS Image_Link, a.address_details, w.name AS ward_name, d.name AS district_name, p.name AS province_name, r.area\n" +

@@ -52,7 +52,7 @@ public class RoomServiceImpl implements RoomService {
 
     @Override
     public List<ServiceDetailEntity> getServiceByRoomId(int roomId) {
-        return roomRepository.getServiceByRoomId(roomId);
+        return roomRepository.getAllServicesByRoomId(roomId);
     }
 
     @Override
