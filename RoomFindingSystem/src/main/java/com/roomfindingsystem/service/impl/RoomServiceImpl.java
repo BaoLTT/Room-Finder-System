@@ -413,10 +413,11 @@ public class RoomServiceImpl implements RoomService {
             roomDto.setRoomType(tuple.get("type_name", String.class));
             String imageLink = (tuple.get("images", String.class));
             if (imageLink == null) {
-                roomDto.setRoomImages(null);
+                List<HouseImagesEntity> houseImagesEntities = roomRepository.getImageHouseByRoomId(roomDto.getRoomId());
+                roomDto.setRoomImages(houseImagesEntities.get(0).getImageLink());
             } else {
                 imageLinks = Arrays.asList(imageLink.split(","));
-                roomDto.setRoomImages(imageLinks);
+                roomDto.setRoomImages(imageLinks.get(0));
             }
 
 
