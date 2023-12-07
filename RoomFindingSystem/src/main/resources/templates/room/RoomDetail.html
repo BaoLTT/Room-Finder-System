@@ -76,7 +76,7 @@
 
                         <div class="row">
                             <div class="col-md-6" >
-                                <div class="w3-content w3-display-container" style="background-color: darkgrey">
+                                <div class="w3-content w3-display-container" style="background-color: darkgrey; box-shadow:inherit; box-shadow:5px 5px 7px grey; border-radius: 10px">
                                     <div th:each="image: ${roomImages}" th:if="${roomImages.size()!=0}">
                                         <img class="mySlides" th:src="'https://storage.googleapis.com'+${image.getImageLink()}" style="height: 354px; max-width: 100%; display: block; margin: 0 auto;">
 
@@ -98,7 +98,7 @@
 
 
                             <div class="col-md-6">
-                                <div style="padding: 30px; background-color: #FFFFFF; box-shadow:inherit; box-shadow:5px 5px 7px grey">
+                                <div style="padding: 30px; background-color: #FFFFFF; box-shadow:inherit; box-shadow:5px 5px 7px grey; border-radius: 10px;">
                                     <h2 style="font-weight: bold">Thông tin:</h2>
                                     <table style="width: 100%; " >
                                         <tr>
@@ -148,7 +148,7 @@
 
 
 
-                        <section id="additional-information" style="margin-top: 50px; background-color: #FFFFFF;padding: 30px;  box-shadow:inherit; box-shadow:5px 5px 7px grey">
+                        <section id="additional-information" style="margin-top: 50px; background-color: #FFFFFF;padding: 30px;  box-shadow:inherit; box-shadow:5px 5px 7px grey; border-radius: 10px">
                             <h2 style=" font-weight: bold; margin-bottom: 40px">Chi tiết dịch vụ</h2>
                             <div class="row"  style="text-align: center">
                                 <div class="col-md-4" th:each="service: ${roomServices}" style="margin-bottom: 20px; font-size: 15px">
