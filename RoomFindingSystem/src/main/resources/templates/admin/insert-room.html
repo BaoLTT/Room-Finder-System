@@ -34,6 +34,31 @@
         .input-number .change-button.minus {
             display: none;
         }
+        .bootstrap-select .dropdown-menu {
+            max-height: 200px ;/* Set your preferred max height for the dropdown */
+            overflow-y: auto !important;
+        }
+
+        .custom-file-upload {
+            display: inline-block;
+            position: relative;
+        }
+
+        .custom-file-upload input[type="file"] {
+            display: none;
+        }
+
+        .custom-file-upload label {
+            background-color: #3498db;
+            color: #fff;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .custom-file-upload label:hover {
+            background-color: #2980b9;
+        }
     </style>
 </head>
 
@@ -77,15 +102,12 @@
                     <div class="col-lg">
                         <div class="card-box">
                             <div class="d-flex justify-content-end">
-                                <form th:action="@{importRooms}" method="post" enctype="multipart/form-data"
-                                      class="my-form">
-                                    <div class="form-group">
-                                        <input type="file" class="form-control-file" id="fileExcel" name="fileExcel"/>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary" onclick="event.stopPropagation()" style="border-radius: 5px">Thêm
-                                        nhiều phòng
-                                    </button>
-                                </form>
+<!--                                    <div class="form-group">-->
+<!--                                        <input type="file" class="form-control-file" id="fileExcel" name="fileExcel"/>-->
+<!--                                    </div>-->
+                                <button type="button" class="btn btn-gradient waves-effect waves-light" id="houseRoom" style="border-radius: 5px"
+                                >Thêm dịch vụ
+                                </button>
                             </div>
 
                             <form class="parsley-examples" action="#" th:action="@{/admin/room/save}"
@@ -315,6 +337,62 @@
                 </form>
             </div>
 
+            <div id="inputRoom" style="display: none">
+                <form th:action="@{importRooms}" method="post" enctype="multipart/form-data" class="my-form">
+                    <div class="swal2-container swal2-center swal2-fade swal2-shown" style="overflow-y: auto;">
+                        <div aria-labelledby="swal2-title" aria-describedby="swal2-content"
+                             class="swal2-popup swal2-modal swal2-show" tabindex="-1" role="dialog"
+                             aria-live="assertive"
+                             aria-modal="true" style="display: flex;">
+                            <div class="swal2-header">
+                                <ul class="swal2-progress-steps" style="display: none;"></ul>
+                                <div class="swal2-icon swal2-error" style="display: none;"><span
+                                        class="swal2-x-mark"><span
+                                        class="swal2-x-mark-line-left"></span><span
+                                        class="swal2-x-mark-line-right"></span></span>
+                                </div>
+                                <div class="swal2-icon swal2-question" style="display: none;"></div>
+                                <div class="swal2-icon swal2-warning" style="display: none;"></div>
+                                <div class="swal2-icon swal2-info" style="display: none;"></div>
+                                <div class="swal2-icon swal2-success" style="display: none;">
+                                    <div class="swal2-success-circular-line-left"></div>
+                                    <span class="swal2-success-line-tip"></span> <span
+                                        class="swal2-success-line-long"></span>
+                                    <div class="swal2-success-ring"></div>
+                                    <div class="swal2-success-fix"></div>
+                                    <div class="swal2-success-circular-line-right"></div>
+                                </div>
+                                <img class="swal2-image" style="display: none;">
+                                <h2 class="swal2-title" style="display: flex;">Vui lòng chọn tệp Exel danh sách phòng</h2>
+                                <button type="button" class="swal2-close" aria-label="Close this dialog"
+                                        style="display: none;">
+                                    ×
+                                </button>
+
+                                <div style="display: flex; align-items: center;margin-top: 10px">
+                                    <input type="file" class="form-control-file" id="fileExcel" name="fileExcel"/>
+                                    <button type="button" class="btn btn-gradient waves-effect waves-light" style="border-radius: 5px; margin-left: 10px;width: 150px">
+                                        Tải template
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="swal2-actions" style="display: flex;">
+                                <button type="submit" class="swal2-confirm swal2-styled" aria-label=""
+                                        style="display: inline-block; border-left-color: rgb(48, 133, 214); border-right-color: rgb(48, 133, 214);">
+                                    Thêm
+                                </button>
+                                <button type="button" class="swal2-cancel swal2-styled" aria-label=""
+                                        onclick="closeInput()"
+                                        style="display: inline-block;">Đóng
+                                </button>
+                            </div>
+                            <div class="swal2-footer" style="display: none;"></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
             <div th:replace="admin/footer_admin :: admin_footer"></div>
             <!-- end Footer -->
 
@@ -333,9 +411,11 @@
         var inputType = document.getElementById('inputType');
         var overlay = document.getElementById('overlay');
         var inputService = document.getElementById('inputService');
+        var inputRoom = document.getElementById('inputRoom');
 
         inputService.style.display = 'none';
         inputType.style.display = 'none';
+        inputRoom.style.display = 'none';
         overlay.style.display = 'none';
     }
 
@@ -348,12 +428,12 @@
         overlay.style.display = 'block';
     });
 
-    document.getElementById('houseType').addEventListener('click', function () {
+    document.getElementById('houseRoom').addEventListener('click', function () {
         // Hiển thị khối div và làm mờ phần đằng sau khi click vào nút "Click me"
-        var inputType = document.getElementById('inputType');
+        var inputRoom = document.getElementById('inputRoom');
         var overlay = document.getElementById('overlay');
 
-        inputType.style.display = 'block';
+        inputRoom.style.display = 'block';
         overlay.style.display = 'block';
     });
 </script>
