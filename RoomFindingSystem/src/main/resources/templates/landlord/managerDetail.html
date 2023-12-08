@@ -96,7 +96,7 @@
                         <div class="row">
                             <div class="col-md-7">
                                 <div class="form-group">
-                                    <label for="form-submit-description">Ghi chú<em>*</em></label>
+                                    <label for="form-submit-description">Ghi chú</label>
                                     <textarea class="form-control" id="form-submit-description" rows="5" name="description" placeholder="Ghi chú" th:field="*{description}" >
                                     </textarea>
                                 </div>
@@ -105,12 +105,13 @@
                             <div class="col-md-5">
                                 <div class="form-group" style="float: left;width: inherit">
                                     <label>Đánh giá</label>
-                                        <input type="text" th:if="${house.star == null}" readonly value="Chưa đánh giá" style="padding: 10px" >
-                                    <input type="text" th:if="${house.star != null}" readonly th:field="*{star}" style="padding: 10px" >
+                                        <input type="text" th:if="${house.star == 0.0}" readonly value="Chưa đánh giá" style="padding: 10px" >
+                                    <input type="text" th:if="${house.star != 0.0}" readonly th:field="*{star}" style="padding: 10px" >
                                 </div>
                                 <div class="form-group" style="float: right;width: inherit">
                                     <label>Số lượng phòng</label>
-                                    <input type="text" readonly th:field="*{count_room}" style="padding: 10px">
+                                    <input type="text" th:if="${house.getCount_room()==0}" readonly style="padding: 10px" value="Chưa có phòng">
+                                    <input type="text" th:if="${house.getCount_room()>0}" readonly th:field="*{count_room}" style="padding: 10px">
                                 </div>
                                 <div class="form-group" style="float: left;width: inherit">
                                     <label>Tình trạng</label>
