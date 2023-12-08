@@ -12,8 +12,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class UserServiceTest {
@@ -140,4 +139,62 @@ public class UserServiceTest {
         verify(userRepository).findByEmail(originalEmail);
     }
 
+    //save
+    @Test
+    public void testSaveUser_Success() {
+        // Arrange
+        UserEntity userToSave = new UserEntity();
+        when(userRepository.save(userToSave)).thenReturn(userToSave);
+
+        // Act
+        userService.saveUser(userToSave);
+
+        // Assert
+        verify(userRepository, times(1)).save(userToSave);
+    }
+
+    //getUserForChangePass()
+    @Test
+    void testGetUserForChangePass_ValidEmail() {
+        // Arrange
+        String email = "test@example.com";
+        UserEntity userEntity = new UserEntity();
+        userEntity.setEmail(email);
+
+        when(userRepository.getUserEntitiesByUserId(email)).thenReturn(userEntity.getPassword());
+
+        // Act
+        String result = userService.getUserForChangePass(email);
+
+        // Assert
+        assertEquals(userEntity.getPassword(), result);
+        verify(userRepository, times(1)).getUserEntitiesByUserId(email);
+    }
+
+    @Test
+    void testGetUserForChangePass_InvalidEmail() {
+        // Arrange
+        String email = "nonexistent@example.com";
+        when(userRepository.getUserEntitiesByUserId(email)).thenReturn(null);
+
+        // Act
+        String result = userService.getUserForChangePass(email);
+
+        // Assert
+        assertNull(result);
+        verify(userRepository, times(1)).getUserEntitiesByUserId(email);
+    }
+
+    @Test
+    void testGetUserForChangePass_NullEmail() {
+        // Arrange
+        String email = null;
+
+        // Act
+        String result = userService.getUserForChangePass(email);
+
+        // Assert
+        assertNull(result);
+//        verify(userRepository, never()).getUserEntitiesByUserId(email);
+    }
 }
