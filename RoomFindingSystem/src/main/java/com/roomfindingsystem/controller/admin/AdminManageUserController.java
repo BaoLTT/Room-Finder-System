@@ -61,12 +61,6 @@ public class AdminManageUserController {
         return "admin/edit-user";
     }
 
-//    @GetMapping("/deleteUser/{id}")
-//    public String delete(@PathVariable("id") Integer id, Model model){
-//        adminManageUserService.deleteById(id);
-//        return "redirect:/admin/user";
-//    }
-
     @PostMapping("/update")
     public String updateUserByAdmin(@ModelAttribute(name = "user") UserDto userDto, @RequestParam("file") MultipartFile file) throws IOException {
         if(userDto.getAddressID()==0){

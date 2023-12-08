@@ -119,7 +119,7 @@ public class SecurityConfiguration {
                                "save-new-password","detail","change-password","save-change-password","feedback-list","house/**",
                                 "/room/**", "/assets/**", "/houselist","/roomlist/**","/detail", "/loginAfterAddInfo","news/**").permitAll()
                         .requestMatchers("/admin/**", "/test").hasAnyRole("ADMIN", "SUPER_ADMIN")
-                        .requestMatchers("/landlord/**").hasAnyRole("LANDLORD", "SUPER_ADMIN")
+                        .requestMatchers("/landlord/**").hasAnyRole("LANDLORD")
                         .anyRequest().authenticated())
                 .exceptionHandling(e -> e
                         .accessDeniedPage("/403")); // Chuyển hướng đến trang 403.html khi không có quyền
