@@ -10,7 +10,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-
+      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/housedetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/housedetail.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -274,6 +274,7 @@
       <workItem from="1701848584119" duration="13095000" />
       <workItem from="1701695349349" duration="20660000" />
       <workItem from="1701772494187" duration="7118000" />
+      <workItem from="1702036860114" duration="130000" />
       <workItem from="1701975767028" duration="79000" />
       <workItem from="1702021925815" duration="280000" />
       <workItem from="1702029575969" duration="10000" />
