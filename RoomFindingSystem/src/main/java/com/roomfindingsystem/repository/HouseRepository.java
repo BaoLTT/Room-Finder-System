@@ -120,7 +120,7 @@ public interface HouseRepository extends JpaRepository<HousesEntity, Integer> {
             "LEFT JOIN district d ON a.districtid = d.districtid " +
             "LEFT JOIN ward w ON a.wardid = w.wardid " +
             "WHERE h.status = 1 " +
-            "GROUP BY h.houseid, h.house_name, t.type_name, a.address_details, ward_name, district_name, province_name, h.last_modified_by ", nativeQuery = true)
+            "GROUP BY h.houseid, h.house_name, t.type_name, a.address_details, ward_name, district_name, province_name, h.last_modified_by  order by h.star desc", nativeQuery = true)
     List<Tuple> viewHouseInHome();
 
     @Query(value = "SELECT u.userid,h.houseId, h.house_name,th.type_name,ad.address_details,pr.name AS province_name,d.name AS district_name,w.name AS ward_name ,\n" +

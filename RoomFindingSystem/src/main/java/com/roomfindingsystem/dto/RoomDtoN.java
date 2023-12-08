@@ -15,7 +15,7 @@ public class RoomDtoN {
     String houseName;
     Integer price;
     String roomType;
-    List<String> roomImages;
+    String roomImages;
 
 
 

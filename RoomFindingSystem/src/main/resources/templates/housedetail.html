@@ -586,44 +586,7 @@
 <!--                            <div><h2 style="display: inline-block ">Tại sao chọn</h2>  <strong><u><h2-->
 <!--                                    style="display: inline-block " th:text="${HousesEntity.houseName}"></h2>-->
 <!--                            </u></strong></div>-->
-                            <div class="row">
-                                <div class="col-md-4 col-sm-4">
-                                    <div class="feature">
-                                        <aside class="circle">
-                                            <i class="icon_box-checked"></i>
-                                        </aside>
-                                        <figure>
-                                            <h3>Uy Tín</h3>
-                                        </figure>
-                                    </div>
-                                    <!--end feature-->
-                                </div>
-                                <!--end col-md-4-->
-                                <div class="col-md-4 col-sm-4">
-                                    <div class="feature">
-                                        <aside class="circle">
-                                            <i class="icon_box-checked"></i>
-                                        </aside>
-                                        <figure>
-                                            <h3>Giá Cả Hợp Lý</h3>
-                                        </figure>
-                                    </div>
-                                    <!--end feature-->
-                                </div>
-                                <!--end col-md-4-->
-                                <div class="col-md-4 col-sm-4">
-                                    <div class="feature">
-                                        <aside class="circle">
-                                            <i class="icon_box-checked"></i>
-                                        </aside>
-                                        <figure>
-                                            <h3>Chất Lượng Đỉnh Cao</h3>
-                                        </figure>
-                                    </div>
-                                    <!--end feature-->
-                                </div>
-                                <!--end col-md-4-->
-                            </div>
+
                             <!--end row-->
                         </section>
                         <section id="availability">
@@ -667,8 +630,6 @@
                                         <thead>
                                         <tr>
                                             <th>Loại phòng</th>
-
-                                            <!--                                            <th>Persons</th>-->
                                             <th>Giá tiền</th>
                                             <th>Phòng</th>
                                             <th></th>
@@ -682,18 +643,16 @@
                                         <tbody>
                                         <tr class="room">
                                             <td class="room-type">
-                                                <a href="" th:text="${room.typeName}"><h3></h3>
-
-                                                    <!--                                                    <figure class="label label-danger">1 Room Left!</figure>-->
+                                                <a href="" ><h3 th:text="${room.typeName}"></h3>
                                                 </a>
 
-                                                <ul th:each="service: ${room.serviceList}">
-                                                    <li><span th:text="${service}"></span></li>
-                                                </ul>
+<!--                                                <ul th:each="service: ${room.serviceList}">-->
+<!--                                                    <li><span th:text="${service}"></span></li>-->
+<!--                                                </ul>-->
                                             </td>
 
                                             <!--                                            <td class="persons">2<i class="fa fa-user"></i></td>-->
-                                            <td th:text="${room.price}"></td>
+                                            <td class="price" th:with="formattedPrice=${#numbers.formatDecimal(room.price, 0, 'COMMA', 0, 'POINT')}" th:text="${formattedPrice+'VNĐ'}"></td>
                                             <input type="hidden" name="houseName" th:value="${HousesEntity.houseName}">
                                             <td class="rooms">
                                                 <select name="roomId" class="framed" style="padding-right: 20px">
