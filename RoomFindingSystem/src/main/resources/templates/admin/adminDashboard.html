@@ -3,7 +3,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
     <head>
         <meta charset="utf-8" />
-        <title>Thống kê</title>
+        <title>Admin - Thống kê</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
         <meta content="Coderthemes" name="author" />
@@ -136,7 +136,7 @@
                                             <td th:text="${room.fullName}"></td>
                                             <form th:action="@{/admin/updateStatusDate}" method="post">
                                                 <td>
-                                                    <select name="status">
+                                                    <select name="status" style="padding: 5px">
                                                         <option value="Còn trống" th:selected="${room.status == 'Còn trống'}">Còn trống</option>
                                                         <option value="Hết phòng" th:selected="${room.status == 'Hết phòng'}">Hết phòng</option>
 
@@ -147,7 +147,7 @@
                                                     <!-- Thêm một form cho mỗi phòng -->
 
                                                     <input type="hidden" name="roomId" th:value="${room.roomId}" />
-                                                    <button type="submit" class="btn btn-warning">Cập nhật</button>
+                                                    <button type="submit" class="btn btn-warning" style="border-radius: 5px">Cập nhật</button>
 
                                                 </td>
                                             </form>
