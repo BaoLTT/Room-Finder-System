@@ -250,13 +250,12 @@ public class RoomServiceImpl implements RoomService {
 
     @Override
     public void saveRoomAdmin(RoomDto roomDto, MultipartFile[] files) throws IOException {
-        Integer houseId = houseRepository.findHousesEntityByHouseName(roomDto.getHouseName());
         RoomEntity saveRoom = new RoomEntity();
         saveRoom.setArea(roomDto.getArea());
         saveRoom.setCreatedDate(LocalDate.now());
         saveRoom.setCreatedBy(1);
         saveRoom.setDescription(roomDto.getDescription());
-        saveRoom.setHouseid(houseId);
+        saveRoom.setHouseid(roomDto.getHouseId());
         saveRoom.setLastModifiedBy(1);
         saveRoom.setLastModifiedDate(LocalDate.now());
         saveRoom.setPrice(roomDto.getPrice());
