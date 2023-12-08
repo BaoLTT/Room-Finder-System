@@ -18,6 +18,14 @@
     <link href="/assets_admin/css/app.min.css" rel="stylesheet" type="text/css"/>
     <link href="/assets_admin/css/file-upload.css" rel="stylesheet" type="text/css"/>
     <link href="/assets_admin/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css"/>
+
+    <!-- thư viện select -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+
     <style>
         .input-number .change-button.plus {
             display: none;
@@ -101,10 +109,9 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Tên trọ</label>
-                                            <div>
-                                                <input type="text" class="form-control" required
-                                                       placeholder="Thành Nam" th:field="*{houseName}"/>
-                                            </div>
+                                            <select class="form-control selectpicker" name="landlord" id="landlordSelect" th:field="*{houseId}" data-live-search="true">
+                                                <option th:each="listAllHouse : ${listAllHouse}" th:value="${listAllHouse.houseId}" th:utext="${listAllHouse.houseName}"/>
+                                            </select>
                                         </div>
                                         <div class="form-group">
                                             <label>Giá</label>

@@ -98,6 +98,11 @@ public class HouseServiceImpl implements HouseService {
         return houseTypeVos;
     }
 
+    @Override
+    public List<HousesEntity> getAllHouse() {
+        return houseRepository.findAll();
+    }
+
 
     @Override
     public Optional<HousesEntity> findHouseById(Integer id) {
@@ -146,14 +151,6 @@ public class HouseServiceImpl implements HouseService {
     }
 
     @Override
-    public void saveHouse(HousesEntity housesEntity) {
-        houseRepository.save(housesEntity);
-    }
-
-
-    @Override
-
-
     public List<HouseHomeDto> viewHouseInHome() {
         List<Tuple> tuples = houseRepository.viewHouseInHome();
 

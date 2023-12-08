@@ -112,7 +112,7 @@ public class SecurityConfiguration {
                                 return;
                             }
                             else if ("ROLE_SUPER_ADMIN".equals(auth.getAuthority())) {
-                                response.sendRedirect("/admin/user");
+                                response.sendRedirect("/admin/dashboard");
                                 return;
                             }
                         }

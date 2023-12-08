@@ -13,7 +13,7 @@ public interface HouseService {
 
     List<HouseTypeVo> findHouse(int min1, int max1, int min2, int max2,String houseName,List<Integer> type, List<Integer> service,int countService, int pageIndex,int pageSize);
 
-
+    List<HousesEntity> getAllHouse();
     List<HouseHomeDto> viewHouseInHome();
     List<HouseFavouriteDto> viewHouseInHomeInFavourite(int id);
     Optional<HousesEntity> findHouseById(Integer id);
@@ -31,5 +31,4 @@ public interface HouseService {
 
     HousesEntity getHouseById(int id);
 
-    void saveHouse(HousesEntity housesEntity);
 }
