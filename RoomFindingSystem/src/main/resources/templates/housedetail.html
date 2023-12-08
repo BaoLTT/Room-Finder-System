@@ -811,8 +811,8 @@
                                                     <!--                                </div>-->
                                                     <div class="review write">
                                                         <span class="name">Tên người dùng: </span><span
-                                                            th:text="${user.getFirstName()}"></span><span> </span><span
-                                                            th:text="${user.getLastName()}"></span>
+                                                            th:if="${user != null}" th:text="${user.getFirstName()}"></span><span> </span><span
+                                                            th:if="${user != null}" th:text="${user.getLastName()}"></span>
 
 
                                                         <div class="comment"

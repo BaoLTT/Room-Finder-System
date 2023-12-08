@@ -3641,6 +3641,10 @@ ul.half li {
   font-style: italic;
   max-height: 55px;
   overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2; /* Số dòng tối đa bạn muốn hiển thị */
+  text-overflow: ellipsis;
+  display: -webkit-box;
 }
 
 [data-show-after-time] {
