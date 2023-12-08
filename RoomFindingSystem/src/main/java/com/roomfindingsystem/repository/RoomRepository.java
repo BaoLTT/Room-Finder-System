@@ -95,16 +95,16 @@ public interface RoomRepository extends JpaRepository<RoomEntity, Integer> {
     @Query(value = "select r.roomid, r.room_name,h.house_name,r.price,rt.type_name,\n" +
             "            (select group_concat(i.image_link) from room_images i where i.roomid=r.roomid) as images from room r join houses h \n" +
             "            on r.houseid=h.houseid join room_type rt on rt.typeid = r.room_type where r.statusid=1 \n" +
-            "            and r.price BETWEEN ?1 AND ?2 AND (r.room_name like '%' ?3 '%' or h.house_name like '%' ?3 '%') and r.room_type IN ?4 \n" +
-            "            GROUP BY r.roomid, r.room_name, h.house_name, r.price, rt.type_name LIMIT ?6 OFFSET ?5", nativeQuery = true)
-    List<Tuple> getRoomList(int min, int max, String roomName, List<Integer> type, int pageIndex, int pageSize);
+            "            and ((r.price BETWEEN ?1 AND ?2) or (r.price BETWEEN ?3 AND ?4) or (r.price BETWEEN ?5 AND ?6)) AND (r.room_name like '%' ?7 '%' or h.house_name like '%' ?7 '%') and r.room_type IN ?8 \n" +
+            "            GROUP BY r.roomid, r.room_name, h.house_name, r.price, rt.type_name LIMIT ?10 OFFSET ?9", nativeQuery = true)
+    List<Tuple> getRoomList(int min1, int max1, int min2, int max2, int min3, int max3, String roomName, List<Integer> type, int pageIndex, int pageSize);
 
     @Query(value = "SELECT COUNT(*) from (select r.roomid, r.room_name,h.house_name,r.price,rt.type_name, " +
             "                        (select group_concat(i.image_link) from room_images i where i.roomid=r.roomid) as images from room r join houses h \n" +
             "                        on r.houseid=h.houseid join room_type rt on rt.typeid = r.room_type where r.statusid=1 \n" +
-            "                        and r.price BETWEEN ?1 AND ?2 AND r.room_name like '%' ?3 '%' and r.room_type IN ?4 \n" +
+            "                        and ((r.price BETWEEN ?1 AND ?2) or (r.price BETWEEN ?3 AND ?4) or (r.price BETWEEN ?5 AND ?6)) AND (r.room_name like '%' ?7 '%' or h.house_name like '%' ?7 '%') and r.room_type IN ?8 \n" +
             "                        GROUP BY r.roomid, r.room_name, h.house_name, r.price, rt.type_name) as subquery",nativeQuery = true)
-    int countRoom(int min, int max, String roomName, List<Integer> type);
+    int countRoom(int min1, int max1, int min2, int max2, int min3, int max3, String roomName, List<Integer> type);
 
 
 

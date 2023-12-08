@@ -25,23 +25,49 @@ public class RoomListController {
     @GetMapping(value={""})
     public String list(@RequestParam(name = "page", required = false, defaultValue = "1") Integer pageIndex,
                        @RequestParam(name = "roomName",required = false , defaultValue = "") String roomName,
-                       @RequestParam(name = "minPrice",required = false, defaultValue = "0") String minPrice,
-                       @RequestParam(name = "maxPrice",required = false, defaultValue = "10") String maxPrice,
-                       @RequestParam(name = "type", required = false,defaultValue = "1, 2, 3") List<String> type, HttpServletRequest request, Model model){
+                       @RequestParam(name = "price", required = false, defaultValue = "") List<String> price,
+                       @RequestParam(name = "type", required = false,defaultValue = "") List<String> type, HttpServletRequest request, Model model){
         List<Integer> listType = new ArrayList<>();
-        for(String type1: type){
-            listType.add(Integer.parseInt(type1));
+        List<Integer> listPrice = new ArrayList<>();
+        if(type.size()==0){
+            listType.add(1);
+            listType.add(2);
+            listType.add(3);
+        }else {
+            for(String type1: type){
+                listType.add(Integer.parseInt(type1));
+            }
         }
+
         int pageSize =12;
         int totalRoom = 0;
         int offset = (pageIndex -1)*pageSize;
         int totalPage;
         List<RoomDtoN> roomList = new ArrayList<>();
-        int min = Integer.parseInt(minPrice);
-        int max = Integer.parseInt(maxPrice);
+        int min1=0, max1=0, min2 =0, max2=0, min3=0,  max3=0;
+        if(price.size()==0){
+            max1 = 1999999;
+            min2 = 2000000;
+            max2 = 4000000;
+            min3 = 4000000;
+            max3 = 9000000;
+        }else {
+            if(price.contains("1")){
+                max1 = 1999999;
+            }
+            if(price.contains("2")){
+                min2 = 2000000;
+                max2 = 4000000;
+            }
+            if(price.contains("3")){
+                min3 = 4000001;
+                max3 = 9000000;
+            }
+        }
 
-        roomList = (roomService.findRoom1(min*1000000, max*1000000, roomName, listType, offset, pageSize));
-        totalRoom = roomService.countRoom(min*1000000, max*1000000, roomName, listType);
+
+        roomList = (roomService.findRoom1(min1, max1, min2, max2, min3, max3, roomName, listType, offset, pageSize));
+        totalRoom = roomService.countRoom(min1, max1, min2, max2, min3, max3, roomName, listType);
         if(totalRoom<=pageSize){
             totalPage=0;
         }else{
@@ -52,8 +78,7 @@ public class RoomListController {
         model.addAttribute("currentPage",pageIndex);
         model.addAttribute("totalPage", totalPage);
         model.addAttribute("rooms", roomList);
-        model.addAttribute("minPrice", minPrice);
-        model.addAttribute("maxPrice", maxPrice);
+        model.addAttribute("price", price);
         model.addAttribute("type", type);
         model.addAttribute("request",request);
 

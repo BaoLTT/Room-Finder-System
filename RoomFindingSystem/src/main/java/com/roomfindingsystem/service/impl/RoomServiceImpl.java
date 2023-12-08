@@ -339,8 +339,8 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public int countRoom(int min, int max, String roomName, List<Integer> type) {
-        return roomRepository.countRoom(min, max, roomName, type);
+    public int countRoom(int min1, int max1, int min2, int max2, int min3, int max3,  String roomName, List<Integer> type) {
+        return roomRepository.countRoom(min1, max1, min2, max2, min3, max3, roomName, type);
     }
 
 
@@ -400,8 +400,8 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public List<RoomDtoN> findRoom1(int min, int max, String roomName, List<Integer> type, int pageIndex, int pageSize) {
-        List<Tuple> tuples = roomRepository.getRoomList(min, max, roomName, type, pageIndex, pageSize);
+    public List<RoomDtoN> findRoom1(int min1, int max1, int min2, int max2, int min3, int max3, String roomName, List<Integer> type, int pageIndex, int pageSize) {
+        List<Tuple> tuples = roomRepository.getRoomList(min1, max1, min2, max2, min3, max3, roomName, type, pageIndex, pageSize);
         List<RoomDtoN> roomDtos = new ArrayList<>();
         List<String> imageLinks;
         for (Tuple tuple : tuples) {
