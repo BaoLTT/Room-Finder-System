@@ -17,7 +17,7 @@
     <link href="/assets_admin/css/icons.min.css" rel="stylesheet" type="text/css" />
     <link href="/assets_admin/css/app.min.css" rel="stylesheet" type="text/css" />
     <link href="/assets_admin/css/file-upload.css" rel="stylesheet" type="text/css" />
-    <link href="/assets_admin/libs/sweetalert2/sweetalert2.min.css" type="text/css"/>
+    <link href="/assets_admin/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css"/>
 
     <!-- Bootstrap CSS -->
 
@@ -81,7 +81,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div>
-                                        <form class="form-horizontal" role="form" id="myForm" method="post" th:action="@{/admin/house-manager/save}" th:object="${house}" enctype="multipart/form-data">
+                                        <form class="form-horizontal" role="form" method="post" th:action="@{/admin/house-manager/save}" onsubmit="return validateForm()" th:object="${house}" enctype="multipart/form-data">
                                             <div class="form-group row">
                                                 <label class="col-md-2 col-md-form-label">Chủ trọ<em>*</em></label>
                                                 <div class="col-md-10">
@@ -110,20 +110,20 @@
                                                 <label class="col-md-2 col-md-form-label">Địa chỉ<em>*</em> </label>
                                                 <div class="col-md" >
                                                     <label for="province">Tỉnh</label>
-                                                    <select class="form-control"  id="province" name="province" th:field="*{provinceID}" required title="Vui lòng chọn tỉnh thành">
+                                                    <select class="form-control"  id="province" name="province" th:field="*{provinceID}"  onchange="resetCustomValidity(this)">
                                                         <option value="0" selected >Chọn tỉnh thành</option>
                                                     </select>
                                                 </div>
 
                                                 <div class="col-md" >
                                                     <label for="district">Huyện</label>
-                                                    <select class="form-control"  id="district" name="district" th:field="*{districtID}" required title="Vui lòng chọn tỉnh thành">
-                                                        <option value="0" selected >Chọn huyện</option>
+                                                    <select class="form-control"  id="district" name="district" th:field="*{districtID}" onchange="resetCustomValidity(this)">
+                                                        <option value="0" selected >Chọn Quận/Huyện</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-md" >
                                                     <label for="ward">Xã/Phường</label>
-                                                    <select class="form-control"  id="ward" name="ward" th:field="*{wardID}" required title="Vui lòng chọn tỉnh thành">
+                                                    <select class="form-control"  id="ward" name="ward" th:field="*{wardID}" onchange="resetCustomValidity(this)">
                                                         <option value="0"  selected >Chọn xã/phường</option>
                                                     </select>
                                                 </div>
@@ -357,36 +357,43 @@
 <!-- ... (các trường khác) ... -->
 
 <script>
-    document.getElementById("myForm").addEventListener("submit", function (event) {
+    function validateForm() {
         var selectedProvince = citis.value;
         var selectedDistrict = districts.value;
         var selectedWard = wards.value;
-
+        citis.addEventListener("change", function () {
+            console.log("Province changed:", citis.value);
+            citis.setCustomValidity("");
+        });
+        districts.addEventListener("change", function () {
+            console.log("Province changed:", districts.value);
+            districts.setCustomValidity("");
+        });
+        wards.addEventListener("change", function () {
+            console.log("Province changed:", wards.value);
+            wards.setCustomValidity("");
+        });
         if (selectedProvince === "0" || selectedDistrict === "0" || selectedWard === "0") {
             // Đặt thông báo lỗi cho các trường
-            citis.setCustomValidity("Vui lòng chọn giá trị hợp lệ.");
-            districts.setCustomValidity("Vui lòng chọn giá trị hợp lệ.");
-            wards.setCustomValidity("Vui lòng chọn giá trị hợp lệ.");
+            citis.setCustomValidity("Vui lòng chọn giá trị hợp lệ cho Tỉnh.");
+            districts.setCustomValidity("Vui lòng chọn giá trị hợp lệ cho Quận/Huyện.");
+            wards.setCustomValidity("Vui lòng chọn giá trị hợp lệ cho Xã/Phường.");
+            console.log("Selected Province:", selectedProvince);
+            console.log("Selected District:", selectedDistrict);
+            console.log("Selected Ward:", selectedWard);
 
-            // Hiển thị thông báo lỗi
-            alert("Vui lòng chọn giá trị hợp lệ cho tất cả các trường!");
 
             event.preventDefault(); // Ngăn chặn form được submit
+        } else {
+            // Reset custom validity khi mọi thứ là hợp lệ
+            citis.setCustomValidity("");
+            districts.setCustomValidity("");
+            wards.setCustomValidity("");
         }
-    });
+    }
 
-    // Xóa thông báo lỗi khi giá trị thay đổi
-    citis.addEventListener("change", function () {
-        citis.setCustomValidity("");
-    });
 
-    districts.addEventListener("change", function () {
-        districts.setCustomValidity("");
-    });
 
-    wards.addEventListener("change", function () {
-        wards.setCustomValidity("");
-    });
 </script>
 
 
