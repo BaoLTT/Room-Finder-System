@@ -781,7 +781,7 @@
                                         <!--end row-->
                                     </div>
                                 </div>
-                                <div class="modal fade" id="exampleModal" tabindex="-1"
+                                <div class="modal fade" id="exampleModal" tabindex="-1" th:if="${user != null}"
                                      role="dialog" aria-labelledby="exampleModalLabel"
                                      aria-hidden="true">
                                     <div class="modal-dialog" role="document">
@@ -811,8 +811,8 @@
                                                     <!--                                </div>-->
                                                     <div class="review write">
                                                         <span class="name">Tên người dùng: </span><span
-                                                            th:text="${user.getFirstName()}"></span><span> </span><span
-                                                            th:text="${user.getLastName()}"></span>
+                                                            th:if="${user != null}" th:text="${user.getFirstName()}"></span><span> </span><span
+                                                            th:if="${user != null}" th:text="${user.getLastName()}"></span>
 
 
                                                         <div class="comment"
