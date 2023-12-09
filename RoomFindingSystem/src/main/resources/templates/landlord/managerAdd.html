@@ -54,7 +54,7 @@
                     </div>
                 </div>
                 <!--end quick-navigation-->
-                <form class="form-submit labels-uppercase" id="form-submit" th:action="@{/manager/save}" method="post" th:object="${house}" enctype="multipart/form-data">
+                <form class="form-submit labels-uppercase" id="form-submit" role="form" th:action="@{/manager/save}" method="post" th:object="${house}" onsubmit="return validateForm()" enctype="multipart/form-data">
                     <section id="main-information">
                         <div class="title">
                             <h2>Thông tin chính</h2>
@@ -109,7 +109,7 @@
 
                                 <div class="form-group">
                                         <label for="province">Tỉnh</label>
-                                        <select class="form-control" name="province" id="province" th:field="*{provinceID}">
+                                        <select class="form-control" name="province" id="province" th:field="*{provinceID}" onchange="resetCustomValidity(this)">
                                             <option value="0" selected >Chọn tỉnh thành</option>
                                         </select>
 
@@ -117,14 +117,14 @@
                                 </div>
                                 <div class="form-group">
                                         <label for="district">Huyện</label>
-                                        <select class="form-control" id="district" name="district" th:field="*{districtID}">
+                                        <select class="form-control" id="district" name="district" th:field="*{districtID}" onchange="resetCustomValidity(this)">
                                             <option value="0" selected>Chọn huyện</option>
                                         </select>
 
                                 </div>
                                 <div class="form-group">
                                         <label for="ward">Xã/Phường</label>
-                                        <select class="form-control" name="ward" id="ward" th:field="*{wardID}" >
+                                        <select class="form-control" name="ward" id="ward" th:field="*{wardID}" onchange="resetCustomValidity(this)">
                                             <option value="0" selected>Chọn xã</option>
                                         </select>
 
@@ -209,7 +209,45 @@
 <!--end page-wrapper-->
 <a href="#page-header" class="to-top scroll" data-show-after-scroll="600"><i class="arrow_up"></i></a>
 
+<script>
+    function validateForm() {
+        var selectedProvince = citis.value;
+        var selectedDistrict = districts.value;
+        var selectedWard = wards.value;
+        citis.addEventListener("change", function () {
+            console.log("Province changed:", citis.value);
+            citis.setCustomValidity("");
+        });
+        districts.addEventListener("change", function () {
+            console.log("Province changed:", districts.value);
+            districts.setCustomValidity("");
+        });
+        wards.addEventListener("change", function () {
+            console.log("Province changed:", wards.value);
+            wards.setCustomValidity("");
+        });
+        if (selectedProvince === "0" || selectedDistrict === "0" || selectedWard === "0") {
+            // Đặt thông báo lỗi cho các trường
+            citis.setCustomValidity("Vui lòng chọn giá trị hợp lệ cho Tỉnh.");
+            districts.setCustomValidity("Vui lòng chọn giá trị hợp lệ cho Quận/Huyện.");
+            wards.setCustomValidity("Vui lòng chọn giá trị hợp lệ cho Xã/Phường.");
+            console.log("Selected Province:", selectedProvince);
+            console.log("Selected District:", selectedDistrict);
+            console.log("Selected Ward:", selectedWard);
 
+
+            event.preventDefault(); // Ngăn chặn form được submit
+        } else {
+            // Reset custom validity khi mọi thứ là hợp lệ
+            citis.setCustomValidity("");
+            districts.setCustomValidity("");
+            wards.setCustomValidity("");
+        }
+    }
+
+
+
+</script>
 <script>
     function removeWhitespace(inputField) {
         var inputValue = inputField.value.trim();

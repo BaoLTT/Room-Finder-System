@@ -22,8 +22,6 @@ public class AdminManageRoomController {
     @Autowired
     private RoomService roomService;
     @Autowired
-    private ServiceRoomService serviceRoomService;
-    @Autowired
     private RoomTypeService roomTypeService;
     @Autowired
     private ServiceDetailService serviceDetailService;
@@ -81,8 +79,7 @@ public class AdminManageRoomController {
     @GetMapping("/insertRoom")
     public String insertRoomPage(Model model) {
         RoomDto roomDto = new RoomDto();
-        List<HousesEntity> listAllHouse = new ArrayList<>();
-        listAllHouse = houseService.getAllHouse();
+        List<HousesEntity> listAllHouse = houseService.getAllHouse();
         model.addAttribute("room", roomDto);
         model.addAttribute("listAllHouse",listAllHouse);
         model.addAttribute("services", serviceDetailService.getAllService());
@@ -106,13 +103,25 @@ public class AdminManageRoomController {
             }
         }
         roomDto.setServiceDtos(serviceDtos);
+
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserEntity user = userService.findByEmail(email).get();
+        roomDto.setCreatedBy(user.getUserId());
+        roomDto.setLastModifiedBy(user.getUserId());
+
         roomService.saveRoomAdmin(roomDto, files);
         return "redirect:/admin/room/listRoom";
     }
 
     @PostMapping("/importRooms")
     public String importRoom(@RequestParam("fileExcel") MultipartFile fileExcel) {
-        roomService.importRooms(fileExcel);
+        RoomDto roomDto = new RoomDto();
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserEntity user = userService.findByEmail(email).get();
+        roomDto.setCreatedBy(user.getUserId());
+        roomDto.setLastModifiedBy(user.getUserId());
+        roomService.importRooms(roomDto,fileExcel);
+
         return "redirect:/admin/room/listRoom";
     }
 

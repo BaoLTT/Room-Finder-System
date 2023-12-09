@@ -2,12 +2,11 @@ package com.roomfindingsystem.controller.landlord;
 
 import com.roomfindingsystem.dto.RoomDto;
 import com.roomfindingsystem.dto.ServiceDto;
-import com.roomfindingsystem.service.RoomService;
-import com.roomfindingsystem.service.RoomTypeService;
-import com.roomfindingsystem.service.ServiceDetailService;
-import com.roomfindingsystem.service.ServiceRoomService;
+import com.roomfindingsystem.entity.UserEntity;
+import com.roomfindingsystem.service.*;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +27,8 @@ public class RoomLandlordController {
     private RoomTypeService roomTypeService;
     @Autowired
     private ServiceDetailService serviceDetailService;
+    @Autowired
+    private UserService userService;
     @GetMapping("/listRoom/{id}")
     public String getListRoomPage(@PathVariable("id") Integer id, Model model, HttpServletRequest request) {
         List<RoomDto> roomDtos = roomService.getRoomsInHouse(id);
@@ -95,6 +96,10 @@ public class RoomLandlordController {
                 }
                 roomDto.setServiceDtos(serviceDtos);
             }
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserEntity user = userService.findByEmail(email).get();
+        roomDto.setCreatedBy(user.getUserId());
+        roomDto.setLastModifiedBy(user.getUserId());
             roomService.saveRoomLandlord(roomDto, files);
 
 
@@ -103,7 +108,12 @@ public class RoomLandlordController {
 
     @PostMapping("/importRooms/{houseId}")
     public String importRoom(@PathVariable("houseId") Integer id,@RequestParam("fileExcel") MultipartFile fileExcel) {
-        roomService.importRooms(fileExcel);
+        RoomDto roomDto = new RoomDto();
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserEntity user = userService.findByEmail(email).get();
+        roomDto.setCreatedBy(user.getUserId());
+        roomDto.setLastModifiedBy(user.getUserId());
+        roomService.importRooms(roomDto,fileExcel);
         return "redirect:/landlord/room/listRoom/"+ id;
     }
 

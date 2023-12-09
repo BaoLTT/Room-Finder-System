@@ -25,16 +25,34 @@
     <link rel="stylesheet" th:href="@{/assets/css/owl.carousel.css}" type="text/css">
     <link rel="stylesheet" th:href="@{/assets/css/style.css}" type="text/css">
     <style>
-        .profile-picture img {
-            max-width: 250px;
-            max-height: 250px;
-            width: auto;
-            height: auto;
+        @media (min-width: 1200px) {
+
+            .profile-picture img {
+                height: 270px;
+            }
         }
 
-        input[type="file"] {
-            display: block;
+        @media (min-width: 992px) and (max-width: 1200px) {
+
+            .profile-picture img {
+                height: 220px;
+            }
         }
+
+        @media (min-width: 768px) and (max-width: 992px) {
+
+            .profile-picture img {
+                height: 165px;
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            .profile-picture img {
+                height: auto;
+            }
+        }
+
         html, body {
             height: 130%;
             margin: 0;
@@ -76,15 +94,15 @@
                 <div class="row">
                     <div class="col-lg">
                         <div class="card-box">
-                            <form id="form-profile" class="labels-uppercase" method="post" action="#"
-                                  th:action="@{/admin/user/save}" th:object="${user}" enctype="multipart/form-data">
+                            <form id="form-profile" role="form" class="labels-uppercase" method="post" onsubmit="return validateForm()"
+                                  th:action="@{/admin/user/save}" th:object="${user}" enctype="multipart/form-data" >
                                 <input type="hidden" th:field="*{userId}">
                                 <div class="row">
                                     <!--Profile Picture-->
                                     <div class="col-md-3 col-sm-3">
                                         <section>
                                             <div id="profile-picture" class="profile-picture single-file-preview">
-                                                <img th:src="*{imageLink}" alt="" class="image">
+                                                <img th:src="*{'https://storage.googleapis.com'+imageLink}" alt="" class="image">
                                                 <div  style="position: relative">
                                                     <input name="file" type="file" style="z-index: 1;position: relative" >
                                                     <span style="position: absolute;top: 0;bottom: 0;text-align: center;width: 100%;line-height: 40px;z-index: 0">Chọn ảnh đại diện</span>
@@ -104,7 +122,7 @@
                                                         <label for="firstName">Họ</label>
                                                         <input type="text" class="form-control" id="firstName"
                                                                name="firstName"
-                                                               pattern="^[a-zA-ZxyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđÁÂĐ ]+$"
+                                                               pattern="^[aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆgGhHiIìÌỉỈĩĨíÍịỊkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTuUùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVxXyYỳỲỷỶỹỸýÝỵỴ ]+$"
                                                                placeholder="Jane" th:value="*{firstName}" required>
                                                         <small class="text-danger error-firstName"></small>
                                                     </div>
@@ -112,7 +130,7 @@
                                                         <label for="lastName">Tên</label>
                                                         <input type="text" class="form-control" id="lastName"
                                                                name="lastName"
-                                                               pattern="^[a-zA-ZxyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđÁÂĐ ]+$"
+                                                               pattern="^[aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆgGhHiIìÌỉỈĩĨíÍịỊkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTuUùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVxXyYỳỲỷỶỹỸýÝỵỴ ]+$"
                                                                placeholder="Doe" th:value="*{lastName}" required>
                                                         <small class="text-danger error-lastName"></small>
                                                     </div>
@@ -204,7 +222,7 @@
                                             <h4>Địa chỉ</h4>
                                             <div class="form-group">
                                                 <label for="province">Tỉnh</label>
-                                                <select class="form-control" name="provinceId" id="province"
+                                                <select class="form-control" name="province " id="province" onchange="resetCustomValidity(this)"
                                                         th:field="*{provinceId}">
                                                     <option value="0" selected>Chọn Thành Phố</option>
                                                 </select>
@@ -213,7 +231,7 @@
                                             <!--end form-group-->
                                             <div class="form-group">
                                                 <label for="district">Huyện</label>
-                                                <select class="form-control" name="districtId" id="district"
+                                                <select class="form-control" name="district" id="district" onchange="resetCustomValidity(this)"
                                                         th:field="*{districtId}">
                                                     <option value="0" selected>Chọn Quận/Huyện</option>
                                                 </select>
@@ -222,7 +240,7 @@
                                             <!--end form-group-->
                                             <div class="form-group">
                                                 <label for="ward">Xã</label>
-                                                <select class="form-control" name="wardId" id="ward"
+                                                <select class="form-control" name="ward" id="ward" onchange="resetCustomValidity(this)"
                                                         th:field="*{wardId}">
                                                     <option value="0" selected>Chọn Xã/Phường</option>
                                                 </select>
@@ -272,7 +290,45 @@
 
 </div>
 <!-- END wrapper -->
+<script>
+    function validateForm() {
+        var selectedProvince = citis.value;
+        var selectedDistrict = districts.value;
+        var selectedWard = wards.value;
+        citis.addEventListener("change", function () {
+            console.log("Province changed:", citis.value);
+            citis.setCustomValidity("");
+        });
+        districts.addEventListener("change", function () {
+            console.log("Province changed:", districts.value);
+            districts.setCustomValidity("");
+        });
+        wards.addEventListener("change", function () {
+            console.log("Province changed:", wards.value);
+            wards.setCustomValidity("");
+        });
+        if (selectedProvince === "0" || selectedDistrict === "0" || selectedWard === "0") {
+            // Đặt thông báo lỗi cho các trường
+            citis.setCustomValidity("Vui lòng chọn giá trị hợp lệ cho Tỉnh.");
+            districts.setCustomValidity("Vui lòng chọn giá trị hợp lệ cho Quận/Huyện.");
+            wards.setCustomValidity("Vui lòng chọn giá trị hợp lệ cho Xã/Phường.");
+            console.log("Selected Province:", selectedProvince);
+            console.log("Selected District:", selectedDistrict);
+            console.log("Selected Ward:", selectedWard);
 
+
+            event.preventDefault(); // Ngăn chặn form được submit
+        } else {
+            // Reset custom validity khi mọi thứ là hợp lệ
+            citis.setCustomValidity("");
+            districts.setCustomValidity("");
+            wards.setCustomValidity("");
+        }
+    }
+
+
+
+</script>
 <script type="text/javascript" th:src="@{/assets/js/jquery-2.2.1.min.js}"></script>
 <script type="text/javascript" th:src="@{/assets/js/jquery-migrate-1.2.1.min.js}"></script>
 <script type="text/javascript" th:src="@{/assets/bootstrap/js/bootstrap.min.js}"></script>

@@ -13,6 +13,8 @@ public class RoomDto {
     private Integer typeId;
     private String roomName;
     private String typeName;
+    private Integer createdBy;
+    private Integer lastModifiedBy;
     private String description;
     private Integer price;
     private Double area;

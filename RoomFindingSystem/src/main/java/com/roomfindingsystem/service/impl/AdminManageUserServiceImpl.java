@@ -108,11 +108,11 @@ public class AdminManageUserServiceImpl implements AdminManageUserService {
         saveUser.setEmail(userDto.getEmail());
         saveUser.setFirstName(userDto.getFirstName());
         saveUser.setLastName(userDto.getLastName());
-        saveUser.setLastModifiedDate(Timestamp.from(Instant.now()));
+        saveUser.setLastModifiedDate(LocalDate.now());
         saveUser.setPhone(userDto.getPhone());
 
 //        User:
-        saveUser.setCreatedDate(Timestamp.valueOf(LocalDateTime.now()));
+        saveUser.setCreatedDate(LocalDate.now());
         saveUser.setRoleId(userDto.getRole());
         if (Objects.equals(userDto.getStatus(), "ACTIVE")) {
             saveUser.setUserStatusId(1);
@@ -125,7 +125,10 @@ public class AdminManageUserServiceImpl implements AdminManageUserService {
             //        Handle Image
             byte[] imageBytes = file.getBytes();
             gcsService.uploadImage("rfs_bucket", "User/user_" + saveUser.getUserId() + ".jpg", imageBytes);
-            saveUser.setImageLink("https://storage.cloud.google.com/rfs_bucket/User/" + "user_" + saveUser.getUserId() + ".jpg");
+            saveUser.setImageLink("/rfs_bucket/User/" + "user_" + saveUser.getUserId() + ".jpg");
+            userRepository.save(saveUser);
+        }else {
+            saveUser.setImageLink("/rfs_bucket/User/user_0.jpg");
             userRepository.save(saveUser);
         }
     }

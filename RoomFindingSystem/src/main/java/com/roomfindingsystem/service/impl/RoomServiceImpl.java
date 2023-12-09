@@ -253,10 +253,10 @@ public class RoomServiceImpl implements RoomService {
         RoomEntity saveRoom = new RoomEntity();
         saveRoom.setArea(roomDto.getArea());
         saveRoom.setCreatedDate(LocalDate.now());
-        saveRoom.setCreatedBy(1);
+        saveRoom.setCreatedBy(roomDto.getCreatedBy());
         saveRoom.setDescription(roomDto.getDescription());
         saveRoom.setHouseid(roomDto.getHouseId());
-        saveRoom.setLastModifiedBy(1);
+        saveRoom.setLastModifiedBy(roomDto.getLastModifiedBy());
         saveRoom.setLastModifiedDate(LocalDate.now());
         saveRoom.setPrice(roomDto.getPrice());
         saveRoom.setRoomName(roomDto.getRoomName());
@@ -298,10 +298,10 @@ public class RoomServiceImpl implements RoomService {
         RoomEntity saveRoom = new RoomEntity();
         saveRoom.setArea(roomDto.getArea());
         saveRoom.setCreatedDate(LocalDate.now());
-        saveRoom.setCreatedBy(1);
+        saveRoom.setCreatedBy(roomDto.getCreatedBy());
         saveRoom.setDescription(roomDto.getDescription());
         saveRoom.setHouseid(roomDto.getHouseId());
-        saveRoom.setLastModifiedBy(1);
+        saveRoom.setLastModifiedBy(roomDto.getLastModifiedBy());
         saveRoom.setLastModifiedDate(LocalDate.now());
         saveRoom.setPrice(roomDto.getPrice());
         saveRoom.setRoomName(roomDto.getRoomName());
@@ -426,7 +426,7 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public void importRooms(MultipartFile file) {
+    public void importRooms(RoomDto roomDto,MultipartFile file) {
         InputStream inputStream = null;
         try {
             inputStream = file.getInputStream();
@@ -452,35 +452,35 @@ public class RoomServiceImpl implements RoomService {
                 RoomEntity room = new RoomEntity();
                 Row row = sheet.getRow(i);
 
-                Cell cellName = row.getCell(1);
+                Cell cellName = row.getCell(0);
                 room.setRoomName(cellName.getStringCellValue());
 
-                Cell cellType = row.getCell(2);
+                Cell cellType = row.getCell(1);
                 int typeId = (int) cellType.getNumericCellValue();
                 room.setRoomType(typeId);
 
-                Cell cellArea = row.getCell(3);
+                Cell cellArea = row.getCell(2);
                 Double area = cellArea.getNumericCellValue();
                 room.setArea(area);
 
-                Cell cellPrice = row.getCell(4);
+                Cell cellPrice = row.getCell(3);
                 Integer price = (int) cellPrice.getNumericCellValue();
                 room.setPrice(price);
 
-                Cell cellHouse = row.getCell(5);
+                Cell cellHouse = row.getCell(4);
                 String houseName = cellHouse.getStringCellValue();
                 Integer houseId = houseRepository.findHousesEntityByHouseName(houseName);
                 room.setHouseid(houseId);
 
-                Cell cellDesc = row.getCell(6);
+                Cell cellDesc = row.getCell(5);
                 room.setDescription(cellDesc.getStringCellValue());
                 room.setStatusId(1);
-                room.setCreatedBy(1);
-                room.setLastModifiedBy(1);
+                room.setCreatedBy(roomDto.getCreatedBy());
+                room.setLastModifiedBy(roomDto.getLastModifiedBy());
                 room.setCreatedDate(LocalDate.now());
                 room.setLastModifiedDate(LocalDate.now());
 
-                Cell cellServices = row.getCell(7);
+                Cell cellServices = row.getCell(6);
                 String serviceString = cellServices.getStringCellValue();
                 String[] services = serviceString.split(",");
 
