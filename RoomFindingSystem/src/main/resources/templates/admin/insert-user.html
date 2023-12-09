@@ -94,8 +94,8 @@
                 <div class="row">
                     <div class="col-lg">
                         <div class="card-box">
-                            <form id="form-profile" class="labels-uppercase" method="post" action="#"
-                                  th:action="@{/admin/user/save}" th:object="${user}" enctype="multipart/form-data">
+                            <form id="form-profile" role="form" class="labels-uppercase" method="post" onsubmit="return validateForm()"
+                                  th:action="@{/admin/user/save}" th:object="${user}" enctype="multipart/form-data" >
                                 <input type="hidden" th:field="*{userId}">
                                 <div class="row">
                                     <!--Profile Picture-->
@@ -222,7 +222,7 @@
                                             <h4>Địa chỉ</h4>
                                             <div class="form-group">
                                                 <label for="province">Tỉnh</label>
-                                                <select class="form-control" name="provinceId" id="province"
+                                                <select class="form-control" name="province " id="province" onchange="resetCustomValidity(this)"
                                                         th:field="*{provinceId}">
                                                     <option value="0" selected>Chọn Thành Phố</option>
                                                 </select>
@@ -231,7 +231,7 @@
                                             <!--end form-group-->
                                             <div class="form-group">
                                                 <label for="district">Huyện</label>
-                                                <select class="form-control" name="districtId" id="district"
+                                                <select class="form-control" name="district" id="district" onchange="resetCustomValidity(this)"
                                                         th:field="*{districtId}">
                                                     <option value="0" selected>Chọn Quận/Huyện</option>
                                                 </select>
@@ -240,7 +240,7 @@
                                             <!--end form-group-->
                                             <div class="form-group">
                                                 <label for="ward">Xã</label>
-                                                <select class="form-control" name="wardId" id="ward"
+                                                <select class="form-control" name="ward" id="ward" onchange="resetCustomValidity(this)"
                                                         th:field="*{wardId}">
                                                     <option value="0" selected>Chọn Xã/Phường</option>
                                                 </select>
@@ -290,7 +290,45 @@
 
 </div>
 <!-- END wrapper -->
+<script>
+    function validateForm() {
+        var selectedProvince = citis.value;
+        var selectedDistrict = districts.value;
+        var selectedWard = wards.value;
+        citis.addEventListener("change", function () {
+            console.log("Province changed:", citis.value);
+            citis.setCustomValidity("");
+        });
+        districts.addEventListener("change", function () {
+            console.log("Province changed:", districts.value);
+            districts.setCustomValidity("");
+        });
+        wards.addEventListener("change", function () {
+            console.log("Province changed:", wards.value);
+            wards.setCustomValidity("");
+        });
+        if (selectedProvince === "0" || selectedDistrict === "0" || selectedWard === "0") {
+            // Đặt thông báo lỗi cho các trường
+            citis.setCustomValidity("Vui lòng chọn giá trị hợp lệ cho Tỉnh.");
+            districts.setCustomValidity("Vui lòng chọn giá trị hợp lệ cho Quận/Huyện.");
+            wards.setCustomValidity("Vui lòng chọn giá trị hợp lệ cho Xã/Phường.");
+            console.log("Selected Province:", selectedProvince);
+            console.log("Selected District:", selectedDistrict);
+            console.log("Selected Ward:", selectedWard);
 
+
+            event.preventDefault(); // Ngăn chặn form được submit
+        } else {
+            // Reset custom validity khi mọi thứ là hợp lệ
+            citis.setCustomValidity("");
+            districts.setCustomValidity("");
+            wards.setCustomValidity("");
+        }
+    }
+
+
+
+</script>
 <script type="text/javascript" th:src="@{/assets/js/jquery-2.2.1.min.js}"></script>
 <script type="text/javascript" th:src="@{/assets/js/jquery-migrate-1.2.1.min.js}"></script>
 <script type="text/javascript" th:src="@{/assets/bootstrap/js/bootstrap.min.js}"></script>
