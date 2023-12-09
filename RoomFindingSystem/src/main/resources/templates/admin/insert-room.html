@@ -9,7 +9,7 @@
     <meta content="Coderthemes" name="author"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <!-- App favicon -->
-    <link rel="shortcut icon"  th:href="@{/assets/img/favicon.ico}">
+    <link rel="shortcut icon" th:href="@{/assets/img/favicon.ico}">
 
     <link href="/assets_admin/libs/dropzone/dropzone.min.css" rel="stylesheet" type="text/css"/>
     <!-- App css -->
@@ -21,7 +21,8 @@
 
     <!-- thư viện select -->
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
@@ -34,8 +35,9 @@
         .input-number .change-button.minus {
             display: none;
         }
+
         .bootstrap-select .dropdown-menu {
-            max-height: 200px ;/* Set your preferred max height for the dropdown */
+            max-height: 200px; /* Set your preferred max height for the dropdown */
             overflow-y: auto !important;
         }
 
@@ -102,12 +104,8 @@
                     <div class="col-lg">
                         <div class="card-box">
                             <div class="d-flex justify-content-end">
-<!--                                    <div class="form-group">-->
-<!--                                        <input type="file" class="form-control-file" id="fileExcel" name="fileExcel"/>-->
-<!--                                    </div>-->
-                                <button type="button" class="btn btn-gradient waves-effect waves-light" id="houseRoom" style="border-radius: 5px"
-                                >Thêm nhiều phòng
-                                </button>
+                                <button type="button" class="btn btn-gradient waves-effect waves-light" id="houseRoom"
+                                        style="border-radius: 5px">Thêm nhiều phòng</button>
                             </div>
 
                             <form class="parsley-examples" action="#" th:action="@{/admin/room/save}"
@@ -131,8 +129,11 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Tên trọ</label>
-                                            <select class="form-control selectpicker" name="landlord" id="landlordSelect" th:field="*{houseId}" data-live-search="true">
-                                                <option th:each="listAllHouse : ${listAllHouse}" th:value="${listAllHouse.houseId}" th:utext="${listAllHouse.houseName}"/>
+                                            <select class="form-control selectpicker" name="landlord"
+                                                    id="landlordSelect" th:field="*{houseId}" data-live-search="true">
+                                                <option th:each="listAllHouse : ${listAllHouse}"
+                                                        th:value="${listAllHouse.houseId}"
+                                                        th:utext="${listAllHouse.houseName}"/>
                                             </select>
                                         </div>
                                         <div class="form-group">
@@ -181,21 +182,23 @@
                                 <div class="form-group">
                                     <label>Dịch vụ</label>
                                     <div class="col-md-12">
-                                    <div class="row">
-                                        <div class="checkbox checkbox-primary col-md-2  mb-2"
-                                             th:each="listService : ${services}" th:field="*{serviceNames}"
-                                             style="padding-left: 10px">
-                                            <input th:id="${listService.serviceName}" type="checkbox" name="serviceNames"
-                                                   th:value="${listService.serviceName}">
-                                            <label th:for="${listService.serviceName}"
-                                                   th:text="${listService.serviceName}">
-                                            </label>
+                                        <div class="row">
+                                            <div class="checkbox checkbox-primary col-md-2  mb-2"
+                                                 th:each="listService : ${services}" th:field="*{serviceNames}"
+                                                 style="padding-left: 10px">
+                                                <input th:id="${listService.serviceName}" type="checkbox"
+                                                       name="serviceNames"
+                                                       th:value="${listService.serviceName}">
+                                                <label th:for="${listService.serviceName}"
+                                                       th:text="${listService.serviceName}">
+                                                </label>
+                                            </div>
                                         </div>
-                                    </div>
                                     </div>
                                     <label class="col-2 col-form-label"></label>
                                     <div class="col-10" style="padding-left: 0">
-                                        <button type="button" class="btn btn-gradient waves-effect waves-light" id="houseService" style="border-radius: 5px"
+                                        <button type="button" class="btn btn-gradient waves-effect waves-light"
+                                                id="houseService" style="border-radius: 5px"
                                         >Thêm dịch vụ
                                         </button>
                                     </div>
@@ -215,10 +218,12 @@
                                 </div>
                                 <div class="form-group mb-0">
                                     <div>
-                                        <button type="submit" class="btn btn-gradient waves-effect waves-light" style="border-radius: 5px">
+                                        <button type="submit" class="btn btn-gradient waves-effect waves-light"
+                                                style="border-radius: 5px">
                                             Lưu thông tin
                                         </button>
-                                        <button type="reset" class="btn btn-light waves-effect ml-1" style="border-radius: 5px">
+                                        <button type="reset" class="btn btn-light waves-effect ml-1"
+                                                style="border-radius: 5px">
                                             <a th:href="@{/admin/room/listRoom}">Danh sách phòng</a>
                                         </button>
                                     </div>
@@ -363,19 +368,20 @@
                                     <div class="swal2-success-circular-line-right"></div>
                                 </div>
                                 <img class="swal2-image" style="display: none;">
-                                <h2 class="swal2-title" style="display: flex;">Vui lòng chọn tệp Exel danh sách phòng</h2>
+                                <h2 class="swal2-title" style="display: flex;">Vui lòng chọn danh sách phòng</h2>
                                 <button type="button" class="swal2-close" aria-label="Close this dialog"
                                         style="display: none;">
                                     ×
                                 </button>
-
-                                <div style="display: flex; align-items: center;margin-top: 10px">
-                                    <input type="file" class="form-control-file" id="fileExcel" name="fileExcel"/>
-                                    <a href="https://example.com/your-file-link" download="tên_tệp.txt">
-                                        <button type="button" class="btn btn-gradient waves-effect waves-light" style="border-radius: 5px; margin-left: 10px;width: 150px">
-                                            Tải template
-                                        </button>
-                                    </a>
+                                <div class="row">
+                                    <div class="col-12 mb-2 mt-4">
+                                        <input class="form-control filestyle" name="fileExcel" type="file" id="fileExcel"
+                                               accept=".xlsx, .xls" data-btnclass="btn-primary"/>
+                                    </div>
+                                    <div>
+                                        <i><a href="https://storage.googleapis.com/rfs_bucket/Excel/RoomList.xlsx"
+                                              download="tên_tệp.txt">Tải mẫu excel ở đây</a></i>
+                                    </div>
                                 </div>
                             </div>
 
@@ -407,16 +413,13 @@
     </div>
 </div>
 <script>
-
     function closeInput() {
         // Ẩn khối div và làm mờ phần đằng sau khi nhấn nút Close
-        var inputType = document.getElementById('inputType');
         var overlay = document.getElementById('overlay');
         var inputService = document.getElementById('inputService');
         var inputRoom = document.getElementById('inputRoom');
 
         inputService.style.display = 'none';
-        inputType.style.display = 'none';
         inputRoom.style.display = 'none';
         overlay.style.display = 'none';
     }
@@ -451,7 +454,7 @@
 <script type="text/javascript" src="/assets/js/icheck.min1.js"></script>
 <script type="text/javascript" src="/assets/js/jQuery.MultiFile.min.js"></script>
 <script type="text/javascript" src="/assets/js/custom.js"></script>
-
+<script src="/assets_admin/libs/bootstrap-filestyle2/bootstrap-filestyle.min.js"></script>
 <script src="/assets_admin/js/app.min.js"></script>
 
 </body>
