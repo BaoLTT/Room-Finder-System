@@ -452,27 +452,27 @@ public class RoomServiceImpl implements RoomService {
                 RoomEntity room = new RoomEntity();
                 Row row = sheet.getRow(i);
 
-                Cell cellName = row.getCell(1);
+                Cell cellName = row.getCell(0);
                 room.setRoomName(cellName.getStringCellValue());
 
-                Cell cellType = row.getCell(2);
+                Cell cellType = row.getCell(1);
                 int typeId = (int) cellType.getNumericCellValue();
                 room.setRoomType(typeId);
 
-                Cell cellArea = row.getCell(3);
+                Cell cellArea = row.getCell(2);
                 Double area = cellArea.getNumericCellValue();
                 room.setArea(area);
 
-                Cell cellPrice = row.getCell(4);
+                Cell cellPrice = row.getCell(3);
                 Integer price = (int) cellPrice.getNumericCellValue();
                 room.setPrice(price);
 
-                Cell cellHouse = row.getCell(5);
+                Cell cellHouse = row.getCell(4);
                 String houseName = cellHouse.getStringCellValue();
                 Integer houseId = houseRepository.findHousesEntityByHouseName(houseName);
                 room.setHouseid(houseId);
 
-                Cell cellDesc = row.getCell(6);
+                Cell cellDesc = row.getCell(5);
                 room.setDescription(cellDesc.getStringCellValue());
                 room.setStatusId(1);
                 room.setCreatedBy(1);
@@ -480,7 +480,7 @@ public class RoomServiceImpl implements RoomService {
                 room.setCreatedDate(LocalDate.now());
                 room.setLastModifiedDate(LocalDate.now());
 
-                Cell cellServices = row.getCell(7);
+                Cell cellServices = row.getCell(6);
                 String serviceString = cellServices.getStringCellValue();
                 String[] services = serviceString.split(",");
 
