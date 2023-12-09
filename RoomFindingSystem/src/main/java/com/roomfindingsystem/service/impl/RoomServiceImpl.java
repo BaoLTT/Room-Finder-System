@@ -253,10 +253,10 @@ public class RoomServiceImpl implements RoomService {
         RoomEntity saveRoom = new RoomEntity();
         saveRoom.setArea(roomDto.getArea());
         saveRoom.setCreatedDate(LocalDate.now());
-        saveRoom.setCreatedBy(1);
+        saveRoom.setCreatedBy(roomDto.getCreatedBy());
         saveRoom.setDescription(roomDto.getDescription());
         saveRoom.setHouseid(roomDto.getHouseId());
-        saveRoom.setLastModifiedBy(1);
+        saveRoom.setLastModifiedBy(roomDto.getLastModifiedBy());
         saveRoom.setLastModifiedDate(LocalDate.now());
         saveRoom.setPrice(roomDto.getPrice());
         saveRoom.setRoomName(roomDto.getRoomName());
@@ -298,10 +298,10 @@ public class RoomServiceImpl implements RoomService {
         RoomEntity saveRoom = new RoomEntity();
         saveRoom.setArea(roomDto.getArea());
         saveRoom.setCreatedDate(LocalDate.now());
-        saveRoom.setCreatedBy(1);
+        saveRoom.setCreatedBy(roomDto.getCreatedBy());
         saveRoom.setDescription(roomDto.getDescription());
         saveRoom.setHouseid(roomDto.getHouseId());
-        saveRoom.setLastModifiedBy(1);
+        saveRoom.setLastModifiedBy(roomDto.getLastModifiedBy());
         saveRoom.setLastModifiedDate(LocalDate.now());
         saveRoom.setPrice(roomDto.getPrice());
         saveRoom.setRoomName(roomDto.getRoomName());
@@ -426,7 +426,7 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public void importRooms(MultipartFile file) {
+    public void importRooms(RoomDto roomDto,MultipartFile file) {
         InputStream inputStream = null;
         try {
             inputStream = file.getInputStream();
@@ -475,8 +475,8 @@ public class RoomServiceImpl implements RoomService {
                 Cell cellDesc = row.getCell(5);
                 room.setDescription(cellDesc.getStringCellValue());
                 room.setStatusId(1);
-                room.setCreatedBy(1);
-                room.setLastModifiedBy(1);
+                room.setCreatedBy(roomDto.getCreatedBy());
+                room.setLastModifiedBy(roomDto.getLastModifiedBy());
                 room.setCreatedDate(LocalDate.now());
                 room.setLastModifiedDate(LocalDate.now());
 
