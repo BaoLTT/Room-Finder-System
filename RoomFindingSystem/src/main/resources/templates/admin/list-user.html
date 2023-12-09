@@ -78,14 +78,16 @@
                                     <td th:text="${user.firstName + ' ' + user.lastName}">
                                     </td>
 
-                                    <td th:text="${user.dob}">
+                                    <td th:text="${user.getDob()}" >
                                     </td>
+                                    
+
 
                                     <td th:text="${user.gender == 'MALE' ? 'Nam' : (user.gender == 'FEMALE' ? 'Nữ' : '')}">
                                     </td>
 
 
-                                    <td th:text="${user.createdDate}">
+                                    <td th:text="${user.getCreatedDate()}">
                                     </td>
 
                                     <td th:text="${user.role}">

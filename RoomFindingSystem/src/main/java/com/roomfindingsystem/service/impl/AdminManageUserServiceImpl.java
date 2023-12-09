@@ -108,11 +108,11 @@ public class AdminManageUserServiceImpl implements AdminManageUserService {
         saveUser.setEmail(userDto.getEmail());
         saveUser.setFirstName(userDto.getFirstName());
         saveUser.setLastName(userDto.getLastName());
-        saveUser.setLastModifiedDate(Timestamp.from(Instant.now()));
+        saveUser.setLastModifiedDate(LocalDate.now());
         saveUser.setPhone(userDto.getPhone());
 
 //        User:
-        saveUser.setCreatedDate(Timestamp.valueOf(LocalDateTime.now()));
+        saveUser.setCreatedDate(LocalDate.now());
         saveUser.setRoleId(userDto.getRole());
         if (Objects.equals(userDto.getStatus(), "ACTIVE")) {
             saveUser.setUserStatusId(1);

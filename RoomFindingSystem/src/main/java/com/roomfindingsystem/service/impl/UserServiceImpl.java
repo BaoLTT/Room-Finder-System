@@ -176,7 +176,7 @@ public class UserServiceImpl implements UserService {
         saveUser.setEmail(userDto.getEmail());
         saveUser.setFirstName(userDto.getFirstName());
         saveUser.setLastName(userDto.getLastName());
-        saveUser.setLastModifiedDate(Timestamp.from(Instant.now()));
+        saveUser.setLastModifiedDate(LocalDate.now());
         saveUser.setPhone(userDto.getPhone());
         saveUser.setRoleId(userDto.getRole());
 
