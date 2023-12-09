@@ -26,16 +26,32 @@
     <link rel="stylesheet" th:href="@{/assets/css/owl.carousel.css}" type="text/css">
     <link rel="stylesheet" th:href="@{/assets/css/style.css}" type="text/css">
     <style>
-        .profile-picture img {
-            max-width: 250px;
-            max-height: 250px;
-            width: auto;
-            height: auto;
+        @media (min-width: 1200px) {
+
+            .profile-picture img {
+                height: 270px;
+            }
         }
 
+        @media (min-width: 992px) and (max-width: 1200px) {
 
-        input[type="file"] {
-            display: block;
+            .profile-picture img {
+                height: 220px;
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 992px) {
+
+            .profile-picture img {
+                height: 165px;
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            .profile-picture img {
+                height: auto;
+            }
         }
 
         html, body {
@@ -116,7 +132,7 @@
                                                         <label for="firstName">Họ</label>
                                                         <input type="text" class="form-control" id="firstName"
                                                                name="firstName"
-                                                               pattern="^[9aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆgGhHiIìÌỉỈĩĨíÍịỊkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTuUùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVxXyYỳỲỷỶỹỸýÝỵỴ ]+$"
+                                                               pattern="^[aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆgGhHiIìÌỉỈĩĨíÍịỊkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTuUùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVxXyYỳỲỷỶỹỸýÝỵỴ ]+$"
                                                                placeholder="Jane" th:value="*{firstName}" required>
                                                         <small class="text-danger error-firstName"></small>
                                                     </div>
@@ -124,7 +140,7 @@
                                                         <label for="lastName">Tên</label>
                                                         <input type="text" class="form-control" id="lastName"
                                                                name="lastName"
-                                                               pattern="^[9aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆgGhHiIìÌỉỈĩĨíÍịỊkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTuUùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVxXyYỳỲỷỶỹỸýÝỵỴ ]+$"
+                                                               pattern="^[aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆgGhHiIìÌỉỈĩĨíÍịỊkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTuUùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVxXyYỳỲỷỶỹỸýÝỵỴ ]+$"
                                                                placeholder="Doe" th:value="*{lastName}" required>
                                                         <small class="text-danger error-lastName"></small>
                                                     </div>
