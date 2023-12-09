@@ -187,61 +187,84 @@
                                 </div>
                                 <div class="collapse" id="filter-advanced-search" aria-expanded="false">
                                     <div class="wrapper">
+<!--                                        <section>-->
+<!--                                            <h3>Giá phòng (triệu đồng/tháng)</h3>-->
+<!--                                            <div class="custom-wrapper">-->
+
+
+
+<!--                                                <div class="price-input-container">-->
+<!--                                                    <div class="price-input">-->
+<!--                                                        <div class="price-field">-->
+<!--                                                            <table style="width: 100%">-->
+<!--                                                                <tr>-->
+<!--                                                                    <td><span>Từ: </span></td>-->
+<!--                                                                    <td><input type="number" name="minPrice"-->
+<!--                                                                               class="min-input"-->
+<!--                                                                               th:value="${minPrice}" style="margin-bottom: 10px"></td>-->
+<!--                                                                </tr>-->
+<!--                                                                <tr >-->
+<!--                                                                    <td><span>Đến: </span></td>-->
+<!--                                                                    <td><input type="number"-->
+<!--                                                                               class="max-input" name="maxPrice"-->
+<!--                                                                               th:value="${maxPrice}" style="margin-bottom: 10px"></td>-->
+<!--                                                                </tr>-->
+
+<!--                                                            </table>-->
+
+<!--                                                        </div>-->
+
+<!--                                                    </div>-->
+<!--                                                    <div class="slider-container">-->
+<!--                                                        <div class="price-slider">-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+
+<!--                                                &lt;!&ndash; Slider &ndash;&gt;-->
+<!--                                                <div class="range-input">-->
+<!--                                                    <input type="range"-->
+<!--                                                           class="min-range"-->
+<!--                                                           min="0"-->
+<!--                                                           max="10"-->
+<!--                                                           th:value="${minPrice}"-->
+<!--                                                           step="1">-->
+
+<!--                                                    <input type="range"-->
+<!--                                                           class="max-range"-->
+<!--                                                           min="0"-->
+<!--                                                           max="10"-->
+<!--                                                           th:value="${maxPrice}"-->
+<!--                                                           step="1">-->
+
+<!--                                                </div>-->
+<!--                                            </div>-->
+
+<!--                                            &lt;!&ndash;end checkboxes&ndash;&gt;-->
+<!--                                        </section>-->
                                         <section>
-                                            <h3>Giá phòng (triệu đồng/tháng)</h3>
-                                            <div class="custom-wrapper">
+                                            <h3>Loại phòng</h3>
+                                            <ul class="checkboxes">
+                                                <li>
+                                                    <label>
+                                                        <input type="checkbox" name="price" value="1" th:checked="${#arrays.contains(price, '1')}">Dưới 2 triệu
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <label>
+                                                        <input type="checkbox" name="price" value="2" th:checked="${#arrays.contains(price, '2')}">Từ 2 triệu đến 4 Triệu
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <label>
+                                                        <input type="checkbox" name="price" value="3" th:checked="${#arrays.contains(price, '3')}">Trên 4 triệu
+                                                    </label>
+                                                </li>
+                                            </ul>
 
 
-
-                                                <div class="price-input-container">
-                                                    <div class="price-input">
-                                                        <div class="price-field">
-                                                            <table style="width: 100%">
-                                                                <tr>
-                                                                    <td><span>Từ: </span></td>
-                                                                    <td><input type="number" name="minPrice"
-                                                                               class="min-input"
-                                                                               th:value="${minPrice}" style="margin-bottom: 10px"></td>
-                                                                </tr>
-                                                                <tr >
-                                                                    <td><span>Đến: </span></td>
-                                                                    <td><input type="number"
-                                                                               class="max-input" name="maxPrice"
-                                                                               th:value="${maxPrice}" style="margin-bottom: 10px"></td>
-                                                                </tr>
-
-                                                            </table>
-
-                                                        </div>
-
-                                                    </div>
-                                                    <div class="slider-container">
-                                                        <div class="price-slider">
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <!-- Slider -->
-                                                <div class="range-input">
-                                                    <input type="range"
-                                                           class="min-range"
-                                                           min="0"
-                                                           max="10"
-                                                           th:value="${minPrice}"
-                                                           step="1">
-
-                                                    <input type="range"
-                                                           class="max-range"
-                                                           min="0"
-                                                           max="10"
-                                                           th:value="${maxPrice}"
-                                                           step="1">
-
-                                                </div>
-                                            </div>
-
-                                            <!--end checkboxes-->
                                         </section>
+
                                         <!--end section-->
                                         <section>
                                             <h3>Loại phòng</h3>
@@ -340,7 +363,7 @@
                                     </a>
                                 </li>
                                 <li th:if="${currentPage > 2}">
-                                    <a th:href="@{/roomlist?page=} + '1' + '&price=' + ${#strings.arrayJoin(price, ',')} + '&type=' + ${#strings.arrayJoin(type, ',')}" th:text="1" class="page-number">1</a>
+                                    <a th:href="@{/roomlist?page=} + '1' + '&price1=' + '&price=' + ${#strings.arrayJoin(price, ',')} + '&type=' + ${#strings.arrayJoin(type, ',')}" th:text="1" class="page-number">1</a>
                                 </li>
 
                                 <li th:if="${currentPage > 3}" style="pointer-events: none">
@@ -350,7 +373,7 @@
                                 <li th:each="pageIndex: ${#numbers.sequence(currentPage - 1, currentPage + 1)}"
                                     th:unless="${pageIndex < 1 || pageIndex > totalPage}"
                                     th:class="${pageIndex == currentPage ? 'active' : ''}">
-                                    <a th:href="@{/roomlist?page=} + ${pageIndex} + '&price=' + ${#strings.arrayJoin(price, ',')} + '&type=' + ${#strings.arrayJoin(type, ',')}"
+                                    <a th:href="@{/roomlist?page=} + ${pageIndex}  + '&price=' + ${#strings.arrayJoin(price, ',')} + '&type=' + ${#strings.arrayJoin(type, ',')}"
                                        th:text="${pageIndex}" class="page-number"></a>
                                 </li>
 
@@ -360,11 +383,11 @@
                                 </li>
                                 <li th:if="${currentPage <= totalPage - 2}">
                                     <a th:text="${totalPage}"
-                                       th:href="@{/roomlist?page=} + ${totalPage} + '&price=' + ${#strings.arrayJoin(price, ',')} + '&type=' + ${#strings.arrayJoin(type, ',')}"
+                                       th:href="@{/roomlist?page=} + ${totalPage} + ${#strings.arrayJoin(price, ',')} + '&type=' + ${#strings.arrayJoin(type, ',')}"
                                        class="page-number">${totalPage}</a>
                                 </li>
                                 <li class="next">
-                                    <a th:href="@{/roomlist?page=} + ${currentPage + 1} + '&price=' + ${#strings.arrayJoin(price, ',')} + '&type=' + ${#strings.arrayJoin(type, ',')}" th:if="${currentPage != totalPage}">
+                                    <a th:href="@{/roomlist?page=} + ${currentPage + 1} + ${#strings.arrayJoin(price, ',')} + '&type=' + ${#strings.arrayJoin(type, ',')}" th:if="${currentPage != totalPage}">
                                         <i class="arrow_right"></i>
                                     </a>
                                 </li>

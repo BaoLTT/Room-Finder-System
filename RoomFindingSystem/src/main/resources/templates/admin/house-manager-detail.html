@@ -3,13 +3,13 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="utf-8"/>
-    <title>Quản lý nhà trọ</title>
+    <title>Admin - Thông tin nhà trọ</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description"/>
     <meta content="Coderthemes" name="author"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <!-- App favicon -->
-    <link rel="shortcut icon"  th:href="@{/assets/img/favicon.ico}">
+    <link rel="shortcut icon" th:href="@{/assets/img/favicon.ico}">
 
     <link href="/assets_admin/libs/dropzone/dropzone.min.css" rel="stylesheet" type="text/css"/>
     <!-- App css -->
@@ -24,6 +24,7 @@
             height: 400px;
             width: 100%;
         }
+
         .checkbox-label {
             display: flex;
             align-items: center;
@@ -54,7 +55,8 @@
                         <div class="page-title-box">
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a th:href="@{/admin/house-manager}">Quản lý nhà trọ</a></li>
+                                    <li class="breadcrumb-item"><a th:href="@{/admin/house-manager}">Quản lý nhà trọ</a>
+                                    </li>
                                     <li class="breadcrumb-item active">Thông tin trọ</li>
                                 </ol>
                             </div>
@@ -86,8 +88,9 @@
                                                 <label class="col-md-2 col-md-form-label">Tên trọ<em>*</em></label>
                                                 <div class="col-md-10">
                                                     <input type="text" name="houseName" class="form-control"
-                                                           placeholder="Tên trọ..." required id="inputField"  oninput="removeWhitespace(this)"
-                                                           pattern="^[a-zA-Z0-9xyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđÁÂĐ ]+$"
+                                                           placeholder="Tên trọ..." required id="inputField"
+                                                           oninput="removeWhitespace(this)"
+                                                           pattern="^[0-9aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆgGhHiIìÌỉỈĩĨíÍịỊkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTuUùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVxXyYỳỲỷỶỹỸýÝỵỴ ]+$"
                                                            th:field="*{houseName}">
                                                 </div>
                                             </div>
@@ -96,23 +99,32 @@
                                                 <div class="col-md ">
                                                     <label>Tình trạng</label>
                                                     <select class="form-control" th:field="*{status}">
-                                                        <option value="2" th:selected="${house.status == 2}">ĐANG XỬ LÝ</option>
-                                                        <option value="1" th:selected="${house.status == 1}">HOẠT ĐỘNG</option>
-                                                        <option value="0" th:selected="${house.status == 0}">NGƯNG HOẠT ĐỘNG</option>
+                                                        <option value="2" th:selected="${house.status == 2}">ĐANG XỬ
+                                                            LÝ
+                                                        </option>
+                                                        <option value="1" th:selected="${house.status == 1}">HOẠT ĐỘNG
+                                                        </option>
+                                                        <option value="0" th:selected="${house.status == 0}">NGƯNG HOẠT
+                                                            ĐỘNG
+                                                        </option>
                                                     </select>
                                                 </div>
                                                 <div class="col-md">
                                                     <label for="like">Đánh giá</label>
-                                                    <input th:if="${house.star!=0}" type="text" class="form-control" id="like" readonly
+                                                    <input th:if="${house.star!=0}" type="text" class="form-control"
+                                                           id="like" readonly
                                                            th:field="*{star}" style="padding: 10px">
-                                                    <input th:if="${house.star==0}" type="text" class="form-control"  readonly
-                                                            style="padding: 10px" value="Chưa đánh giá">
+                                                    <input th:if="${house.star==0}" type="text" class="form-control"
+                                                           readonly
+                                                           style="padding: 10px" value="Chưa đánh giá">
                                                 </div>
                                                 <div class="col-md">
                                                     <label for="room">Số lượng phòng</label>
-                                                    <input th:if="${house.count_room!=0}" type="text" class="form-control" id="room" readonly
+                                                    <input th:if="${house.count_room!=0}" type="text"
+                                                           class="form-control" id="room" readonly
                                                            th:field="*{count_room}" style="padding: 10px">
-                                                    <input th:if="${house.count_room==0}" type="text" class="form-control"  readonly
+                                                    <input th:if="${house.count_room==0}" type="text"
+                                                           class="form-control" readonly
                                                            value="Chưa có phòng" style="padding: 10px">
                                                 </div>
 
@@ -126,11 +138,13 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-md-2 col-md-form-label">Địa chỉ cụ thể<em>*</em></label>
+                                                <label class="col-md-2 col-md-form-label">Địa chỉ cụ
+                                                    thể<em>*</em></label>
                                                 <div class="col-md-10">
                                                     <input type="text" name="addressDetail" class="form-control"
-                                                           placeholder="Địa chỉ cụ thể..." id="inputField2"  oninput="removeWhitespace2(this)"
-                                                           pattern="^[a-zA-Z0-9xyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđÁÂĐ]+$"
+                                                           placeholder="Địa chỉ cụ thể..." id="inputField2"
+                                                           oninput="removeWhitespace2(this)"
+                                                           pattern="^[0-99aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆgGhHiIìÌỉỈĩĨíÍịỊkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTuUùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVxXyYỳỲỷỶỹỸýÝỵỴ ]+$"
                                                            th:field="*{addressDetail}">
                                                 </div>
                                             </div>
@@ -185,11 +199,13 @@
                                                 <div class="col-md-10">
                                                     <label>Vĩ độ</label>
 
-                                                    <input th:if="${house.latitude != null}" id="latitude" name="latitude"
+                                                    <input th:if="${house.latitude != null}" id="latitude"
+                                                           name="latitude"
                                                            th:field="*{latitude}">
                                                     <label>Kinh độ</label>
 
-                                                    <input th:if="${house.longitude != null}" id="longitude" name="longitude"
+                                                    <input th:if="${house.longitude != null}" id="longitude"
+                                                           name="longitude"
                                                            th:field="*{longitude}">
                                                 </div>
                                             </div>
@@ -229,7 +245,8 @@
                                                 </div>
                                                 <div class="col-md-1 flex-md-grow-0">
                                                     <button type="button" class="btn btn-primary btn-xs" id="houseType"
-                                                            style="width: 100%;height: 100%;border-radius: 5px">Thêm thể loại
+                                                            style="width: 100%;height: 100%;border-radius: 5px">Thêm thể
+                                                        loại
                                                     </button>
                                                 </div>
                                             </div>
@@ -244,7 +261,8 @@
                                                                th:href="@{'/admin/house-manager/deleteImage/' + ${house.houseID} + '/' + ${image.imageId}}">x</a>
                                                             <span class="MultiFile-label"
                                                                   title="File selected: abc.png">
-                                                            <img th:src="'https://storage.googleapis.com'+${image.imageLink}" alt="Ảnh" id="imagePreview"
+                                                            <img th:src="'https://storage.googleapis.com'+${image.imageLink}"
+                                                                 alt="Ảnh" id="imagePreview"
                                                                  style="width: 100px;height: 100px">
                                                         </span>
                                                         </div>
@@ -263,12 +281,17 @@
                                                 <label class="col-md-2 col-md-form-label">Dịch vụ</label>
                                                 <div class="col-md-10">
                                                     <div class="row">
-                                                        <div th:each="listService : ${listService}" class="col-md-2 mb-2">
-                                                            <div class="checkbox checkbox-primary" style="padding-left: 10px">
-                                                                <input th:id="${listService.serviceName}" type="checkbox" style="position: relative"
-                                                                       name="service" th:value="${listService.serviceId}"
+                                                        <div th:each="listService : ${listService}"
+                                                             class="col-md-2 mb-2">
+                                                            <div class="checkbox checkbox-primary"
+                                                                 style="padding-left: 10px">
+                                                                <input th:id="${listService.serviceName}"
+                                                                       type="checkbox" style="position: relative"
+                                                                       name="service"
+                                                                       th:value="${listService.serviceId}"
                                                                        th:checked="${#lists.contains(listChecked,''+ listService.serviceId+'')}">
-                                                                <label th:for="${listService.serviceName}" class="checkbox-label">
+                                                                <label th:for="${listService.serviceName}"
+                                                                       class="checkbox-label">
                                                                     <span th:text="${listService.serviceName}"></span>
                                                                 </label>
                                                             </div>
@@ -277,21 +300,20 @@
                                                 </div>
                                                 <label class="col-md-2 col-md-form-label"></label>
                                                 <div class="col-md-10" style="padding-left: 0">
-                                                    <button type="button" class="btn btn-primary btn-xs" id="houseService" style="border-radius: 5px">
+                                                    <button type="button" class="btn btn-primary btn-xs"
+                                                            id="houseService" style="border-radius: 5px">
                                                         Thêm dịch vụ
                                                     </button>
                                                 </div>
                                             </div>
 
 
-
-
-
                                             <div class="form-group row">
                                                 <label class="col-md-2 col-md-form-label"></label>
                                                 <div class="col-md-10">
                                                     <button type="submit"
-                                                            class="btn btn-success waves-light waves-effect width-md" style="margin-left: -10px">
+                                                            class="btn btn-success waves-light waves-effect width-md"
+                                                            style="margin-left: -10px">
                                                         <span style="color: white">Lưu</span></button>
                                                     <a type="button"
                                                        class="btn btn-danger waves-light waves-effect width-md"
@@ -348,7 +370,8 @@
                                 ×
                             </button>
                             <input name="houseID" th:value="${houseID}" type="hidden">
-                            <input autocapitalize="off" class="swal2-input" required id="inputField3"  oninput="removeWhitespace3(this)"
+                            <input autocapitalize="off" class="swal2-input" required id="inputField3"
+                                   oninput="removeWhitespace3(this)"
                                    pattern="^[a-zA-Z0-9xyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđÁÂĐ ]+$"
                                    placeholder="Nhập thể loại..." type="text" style="display: flex;" name="newType">
                         </div>
@@ -392,13 +415,14 @@
                                 <div class="swal2-success-circular-line-right"></div>
                             </div>
                             <img class="swal2-image" style="display: none;">
-                            <h2 class="swal2-title"  style="display: flex;">Vui lòng nhập dịch vụ mới</h2>
+                            <h2 class="swal2-title" style="display: flex;">Vui lòng nhập dịch vụ mới</h2>
                             <button type="button" class="swal2-close" aria-label="Close this dialog"
                                     style="display: none;">
                                 ×
                             </button>
                             <input name="houseID" th:value="${houseID}" type="hidden">
-                            <input autocapitalize="off" class="swal2-input" required placeholder="Nhập dịch vụ..." type="text" id="inputField4"  oninput="removeWhitespace4(this)"
+                            <input autocapitalize="off" class="swal2-input" required placeholder="Nhập dịch vụ..."
+                                   type="text" id="inputField4" oninput="removeWhitespace4(this)"
                                    pattern="^[a-zA-Z0-9xyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđÁÂĐ ]+$"
                                    style="display: flex;" name="newService">
                         </div>
@@ -527,8 +551,6 @@
 <script src="/assets_admin/js/vendor.min.js"></script>
 <!-- Plugins js -->
 <script src="/assets_admin/libs/dropzone/dropzone.min.js"></script>
-
-
 
 
 <script type="text/javascript" src="/assets/js/jquery-2.2.1.min.js"></script>

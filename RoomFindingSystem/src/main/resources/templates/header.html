@@ -44,7 +44,7 @@
 
                         <li class="dropdown notification-list list-unstyled">
                             <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown" th:href="@{/profile}" role="button" aria-haspopup="false" aria-expanded="false">
-                                <img class="round-image" th:src="'https://storage.googleapis.com'+${session.user.getImageLink()}" style=" max-width: 25px;max-height: 25px; "  >
+                                <img class="round-image" th:src="'https://storage.googleapis.com'+${session.user.getImageLink()}" style=" max-width: 50px;max-height: 25px;border-radius: 100%; "  >
                                 <span class="ml-1" th:text="${session.user.lastName+' '+session.user.firstName}"></span>
 
                             </a>
@@ -100,9 +100,9 @@
           <!--end container-->
           <hr>
           <div class="container">
-            <div class="primary-nav">
+            <div class="primary-nav" style="padding-bottom: 0px; padding-top: 0px;">
               <div class="left">
-                <!--                        <a href="homepage.html" id="brand"><img src="/assets/img/logo.png" alt=""></a>-->
+                                        <a href="/" id="brand"><img src="/assets/img/logo.jpg" alt="" height="60"><img src="/assets/img/slogan1.png" alt="" height="50"></a>
                 <a class="nav-trigger" data-toggle="collapse" href="#primary-nav" aria-expanded="false" aria-controls="primary-nav"><i class="fa fa-navicon"></i></a>
               </div>
               <!--end left-->

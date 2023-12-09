@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-
-    <list default="true" id="1e0562a2-7ad5-40d8-bd96-2e66b43cd15f" name="Changes" comment="update chinh homepage">
-      <change afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/static/assets/img/logo.jpg" afterDir="false" />
+    <list default="true" id="1e0562a2-7ad5-40d8-bd96-2e66b43cd15f" name="Changes" comment="update front register">
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-
+      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/admin/header_admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/admin/header_admin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/header.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +29,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="BinhNH" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -64,7 +62,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "com.google.cloudcode.ide_session_index": "20231203_0002",
+    "com.google.cloudcode.ide_session_index": "20231209_0001",
     "dart.analysis.tool.window.visible": "false",
     "git-widget-placeholder": "BaoLTT",
     "last_opened_file_path": "/Users/nguyenhuubinh/Documents/DATN/Room-Finding-System/RoomFindingSystem/src/main/resources/static/assets/img",
@@ -98,21 +96,7 @@
     </key>
   </component>
   <component name="RunManager" selected="Spring Boot.Main (1)">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.roomfindingsystem.Main" />
-      <module name="RoomFindingSystem" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.roomfindingsystem.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="ProfileAdminControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-
       <module name="RoomFindingSystem" />
       <extension name="coverage">
         <pattern>
@@ -217,10 +201,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.Main (1)" />
-        <item itemvalue="Application.Main" />
+        <item itemvalue="Spring Boot.Main" />
+        <item itemvalue="JUnit.RoomRepositoryTest.testViewRoomInHouseWithEmptyResult" />
         <item itemvalue="JUnit.RoomManagerServiceTest" />
         <item itemvalue="JUnit.ProfileAdminControllerTest" />
-        <item itemvalue="Spring Boot.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -274,10 +258,13 @@
       <workItem from="1701848584119" duration="13095000" />
       <workItem from="1701695349349" duration="20660000" />
       <workItem from="1701772494187" duration="7118000" />
+      <workItem from="1702036860114" duration="130000" />
       <workItem from="1701975767028" duration="79000" />
       <workItem from="1702021925815" duration="280000" />
       <workItem from="1702029575969" duration="10000" />
       <workItem from="1702030083088" duration="6406000" />
+      <workItem from="1702094809433" duration="1293000" />
+      <workItem from="1702111373754" duration="728000" />
     </task>
     <task id="LOCAL-00002" summary="update lai">
       <option name="closed" value="true" />
@@ -447,7 +434,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701968863443</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="update front register">
+      <option name="closed" value="true" />
+      <created>1702049356251</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1702049356251</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -487,7 +482,9 @@
     <MESSAGE value="update slider =&gt; news, sua duoc phan admin" />
     <MESSAGE value="update test vs anh, homepage" />
     <MESSAGE value="update duong dan vao roomList" />
-    <option name="LAST_COMMIT_MESSAGE" value="update duong dan vao roomList" />
+    <MESSAGE value="update logo" />
+    <MESSAGE value="update front register" />
+    <option name="LAST_COMMIT_MESSAGE" value="update front register" />
   </component>
   <component name="com.github.evgenys91.machinet.common.dslhistory.DslHistoryState">
     <option name="historyDtoById">

@@ -17,7 +17,7 @@
 
         <li class="dropdown notification-list list-unstyled">
             <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown" th:href="@{/profile}" role="button" aria-haspopup="false" aria-expanded="false">
-                <img class="round-image" th:src="'https://storage.googleapis.com'+${session.user.getImageLink()}" style=" max-width: 25px;max-height: 25px; " alt="user-image" >
+                <img  class="round-image" th:src="'https://storage.googleapis.com'+${session.user.getImageLink()}" style=" max-width: 25px;max-height: 25px;border-radius: 100px " alt="user-image" >
                 <span class="ml-1" th:text="${session.user.lastName+' '+session.user.firstName}"></span>
 
             </a>
@@ -49,12 +49,12 @@
     <div class="logo-box">
         <a href="/admin/dashboard" class="logo text-center">
                         <span class="logo-lg">
-                            <img src="/assets/img/logo.jpe" alt="" height="16">
+                          <img src="/assets/img/slogan2.png" alt="" height="40">
                             <!-- <span class="logo-lg-text-light">UBold</span> -->
                         </span>
             <span class="logo-sm">
                             <!-- <span class="logo-sm-text-dark">U</span> -->
-                            <img src="/assets_admin/images/logo-sm.png" alt="" height="28">
+                            <img src="/assets/img/slogan2.png" alt="" height="40">
                         </span>
         </a>
     </div>
@@ -105,8 +105,8 @@
                         </a>
                     </li>
 
-                    <li>
-                        <a th:href="@{/admin/user}">
+                    <li th:if="${session.user.getRoleId()=='SUPER_ADMIN'}">
+                        <a  th:href="@{/admin/user}">
                             <i class="dripicons-user-group"></i>
                             <span> Quản lý người dùng </span>
                         </a>
