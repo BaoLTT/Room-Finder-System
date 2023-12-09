@@ -2,6 +2,7 @@ package com.roomfindingsystem.controller.admin;
 
 import com.roomfindingsystem.dto.RoomDto;
 import com.roomfindingsystem.dto.ServiceDto;
+import com.roomfindingsystem.entity.HousesEntity;
 import com.roomfindingsystem.entity.UserEntity;
 import com.roomfindingsystem.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,8 @@ public class AdminManageRoomController {
     private ServiceDetailService serviceDetailService;
     @Autowired
     UserService userService;
+    @Autowired
+    HouseService houseService;
 
     @GetMapping("/listRoom")
     public String getListRoomPage(Model model) {
@@ -78,7 +81,10 @@ public class AdminManageRoomController {
     @GetMapping("/insertRoom")
     public String insertRoomPage(Model model) {
         RoomDto roomDto = new RoomDto();
+        List<HousesEntity> listAllHouse = new ArrayList<>();
+        listAllHouse = houseService.getAllHouse();
         model.addAttribute("room", roomDto);
+        model.addAttribute("listAllHouse",listAllHouse);
         model.addAttribute("services", serviceDetailService.getAllService());
         model.addAttribute("types", roomTypeService.findAll());
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
