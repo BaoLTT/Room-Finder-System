@@ -6,7 +6,7 @@
     <meta content="Coderthemes" name="author"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <!-- App favicon -->
-        <link rel="shortcut icon"  th:href="@{/assets/img/favicon.ico}">
+    <link rel="shortcut icon" th:href="@{/assets/img/favicon.ico}">
 
     <!-- App css -->
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
@@ -40,23 +40,23 @@
                                 <label>HỌ ĐỆM</label>
                                 <input class="form-control" type="text"
                                        th:field="*{firstName}"
-                                       pattern="^[a-zA-ZxyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđÁÂĐ ]+$"
+                                       pattern="^[aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆgGhHiIìÌỉỈĩĨíÍịỊkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTuUùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVxXyYỳỲỷỶỹỸýÝỵỴ ]+$"
                                        id="firstname"
                                        placeholder="Nhập Họ Của Bạn" required/>
                                 <div class="alert alert-warning" th:if="${#fields.hasErrors('firstName')}"
                                      th:errors="*{firstName}">
                                 </div>
-                                <p style="color: red" ></p>
+                                <p style="color: red"></p>
                             </div>
                             <div class="form-group">
                                 <label>TÊN</label>
                                 <input class="form-control" type="text" id="lastName" th:field="*{lastName}"
-                                       pattern="^[a-zA-ZxyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđÁÂĐ ]+$"
+                                       pattern="^[aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆgGhHiIìÌỉỈĩĨíÍịỊkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTuUùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVxXyYỳỲỷỶỹỸýÝỵỴ ]+$"
                                        placeholder="Nhập Tên Của Bạn" required>
                                 <div class="alert alert-warning" th:if="${#fields.hasErrors('lastName')}"
                                      th:errors="*{lastName}">
                                 </div>
-                                <p style="color: red" ></p>
+                                <p style="color: red"></p>
                             </div>
                             <div class="form-group">
                                 <label for="email">ĐỊA CHỈ EMAIL</label>
@@ -69,28 +69,6 @@
                                 </div>
                                 <p style="color: red" th:text="${mess}"></p>
                             </div>
-<!--                            <div class="form-group">-->
-<!--                                <label>Date of birth</label>-->
-<!--                                <input class="form-control" type="date" th:field="*{dob}"-->
-<!--                                       id="dob" required>-->
-<!--                                <div class="alert alert-warning" th:if="${#fields.hasErrors('dob')}"-->
-<!--                                     th:errors="*{dob}">-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            <div class="form-group">-->
-<!--                                <div class="radio radio-info form-check-inline">-->
-<!--                                    <input type="radio" id="male" th:field="*{gender}"-->
-<!--                                           value="1" name="gender" checked>-->
-
-<!--                                    <label for="male">Male </label>-->
-<!--                                </div>-->
-<!--                                <div class="radio form-check-inline">-->
-<!--                                    <input type="radio" id="female" th:field="*{gender}"-->
-<!--                                           value="0" name="gender">-->
-
-<!--                                    <label for="female"> Female </label>-->
-<!--                                </div>-->
-<!--                            </div>-->
                             <div class="form-group">
                                 <label for="phone">SỐ ĐIỆN THOẠI</label>
                                 <input class="form-control" type="text" th:field="*{phone}"
@@ -100,19 +78,19 @@
                                 <div class="alert alert-warning" th:if="${#fields.hasErrors('phone')}"
                                      th:errors="*{phone}">
                                 </div>
-                                <p style="color: red" ></p>
+                                <p style="color: red"></p>
                             </div>
                             <div class="form-group">
                                 <script>
-                                    var check = function() {
-                                      if (document.getElementById('password').value ==
-                                        document.getElementById('confirm_password').value) {
-                                        document.getElementById('message').style.color = 'green';
-                                        document.getElementById('message').innerHTML = 'Mật Khẩu Trùng Khớp!';
-                                      } else {
-                                        document.getElementById('message').style.color = 'red';
-                                        document.getElementById('message').innerHTML = 'Mật Khẩu Không Trùng Khớp!';
-                                      }
+                                    var check = function () {
+                                        if (document.getElementById('password').value ==
+                                            document.getElementById('confirm_password').value) {
+                                            document.getElementById('message').style.color = 'green';
+                                            document.getElementById('message').innerHTML = 'Mật Khẩu Trùng Khớp!';
+                                        } else {
+                                            document.getElementById('message').style.color = 'red';
+                                            document.getElementById('message').innerHTML = 'Mật Khẩu Không Trùng Khớp!';
+                                        }
                                     }
 
                                 </script>
@@ -153,7 +131,8 @@
                         <div class="row mt-4">
                             <div class="col-sm-12 text-center">
                                 <p class="text-muted mb-0">Bạn Đã Có Tài Khoản? <a th:href="@{/login}"
-                                                                                       class="text-dark ml-1"><b>Đăng Nhập</b></a></p>
+                                                                                   class="text-dark ml-1"><b>Đăng
+                                    Nhập</b></a></p>
                             </div>
                         </div>
 
