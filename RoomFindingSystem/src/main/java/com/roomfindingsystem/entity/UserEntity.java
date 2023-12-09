@@ -63,10 +63,10 @@ public class UserEntity {
 
     @Basic
     @Column(name = "Created_Date", nullable = true)
-    private Timestamp createdDate;
+    private LocalDate createdDate;
     @Basic
     @Column(name = "Last_Modified_Date", nullable = true)
-    private Timestamp lastModifiedDate;
+    private LocalDate lastModifiedDate;
     @Basic
     @Column(name = "User_StatusID", nullable = true)
     private Integer userStatusId;
@@ -93,5 +93,5 @@ public class UserEntity {
     public int hashCode() {
         return Objects.hash(userId, firstName, dob, gender, phone, email, imageLink, password, facebookId, gmailId, roleId, createdDate, lastModifiedDate, userStatusId,  lastName, addressId);
     }
-
+    
 }

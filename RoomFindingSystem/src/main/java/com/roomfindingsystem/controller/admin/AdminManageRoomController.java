@@ -103,13 +103,25 @@ public class AdminManageRoomController {
             }
         }
         roomDto.setServiceDtos(serviceDtos);
+
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserEntity user = userService.findByEmail(email).get();
+        roomDto.setCreatedBy(user.getUserId());
+        roomDto.setLastModifiedBy(user.getUserId());
+
         roomService.saveRoomAdmin(roomDto, files);
         return "redirect:/admin/room/listRoom";
     }
 
     @PostMapping("/importRooms")
     public String importRoom(@RequestParam("fileExcel") MultipartFile fileExcel) {
-        roomService.importRooms(fileExcel);
+        RoomDto roomDto = new RoomDto();
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserEntity user = userService.findByEmail(email).get();
+        roomDto.setCreatedBy(user.getUserId());
+        roomDto.setLastModifiedBy(user.getUserId());
+        roomService.importRooms(roomDto,fileExcel);
+
         return "redirect:/admin/room/listRoom";
     }
 

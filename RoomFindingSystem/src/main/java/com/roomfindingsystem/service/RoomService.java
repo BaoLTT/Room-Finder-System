@@ -50,7 +50,7 @@ public interface RoomService {
 
     List<RoomDtoN> findRoom1(int min1, int max1, int min2, int max2, int min3, int max3, String roomName, List<Integer> type, int pageIndex, int pageSize);
 
-    void importRooms(MultipartFile file);
+    void importRooms(RoomDto roomDto,MultipartFile file);
 
     List<RoomAdminDashboardDto> getRoomStatusInAdminDashboard();
 
