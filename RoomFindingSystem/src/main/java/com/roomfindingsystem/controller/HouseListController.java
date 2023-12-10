@@ -57,6 +57,12 @@ public class HouseListController {
         int totalHouse = 0;
         int pageSize =4;
         int countService = 0;
+//        int offset;
+//        if(pageIndex==0){
+//            offset = 0;
+//        }else{
+//            offset = (pageIndex -1)*pageSize;
+//        }
         int offset = (pageIndex -1)*pageSize;
         model.addAttribute("listPrice",price);
         model.addAttribute("listType",type);
@@ -86,7 +92,8 @@ public class HouseListController {
             listService.add(Integer.parseInt(service1));
         }
 
-        System.out.println(listService.size());
+        System.out.println(pageSize);
+        System.out.println(offset);
         list =houseService.findHouse(0,0,0,Integer.MAX_VALUE,houseName,listType,listService,countService,offset, pageSize);
         totalHouse = houseService.countHouse(0,0,0,Integer.MAX_VALUE,houseName,listType,listService,countService);
         if(listPrice.contains(1)){
