@@ -1,6 +1,7 @@
 package com.roomfindingsystem.service;
 
 import com.roomfindingsystem.dto.FeedbackDto;
+import com.roomfindingsystem.dto.FeedbackListAdminDto;
 import com.roomfindingsystem.entity.FeedbackEntity;
 import com.roomfindingsystem.repository.FeedbackRepository;
 
@@ -155,5 +156,60 @@ public class FeedbackServiceTest {
 
         // Verify that the repository method was called with the correct parameters
         verify(feedbackRepository, times(1)).getFeedbackEntityByUid(houseId, memberId);
+    }
+
+    //test
+    @Test
+    void testGetListFeedbackForLandLordWithValidData() {
+        // Arrange
+        int validCreatedBy = 1;
+        int size = 2;
+        FeedbackListAdminDto feedbackListAdminDto = new FeedbackListAdminDto();
+        FeedbackListAdminDto feedbackListAdminDto1 = new FeedbackListAdminDto();
+        List<FeedbackListAdminDto> list = List.of(feedbackListAdminDto, feedbackListAdminDto1);
+
+        when(feedbackRepository.getFeedbackListForLandLord(validCreatedBy)).thenReturn(list);
+
+        // Act
+        List<FeedbackListAdminDto> feedbackList = feedbackService.getListFeedbackForLandLord(validCreatedBy);
+
+        // Assert
+        assertNotNull(feedbackList);
+        assertEquals(size, feedbackList.size());
+    }
+
+    @Test
+    void testGetListFeedbackForLandLordWithNoData() {
+        // Arrange
+        int nonExistentCreatedBy = 2;
+        when(feedbackRepository.getFeedbackListForLandLord(nonExistentCreatedBy)).thenReturn(Collections.emptyList());
+
+        // Act
+        List<FeedbackListAdminDto> feedbackList = feedbackService.getListFeedbackForLandLord(nonExistentCreatedBy);
+
+        // Assert
+        assertNotNull(feedbackList);
+        assertTrue(feedbackList.isEmpty());
+    }
+
+    //test
+    @Test
+    void testGetListFeedback() {
+        // Arrange
+        List<FeedbackListAdminDto> expectedFeedbackList = Arrays.asList(
+                new FeedbackListAdminDto(/* your data here */),
+                new FeedbackListAdminDto(/* your data here */)
+                // Add more sample FeedbackListAdminDto objects as needed
+        );
+
+        // Mock the behavior of feedbackRepository.getFeedbackListForAdmin()
+        when(feedbackRepository.getFeedbackListForAdmin()).thenReturn(expectedFeedbackList);
+
+        // Act
+        List<FeedbackListAdminDto> result = feedbackService.getListFeedback();
+
+        // Assert
+        assertEquals(expectedFeedbackList, result);
+        // Add more assertions as needed
     }
 }

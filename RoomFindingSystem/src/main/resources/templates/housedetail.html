@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="shortcut icon" href="/assets/img/favicon.ico">
     <link
             rel="stylesheet"
@@ -41,6 +42,9 @@
     <style>
         .mySlides {
             display: none;
+        }
+        .checked {
+            color: orange;
         }
 
         .round-image {
@@ -723,10 +727,14 @@
                                                         <aside class="name"
                                                                th:text="${feedback.getUserFistName()}+ ' ' +${feedback.getUserLastName()}"></aside>
                                                         <!--                                                        <aside class="date" th:text="${#dates.format(feedback.getCreatedDate(), 'yyyy-MM-dd')}"></aside>-->
-                                                        <aside class="date"
-                                                               th:text="${#temporals.format(feedback.getCreatedDate(), 'dd-MM-yyyy')}"></aside>
-
-
+                                                        <aside class="">
+                                                            <span th:each="i : ${#numbers.sequence(1, feedback.getStar())}">
+                                                                <span class="fa fa-star checked" style="font-size: 10px"></span>
+                                                            </span>
+                                                            <span th:each="i : ${#numbers.sequence(feedback.getStar() + 1, 5)}" th:if="${feedback.getStar()<5}">
+                                                                <span class="fa fa-star" style="font-size: 10px"></span>
+                                                            </span>
+                                                        </aside>
                                                     </div>
                                                 </div>
                                             </div>
@@ -756,10 +764,8 @@
                                                     <!--end title-->
                                                     <p th:text="${feedback.getContent()}"></p>
                                                     <div class="clearfix options">
-                                                        <span class="pull-left"><span>Đánh giá: </span><span
-                                                                th:text="${feedback.getStar()}">  </span><span
-                                                                style="color: #FFCE45"><i class="fa fa-star"></i></span></span>
-                                                        <span class="pull-right"></span>
+                                                        <aside class="date"
+                                                               th:text="'Cật nhật ngày: '+${#temporals.format(feedback.getCreatedDate(), 'dd-MM-yyyy')}"></aside>
 
                                                     </div>
                                                     <!--end options-->
