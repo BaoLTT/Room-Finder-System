@@ -76,8 +76,9 @@ public interface RoomRepository extends JpaRepository<RoomEntity, Integer> {
 
 
     //room_type list trong boarding house details
-    @Query(value = "SELECT r.roomid, t.typeid, t.type_name,(select group_concat(r1.roomid) from room r1 where r1.houseid = h.houseid and r1.room_type = r.room_type\n" +
-            "            group by h.houseid, r.room_type) as room_list, h.houseid, h.house_name,r.price, (select group_concat(sd1.service_name) from service_detail sd1 \n" +
+    @Query(value = "SELECT r.roomid, t.typeid, t.type_name ,(select group_concat(r1.room_name) from room r1 where r1.houseid = h.houseid and r1.room_type = r.room_type\n" +
+            "            group by h.houseid, r.room_type) as room_list,(select group_concat(r1.roomid) from room r1 where r1.houseid = h.houseid and r1.room_type = r.room_type\n" +
+            "            group by h.houseid, r.room_type) as id_list,h.houseid, h.house_name,r.price, (select group_concat(sd1.service_name) from service_detail sd1 \n" +
             "            join service_room sc1 on sd1.serviceid = sc1.serviceid where sc1.roomid =  r.roomid\n" +
             "            group by  r.roomid, h.houseid) as service_list\n" +
             "            from room r \n" +
@@ -86,7 +87,7 @@ public interface RoomRepository extends JpaRepository<RoomEntity, Integer> {
             "            left join service_room sr on r.roomid = sr.roomid\n" +
             "            left join service_detail sd on sr.serviceid = sd.serviceid\n" +
             "            where r.houseid = ?1\n" +
-            "            group by r.roomid, t.typeid, t.type_name, h.houseid, h.house_name, r.price; ", nativeQuery = true)
+            "            group by r.roomid, t.typeid, t.type_name, h.houseid, h.house_name, r.price;", nativeQuery = true)
     List<Tuple> viewRoomInHouseDetail(int houseId);
 
     @Query(value="select r.room_name from room r where r.roomid = ?1", nativeQuery = true)

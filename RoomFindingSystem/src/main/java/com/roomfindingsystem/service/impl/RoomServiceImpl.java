@@ -347,7 +347,8 @@ public class RoomServiceImpl implements RoomService {
     public List<RoomHouseDetailDto> viewRoomInHouse(int houseId) {
         List<Tuple> tuples = roomRepository.viewRoomInHouseDetail(houseId);
         List<RoomHouseDetailDto> roomDtos = new ArrayList<>();
-        List<String> roomList;
+        List<String> roomList = null;
+        List<String> idList = null;
         List<String> serviceList;
         Set<String> uniquePairs = new HashSet<>();
 
@@ -367,12 +368,33 @@ public class RoomServiceImpl implements RoomService {
                 roomHouseDto.setPrice(tuple.get("price", Integer.class));
 
                 String roomName = tuple.get("room_list", String.class);
+                if(roomName!=null) roomList = Arrays.asList(roomName.split(","));
+//                if (roomName == null) {
+//                    roomHouseDto.setRoomList(null);
+//                } else {
+//                    roomList = Arrays.asList(roomName.split(","));
+//                    roomHouseDto.setRoomList(roomList);
+//                }
+
+                String idName = tuple.get("id_list", String.class);
+                if(idName!=null) idList = Arrays.asList(idName.split(","));
+
+                List<String> combinedList = new ArrayList<>();
                 if (roomName == null) {
                     roomHouseDto.setRoomList(null);
                 } else {
-                    roomList = Arrays.asList(roomName.split(","));
-                    roomHouseDto.setRoomList(roomList);
+                    for (int i = 0; i < roomList.size(); i++) {
+                        String combinedValue = roomList.get(i) + "-" + idList.get(i);
+                        combinedList.add(combinedValue);
+                    }
+                    roomHouseDto.setRoomList(combinedList);
                 }
+
+
+
+
+
+
 
                 String serviceName = tuple.get("service_list", String.class);
                 if (serviceName == null) {
@@ -381,6 +403,7 @@ public class RoomServiceImpl implements RoomService {
                     serviceList = Arrays.asList(serviceName.split(","));
                     roomHouseDto.setServiceList(serviceList);
                 }
+
 
 
                 roomDtos.add(roomHouseDto);

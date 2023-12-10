@@ -36,7 +36,6 @@ public class UserRepositoryTest {
       // Act
       Optional<UserEntity> result = userRepository.findByEmail(emailToFind);
 
-      System.out.println(result);
 
       // Assert
       assertTrue(result.isPresent());
