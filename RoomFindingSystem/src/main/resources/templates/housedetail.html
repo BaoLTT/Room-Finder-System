@@ -106,7 +106,36 @@
         }
 
     </style>
+    <style>
+        .room-list {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .room-item {
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
 
+        .room-button {
+            padding: 5px 10px; /* Giảm padding để làm cho button nhỏ lại */
+            cursor: pointer;
+            background-color: #488f3e;
+            color: #fff;
+            border: none;
+            border-radius: 3px; /* Giảm border-radius để làm cho góc nhọn hơn */
+        }
+
+
+        .room-button:hover {
+            background-color: #2e6f30;
+            color: #fff;
+        }
+        .form-reservations h6 {
+            margin-bottom: 20px; /* Điều chỉnh giá trị theo mong muốn của bạn */
+        }
+    </style>
     <title>Xem chi tiết nhà trọ</title>
 
 </head>
@@ -625,56 +654,20 @@
                             <!--                            </form>-->
 
                             <div class="form-reservations">
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead>
-                                        <tr>
-                                            <th>Loại phòng</th>
-                                            <th>Giá tiền</th>
-                                            <th>Phòng</th>
-                                            <th></th>
-                                        </tr>
-                                        </thead>
-                                    </table>
+                                <h2>Danh sách phòng</h2>
+                                <div th:each="room: ${roomList}">
+                                    <h4 th:text="${room.typeName}"></h4>
+                                    <h6  th:with="formattedPrice=${#numbers.formatDecimal(room.price, 0, 'COMMA', 0, 'POINT')}" th:text="${formattedPrice+'VNĐ'}"></h6>
+                                    <ul class="room-list"  >
+                                        <li class="room-item" th:each="name : ${room.roomList}">
+                                            <a class="room-button" th:href="@{/house/{houseName}/room/{idName}(houseName=${room.houseName}, idName=${#strings.substring(name, #strings.indexOf(name, '-') + 1)})}" th:text="${#strings.substring(name, 0, #strings.indexOf(name, '-'))}"></a>
+                                        </li>
+
+                                        <!-- Thêm các phòng khác tương tự -->
+                                    </ul>
                                 </div>
-                                <!--                                <form th:each="room: ${roomList}" th:action="@{'/room/' + ${room.roomId}}" >-->
-                                <form th:each="room: ${roomList}" th:action="@{/houseDetail}" method="post">
-                                    <table class="table">
-                                        <tbody>
-                                        <tr class="room">
-                                            <td class="room-type">
-                                                <a href="" ><h3 th:text="${room.typeName}"></h3>
-                                                </a>
 
-<!--                                                <ul th:each="service: ${room.serviceList}">-->
-<!--                                                    <li><span th:text="${service}"></span></li>-->
-<!--                                                </ul>-->
-                                            </td>
 
-                                            <!--                                            <td class="persons">2<i class="fa fa-user"></i></td>-->
-                                            <td class="price" th:with="formattedPrice=${#numbers.formatDecimal(room.price, 0, 'COMMA', 0, 'POINT')}" th:text="${formattedPrice+'VNĐ'}"></td>
-                                            <input type="hidden" name="houseName" th:value="${HousesEntity.houseName}">
-                                            <td class="rooms">
-                                                <select name="roomId" class="framed" style="padding-right: 20px">
-                                                    <option th:each="id : ${room.roomList}" th:value="${id}"
-                                                            th:text="${roomService.getRoomNameById(id)}"></option>
-
-                                                </select>
-                                            </td>
-                                            <td>
-                                                <div class="form-group">
-                                                    <button type="submit" class="btn btn-primary btn-rounded" style="border-radius: 5px">Xem chi
-                                                        tiết
-                                                    </button>
-                                                </div>
-                                                <!--end form-group-->
-                                            </td>
-                                        </tr>
-                                        <!--end tr.room-->
-                                        </tbody>
-                                    </table>
-                                    <!--end table-->
-                                </form>
 
                             </div>
                             <!--end form-reservations-->
@@ -1161,6 +1154,8 @@
 
 <script th:src="@{'https://maps.googleapis.com/maps/api/js?key='+${key_map}+'&callback=initMap'}" async defer></script>
 
+
+<!--<script th:src="@{'https://maps.googleapis.com/maps/api/js?key=AIzaSyA2QCKggXjXUJVgtPmIF1OjEEsOKxetuwY&callback=initMap'}" async defer></script>-->
 <script>
     var map;
     var marker;
