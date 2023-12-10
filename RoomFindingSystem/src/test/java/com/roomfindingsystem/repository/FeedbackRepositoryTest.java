@@ -1,6 +1,7 @@
 package com.roomfindingsystem.repository;
 
 import com.roomfindingsystem.dto.FeedbackDto;
+import com.roomfindingsystem.dto.FeedbackListAdminDto;
 import com.roomfindingsystem.entity.FeedbackEntity;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -127,4 +128,46 @@ public class FeedbackRepositoryTest {
         assertTrue(result.isEmpty());
 
     }
+
+
+    //
+    @Test
+    void testGetListFeedbackForLandLordWithValidData() {
+        // Arrange: Sử dụng cơ sở dữ liệu nhúng hoặc thực tế để tạo dữ liệu mẫu
+        int validCreatedBy = 1;
+        // Act
+        List<FeedbackListAdminDto> feedbackList = feedbackRepository.getFeedbackListForLandLord(validCreatedBy);
+
+        // Assert
+        assertNotNull(feedbackList);
+        assertFalse(feedbackList.isEmpty());
+        // Kiểm tra các điều kiện mong muốn cho dữ liệu
+    }
+
+    @Test
+    void testGetListFeedbackForLandLordWithNoData() {
+        // Arrange: Sử dụng cơ sở dữ liệu nhúng hoặc thực tế để tạo dữ liệu mẫu
+        int validCreatedBy = 145;
+        // Act
+        List<FeedbackListAdminDto> feedbackList = feedbackRepository.getFeedbackListForLandLord(validCreatedBy);
+
+        // Assert
+        assertNotNull(feedbackList);
+        assertTrue(feedbackList.isEmpty());
+    }
+
+    //test
+    @Test
+    void testGetListFeedback() {
+
+
+        // Act
+        List<FeedbackListAdminDto> result = feedbackRepository.getFeedbackListForAdmin();
+
+        // Assert
+        assertEquals(9, result.size());
+        // Add more assertions as needed
+    }
+
+
 }

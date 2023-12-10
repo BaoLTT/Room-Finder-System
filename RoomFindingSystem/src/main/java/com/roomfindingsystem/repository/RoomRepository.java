@@ -109,7 +109,7 @@ public interface RoomRepository extends JpaRepository<RoomEntity, Integer> {
 
 
     @Query(value = "select r.roomId ,h.house_name ,r.room_name, concat(u.last_name,' ',u.first_name) as full_name, r.statusid, r.status_update_date from room r join houses h on h.houseid = r.houseid\n" +
-            "left join user u on h.userid = u.userid", nativeQuery = true)
+            "left join user u on h.userid = u.userid order by r.status_update_date desc", nativeQuery = true)
     List<Tuple> getRoomStatusInAdminDashboard();
 
     @Query("SELECT r FROM RoomEntity r inner join HousesEntity h ON r.houseId = h.houseId " +

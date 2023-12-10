@@ -515,9 +515,9 @@ public class RoomServiceImpl implements RoomService {
             if (statusIDint != null) {
                 if (statusIDint == 1) {
                     roomAdminDashboardDto.setStatus("Còn trống");
-                } else if (statusIDint == 2) {
-                    roomAdminDashboardDto.setStatus("Đã có người ở");
-                } else roomAdminDashboardDto.setStatus("Tìm người ở ghép");
+                } else if (statusIDint == 0) {
+                    roomAdminDashboardDto.setStatus("Hết phòng");
+                }
             } else statusIDint = 1;
             java.sql.Date sqlDate = (java.sql.Date) tuple.get("status_update_date", Date.class);
             if (sqlDate == null) {
