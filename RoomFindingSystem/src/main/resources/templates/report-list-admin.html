@@ -3,7 +3,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="utf-8"/>
-    <title>List Room</title>
+    <title>Admin - Quản lý báo cáo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description"/>
     <meta content="Coderthemes" name="author"/>
@@ -59,10 +59,6 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card-box table-responsive">
-<!--                            <div class="d-flex justify-content-end">-->
-<!--                                <button class="btn btn-success mb-1 "><a th:href="@{/room/insertRoomPage}"-->
-<!--                                                                         style="color: white">Thêm phòng mới</a></button>-->
-<!--                            </div>-->
                             <table id="datatable-buttons"
                                    class="table table-striped table-bordered dt-responsive nowrap"
                                    style="border-collapse: collapse; border-spacing: 0; width: 100%;">
@@ -70,12 +66,9 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Miêu tả vấn đề</th>
-                                    <th>Tình trạng</th>
                                     <th>Tên Trọ </th>
                                     <th>Email</th>
-                                    <th>
-                                        Thay Đổi Trạng Thái
-                                    </th>
+                                    <th>Thay Đổi Trạng Thái</th>
                                     <th>Ngày Tạo</th>
                                     <th>Ngày Giải Quyết</th>
 
@@ -85,11 +78,7 @@
                                 <tr th:each="reportList : ${reportList}">
                                     <td th:text="${reportList.reportId}">
                                     </td>
-
                                     <td th:text="${reportList.reportDescription}">
-                                    </td>
-
-                                    <td th:text="${reportList.reportStatus}">
                                     </td>
                                     <td th:text="${reportList.houseName}">
                                     </td>
@@ -104,9 +93,6 @@
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
 
-
-                                                <!-- item-->
-<!--                                                javascript:void(0);-->
                                                 <a th:href="@{/waiting?id={id}(id=${reportList.reportId})}" class="dropdown-item notify-item">
                                                     <i class="fe-user"></i>
                                                     <span style="color: #eea236;">Chờ Xử Lý</span>
@@ -119,24 +105,6 @@
                                                     <iconify-icon icon="material-symbols:done"></iconify-icon>
                                                     <span >Đã Xử Lý</span>
                                                 </a>
-
-                                                <!-- item-->
-                                                <!--                <a href="javascript:void(0);" class="dropdown-item notify-item">-->
-                                                <!--                    <i class="fe-settings"></i>-->
-                                                <!--                    <span>Settings</span>-->
-                                                <!--                </a>-->
-
-                                                <!-- item-->
-
-
-<!--                                                <div class="dropdown-divider"></div>-->
-
-<!--                                                &lt;!&ndash; item&ndash;&gt;-->
-<!--                                                <a href="javascript:void(0);" class="dropdown-item notify-item">-->
-<!--                                                    <i class="fe-log-out"></i>-->
-<!--                                                    <span>Logout</span>-->
-<!--                                                </a>-->
-
                                             </div>
                                         </li>
                                     </td>
