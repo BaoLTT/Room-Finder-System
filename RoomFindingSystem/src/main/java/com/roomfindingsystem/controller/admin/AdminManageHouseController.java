@@ -193,6 +193,12 @@ public class AdminManageHouseController {
         return "redirect:/admin/house-manager/detail/" + houseId;
     }
 
+    @GetMapping("/house-manager/delete/{houseid}")
+    public String deleteHouse(@PathVariable Integer houseid,HttpSession httpSession){
+        houseManagerService.deleteHouse(houseid);
+        return "redirect:/admin/house-manager";
+    }
+
 
 
 }
