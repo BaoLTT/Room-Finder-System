@@ -34,9 +34,6 @@ public class AdminManageUserController {
     public String getListUserForm(Model model) {
         List<UserDto> users = adminManageUserService.getAll();
         model.addAttribute("users", users);
-        String email = SecurityContextHolder.getContext().getAuthentication().getName();
-        UserEntity user = userService.findByEmail(email).get();
-        model.addAttribute("user", user);
         return "admin/list-user";
     }
 
