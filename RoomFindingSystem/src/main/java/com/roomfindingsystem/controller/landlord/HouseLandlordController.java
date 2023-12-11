@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/manager")
+@RequestMapping("/landlord")
 public class HouseLandlordController {
     @Autowired
     private HouseLandlordService houseLandlordService;
@@ -45,14 +45,11 @@ public class HouseLandlordController {
     GcsService gcsService;
 
 
-    @GetMapping("")
+    @GetMapping("/listHouse")
     public String findAll(Model model, HttpSession httpSession, HttpServletRequest request){
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         UserEntity user = userService.findByEmail(email).get();
         System.out.println(user.getRoleId());
-        if(!user.getRoleId().equals("LANDLORD")){
-            return "redirect:/login";
-        }
         List<HouseLandlordVo> listHouse = new ArrayList<>();
         listHouse = houseLandlordService.findHouseByUser(user.getUserId());
         model.addAttribute("house",listHouse);
@@ -66,9 +63,6 @@ public class HouseLandlordController {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         UserEntity user = userService.findByEmail(email).get();
         System.out.println(user.getRoleId());
-        if(!user.getRoleId().equals("LANDLORD")){
-            return "redirect:/login";
-        }
         List<TypeHouseEntity> listType = houseTypeService.findAll();
         List<ServiceDetailEntity> listService = serviceDetailService.getAllService();
         house.setLatitude(21.0130252);
@@ -86,9 +80,6 @@ public class HouseLandlordController {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         UserEntity user = userService.findByEmail(email).get();
         System.out.println(user.getRoleId());
-        if(!user.getRoleId().equals("LANDLORD")){
-            return "redirect:/login";
-        }
         List<TypeHouseEntity> listType = houseTypeService.findAll();
         List<ServiceDetailEntity> listService = serviceDetailService.getAllService();
 
@@ -125,7 +116,7 @@ public class HouseLandlordController {
 
 
 
-        return  "redirect:/manager";
+        return  "redirect:/landlord/listHouse";
 
     }
 
@@ -150,12 +141,12 @@ public class HouseLandlordController {
 
 
 
-        return  "redirect:/manager";
+        return  "redirect:/landlord/listHouse";
     }
 
     @GetMapping("/deleteImage/{houseId}/{imageId}")
     public String deleteImage(@PathVariable Integer houseId,@PathVariable Integer imageId,Model model, HttpSession httpSession){
         houseManagerService.deleteImageById(imageId);
-        return "redirect:/manager/edit/" + houseId;
+        return "redirect:/landlord/edit/" + houseId;
     }
 }

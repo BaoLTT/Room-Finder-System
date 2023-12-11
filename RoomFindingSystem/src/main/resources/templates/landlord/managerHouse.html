@@ -33,8 +33,8 @@
             <!--end breadcrumb-->
             <div class="main-content">
                 <div class="title">
-                    <h1><a th:href = "@{/manager}">Quản lý nhà trọ</a></h1>
-                    <h1 style="float:right; margin-right: 0"> <a th:href = "@{/manager/add}" class="btn btn-primary btn-rounded scroll" style="border-radius: 5px">Thêm trọ</a></h1>
+                    <h1><a th:href = "@{/landlord/listHousse}">Quản lý nhà trọ</a></h1>
+                    <h1 style="float:right; margin-right: 0"> <a th:href = "@{/landlord/add}" class="btn btn-primary btn-rounded scroll" style="border-radius: 5px">Thêm trọ</a></h1>
                     <h1 style="float:right; margin-right: 20px"> <a th:href = "@{/landlord/feedback}" class="btn btn-primary btn-rounded scroll" style="border-radius: 5px">Danh sách bình luận</a></h1>
                     </h1>
 
@@ -55,7 +55,7 @@
                             <td>
                                 <div class="image-wrapper">
                                     <div class="image-carousel">
-                                        <a th:href="@{/manager/edit/}+${house.houseID}" class="image" th:each="image, iterStat : ${house.listImage}" th:if="${iterStat.index < 1}">
+                                        <a th:href="@{/landlord/edit/}+${house.houseID}" class="image" th:each="image, iterStat : ${house.listImage}" th:if="${iterStat.index < 1}">
                                             <div class="bg-transfer">
                                                 <img th:src="'https://storage.googleapis.com'+${image.imageLink}" alt="Ảnh">
                                             </div>
@@ -95,7 +95,7 @@
                                 <span class="last-edit" >Ngày cuối cập nhật: <h th:text="${#temporals.format(house.getLastModifiedDate(), 'dd/MM/yyyy')}"></h></span>
 
                                 <div class="edit-options">
-                                    <a th:href = "@{/manager/edit/}+${house.houseID}" class="link icon"><i class="fa fa-edit"></i>Chỉnh sửa</a>
+                                    <a th:href = "@{/landlord/edit/}+${house.houseID}" class="link icon"><i class="fa fa-edit"></i>Chỉnh sửa</a>
                                     <a th:href="@{'/landlord/room/listRoom/' + ${house.houseID}}" class="link icon"><i class="fa fa-edit"></i>Danh sách phòng</a>
 <!--                                    <a href="reviews.html" class="link icon"><i class="fa fa-comment"></i>Reviews</a>-->
 <!--                                    <a href="#" class="link icon delete"><i class="fa fa-trash"></i>Delete</a>-->
