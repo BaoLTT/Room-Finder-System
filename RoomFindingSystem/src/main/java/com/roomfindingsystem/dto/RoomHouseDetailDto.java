@@ -19,6 +19,8 @@ public class RoomHouseDetailDto {
 
     List<String> roomList;
 
+//    List<String> idList;
+
     Integer houseId;
 
     String houseName;
@@ -26,5 +28,7 @@ public class RoomHouseDetailDto {
     Integer price;
 
     List<String> serviceList;
+
+
 
 }

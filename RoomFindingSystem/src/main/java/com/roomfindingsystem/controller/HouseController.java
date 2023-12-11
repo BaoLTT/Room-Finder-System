@@ -155,7 +155,7 @@ public class HouseController {
             //baoltt code
             List<RoomHouseDetailDto> roomHouseDetailDtos = roomService.viewRoomInHouse(houseId);
             model.addAttribute("roomList", roomHouseDetailDtos);
-            model.addAttribute("roomService", roomService);
+
             model.addAttribute("houseLocation", houseService.getHouseById(houseId));
             model.addAttribute("key_map", gcsService.getMapKey());
             model.addAttribute("request",request);
