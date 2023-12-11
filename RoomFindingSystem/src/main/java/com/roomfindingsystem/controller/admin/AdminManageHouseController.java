@@ -56,10 +56,6 @@ public class AdminManageHouseController {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         UserEntity user = userService.findByEmail(email).get();
         System.out.println(user.getImageLink());
-
-        if(!user.getRoleId().equals("ADMIN") && !user.getRoleId().equals("SUPER_ADMIN")){
-            return "redirect:/login";
-        }
         List<HouseLandlordVo> houseList = houseLandlordService.getAllHouse();
         model.addAttribute("houses", houseList);
         model.addAttribute("user", user);
@@ -94,9 +90,6 @@ public class AdminManageHouseController {
     public String updateHouse(@PathVariable Integer houseid,final Model model,HttpSession httpSession,HttpServletRequest request){
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         UserEntity user = userService.findByEmail(email).get();
-        if(!user.getRoleId().equals("ADMIN") && !user.getRoleId().equals("SUPER_ADMIN")){
-            return "redirect:/login";
-        }
         List<TypeHouseEntity> listType = houseTypeService.findAll();
         List<ServiceDetailEntity> listService = serviceDetailService.getAllService();
 
@@ -140,9 +133,6 @@ public class AdminManageHouseController {
     public String addHouse(final Model model,HttpSession httpSession,HttpServletRequest request){
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         UserEntity user = userService.findByEmail(email).get();
-        if(!user.getRoleId().equals("ADMIN") && !user.getRoleId().equals("SUPER_ADMIN")){
-            return "redirect:/login";
-        }
         List<UserEntity> listUser = new ArrayList<>();
         listUser = userRepository.findUserByRole("LANDLORD");
         List<TypeHouseEntity> listType = houseTypeService.findAll();
@@ -172,7 +162,7 @@ public class AdminManageHouseController {
         UserEntity user = userService.findByEmail(email).get();
         house.setCreatedBy(user.getUserId());
         house.setLastModifiedBy(user.getUserId());
-        house.setStatus(2);
+        house.setStatus(1);
 
         //Set mặc định là đang xử lý
         houseManagerService.insertHouse(house,addressID,files);

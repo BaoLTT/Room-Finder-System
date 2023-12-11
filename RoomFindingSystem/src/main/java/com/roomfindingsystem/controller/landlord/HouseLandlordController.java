@@ -107,8 +107,7 @@ public class HouseLandlordController {
         house.setUserID(user.getUserId());
         house.setCreatedBy(user.getUserId());
         house.setLastModifiedBy(user.getUserId());
-        house.setStatus(2);
-        //Set mặc định là đang xử lý
+        house.setStatus(1);
 
 
 

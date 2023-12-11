@@ -117,9 +117,8 @@
                                     <label>Tình trạng</label>
 <!--                                    <input type="text" th:if="${house.status==2}"  th:field="*{status}" readonly th:value="${house.status==2 ? 'Đang xử lý' : house.status}" th:readonly="${house.status==2}" style="padding: 10px">-->
                                     <select class="form-control" th:field="*{status}">
-                                        <option value="2" th:if="${house.status==2}"  th:selected="${house.status == 2}">ĐANG XỬ LÝ</option>
-                                        <option value="1" th:if="${house.status==0 || house.status==1}" th:selected="${house.status == 1}" >HOẠT ĐỘNG</option>
-                                        <option value="0" th:if="${house.status==0 || house.status==1}" th:selected="${house.status == 0}">NGƯNG HOẠT ĐỘNG</option>
+                                        <option value="1" th:selected="${house.status == 1}" >HOẠT ĐỘNG</option>
+                                        <option value="0" th:selected="${house.status == 0}">NGƯNG HOẠT ĐỘNG</option>
                                     </select>
                                 </div>
                             </div>
