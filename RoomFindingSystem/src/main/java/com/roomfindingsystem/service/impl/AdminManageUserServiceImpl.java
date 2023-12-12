@@ -59,7 +59,7 @@ public class AdminManageUserServiceImpl implements AdminManageUserService {
                 }
             }
             if (user.getDob() != null) {
-                userDto.setDob(user.getDob().toString());
+                userDto.setDob(user.getDob());
             }
             return userDto;
         }).toList();
@@ -104,7 +104,7 @@ public class AdminManageUserServiceImpl implements AdminManageUserService {
         }
 //            Begin Mapping
 //            UserDto:
-        saveUser.setDob(LocalDate.parse(userDto.getDob()));
+        saveUser.setDob(userDto.getDob());
         saveUser.setEmail(userDto.getEmail());
         saveUser.setFirstName(userDto.getFirstName());
         saveUser.setLastName(userDto.getLastName());

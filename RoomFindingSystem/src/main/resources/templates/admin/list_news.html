@@ -154,8 +154,8 @@
 
 
                                     <td>
-                                        <a th:href="@{/admin/newsList/update/}+${news.newsid}"  class="btn btn-warning" style="border-radius: 5px">Cập nhật</a>
-                                        <button class="btn btn-danger delete-button" th:onclick="'confirmDelete(' + ${news.newsid} + ')'"  style="border-radius: 5px">Xóa</button>
+                                        <a th:href="@{/admin/newsList/update/}+${news.newsid}" style="border-radius: 5px;padding: 5px;color: #f9bc0b"><i class="fas fa-edit"></i></a>
+                                        <button th:onclick="'confirmDelete(' + ${news.newsid} + ')'"  style="border-radius: 5px;padding: 5px;color: #f36270;border: none;background-color: unset"><i class="fas fa-trash"></i></button>
                                     </td>
                                 </tr>
                                 </tbody>

@@ -3,6 +3,8 @@ package com.roomfindingsystem.dto;
 
 import lombok.*;
 
+import java.time.LocalDate;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -13,12 +15,12 @@ public class UserDto {
     private int userId;
     private String firstName;
     private String imageLink;
-    private String dob;
+    private LocalDate dob;
     private String gender;
     private String phone;
     private String email;
     private String password;
-    private String createdDate;
+    private LocalDate createdDate;
     private String lastName;
     private Integer addressID;
     private String province;

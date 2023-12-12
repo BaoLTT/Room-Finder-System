@@ -30,11 +30,12 @@ public class AdminManageRoomController {
     @Autowired
     HouseService houseService;
 
-    @GetMapping("/listRoom")
-    public String getListRoomPage(Model model) {
-        List<RoomDto> roomDtos = roomService.getAll();
+    @GetMapping("/listRoom/{id}")
+    public String getListRoomPage(@PathVariable("id") Integer id,Model model) {
+        List<RoomDto> roomDtos = roomService.getRoomsInHouse(id);
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         UserEntity user = userService.findByEmail(email).get();
+        model.addAttribute("houseId", id);
         model.addAttribute("rooms", roomDtos);
         model.addAttribute("user", user);
         return "admin/list-room";
@@ -43,6 +44,7 @@ public class AdminManageRoomController {
     @GetMapping("/updateRoom/{id}")
     public String getFormUpdateRoom(@PathVariable("id") Integer id, Model model) {
         RoomDto roomDto = roomService.findById(id);
+        model.addAttribute("houseid", roomDto.getHouseId());
         model.addAttribute("room", roomDto);
         model.addAttribute("types", roomTypeService.findAll());
         model.addAttribute("listService", serviceDetailService.getServiceExceptHouseService(roomDto.getHouseId()));
@@ -70,28 +72,25 @@ public class AdminManageRoomController {
         return "redirect:/admin/room/updateRoom/" + roomDto.getRoomId();
     }
 
-    @GetMapping("/deleteRoom/{id}")
-    public String delete(@PathVariable("id") Integer id) {
+    @GetMapping("/deleteRoom/{id}/{houseid}")
+    public String delete(@PathVariable("id") Integer id,@PathVariable("houseid") Integer houseid) {
         roomService.deleteById(id);
-        return "redirect:/admin/room/listRoom";
+        return "redirect:/admin/room/listRoom/"+houseid;
     }
 
-    @GetMapping("/insertRoom")
-    public String insertRoomPage(Model model) {
+    @GetMapping("/insertRoom/{id}")
+    public String insertRoomPage(@PathVariable("id") Integer id,Model model) {
         RoomDto roomDto = new RoomDto();
-        List<HousesEntity> listAllHouse = houseService.getAllHouse();
         model.addAttribute("room", roomDto);
-        model.addAttribute("listAllHouse",listAllHouse);
-        model.addAttribute("services", serviceDetailService.getAllService());
+        HousesEntity house = houseService.getHouseById(id);
+        model.addAttribute("house", house);
+        model.addAttribute("services", serviceDetailService.getServiceExceptHouseService(id));
         model.addAttribute("types", roomTypeService.findAll());
-        String email = SecurityContextHolder.getContext().getAuthentication().getName();
-        UserEntity user = userService.findByEmail(email).get();
-        model.addAttribute("user", user);
         return "admin/insert-room";
     }
 
-    @PostMapping("/save")
-    public String save(@ModelAttribute(name = "room") RoomDto roomDto, @RequestParam("file") MultipartFile[] files) throws IOException {
+    @PostMapping("/save/{id}")
+    public String save(@PathVariable("id") Integer houseid,@ModelAttribute(name = "room") RoomDto roomDto, @RequestParam("file") MultipartFile[] files) throws IOException {
         List<ServiceDto> serviceDtos = new ArrayList<>();
         List<String> selects = roomDto.getServiceNames();
         if (selects != null) {
@@ -103,14 +102,15 @@ public class AdminManageRoomController {
             }
         }
         roomDto.setServiceDtos(serviceDtos);
-
+        roomDto.setHouseId(houseid);
+        System.out.println(roomDto.getHouseId());
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         UserEntity user = userService.findByEmail(email).get();
         roomDto.setCreatedBy(user.getUserId());
         roomDto.setLastModifiedBy(user.getUserId());
 
         roomService.saveRoomAdmin(roomDto, files);
-        return "redirect:/admin/room/listRoom";
+        return "redirect:/admin/room/listRoom/"+houseid;
     }
 
     @PostMapping("/importRooms")

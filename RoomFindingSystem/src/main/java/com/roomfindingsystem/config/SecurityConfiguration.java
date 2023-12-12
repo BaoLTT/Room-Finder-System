@@ -107,20 +107,18 @@ public class SecurityConfiguration {
                     .passwordParameter("password")
                     .successHandler((request, response, authentication) -> {
                         for (GrantedAuthority auth : authentication.getAuthorities()) {
-                            if ("ROLE_ADMIN".equals(auth.getAuthority())) {
+                            if ("ROLE_ADMIN".equals(auth.getAuthority()) || "ROLE_SUPER_ADMIN".equals(auth.getAuthority())) {
                                 response.sendRedirect("/admin/dashboard");
                                 return;
                             }
-                            else if ("ROLE_SUPER_ADMIN".equals(auth.getAuthority())) {
-                                response.sendRedirect("/admin/dashboard");
-                                return;
-                            }
+
                         }
                         response.sendRedirect("/");
                     }))
                 .authorizeHttpRequests(at -> at
                         .requestMatchers("/admin/**", "/test").hasAnyRole("ADMIN", "SUPER_ADMIN")
-                        .requestMatchers("/landlord/**").hasAnyRole("LANDLORD", "SUPER_ADMIN")
+                        .requestMatchers("/landlord/**").hasAnyRole("LANDLORD")
+                        .requestMatchers("/profile/**").hasAnyRole("USER","LANDLORD")
                         .anyRequest().permitAll())
                 .exceptionHandling(e -> e
                         .accessDeniedPage("/403")); // Chuyển hướng đến trang 403.html khi không có quyền
