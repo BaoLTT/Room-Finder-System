@@ -29,6 +29,8 @@ public class RoomHouseDetailDto {
 
     List<String> serviceList;
 
+//    Integer status;
+
 
 
 }
