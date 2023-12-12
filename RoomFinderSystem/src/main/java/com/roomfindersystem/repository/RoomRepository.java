@@ -80,7 +80,8 @@ public interface RoomRepository extends JpaRepository<RoomEntity, Integer> {
             "            group by h.houseid, r.room_type) as room_list,(select group_concat(r1.roomid) from room r1 where r1.houseid = h.houseid and r1.room_type = r.room_type\n" +
             "            group by h.houseid, r.room_type) as id_list,h.houseid, h.house_name,r.price, (select group_concat(sd1.service_name) from service_detail sd1 \n" +
             "            join service_room sc1 on sd1.serviceid = sc1.serviceid where sc1.roomid =  r.roomid\n" +
-            "            group by  r.roomid, h.houseid) as service_list\n" +
+            "            group by  r.roomid, h.houseid) as service_list, (select group_concat(r1.statusid) from room r1 where r1.houseid = h.houseid and r1.room_type = r.room_type\n" +
+            "            group by h.houseid, r.room_type) as status_list\n" +
             "            from room r \n" +
             "            join room_type t on r.room_type = t.typeid \n" +
             "            left join houses h on r.houseid = h.houseid\n" +
