@@ -93,7 +93,7 @@ public class RoomServiceImpl implements RoomService {
             String imageLink = (tuple.get("Image_Link", String.class));
             if (imageLink == null) {
                 List<HouseImagesEntity> houseImagesEntities = roomRepository.getImageHouseByRoomId(roomHomeDto.getRoomId());
-                if(!houseImagesEntities.isEmpty()) roomHomeDto.setRoomImageLink(houseImagesEntities.get(0).getImageLink()); else roomHomeDto.setRoomImageLink(null);
+                roomHomeDto.setRoomImageLink(houseImagesEntities.get(0).getImageLink());
             } else {
                 imageLinks = Arrays.asList(imageLink.split(","));
                 roomHomeDto.setRoomImageLink(imageLinks.get(0));
@@ -349,7 +349,6 @@ public class RoomServiceImpl implements RoomService {
         List<RoomHouseDetailDto> roomDtos = new ArrayList<>();
         List<String> roomList = null;
         List<String> idList = null;
-        List<String> statusList = null;
         List<String> serviceList;
         Set<String> uniquePairs = new HashSet<>();
 
@@ -380,19 +379,20 @@ public class RoomServiceImpl implements RoomService {
                 String idName = tuple.get("id_list", String.class);
                 if(idName!=null) idList = Arrays.asList(idName.split(","));
 
-                String statusId = tuple.get("status_list", String.class);
-                if(statusId!=null) statusList = Arrays.asList(statusId.split(","));
-
                 List<String> combinedList = new ArrayList<>();
                 if (roomName == null) {
                     roomHouseDto.setRoomList(null);
                 } else {
                     for (int i = 0; i < roomList.size(); i++) {
-                        String combinedValue = roomList.get(i) + "-" + idList.get(i)+ "-" + statusList.get(i);
+                        String combinedValue = roomList.get(i) + "-" + idList.get(i);
                         combinedList.add(combinedValue);
                     }
                     roomHouseDto.setRoomList(combinedList);
                 }
+
+
+
+
 
 
 
@@ -403,7 +403,6 @@ public class RoomServiceImpl implements RoomService {
                     serviceList = Arrays.asList(serviceName.split(","));
                     roomHouseDto.setServiceList(serviceList);
                 }
-
 
 
 

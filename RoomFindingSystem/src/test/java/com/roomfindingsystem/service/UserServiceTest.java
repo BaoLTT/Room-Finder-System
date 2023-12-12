@@ -120,7 +120,7 @@ public class UserServiceTest {
         verify(userRepository).findByEmail(invalidEmail);
     }
 
-    //test 7
+    //test 7 đang test phân biệt chữ hoa với thường trong khí thường gmail vs outlook nó không phan biêt
     @Test
     void testFindByEmail_EmailCaseInsensitive() {
         // Test Case 7: Email tồn tại nhưng với ký tự hoa/thường khác nhau
