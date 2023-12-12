@@ -89,7 +89,7 @@
                         <div class="page-title-box">
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a th:href="@{/admin/room/listRoom}">Danh sách phòng</a>
+                                    <li class="breadcrumb-item"><a th:href="@{/admin/room/listRoom/}+${house.houseId}">Danh sách phòng</a>
                                     </li>
                                     <li class="breadcrumb-item active">Thêm phòng mới</li>
                                 </ol>
@@ -108,7 +108,7 @@
                                         style="border-radius: 5px">Thêm nhiều phòng</button>
                             </div>
 
-                            <form class="parsley-examples" action="#" th:action="@{/admin/room/save}"
+                            <form class="parsley-examples" action="#" th:action="@{/admin/room/save/}+${house.houseId}"
                                   th:object="${room}" method="post" enctype="multipart/form-data">
                                 <input type="hidden" th:field="*{roomId}">
                                 <div class="row">
@@ -129,12 +129,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Tên trọ</label>
-                                            <select class="form-control selectpicker" name="landlord"
-                                                    id="landlordSelect" th:field="*{houseId}" data-live-search="true">
-                                                <option th:each="listAllHouse : ${listAllHouse}"
-                                                        th:value="${listAllHouse.houseId}"
-                                                        th:utext="${listAllHouse.houseName}"/>
-                                            </select>
+                                            <input readonly class="form-control" th:value="${house.houseName}"/>
                                         </div>
                                         <div class="form-group">
                                             <label>Giá</label>
@@ -224,7 +219,7 @@
                                         </button>
                                         <button type="reset" class="btn btn-light waves-effect ml-1"
                                                 style="border-radius: 5px">
-                                            <a th:href="@{/admin/room/listRoom}">Danh sách phòng</a>
+                                            <a th:href="@{/admin/room/listRoom/}+${house.houseId}">Danh sách phòng</a>
                                         </button>
                                     </div>
                                 </div>

@@ -52,7 +52,7 @@
                         <div class="page-title-box">
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a th:href="@{/admin/room/listRoom}">Danh sách phòng</a>
+                                    <li class="breadcrumb-item"><a th:href="@{/admin/room/listRoom/} + ${houseid}">Danh sách phòng</a>
                                     </li>
                                     <li class="breadcrumb-item active">Thông tin phòng</li>
                                 </ol>
@@ -76,6 +76,7 @@
                                             <label>Phòng</label>
                                             <input type="text" class="form-control" required
                                                    placeholder="P101" th:field="*{roomName}"/>
+
                                         </div>
                                     </div>
                                     <div class="col-md-4">
@@ -190,7 +191,7 @@
                                             Lưu thay đổi
                                         </button>
                                         <button type="reset" class="btn btn-light waves-effect ml-1" style="border-radius: 5px">
-                                            <a th:href="@{/admin/room/listRoom}" >Danh sách phòng</a>
+                                            <a th:href="@{/admin/room/listRoom/} + ${houseid}" >Danh sách phòng</a>
                                         </button>
                                     </div>
                                 </div>
