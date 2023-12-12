@@ -241,11 +241,14 @@
                         <div class="item list" data-map-latitude="48.87" data-map-longitude="2.29" data-id="1"
                              th:each="houses: ${houses}" th:if="${houses.getCount_room()>0}">
                             <div class="image-wrapper">
+                                <div th:if="${session.user != null}">
+                                    <a  th:href="@{/add-favourite-list?id=}+${houses.houseID}" class="mark-circle" onclick="showSuccessToastAdd()"
+                                        data-toggle="tooltip" data-placement="right"
+                                        title="Add to favourite list" style="background-color: white;margin: 8px"><i style="color: Green"
+                                                                                                                     class="fa fa-thumbs-up"></i></a>
+                                </div>
 
-                                <a  th:href="@{/add-favourite-list?id=}+${houses.houseID}" class="mark-circle" onclick="showSuccessToastAdd()"
-                                   data-toggle="tooltip" data-placement="right"
-                                   title="Add to favourite list" style="background-color: white;margin: 8px"><i style="color: Green"
-                                                                    class="fa fa-thumbs-up"></i></a>
+
 
                                 <div class="image" >
                                     <a th:href="@{/house/}+${houses.houseName}+'?id='+${houses.houseID}" class="wrapper">
