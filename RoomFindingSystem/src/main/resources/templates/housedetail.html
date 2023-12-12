@@ -116,6 +116,7 @@
             padding: 0;
             display: flex;
             flex-wrap: wrap;
+            margin-bottom: 40px;
         }
         .room-item {
             margin-right: 10px;
@@ -125,10 +126,21 @@
         .room-button {
             padding: 5px 10px; /* Giảm padding để làm cho button nhỏ lại */
             cursor: pointer;
-            background-color: #488f3e;
             color: #fff;
             border: none;
             border-radius: 3px; /* Giảm border-radius để làm cho góc nhọn hơn */
+        }
+
+        .room-button1 {
+            padding: 5px 10px;
+            display: inline-block;
+            cursor: pointer;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            margin-right: 8px;
+            height: 27.5px;
+            width: 55px;
         }
 
 
@@ -664,14 +676,39 @@
                                     <h6  th:with="formattedPrice=${#numbers.formatDecimal(room.price, 0, 'COMMA', 0, 'POINT')}" th:text="${formattedPrice+'VNĐ'}"></h6>
                                     <ul class="room-list"  >
                                         <li class="room-item" th:each="name : ${room.roomList}">
-                                            <a class="room-button" th:href="@{/house/{houseName}/room/{idName}(houseName=${room.houseName}, idName=${#strings.substring(name, #strings.indexOf(name, '-') + 1)})}" th:text="${#strings.substring(name, 0, #strings.indexOf(name, '-'))}"></a>
+                                            <th:block th:with="parts=${#strings.arraySplit(name, '-')}">
+                                                <a th:if="${parts[2] == '1'}" class="room-button" style="background-color: #488f3e;"
+                                                   th:href="@{/house/{houseName}/room/{idName}(houseName=${parts[0]}, idName=${parts[1]})}"
+                                                   th:text="${parts[0]}"></a>
+                                                <a th:if="${parts[2] == '0'}" class="room-button" style="background-color: #E26A6A;"
+                                                   th:href="@{/house/{houseName}/room/{idName}(houseName=${parts[0]}, idName=${parts[1]})}"
+                                                   th:text="${parts[0]}"></a>
+                                            </th:block>
                                         </li>
 
                                         <!-- Thêm các phòng khác tương tự -->
                                     </ul>
+
                                 </div>
 
+                                <div style="display: flex; align-items: center;">
 
+                                    <!-- Khối đầu tiên -->
+                                    <div style="display: flex; align-items: center;">
+                                        <a class="room-button1" style="background-color: #488f3e;"></a>
+                                        <a>Còn trống</a>
+                                    </div>
+
+                                    <!-- Khoảng cách giữa hai khối -->
+                                    <div style="margin-right: 20px;"></div>
+
+                                    <!-- Khối thứ hai -->
+                                    <div style="display: flex; align-items: center;">
+                                        <a class="room-button1" style="background-color: #E26A6A;"></a>
+                                        <a>Hết phòng</a>
+                                    </div>
+
+                                </div>
 
                             </div>
                             <!--end form-reservations-->
