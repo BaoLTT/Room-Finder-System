@@ -1,12 +1,12 @@
-package com.roomfindingsystem.service.impl;
+package com.roomfindersystem.service.impl;
 
-import com.roomfindingsystem.config.SecurityUser;
-import com.roomfindingsystem.entity.*;
-import com.roomfindingsystem.repository.*;
-import com.roomfindingsystem.service.UserService;
+import com.roomfindersystem.config.SecurityUser;
+import com.roomfindersystem.entity.*;
+import com.roomfindersystem.repository.*;
+import com.roomfindersystem.service.UserService;
 
 
-import com.roomfindingsystem.dto.UserDto;
+import com.roomfindersystem.dto.UserDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;

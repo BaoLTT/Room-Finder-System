@@ -1,6 +1,6 @@
-package com.roomfindingsystem.service;
+package com.roomfindersystem.service;
 
-import com.roomfindingsystem.entity.TypeHouseEntity;
+import com.roomfindersystem.entity.TypeHouseEntity;
 
 import java.util.List;
 

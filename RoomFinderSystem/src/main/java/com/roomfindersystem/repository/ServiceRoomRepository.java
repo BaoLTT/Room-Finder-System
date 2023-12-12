@@ -1,6 +1,6 @@
-package com.roomfindingsystem.repository;
+package com.roomfindersystem.repository;
 
-import com.roomfindingsystem.entity.ServiceRoomEntity;
+import com.roomfindersystem.entity.ServiceRoomEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

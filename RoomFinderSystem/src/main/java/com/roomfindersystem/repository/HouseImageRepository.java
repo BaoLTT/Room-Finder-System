@@ -1,6 +1,6 @@
-package com.roomfindingsystem.repository;
+package com.roomfindersystem.repository;
 
-import com.roomfindingsystem.entity.HouseImagesEntity;
+import com.roomfindersystem.entity.HouseImagesEntity;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;

@@ -1,8 +1,8 @@
-package com.roomfindingsystem.service.impl;
+package com.roomfindersystem.service.impl;
 
-import com.roomfindingsystem.entity.AddressEntity;
-import com.roomfindingsystem.repository.AddressRepository;
-import com.roomfindingsystem.service.AddressService;
+import com.roomfindersystem.entity.AddressEntity;
+import com.roomfindersystem.repository.AddressRepository;
+import com.roomfindersystem.service.AddressService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

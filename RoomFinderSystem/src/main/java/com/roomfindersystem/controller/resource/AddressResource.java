@@ -1,15 +1,15 @@
-package com.roomfindingsystem.controller.resource;
+package com.roomfindersystem.controller.resource;
 
-import com.roomfindingsystem.entity.DistrictEntity;
-import com.roomfindingsystem.entity.ProvinceEntity;
-import com.roomfindingsystem.entity.WardEntity;
-import com.roomfindingsystem.service.DistrictService;
-import com.roomfindingsystem.service.ProvinceService;
-import com.roomfindingsystem.service.WardService;
+import com.roomfindersystem.entity.DistrictEntity;
+import com.roomfindersystem.entity.ProvinceEntity;
+import com.roomfindersystem.entity.WardEntity;
+import com.roomfindersystem.service.DistrictService;
+import com.roomfindersystem.service.ProvinceService;
+import com.roomfindersystem.service.WardService;
 
-import com.roomfindingsystem.dto.response.DistrictListResponse;
-import com.roomfindingsystem.dto.response.ProvinceListResponse;
-import com.roomfindingsystem.dto.response.WardListResponse;
+import com.roomfindersystem.dto.response.DistrictListResponse;
+import com.roomfindersystem.dto.response.ProvinceListResponse;
+import com.roomfindersystem.dto.response.WardListResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

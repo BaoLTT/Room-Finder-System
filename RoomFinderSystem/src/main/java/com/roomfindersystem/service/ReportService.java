@@ -1,9 +1,9 @@
-package com.roomfindingsystem.service;
+package com.roomfindersystem.service;
 
 
-import com.roomfindingsystem.dto.ReportDto;
-import com.roomfindingsystem.dto.ReportListDto;
-import com.roomfindingsystem.entity.ReportEntity;
+import com.roomfindersystem.dto.ReportDto;
+import com.roomfindersystem.dto.ReportListDto;
+import com.roomfindersystem.entity.ReportEntity;
 
 import java.time.LocalDate;
 import java.util.List;

@@ -1,6 +1,6 @@
-package com.roomfindingsystem.repository;
+package com.roomfindersystem.repository;
 
-import com.roomfindingsystem.entity.HousesEntity;
+import com.roomfindersystem.entity.HousesEntity;
 import jakarta.persistence.Tuple;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

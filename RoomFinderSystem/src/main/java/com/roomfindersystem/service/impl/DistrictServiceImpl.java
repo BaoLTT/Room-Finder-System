@@ -1,8 +1,8 @@
-package com.roomfindingsystem.service.impl;
+package com.roomfindersystem.service.impl;
 
-import com.roomfindingsystem.entity.DistrictEntity;
-import com.roomfindingsystem.repository.DistrictRepository;
-import com.roomfindingsystem.service.DistrictService;
+import com.roomfindersystem.entity.DistrictEntity;
+import com.roomfindersystem.repository.DistrictRepository;
+import com.roomfindersystem.service.DistrictService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 

@@ -1,11 +1,11 @@
-package com.roomfindingsystem.controller.landlord;
+package com.roomfindersystem.controller.landlord;
 
-import com.roomfindingsystem.dto.HouseLandlordVo;
-import com.roomfindingsystem.entity.*;
+import com.roomfindersystem.dto.HouseLandlordVo;
+import com.roomfindersystem.entity.*;
 
-import com.roomfindingsystem.service.*;
+import com.roomfindersystem.service.*;
 
-import com.roomfindingsystem.service.impl.GcsService;
+import com.roomfindersystem.service.impl.GcsService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;

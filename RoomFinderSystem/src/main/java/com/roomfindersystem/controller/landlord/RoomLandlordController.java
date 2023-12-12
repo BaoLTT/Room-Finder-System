@@ -1,9 +1,9 @@
-package com.roomfindingsystem.controller.landlord;
+package com.roomfindersystem.controller.landlord;
 
-import com.roomfindingsystem.dto.RoomDto;
-import com.roomfindingsystem.dto.ServiceDto;
-import com.roomfindingsystem.entity.UserEntity;
-import com.roomfindingsystem.service.*;
+import com.roomfindersystem.dto.RoomDto;
+import com.roomfindersystem.dto.ServiceDto;
+import com.roomfindersystem.entity.UserEntity;
+import com.roomfindersystem.service.*;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;

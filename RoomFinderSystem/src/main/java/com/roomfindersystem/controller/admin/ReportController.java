@@ -1,10 +1,10 @@
-package com.roomfindingsystem.controller.admin;
+package com.roomfindersystem.controller.admin;
 
-import com.roomfindingsystem.dto.ReportListDto;
-import com.roomfindingsystem.entity.UserEntity;
-import com.roomfindingsystem.service.EmailSenderService;
-import com.roomfindingsystem.service.ReportService;
-import com.roomfindingsystem.service.UserService;
+import com.roomfindersystem.dto.ReportListDto;
+import com.roomfindersystem.entity.UserEntity;
+import com.roomfindersystem.service.EmailSenderService;
+import com.roomfindersystem.service.ReportService;
+import com.roomfindersystem.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;

@@ -1,8 +1,8 @@
-package com.roomfindingsystem.service.impl;
+package com.roomfindersystem.service.impl;
 
-import com.roomfindingsystem.entity.WardEntity;
-import com.roomfindingsystem.repository.WardRepository;
-import com.roomfindingsystem.service.WardService;
+import com.roomfindersystem.entity.WardEntity;
+import com.roomfindersystem.repository.WardRepository;
+import com.roomfindersystem.service.WardService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 

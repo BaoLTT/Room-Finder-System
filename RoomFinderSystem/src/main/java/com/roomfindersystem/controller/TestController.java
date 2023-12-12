@@ -1,7 +1,7 @@
-package com.roomfindingsystem.controller;
+package com.roomfindersystem.controller;
 
-import com.roomfindingsystem.entity.UserEntity;
-import com.roomfindingsystem.service.UserService;
+import com.roomfindersystem.entity.UserEntity;
+import com.roomfindersystem.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;

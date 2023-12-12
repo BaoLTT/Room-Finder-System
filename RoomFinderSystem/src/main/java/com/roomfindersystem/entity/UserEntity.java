@@ -1,4 +1,4 @@
-package com.roomfindingsystem.entity;
+package com.roomfindersystem.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;

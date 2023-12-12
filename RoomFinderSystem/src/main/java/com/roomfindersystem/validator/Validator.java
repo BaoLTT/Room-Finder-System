@@ -1,4 +1,4 @@
-package com.roomfindingsystem.validator;
+package com.roomfindersystem.validator;
 
 public class Validator {
 }

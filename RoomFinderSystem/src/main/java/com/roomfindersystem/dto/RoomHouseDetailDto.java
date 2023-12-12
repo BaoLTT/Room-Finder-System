@@ -1,4 +1,4 @@
-package com.roomfindingsystem.dto;
+package com.roomfindersystem.dto;
 
 import com.roomfindingsystem.entity.ServiceDetailEntity;
 import lombok.*;

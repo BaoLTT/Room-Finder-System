@@ -1,7 +1,7 @@
-package com.roomfindingsystem.service;
+package com.roomfindersystem.service;
 
 
-import com.roomfindingsystem.dto.HouseLandlordVo;
+import com.roomfindersystem.dto.HouseLandlordVo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

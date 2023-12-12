@@ -1,6 +1,6 @@
-package com.roomfindingsystem.service;
+package com.roomfindersystem.service;
 
-import com.roomfindingsystem.entity.ServiceDetailEntity;
+import com.roomfindersystem.entity.ServiceDetailEntity;
 
 import java.util.List;
 

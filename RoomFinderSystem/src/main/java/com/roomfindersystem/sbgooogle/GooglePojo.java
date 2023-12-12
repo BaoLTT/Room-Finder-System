@@ -1,4 +1,4 @@
-package com.roomfindingsystem.sbgooogle;
+package com.roomfindersystem.sbgooogle;
 public class GooglePojo {
     private String id;
     private String email;

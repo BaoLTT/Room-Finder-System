@@ -1,4 +1,4 @@
-package com.roomfindingsystem;
+package com.roomfindersystem;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

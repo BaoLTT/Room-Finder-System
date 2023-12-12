@@ -1,9 +1,9 @@
-package com.roomfindingsystem.controller;
+package com.roomfindersystem.controller;
 
-import com.roomfindingsystem.dto.RoomDtoN;
-import com.roomfindingsystem.service.RoomService;
+import com.roomfindersystem.dto.RoomDtoN;
+import com.roomfindersystem.service.RoomService;
 
-import com.roomfindingsystem.dto.RoomDto;
+import com.roomfindersystem.dto.RoomDto;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;

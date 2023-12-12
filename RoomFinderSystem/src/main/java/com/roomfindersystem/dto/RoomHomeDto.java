@@ -1,4 +1,4 @@
-package com.roomfindingsystem.dto;
+package com.roomfindersystem.dto;
 import lombok.*;
 
 import java.util.List;

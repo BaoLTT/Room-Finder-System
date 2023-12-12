@@ -1,10 +1,10 @@
-package com.roomfindingsystem.controller.admin;
+package com.roomfindersystem.controller.admin;
 
-import com.roomfindingsystem.dto.RoomDto;
-import com.roomfindingsystem.dto.ServiceDto;
-import com.roomfindingsystem.entity.HousesEntity;
-import com.roomfindingsystem.entity.UserEntity;
-import com.roomfindingsystem.service.*;
+import com.roomfindersystem.dto.RoomDto;
+import com.roomfindersystem.dto.ServiceDto;
+import com.roomfindersystem.entity.HousesEntity;
+import com.roomfindersystem.entity.UserEntity;
+import com.roomfindersystem.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;

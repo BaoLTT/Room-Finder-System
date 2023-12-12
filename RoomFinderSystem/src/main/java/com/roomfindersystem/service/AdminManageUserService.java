@@ -1,6 +1,6 @@
-package com.roomfindingsystem.service;
+package com.roomfindersystem.service;
 
-import com.roomfindingsystem.dto.UserDto;
+import com.roomfindersystem.dto.UserDto;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;

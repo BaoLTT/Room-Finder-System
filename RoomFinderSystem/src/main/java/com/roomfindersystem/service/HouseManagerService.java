@@ -1,9 +1,9 @@
-package com.roomfindingsystem.service;
+package com.roomfindersystem.service;
 
-import com.roomfindingsystem.dto.HouseLandlordVo;
-import com.roomfindingsystem.dto.HouseManagerTypeVo;
-import com.roomfindingsystem.entity.HouseImagesEntity;
-import com.roomfindingsystem.entity.HousesEntity;
+import com.roomfindersystem.dto.HouseLandlordVo;
+import com.roomfindersystem.dto.HouseManagerTypeVo;
+import com.roomfindersystem.entity.HouseImagesEntity;
+import com.roomfindersystem.entity.HousesEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 

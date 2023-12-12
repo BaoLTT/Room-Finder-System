@@ -1,10 +1,10 @@
-package com.roomfindingsystem.service.impl;
+package com.roomfindersystem.service.impl;
 
-import com.roomfindingsystem.dto.HouseImageDto;
-import com.roomfindingsystem.dto.HouseLandlordVo;
-import com.roomfindingsystem.repository.HouseImageRepository;
-import com.roomfindingsystem.repository.HouseLandlordRepository;
-import com.roomfindingsystem.service.HouseLandlordService;
+import com.roomfindersystem.dto.HouseImageDto;
+import com.roomfindersystem.dto.HouseLandlordVo;
+import com.roomfindersystem.repository.HouseImageRepository;
+import com.roomfindersystem.repository.HouseLandlordRepository;
+import com.roomfindersystem.service.HouseLandlordService;
 import jakarta.persistence.Tuple;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

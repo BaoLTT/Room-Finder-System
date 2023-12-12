@@ -1,4 +1,4 @@
-package com.roomfindingsystem.entity;
+package com.roomfindersystem.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
