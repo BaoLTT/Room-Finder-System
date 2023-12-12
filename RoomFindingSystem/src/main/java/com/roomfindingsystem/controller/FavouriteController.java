@@ -87,22 +87,16 @@ public class FavouriteController {
         try {
             session = request.getSession();
             UserEntity user = (UserEntity) session.getAttribute("user");
-
-            if (user!=null){
-                if (!favouriteService.getAllByHouseId(user.getUserId(), id).isPresent()) {
-                    FavouriteEntity favouriteEntity = new FavouriteEntity();
-                    LocalDate now = LocalDate.now();
-                    // get session id
-                    favouriteEntity.setUserId(user.getUserId());
-                    favouriteEntity.setCreatedDate(now);
-                    favouriteEntity.setHouseId(id);
-                    model.addAttribute("request",request);
-                    favouriteService.addToFavourite(favouriteEntity);
-                } else {
-                    System.out.println("false");
-                }
-            }else {
-                return "redirect:/login";
+            if (!favouriteService.getAllByHouseId(user.getUserId(), id).isPresent()) {
+                FavouriteEntity favouriteEntity = new FavouriteEntity();
+                LocalDate now = LocalDate.now();
+                // get session id
+                favouriteEntity.setUserId(user.getUserId());
+                favouriteEntity.setCreatedDate(now);
+                favouriteEntity.setHouseId(id);
+                favouriteService.addToFavourite(favouriteEntity);
+            } else {
+                System.out.println("false");
             }
 
 
@@ -110,7 +104,6 @@ public class FavouriteController {
 
 
         } catch (Exception exception) {
-            model.addAttribute("request",request);
             exception.printStackTrace();
             return "404";
         }
