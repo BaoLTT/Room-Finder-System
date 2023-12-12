@@ -93,7 +93,7 @@ public class RoomServiceImpl implements RoomService {
             String imageLink = (tuple.get("Image_Link", String.class));
             if (imageLink == null) {
                 List<HouseImagesEntity> houseImagesEntities = roomRepository.getImageHouseByRoomId(roomHomeDto.getRoomId());
-                roomHomeDto.setRoomImageLink(houseImagesEntities.get(0).getImageLink());
+                if(!houseImagesEntities.isEmpty()) roomHomeDto.setRoomImageLink(houseImagesEntities.get(0).getImageLink()); else roomHomeDto.setRoomImageLink(null);
             } else {
                 imageLinks = Arrays.asList(imageLink.split(","));
                 roomHomeDto.setRoomImageLink(imageLinks.get(0));
