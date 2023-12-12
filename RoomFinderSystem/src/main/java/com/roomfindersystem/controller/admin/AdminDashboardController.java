@@ -1,8 +1,8 @@
-package com.roomfindingsystem.controller.admin;
+package com.roomfindersystem.controller.admin;
 
 
-import com.roomfindingsystem.entity.UserEntity;
-import com.roomfindingsystem.service.*;
+import com.roomfindersystem.entity.UserEntity;
+import com.roomfindersystem.service.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;

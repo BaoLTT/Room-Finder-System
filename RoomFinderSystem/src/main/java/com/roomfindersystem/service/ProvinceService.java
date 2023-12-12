@@ -1,7 +1,7 @@
-package com.roomfindingsystem.service;
+package com.roomfindersystem.service;
 
 
-import com.roomfindingsystem.entity.ProvinceEntity;
+import com.roomfindersystem.entity.ProvinceEntity;
 
 import java.util.List;
 

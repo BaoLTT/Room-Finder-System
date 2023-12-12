@@ -1,16 +1,16 @@
-package com.roomfindingsystem.controller;
+package com.roomfindersystem.controller;
 
 
-import com.roomfindingsystem.dto.ReportListDto;
-import com.roomfindingsystem.entity.AddressEntity;
-import com.roomfindingsystem.entity.UserEntity;
-import com.roomfindingsystem.service.AddressService;
-import com.roomfindingsystem.service.EmailSenderService;
-import com.roomfindingsystem.service.UserService;
-import com.roomfindingsystem.service.impl.Smsservice;
+import com.roomfindersystem.dto.ReportListDto;
+import com.roomfindersystem.entity.AddressEntity;
+import com.roomfindersystem.entity.UserEntity;
+import com.roomfindersystem.service.AddressService;
+import com.roomfindersystem.service.EmailSenderService;
+import com.roomfindersystem.service.UserService;
+import com.roomfindersystem.service.impl.Smsservice;
 
-import com.roomfindingsystem.dto.Smsrequest;
-import com.roomfindingsystem.dto.UserDto;
+import com.roomfindersystem.dto.Smsrequest;
+import com.roomfindersystem.dto.UserDto;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;

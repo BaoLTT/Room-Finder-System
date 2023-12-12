@@ -1,8 +1,8 @@
-package com.roomfindingsystem.controller;
+package com.roomfindersystem.controller;
 
-import com.roomfindingsystem.entity.NewsEntity;
+import com.roomfindersystem.entity.NewsEntity;
 
-import com.roomfindingsystem.service.NewsService;
+import com.roomfindersystem.service.NewsService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

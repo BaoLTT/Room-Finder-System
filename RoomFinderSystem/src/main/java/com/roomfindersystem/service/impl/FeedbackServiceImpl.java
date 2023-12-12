@@ -1,16 +1,16 @@
-package com.roomfindingsystem.service.impl;
+package com.roomfindersystem.service.impl;
 
 
 
-import com.roomfindingsystem.dto.FeedbackDtoAdmin;
-import com.roomfindingsystem.dto.FeedbackHomeDto;
-import com.roomfindingsystem.dto.FeedbackListAdminDto;
-import com.roomfindingsystem.entity.FeedbackEntity;
-import com.roomfindingsystem.repository.FeedbackRepository;
-import com.roomfindingsystem.service.FeedbackService;
+import com.roomfindersystem.dto.FeedbackDtoAdmin;
+import com.roomfindersystem.dto.FeedbackHomeDto;
+import com.roomfindersystem.dto.FeedbackListAdminDto;
+import com.roomfindersystem.entity.FeedbackEntity;
+import com.roomfindersystem.repository.FeedbackRepository;
+import com.roomfindersystem.service.FeedbackService;
 
 
-import com.roomfindingsystem.dto.FeedbackDto;
+import com.roomfindersystem.dto.FeedbackDto;
 
 
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,8 +1,8 @@
-package com.roomfindingsystem.service.impl;
+package com.roomfindersystem.service.impl;
 
-import com.roomfindingsystem.entity.ServiceDetailEntity;
-import com.roomfindingsystem.repository.ServiceHouseRepository;
-import com.roomfindingsystem.service.ServiceHouseService;
+import com.roomfindersystem.entity.ServiceDetailEntity;
+import com.roomfindersystem.repository.ServiceHouseRepository;
+import com.roomfindersystem.service.ServiceHouseService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -1,7 +1,7 @@
-package com.roomfindingsystem.repository;
+package com.roomfindersystem.repository;
 
-import com.roomfindingsystem.dto.HouseManagerTypeVo;
-import com.roomfindingsystem.entity.HousesEntity;
+import com.roomfindersystem.dto.HouseManagerTypeVo;
+import com.roomfindersystem.entity.HousesEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

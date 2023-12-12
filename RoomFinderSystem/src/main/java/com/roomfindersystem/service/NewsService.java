@@ -1,7 +1,7 @@
-package com.roomfindingsystem.service;
+package com.roomfindersystem.service;
 
 
-import com.roomfindingsystem.entity.NewsEntity;
+import com.roomfindersystem.entity.NewsEntity;
 
 import java.util.List;
 

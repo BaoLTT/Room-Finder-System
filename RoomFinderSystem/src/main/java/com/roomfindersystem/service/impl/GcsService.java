@@ -1,5 +1,5 @@
 
-package com.roomfindingsystem.service.impl;
+package com.roomfindersystem.service.impl;
 
 import com.google.auth.oauth2.ServiceAccountCredentials;
 import com.google.cloud.storage.*;

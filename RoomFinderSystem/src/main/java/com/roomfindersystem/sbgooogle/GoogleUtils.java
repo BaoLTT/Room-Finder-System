@@ -1,4 +1,4 @@
-package com.roomfindingsystem.sbgooogle;
+package com.roomfindersystem.sbgooogle;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;

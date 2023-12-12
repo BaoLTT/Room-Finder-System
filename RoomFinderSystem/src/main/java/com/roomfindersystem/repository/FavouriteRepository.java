@@ -1,7 +1,7 @@
-package com.roomfindingsystem.repository;
+package com.roomfindersystem.repository;
 
-import com.roomfindingsystem.dto.FavouriteDto;
-import com.roomfindingsystem.entity.FavouriteEntity;
+import com.roomfindersystem.dto.FavouriteDto;
+import com.roomfindersystem.entity.FavouriteEntity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;

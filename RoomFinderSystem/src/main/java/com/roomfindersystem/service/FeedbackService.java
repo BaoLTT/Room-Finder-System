@@ -1,11 +1,11 @@
-package com.roomfindingsystem.service;
+package com.roomfindersystem.service;
 
 
-import com.roomfindingsystem.dto.FeedbackDto;
-import com.roomfindingsystem.dto.FeedbackDtoAdmin;
-import com.roomfindingsystem.dto.FeedbackHomeDto;
-import com.roomfindingsystem.dto.FeedbackListAdminDto;
-import com.roomfindingsystem.entity.FeedbackEntity;
+import com.roomfindersystem.dto.FeedbackDto;
+import com.roomfindersystem.dto.FeedbackDtoAdmin;
+import com.roomfindersystem.dto.FeedbackHomeDto;
+import com.roomfindersystem.dto.FeedbackListAdminDto;
+import com.roomfindersystem.entity.FeedbackEntity;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

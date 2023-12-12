@@ -1,5 +1,5 @@
-package com.roomfindingsystem.repository;
-import com.roomfindingsystem.entity.AddressEntity;
+package com.roomfindersystem.repository;
+import com.roomfindersystem.entity.AddressEntity;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;

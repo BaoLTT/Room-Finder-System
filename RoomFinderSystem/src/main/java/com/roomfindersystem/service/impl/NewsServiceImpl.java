@@ -1,9 +1,9 @@
-package com.roomfindingsystem.service.impl;
+package com.roomfindersystem.service.impl;
 
-import com.roomfindingsystem.entity.NewsEntity;
-import com.roomfindingsystem.repository.NewsRepository;
+import com.roomfindersystem.entity.NewsEntity;
+import com.roomfindersystem.repository.NewsRepository;
 
-import com.roomfindingsystem.service.NewsService;
+import com.roomfindersystem.service.NewsService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

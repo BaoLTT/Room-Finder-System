@@ -1,8 +1,8 @@
-package com.roomfindingsystem.controller;
+package com.roomfindersystem.controller;
 
-import com.roomfindingsystem.entity.UserEntity;
-import com.roomfindingsystem.service.*;
-import com.roomfindingsystem.service.impl.GcsService;
+import com.roomfindersystem.entity.UserEntity;
+import com.roomfindersystem.service.*;
+import com.roomfindersystem.service.impl.GcsService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;

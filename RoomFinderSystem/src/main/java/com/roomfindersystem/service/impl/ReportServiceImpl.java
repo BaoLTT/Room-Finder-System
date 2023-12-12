@@ -1,11 +1,11 @@
-package com.roomfindingsystem.service.impl;
+package com.roomfindersystem.service.impl;
 
 
-import com.roomfindingsystem.dto.ReportDto;
-import com.roomfindingsystem.dto.ReportListDto;
-import com.roomfindingsystem.entity.ReportEntity;
-import com.roomfindingsystem.repository.ReportRepository;
-import com.roomfindingsystem.service.ReportService;
+import com.roomfindersystem.dto.ReportDto;
+import com.roomfindersystem.dto.ReportListDto;
+import com.roomfindersystem.entity.ReportEntity;
+import com.roomfindersystem.repository.ReportRepository;
+import com.roomfindersystem.service.ReportService;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;

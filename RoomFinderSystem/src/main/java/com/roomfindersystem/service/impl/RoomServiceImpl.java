@@ -1,10 +1,10 @@
-package com.roomfindingsystem.service.impl;
+package com.roomfindersystem.service.impl;
 
-import com.roomfindingsystem.entity.*;
-import com.roomfindingsystem.repository.*;
-import com.roomfindingsystem.service.RoomService;
+import com.roomfindersystem.entity.*;
+import com.roomfindersystem.repository.*;
+import com.roomfindersystem.service.RoomService;
 
-import com.roomfindingsystem.dto.*;
+import com.roomfindersystem.dto.*;
 import jakarta.persistence.Tuple;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;

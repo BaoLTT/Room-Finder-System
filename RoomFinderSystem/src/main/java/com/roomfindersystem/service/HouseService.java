@@ -1,7 +1,7 @@
-package com.roomfindingsystem.service;
+package com.roomfindersystem.service;
 
-import com.roomfindingsystem.dto.*;
-import com.roomfindingsystem.entity.HousesEntity;
+import com.roomfindersystem.dto.*;
+import com.roomfindersystem.entity.HousesEntity;
 
 
 import java.util.List;

@@ -1,11 +1,11 @@
-package com.roomfindingsystem.repository;
+package com.roomfindersystem.repository;
 
 
-import com.roomfindingsystem.dto.ReportDto;
-import com.roomfindingsystem.entity.FeedbackEntity;
+import com.roomfindersystem.dto.ReportDto;
+import com.roomfindersystem.entity.FeedbackEntity;
 
-import com.roomfindingsystem.dto.ReportListDto;
-import com.roomfindingsystem.entity.ReportEntity;
+import com.roomfindersystem.dto.ReportListDto;
+import com.roomfindersystem.entity.ReportEntity;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;

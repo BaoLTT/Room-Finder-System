@@ -1,9 +1,9 @@
-package com.roomfindingsystem.service;
+package com.roomfindersystem.service;
 
-import com.roomfindingsystem.entity.UserEntity;
+import com.roomfindersystem.entity.UserEntity;
 
 
-import com.roomfindingsystem.dto.UserDto;
+import com.roomfindersystem.dto.UserDto;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;

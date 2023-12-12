@@ -1,11 +1,11 @@
-package com.roomfindingsystem.service;
+package com.roomfindersystem.service;
 
 
-import com.roomfindingsystem.entity.RoomEntity;
-import com.roomfindingsystem.entity.RoomImagesEntity;
-import com.roomfindingsystem.entity.ServiceDetailEntity;
+import com.roomfindersystem.entity.RoomEntity;
+import com.roomfindersystem.entity.RoomImagesEntity;
+import com.roomfindersystem.entity.ServiceDetailEntity;
 
-import com.roomfindingsystem.dto.*;
+import com.roomfindersystem.dto.*;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;

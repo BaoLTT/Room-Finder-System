@@ -1,4 +1,4 @@
-package com.roomfindingsystem.config;
+package com.roomfindersystem.config;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;

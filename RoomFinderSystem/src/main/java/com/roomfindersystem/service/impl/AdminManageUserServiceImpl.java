@@ -1,12 +1,12 @@
-package com.roomfindingsystem.service.impl;
+package com.roomfindersystem.service.impl;
 
-import com.roomfindingsystem.dto.UserDto;
-import com.roomfindingsystem.entity.AddressEntity;
-import com.roomfindingsystem.entity.UserEntity;
-import com.roomfindingsystem.repository.AddressRepository;
-import com.roomfindingsystem.repository.UserRepository;
+import com.roomfindersystem.dto.UserDto;
+import com.roomfindersystem.entity.AddressEntity;
+import com.roomfindersystem.entity.UserEntity;
+import com.roomfindersystem.repository.AddressRepository;
+import com.roomfindersystem.repository.UserRepository;
 
-import com.roomfindingsystem.service.AdminManageUserService;
+import com.roomfindersystem.service.AdminManageUserService;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;

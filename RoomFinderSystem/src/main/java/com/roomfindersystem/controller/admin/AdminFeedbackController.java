@@ -1,10 +1,10 @@
-package com.roomfindingsystem.controller.admin;
+package com.roomfindersystem.controller.admin;
 
-import com.roomfindingsystem.dto.FeedbackDto;
-import com.roomfindingsystem.dto.FeedbackDtoAdmin;
-import com.roomfindingsystem.entity.UserEntity;
-import com.roomfindingsystem.service.FeedbackService;
-import com.roomfindingsystem.service.UserService;
+import com.roomfindersystem.dto.FeedbackDto;
+import com.roomfindersystem.dto.FeedbackDtoAdmin;
+import com.roomfindersystem.entity.UserEntity;
+import com.roomfindersystem.service.FeedbackService;
+import com.roomfindersystem.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;

@@ -1,7 +1,7 @@
-package com.roomfindingsystem.repository;
+package com.roomfindersystem.repository;
 
 
-import com.roomfindingsystem.entity.TypeHouseEntity;
+import com.roomfindersystem.entity.TypeHouseEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

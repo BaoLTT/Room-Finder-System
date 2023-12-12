@@ -1,6 +1,6 @@
 
 
-package com.roomfindingsystem.dto;
+package com.roomfindersystem.dto;
 
 import lombok.*;
 

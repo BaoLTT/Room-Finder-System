@@ -1,8 +1,8 @@
 
 
-package com.roomfindingsystem.dto.response;
+package com.roomfindersystem.dto.response;
 
-import com.roomfindingsystem.entity.DistrictEntity;
+import com.roomfindersystem.entity.DistrictEntity;
 import lombok.Data;
 
 import java.util.List;

@@ -1,13 +1,13 @@
-package com.roomfindingsystem.service.impl;
+package com.roomfindersystem.service.impl;
 
-import com.roomfindingsystem.dto.*;
+import com.roomfindersystem.dto.*;
 
-import com.roomfindingsystem.entity.HousesEntity;
-import com.roomfindingsystem.repository.HouseRepository;
+import com.roomfindersystem.entity.HousesEntity;
+import com.roomfindersystem.repository.HouseRepository;
 
-import com.roomfindingsystem.service.HouseService;
+import com.roomfindersystem.service.HouseService;
 
-import com.roomfindingsystem.service.RoomService;
+import com.roomfindersystem.service.RoomService;
 import jakarta.persistence.Tuple;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

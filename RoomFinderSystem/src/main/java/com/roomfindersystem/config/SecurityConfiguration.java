@@ -1,4 +1,4 @@
-package com.roomfindingsystem.config;
+package com.roomfindersystem.config;
 
 
 import com.roomfindingsystem.sbgooogle.GoogleUtils;

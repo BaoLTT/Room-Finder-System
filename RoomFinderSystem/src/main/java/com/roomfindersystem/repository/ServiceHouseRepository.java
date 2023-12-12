@@ -1,7 +1,7 @@
-package com.roomfindingsystem.repository;
+package com.roomfindersystem.repository;
 
-import com.roomfindingsystem.entity.ServiceDetailEntity;
-import com.roomfindingsystem.entity.ServiceHouseEntity;
+import com.roomfindersystem.entity.ServiceDetailEntity;
+import com.roomfindersystem.entity.ServiceHouseEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

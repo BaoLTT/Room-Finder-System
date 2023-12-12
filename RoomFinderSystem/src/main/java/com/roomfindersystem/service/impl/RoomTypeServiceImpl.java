@@ -1,9 +1,9 @@
-package com.roomfindingsystem.service.impl;
+package com.roomfindersystem.service.impl;
 
-import com.roomfindingsystem.entity.RoomTypeEntity;
-import com.roomfindingsystem.repository.RoomTypeRepository;
-import com.roomfindingsystem.service.RoomTypeService;
-import com.roomfindingsystem.dto.RoomTypeDto;
+import com.roomfindersystem.entity.RoomTypeEntity;
+import com.roomfindersystem.repository.RoomTypeRepository;
+import com.roomfindersystem.service.RoomTypeService;
+import com.roomfindersystem.dto.RoomTypeDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 

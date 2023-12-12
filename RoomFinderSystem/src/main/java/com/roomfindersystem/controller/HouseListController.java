@@ -1,12 +1,12 @@
-package com.roomfindingsystem.controller;
+package com.roomfindersystem.controller;
 
-import com.roomfindingsystem.entity.ServiceDetailEntity;
-import com.roomfindingsystem.entity.TypeHouseEntity;
-import com.roomfindingsystem.repository.ServiceDetailRepository;
-import com.roomfindingsystem.service.HouseService;
+import com.roomfindersystem.entity.ServiceDetailEntity;
+import com.roomfindersystem.entity.TypeHouseEntity;
+import com.roomfindersystem.repository.ServiceDetailRepository;
+import com.roomfindersystem.service.HouseService;
 
-import com.roomfindingsystem.dto.HouseTypeVo;
-import com.roomfindingsystem.service.HouseTypeService;
+import com.roomfindersystem.dto.HouseTypeVo;
+import com.roomfindersystem.service.HouseTypeService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;

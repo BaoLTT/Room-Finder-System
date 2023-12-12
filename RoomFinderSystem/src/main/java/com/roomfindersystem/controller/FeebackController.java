@@ -1,9 +1,9 @@
-package com.roomfindingsystem.controller;
+package com.roomfindersystem.controller;
 
-import com.roomfindingsystem.dto.FeedbackListAdminDto;
-import com.roomfindingsystem.entity.FeedbackEntity;
-import com.roomfindingsystem.entity.UserEntity;
-import com.roomfindingsystem.service.FeedbackService;
+import com.roomfindersystem.dto.FeedbackListAdminDto;
+import com.roomfindersystem.entity.FeedbackEntity;
+import com.roomfindersystem.entity.UserEntity;
+import com.roomfindersystem.service.FeedbackService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;

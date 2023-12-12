@@ -1,13 +1,13 @@
-package com.roomfindingsystem.controller;
+package com.roomfindersystem.controller;
 
-import com.roomfindingsystem.dto.FavouriteDto;
-import com.roomfindingsystem.dto.HouseImageLink;
-import com.roomfindingsystem.dto.ReportListDto;
-import com.roomfindingsystem.entity.FavouriteEntity;
-import com.roomfindingsystem.entity.UserEntity;
-import com.roomfindingsystem.service.FavouriteService;
-import com.roomfindingsystem.service.HouseService;
-import com.roomfindingsystem.service.UserService;
+import com.roomfindersystem.dto.FavouriteDto;
+import com.roomfindersystem.dto.HouseImageLink;
+import com.roomfindersystem.dto.ReportListDto;
+import com.roomfindersystem.entity.FavouriteEntity;
+import com.roomfindersystem.entity.UserEntity;
+import com.roomfindersystem.service.FavouriteService;
+import com.roomfindersystem.service.HouseService;
+import com.roomfindersystem.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;

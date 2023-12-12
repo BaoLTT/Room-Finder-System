@@ -1,11 +1,11 @@
-package com.roomfindingsystem.repository;
+package com.roomfindersystem.repository;
 
-import com.roomfindingsystem.dto.UserDto;
-import com.roomfindingsystem.entity.UserEntity;
+import com.roomfindersystem.dto.UserDto;
+import com.roomfindersystem.entity.UserEntity;
 
 
 
-import com.roomfindingsystem.dto.UserDto;
+import com.roomfindersystem.dto.UserDto;
 import jakarta.transaction.Transactional;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

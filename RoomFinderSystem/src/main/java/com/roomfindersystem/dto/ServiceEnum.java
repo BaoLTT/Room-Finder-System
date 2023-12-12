@@ -1,4 +1,4 @@
-package com.roomfindingsystem.dto;
+package com.roomfindersystem.dto;
 
 public enum ServiceEnum {
     TUDO("Tự do", 1, "mdi:clock"),

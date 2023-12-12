@@ -1,10 +1,10 @@
-package com.roomfindingsystem.repository;
+package com.roomfindersystem.repository;
 
 
-import com.roomfindingsystem.dto.HouseDto;
-import com.roomfindingsystem.dto.HouseImageLink;
-import com.roomfindingsystem.dto.ServiceDto;
-import com.roomfindingsystem.entity.HousesEntity;
+import com.roomfindersystem.dto.HouseDto;
+import com.roomfindersystem.dto.HouseImageLink;
+import com.roomfindersystem.dto.ServiceDto;
+import com.roomfindersystem.entity.HousesEntity;
 import jakarta.persistence.Tuple;
 import jakarta.transaction.Transactional;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

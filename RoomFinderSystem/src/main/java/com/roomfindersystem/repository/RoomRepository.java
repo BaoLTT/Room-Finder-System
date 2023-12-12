@@ -1,11 +1,11 @@
-package com.roomfindingsystem.repository;
+package com.roomfindersystem.repository;
 
-import com.roomfindingsystem.dto.RoomDto;
-import com.roomfindingsystem.dto.RoomDtoN;
-import com.roomfindingsystem.entity.HouseImagesEntity;
-import com.roomfindingsystem.entity.RoomEntity;
-import com.roomfindingsystem.entity.RoomImagesEntity;
-import com.roomfindingsystem.entity.ServiceDetailEntity;
+import com.roomfindersystem.dto.RoomDto;
+import com.roomfindersystem.dto.RoomDtoN;
+import com.roomfindersystem.entity.HouseImagesEntity;
+import com.roomfindersystem.entity.RoomEntity;
+import com.roomfindersystem.entity.RoomImagesEntity;
+import com.roomfindersystem.entity.ServiceDetailEntity;
 
 
 import jakarta.persistence.Tuple;

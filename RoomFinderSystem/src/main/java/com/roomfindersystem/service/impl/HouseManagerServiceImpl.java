@@ -1,15 +1,15 @@
-package com.roomfindingsystem.service.impl;
+package com.roomfindersystem.service.impl;
 
-import com.roomfindingsystem.dto.HouseLandlordVo;
-import com.roomfindingsystem.dto.HouseManagerTypeVo;
-import com.roomfindingsystem.entity.HouseImagesEntity;
-import com.roomfindingsystem.entity.HousesEntity;
-import com.roomfindingsystem.entity.RoomImagesEntity;
-import com.roomfindingsystem.entity.ServiceHouseEntity;
-import com.roomfindingsystem.repository.HouseImageRepository;
-import com.roomfindingsystem.repository.HouseManagerRepository;
-import com.roomfindingsystem.repository.ServiceHouseRepository;
-import com.roomfindingsystem.service.HouseManagerService;
+import com.roomfindersystem.dto.HouseLandlordVo;
+import com.roomfindersystem.dto.HouseManagerTypeVo;
+import com.roomfindersystem.entity.HouseImagesEntity;
+import com.roomfindersystem.entity.HousesEntity;
+import com.roomfindersystem.entity.RoomImagesEntity;
+import com.roomfindersystem.entity.ServiceHouseEntity;
+import com.roomfindersystem.repository.HouseImageRepository;
+import com.roomfindersystem.repository.HouseManagerRepository;
+import com.roomfindersystem.repository.ServiceHouseRepository;
+import com.roomfindersystem.service.HouseManagerService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

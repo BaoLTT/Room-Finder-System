@@ -1,9 +1,9 @@
-package com.roomfindingsystem.service.impl;
+package com.roomfindersystem.service.impl;
 
 
-import com.roomfindingsystem.entity.PostEntity;
-import com.roomfindingsystem.repository.PostRepository;
-import com.roomfindingsystem.service.PostService;
+import com.roomfindersystem.entity.PostEntity;
+import com.roomfindersystem.repository.PostRepository;
+import com.roomfindersystem.service.PostService;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
