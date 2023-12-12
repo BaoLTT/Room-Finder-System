@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8eb342b1-3f51-4954-90ce-47195b612495" name="Changes" comment="update room list trong house detail">
+    <list default="true" id="8eb342b1-3f51-4954-90ce-47195b612495" name="Changes" comment="fix bug homepage">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/impl/RoomServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/impl/RoomServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/target/classes/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +79,8 @@
       <workItem from="1702221222980" duration="5402000" />
       <workItem from="1702235171852" duration="277000" />
       <workItem from="1702237681339" duration="8987000" />
-      <workItem from="1702326869020" duration="1802000" />
+      <workItem from="1702326869020" duration="2427000" />
+      <workItem from="1702357866948" duration="772000" />
     </task>
     <task id="LOCAL-00001" summary="update homepage">
       <option name="closed" value="true" />
@@ -97,7 +98,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702249928825</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="fix bug homepage">
+      <option name="closed" value="true" />
+      <created>1702328949734</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1702328949734</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -107,7 +116,8 @@
     <MESSAGE value="update admin dashboard" />
     <MESSAGE value="update homepage" />
     <MESSAGE value="update room list trong house detail" />
-    <option name="LAST_COMMIT_MESSAGE" value="update room list trong house detail" />
+    <MESSAGE value="fix bug homepage" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix bug homepage" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Room_Finding_System$UserControllerTest.ic" NAME="UserControllerTest Coverage Results" MODIFIED="1700300286928" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
