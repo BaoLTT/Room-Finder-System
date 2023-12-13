@@ -35,6 +35,10 @@ public class ServiceDetailServiceImpl implements ServiceDetailService {
         return serviceDetailRepository.findAll();
     }
 
+    @Override
+    public List<ServiceDetailEntity> getServiceNotUse() {
+        return serviceDetailRepository.getServiceNotUse();
+    }
 
 
     @Override

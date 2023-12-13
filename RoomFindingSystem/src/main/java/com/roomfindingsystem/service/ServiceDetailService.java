@@ -10,6 +10,8 @@ public interface ServiceDetailService {
 
     List<ServiceDetailEntity> getAllService();
 
+    List<ServiceDetailEntity> getServiceNotUse();
+
     void save(ServiceDetailEntity serviceDetailEntity);
 
     List<ServiceDetailEntity> getServiceExceptHouseService(int houseId);
