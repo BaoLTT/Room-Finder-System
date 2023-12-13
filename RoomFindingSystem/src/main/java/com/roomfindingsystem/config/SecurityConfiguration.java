@@ -119,6 +119,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/admin/**", "/test").hasAnyRole("ADMIN", "SUPER_ADMIN")
                         .requestMatchers("/landlord/**").hasAnyRole("LANDLORD")
                         .requestMatchers("/profile/**").hasAnyRole("USER","LANDLORD")
+                        .requestMatchers("/favourite-list/**").hasAnyRole("USER","LANDLORD")
                         .anyRequest().permitAll())
                 .exceptionHandling(e -> e
                         .accessDeniedPage("/403")); // Chuyển hướng đến trang 403.html khi không có quyền

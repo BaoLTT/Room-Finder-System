@@ -15,4 +15,5 @@ public class FavouriteDto {
     private String province;
     private String district;
     private String ward;
+    private Integer status;
 }

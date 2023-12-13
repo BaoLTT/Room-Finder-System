@@ -9,4 +9,6 @@ import java.util.List;
 public interface TypeHouseRepository extends JpaRepository<TypeHouseEntity,Integer> {
     @Query(value = "SELECT * FROM room_finding_system.type_house",nativeQuery = true)
     List<TypeHouseEntity> findAll();
+
+
 }

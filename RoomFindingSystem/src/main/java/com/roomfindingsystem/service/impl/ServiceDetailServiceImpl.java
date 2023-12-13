@@ -35,11 +35,20 @@ public class ServiceDetailServiceImpl implements ServiceDetailService {
         return serviceDetailRepository.findAll();
     }
 
+    @Override
+    public List<ServiceDetailEntity> getServiceNotUse() {
+        return serviceDetailRepository.getServiceNotUse();
+    }
 
 
     @Override
     public void save(ServiceDetailEntity serviceDetailEntity) {
         serviceDetailRepository.save(serviceDetailEntity);
+    }
+
+    @Override
+    public void delete(Integer serviceid) {
+        serviceDetailRepository.deleteById(serviceid);
     }
 
     @Override
