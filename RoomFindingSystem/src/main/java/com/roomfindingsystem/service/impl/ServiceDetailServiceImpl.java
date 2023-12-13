@@ -47,6 +47,11 @@ public class ServiceDetailServiceImpl implements ServiceDetailService {
     }
 
     @Override
+    public void delete(Integer serviceid) {
+        serviceDetailRepository.deleteById(serviceid);
+    }
+
+    @Override
     public List<ServiceDetailEntity> getServiceExceptHouseService(int houseId) {
         List<ServiceDetailEntity> entityList = serviceDetailRepository.findAll();
         List<String> stringList = serviceDetailRepository.getServiceNameByHouseId(houseId);

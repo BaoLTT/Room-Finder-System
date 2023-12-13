@@ -92,6 +92,13 @@ public class AdminManageHouseController {
         return "redirect:" + referer;
     }
 
+    @PostMapping ("/house-manager/deleteService")
+    public String deleteService(@RequestParam(name = "deleteService") String deleteService,HttpSession httpSession,HttpServletRequest request){
+        serviceDetailService.delete(Integer.parseInt(deleteService));
+        String referer = request.getHeader("Referer");
+        return "redirect:" + referer;
+    }
+
     @GetMapping("/house-manager/detail/{houseid}")
     public String updateHouse(@PathVariable Integer houseid,final Model model,HttpSession httpSession,HttpServletRequest request){
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -148,9 +155,15 @@ public class AdminManageHouseController {
         listUser = userRepository.findUserByRole("LANDLORD");
         List<TypeHouseEntity> listType = houseTypeService.findAll();
         List<ServiceDetailEntity> listService = serviceDetailService.getAllService();
+
+        List<ServiceDetailEntity> listServiceNotUse = serviceDetailService.getServiceNotUse();
+        List<TypeHouseEntity> listTypeNotUse = houseTypeService.findTypeNotUse();
+
         model.addAttribute("listUser",listUser);
         model.addAttribute("listType",listType);
         model.addAttribute("listService",listService);
+        model.addAttribute("listServiceNotUse",listServiceNotUse);
+        model.addAttribute("listTypeNotUse",listTypeNotUse);
         HouseLandlordVo house = new HouseLandlordVo();
         house.setLatitude(21.0130252);
         house.setLongitude(105.5239285);

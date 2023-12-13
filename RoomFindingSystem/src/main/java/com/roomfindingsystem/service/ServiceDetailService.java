@@ -14,5 +14,7 @@ public interface ServiceDetailService {
 
     void save(ServiceDetailEntity serviceDetailEntity);
 
+    void delete(Integer serviceid);
+
     List<ServiceDetailEntity> getServiceExceptHouseService(int houseId);
 }
