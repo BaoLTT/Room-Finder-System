@@ -96,12 +96,14 @@
                                 </script>
                                 <label for="password">MẬT KHẨU</label>
                                 <input class="form-control" type="password" th:field="*{password}"
-                                       required id="password" name="password"
+                                       id="password" name="password"
+
                                        onkeyup='check();'
                                        placeholder="Nhập Mật Khẩu">
                                 <div class="alert alert-warning" th:if="${#fields.hasErrors('password')}"
                                      th:errors="*{password}">
                                 </div>
+                                <p style="color: red"></p>
                             </div>
                             <div class="form-group">
                                 <label> XÁC NHẬN MẬT KHẨU</label>
@@ -161,6 +163,7 @@
     // Lấy phần tử input và small số đt
     const inputPhone = document.getElementById('phone');
     const errorPhone = inputPhone.nextElementSibling;
+    const submitButton = document.querySelector('.btn-gradient');
 
     // Sự kiện blur khỏi input
     inputPhone.addEventListener('blur', () => {
@@ -168,8 +171,28 @@
         // Nếu không thỏa mãn pattern
         if (!inputPhone.value.match(inputPhone.pattern)) {
             errorPhone.textContent = 'Số điện thoại gồm 10 số';
+            submitButton.disabled = true;
         } else {
             errorPhone.textContent = ''; // Clear message
+            submitButton.disabled = false;
+        }
+    });
+
+      // Lấy phần tử input password
+    const inputPassword = document.getElementById('password');
+    const errorPassword = inputPassword.nextElementSibling;
+    const  pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*_])(?=.{6,120}$)"
+
+    // Sự kiện blur khỏi input
+    inputPassword.addEventListener('blur', () => {
+
+        // Nếu không thỏa mãn pattern
+        if (!inputPassword.value.match(pattern)) {
+            errorPassword.textContent = 'Mật khẩu gồm trên 6 kí tự bao gồm Chữ Hoa- Chữ Thường - Số - Kí tự đặc biệt';
+            submitButton.disabled = true;
+        } else {
+            errorPassword.textContent = ''; // Clear message
+            submitButton.disabled = false;
         }
     });
 
@@ -182,9 +205,11 @@
 
         // Nếu không thỏa mãn pattern
         if (!inputMail.value.match(inputMail.pattern)) {
-            errorMail.textContent = 'Email có dạng "manhhd@gmail.com"';
+            errorMail.textContent = 'Email có dạng "Join@gmail.com"';
+            submitButton.disabled = true;
         } else {
             errorMail.textContent = ''; // Clear message
+            submitButton.disabled = false;
         }
     });
 
@@ -198,8 +223,10 @@
         // Nếu không thỏa mãn pattern
         if (!inputFirstName.value.match(inputFirstName.pattern)) {
             errorFirstName.textContent = 'tên không chứa số và kí tự đặc biệt';
+            submitButton.disabled = true;
         } else {
             errorFirstName.textContent = ''; // Clear message
+            submitButton.disabled = false;
         }
     });
 
@@ -213,8 +240,10 @@
         // Nếu không thỏa mãn pattern
         if (!inputLastName.value.match(inputLastName.pattern)) {
             errorLastName.textContent = 'tên không chứa số và kí tự đặc biệt';
+            submitButton.disabled = true;
         } else {
             errorLastName.textContent = ''; // Clear message
+            submitButton.disabled = false;
         }
     });
 
