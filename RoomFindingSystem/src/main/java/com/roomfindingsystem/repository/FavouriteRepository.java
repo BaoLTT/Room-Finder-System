@@ -20,7 +20,7 @@ public interface FavouriteRepository extends JpaRepository<FavouriteEntity,Integ
     FavouriteEntity save(FavouriteEntity favouriteEntity);
 
 
-    @Query("select new com.roomfindingsystem.dto.FavouriteDto(h.houseId,h.houseName,t.typeName, ad.addressDetails, pr.name,d.name,w.name) from FavouriteEntity f " +
+    @Query("select new com.roomfindingsystem.dto.FavouriteDto(h.houseId,h.houseName,t.typeName, ad.addressDetails, pr.name,d.name,w.name,h.status) from FavouriteEntity f " +
             "join UserEntity u on f.userId = u.userId " +
             "join HousesEntity h on f.houseId = h.houseId " +
             "join TypeHouseEntity t on h.typeHouseId = t.typeId " +

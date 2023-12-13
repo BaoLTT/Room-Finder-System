@@ -23,5 +23,5 @@ public class HouseFavouriteDto {
     String province;
     List<String> listImage;
     LocalDate lastModify;
-
+    Integer status;
 }

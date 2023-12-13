@@ -245,8 +245,7 @@ public class HouseServiceImpl implements HouseService {
                 LocalDate localDate = sqlDate.toLocalDate();
                 houseHomeDto.setLastModify(localDate);
             }
-
-
+            houseHomeDto.setStatus(tuple.get("status", Integer.class));
             HouseFavouriteDto.add(houseHomeDto);
         }
 

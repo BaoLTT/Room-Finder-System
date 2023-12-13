@@ -82,18 +82,32 @@
                             <div class="col-md-3 col-sm-6" th:each="house : ${houses}">
                                 <div class="item big equal-height" data-map-latitude="48.87" data-map-longitude="2.29"
                                      data-id="1">
-                                    <div class="item-wrapper">
+                                    <div class="item-wrapper" >
                                         <a th:href="@{/remove-favourite-list?id=}+${house.houseId}"
                                            onclick="showSuccessToast()" class="mark-circle" data-toggle="tooltip"
                                            data-placement="right" title="Removed from favorites list" style="background-color: white;margin: 8px"><i
                                                 style="color: #488f3e;" class="fa fa-trash"></i></a>
-                                        <div class="image">
-                                            <a th:href="@{/house/}+${house.houseName}+'?id='+${house.houseId}" class="wrapper">
+
+                                        <div class="image" style="position: relative">
+                                            <a th:if="${house.status==1}" th:href="@{/house/}+${house.houseName}+'?id='+${house.houseId}" class="wrapper">
                                                 <div class="gallery">
                                                     <img style="width: 273px; height: 208px;"
                                                          th:each="image: ${house.listImage}" th:src="'https://storage.googleapis.com'+${image}" alt="">
                                                 </div>
                                             </a>
+
+                                            <a th:if="${house.status==0}" th:href="@{/remove-favourite-list?id=}+${house.houseId}" class="wrapper">
+                                                <div class="gallery">
+                                                    <img style="width: 273px; height: 208px;"
+                                                         th:each="image: ${house.listImage}" th:src="'https://storage.googleapis.com'+${image}" alt="">
+                                                </div>
+                                            </a>
+
+                                            <div th:if="${house.status==0}" class="error-message">
+                                                <div class="message">
+                                                    <h3>Trọ đã ngưng hoạt động</h3>
+                                                </div>
+                                            </div>
                                             <div class="owl-navigation"></div>
                                             <!--end owl-navigation-->
                                         </div>

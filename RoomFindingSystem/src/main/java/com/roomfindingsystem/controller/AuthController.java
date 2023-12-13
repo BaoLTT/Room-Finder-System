@@ -85,10 +85,10 @@ public class AuthController {
             newUser.setEmail(googlePojo.getEmail());
             newUser.setFirstName(googlePojo.getFamily_name());
             newUser.setLastName(googlePojo.getGiven_name());
-            newUser.setImageLink(googlePojo.getPicture());
-//            byte[] imageBytes = googlePojo.getPicture().getBytes();
-//            gcsService.uploadImage("rfs_bucket", "User/user_" +googlePojo.getId()+".jpg", imageBytes);
-//            newUser.setImageLink("/rfs_bucket/User/"+"user_"+googlePojo.getId()+".jpg");
+//            newUser.setImageLink(googlePojo.getPicture());
+            byte[] imageBytes = googlePojo.getPicture().getBytes();
+            gcsService.uploadImage("rfs_bucket", "User/user_" +googlePojo.getId()+".jpg", imageBytes);
+            newUser.setImageLink("/rfs_bucket/User/"+"user_"+googlePojo.getId()+".jpg");
 
             newUser.setFacebookId(accessToken);
             newUser.setRoleId("USER");

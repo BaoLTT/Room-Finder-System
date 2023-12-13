@@ -130,7 +130,7 @@ public interface HouseRepository extends JpaRepository<HousesEntity, Integer> {
     List<Tuple> viewHouseInHome();
 
     @Query(value = "SELECT u.userid,h.houseId, h.house_name,th.type_name,ad.address_details,pr.name AS province_name,d.name AS district_name,w.name AS ward_name ,\n" +
-            "(SELECT GROUP_CONCAT(i.image_link) FROM house_images i WHERE i.houseid = h.houseid) AS Image_Link, h.last_modified_date  \n" +
+            "(SELECT GROUP_CONCAT(i.image_link) FROM house_images i WHERE i.houseid = h.houseid) AS Image_Link, h.last_modified_date,h.status  \n" +
             "FROM room_finding_system.favourite f\n" +
             "join room_finding_system.user u on f.userid = u.userid\n" +
             "join room_finding_system.houses h on f.houseid = h.houseid\n" +
