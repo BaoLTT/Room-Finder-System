@@ -36,6 +36,11 @@ public class ReportServiceImpl implements ReportService {
     }
 
     @Override
+    public int countPendingReports() {
+        return reportRepository.countPendingReports();
+    }
+
+    @Override
 
     public ReportEntity save(ReportEntity reportEntity) {
         return reportRepository.save(reportEntity);

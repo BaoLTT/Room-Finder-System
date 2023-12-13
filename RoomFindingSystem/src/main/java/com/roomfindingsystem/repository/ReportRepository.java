@@ -23,12 +23,14 @@ public interface ReportRepository extends JpaRepository<ReportEntity, Integer> {
     @Query("select count(*) from ReportEntity ")
     int countReports();
 
-    @Query("select count(*) from ReportEntity r where r.reportStatus='ĐANG_XỬ_LÝ'")
+    @Query("select count(*) from ReportEntity r where r.reportStatus='Đang Xử Lý'")
     int countProcessingReports();
 
-    @Query("select count(*) from ReportEntity r where r.reportStatus='ĐÃ_XỬ_LÝ'")
+    @Query("select count(*) from ReportEntity r where r.reportStatus='Đã Xử Lý'")
     int countProcessedReports();
 
+    @Query("select count(*) from ReportEntity r where r.reportStatus='Chờ Xử Lý'")
+    int countPendingReports();
 
     @Query("SELECT r FROM ReportEntity r WHERE r.houseid = :houseId AND r.userid = :userid ORDER BY r.reportid DESC")
     List<ReportEntity> getReportEntityByUid(int houseId, int userid);

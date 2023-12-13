@@ -36,18 +36,9 @@
     };
   
     ChartHandler.prototype.init = function () {
-        // this.respChart($("#pie1"), "Pie", {
-        //     labels: ["Đang xử lý", "Đã xử lý"],
-        //     datasets: [{
-        //         data: [80, 50],
-        //         backgroundColor: ["#5d6dc3", "#3ec396"],
-        //         hoverBackgroundColor: ["#5d6dc3", "#3ec396"],
-        //         hoverBorderColor: "#fff"
-        //     }]
-        // });
 
         $.ajax({
-            url: '/admin/data/pie',
+            url: '/admin/data/pie1',
             type: 'GET',
             dataType: 'json',
             success: function (data) {
@@ -57,32 +48,43 @@
                 console.error('Lỗi khi tải dữ liệu biểu đồ: ' + error);
             }
         });
-
         $.ajax({
-            url: '/admin/data/bar',
+            url: '/admin/data/pie2',
             type: 'GET',
             dataType: 'json',
             success: function (data) {
-                var options = {
-                    scales: {
-                        yAxes: [
-                            {
-                                ticks: {
-                                    min: 0,      // Giá trị tối thiểu trên trục y
-                                    max: 10,    // Giá trị tối đa trên trục y
-                                    stepSize: 2  // Khoảng cách giữa hai giá trị
-                                }
-                            }
-                        ]
-                    }
-                };
-
-                $.ChartJs.respChart($("#bar"), "Bar", data, options);
+                $.ChartJs.respChart($("#pie2"), "Pie", data);
             },
             error: function (error) {
                 console.error('Lỗi khi tải dữ liệu biểu đồ: ' + error);
             }
         });
+
+        // $.ajax({
+        //     url: '/admin/data/bar',
+        //     type: 'GET',
+        //     dataType: 'json',
+        //     success: function (data) {
+        //         var options = {
+        //             scales: {
+        //                 yAxes: [
+        //                     {
+        //                         ticks: {
+        //                             min: 0,      // Giá trị tối thiểu trên trục y
+        //                             max: 10,    // Giá trị tối đa trên trục y
+        //                             stepSize: 2  // Khoảng cách giữa hai giá trị
+        //                         }
+        //                     }
+        //                 ]
+        //             }
+        //         };
+        //
+        //         $.ChartJs.respChart($("#bar"), "Bar", data, options);
+        //     },
+        //     error: function (error) {
+        //         console.error('Lỗi khi tải dữ liệu biểu đồ: ' + error);
+        //     }
+        // });
   
 
     };

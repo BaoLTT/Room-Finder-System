@@ -592,4 +592,14 @@ public class RoomServiceImpl implements RoomService {
         }
         return roomDtos;
     }
+
+    @Override
+    public int countEmptyRoom() {
+        return roomRepository.countEmptyRoom();
+    }
+
+    @Override
+    public int countInhabitedRoom() {
+        return roomRepository.countInhabitedRoom();
+    }
 }

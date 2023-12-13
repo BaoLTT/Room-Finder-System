@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+
     <list default="true" id="1e0562a2-7ad5-40d8-bd96-2e66b43cd15f" name="Changes" comment="update house list">
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/register.html" afterDir="false" />
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,17 +63,21 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+
     "com.google.cloudcode.ide_session_index": "20231213_0001",
     "dart.analysis.tool.window.visible": "false",
     "git-widget-placeholder": "BaoLTT",
     "last_opened_file_path": "/Users/nguyenhuubinh/Documents/DATN/Room-Finding-System/RoomFindingSystem/src/main/resources/static/assets/img",
+
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "project.structure.last.edited": "SDKs",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
+
     "settings.editor.selected.configurable": "preferences.keymap",
+
     "show.migrate.to.gradle.popup": "false",
     "spring.configuration.checksum": "cba14e4d5d8ebaea272e92fbdfce9e02",
     "vue.rearranger.settings.migration": "true"
@@ -84,6 +90,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Intellij project\Room-Finding-System-BaoLTT\RoomFindingSystem\src\main\resources\templates\admin" />
       <recent name="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/static/assets/img" />
       <recent name="D:\Intellij project\Room-Finding-System\RoomFindingSystem\src\main\resources\static\assets\img" />
     </key>
@@ -95,17 +102,15 @@
     </key>
   </component>
   <component name="RunManager" selected="Spring Boot.Main">
-    <configuration name="UserControllerForSupperAdminTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.roomfindingsystem.Main" />
       <module name="RoomFindingSystem" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.roomfindingsystem.controller.*" />
+          <option name="PATTERN" value="com.roomfindingsystem.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.roomfindingsystem.controller" />
-      <option name="MAIN_CLASS_NAME" value="com.roomfindingsystem.controller.UserControllerForSupperAdminTest" />
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -174,10 +179,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.Main" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.UserControllerForSupperAdminTest.insertUserhaveEmailInvalid" />
         <item itemvalue="JUnit.UserControllerForSupperAdminTest.insertUser" />
         <item itemvalue="JUnit.UserControllerForSupperAdminTest.getUserUpdateInvalidId" />
-        <item itemvalue="JUnit.UserControllerForSupperAdminTest" />
       </list>
     </recent_temporary>
   </component>
@@ -242,6 +247,8 @@
       <workItem from="1702141211135" duration="294000" />
       <workItem from="1702192079758" duration="3718000" />
       <workItem from="1702403390194" duration="265000" />
+      <workItem from="1702457212189" duration="2892000" />
+      <workItem from="1702482425114" duration="9389000" />
     </task>
     <task id="LOCAL-00002" summary="update lai">
       <option name="closed" value="true" />
@@ -419,6 +426,7 @@
       <option name="project" value="LOCAL" />
       <updated>1702049356251</updated>
     </task>
+
     <task id="LOCAL-00024" summary="update house list">
       <option name="closed" value="true" />
       <created>1702405479607</created>
@@ -436,6 +444,7 @@
       <updated>1702485357957</updated>
     </task>
     <option name="localTasksCounter" value="26" />
+
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -476,9 +485,11 @@
     <MESSAGE value="update duong dan vao roomList" />
     <MESSAGE value="update logo" />
     <MESSAGE value="update front register" />
+
     <MESSAGE value="update house list" />
     <MESSAGE value="validate register" />
     <option name="LAST_COMMIT_MESSAGE" value="validate register" />
+
   </component>
   <component name="com.github.evgenys91.machinet.common.dslhistory.DslHistoryState">
     <option name="historyDtoById">
