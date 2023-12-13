@@ -48,6 +48,17 @@
                 console.error('Lỗi khi tải dữ liệu biểu đồ: ' + error);
             }
         });
+        $.ajax({
+            url: '/admin/data/pie2',
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                $.ChartJs.respChart($("#pie2"), "Pie", data);
+            },
+            error: function (error) {
+                console.error('Lỗi khi tải dữ liệu biểu đồ: ' + error);
+            }
+        });
 
         // $.ajax({
         //     url: '/admin/data/bar',

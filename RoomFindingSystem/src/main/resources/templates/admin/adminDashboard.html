@@ -103,23 +103,26 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-lg-6">
+                           <div class="col-lg-6">
+
                                 <div class="card-box">
-                                    <h4 class="header-title">Pie Chart</h4>
+                                    <div style="display: flex; justify-content: space-between;">
+                                        <h4 class="header-title">Phòng trọ</h4>
+                                        <h4 class="header-title" th:text="'Số phòng trống: '+${numberOfEmptyRooms}+'/'+${numberOfRooms}"></h4>
+                                    </div>
 
                                     <canvas id="pie1" height="350" class="mt-4"></canvas>
 
                                 </div>
                             </div>
                             <div class="col-lg-6">
+                            <div class="card-box">
+                                <h4 class="header-title">Báo cáo</h4>
 
-                                <div class="card-box">
-                                    <h4 class="header-title">Donut Chart</h4>
+                                <canvas id="pie2" height="350" class="mt-4"></canvas>
 
-                                    <canvas id="doughnut" height="350" class="mt-4"></canvas>
-
-                                </div>
                             </div>
+                        </div>
                         </div>
 
 

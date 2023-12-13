@@ -1,7 +1,7 @@
 package com.roomfindingsystem.controller.admin;
 
-import com.roomfindingsystem.service.PostService;
 import com.roomfindingsystem.service.ReportService;
+import com.roomfindingsystem.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +13,7 @@ import java.util.*;
 @RequestMapping("/admin/data")
 public class AdminDashboardRestController {
     @Autowired
-    PostService postService;
+    RoomService roomService;
 
     @Autowired
     ReportService reportService;
@@ -54,6 +54,22 @@ public class AdminDashboardRestController {
 
     @GetMapping("/pie1")
     public Map<String, Object> getPieChartData() {
+        Map<String, Object> data = new HashMap<>();
+        data.put("labels", Arrays.asList("Còn trống", "Hết phòng"));
+        List<Integer> dataValues = Arrays.asList(roomService.countEmptyRoom(), roomService.countInhabitedRoom());
+
+        Map<String, Object> dataset = new HashMap<>();
+        dataset.put("data", dataValues);
+        dataset.put("backgroundColor", Arrays.asList("#5d6dc3", "#f9bc0b"));
+        dataset.put("hoverBackgroundColor", Arrays.asList("#5d6dc3", "#f9bc0b"));
+        dataset.put("hoverBorderColor", "#fff");
+
+        data.put("datasets", List.of(dataset));
+        return data;
+    }
+
+    @GetMapping("/pie2")
+    public Map<String, Object> getPieChartData2() {
         Map<String, Object> data = new HashMap<>();
         data.put("labels", Arrays.asList("Đang xử lý", "Đã xử lý", "Chờ xử lý"));
         List<Integer> dataValues = Arrays.asList(reportService.countProcessingReports(), reportService.countProcessedReports(), reportService.countPendingReports());
