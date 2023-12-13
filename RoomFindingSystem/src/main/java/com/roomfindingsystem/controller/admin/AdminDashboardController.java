@@ -85,4 +85,9 @@ public class  AdminDashboardController {
         }
         return "redirect:/admin/dashboard";
     }
+
+    @GetMapping("/test")
+    public String test(){
+        return "admin/charts-chartjs";
+    }
 }
