@@ -44,6 +44,9 @@ public class RoomEntity {
     @Column(name = "room_type")
     private Integer roomType;
     @Basic
+    @Column(name = "floor")
+    private Integer floor;
+    @Basic
     @Column(name = "statusid")
     private Integer statusId;
     @Basic
@@ -136,6 +139,13 @@ public class RoomEntity {
 
     public void setRoomType(Integer roomType) {
         this.roomType = roomType;
+    }
+    public Integer getFloor() {
+        return floor;
+    }
+
+    public void setFloor(Integer floor) {
+        this.floor = floor;
     }
 
     public Integer getStatusid() {

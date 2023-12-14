@@ -98,8 +98,15 @@
                                 </div>
                                 <div class="collapse" id="filter-advanced-search" aria-expanded="false">
                                     <div class="wrapper">
-                                        <h2>Bộ lọc
-                                        </h2>
+                                        <h2>Bộ lọc</h2>
+                                        <section>
+                                            <h3>Tình trạng</h3>
+                                            <ul class="checkboxes list-unstyled">
+                                                <li><label><input type="checkbox" name="status" value="1"
+                                                                  th:checked="${#arrays.contains(status, '1')}">Còn phòng</label></li>
+                                            </ul>
+                                            <!--end checkboxes-->
+                                        </section>
                                         <section>
                                             <h3>Giá</h3>
                                             <ul class="checkboxes list-unstyled">
@@ -351,13 +358,13 @@
                         <div class="center" th:if="${!houses.isEmpty()}">
                             <ul class="pagination">
                                 <li class="prev">
-                                    <a th:href="@{/houselist(page=${currentPage-1}, houseName=${houseName}, price=${listPrice}, type=${listType}, service=${listService})}"
+                                    <a th:href="@{/houselist(page=${currentPage-1},status=${status}, houseName=${houseName}, price=${listPrice}, type=${listType}, service=${listService})}"
                                        th:if="${currentPage != 1}"><i class="arrow_left"></i></a>
                                 </li>
 
                                 <li th:if="${currentPage > 2}">
                                     <a th:text="1"
-                                       th:href="@{/houselist(page=1, houseName=${houseName}, price=${listPrice}, type=${listType}, service=${listService})}">1</a>
+                                       th:href="@{/houselist(page=1,status=${status}, houseName=${houseName}, price=${listPrice}, type=${listType}, service=${listService})}">1</a>
                                 </li>
                                 <li th:if="${currentPage > 3}" style="pointer-events: none">
                                     <span style="border: none;background-color: unset">...</span>
@@ -367,7 +374,7 @@
                                     th:unless="${pageIndex < 1 || pageIndex > totalPage}"
                                     th:class="${pageIndex == currentPage ? 'active' : ''}">
                                     <a th:text="${pageIndex}"
-                                       th:href="@{/houselist(page=${pageIndex}, houseName=${houseName}, price=${listPrice}, type=${listType}, service=${listService})}"
+                                       th:href="@{/houselist(page=${pageIndex},status=${status}, houseName=${houseName}, price=${listPrice}, type=${listType}, service=${listService})}"
                                        class="page-number">${pageIndex}</a>
                                 </li>
 
@@ -376,12 +383,12 @@
                                 </li>
                                 <li th:if="${currentPage <= totalPage - 2}">
                                     <a th:text="${totalPage}"
-                                       th:href="@{/houselist(page=${totalPage}, houseName=${houseName}, price=${listPrice}, type=${listType}, service=${listService})}"
+                                       th:href="@{/houselist(page=${totalPage},status=${status}, houseName=${houseName}, price=${listPrice}, type=${listType}, service=${listService})}"
                                        class="page-number">${totalPage}</a>
                                 </li>
 
                                 <li class="next">
-                                    <a th:href="@{/houselist(page=${currentPage+1}, houseName=${houseName}, price=${listPrice}, type=${listType}, service=${listService})}"
+                                    <a th:href="@{/houselist(page=${currentPage+1},status=${status}, houseName=${houseName}, price=${listPrice}, type=${listType}, service=${listService})}"
                                        th:if="${currentPage != totalPage}"><i class="arrow_right"></i></a>
                                 </li>
                             </ul>
