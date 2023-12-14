@@ -27,12 +27,12 @@ public class RoomController {
     private UserService userService;
 
     @GetMapping("/house/{houseName}/room/{id}")
-    public String getRoom(Model model, @PathVariable("id") int id, HttpServletRequest request){
-        RoomEntity room = roomService.getRoomById(id);
-        List<RoomImagesEntity> roomImagesEntities = roomService.roomImageByRoomId(id);
-        List<ServiceDetailEntity> roomServices = roomService.getServiceByRoomId(id);
-        HousesEntity house = houseService.getHouseByRoomId(id);
-        UserEntity user = userService.getUserByRoomId(id);
+    public String getRoom(Model model, @PathVariable("id") String id, HttpServletRequest request){
+        RoomEntity room = roomService.getRoomById(Integer.parseInt(id));
+        List<RoomImagesEntity> roomImagesEntities = roomService.roomImageByRoomId(Integer.parseInt(id));
+        List<ServiceDetailEntity> roomServices = roomService.getServiceByRoomId(Integer.parseInt(id));
+        HousesEntity house = houseService.getHouseByRoomId(Integer.parseInt(id));
+        UserEntity user = userService.getUserByRoomId(Integer.parseInt(id));
         List <HouseImageLink> houseImages = houseService.getImageById(house.getHouseId());
 
 
