@@ -52,6 +52,8 @@ public class  AdminDashboardController {
         model.addAttribute("numberOfUsers", userService.countUserInAdmin());
         model.addAttribute("numberOfNews", newsService.countNews());
         model.addAttribute("numberOfReports", reportService.countReports());
+        model.addAttribute("numberOfEmptyRooms", roomService.countEmptyRoom());
+        model.addAttribute("numberOfRooms", roomService.countEmptyRoom()+roomService.countInhabitedRoom());
         model.addAttribute("roomStatusDto", roomService.getRoomStatusInAdminDashboard());
 
         List<Integer> statusList = new ArrayList<>();
@@ -85,4 +87,5 @@ public class  AdminDashboardController {
         }
         return "redirect:/admin/dashboard";
     }
+
 }

@@ -153,4 +153,9 @@ public interface RoomRepository extends JpaRepository<RoomEntity, Integer> {
 
     @Query("select count(*) from RoomEntity r where r.houseId = ?1")
     int countRoomEntityByHouseId(int id);
+    @Query("select count(*) from RoomEntity r where r.statusId = 1")
+    int countEmptyRoom();
+
+    @Query("select count(*) from RoomEntity r where r.statusId = 0")
+    int countInhabitedRoom();
 }
