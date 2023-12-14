@@ -52,6 +52,11 @@
                                 <!-- item-->
 
                                 <!-- item-->
+                                <a th:if="${session.user.roleId=='STAFF'}" th:href="@{/admin/dashboard}" class="dropdown-item notify-item">
+
+                                    <span>Admin</span>
+                                </a>
+                                </br>
                                 <a th:href="@{/profile}" class="dropdown-item notify-item">
 
                                     <span>Thông tin cá nhân</span>

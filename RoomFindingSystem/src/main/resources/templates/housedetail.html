@@ -393,8 +393,9 @@
 
                             </div>
                             <div class="right">
+                                <a th:if="${session.user.roleId=='STAFF'}" href="#availability" class="btn btn-primary btn-rounded scroll" style="border-radius: 5px;float: left;margin-left: 0">Chỉnh sủa phòng</a>
                                 <a href="#map" class="icon scroll"><i class="fa fa-map-marker"></i>Tìm Trên Bản Đồ</a>
-                                <a href="#availability" class="btn btn-primary btn-rounded scroll" style="border-radius: 5px">Danh sách Phòng</a>
+                                <a href="#availability" class="btn btn-primary btn-rounded scroll" style="border-radius: 5px">Danh sách phòng</a>
                             </div>
                         </div>
 
