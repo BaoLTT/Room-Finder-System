@@ -214,7 +214,7 @@
 
                                 <!--end title-->
                                 <div class="error-message">
-                                    <h2>404</h2>
+                                    <h2>Xin lỗi</h2>
                                     <div class="message">
                                         <h3>Không tìm thấy trọ</h3>
                                     </div>
@@ -239,7 +239,7 @@
                         </div>
 
                         <div class="item list" data-map-latitude="48.87" data-map-longitude="2.29" data-id="1"
-                             th:each="houses: ${houses}" th:if="${houses.getCount_room()>0}">
+                             th:each="houses: ${houses}">
                             <div class="image-wrapper">
                                 <div th:if="${session.user != null}">
                                     <a  th:href="@{/add-favourite-list?id=}+${houses.houseID}" class="mark-circle" onclick="showSuccessToastAdd()"
@@ -276,7 +276,9 @@
                                     <span>
 <!--                                        <i class="fa fa-bed"></i>-->
                                         <iconify-icon  icon="fontisto:room" th:style="${houses.getCount_room() > 0} ? 'margin-bottom: -3px;font-size:16px;margin-left:4px' : ''"></iconify-icon>
-                                        <h th:text="${houses.getCount_room()}"></h>
+                                        <h th:if="${houses.getCount_room()>0}" th:text="${houses.getCount_room()}"></h>
+                                        <h th:if="${houses.getCount_room()==0}">Hết phòng</h>
+
                                     </span>
                                 </div>
                                 <!--end meta-->
@@ -290,6 +292,7 @@
                                     <figure class="label label-info" th:text="${#temporals.format(houses.last_modified_date, 'dd/MM/yyyy')}"
                                             style="position: absolute;right: 0;margin-top: 7px;margin-right: 30px">Hotel
                                     </figure>
+                                    <div style="margin-top: 10px" th:if="${houses.service == null}">Chưa có dịch vụ</div>
                                     <div style="margin-top: 10px" th:if="${houses.service != null}">
                                     <figure class="location"  th:each="service,iterstart : ${houses.getService()}" style="display: inline-block;font-size: 14px">
                                         <i th:if="${service.getServiceName() eq 'Tự do'}" class="fa-solid fa-clock" style="margin-left: 5px"></i>
