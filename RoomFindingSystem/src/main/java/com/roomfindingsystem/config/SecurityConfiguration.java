@@ -107,7 +107,7 @@ public class SecurityConfiguration {
                     .passwordParameter("password")
                     .successHandler((request, response, authentication) -> {
                         for (GrantedAuthority auth : authentication.getAuthorities()) {
-                            if ("ROLE_ADMIN".equals(auth.getAuthority()) || "ROLE_SUPER_ADMIN".equals(auth.getAuthority())) {
+                            if ("ROLE_ADMIN".equals(auth.getAuthority()) || "ROLE_STAFF".equals(auth.getAuthority())) {
                                 response.sendRedirect("/admin/dashboard");
                                 return;
                             }
@@ -116,10 +116,10 @@ public class SecurityConfiguration {
                         response.sendRedirect("/");
                     }))
                 .authorizeHttpRequests(at -> at
-                        .requestMatchers("/admin/**", "/test").hasAnyRole("ADMIN", "SUPER_ADMIN")
+                        .requestMatchers("/admin/**", "/test").hasAnyRole("ADMIN", "STAFF")
                         .requestMatchers("/landlord/**").hasAnyRole("LANDLORD")
-                        .requestMatchers("/profile/**").hasAnyRole("USER","LANDLORD")
-                        .requestMatchers("/favourite-list/**").hasAnyRole("USER","LANDLORD")
+                        .requestMatchers("/profile/**").hasAnyRole("USER","LANDLORD","STAFF")
+                        .requestMatchers("/favourite-list/**").hasAnyRole("USER","LANDLORD","STAFF")
                         .anyRequest().permitAll())
                 .exceptionHandling(e -> e
                         .accessDeniedPage("/403")); // Chuyển hướng đến trang 403.html khi không có quyền

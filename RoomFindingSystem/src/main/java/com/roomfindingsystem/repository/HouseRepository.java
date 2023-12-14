@@ -100,19 +100,19 @@ public interface HouseRepository extends JpaRepository<HousesEntity, Integer> {
             " where h.houseId= ?1 ")
     List<HouseDto> findAllDetail(int houseId);
 
-    @Query("SELECT new com.roomfindingsystem.dto.HouseImageLink(i.imageLink) FROM HouseImagesEntity i join HousesEntity h  on i.houseId = h.houseId where h.houseId=?1")
+    @Query("SELECT new com.roomfindingsystem.dto.HouseImageLink(i.imageLink) FROM HouseImagesEntity i join HousesEntity h  on i.houseId = h.houseId where h.houseId= ?1 ")
     List<HouseImageLink> getByHouseImageid(int houseId);
 
-    @Query("select new com.roomfindingsystem.dto.ServiceDto(shd.serviceId,shd.serviceName,shd.description) from ServiceHouseEntity sh join ServiceDetailEntity shd on sh.serviceId=shd.serviceId where sh.houseId=?1")
+    @Query("select new com.roomfindingsystem.dto.ServiceDto(shd.serviceId,shd.serviceName,shd.description) from ServiceHouseEntity sh join ServiceDetailEntity shd on sh.serviceId=shd.serviceId where sh.houseId= ?1 ")
     List<ServiceDto> getServiceById(int houseId);
 
     @Query("SELECT h from HousesEntity h join RoomEntity r on r.houseId = h.houseId where r.roomId= ?1 ")
     HousesEntity findHouseByRoomId(int roomid);
 
-    @Query("SELECT h from HousesEntity h where h.userId=:userId")
+    @Query("SELECT h from HousesEntity h where h.userId= ?1 ")
     List<HousesEntity> findHouseByMemberId(int userId);
 
-    @Query(value = "SELECT houses.houseid FROM houses WHERE house_name = :name", nativeQuery = true)
+    @Query(value = "SELECT houses.houseid FROM houses WHERE house_name = ?1 ", nativeQuery = true)
     Integer findHousesEntityByHouseName(@Param("name") String name);
 
     //homepage
@@ -138,7 +138,7 @@ public interface HouseRepository extends JpaRepository<HousesEntity, Integer> {
             "join room_finding_system.address ad on h.addressid = ad.addressid \n" +
             "join room_finding_system.province pr on pr.provinceid = ad.provinceid\n" +
             "join room_finding_system.district d on  d.districtid = ad.districtid \n" +
-            "join room_finding_system.ward w on ad.wardid = w.wardid where u.userid=?1  order by f.created_date desc;", nativeQuery = true)
+            "join room_finding_system.ward w on ad.wardid = w.wardid where u.userid= ?1  order by f.created_date desc;", nativeQuery = true)
     List<Tuple> viewHouseInHomeInFavourite(int id);
 
     //admin
@@ -147,7 +147,7 @@ public interface HouseRepository extends JpaRepository<HousesEntity, Integer> {
 
     @Transactional
     @Modifying
-    @Query(value = "UPDATE room_finding_system.houses SET star = ?1 WHERE houseid = ?2", nativeQuery = true)
+    @Query(value = "UPDATE room_finding_system.houses SET star = ?1 WHERE houseid = ?2 ", nativeQuery = true)
     void updateStarHouse(double star, Integer houseId);
 
 
