@@ -190,8 +190,11 @@
                                         <button type="submit" class="btn btn-gradient waves-effect waves-light" style="border-radius: 5px">
                                             Lưu thay đổi
                                         </button>
-                                        <button type="reset" class="btn btn-light waves-effect ml-1" style="border-radius: 5px">
-                                            <a th:href="@{/admin/room/listRoom/} + ${houseid}" >Danh sách phòng</a>
+                                        <button type="reset" class="btn btn-danger waves-effect ml-1" style="border-radius: 5px">
+                                            <a th:href="@{/admin/room/listRoom/} + ${houseid}" style="color:white;" >Danh sách phòng</a>
+                                        </button>
+                                        <button type="button" class="btn btn-light waves-effect ml-1" style="border-radius: 5px;float: right">
+                                            <a th:href="@{/house/}+${room.roomName}+'/room/' +${room.roomId}" style="" >Chi tiết phòng hiển thị</a>
                                         </button>
                                     </div>
                                 </div>
