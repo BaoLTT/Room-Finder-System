@@ -717,11 +717,13 @@
                                                 <a th:if="${room.status == 1}" class="room-button" style="background-color: #488f3e;"
                                                    th:href="@{'/house/' + ${room.houseName} + '/room/' + ${room.roomId}}"
                                                    th:text="${room.roomName}"
-                                                   data-price="${#numbers.formatDecimal(room.price, 0, 'COMMA', 0, 'POINT') + 'VNĐ'}"></a>
+                                                   th:data-price="${room.price+'VNĐ'}">
+                                                   </a>
                                                 <a th:if="${room.status == 0}" class="room-button" style="background-color: #E26A6A;"
                                                    th:href="@{'/house/' + ${room.houseName} + '/room/' + ${room.roomId}}"
                                                    th:text="${room.roomName}"
-                                                   data-price="${#numbers.formatDecimal(room.price, 0, 'COMMA', 0, 'POINT') + 'VNĐ'}"></a>
+                                                   th:data-price="${room.price+'VNĐ'}">
+                                                   </a>
                                             </li>
                                         </ul>
                                     </th:block>
