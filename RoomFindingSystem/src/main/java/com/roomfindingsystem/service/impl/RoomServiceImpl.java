@@ -20,8 +20,10 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -350,71 +352,74 @@ public class RoomServiceImpl implements RoomService {
         List<String> roomList = null;
         List<String> idList = null;
         List<String> statusList = null;
-        List<String> serviceList;
+        List<String> priceList = null;
         Set<String> uniquePairs = new HashSet<>();
 
         for (Tuple tuple : tuples) {
 //            int houseId = tuple.get("HouseID", Integer.class);
-            Integer typeId = tuple.get("TypeID", Integer.class);
-            String pair = houseId + "-" + typeId;
+            Integer typeId = tuple.get("room_type", Integer.class);
+            Integer floor = tuple.get("floor", Integer.class);
 
             // Kiểm tra xem cặp (HouseID, TypeID) đã xuất hiện chưa
-            if (!uniquePairs.contains(pair)) {
+//            if (!uniquePairs.contains(pair)) {
                 RoomHouseDetailDto roomHouseDto = new RoomHouseDetailDto();
                 roomHouseDto.setRoomId(tuple.get("RoomID", Integer.class));
+                roomHouseDto.setRoomName(tuple.get("room_name", String.class));
                 roomHouseDto.setTypeId(typeId);
                 roomHouseDto.setTypeName(tuple.get("type_name", String.class));
                 roomHouseDto.setHouseId(houseId);
                 roomHouseDto.setHouseName(tuple.get("house_name", String.class));
-                roomHouseDto.setPrice(tuple.get("price", Integer.class));
+                roomHouseDto.setFloor(floor);
+                Integer intPrice = tuple.get("price",Integer.class);
+                // Định dạng số nguyên với dấu phẩy sau mỗi ba chữ số
+                DecimalFormat decimalFormat = new DecimalFormat("#,###");
 
-                String roomName = tuple.get("room_list", String.class);
-                if(roomName!=null) roomList = Arrays.asList(roomName.split(","));
+                // Áp dụng định dạng cho số
+                String formattedPrice = decimalFormat.format(intPrice);
+                roomHouseDto.setPrice(formattedPrice);
+                roomHouseDto.setStatus(tuple.get("statusid",Integer.class));
+
+//                String roomName = tuple.get("room_list", String.class);
+//                if(roomName!=null) roomList = Arrays.asList(roomName.split(","));
+//
+//
+//                String idName = tuple.get("id_list", String.class);
+//                if(idName!=null) idList = Arrays.asList(idName.split(","));
+//
+//                String statusId = tuple.get("status_list", String.class);
+//                if(statusId!=null) statusList = Arrays.asList(statusId.split(","));
+//
+//                String price = tuple.get("price_list", String.class);
+//                if(statusId!=null) priceList = Arrays.asList(statusId.split(","));
+//
+//                List<String> combinedList = new ArrayList<>();
 //                if (roomName == null) {
 //                    roomHouseDto.setRoomList(null);
 //                } else {
-//                    roomList = Arrays.asList(roomName.split(","));
-//                    roomHouseDto.setRoomList(roomList);
+//                    for (int i = 0; i < roomList.size(); i++) {
+//                        String combinedValue = roomList.get(i) + "-" + idList.get(i)+ "-" + statusList.get(i)+ "-" + priceList.get(i);
+//                        combinedList.add(combinedValue);
+//                    }
+//                    roomHouseDto.setRoomList(combinedList);
 //                }
 
-                String idName = tuple.get("id_list", String.class);
-                if(idName!=null) idList = Arrays.asList(idName.split(","));
 
-                String statusId = tuple.get("status_list", String.class);
-                if(statusId!=null) statusList = Arrays.asList(statusId.split(","));
-
-                List<String> combinedList = new ArrayList<>();
-                if (roomName == null) {
-                    roomHouseDto.setRoomList(null);
-                } else {
-                    for (int i = 0; i < roomList.size(); i++) {
-                        String combinedValue = roomList.get(i) + "-" + idList.get(i)+ "-" + statusList.get(i);
-                        combinedList.add(combinedValue);
-                    }
-                    roomHouseDto.setRoomList(combinedList);
-                }
-
-
-
-                String serviceName = tuple.get("service_list", String.class);
-                if (serviceName == null) {
-                    roomHouseDto.setServiceList(null);
-                } else {
-                    serviceList = Arrays.asList(serviceName.split(","));
-                    roomHouseDto.setServiceList(serviceList);
-                }
 
 
 
 
                 roomDtos.add(roomHouseDto);
 
-                // Đánh dấu cặp (HouseID, TypeID) đã xuất hiện
-                uniquePairs.add(pair);
             }
-        }
 
-        return roomDtos;
+        // Sắp xếp danh sách phòng theo tầng và thể loại phòng
+        Comparator<RoomHouseDetailDto> comparator = Comparator
+                .comparing(RoomHouseDetailDto::getFloor)
+                .thenComparing(RoomHouseDetailDto::getTypeId);
+
+        return roomDtos.stream()
+                .sorted(comparator)
+                .collect(Collectors.toList());
     }
 
     @Override
