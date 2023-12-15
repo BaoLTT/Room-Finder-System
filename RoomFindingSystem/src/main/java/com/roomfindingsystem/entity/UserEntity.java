@@ -50,15 +50,12 @@ public class UserEntity {
 
     private String password;
 
-    private String accessToken;
     @Basic
     @Column(name = "GmailID", nullable = true, length = 255)
     private String gmailId;
     @Basic
     @Column(name = "RoleID")
-
-
-     private String roleId;
+    private String roleId;
 
     @Basic
     @Column(name = "Created_Date", nullable = true)
@@ -85,12 +82,12 @@ public class UserEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UserEntity that = (UserEntity) o;
-        return userId == that.userId && addressId == that.addressId && Objects.equals(firstName, that.firstName) && Objects.equals(dob, that.dob) && Objects.equals(gender, that.gender) && Objects.equals(phone, that.phone) && Objects.equals(email, that.email) && Objects.equals(imageLink, that.imageLink) && Objects.equals(password, that.password) && Objects.equals(accessToken, that.accessToken) && Objects.equals(gmailId, that.gmailId) && Objects.equals(roleId, that.roleId) && Objects.equals(createdDate, that.createdDate) && Objects.equals(lastModifiedDate, that.lastModifiedDate) && Objects.equals(userStatusId, that.userStatusId) && Objects.equals(lastName, that.lastName);
+        return userId == that.userId && addressId == that.addressId && Objects.equals(firstName, that.firstName) && Objects.equals(dob, that.dob) && Objects.equals(gender, that.gender) && Objects.equals(phone, that.phone) && Objects.equals(email, that.email) && Objects.equals(imageLink, that.imageLink) && Objects.equals(password, that.password) && Objects.equals(gmailId, that.gmailId) && Objects.equals(roleId, that.roleId) && Objects.equals(createdDate, that.createdDate) && Objects.equals(lastModifiedDate, that.lastModifiedDate) && Objects.equals(userStatusId, that.userStatusId) && Objects.equals(lastName, that.lastName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId, firstName, dob, gender, phone, email, imageLink, password, accessToken, gmailId, roleId, createdDate, lastModifiedDate, userStatusId,  lastName, addressId);
+        return Objects.hash(userId, firstName, dob, gender, phone, email, imageLink, password, gmailId, roleId, createdDate, lastModifiedDate, userStatusId,  lastName, addressId);
     }
     
 }
