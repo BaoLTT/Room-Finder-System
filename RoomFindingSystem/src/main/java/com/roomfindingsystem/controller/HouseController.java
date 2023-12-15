@@ -25,8 +25,8 @@ import java.math.RoundingMode;
 import java.sql.Date;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static net.minidev.asm.ConvertDate.convertToDate;
 
@@ -154,14 +154,38 @@ public class HouseController {
 
             //baoltt code
             List<RoomHouseDetailDto> roomHouseDetailDtos = roomService.viewRoomInHouse(houseId);
-            model.addAttribute("roomList", roomHouseDetailDtos);
+            Map<Integer, Map<String, List<RoomHouseDetailDto>>> floorMap = roomHouseDetailDtos.stream()
+                    .collect(Collectors.groupingBy(
+                            RoomHouseDetailDto::getFloor, // Nhóm theo floor
+                            Collectors.groupingBy(
+                                    RoomHouseDetailDto::getTypeName,
+                                    // Nhóm theo type
+                                    Collectors.collectingAndThen(
+                                            Collectors.toList(),
+                                            list -> list.stream()
+                                                    .sorted(Comparator.comparing(RoomHouseDetailDto::getRoomName))
+                                                    .collect(Collectors.toList())
+                                    )
+                            )
+                    ));
+            Map<Integer, Map<String, List<RoomHouseDetailDto>>> sortedFloorMap = floorMap.entrySet().stream()
+                    .collect(Collectors.toMap(
+                            Map.Entry::getKey,
+                            entry -> entry.getValue().entrySet().stream()
+                                    .sorted(Map.Entry.comparingByKey(Comparator.reverseOrder())) // Sắp xếp theo key (typeid) mặc định
+                                    .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
+                                            (oldValue, newValue) -> oldValue, LinkedHashMap::new))
+                    ));
+            model.addAttribute("floorMap", sortedFloorMap);
+
+//            model.addAttribute("roomList", roomHouseDetailDtos);
 
             model.addAttribute("houseLocation", houseService.getHouseById(houseId));
             model.addAttribute("key_map", gcsService.getMapKey());
             model.addAttribute("request",request);
             model.addAttribute("user", user);
 
-            System.out.println(roomHouseDetailDtos.toString());
+
 
 
 

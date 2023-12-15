@@ -427,7 +427,7 @@
                             </div>
                             <div class="right">
 
-                                <a th:if="${session.user.roleId=='STAFF'}" th:href="@{/admin/house-manager/detail/}+${HousesEntity.houseId}" class="btn btn-primary" style="border-radius: 5px;float: left;margin-left: 0">Chỉnh sủa trọ</a>
+                               <a th:if="${session.user!=null}"><a th:if="${session.user.roleId=='STAFF'}" th:href="@{/admin/house-manager/detail/}+${HousesEntity.houseId}" class="btn btn-primary" style="border-radius: 5px;float: left;margin-left: 0">Chỉnh sủa trọ</a></a>
 
                                 <a href="#map" class="icon scroll"><i class="fa fa-map-marker"></i>Tìm Trên Bản Đồ</a>
                                 <a href="#availability" class="btn btn-primary btn-rounded scroll" style="border-radius: 5px">Danh sách phòng</a>
@@ -707,24 +707,23 @@
 
                             <div class="form-reservations">
                                 <h2>Danh sách phòng</h2>
-                                <div th:each="room: ${roomList}">
-                                    <h4 th:text="${room.typeName}"></h4>
-                                    <h6  th:with="formattedPrice=${#numbers.formatDecimal(room.price, 0, 'COMMA', 0, 'POINT')}" th:text="${formattedPrice+'VNĐ'}"></h6>
-                                    <ul class="room-list"  >
-                                        <li class="room-item" th:each="name : ${room.roomList}">
-                                            <th:block th:with="parts=${#strings.arraySplit(name, '-')}">
-                                                <a th:if="${parts[2] == '1'}" class="room-button" style="background-color: #488f3e;"
-                                                   th:href="@{/house/{houseName}/room/{idName}(houseName=${parts[0]}, idName=${parts[1]})}"
-                                                   th:text="${parts[0]}" data-price="a"></a>
-                                                <a th:if="${parts[2] == '0'}" class="room-button" style="background-color: #E26A6A;"
-                                                   th:href="@{/house/{houseName}/room/{idName}(houseName=${parts[0]}, idName=${parts[1]})}"
-                                                   th:text="${parts[0]}" data-price="a"></a>
-                                            </th:block>
-                                        </li>
-
-                                        <!-- Thêm các phòng khác tương tự -->
-                                    </ul>
-
+                                <div th:each="floorEntry : ${floorMap}">
+                                    <h4 th:text="'Tầng ' + ${floorEntry.key}"></h4>
+                                    <th:block th:each="typeEntry : ${floorEntry.value}">
+                                        <h6 th:text="${typeEntry.key}"></h6>
+                                        <ul class="room-list">
+                                            <li class="room-item" th:each="room : ${typeEntry.value}">
+                                                <a th:if="${room.status == 1}" class="room-button" style="background-color: #488f3e;"
+                                                   th:href="@{'/house/' + ${room.houseName} + '/room/' + ${room.roomId}}"
+                                                   th:text="${room.roomName}"
+                                                   data-price="${#numbers.formatDecimal(room.price, 0, 'COMMA', 0, 'POINT') + 'VNĐ'}"></a>
+                                                <a th:if="${room.status == 0}" class="room-button" style="background-color: #E26A6A;"
+                                                   th:href="@{'/house/' + ${room.houseName} + '/room/' + ${room.roomId}}"
+                                                   th:text="${room.roomName}"
+                                                   data-price="${#numbers.formatDecimal(room.price, 0, 'COMMA', 0, 'POINT') + 'VNĐ'}"></a>
+                                            </li>
+                                        </ul>
+                                    </th:block>
                                 </div>
 
                                 <div style="display: flex; align-items: center;">
