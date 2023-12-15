@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -369,7 +370,13 @@ public class RoomServiceImpl implements RoomService {
                 roomHouseDto.setHouseId(houseId);
                 roomHouseDto.setHouseName(tuple.get("house_name", String.class));
                 roomHouseDto.setFloor(floor);
-                roomHouseDto.setPrice(tuple.get("price",Integer.class));
+                Integer intPrice = tuple.get("price",Integer.class);
+                // Định dạng số nguyên với dấu phẩy sau mỗi ba chữ số
+                DecimalFormat decimalFormat = new DecimalFormat("#,###");
+
+                // Áp dụng định dạng cho số
+                String formattedPrice = decimalFormat.format(intPrice);
+                roomHouseDto.setPrice(formattedPrice);
                 roomHouseDto.setStatus(tuple.get("statusid",Integer.class));
 
 //                String roomName = tuple.get("room_list", String.class);

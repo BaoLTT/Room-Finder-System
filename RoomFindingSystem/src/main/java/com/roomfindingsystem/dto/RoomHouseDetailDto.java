@@ -26,7 +26,7 @@ public class RoomHouseDetailDto {
 
     String houseName;
 
-    Integer price;
+    String price;
 //
 //    List<String> serviceList;
 //
