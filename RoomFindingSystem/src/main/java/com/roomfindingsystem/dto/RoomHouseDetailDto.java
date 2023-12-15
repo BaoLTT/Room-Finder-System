@@ -17,7 +17,8 @@ public class RoomHouseDetailDto {
 
     String typeName;
 
-    List<String> roomList;
+//    List<String> roomList;
+    String roomName;
 
 //    List<String> idList;
 
@@ -26,10 +27,12 @@ public class RoomHouseDetailDto {
     String houseName;
 
     Integer price;
-
-    List<String> serviceList;
-
-//    Integer status;
+//
+//    List<String> serviceList;
+//
+    Integer status;
+//
+    Integer floor;
 
 
 
