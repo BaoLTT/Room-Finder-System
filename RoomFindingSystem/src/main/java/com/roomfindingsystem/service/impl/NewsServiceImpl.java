@@ -59,7 +59,6 @@ public class NewsServiceImpl implements NewsService {
         news1.setCreatedDate(news.getCreatedDate());
         news1.setLastModifiedDate(LocalDate.now());
         news1.setCreatedBy(news.getCreatedBy());
-        news1.setRoomid(news.getRoomid());
         news1.setImgLink(newsEntity.getImgLink());
         return newsRepository.save(news1);
     }

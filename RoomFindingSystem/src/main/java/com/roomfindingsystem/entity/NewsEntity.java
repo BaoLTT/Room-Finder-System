@@ -26,9 +26,6 @@ public class NewsEntity {
     @Column(name = "last_modified_date")
     private LocalDate lastModifiedDate;
     @Basic
-    @Column(name = "roomid")
-    private Integer roomid;
-    @Basic
     @Column(name = "title")
     private String title;
     @Basic
@@ -78,13 +75,6 @@ public class NewsEntity {
         this.lastModifiedDate = lastModifiedDate;
     }
 
-    public Integer getRoomid() {
-        return roomid;
-    }
-
-    public void setRoomid(Integer roomid) {
-        this.roomid = roomid;
-    }
 
     public String getTitle() {
         return title;
@@ -115,11 +105,11 @@ public class NewsEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         NewsEntity that = (NewsEntity) o;
-        return newsid == that.newsid && Objects.equals(createdBy, that.createdBy) && Objects.equals(createdDate, that.createdDate) && Objects.equals(imgLink, that.imgLink) && Objects.equals(lastModifiedDate, that.lastModifiedDate) && Objects.equals(roomid, that.roomid) && Objects.equals(title, that.title) && Objects.equals(content, that.content) && Objects.equals(status, that.status);
+        return newsid == that.newsid && Objects.equals(createdBy, that.createdBy) && Objects.equals(createdDate, that.createdDate) && Objects.equals(imgLink, that.imgLink) && Objects.equals(lastModifiedDate, that.lastModifiedDate) && Objects.equals(title, that.title) && Objects.equals(content, that.content) && Objects.equals(status, that.status);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(newsid, createdBy, createdDate, imgLink, lastModifiedDate, roomid, title, content, status);
+        return Objects.hash(newsid, createdBy, createdDate, imgLink, lastModifiedDate, title, content, status);
     }
 }
