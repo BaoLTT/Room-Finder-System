@@ -41,20 +41,23 @@ public interface HouseRepository extends JpaRepository<HousesEntity, Integer> {
             "        (r.price BETWEEN ?3 AND ?4 )" +
             "    )" +
             "    AND r.price = (SELECT MIN(price) FROM room r2 WHERE r2.houseid = h.houseid)" +
+            "     AND (p.provinceid = COALESCE(NULLIF( ?5 , 0), p.provinceid))  " +
+            "     AND (d.districtid = COALESCE(NULLIF( ?6 , 0), d.districtid))  " +
+            "      AND (w.wardid = COALESCE(NULLIF( ?7 , 0), w.wardid)) " +
             "    AND h.status= 1 " +
-            "    AND r.statusid= 1 " +
-            " AND (h.house_name LIKE '%' ?5 '%' " +
-            "        OR p.name LIKE '%' ?5 '%' " +
-            "        OR d.name LIKE '%' ?5 '%' " +
-            "        OR w.name LIKE '%' ?5 '%' " +
-            "        OR a.address_details LIKE '%' ?5 '%' ) " +
-            " AND h.type_houseid IN ?6 AND (" +
+            "    AND (r.statusid = ?8 or r.statusid= ?9 ) " +
+            " AND (h.house_name LIKE '%' ?10 '%' " +
+            "        OR p.name LIKE '%' ?10 '%' " +
+            "        OR d.name LIKE '%' ?10 '%' " +
+            "        OR w.name LIKE '%' ?10 '%' " +
+            "        OR a.address_details LIKE '%' ?10 '%' ) " +
+            " AND h.type_houseid IN ?11 AND (" +
             "        SELECT COUNT(DISTINCT sh.serviceid) FROM service_house sh " +
-            "        WHERE sh.houseid = h.houseid AND sh.serviceid IN ?7 LIMIT 2 ) = ?8 " +
+            "        WHERE sh.houseid = h.houseid AND sh.serviceid IN ?12 LIMIT 2 ) = ?13 " +
             "GROUP BY h.houseid, h.house_name, h.star, t.type_name, a.address_details, ward_name, district_name, province_name, h.last_modified_date " +
             "ORDER BY h.last_modified_date DESC" +
-            " LIMIT ?10 OFFSET ?9 ", nativeQuery = true)
-    List<Tuple> findHouse(int min1, int max1, int min2, int max2, String houseName, List<Integer> type, List<Integer> service,int countService, int pageIndex, int pageSize);
+            " LIMIT ?15 OFFSET ?14 ", nativeQuery = true)
+    List<Tuple> findHouse(int min1, int max1, int min2, int max2,int province,int district,int ward,int status1,int status2, String houseName, List<Integer> type, List<Integer> service,int countService, int pageIndex, int pageSize);
 
     @Query(value = "SELECT COUNT(*) FROM (SELECT h.houseid, h.house_name, t.type_name, a.address_details, w.name AS ward_name, d.name AS district_name, p.name AS province_name,h.star, (SELECT MIN(r.price) FROM room r WHERE r.houseid = h.houseid) AS minPrice," +
             " (SELECT GROUP_CONCAT(i.image_link) FROM house_images i WHERE i.houseid = h.houseid) AS Image_Link," +
@@ -75,20 +78,23 @@ public interface HouseRepository extends JpaRepository<HousesEntity, Integer> {
             "        (r.price BETWEEN ?3 AND ?4 )" +
             "    )" +
             "    AND r.price = (SELECT MIN(price) FROM room r2 WHERE r2.houseid = h.houseid)" +
+            "     AND (p.provinceid = COALESCE(NULLIF( ?5 , 0), p.provinceid))  " +
+            "     AND (d.districtid = COALESCE(NULLIF( ?6 , 0), d.districtid))  " +
+            "      AND (w.wardid = COALESCE(NULLIF( ?7 , 0), w.wardid)) " +
             "    AND h.status= 1 " +
-            "    AND r.statusid= 1 " +
-            " AND (h.house_name LIKE '%' ?5 '%' " +
-            "        OR p.name LIKE '%' ?5 '%' " +
-            "        OR d.name LIKE '%' ?5 '%' " +
-            "        OR w.name LIKE '%' ?5 '%' " +
-            "        OR a.address_details LIKE '%' ?5 '%' ) " +
-            " AND h.type_houseid IN ?6 AND (" +
+            "    AND (r.statusid = ?8 or r.statusid= ?9 ) " +
+            " AND (h.house_name LIKE '%' ?10 '%' " +
+            "        OR p.name LIKE '%' ?10 '%' " +
+            "        OR d.name LIKE '%' ?10 '%' " +
+            "        OR w.name LIKE '%' ?10 '%' " +
+            "        OR a.address_details LIKE '%' ?10 '%' ) " +
+            " AND h.type_houseid IN ?11 AND (" +
             "        SELECT COUNT(DISTINCT sh.serviceid) FROM service_house sh " +
-            "        WHERE sh.houseid = h.houseid AND sh.serviceid IN ?7 LIMIT 2 ) = ?8 " +
+            "        WHERE sh.houseid = h.houseid AND sh.serviceid IN ?12 LIMIT 2 ) = ?13 " +
             "GROUP BY h.houseid, h.house_name, h.star, t.type_name, a.address_details, ward_name, district_name, province_name, h.last_modified_date " +
             "ORDER BY h.last_modified_date DESC " +
             ") as subquery", nativeQuery = true)
-    int countHouse(int min1, int max1, int min2, int max2, String houseName, List<Integer> type, List<Integer> service,int countService);
+    int countHouse(int min1, int max1, int min2, int max2,int province,int district,int ward,int status1,int status2, String houseName, List<Integer> type, List<Integer> service,int countService);
 
     @Query("SELECT new com.roomfindingsystem.dto.HouseDto( h.houseId, h.houseName,h.description,h.createdDate, u.lastName,u.firstName , u.phone,a.addressDetails, t.typeName ,p.name,d.name,w.name, h.star) FROM HousesEntity as h " +
             "left join UserEntity as u on h.userId = u.userId " +
@@ -100,19 +106,19 @@ public interface HouseRepository extends JpaRepository<HousesEntity, Integer> {
             " where h.houseId= ?1 ")
     List<HouseDto> findAllDetail(int houseId);
 
-    @Query("SELECT new com.roomfindingsystem.dto.HouseImageLink(i.imageLink) FROM HouseImagesEntity i join HousesEntity h  on i.houseId = h.houseId where h.houseId=?1")
+    @Query("SELECT new com.roomfindingsystem.dto.HouseImageLink(i.imageLink) FROM HouseImagesEntity i join HousesEntity h  on i.houseId = h.houseId where h.houseId= ?1 ")
     List<HouseImageLink> getByHouseImageid(int houseId);
 
-    @Query("select new com.roomfindingsystem.dto.ServiceDto(shd.serviceId,shd.serviceName,shd.description) from ServiceHouseEntity sh join ServiceDetailEntity shd on sh.serviceId=shd.serviceId where sh.houseId=?1")
+    @Query("select new com.roomfindingsystem.dto.ServiceDto(shd.serviceId,shd.serviceName,shd.description) from ServiceHouseEntity sh join ServiceDetailEntity shd on sh.serviceId=shd.serviceId where sh.houseId= ?1 ")
     List<ServiceDto> getServiceById(int houseId);
 
-    @Query("SELECT h from HousesEntity h join RoomEntity r on r.houseId = h.houseId where r.roomId=:roomid")
+    @Query("SELECT h from HousesEntity h join RoomEntity r on r.houseId = h.houseId where r.roomId= ?1 ")
     HousesEntity findHouseByRoomId(int roomid);
 
-    @Query("SELECT h from HousesEntity h where h.userId=:userId")
+    @Query("SELECT h from HousesEntity h where h.userId= ?1 ")
     List<HousesEntity> findHouseByMemberId(int userId);
 
-    @Query(value = "SELECT houses.houseid FROM houses WHERE house_name = :name", nativeQuery = true)
+    @Query(value = "SELECT houses.houseid FROM houses WHERE house_name = ?1 ", nativeQuery = true)
     Integer findHousesEntityByHouseName(@Param("name") String name);
 
     //homepage
@@ -138,7 +144,7 @@ public interface HouseRepository extends JpaRepository<HousesEntity, Integer> {
             "join room_finding_system.address ad on h.addressid = ad.addressid \n" +
             "join room_finding_system.province pr on pr.provinceid = ad.provinceid\n" +
             "join room_finding_system.district d on  d.districtid = ad.districtid \n" +
-            "join room_finding_system.ward w on ad.wardid = w.wardid where u.userid=?1  order by f.created_date desc;", nativeQuery = true)
+            "join room_finding_system.ward w on ad.wardid = w.wardid where u.userid= ?1  order by f.created_date desc;", nativeQuery = true)
     List<Tuple> viewHouseInHomeInFavourite(int id);
 
     //admin
@@ -147,7 +153,7 @@ public interface HouseRepository extends JpaRepository<HousesEntity, Integer> {
 
     @Transactional
     @Modifying
-    @Query(value = "UPDATE room_finding_system.houses SET star = ?1 WHERE houseid = ?2", nativeQuery = true)
+    @Query(value = "UPDATE room_finding_system.houses SET star = ?1 WHERE houseid = ?2 ", nativeQuery = true)
     void updateStarHouse(double star, Integer houseId);
 
 

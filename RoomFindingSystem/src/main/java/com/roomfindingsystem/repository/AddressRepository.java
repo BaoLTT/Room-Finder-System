@@ -23,10 +23,9 @@ public interface AddressRepository extends CrudRepository<AddressEntity, Integer
             "SET " +
             "address_details = ?1 ," +
             "districtid = ?2 ," +
-            "name = ?3 ," +
-            "provinceid = ?4 ," +
-            "wardid = ?5 " +
-            "WHERE addressid = ?6 ;",nativeQuery = true)
-    void updateAddress(String addressDetails, Integer district, String name, Integer province, Integer Ward, Integer id);
+            "provinceid = ?3 ," +
+            "wardid = ?4 " +
+            "WHERE addressid = ?5 ;",nativeQuery = true)
+    void updateAddress(String addressDetails, Integer districtme, Integer province, Integer Ward, Integer id);
 
 }

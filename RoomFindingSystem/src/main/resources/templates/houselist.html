@@ -91,15 +91,39 @@
                                 <!--end form-group-->
 
                                 <div class="center">
-                                    <a href="#filter-advanced-search" class="link icon collapsed" data-toggle="collapse"
+                                    <a href="#filter-advanced-search" class="link icon " data-toggle="collapse"
                                        aria-expanded="false" aria-controls="filter-advanced-search" id="toggleLink" onclick="changeText()">
-                                        Thêm +</a>
+                                        Ẩn bớt</a>
+
 
                                 </div>
-                                <div class="collapse" id="filter-advanced-search" aria-expanded="false">
+                                <div class="collapse in" id="filter-advanced-search" aria-expanded="false">
                                     <div class="wrapper">
-                                        <h2>Bộ lọc
-                                        </h2>
+                                        <h2>Bộ lọc</h2>
+                                        <section>
+                                            <h3>Tình trạng</h3>
+                                            <ul class="checkboxes list-unstyled">
+                                                <li><label><input type="checkbox" name="status" value="1"
+                                                                  th:checked="${#arrays.contains(status, 1)}">Còn phòng</label></li>
+                                            </ul>
+                                            <!--end checkboxes-->
+                                        </section>
+                                        <section>
+                                            <h3>Địa chỉ</h3>
+                                            <ul class="checkboxes list-unstyled">
+                                                <select class="form-control"  id="province" name="province" th:attr="field=${province}">
+                                                    <option value="0"  selected >Chọn Tỉnh thành</option>
+                                                </select>
+                                                <select class="form-control"  id="district" name="district" style="margin-top: 10px" th:attr="value=${province}">
+                                                    <option value="0" selected >Chọn Quận/Huyện</option>
+                                                </select>
+                                                <select class="form-control"  id="ward" name="ward"  style="margin-top: 10px" >
+                                                    <option value="0"  selected >Chọn Xã/Phường</option>
+                                                </select>
+                                            </ul>
+                                            <!--end checkboxes-->
+                                        </section>
+
                                         <section>
                                             <h3>Giá</h3>
                                             <ul class="checkboxes list-unstyled">
@@ -214,7 +238,7 @@
 
                                 <!--end title-->
                                 <div class="error-message">
-                                    <h2>404</h2>
+                                    <h2>Xin lỗi</h2>
                                     <div class="message">
                                         <h3>Không tìm thấy trọ</h3>
                                     </div>
@@ -239,7 +263,7 @@
                         </div>
 
                         <div class="item list" data-map-latitude="48.87" data-map-longitude="2.29" data-id="1"
-                             th:each="houses: ${houses}" th:if="${houses.getCount_room()>0}">
+                             th:each="houses: ${houses}">
                             <div class="image-wrapper">
                                 <div th:if="${session.user != null}">
                                     <a  th:href="@{/add-favourite-list?id=}+${houses.houseID}" class="mark-circle" onclick="showSuccessToastAdd()"
@@ -276,7 +300,9 @@
                                     <span>
 <!--                                        <i class="fa fa-bed"></i>-->
                                         <iconify-icon  icon="fontisto:room" th:style="${houses.getCount_room() > 0} ? 'margin-bottom: -3px;font-size:16px;margin-left:4px' : ''"></iconify-icon>
-                                        <h th:text="${houses.getCount_room()}"></h>
+                                        <h th:if="${houses.getCount_room()>0}" th:text="${houses.getCount_room()}"></h>
+                                        <h th:if="${houses.getCount_room()==0}">Hết phòng</h>
+
                                     </span>
                                 </div>
                                 <!--end meta-->
@@ -290,6 +316,7 @@
                                     <figure class="label label-info" th:text="${#temporals.format(houses.last_modified_date, 'dd/MM/yyyy')}"
                                             style="position: absolute;right: 0;margin-top: 7px;margin-right: 30px">Hotel
                                     </figure>
+                                    <div style="margin-top: 10px" th:if="${houses.service == null}">Chưa có dịch vụ</div>
                                     <div style="margin-top: 10px" th:if="${houses.service != null}">
                                     <figure class="location"  th:each="service,iterstart : ${houses.getService()}" style="display: inline-block;font-size: 14px">
                                         <i th:if="${service.getServiceName() eq 'Tự do'}" class="fa-solid fa-clock" style="margin-left: 5px"></i>
@@ -348,13 +375,13 @@
                         <div class="center" th:if="${!houses.isEmpty()}">
                             <ul class="pagination">
                                 <li class="prev">
-                                    <a th:href="@{/houselist(page=${currentPage-1}, houseName=${houseName}, price=${listPrice}, type=${listType}, service=${listService})}"
+                                    <a th:href="@{/houselist(page=${currentPage-1},status=${status},province=${province},district=${district},ward=${ward}, houseName=${houseName}, price=${listPrice}, type=${listType}, service=${listService})}"
                                        th:if="${currentPage != 1}"><i class="arrow_left"></i></a>
                                 </li>
 
                                 <li th:if="${currentPage > 2}">
                                     <a th:text="1"
-                                       th:href="@{/houselist(page=1, houseName=${houseName}, price=${listPrice}, type=${listType}, service=${listService})}">1</a>
+                                       th:href="@{/houselist(page=1,status=${status},province=${province},district=${district},ward=${ward}, houseName=${houseName}, price=${listPrice}, type=${listType}, service=${listService})}">1</a>
                                 </li>
                                 <li th:if="${currentPage > 3}" style="pointer-events: none">
                                     <span style="border: none;background-color: unset">...</span>
@@ -364,7 +391,7 @@
                                     th:unless="${pageIndex < 1 || pageIndex > totalPage}"
                                     th:class="${pageIndex == currentPage ? 'active' : ''}">
                                     <a th:text="${pageIndex}"
-                                       th:href="@{/houselist(page=${pageIndex}, houseName=${houseName}, price=${listPrice}, type=${listType}, service=${listService})}"
+                                       th:href="@{/houselist(page=${pageIndex},status=${status},province=${province},district=${district},ward=${ward}, houseName=${houseName}, price=${listPrice}, type=${listType}, service=${listService})}"
                                        class="page-number">${pageIndex}</a>
                                 </li>
 
@@ -373,12 +400,12 @@
                                 </li>
                                 <li th:if="${currentPage <= totalPage - 2}">
                                     <a th:text="${totalPage}"
-                                       th:href="@{/houselist(page=${totalPage}, houseName=${houseName}, price=${listPrice}, type=${listType}, service=${listService})}"
+                                       th:href="@{/houselist(page=${totalPage},status=${status},province=${province},district=${district},ward=${ward}, houseName=${houseName}, price=${listPrice}, type=${listType}, service=${listService})}"
                                        class="page-number">${totalPage}</a>
                                 </li>
 
                                 <li class="next">
-                                    <a th:href="@{/houselist(page=${currentPage+1}, houseName=${houseName}, price=${listPrice}, type=${listType}, service=${listService})}"
+                                    <a th:href="@{/houselist(page=${currentPage+1},status=${status},province=${province},district=${district},ward=${ward}, houseName=${houseName}, price=${listPrice}, type=${listType}, service=${listService})}"
                                        th:if="${currentPage != totalPage}"><i class="arrow_right"></i></a>
                                 </li>
                             </ul>
@@ -405,7 +432,20 @@
 <script>
 
     function changeText() {
+        var isSmallScreen = window.innerWidth < 768;
         var link = document.getElementById("toggleLink");
+
+        if (window.innerWidth < 768) {
+            var ins = document.getElementById("filter-advanced-search");
+
+            if (ins.classList.contains("in")) {
+                // Nếu có, thay đổi nội dung thành "Ẩn bớt" hoặc bất kỳ văn bản nào bạn muốn
+                ins.classList.remove("in");
+            } else {
+                // Ngược lại, chuyển về văn bản ban đầu "Thêm"
+                ins.classList.add("in"); // Giả sử "in" là tên lớp đúng
+            }
+        }
 
         // Kiểm tra xem lớp collapsed có tồn tại hay không
         if (link.classList.contains("collapsed")) {
@@ -450,6 +490,54 @@
         link2.classList.toggle("link2");
     }
 
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+<script>
+    var citis = document.getElementById("province");
+    var districts = document.getElementById("district");
+    var wards = document.getElementById("ward");
+    var Parameter = {
+        url: "https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json",
+        method: "GET",
+        responseType: "application/json",
+    };
+    var savedProvince = localStorage.getItem("selectedProvince");
+    if (savedProvince) {
+        citis.value = savedProvince;
+    }
+    var promise = axios(Parameter);
+    promise.then(function (result) {
+        renderCity(result.data);
+    });
+
+    function renderCity(data) {
+        for (const x of data) {
+            citis.options[citis.options.length] = new Option(x.Name, x.Id);
+        }
+        citis.onchange = function () {
+            district.length = 1;
+            ward.length = 1;
+            if(this.value != ""){
+                const result = data.filter(n => n.Id === this.value);
+
+                for (const k of result[0].Districts) {
+                    district.options[district.options.length] = new Option(k.Name, k.Id);
+                }
+            }
+        };
+        district.onchange = function () {
+            ward.length = 1;
+            const dataCity = data.filter((n) => n.Id === citis.value);
+            if (this.value != "") {
+                const dataWards = dataCity[0].Districts.filter(n => n.Id === this.value)[0].Wards;
+
+                for (const w of dataWards) {
+                    wards.options[wards.options.length] = new Option(w.Name, w.Id);
+                }
+            }
+        };
+    }
 </script>
 <script type="text/javascript" src="/assets/js/houses.js"></script>
 <script type="text/javascript" src="/assets/js/jquery-2.2.1.min.js"></script>

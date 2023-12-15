@@ -22,7 +22,7 @@ public class AddressServiceImpl implements AddressService {
     @Transactional
     @Override
     public void updateAddress(AddressEntity address, int id) {
-        addressRepository.updateAddress(address.getAddressDetails(), address.getDistrictId(), address.getName(), address.getProvinceId(),address.getWardId(),id);
+        addressRepository.updateAddress(address.getAddressDetails(), address.getDistrictId(), address.getProvinceId(),address.getWardId(),id);
     }
 
     @Override

@@ -16,6 +16,8 @@ public interface ReportService {
 
     int countProcessedReports();
 
+    int countPendingReports();
+
     ReportEntity save(ReportEntity reportEntity);
 
     List<ReportEntity> getReportEntityByUid(int houseid, int userid);

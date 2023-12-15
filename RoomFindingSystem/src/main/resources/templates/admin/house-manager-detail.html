@@ -245,7 +245,7 @@
                                                             style="width: auto;height: 100%;border-radius: 5px">Thêm thể
                                                         loại
                                                     </button>
-                                                    <button  type="button" class="btn btn-danger btn-xs" id="deletehouseType"
+                                                    <button   type="button" class="btn btn-danger btn-xs" id="deletehouseType"
                                                             style="width: auto;height: 100%;border-radius: 5px;margin-left: 5px">Xóa thể loại
                                                     </button>
                                                 </div>
@@ -316,14 +316,17 @@
                                                 <label class="col-md-2 col-md-form-label"></label>
                                                 <div class="col-md-10">
                                                     <button type="submit" id="saveButton"
-                                                            class="btn btn-success waves-light waves-effect width-md"
+                                                            class="btn btn-gradient waves-effect waves-light width-md"
                                                             style="margin-left: -10px">
                                                         <span style="color: white">Lưu</span></button>
                                                     <a type="button"
                                                        class="btn btn-danger waves-light waves-effect width-md"
                                                        th:href="@{/admin/house-manager}"> <span
-                                                            style="color: white">Đóng</span></a>
-
+                                                            style="color: white">Danh sách trọ</span></a>
+                                                    <a type="button"
+                                                       class="btn btn-light waves-effect ml-1 width-md" style="float:right;"
+                                                       th:href="@{/house/}+${house.houseName}+'?id='+${house.houseID}"> <span
+                                                            style="color:#3ec396 ">Chi tiết trọ hiển thị</span></a>
                                                 </div>
                                             </div>
 
@@ -712,7 +715,7 @@
 </script>
 <!-- Right bar overlay-->
 
-<script src="/assets_admin/js/app.min.js"></script>
+
 <!-- Vendor js -->
 <script src="/assets_admin/js/vendor.min.js"></script>
 <!-- Plugins js -->
@@ -727,6 +730,8 @@
 
 <script type="text/javascript" src="/assets/js/maps.js"></script>
 <script type="text/javascript" src="/assets/js/custom.js"></script>
+
+<script src="/assets_admin/js/app.min.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
 <script>

@@ -40,15 +40,15 @@ public class AdminProfileController {
     @PostMapping("/profile/update")
     public String updateUser(@ModelAttribute(name = "user") UserDto userDto, @RequestParam("file") MultipartFile file) throws IOException {
         if(userDto.getAddressID()==0){
-            AddressEntity address = new AddressEntity("a",userDto.getAddressDetails().trim(),userDto.getProvinceId(),userDto.getDistrictId(),userDto.getWardId());
+            AddressEntity address = new AddressEntity(userDto.getAddressDetails().trim(),userDto.getProvinceId(),userDto.getDistrictId(),userDto.getWardId());
             userDto.setAddressID(addressService.insertAddress(address));
         }else{
             if(userDto.getProvinceId()==0){
                 Optional<AddressEntity> newAddress = addressService.findbyId(userDto.getAddressID());
-                AddressEntity address = new AddressEntity("a",userDto.getAddressDetails(),newAddress.get().getProvinceId(),newAddress.get().getDistrictId(),newAddress.get().getWardId());
+                AddressEntity address = new AddressEntity(userDto.getAddressDetails(),newAddress.get().getProvinceId(),newAddress.get().getDistrictId(),newAddress.get().getWardId());
                 addressService.updateAddress(address,userDto.getAddressID());
             }else{
-                AddressEntity address = new AddressEntity("a",userDto.getAddressDetails(),userDto.getProvinceId(),userDto.getDistrictId(),userDto.getWardId());
+                AddressEntity address = new AddressEntity(userDto.getAddressDetails(),userDto.getProvinceId(),userDto.getDistrictId(),userDto.getWardId());
                 addressService.updateAddress(address,userDto.getAddressID());
             }
         }

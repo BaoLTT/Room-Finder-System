@@ -11,10 +11,6 @@
 <!-- Topbar Start -->
     <div class="navbar-custom">
     <ul class="list-unstyled topnav-menu float-right mb-0">
-
-
-
-
         <li class="dropdown notification-list list-unstyled">
             <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown" th:href="@{/profile}" role="button" aria-haspopup="false" aria-expanded="false">
                 <img  class="round-image" th:src="'https://storage.googleapis.com'+${session.user.getImageLink()}" style=" max-width: 25px;max-height: 25px;border-radius: 100px " alt="user-image" >
@@ -49,19 +45,19 @@
     <div class="logo-box">
         <a href="/admin/dashboard" class="logo text-center">
                         <span class="logo-lg">
-                          <img src="/assets/img/slogan4.png" alt="" height="40">
+                          <img src="/assets/img/slogan2.png" alt="" height="40">
                             <!-- <span class="logo-lg-text-light">UBold</span> -->
                         </span>
             <span class="logo-sm">
                             <!-- <span class="logo-sm-text-dark">U</span> -->
-                            <img src="/assets/img/slogan2.png" alt="" height="40">
+                            <img src="/assets/img/logo.jpg" alt="" height="50">
                         </span>
         </a>
     </div>
 
     <ul class="list-unstyled topnav-menu topnav-menu-left m-0">
         <li>
-            <button class="button-menu-mobile waves-effect waves-light">
+            <button class="button-menu-mobile">
                 <i class="fe-menu"></i>
             </button>
         </li>
@@ -79,7 +75,11 @@
 
                 <ul class="metismenu" id="side-menu">
 
-                    <li class="menu-title">Menu</li>
+                    <li>
+                        <a href="/">
+                            <span> Trang chủ </span>
+                        </a>
+                    </li>
 
                     <li>
                         <a th:href="@{/admin/dashboard}">
@@ -98,7 +98,7 @@
                         </a>
                     </li>
 
-                    <li th:if="${session.user.getRoleId()=='SUPER_ADMIN'}">
+                    <li th:if="${session.user.getRoleId()=='ADMIN'}">
                         <a  th:href="@{/admin/user}">
                             <i class="dripicons-user-group"></i>
                             <span> Quản lý người dùng </span>

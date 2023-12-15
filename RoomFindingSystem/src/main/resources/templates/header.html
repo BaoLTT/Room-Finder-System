@@ -32,9 +32,9 @@
               <div id="secondary-nav">
                 <nav>
                   <div class="left opacity-60">
-                    <a href=""><i class="fa fa-phone"></i>+84 366 225 436</a>
+                    <a href=""><i class="fa fa-phone"></i>+84 972 805 307</a>
                     <a href="mailto:offftrick@gmail.com"><i class="fa fa-envelope"></i>
-                      offftrick@gmail.com</a>
+                        binhnhhe153478@fpt.edu.vn</a>
                   </div>
                   <!--end left-->
                   <div class="right">
@@ -52,6 +52,11 @@
                                 <!-- item-->
 
                                 <!-- item-->
+                                <a th:if="${session.user.roleId=='STAFF' || session.user.roleId == 'ADMIN'}" th:href="@{/admin/dashboard}" class="dropdown-item notify-item">
+
+                                    <span>Admin</span>
+                                </a>
+                                </br>
                                 <a th:href="@{/profile}" class="dropdown-item notify-item">
 
                                     <span>Thông tin cá nhân</span>

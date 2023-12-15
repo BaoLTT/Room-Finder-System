@@ -35,22 +35,28 @@ public class HouseListTest {
         int max1 = 4000000;
         int min2 = 4000000;
         int max2 = 6000000;
+        int statusid1 =0;
+        int statusid2 = 1;
+        int province = 0;
+        int district = 0;
+        int ward = 0;
+
         String houseName = "TestHouse";
         List<Integer> type = Arrays.asList(1, 2, 3);
         List<Integer> service = Arrays.asList(4, 5, 6);
         int countService = 3;
 
         // Mocking the behavior of houseRepository.countHouse
-        when(houseRepository.countHouse(min1, max1, min2, max2, houseName, type, service, countService))
+        when(houseRepository.countHouse(min1, max1, min2, max2,province,district,ward,statusid1,statusid2, houseName, type, service, countService))
                 .thenReturn(12);
 
         // Calling the service method
-        int result = houseService.countHouse(min1, max1, min2, max2, houseName, type, service, countService);
+        int result = houseService.countHouse(min1, max1, min2, max2,province,district,ward,statusid1,statusid2, houseName, type, service, countService);
 
 
         // Asserting the result
         assertEquals(11, result);
-        verify(houseRepository).countHouse(min1, max1, min2, max2, houseName, type, service, countService);
+        verify(houseRepository).countHouse(min1, max1, min2, max2,province,district,ward,statusid1,statusid2, houseName, type, service, countService);
     }
     @Test
     public void testCountHouse_NotExistName() {
@@ -59,22 +65,28 @@ public class HouseListTest {
         int max1 = 4000000;
         int min2 = 4000000;
         int max2 = 6000000;
+        int statusid1 =0;
+        int statusid2 = 1;
+
+        int province = 0;
+        int district = 0;
+        int ward = 0;
         String houseName = "Mono";
         List<Integer> type = Arrays.asList(1, 2, 3);
         List<Integer> service = Arrays.asList(4, 5, 6);
         int countService = 3;
 
         // Mocking the behavior of houseRepository.countHouse
-        when(houseRepository.countHouse(min1, max1, min2, max2, houseName, type, service, countService))
+        when(houseRepository.countHouse(min1, max1, min2, max2,province,district,ward,statusid1,statusid2, houseName, type, service, countService))
                 .thenReturn(0);
 
         // Calling the service method
-        int result = houseService.countHouse(min1, max1, min2, max2, houseName, type, service, countService);
+        int result = houseService.countHouse(min1, max1, min2, max2,province,district,ward,statusid1,statusid2, houseName, type, service, countService);
 
 
         // Asserting the result
         assertEquals(0, result);
-        verify(houseRepository).countHouse(min1, max1, min2, max2, houseName, type, service, countService);
+        verify(houseRepository).countHouse(min1, max1, min2, max2,province,district,ward,statusid1,statusid2, houseName, type, service, countService);
     }
     @Test
     public void testCountHouse_FullService() {
@@ -83,23 +95,29 @@ public class HouseListTest {
         int max1 = 4000000;
         int min2 = 4000000;
         int max2 = 6000000;
+        int statusid1 =0;
+        int statusid2 = 1;
+
+        int province = 0;
+        int district = 0;
+        int ward = 0;
         String houseName = "";
         List<Integer> type = Arrays.asList(1, 2, 3);
         List<Integer> service = Arrays.asList(1, 2, 3, 4, 5, 6);
         int countService = 6;
 
         // Mocking the behavior of houseRepository.countHouse
-        when(houseRepository.countHouse(min1, max1, min2, max2, houseName, type, service, countService))
+        when(houseRepository.countHouse(min1, max1, min2, max2,province,district,ward,statusid1,statusid2, houseName, type, service, countService))
                 .thenReturn(0);
 
         // Calling the service method
-        int result = houseService.countHouse(min1, max1, min2, max2, houseName, type, service, countService);
+        int result = houseService.countHouse(min1, max1, min2, max2,province,district,ward,statusid1,statusid2, houseName, type, service, countService);
 
 
         // Asserting the result
         assertEquals(0, result);
 
-        verify(houseRepository).countHouse(min1, max1, min2, max2, houseName, type, service, countService);
+        verify(houseRepository).countHouse(min1, max1, min2, max2,province,district,ward,statusid1,statusid2, houseName, type, service, countService);
     }
     @Test
     public void testCountHouse_NoType() {
@@ -108,23 +126,29 @@ public class HouseListTest {
         int max1 = 4000000;
         int min2 = 4000000;
         int max2 = 6000000;
+        int statusid1 =0;
+        int statusid2 = 1;
+
+        int province = 0;
+        int district = 0;
+        int ward = 0;
         String houseName = "";
         List<Integer> type = Arrays.asList();
         List<Integer> service = Arrays.asList(1, 2, 3, 4, 5, 6);
         int countService = 6;
 
         // Mocking the behavior of houseRepository.countHouse
-        when(houseRepository.countHouse(min1, max1, min2, max2, houseName, type, service, countService))
+        when(houseRepository.countHouse(min1, max1, min2, max2,province,district,ward,statusid1,statusid2, houseName, type, service, countService))
                 .thenReturn(0);
 
         // Calling the service method
-        int result = houseService.countHouse(min1, max1, min2, max2, houseName, type, service, countService);
+        int result = houseService.countHouse(min1, max1, min2, max2,province,district,ward,statusid1,statusid2, houseName, type, service, countService);
 
 
         // Asserting the result
         assertEquals(0, result);
 
-        verify(houseRepository).countHouse(min1, max1, min2, max2, houseName, type, service, countService);
+        verify(houseRepository).countHouse(min1, max1, min2, max2,province,district,ward,statusid1,statusid2, houseName, type, service, countService);
     }
     @Test
     public void testCountHouse_NoService() {
@@ -133,23 +157,29 @@ public class HouseListTest {
         int max1 = 4000000;
         int min2 = 4000000;
         int max2 = 6000000;
+        int statusid1 =0;
+        int statusid2 = 1;
+
+        int province = 0;
+        int district = 0;
+        int ward = 0;
         String houseName = "";
         List<Integer> type = Arrays.asList(2);
         List<Integer> service = Arrays.asList();
         int countService = 0;
 
         // Mocking the behavior of houseRepository.countHouse
-        when(houseRepository.countHouse(min1, max1, min2, max2, houseName, type, service, countService))
+        when(houseRepository.countHouse(min1, max1, min2, max2,province,district,ward,statusid1,statusid2, houseName, type, service, countService))
                 .thenReturn(0);
 
         // Calling the service method
-        int result = houseService.countHouse(min1, max1, min2, max2, houseName, type, service, countService);
+        int result = houseService.countHouse(min1, max1, min2, max2,province,district,ward,statusid1,statusid2, houseName, type, service, countService);
 
 
         // Asserting the result
         assertEquals(0, result);
 
-        verify(houseRepository).countHouse(min1, max1, min2, max2, houseName, type, service, countService);
+        verify(houseRepository).countHouse(min1, max1, min2, max2,province,district,ward,statusid1,statusid2, houseName, type, service, countService);
     }
 
 

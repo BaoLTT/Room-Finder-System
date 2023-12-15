@@ -3,7 +3,9 @@
   <component name="WebContextManager">
     <option name="state">
       <map>
+        <entry key="file://$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/admin/adminDashboard.html" value="file://$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/admin" />
         <entry key="file://$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/admin/edit_news.html" value="file://$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/admin" />
+        <entry key="file://$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/admin/list_news.html" value="file://$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/admin" />
       </map>
     </option>
   </component>
