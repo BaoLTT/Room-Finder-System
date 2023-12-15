@@ -193,6 +193,9 @@
                                         <button type="reset" class="btn btn-light waves-effect ml-1" style="border-radius: 5px">
                                             <a th:href="@{/admin/room/listRoom/} + ${houseid}" >Danh sách phòng</a>
                                         </button>
+                                        <button type="reset" class="btn btn-light waves-effect ml-1" style="border-radius: 5px">
+                                            <a th:href="@{/house/} + ${room.houseName}+'/'+${room.roomId}" >Chi tiết phòng hiển thị</a>
+                                        </button>
                                     </div>
                                 </div>
                             </form>

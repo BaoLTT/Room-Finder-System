@@ -52,7 +52,7 @@
                                 <!-- item-->
 
                                 <!-- item-->
-                                <a th:if="${session.user.roleId=='STAFF'}" th:href="@{/admin/dashboard}" class="dropdown-item notify-item">
+                                <a th:if="${session.user.roleId=='STAFF' || session.user.roleId == 'ADMIN'}" th:href="@{/admin/dashboard}" class="dropdown-item notify-item">
 
                                     <span>Admin</span>
                                 </a>
