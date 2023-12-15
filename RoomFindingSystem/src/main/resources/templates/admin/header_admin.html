@@ -50,7 +50,7 @@
                         </span>
             <span class="logo-sm">
                             <!-- <span class="logo-sm-text-dark">U</span> -->
-                            <img th:src="@{/assets/img/favicon.ico}" alt="" height="50">
+                            <img src="/assets/img/logo.jpg" alt="" height="50">
                         </span>
         </a>
     </div>
@@ -98,7 +98,7 @@
                         </a>
                     </li>
 
-                    <li th:if="${session.user.getRoleId()=='SUPER_ADMIN'}">
+                    <li th:if="${session.user.getRoleId()=='ADMIN'}">
                         <a  th:href="@{/admin/user}">
                             <i class="dripicons-user-group"></i>
                             <span> Quản lý người dùng </span>

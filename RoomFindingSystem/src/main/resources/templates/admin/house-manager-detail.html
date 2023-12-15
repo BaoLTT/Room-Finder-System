@@ -323,7 +323,10 @@
                                                        class="btn btn-danger waves-light waves-effect width-md"
                                                        th:href="@{/admin/house-manager}"> <span
                                                             style="color: white">Đóng</span></a>
-
+                                                    <a type="button"
+                                                       class="btn btn-success waves-light waves-effect width-md" style="float:right;"
+                                                       th:href="@{/house/}+${house.houseName}+'?id='+${house.houseID}"> <span
+                                                            style="color: white">Chi tiết trọ hiển thị</span></a>
                                                 </div>
                                             </div>
 
