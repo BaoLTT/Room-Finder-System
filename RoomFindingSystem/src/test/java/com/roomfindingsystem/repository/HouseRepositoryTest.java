@@ -4,11 +4,13 @@ import com.roomfindingsystem.dto.HouseDto;
 import com.roomfindingsystem.dto.HouseImageLink;
 import com.roomfindingsystem.dto.ServiceDto;
 import com.roomfindingsystem.entity.HousesEntity;
+import jakarta.persistence.Tuple;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -143,6 +145,74 @@ public class HouseRepositoryTest {
         assertNull(result);
 
     }
+
+    @Test
+    void testFindHouse() {
+        // Arrange
+        int min1 = 0; // Assuming id with no data
+        int max1 = 2000000;
+        int min2 = 2000000;
+        int max2 = 4000000;
+        int province = 1;
+        int district = 276;
+        int ward = 10000;
+        int status1 = 1;
+        int status2 = 0;
+        String houseName = "TONY HOUSE";
+        List<Integer> type = new ArrayList<>();
+        type.add(1);
+        type.add(2);
+        List<Integer> service = new ArrayList<>();
+        service.add(1);
+        int countService = 1;
+        int pageIndex = 1;
+        int pageSize = 5;
+
+
+
+        // Act
+        List<Tuple> findHouse = houseRepository.findHouse(min1, max1, min2, max2,
+        province, district, ward, status1, status2,  houseName, type, service, countService, pageIndex, pageSize);
+
+        // Assert
+        assertNotNull(findHouse);
+
+    }
+
+    @Test
+    void testCountHouse() {
+        // Arrange
+        int min1 = 0; // Assuming id with no data
+        int max1 = 2000000;
+        int min2 = 2000000;
+        int max2 = 4000000;
+        int province = 1;
+        int district = 276;
+        int ward = 9988;
+        int status1 = 1;
+        int status2 = 0;
+        String houseName = "";
+        List<Integer> type = new ArrayList<>();
+        type.add(1);
+        type.add(2);
+        type.add(3);
+        type.add(4);
+        List<Integer> service = new ArrayList<>();
+        service.add(1);
+        int countService = 1;
+
+
+
+        // Act
+        int countHouse = houseRepository.countHouse(min1, max1, min2, max2,
+                province, district, ward, status1, status2,  houseName, type, service, countService);
+
+        // Assert
+        assertEquals(countHouse > 0, true);
+
+    }
+
+
 
 
 }

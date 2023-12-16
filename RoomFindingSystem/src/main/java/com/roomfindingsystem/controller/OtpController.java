@@ -56,13 +56,12 @@ public class OtpController {
                 userEntity.setPassword(passwordEncoder.encode((String) session.getAttribute("password")));
                 String role = (String) session.getAttribute("role");
                 if (role != null) {
-                    userEntity.setRoleId(String.valueOf(Role.USER));
+                    userEntity.setRoleId(String.valueOf(Role.MEMBER));
                 } else {
                     userEntity.setRoleId(String.valueOf(Role.LANDLORD));
                 }
                 userEntity.setCreatedDate(null);
                 userEntity.setAddressId(1);
-                userEntity.setFacebookId(null);
                 userEntity.setGmailId(null);
                 userEntity.setUserStatusId(1);
                 userEntity.setImageLink("https://storage.cloud.google.com/rfs_bucket/User/user_0.jpg");

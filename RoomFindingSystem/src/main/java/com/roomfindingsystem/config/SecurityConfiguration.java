@@ -118,8 +118,8 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(at -> at
                         .requestMatchers("/admin/**", "/test").hasAnyRole("ADMIN", "STAFF")
                         .requestMatchers("/landlord/**").hasAnyRole("LANDLORD")
-                        .requestMatchers("/profile/**").hasAnyRole("USER","LANDLORD","STAFF")
-                        .requestMatchers("/favourite-list/**").hasAnyRole("USER","LANDLORD","STAFF")
+                        .requestMatchers("/profile/**").hasAnyRole("MEMBER","LANDLORD","STAFF")
+                        .requestMatchers("/favourite-list/**").hasAnyRole("MEMBER","LANDLORD","STAFF")
                         .anyRequest().permitAll())
                 .exceptionHandling(e -> e
                         .accessDeniedPage("/403")); // Chuyển hướng đến trang 403.html khi không có quyền

@@ -90,7 +90,7 @@ public class AuthController {
             gcsService.uploadImage("rfs_bucket", "User/user_" +googlePojo.getId()+".jpg", imageBytes);
             newUser.setImageLink("/rfs_bucket/User/"+"user_"+googlePojo.getId()+".jpg");
 
-            newUser.setFacebookId(accessToken);
+            newUser.setGmailId(accessToken);
             newUser.setRoleId("USER");
             //setStatus == 1
             newUser.setUserStatusId(1);
@@ -141,7 +141,7 @@ public class AuthController {
         userService.save(newUser);
         System.out.println("ok");
 
-        GooglePojo googlePojo = googleUtils.getUserInfo(newUser.getFacebookId());
+        GooglePojo googlePojo = googleUtils.getUserInfo(newUser.getGmailId());
         UserDetails userDetail = googleUtils.buildUser(googlePojo);
         UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetail, null,
                 userDetail.getAuthorities());

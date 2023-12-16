@@ -21,10 +21,6 @@ public class AddressEntity {
     private int addressId;
 
     @Basic
-    @Column(name = "Name")
-    private String name;
-
-    @Basic
     @Column(name = "Address_Details")
     private String addressDetails;
 
@@ -45,11 +41,10 @@ public class AddressEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AddressEntity that = (AddressEntity) o;
-        return addressId == that.addressId && provinceId == that.provinceId && districtId == that.districtId && wardId == that.wardId && Objects.equals(name, that.name) && Objects.equals(addressDetails, that.addressDetails);
+        return addressId == that.addressId && provinceId == that.provinceId && districtId == that.districtId && wardId == that.wardId && Objects.equals(addressDetails, that.addressDetails);
     }
 
-    public AddressEntity(String name, String addressDetails, int provinceId, int districtId, int wardId) {
-        this.name = name;
+    public AddressEntity(String addressDetails, int provinceId, int districtId, int wardId) {
         this.addressDetails = addressDetails;
         this.provinceId = provinceId;
         this.districtId = districtId;
@@ -58,6 +53,6 @@ public class AddressEntity {
 
     @Override
     public int hashCode() {
-        return Objects.hash(addressId, name, addressDetails, provinceId, districtId, wardId);
+        return Objects.hash(addressId, addressDetails, provinceId, districtId, wardId);
     }
 }

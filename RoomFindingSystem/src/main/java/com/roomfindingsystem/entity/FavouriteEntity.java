@@ -35,11 +35,6 @@ public class FavouriteEntity {
     @Basic
     @Column(name = "Created_Date")
     private LocalDate createdDate;
-    @Basic
-    @Column(name = "status")
-    private int status;
-
-
 
 
 }
