@@ -2,6 +2,7 @@ package com.roomfindingsystem.service.impl;
 
 import com.roomfindingsystem.entity.*;
 import com.roomfindingsystem.repository.*;
+import com.roomfindingsystem.service.RoomHistoryService;
 import com.roomfindingsystem.service.RoomService;
 
 import com.roomfindingsystem.dto.*;
@@ -38,6 +39,7 @@ public class RoomServiceImpl implements RoomService {
     private final RoomImageRepository roomImageRepository;
     private final HouseRepository houseRepository;
     private final GcsService gcsService;
+    private final RoomHistoryService roomHistoryService;
 
     @Override
     public RoomEntity getRoomById(int roomId) {
@@ -217,6 +219,7 @@ public class RoomServiceImpl implements RoomService {
         saveRoom.setPrice(roomDto.getPrice());
         saveRoom.setRoomName(roomDto.getRoomName());
         saveRoom.setRoomType(roomDto.getTypeId());
+        saveRoom.setStatusUpdateDate(room.getStatusUpdateDate());
         if (Objects.equals(roomDto.getStatus(), "ACTIVE")) {
             saveRoom.setStatusId(1);
         } else {
@@ -234,6 +237,17 @@ public class RoomServiceImpl implements RoomService {
                 serviceRoomRepository.save(serviceRoomEntity);
             }
         }
+
+        //baoltt history
+        int statusUpdate = 1;
+        if (Objects.equals(roomDto.getStatus(), "ACTIVE")) {
+            statusUpdate = 1;
+        } else {
+            statusUpdate = 0;
+        }
+        roomHistoryService.updateRoomStatus(roomDto.getRoomId(), statusUpdate);
+
+
         roomRepository.save(saveRoom);
     }
 
@@ -269,8 +283,9 @@ public class RoomServiceImpl implements RoomService {
             saveRoom.setStatusId(0);
         }
 
-        roomRepository.save(saveRoom);
 
+        roomRepository.save(saveRoom);
+        roomHistoryService.addRoomHistory(saveRoom.getRoomName(), saveRoom.getHouseid());
         if (roomDto.getServiceDtos() != null) {
             for (ServiceDto serviceDto : roomDto.getServiceDtos()) {
                 ServiceRoomEntity serviceRoomEntity = new ServiceRoomEntity();
@@ -315,6 +330,7 @@ public class RoomServiceImpl implements RoomService {
         }
 
         roomRepository.save(saveRoom);
+        roomHistoryService.addRoomHistory(saveRoom.getRoomName(), saveRoom.getHouseid());
         if (roomDto.getServiceDtos() != null) {
             for (ServiceDto serviceDto : roomDto.getServiceDtos()) {
                 ServiceRoomEntity serviceRoomEntity = new ServiceRoomEntity();
@@ -568,11 +584,13 @@ public class RoomServiceImpl implements RoomService {
 
     @Transactional
     public void updateStatusDate(int roomId, int statusId) {
-        RoomEntity room = roomRepository.findById(roomId).orElse(null); // Thay YourEntity và yourRepository bằng entity và repository thực tế của bạn
+        RoomEntity room = roomRepository.findById(roomId).orElse(null);
         if (room != null) {
+            roomHistoryService.updateRoomStatus(roomId,statusId);
             room.setStatusUpdateDate(LocalDate.now());
             room.setStatusId(statusId);
             roomRepository.save(room);
+
         }
     }
 

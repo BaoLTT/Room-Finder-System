@@ -133,9 +133,8 @@ public interface RoomRepository extends JpaRepository<RoomEntity, Integer> {
             "LIMIT 4 OFFSET 0", nativeQuery = true)
     List<Tuple> findRoomsNearPrice(@Param("targetPrice") BigDecimal targetPrice);
 
-
-
-
+    @Query
+    RoomEntity findRoomEntityByRoomNameAndHouseId(String roomName, int houseId);
 
 
 

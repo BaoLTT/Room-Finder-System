@@ -35,6 +35,8 @@ public class  AdminDashboardController {
 
     @Autowired
     ReportService reportService;
+
+
     @GetMapping("/dashboard")
     public String getDashboard(Model model, HttpServletRequest request){
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -75,6 +77,7 @@ public class  AdminDashboardController {
                 statusId = 0;
             }
             roomService.updateStatusDate(roomId, statusId);
+
         } catch (Exception e) {
             // Xử lý lỗi ở đây, ví dụ:
             e.printStackTrace(); // In lỗi ra console
