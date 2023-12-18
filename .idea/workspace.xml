@@ -5,22 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1e0562a2-7ad5-40d8-bd96-2e66b43cd15f" name="Changes" comment="update list room trong house detail">
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/config/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/config/Role.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/OtpController.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/OtpController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/admin/AdminManageHouseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/admin/AdminManageHouseController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/admin/AdminManageUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/admin/AdminManageUserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/admin/AdminProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/admin/AdminProfileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/landlord/HouseLandlordController.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/landlord/HouseLandlordController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/entity/AddressEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/entity/AddressEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/entity/FavouriteEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/entity/FavouriteEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/entity/NewsEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/entity/NewsEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/repository/AddressRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/repository/AddressRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/repository/FavouriteRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/repository/FavouriteRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/impl/AddressServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/impl/AddressServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/impl/NewsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/service/impl/NewsServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/admin/edit-user.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/admin/edit-user.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/target/classes/com/roomfindingsystem/controller/OtpController.class" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/target/classes/com/roomfindingsystem/controller/OtpController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/roomfindingsystem/repository/HouseLandlordRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/HouseListController.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/HouseListController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/auth/login1.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/auth/login1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/roomfindingsystem/controller/HouseListControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/roomfindingsystem/controller/HouseListControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/roomfindingsystem/repository/HouseRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/roomfindingsystem/repository/HouseRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/roomfindingsystem/service/HouseServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/roomfindingsystem/service/HouseServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,38 +56,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "JPA.DatabaseSchemaImportDialog": "0917dbb1-b63e-4827-b1df-c0aa7f40a31c",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "com.google.cloudcode.ide_session_index": "20231213_0001",
-    "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "Merging nghiant2",
-    "last_opened_file_path": "/Users/nguyenhuubinh/Documents/DATN/Room-Finding-System/RoomFindingSystem/src/main/resources/static/assets/img",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "SDKs",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.keymap",
-    "show.migrate.to.gradle.popup": "false",
-    "spring.configuration.checksum": "cba14e4d5d8ebaea272e92fbdfce9e02",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;JPA.DatabaseSchemaImportDialog&quot;: &quot;0917dbb1-b63e-4827-b1df-c0aa7f40a31c&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.google.cloudcode.ide_session_index&quot;: &quot;20231213_0001&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;nghiant2&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/nguyenhuubinh/Documents/DATN/Room-Finding-System/RoomFindingSystem/src/main/resources/static/assets/img&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
+    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;cba14e4d5d8ebaea272e92fbdfce9e02&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Intellij project\Room-Finding-System-BaoLTT\RoomFindingSystem\src\main\resources\templates\admin" />
@@ -109,20 +102,38 @@
     </key>
   </component>
   <component name="RunManager" selected="Spring Boot.Main">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.roomfindingsystem.Main" />
+    <configuration name="HouseLandlordRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RoomFindingSystem" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.roomfindingsystem.*" />
+          <option name="PATTERN" value="com.roomfindingsystem.repository.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="com.roomfindingsystem.repository" />
+      <option name="MAIN_CLASS_NAME" value="com.roomfindingsystem.repository.HouseLandlordRepositoryTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="HouseRepositoryTest.testCountHouse" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="HouseLandlordRepositoryTest.testFindAllHouse" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="RoomFindingSystem" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.roomfindingsystem.repository.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.roomfindingsystem.repository" />
+      <option name="MAIN_CLASS_NAME" value="com.roomfindingsystem.repository.HouseLandlordRepositoryTest" />
+      <option name="METHOD_NAME" value="testFindAllHouse" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HouseRepositoryTest.testFindAllDetailWithValidHouseId" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RoomFindingSystem" />
       <extension name="coverage">
         <pattern>
@@ -132,13 +143,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.roomfindingsystem.repository" />
       <option name="MAIN_CLASS_NAME" value="com.roomfindingsystem.repository.HouseRepositoryTest" />
-      <option name="METHOD_NAME" value="testCountHouse" />
+      <option name="METHOD_NAME" value="testFindAllDetailWithValidHouseId" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="HouseRepositoryTest.testFindHouse" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="HouseRepositoryTest.testFindAllHouse" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RoomFindingSystem" />
       <extension name="coverage">
         <pattern>
@@ -148,29 +159,14 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.roomfindingsystem.repository" />
       <option name="MAIN_CLASS_NAME" value="com.roomfindingsystem.repository.HouseRepositoryTest" />
-      <option name="METHOD_NAME" value="testFindHouse" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ServiceDetailRepositoryTest.testGetAllService" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="RoomFindingSystem" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.roomfindingsystem.repository.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.roomfindingsystem.repository" />
-      <option name="MAIN_CLASS_NAME" value="com.roomfindingsystem.repository.ServiceDetailRepositoryTest" />
-      <option name="METHOD_NAME" value="testGetAllService" />
+      <option name="METHOD_NAME" value="testFindAllHouse" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="Main" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="RoomFindingSystem" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.roomfindingsystem.Main" />
       <extension name="coverage">
@@ -186,10 +182,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.Main" />
-        <item itemvalue="JUnit.ServiceDetailRepositoryTest.testGetAllService" />
-        <item itemvalue="JUnit.HouseRepositoryTest.testCountHouse" />
-        <item itemvalue="JUnit.HouseRepositoryTest.testFindHouse" />
-        <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.HouseRepositoryTest.testFindAllHouse" />
+        <item itemvalue="JUnit.HouseRepositoryTest.testFindAllDetailWithValidHouseId" />
+        <item itemvalue="JUnit.HouseLandlordRepositoryTest" />
+        <item itemvalue="JUnit.HouseLandlordRepositoryTest.testFindAllHouse" />
       </list>
     </recent_temporary>
   </component>
@@ -260,6 +256,9 @@
       <workItem from="1702575343247" duration="1082000" />
       <workItem from="1702592801470" duration="22387000" />
       <workItem from="1702628991038" duration="8676000" />
+      <workItem from="1702711140590" duration="11562000" />
+      <workItem from="1702811103840" duration="10964000" />
+      <workItem from="1702878002671" duration="2027000" />
     </task>
     <task id="LOCAL-00002" summary="update lai">
       <option name="closed" value="true" />
