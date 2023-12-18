@@ -2,10 +2,12 @@ package com.roomfindingsystem.service;
 
 import com.roomfindingsystem.dto.HouseDto;
 import com.roomfindingsystem.dto.HouseImageLink;
+import com.roomfindingsystem.dto.HouseTypeVo;
 import com.roomfindingsystem.dto.ServiceDto;
 import com.roomfindingsystem.entity.HousesEntity;
 import com.roomfindingsystem.repository.HouseRepository;
 import com.roomfindingsystem.service.impl.HouseServiceImpl;
+import jakarta.persistence.Tuple;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -13,6 +15,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -184,6 +187,85 @@ public class HouseServiceTest {
 
         // Verify that the repository method was called with the correct parameter
         verify(houseRepository, times(1)).getHousesEntitiesByHouseId(id);
+    }
+
+    @Test
+    void testFindHouse() {
+        // Arrange
+        int min1 = 0; // Assuming id with no data
+        int max1 = 2000000;
+        int min2 = 2000000;
+        int max2 = 4000000;
+        int province = 1;
+        int district = 276;
+        int ward = 10000;
+        int status1 = 1;
+        int status2 = 0;
+        String houseName = "TONY HOUSE";
+        List<Integer> type = new ArrayList<>();
+        type.add(1);
+        type.add(2);
+        List<Integer> service = new ArrayList<>();
+        service.add(1);
+        int countService = 1;
+        int pageIndex = 1;
+        int pageSize = 5; // Assuming id with no data
+
+        List<Tuple> findHouse = new ArrayList<>();
+
+        when(houseRepository.findHouse(min1, max1, min2, max2,
+                province, district, ward, status1, status2,  houseName, type, service, countService, pageIndex, pageSize)).thenReturn(findHouse);
+
+        // Act
+        List<HouseTypeVo> result = houseService.findHouse(min1, max1, min2, max2,
+                province, district, ward, status1, status2,  houseName, type, service, countService, pageIndex, pageSize);
+
+        // Assert
+        assertNotNull(result);
+        assertEquals(findHouse, result);
+
+        // Verify that the repository method was called with the correct parameter
+        verify(houseRepository, times(1)).findHouse(min1, max1, min2, max2,
+                province, district, ward, status1, status2,  houseName, type, service, countService, (pageIndex-1), pageSize);
+    }
+    @Test
+    void testCountHouse() {
+        // Arrange
+        int min1 = 0; // Assuming id with no data
+        int max1 = 2000000;
+        int min2 = 2000000;
+        int max2 = 4000000;
+        int province = 1;
+        int district = 276;
+        int ward = 9988;
+        int status1 = 1;
+        int status2 = 0;
+        String houseName = "";
+        List<Integer> type = new ArrayList<>();
+        type.add(1);
+        type.add(2);
+        type.add(3);
+        type.add(4);
+        List<Integer> service = new ArrayList<>();
+        service.add(1);
+        int countService = 1;
+
+        int countHouse = 1;
+
+        when(houseRepository.countHouse(min1, max1, min2, max2,
+                province, district, ward, status1, status2,  houseName, type, service, countService)).thenReturn(countHouse);
+
+        // Act
+        int result = houseService.countHouse(min1, max1, min2, max2,
+                province, district, ward, status1, status2,  houseName, type, service, countService);
+
+        // Assert
+        assertNotNull(result);
+        assertEquals(countHouse, result);
+
+        // Verify that the repository method was called with the correct parameter
+        verify(houseRepository, times(1)).countHouse(min1, max1, min2, max2,
+                province, district, ward, status1, status2,  houseName, type, service, countService);
     }
 
 }
