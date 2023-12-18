@@ -10,6 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <!-- App favicon -->
     <link rel="shortcut icon" th:href="@{/assets/img/favicon.ico}">
+    <link href="/assets_admin/libs/jquery-toast/jquery.toast.min.css" rel="stylesheet" type="text/css" />
 
     <link href="/assets_admin/libs/dropzone/dropzone.min.css" rel="stylesheet" type="text/css"/>
     <!-- App css -->
@@ -315,8 +316,8 @@
                                             <div class="form-group row">
                                                 <label class="col-md-2 col-md-form-label"></label>
                                                 <div class="col-md-10">
-                                                    <button type="submit" id="saveButton"
-                                                            class="btn btn-gradient waves-effect waves-light width-md"
+                                                    <button type="submit"
+                                                            class="btn btn-gradient waves-effect waves-light width-md" id="toastr-three"
                                                             style="margin-left: -10px">
                                                         <span style="color: white">Lưu</span></button>
                                                     <a type="button"
@@ -585,19 +586,25 @@
             if(selectedDistrict==="0"){
                 districts.setCustomValidity("Vui lòng chọn giá trị hợp lệ cho Quận/Huyện.");
                 console.log("Selected District:", selectedDistrict);
+                document.getElementById("toastr-three").id = "toastr-four";
                 event.preventDefault();
+
             }
             // Đặt thông báo lỗi cho các trường
             if(selectedWard==="0"){
                 wards.setCustomValidity("Vui lòng chọn giá trị hợp lệ cho Xã/Phường.");
                 console.log("Selected Ward:", selectedWard);
+                document.getElementById("toastr-three").id = "toastr-four";
                 event.preventDefault();
+
             }
+            document.getElementById("toastr-three").id = "toastr-four";
         } else {
             // Reset custom validity khi mọi thứ là hợp lệ
             citis.setCustomValidity("");
             districts.setCustomValidity("");
             wards.setCustomValidity("");
+            document.getElementById("toastr-three").id = "toastr-four";
         }
     }
 </script>
@@ -732,6 +739,12 @@
 <script type="text/javascript" src="/assets/js/custom.js"></script>
 
 <script src="/assets_admin/js/app.min.js"></script>
+
+<!-- Tost-->
+<script src="/assets_admin/libs/jquery-toast/jquery.toast.min.js"></script>
+
+<!-- toastr init js-->
+<script src="/assets_admin/js/pages/toastr.init.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
 <script>
