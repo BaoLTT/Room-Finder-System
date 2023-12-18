@@ -1,9 +1,9 @@
 package com.roomfindingsystem.config;
 
 public enum Role {
-    USER,
+    MEMBER,
+    STAFF,
     ADMIN,
-    SUPER_ADMIN,
     LANDLORD;
 
 }

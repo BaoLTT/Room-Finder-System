@@ -73,41 +73,6 @@ public class profileControllerTest {
         MockitoAnnotations.openMocks(this);
     }
 
-//    @Test
-//    void testGetProfilePageAuthenticated() {
-//        // Arrange
-//        MockitoAnnotations.openMocks(this);
-//        Authentication authentication = mock(Authentication.class);
-//        SecurityContextHolder.setContext(mock(SecurityContext.class));
-//        when(SecurityContextHolder.getContext().getAuthentication()).thenReturn(authentication);
-//        when(authentication.isAuthenticated()).thenReturn(true);
-//        when(authentication.getName()).thenReturn("test@example.com");
-//        UserDto userDto = new UserDto();
-//        when(userService.findUserDtoByEmail("test@example.com")).thenReturn(userDto);
-//
-//        // Act
-//        String result = userController.getProfilePage(model);
-//
-//        // Assert
-//        assertEquals("profile", result);
-//        verify(model).addAttribute("user", userDto);
-//    }
-
-//    @Test
-//    void testGetProfilePageNotAuthenticated() {
-//        // Arrange
-//        MockitoAnnotations.openMocks(this);
-//        SecurityContextHolder.setContext(mock(SecurityContext.class));
-//        when(SecurityContextHolder.getContext().getAuthentication()).thenReturn(null);
-//
-//        // Act
-//        String result = userController.getProfilePage(model);
-//
-//        // Assert
-//        assertEquals("redirect:/login", result);
-//        verifyNoInteractions(userService);
-//    }
-
     @Test
     void testUpdateUser() throws IOException {
         // Arrange

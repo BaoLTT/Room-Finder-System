@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="shortcut icon" href="/assets/img/favicon.ico">
     <link
             rel="stylesheet"
@@ -41,6 +42,9 @@
     <style>
         .mySlides {
             display: none;
+        }
+        .checked {
+            color: orange;
         }
 
         .round-image {
@@ -106,7 +110,81 @@
         }
 
     </style>
+    <style>
+        .room-list {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        .room-item {
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
 
+        /*.room-button {*/
+        /*    padding: 5px 10px; !* Giảm padding để làm cho button nhỏ lại *!*/
+        /*    cursor: pointer;*/
+        /*    color: #fff;*/
+        /*    border: none;*/
+        /*    border-radius: 3px; !* Giảm border-radius để làm cho góc nhọn hơn *!*/
+        /*}*/
+
+        .room-button1 {
+            padding: 5px 10px;
+            display: inline-block;
+            cursor: pointer;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            margin-right: 8px;
+            height: 27.5px;
+            width: 55px;
+        }
+
+
+        .room-button:hover {
+            background-color: #2e6f30;
+            color: #fff;
+        }
+
+        .room-button {
+            position: relative;
+            padding: 5px 10px;
+            cursor: pointer;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            background-color: #488f3e;
+        }
+
+        .room-button::after {
+            content: attr(data-price);
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #ccc; /* Đặt màu xám cho khối ::after */
+            color: #000; /* Đặt màu chữ cho khối ::after */
+            padding: 5px;
+            border-radius: 3px;
+            white-space: nowrap;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 1; /* Đặt giá trị z-index cao hơn để nằm trên cùng */
+        }
+
+        .room-button:hover::after {
+            display: block;
+            opacity: 1;
+        }
+
+        .form-reservations h6 {
+            margin-bottom: 20px; /* Điều chỉnh giá trị theo mong muốn của bạn */
+        }
+    </style>
     <title>Xem chi tiết nhà trọ</title>
 
 </head>
@@ -348,8 +426,12 @@
 
                             </div>
                             <div class="right">
+
+
+                                <a th:if="${session.user!=null}"><a th:if="${session.user.roleId=='STAFF'}" th:href="@{/admin/house-manager/detail/}+${HousesEntity.houseId}" class="btn btn-primary" style="border-radius: 5px;float: left;margin-left: 0">Chỉnh sủa trọ</a></a>
+
                                 <a href="#map" class="icon scroll"><i class="fa fa-map-marker"></i>Tìm Trên Bản Đồ</a>
-                                <a href="#availability" class="btn btn-primary btn-rounded scroll" style="border-radius: 5px">Danh sách Phòng</a>
+                                <a href="#availability" class="btn btn-primary btn-rounded scroll" style="border-radius: 5px">Danh sách phòng</a>
                             </div>
                         </div>
 
@@ -625,56 +707,46 @@
                             <!--                            </form>-->
 
                             <div class="form-reservations">
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead>
-                                        <tr>
-                                            <th>Loại phòng</th>
-                                            <th>Giá tiền</th>
-                                            <th>Phòng</th>
-                                            <th></th>
-                                        </tr>
-                                        </thead>
-                                    </table>
+                                <h2>Danh sách phòng</h2>
+                                <div th:each="floorEntry : ${floorMap}">
+                                    <h4 th:text="'Tầng ' + ${floorEntry.key}"></h4>
+                                    <th:block th:each="typeEntry : ${floorEntry.value}">
+                                        <h6 th:text="${typeEntry.key}"></h6>
+                                        <ul class="room-list">
+                                            <li class="room-item" th:each="room : ${typeEntry.value}">
+                                                <a th:if="${room.status == 1}" class="room-button" style="background-color: #488f3e;"
+                                                   th:href="@{'/house/' + ${room.houseName} + '/room/' + ${room.roomId}}"
+                                                   th:text="${room.roomName}"
+                                                   th:data-price="${room.price+'VNĐ'}">
+                                                   </a>
+                                                <a th:if="${room.status == 0}" class="room-button" style="background-color: #E26A6A;"
+                                                   th:href="@{'/house/' + ${room.houseName} + '/room/' + ${room.roomId}}"
+                                                   th:text="${room.roomName}"
+                                                   th:data-price="${room.price+'VNĐ'}">
+                                                   </a>
+                                            </li>
+                                        </ul>
+                                    </th:block>
                                 </div>
-                                <!--                                <form th:each="room: ${roomList}" th:action="@{'/room/' + ${room.roomId}}" >-->
-                                <form th:each="room: ${roomList}" th:action="@{/houseDetail}" method="post">
-                                    <table class="table">
-                                        <tbody>
-                                        <tr class="room">
-                                            <td class="room-type">
-                                                <a href="" ><h3 th:text="${room.typeName}"></h3>
-                                                </a>
 
-<!--                                                <ul th:each="service: ${room.serviceList}">-->
-<!--                                                    <li><span th:text="${service}"></span></li>-->
-<!--                                                </ul>-->
-                                            </td>
+                                <div style="display: flex; align-items: center;">
 
-                                            <!--                                            <td class="persons">2<i class="fa fa-user"></i></td>-->
-                                            <td class="price" th:with="formattedPrice=${#numbers.formatDecimal(room.price, 0, 'COMMA', 0, 'POINT')}" th:text="${formattedPrice+'VNĐ'}"></td>
-                                            <input type="hidden" name="houseName" th:value="${HousesEntity.houseName}">
-                                            <td class="rooms">
-                                                <select name="roomId" class="framed" style="padding-right: 20px">
-                                                    <option th:each="id : ${room.roomList}" th:value="${id}"
-                                                            th:text="${roomService.getRoomNameById(id)}"></option>
+                                    <!-- Khối đầu tiên -->
+                                    <div style="display: flex; align-items: center;">
+                                        <a class="room-button1" style="background-color: #488f3e;"></a>
+                                        <a>Còn trống</a>
+                                    </div>
 
-                                                </select>
-                                            </td>
-                                            <td>
-                                                <div class="form-group">
-                                                    <button type="submit" class="btn btn-primary btn-rounded" style="border-radius: 5px">Xem chi
-                                                        tiết
-                                                    </button>
-                                                </div>
-                                                <!--end form-group-->
-                                            </td>
-                                        </tr>
-                                        <!--end tr.room-->
-                                        </tbody>
-                                    </table>
-                                    <!--end table-->
-                                </form>
+                                    <!-- Khoảng cách giữa hai khối -->
+                                    <div style="margin-right: 20px;"></div>
+
+                                    <!-- Khối thứ hai -->
+                                    <div style="display: flex; align-items: center;">
+                                        <a class="room-button1" style="background-color: #E26A6A;"></a>
+                                        <a>Hết phòng</a>
+                                    </div>
+
+                                </div>
 
                             </div>
                             <!--end form-reservations-->
@@ -723,10 +795,14 @@
                                                         <aside class="name"
                                                                th:text="${feedback.getUserFistName()}+ ' ' +${feedback.getUserLastName()}"></aside>
                                                         <!--                                                        <aside class="date" th:text="${#dates.format(feedback.getCreatedDate(), 'yyyy-MM-dd')}"></aside>-->
-                                                        <aside class="date"
-                                                               th:text="${#temporals.format(feedback.getCreatedDate(), 'dd-MM-yyyy')}"></aside>
-
-
+                                                        <aside class="">
+                                                            <span th:each="i : ${#numbers.sequence(1, feedback.getStar())}">
+                                                                <span class="fa fa-star checked" style="font-size: 10px"></span>
+                                                            </span>
+                                                            <span th:each="i : ${#numbers.sequence(feedback.getStar() + 1, 5)}" th:if="${feedback.getStar()<5}">
+                                                                <span class="fa fa-star" style="font-size: 10px"></span>
+                                                            </span>
+                                                        </aside>
                                                     </div>
                                                 </div>
                                             </div>
@@ -756,10 +832,8 @@
                                                     <!--end title-->
                                                     <p th:text="${feedback.getContent()}"></p>
                                                     <div class="clearfix options">
-                                                        <span class="pull-left"><span>Đánh giá: </span><span
-                                                                th:text="${feedback.getStar()}">  </span><span
-                                                                style="color: #FFCE45"><i class="fa fa-star"></i></span></span>
-                                                        <span class="pull-right"></span>
+                                                        <aside class="date"
+                                                               th:text="'Cật nhật ngày: '+${#temporals.format(feedback.getCreatedDate(), 'dd-MM-yyyy')}"></aside>
 
                                                     </div>
                                                     <!--end options-->
@@ -1161,6 +1235,8 @@
 
 <script th:src="@{'https://maps.googleapis.com/maps/api/js?key='+${key_map}+'&callback=initMap'}" async defer></script>
 
+
+<!--<script th:src="@{'https://maps.googleapis.com/maps/api/js?key=AIzaSyA2QCKggXjXUJVgtPmIF1OjEEsOKxetuwY&callback=initMap'}" async defer></script>-->
 <script>
     var map;
     var marker;

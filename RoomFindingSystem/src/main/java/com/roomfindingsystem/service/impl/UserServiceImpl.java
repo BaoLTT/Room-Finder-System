@@ -134,7 +134,7 @@ public class UserServiceImpl implements UserService {
             }
         }
         if (user.getDob() != null) {
-            userDto.setDob(user.getDob().toString());
+            userDto.setDob(user.getDob());
         }
         if (user.getUserStatusId() != null) {
             if (user.getUserStatusId() == 1) {
@@ -172,7 +172,7 @@ public class UserServiceImpl implements UserService {
         saveUser.setAddressId(userDto.getAddressID());
 //            Begin Mapping
 //            UserDto:
-        saveUser.setDob(LocalDate.parse(userDto.getDob()));
+        saveUser.setDob(userDto.getDob());
         saveUser.setEmail(userDto.getEmail());
         saveUser.setFirstName(userDto.getFirstName());
         saveUser.setLastName(userDto.getLastName());
@@ -183,7 +183,6 @@ public class UserServiceImpl implements UserService {
 //        User:
         saveUser.setUserId(user.getUserId());
         saveUser.setCreatedDate(user.getCreatedDate());
-        saveUser.setFacebookId(user.getFacebookId());
         saveUser.setGmailId(user.getGmailId());
         saveUser.setPassword(user.getPassword());
 
@@ -243,7 +242,7 @@ public class UserServiceImpl implements UserService {
             }
         }
         if (user.getDob() != null) {
-            userDto.setDob(user.getDob().toString());
+            userDto.setDob(user.getDob());
         }
         return userDto;
     }

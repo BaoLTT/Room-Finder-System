@@ -35,7 +35,7 @@
         <div class="container">
             <ol class="breadcrumb">
                 <li><a href="/static">Trang chủ</a></li>
-                <li><a href="/manager">Quản lý nhà trọ</a></li>
+                <li><a href="/landlord/listHouse">Quản lý nhà trọ</a></li>
                 <li class="active">Thông tin trọ</li>
             </ol>
             <!--end breadcrumb-->
@@ -64,7 +64,7 @@
                     </div>
                 </div>
                 <!--end quick-navigation-->
-                <form class="form-submit labels-uppercase" id="form-submit" th:action="@{/manager/update}" method="post" th:object="${house}" enctype="multipart/form-data">
+                <form class="form-submit labels-uppercase" role="form" id="form-submit" th:action="@{/landlord/update}" onsubmit="return validateForm()" method="post" th:object="${house}" enctype="multipart/form-data">
                     <section id="main-information">
                         <div class="title">
                             <h2>Thông tin chính</h2>
@@ -117,9 +117,8 @@
                                     <label>Tình trạng</label>
 <!--                                    <input type="text" th:if="${house.status==2}"  th:field="*{status}" readonly th:value="${house.status==2 ? 'Đang xử lý' : house.status}" th:readonly="${house.status==2}" style="padding: 10px">-->
                                     <select class="form-control" th:field="*{status}">
-                                        <option value="2" th:if="${house.status==2}"  th:selected="${house.status == 2}">ĐANG XỬ LÝ</option>
-                                        <option value="1" th:if="${house.status==0 || house.status==1}" th:selected="${house.status == 1}" >HOẠT ĐỘNG</option>
-                                        <option value="0" th:if="${house.status==0 || house.status==1}" th:selected="${house.status == 0}">NGƯNG HOẠT ĐỘNG</option>
+                                        <option value="1" th:selected="${house.status == 1}" >HOẠT ĐỘNG</option>
+                                        <option value="0" th:selected="${house.status == 0}">NGƯNG HOẠT ĐỘNG</option>
                                     </select>
                                 </div>
                             </div>
@@ -140,7 +139,7 @@
                             <input type="hidden" name="addressid" th:field="*{address}">
                             <div class="form-group">
                                 <label for="province">Tỉnh</label>
-                                <select class="form-control" name="province" id="province" style="display: none;" th:field="*{provinceID}">
+                                <select class="form-control" name="province" id="province" style="display: none;" th:field="*{provinceID}" onchange="resetCustomValidity(this)">
                                     <option value="0" selected >Chọn tỉnh thành</option>
                                 </select>
                                 <!-- Hiển thị giá trị -->
@@ -148,7 +147,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="district">Quận/Huyện</label>
-                                <select class="form-control" id="district" name="district" style="display: none;" th:field="*{districtID}">
+                                <select class="form-control" id="district" name="district" style="display: none;" th:field="*{districtID}" onchange="resetCustomValidity(this)">
                                     <option value="0" selected>Chọn huyện</option>
                                 </select>
                                 <!-- Hiển thị giá trị -->
@@ -156,7 +155,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="ward">Xã/Phường</label>
-                                <select class="form-control" name="ward" id="ward" style="display: none;" th:field="*{wardID}">
+                                <select class="form-control" name="ward" id="ward" style="display: none;" th:field="*{wardID}" onchange="resetCustomValidity(this)">
                                     <option value="0" selected>Chọn xã</option>
                                 </select>
                                 <input class="form-control" th:id="wardName" th:field="*{ward}">
@@ -195,7 +194,7 @@
                         </div>
                         <div class="file-upload-previews">
                             <div class="MultiFile-label"  id="imageContainer" th:each="image, iterStat : ${house.listImage}">
-                                <a class="MultiFile-remove" th:href="@{'/manager/deleteImage/' + ${house.houseID} + '/' + ${image.imageId}}">x</a>
+                                <a class="MultiFile-remove" th:href="@{'/landlord/deleteImage/' + ${house.houseID} + '/' + ${image.imageId}}">x</a>
                                 <span class="MultiFile-label" title="File selected: abc.png">
                                     <img th:src="'https://storage.googleapis.com'+${image.imageLink}" alt="Ảnh" id="imagePreview" style="width: 100px;height: 100px">
                                 </span>
@@ -280,7 +279,7 @@
                         </div>
                     </section>
                     <section>
-                        <div class="center"><a href="/manager" class="btn btn-framed btn-default btn-rounded" style="border-radius: 5px">Trở lại</a></div>
+                        <div class="center"><a href="/landlord/listHouse" class="btn btn-framed btn-default btn-rounded" style="border-radius: 5px">Trở lại</a></div>
                     </section>
                 </form>
                 <!--end form-->
@@ -411,6 +410,44 @@
 <script type="text/javascript" src="/assets/js/maps.js"></script>
 <script type="text/javascript" src="/assets/js/custom.js"></script>
 
+
+<script>
+    function validateForm() {
+        var selectedProvince = citis.value;
+        var selectedDistrict = districts.value;
+        var selectedWard = wards.value;
+        citis.addEventListener("change", function () {
+            console.log("Province changed:", citis.value);
+            citis.setCustomValidity("");
+        });
+        districts.addEventListener("change", function () {
+            console.log("Province changed:", districts.value);
+            districts.setCustomValidity("");
+        });
+        wards.addEventListener("change", function () {
+            console.log("Province changed:", wards.value);
+            wards.setCustomValidity("");
+        });
+        if (selectedProvince !== "0" ) {
+            if(selectedDistrict==="0"){
+                districts.setCustomValidity("Vui lòng chọn giá trị hợp lệ cho Quận/Huyện.");
+                console.log("Selected District:", selectedDistrict);
+                event.preventDefault();
+            }
+            // Đặt thông báo lỗi cho các trường
+            if(selectedWard==="0"){
+                wards.setCustomValidity("Vui lòng chọn giá trị hợp lệ cho Xã/Phường.");
+                console.log("Selected Ward:", selectedWard);
+                event.preventDefault();
+            }
+        } else {
+            // Reset custom validity khi mọi thứ là hợp lệ
+            citis.setCustomValidity("");
+            districts.setCustomValidity("");
+            wards.setCustomValidity("");
+        }
+    }
+</script>
 
 <script>
     function removeWhitespace(inputField) {

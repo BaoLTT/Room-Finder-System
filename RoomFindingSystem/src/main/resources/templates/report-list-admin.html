@@ -108,9 +108,9 @@
                                             </div>
                                         </li>
                                     </td>
-                                    <td th:text="${reportList.createdDate}">
+                                    <td th:text="${#temporals.format(reportList.getCreatedDate(), 'dd/MM/yyyy')}">
                                     </td>
-                                    <td th:text="${reportList.solvedDate}">
+                                    <td th:text="${#temporals.format(reportList.getSolvedDate(), 'dd/MM/yyyy')}">
                                     </td>
 
                                 </tr>

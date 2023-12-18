@@ -1,97 +1,68 @@
 package com.roomfindingsystem.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
-import java.sql.Timestamp;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
-@jakarta.persistence.Table(name = "room_histories", schema = "room_finding_system", catalog = "")
+@Table(name = "room_histories", schema = "room_finding_system", catalog = "")
+@NoArgsConstructor
+@AllArgsConstructor
 public class RoomHistoriesEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @jakarta.persistence.Column(name = "HistoryID")
-    private int historyId;
-
-    public int getHistoryId() {
-        return historyId;
-    }
-
-    public void setHistoryId(int historyId) {
-        this.historyId = historyId;
-    }
-
+    @Column(name = "historyid")
+    private int historyid;
     @Basic
-    @Column(name = "Customer_Name")
-    private String customerName;
-
-    public String getCustomerName() {
-        return customerName;
-    }
-
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
-    }
-
+    @Column(name = "status")
+    private Integer status;
     @Basic
-    @Column(name = "Time_Begin")
-    private LocalDate timeBegin;
-
-    public LocalDate getTimeBegin() {
-        return timeBegin;
-    }
-
-    public void setTimeBegin(LocalDate timeBegin) {
-        this.timeBegin = timeBegin;
-    }
-
+    @Column(name = "roomid")
+    private Integer roomid;
     @Basic
-    @Column(name = "Time_End")
-    private LocalDate timeEnd;
+    @Column(name = "start_date")
+    private LocalDate startDate;
 
-    public LocalDate getTimeEnd() {
-        return timeEnd;
+    public int getHistoryid() {
+        return historyid;
     }
 
-    public void setTimeEnd(LocalDate timeEnd) {
-        this.timeEnd = timeEnd;
+    public void setHistoryid(int historyid) {
+        this.historyid = historyid;
     }
 
-    @Basic
-    @Column(name = "Created_Date")
-    private LocalDate createdDate;
-
-    public LocalDate getCreatedDate() {
-        return createdDate;
+    public Integer getStatus() {
+        return status;
     }
 
-    public void setCreatedDate(LocalDate createdDate) {
-        this.createdDate = createdDate;
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
-    @Basic
-    @Column(name = "Last_Modified_Date")
-    private LocalDate lastModifiedDate;
-
-    public LocalDate getLastModifiedDate() {
-        return lastModifiedDate;
+    public Integer getRoomid() {
+        return roomid;
     }
 
-    public void setLastModifiedDate(LocalDate lastModifiedDate) {
-        this.lastModifiedDate = lastModifiedDate;
+    public void setRoomid(Integer roomid) {
+        this.roomid = roomid;
     }
 
-    @Basic
-    @Column(name = "RoomID")
-    private int roomId;
-
-    public int getRoomId() {
-        return roomId;
+    public LocalDate getStartDate() {
+        return startDate;
     }
 
-    public void setRoomId(int roomId) {
-        this.roomId = roomId;
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public RoomHistoriesEntity(Integer roomid,Integer status,  LocalDate startDate) {
+        this.status = status;
+        this.roomid = roomid;
+        this.startDate = startDate;
     }
 
     @Override
@@ -99,11 +70,11 @@ public class RoomHistoriesEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         RoomHistoriesEntity that = (RoomHistoriesEntity) o;
-        return historyId == that.historyId && roomId == that.roomId && Objects.equals(customerName, that.customerName) && Objects.equals(timeBegin, that.timeBegin) && Objects.equals(timeEnd, that.timeEnd) && Objects.equals(createdDate, that.createdDate) && Objects.equals(lastModifiedDate, that.lastModifiedDate);
+        return historyid == that.historyid && Objects.equals(status, that.status) && Objects.equals(roomid, that.roomid) && Objects.equals(startDate, that.startDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(historyId, customerName, timeBegin, timeEnd, createdDate, lastModifiedDate, roomId);
+        return Objects.hash(historyid, status, roomid, startDate);
     }
 }

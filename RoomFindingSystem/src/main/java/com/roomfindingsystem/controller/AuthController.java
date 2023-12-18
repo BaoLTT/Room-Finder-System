@@ -15,6 +15,8 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -31,6 +33,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import jakarta.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -85,13 +89,13 @@ public class AuthController {
             newUser.setEmail(googlePojo.getEmail());
             newUser.setFirstName(googlePojo.getFamily_name());
             newUser.setLastName(googlePojo.getGiven_name());
-            newUser.setImageLink(googlePojo.getPicture());
-//            byte[] imageBytes = googlePojo.getPicture().getBytes();
-//            gcsService.uploadImage("rfs_bucket", "User/user_" +googlePojo.getId()+".jpg", imageBytes);
-//            newUser.setImageLink("/rfs_bucket/User/"+"user_"+googlePojo.getId()+".jpg");
+//            newUser.setImageLink(googlePojo.getPicture());
+            byte[] imageBytes = googlePojo.getPicture().getBytes();
+            gcsService.uploadImage("rfs_bucket", "User/user_" +googlePojo.getId()+".jpg", imageBytes);
+            newUser.setImageLink("/rfs_bucket/User/"+"user_"+googlePojo.getId()+".jpg");
 
-            newUser.setFacebookId(accessToken);
-            newUser.setRoleId("USER");
+            newUser.setGmailId(accessToken);
+            newUser.setRoleId("MEMBER");
             //setStatus == 1
             newUser.setUserStatusId(1);
             model.addAttribute("newUser", newUser);
@@ -102,10 +106,13 @@ public class AuthController {
 
 
         UserDetails userDetail = googleUtils.buildUser(googlePojo);
-        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetail, null,
-                userDetail.getAuthorities());
+        List<GrantedAuthority> authorities = new ArrayList<>(userDetail.getAuthorities());
+        authorities.add(new SimpleGrantedAuthority("ROLE_" + existingUser.get().getRoleId()));
+
+        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetail, null, authorities);
         authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
         SecurityContextHolder.getContext().setAuthentication(authentication);
+
         HttpSession session = request.getSession(true);
         SecurityContext securityContext = SecurityContextHolder.getContext();
         session.setAttribute("SPRING_SECURITY_CONTEXT", securityContext);
@@ -141,12 +148,15 @@ public class AuthController {
         userService.save(newUser);
         System.out.println("ok");
 
-        GooglePojo googlePojo = googleUtils.getUserInfo(newUser.getFacebookId());
+        GooglePojo googlePojo = googleUtils.getUserInfo(newUser.getGmailId());
         UserDetails userDetail = googleUtils.buildUser(googlePojo);
-        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetail, null,
-                userDetail.getAuthorities());
+        List<GrantedAuthority> authorities = new ArrayList<>(userDetail.getAuthorities());
+        authorities.add(new SimpleGrantedAuthority("ROLE_" + newUser.getRoleId()));
+
+        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetail, null, authorities);
         authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
         SecurityContextHolder.getContext().setAuthentication(authentication);
+
         HttpSession session = request.getSession(true);
         SecurityContext securityContext = SecurityContextHolder.getContext();
         session.setAttribute("SPRING_SECURITY_CONTEXT", securityContext);

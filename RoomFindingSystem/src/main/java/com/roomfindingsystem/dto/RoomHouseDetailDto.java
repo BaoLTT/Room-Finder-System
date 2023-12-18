@@ -17,14 +17,23 @@ public class RoomHouseDetailDto {
 
     String typeName;
 
-    List<String> roomList;
+//    List<String> roomList;
+    String roomName;
+
+//    List<String> idList;
 
     Integer houseId;
 
     String houseName;
 
-    Integer price;
+    String price;
+//
+//    List<String> serviceList;
+//
+    Integer status;
+//
+    Integer floor;
 
-    List<String> serviceList;
+
 
 }

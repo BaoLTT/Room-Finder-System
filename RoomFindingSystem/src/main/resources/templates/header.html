@@ -32,9 +32,9 @@
               <div id="secondary-nav">
                 <nav>
                   <div class="left opacity-60">
-                    <a href=""><i class="fa fa-phone"></i>+84 366 225 436</a>
+                    <a href=""><i class="fa fa-phone"></i>+84 972 805 307</a>
                     <a href="mailto:offftrick@gmail.com"><i class="fa fa-envelope"></i>
-                      offftrick@gmail.com</a>
+                        binhnhhe153478@fpt.edu.vn</a>
                   </div>
                   <!--end left-->
                   <div class="right">
@@ -52,6 +52,11 @@
                                 <!-- item-->
 
                                 <!-- item-->
+                                <a th:if="${session.user.roleId=='STAFF' || session.user.roleId == 'ADMIN'}" th:href="@{/admin/dashboard}" class="dropdown-item notify-item">
+
+                                    <span>Admin</span>
+                                </a>
+                                </br>
                                 <a th:href="@{/profile}" class="dropdown-item notify-item">
 
                                     <span>Thông tin cá nhân</span>
@@ -102,7 +107,7 @@
           <div class="container">
             <div class="primary-nav" style="padding-bottom: 0px; padding-top: 0px;">
               <div class="left">
-                                        <a href="/" id="brand"><img src="/assets/img/logo.jpg" alt="" height="60"><img src="/assets/img/slogan1.png" alt="" height="50"></a>
+                                        <a href="/" id="brand"><img src="/assets/img/logo.jpg" alt="" height="60"><img src="/assets/img/slogan4.png" alt="" height="50"></a>
                 <a class="nav-trigger" data-toggle="collapse" href="#primary-nav" aria-expanded="false" aria-controls="primary-nav"><i class="fa fa-navicon"></i></a>
               </div>
               <!--end left-->
@@ -110,7 +115,7 @@
                 <nav id="primary-nav">
                   <ul>
                     <li th:class="${request.getRequestURI() == '/' ? 'active' : ''}"><a th:href="@{/}">Trang chủ</a></li>
-                      <li th:class="${request.getRequestURI() == '/manager' ? 'active' : ''}"><a th:if="${session.user != null and session.user.getRoleId() == 'LANDLORD'}" th:href="@{/manager}" >Quản lý nhà trọ</a></li>
+                      <li th:class="${request.getRequestURI() == '/landlord/listHouse' ? 'active' : ''}"><a th:if="${session.user != null and session.user.getRoleId() == 'LANDLORD'}" th:href="@{/landlord/listHouse}" >Quản lý nhà trọ</a></li>
                     <li th:class="${request.getRequestURI() == '/houselist' ? 'active' : ''}"><a th:href="@{/houselist}">Danh sách nhà trọ</a></li>
                     <li th:class="${request.getRequestURI() == '/roomlist' ? 'active' : ''}"><a th:href="@{/roomlist}" id="roomList" style="padding: 5px">Danh sách phòng trọ</a></li>
 

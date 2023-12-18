@@ -20,6 +20,16 @@ public class HouseTypeServiceImpl implements HouseTypeService {
     }
 
     @Override
+    public List<TypeHouseEntity> findTypeNotUse() {
+        return houseTypeRepository.findTypeNotUse();
+    }
+
+    @Override
+    public void deleteType(Integer typeid) {
+        houseTypeRepository.deleteById(typeid);
+    }
+
+    @Override
     public void addType(TypeHouseEntity typeHouseEntity) {
         houseTypeRepository.save(typeHouseEntity);
     }

@@ -46,7 +46,11 @@ public class HouseListController {
     public String list(@RequestParam(name = "page", required = false, defaultValue = "1") Integer pageIndex, @RequestParam(name = "houseName",required = false , defaultValue = "") String houseName,
                        @RequestParam(name = "price",required = false,defaultValue = "0") List<String> price,
                        @RequestParam(name = "type", required = false,defaultValue = "0") List<String> type,
-                       @RequestParam(name = "service", required = false, defaultValue = "0") List<String> service, Model model, HttpSession httpSession, HttpServletRequest httpServletRequest){
+                       @RequestParam(name = "service", required = false, defaultValue = "0") List<String> service,
+                       @RequestParam(name = "status", required = false,defaultValue = "0") Integer status,
+                       @RequestParam(name = "province", required = false,defaultValue = "0") Integer province,
+                       @RequestParam(name = "district", required = false,defaultValue = "0") Integer district,
+                       @RequestParam(name = "ward", required = false,defaultValue = "0") Integer ward, Model model, HttpSession httpSession, HttpServletRequest httpServletRequest){
         List<Integer> listType = new ArrayList<>();
         List<Integer> listPrice = new ArrayList<>();
         List<Integer> listService = new ArrayList<>();
@@ -57,6 +61,12 @@ public class HouseListController {
         int totalHouse = 0;
         int pageSize =4;
         int countService = 0;
+//        int offset;
+//        if(pageIndex==0){
+//            offset = 0;
+//        }else{
+//            offset = (pageIndex -1)*pageSize;
+//        }
         int offset = (pageIndex -1)*pageSize;
         model.addAttribute("listPrice",price);
         model.addAttribute("listType",type);
@@ -85,45 +95,72 @@ public class HouseListController {
         for(String service1:service){
             listService.add(Integer.parseInt(service1));
         }
+        int statusid1;
+        int statusid2;
+        if(status==0){
+            statusid1=0;
+            statusid2=1;
 
-        System.out.println(listService.size());
-        list =houseService.findHouse(0,0,0,Integer.MAX_VALUE,houseName,listType,listService,countService,offset, pageSize);
-        totalHouse = houseService.countHouse(0,0,0,Integer.MAX_VALUE,houseName,listType,listService,countService);
-        if(listPrice.contains(1)){
-            list =houseService.findHouse(0,0,0,2000000,houseName,listType,listService,countService,offset, pageSize);
-            totalHouse = houseService.countHouse(0,0,0,2000000,houseName,listType,listService,countService);
+        }else{
+            statusid1=1;
+            statusid2=1;
+
         }
-        if(listPrice.contains(2)){
-            list =houseService.findHouse(0,0,2000000,4000000,houseName,listType,listService,countService,offset, pageSize);
-            totalHouse = houseService.countHouse(0,0,2000000,4000000,houseName,listType,listService,countService);
+        String name = houseName.trim().replaceAll("\\s+", " ");
+
+        System.out.println(pageSize);
+        System.out.println(offset);
+
+        if(listPrice.contains(1) && listPrice.contains(3) && listPrice.contains(2)){
+            list =houseService.findHouse(0,0,0,Integer.MAX_VALUE,province,district,ward,statusid1,statusid2,name,listType,listService,countService,offset, pageSize);
+            totalHouse = houseService.countHouse(0,0,0,Integer.MAX_VALUE,province,district,ward,statusid1,statusid2,name,listType,listService,countService);
         }
-        if(listPrice.contains(3)){
-            list =houseService.findHouse(0,0,4000000,Integer.MAX_VALUE,houseName,listType,listService,countService,offset, pageSize);
-            totalHouse = houseService.countHouse(0,0,4000000,Integer.MAX_VALUE,houseName,listType,listService,countService);
+        else if(listPrice.contains(1) && listPrice.contains(3)){
+            list =houseService.findHouse(0,2000000,4000000,Integer.MAX_VALUE,province,district,ward,statusid1,statusid2,name,listType,listService,countService,offset, pageSize);
+            totalHouse = houseService.countHouse(0,2000000,4000000,Integer.MAX_VALUE,province,district,ward,statusid1,statusid2,name,listType,listService,countService);
         }
-        if(listPrice.contains(1) && listPrice.contains(3)){
-            list =houseService.findHouse(0,2000000,4000000,Integer.MAX_VALUE,houseName,listType,listService,countService,offset, pageSize);
-            totalHouse = houseService.countHouse(0,2000000,4000000,Integer.MAX_VALUE,houseName,listType,listService,countService);
+        else if(listPrice.contains(1) && listPrice.contains(2)){
+            list =houseService.findHouse(0,0,0,4000000,province,district,ward,statusid1,statusid2,name,listType,listService,countService,offset, pageSize);
+            totalHouse = houseService.countHouse(0,0,0,4000000,province,district,ward,statusid1,statusid2,name,listType,listService,countService);
         }
-        if(listPrice.contains(1) && listPrice.contains(2)){
-            list =houseService.findHouse(0,0,0,4000000,houseName,listType,listService,countService,offset, pageSize);
-            totalHouse = houseService.countHouse(0,0,0,4000000,houseName,listType,listService,countService);
+        else if(listPrice.contains(2) && listPrice.contains(3)){
+            list =houseService.findHouse(2000000,4000000,4000000,Integer.MAX_VALUE,province,district,ward,statusid1,statusid2,name,listType,listService,countService,offset, pageSize);
+            totalHouse = houseService.countHouse(2000000,4000000,4000000,Integer.MAX_VALUE,province,district,ward,statusid1,statusid2,name,listType,listService,countService);
         }
-        if(listPrice.contains(2) && listPrice.contains(3)){
-            list =houseService.findHouse(2000000,4000000,4000000,Integer.MAX_VALUE,houseName,listType,listService,countService,offset, pageSize);
-            totalHouse = houseService.countHouse(2000000,4000000,4000000,Integer.MAX_VALUE,houseName,listType,listService,countService);
+        else if(listPrice.contains(1)){
+            list =houseService.findHouse(0,0,0,2000000,province,district,ward,statusid1,statusid2,name,listType,listService,countService,offset, pageSize);
+            totalHouse = houseService.countHouse(0,0,0,2000000,province,district,ward,statusid1,statusid2,name,listType,listService,countService);
         }
+        else if(listPrice.contains(2)){
+            list =houseService.findHouse(0,0,2000000,4000000,province,district,ward,statusid1,statusid2,name,listType,listService,countService,offset, pageSize);
+            totalHouse = houseService.countHouse(0,0,2000000,4000000,province,district,ward,statusid1,statusid2,name,listType,listService,countService);
+        }
+        else if(listPrice.contains(3)){
+            list =houseService.findHouse(0,0,4000000,Integer.MAX_VALUE,province,district,ward,statusid1,statusid2,name,listType,listService,countService,offset, pageSize);
+            totalHouse = houseService.countHouse(0,0,4000000,Integer.MAX_VALUE,province,district,ward,statusid1,statusid2,name,listType,listService,countService);
+        }else {
+            list =houseService.findHouse(0,0,0,Integer.MAX_VALUE,province,district,ward,statusid1,statusid2,name,listType,listService,countService,offset, pageSize);
+            totalHouse = houseService.countHouse(0,0,0,Integer.MAX_VALUE,province,district,ward,statusid1,statusid2,name,listType,listService,countService);
+        }
+
+//        else {
+//            list =houseService.findHouse(0,0,0,Integer.MAX_VALUE,province,district,ward,statusid1,statusid2,houseName,listType,listService,countService,offset, pageSize);
+//            totalHouse = houseService.countHouse(0,0,0,Integer.MAX_VALUE,province,district,ward,statusid1,statusid2,houseName,listType,listService,countService);
+//        }
 
 
         System.out.println(list.size());
         System.out.println(totalHouse);
         System.out.println(Integer.MAX_VALUE);
         int totalPage = (int) Math.ceil((double) totalHouse / pageSize);
-        model.addAttribute("houseName",houseName);
+        model.addAttribute("houseName",name);
         model.addAttribute("currentPage",pageIndex);
         model.addAttribute("totalPage", totalPage);
         model.addAttribute("houses", list);
-
+        model.addAttribute("status", status);
+        model.addAttribute("province", province);
+        model.addAttribute("district", district);
+        model.addAttribute("ward", ward);
 
         model.addAttribute("listAllType", listAllType);
 

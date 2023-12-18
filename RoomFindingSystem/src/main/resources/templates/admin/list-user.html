@@ -12,14 +12,15 @@
     <link rel="shortcut icon"  th:href="@{/assets/img/favicon.ico}">
 
     <!-- third party css -->
-    <link th:href="@{/assets_admin/libs/datatables/dataTables.bootstrap4.css}" rel="stylesheet" type="text/css"/>
-    <link th:href="@{/assets_admin/libs/datatables/buttons.bootstrap4.css}" rel="stylesheet" type="text/css"/>
-    <link th:href="@{/assets_admin/libs/datatables/responsive.bootstrap4.css}" rel="stylesheet" type="text/css"/>
+    <link href="/assets_admin/libs/datatables/dataTables.bootstrap4.css" rel="stylesheet" type="text/css" />
+    <link href="/assets_admin/libs/datatables/buttons.bootstrap4.css" rel="stylesheet" type="text/css" />
+    <link href="/assets_admin/libs/datatables/responsive.bootstrap4.css" rel="stylesheet" type="text/css" />
+
 
     <!-- App css -->
-    <link th:href="@{/assets_admin/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
-    <link th:href="@{/assets_admin/css/icons.min.css}" rel="stylesheet" type="text/css"/>
-    <link th:href="@{/assets_admin/css/app.min.css}" rel="stylesheet" type="text/css"/>
+    <link href="/assets_admin/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/assets_admin/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="/assets_admin/css/app.min.css" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -43,7 +44,7 @@
                         <div class="page-title-box">
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a th:href="@{/admin/newsList/insert}">Thống kê</a></li>
+                                    <li class="breadcrumb-item"><a th:href="@{/admin/dashboard}">Thống kê</a></li>
                                     <li class="breadcrumb-item active">Quản lý người dùng</li>
                                 </ol>
                             </div>
@@ -56,7 +57,7 @@
                     <div class="col-12">
                         <div class="card-box table-responsive">
                             <div class="d-flex justify-content-end">
-                                <button class="btn btn-success mb-1 " style="border-radius: 5px"><a th:href="@{/admin/user/insertUserPage}"
+                                <button class="btn btn-gradient mb-1 " style="border-radius: 5px"><a th:href="@{/admin/user/insertUserPage}"
                                                                          style="color: white">Thêm người dùng mới</a></button>
                             </div>
                             <table id="datatable-users"
@@ -78,7 +79,7 @@
                                     <td th:text="${user.firstName + ' ' + user.lastName}">
                                     </td>
 
-                                    <td th:text="${user.getDob()}" >
+                                    <td th:text="${#temporals.format(user.getDob(), 'dd/MM/yyyy')}" >
                                     </td>
 
 
@@ -87,7 +88,7 @@
                                     </td>
 
 
-                                    <td th:text="${user.getCreatedDate()}">
+                                    <td th:text="${#temporals.format(user.getCreatedDate(), 'dd/MM/yyyy')}" >
                                     </td>
 
                                     <td th:text="${user.role}">
@@ -97,7 +98,7 @@
                                     </td>
 
                                     <td>
-                                        <a th:href="@{'/admin/user/updateUser/' + ${user.userId}}" class="btn btn-warning" style="border-radius: 5px">Chi tiết</a>
+                                        <a th:href="@{'/admin/user/updateUser/' + ${user.userId}}" style="border-radius: 5px;padding: 5px;color: #f9bc0b"><i class="fa fa-edit"></i></a>
                                     </td>
                                 </tr>
                                 </tbody>

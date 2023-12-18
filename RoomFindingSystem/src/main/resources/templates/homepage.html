@@ -32,7 +32,7 @@
 
     <div id="page-content">
         <div class="hero-section" data-height="600">
-            <form id="form-hero" th:action="@{/houselist}" class="switch">
+            <form id="form-hero" th:action="@{/houselist}">
                 <div class="hero-inner">
                     <div class="hero-wrapper">
                         <div class="caption">
@@ -149,18 +149,6 @@
                 </div>
                 <!--end plate-->
             </form>
-            <!--end form-->
-            <div class="map-wrapper">
-                <div class="plate white">
-                    <a href="#" data-switch="#form-hero">Tìm kiếm</a>
-                </div>
-                <!--end plate-->
-<!--                <div id="map-item" class="map height-100"></div>-->
-                <div>
-                    <img src="/assets/img/FPT.jpg" style="width: 100%; height: 100%;" alt="">
-                </div>
-
-            </div>
         </div>
         <!--end hero-section-->
 
@@ -244,8 +232,8 @@
                                         <aside>
                                             <h3 th:text="${room.roomName}">Celestial Hotel & Spa</h3>
                                             <h3 th:text="${room.houseName}">Celestial Hotel & Spa</h3>
-                                            <figure class="location"
-                                                    th:text="${room.addressDetail+', '+room.ward+', '+room.district+', '+room.province}"></figure>
+<!--                                            <figure class="location"-->
+<!--                                                    th:text="${room.addressDetail+', '+room.ward+', '+room.district+', '+room.province}"></figure>-->
                                         </aside>
                                     </div>
                                     <div class="wrapper">

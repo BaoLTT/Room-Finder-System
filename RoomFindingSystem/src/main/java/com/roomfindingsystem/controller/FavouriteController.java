@@ -42,30 +42,22 @@ public class FavouriteController {
 
     @RequestMapping(value = "favourite-list")
     public String getFavourite(@RequestParam(name = "id", required = false, defaultValue = "1") int houseId, Model model, HttpSession session, HttpServletRequest request) {
-        try {
+        model.addAttribute("request", request);
             session = request.getSession();
             UserEntity user = (UserEntity) session.getAttribute("user");
-
             List<FavouriteDto> list = favouriteService.getListFavourite(user.getUserId());
             if (list.isEmpty()) {
                 model.addAttribute("request", request);
                 return "favourite-null";
             }
             System.out.println(list);
-            model.addAttribute("request", request);
+
             model.addAttribute("houses", houseService.viewHouseInHomeInFavourite(user.getUserId()));
 //       List<HouseImageLink> houseImageLinks= houseService.getImageById(houseId);
 //        model.addAttribute("houseImageLinks",houseImageLinks);
 //        model.addAttribute("listFavourite",list);
+
             return "favourite-list";
-
-
-        } catch (Exception exception) {
-            exception.printStackTrace();
-            return "404";
-        }
-
-
     }
 
     @RequestMapping(value = "remove-favourite-list")
@@ -87,16 +79,22 @@ public class FavouriteController {
         try {
             session = request.getSession();
             UserEntity user = (UserEntity) session.getAttribute("user");
-            if (!favouriteService.getAllByHouseId(user.getUserId(), id).isPresent()) {
-                FavouriteEntity favouriteEntity = new FavouriteEntity();
-                LocalDate now = LocalDate.now();
-                // get session id
-                favouriteEntity.setUserId(user.getUserId());
-                favouriteEntity.setCreatedDate(now);
-                favouriteEntity.setHouseId(id);
-                favouriteService.addToFavourite(favouriteEntity);
-            } else {
-                System.out.println("false");
+
+            if (user!=null){
+                if (!favouriteService.getAllByHouseId(user.getUserId(), id).isPresent()) {
+                    FavouriteEntity favouriteEntity = new FavouriteEntity();
+                    LocalDate now = LocalDate.now();
+                    // get session id
+                    favouriteEntity.setUserId(user.getUserId());
+                    favouriteEntity.setCreatedDate(now);
+                    favouriteEntity.setHouseId(id);
+                    model.addAttribute("request",request);
+                    favouriteService.addToFavourite(favouriteEntity);
+                } else {
+                    System.out.println("false");
+                }
+            }else {
+                return "redirect:/login";
             }
 
 
@@ -104,6 +102,7 @@ public class FavouriteController {
 
 
         } catch (Exception exception) {
+            model.addAttribute("request",request);
             exception.printStackTrace();
             return "404";
         }

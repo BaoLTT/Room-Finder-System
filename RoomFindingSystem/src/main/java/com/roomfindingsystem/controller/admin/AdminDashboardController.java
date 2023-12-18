@@ -35,6 +35,8 @@ public class  AdminDashboardController {
 
     @Autowired
     ReportService reportService;
+
+
     @GetMapping("/dashboard")
     public String getDashboard(Model model, HttpServletRequest request){
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -52,6 +54,8 @@ public class  AdminDashboardController {
         model.addAttribute("numberOfUsers", userService.countUserInAdmin());
         model.addAttribute("numberOfNews", newsService.countNews());
         model.addAttribute("numberOfReports", reportService.countReports());
+        model.addAttribute("numberOfEmptyRooms", roomService.countEmptyRoom());
+        model.addAttribute("numberOfRooms", roomService.countEmptyRoom()+roomService.countInhabitedRoom());
         model.addAttribute("roomStatusDto", roomService.getRoomStatusInAdminDashboard());
 
         List<Integer> statusList = new ArrayList<>();
@@ -73,6 +77,7 @@ public class  AdminDashboardController {
                 statusId = 0;
             }
             roomService.updateStatusDate(roomId, statusId);
+
         } catch (Exception e) {
             // Xử lý lỗi ở đây, ví dụ:
             e.printStackTrace(); // In lỗi ra console
@@ -85,4 +90,5 @@ public class  AdminDashboardController {
         }
         return "redirect:/admin/dashboard";
     }
+
 }

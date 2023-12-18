@@ -48,7 +48,7 @@
                                 <div class="page-title-box">
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
-                                            <li class="breadcrumb-item"><a th:href="@{/admin/newsList/insert}">Thống kê</a></li>
+                                            <li class="breadcrumb-item"><a th:href="@{/admin/dashboard}">Thống kê</a></li>
                                             <li class="breadcrumb-item active">Quản lý nhà trọ</li>
                                         </ol>
                                     </div>
@@ -62,7 +62,7 @@
                             <div class="col-12">
                                 <div class="card-box table-responsive">
                                     <div style="display: flow-root;margin-bottom: 10px">
-                                        <a type="button" th:href = "@{/admin/house-manager/add}" class="btn btn-success waves-light waves-effect width-md" style="float: right;border-radius: 5px">Thêm trọ</a>
+                                        <a type="button" th:href = "@{/admin/house-manager/add}" class="btn btn-gradient waves-light waves-effect width-md" style="float: right;border-radius: 5px">Thêm trọ</a>
                                     </div>
 
                                     <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
@@ -85,12 +85,14 @@
                                             <td style="vertical-align: middle" th:text = "${houses.getUser_firstName()+' '+houses.getUser_lastName()}">2011/04/25</td>
                                             <td style="vertical-align: middle" th:text = "${houses.getHouseName()}"></td>
                                             <td style="vertical-align: middle" th:text = "${houses.addressDetail+', '+houses.ward+', '+houses.district+', '+houses.province}">System Architect</td>
-                                            <td style="vertical-align: middle"th:text="${houses.getStatus() == 1 ? 'HOẠT ĐỘNG' : (houses.getStatus() == 2 ? 'ĐANG XỬ LÝ' : 'NGƯNG HOẠT ĐỘNG')}">Edinburgh</td>
+                                            <td style="vertical-align: middle"th:text="${houses.getStatus() == 1 ? 'HOẠT ĐỘNG'  : 'NGƯNG HOẠT ĐỘNG'}">Edinburgh</td>
                                             <td style="vertical-align: middle" th:text = "${houses.getTypeHouse()}">Edinburgh</td>
                                             <td style="vertical-align: middle" th:text="${#temporals.format(houses.lastModifiedDate, 'dd/MM/yyyy')}">61</td>
                                             <td style="vertical-align: middle" th:text = "${houses.lastModifiedBy_firstName+' '+houses.lastModifiedBy_lastName}">2011/04/25</td>
                                             <td >
-                                                <a type="button" th:href = "@{/admin/house-manager/detail/}+${houses.houseID}" class="btn btn-secondary waves-light waves-effect width-md" style="border-radius: 5px">Chỉnh sửa</a>
+                                                <a type="button" th:href = "@{/admin/house-manager/detail/}+${houses.houseID}" style="border-radius: 5px;padding: 5px;color: #f9bc0b"><i class="fa fa-edit"></i></a>
+                                                <a type="button" th:href = "@{/admin/house-manager/delete/}+${houses.houseID}" style="border-radius: 5px;padding: 5px;color: #f36270"><i class="fas fa-trash"></i></a>
+                                                <a type="button" th:href = "@{/admin/room/listRoom/}+${houses.houseID}" style="border-radius: 5px;padding: 5px"><i class="fas fa-list"></i></a>
                                             </td>
                                         </tr>
 
