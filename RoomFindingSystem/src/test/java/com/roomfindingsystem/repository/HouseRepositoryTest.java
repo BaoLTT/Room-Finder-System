@@ -22,6 +22,8 @@ import static org.mockito.Mockito.*;
 public class HouseRepositoryTest {
     @Autowired
     private HouseRepository houseRepository;
+    @Autowired
+    private HouseLandlordRepository houseLandlordRepository;
 
     @Test
     void testFindAllDetailWithValidHouseId() {
@@ -211,6 +213,17 @@ public class HouseRepositoryTest {
         assertEquals(countHouse > 0, true);
 
     }
+    @Test
+    void testFindAllHouse() {
+
+        List<Tuple> result = houseLandlordRepository.getAllHouse();
+
+        // Assert
+        assertTrue(!result.isEmpty());
+
+    }
+
+
 
 
 
