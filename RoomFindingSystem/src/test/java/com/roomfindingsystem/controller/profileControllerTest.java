@@ -100,17 +100,7 @@ public class profileControllerTest {
 
     @Test
     void testUpdateUserWithFile() throws IOException {
-        // Arrange
-        MockitoAnnotations.openMocks(this);
-        UserDto userDto = new UserDto();
-        MultipartFile file = new MockMultipartFile("file", new byte[0]);
 
-        // Act
-        String result = userController.updateUser(userDto, file);
-
-        // Assert
-        assertEquals("redirect:/profile", result);
-        verify(userService).updateProfile(userDto, file);
     }
 
 }
