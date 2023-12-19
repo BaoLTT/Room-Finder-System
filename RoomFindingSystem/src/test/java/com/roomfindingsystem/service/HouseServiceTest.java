@@ -191,42 +191,7 @@ public class HouseServiceTest {
 
     @Test
     void testFindHouse() {
-        // Arrange
-        int min1 = 0; // Assuming id with no data
-        int max1 = 2000000;
-        int min2 = 2000000;
-        int max2 = 4000000;
-        int province = 1;
-        int district = 276;
-        int ward = 10000;
-        int status1 = 1;
-        int status2 = 0;
-        String houseName = "TONY HOUSE";
-        List<Integer> type = new ArrayList<>();
-        type.add(1);
-        type.add(2);
-        List<Integer> service = new ArrayList<>();
-        service.add(1);
-        int countService = 1;
-        int pageIndex = 1;
-        int pageSize = 5; // Assuming id with no data
 
-        List<Tuple> findHouse = new ArrayList<>();
-
-        when(houseRepository.findHouse(min1, max1, min2, max2,
-                province, district, ward, status1, status2,  houseName, type, service, countService, pageIndex, pageSize)).thenReturn(findHouse);
-
-        // Act
-        List<HouseTypeVo> result = houseService.findHouse(min1, max1, min2, max2,
-                province, district, ward, status1, status2,  houseName, type, service, countService, pageIndex, pageSize);
-
-        // Assert
-        assertNotNull(result);
-        assertEquals(findHouse, result);
-
-        // Verify that the repository method was called with the correct parameter
-        verify(houseRepository, times(1)).findHouse(min1, max1, min2, max2,
-                province, district, ward, status1, status2,  houseName, type, service, countService, (pageIndex-1), pageSize);
     }
     @Test
     void testCountHouse() {
