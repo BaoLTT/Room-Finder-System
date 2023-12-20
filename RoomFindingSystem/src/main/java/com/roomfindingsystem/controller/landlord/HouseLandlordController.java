@@ -104,6 +104,7 @@ public class HouseLandlordController {
         int addressID = addressService.insertAddress(address);
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         UserEntity user = userService.findByEmail(email).get();
+        house.setStar(0.0);
         house.setUserID(user.getUserId());
         house.setCreatedBy(user.getUserId());
         house.setLastModifiedBy(user.getUserId());

@@ -113,7 +113,7 @@ public interface RoomRepository extends JpaRepository<RoomEntity, Integer> {
             "WHERE h.houseId = :houseId and r.roomName = :name")
     RoomEntity getRoomByHouseIdAndName(String name, Integer houseId);
 
-    @Query("select new com.roomfindingsystem.dto.RoomDto(r.roomId, r.roomName, t.typeName, r.description, r.price, h.houseName, r.area, case when r.statusId = 1 then 'ACTIVE' else 'INACTIVE' end) " +
+    @Query("select new com.roomfindingsystem.dto.RoomDto(r.roomId, r.roomName,r.floor, t.typeName, r.description, r.price, h.houseName, r.area, case when r.statusId = 1 then 'ACTIVE' else 'INACTIVE' end) " +
             "from RoomEntity r " +
             "join HousesEntity h on r.houseId = h.houseId " +
             "left join RoomTypeEntity t on t.typeId = r.roomType ")
@@ -138,11 +138,11 @@ public interface RoomRepository extends JpaRepository<RoomEntity, Integer> {
 
 
 
-    @Query("select new com.roomfindingsystem.dto.RoomDto(r.roomId, r.roomName, t.typeName, r.description, r.price, h.houseName, r.area, case when r.statusId = 1 then 'ACTIVE' else 'INACTIVE' end) " +
+    @Query("select new com.roomfindingsystem.dto.RoomDto(r.roomId, r.roomName,r.floor, t.typeName, r.description, r.price, h.houseName, r.area, case when r.statusId = 1 then 'ACTIVE' else 'INACTIVE' end) " +
             "from RoomEntity r " +
             "join HousesEntity h on r.houseId = h.houseId " +
             "left join RoomTypeEntity t on t.typeId = r.roomType "+
-            "WHERE h.houseId = :houseId")
+            "WHERE h.houseId = ?1 ")
     List<RoomDto> findRoomsInHouse(int houseId);
 
     @Query("select count(*) from RoomEntity r where r.houseId = ?1")

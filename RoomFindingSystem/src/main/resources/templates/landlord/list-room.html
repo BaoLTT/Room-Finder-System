@@ -90,6 +90,7 @@
                                 <tr>
                                     <th>Phòng</th>
                                     <th>Diện tích</th>
+                                    <th>Tầng</th>
                                     <th>Loại phòng</th>
                                     <th>Dịch vụ</th>
                                     <th>Giá</th>
@@ -103,6 +104,9 @@
                                     </td>
 
                                     <td th:text="${room.area}">
+                                    </td>
+
+                                    <td th:text="${room.floor}">
                                     </td>
 
                                     <td th:text="${room.typeName}">

@@ -2,7 +2,6 @@ package com.roomfindingsystem.entity;
 
 import jakarta.persistence.*;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -140,8 +139,8 @@ public class RoomEntity {
     public void setRoomType(Integer roomType) {
         this.roomType = roomType;
     }
-    public Integer getFloor() {
-        return floor;
+    public Integer getFloor(Integer floor) {
+        return this.floor;
     }
 
     public void setFloor(Integer floor) {

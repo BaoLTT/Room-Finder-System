@@ -113,6 +113,7 @@ public class RoomLandlordController {
         UserEntity user = userService.findByEmail(email).get();
         roomDto.setCreatedBy(user.getUserId());
         roomDto.setLastModifiedBy(user.getUserId());
+        roomDto.setHouseId(id);
         roomService.importRooms(roomDto,fileExcel);
         return "redirect:/landlord/room/listRoom/"+ id;
     }

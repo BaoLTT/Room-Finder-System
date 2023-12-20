@@ -101,13 +101,9 @@
                                     <h2>Địa chỉ</h2>
                                     <aside class="step">2</aside>
                                 </div>
-                                <div class="form-group">
-                                    <label >Địa chỉ cụ thể<em>*</em></label>
-                                    <input type="text" class="form-control"  name="addressDetail" placeholder="Địa chỉ cụ thể..." required="" id="inputField2"  oninput="removeWhitespace2(this)"
-                                           pattern="^[a-zA-Z0-9xyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđÁÂĐ ]+$" th:filed="*{addressDetail}">
-                                </div>
 
-                                <div class="form-group">
+
+                                <div class="form-group col-md-4">
                                         <label for="province">Tỉnh</label>
                                         <select class="form-control" name="province" id="province" th:field="*{provinceID}" onchange="resetCustomValidity(this)">
                                             <option value="0" selected >Chọn tỉnh thành</option>
@@ -115,19 +111,24 @@
 
 
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group col-md-4">
                                         <label for="district">Huyện</label>
                                         <select class="form-control" id="district" name="district" th:field="*{districtID}" onchange="resetCustomValidity(this)">
                                             <option value="0" selected>Chọn huyện</option>
                                         </select>
 
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group col-md-4">
                                         <label for="ward">Xã/Phường</label>
                                         <select class="form-control" name="ward" id="ward" th:field="*{wardID}" onchange="resetCustomValidity(this)">
                                             <option value="0" selected>Chọn xã</option>
                                         </select>
 
+                                </div>
+                                <div class="form-group">
+                                    <label >Địa chỉ cụ thể<em>*</em></label>
+                                    <input type="text" class="form-control"  name="addressDetail" placeholder="Địa chỉ cụ thể..." required="" id="inputField2"  oninput="removeWhitespace2(this)"
+                                           pattern="^[a-zA-Z0-9xyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđÁÂĐ ]+$" th:filed="*{addressDetail}">
                                 </div>
                             </div>
                         </div>
@@ -143,6 +144,7 @@
                                 <div id="map-item">
 
                                 </div>
+
                                 <label>Vĩ độ</label>
                                 <input  id="latitude" name="latitude"
                                        th:field="*{latitude}">
