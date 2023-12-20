@@ -62,14 +62,14 @@
                                   th:object="${room}" method="post" enctype="multipart/form-data"><input type="hidden"
                                                                                                          th:field="*{roomId}">
                                 <div class="row">
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <div class="form-group">
                                             <label>Phòng</label>
                                             <input type="text" class="form-control" required
                                                    placeholder="P101" th:field="*{roomName}"/>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <div class="form-group">
                                             <label>Diện tích</label>
                                             <div>
@@ -78,7 +78,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <div class="form-group">
                                             <label>Giá</label>
                                             <div>
@@ -87,7 +87,16 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-8">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Tầng</label>
+                                            <div>
+                                                <input type="number" class="form-control" required
+                                                       placeholder="1" th:field="*{floor}"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-9">
                                         <div class="form-group">
                                             <label>Mô tả chi tiết</label>
                                             <textarea type="text" class="form-control" rows="5"
@@ -95,7 +104,7 @@
                                                       th:field="*{description}"></textarea>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <div class="form-group">
                                             <label>Loại phòng</label>
                                             <div>

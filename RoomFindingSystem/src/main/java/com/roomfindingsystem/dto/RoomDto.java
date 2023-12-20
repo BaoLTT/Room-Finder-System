@@ -12,6 +12,7 @@ public class RoomDto {
     private Integer roomId;
     private Integer typeId;
     private String roomName;
+    private Integer floor;
     private String typeName;
     private Integer createdBy;
     private Integer lastModifiedBy;
@@ -26,9 +27,10 @@ public class RoomDto {
     private Integer houseId;
     private String houseName;
 
-    public RoomDto(Integer roomId, String roomName, String typeName, String description, Integer price, String houseName, Double area, String status) {
+    public RoomDto(Integer roomId, String roomName,Integer floor, String typeName, String description, Integer price, String houseName, Double area, String status) {
         this.roomId = roomId;
         this.roomName = roomName;
+        this.floor= floor;
         this.typeName = typeName;
         this.description = description;
         this.price = price;
