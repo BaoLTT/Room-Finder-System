@@ -53,7 +53,7 @@ public class HouseControllerTest {
         List<FeedbackDto> feedbackDtoList = feedbackService.getFeedbackByHouseIdAndStar(houseId, star, Arrays.asList(true));
 
         // Act
-        String viewName = houseController.getAllHouse(1, houseId, star, model, request);
+        String viewName = houseController.getAllHouse(houseId, star, model, request);
 
         // Assert
         assertEquals("housedetail", viewName);
