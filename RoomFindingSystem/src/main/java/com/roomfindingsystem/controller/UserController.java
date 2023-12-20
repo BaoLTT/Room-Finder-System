@@ -73,11 +73,11 @@ public class UserController {
             String mess = "Hi You@" + " \nDear " + user.getFirstName() + " " + user.getLastName() + " " + "Here is your OTP Code: " + session.getAttribute("otp-register") + " Plaese input to form!" + "\n Thanks!";
             this.emailSenderService.sendEmail(user.getEmail(), subject, mess);
 // comment phần sms lúc nào cần send thì mở ra
-        String phone = "+84".concat(user.getPhone().substring(1,10));
-        System.out.println(phone);
-        smsrequest.setNumber(phone);
-        smsrequest.setMessage(mess);
-        smsservice.sendsms(smsrequest);
+//        String phone = "+84".concat(user.getPhone().substring(1,10));
+//        System.out.println(phone);
+//        smsrequest.setNumber(phone);
+//        smsrequest.setMessage(mess);
+//        smsservice.sendsms(smsrequest);
 
             session.setAttribute("userid", user.getUserId());
             session.setAttribute("email", user.getEmail());
