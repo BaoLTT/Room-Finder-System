@@ -71,7 +71,7 @@
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
-                                            <label>Diện tích</label>
+                                            <label>Diện tích (m2)</label>
                                             <div>
                                                 <input type="number" id="area" class="form-control" required
                                                        placeholder="20" th:field="*{area}"/>
@@ -80,7 +80,7 @@
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
-                                            <label>Giá</label>
+                                            <label>Giá (VND)</label>
                                             <div>
                                                 <input type="number" class="form-control" required
                                                        placeholder="2.000.000" th:field="*{price}"/>
@@ -137,11 +137,11 @@
                                 <div class="form-group">
                                     <label class="col-form-label">Dịch vụ</label>
                                     <div style="display: flex; flex-wrap: wrap;">
-                                        <div class="checkbox checkbox-primary col-2"
+                                        <div class="checkbox checkbox-primary  col-2"
                                              th:each="listService : ${listService}" th:field="*{serviceNames}"
                                              style="padding-left: 10px">
                                             <input th:id="${listService.serviceName}" type="checkbox"
-                                                   style="position: relative"
+                                                   style="position: relative;color: #488f3e"
                                                    name="serviceNames" th:value="${listService.serviceName}"
                                                    th:checked="${#lists.contains(listChecked,''+ listService.serviceName+'')}">
                                             <label th:for="${listService.serviceName}"
@@ -177,11 +177,11 @@
                                 </div>
                                 <div class="form-group mb-0">
                                     <div>
-                                        <button type="submit" class="btn btn-gradient waves-effect waves-light">
+                                        <button type="submit" class="btn btn-primary waves-effect waves-light">
                                             Lưu thay đổi
                                         </button>
                                         <button type="reset" class="btn btn-light waves-effect ml-1">
-                                            <a th:href="@{'/landlord/room/listRoom/'+${room.houseId}}">Danh sách phòng</a>
+                                            <a th:href="@{'/landlord/room/listRoom/'+${room.houseId}}" style="color: #488f3e">Danh sách phòng</a>
                                         </button>
                                     </div>
                                 </div>

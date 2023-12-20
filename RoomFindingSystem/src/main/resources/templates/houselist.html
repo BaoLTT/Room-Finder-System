@@ -119,15 +119,15 @@
 
                                                 <input th:if="${provinceName!=null}" class="form-control" th:id="provinceName" th:value="${provinceName}">
 
-                                                <select class="form-control"  id="district" name="district" style="margin-top: 10px"  th:style="${districtName!=null ? 'display:none;margin-top:10px':'margin-top:10px'}">
+                                                <select class="form-control"  id="district" name="district" style="margin-top: 10px"  th:style="${districtName!=null ? 'display:none':'margin-top:10px'}">
                                                     <option value="0" selected >Chọn Quận/Huyện</option>
                                                 </select>
-                                                <input th:if="${districtName!=null}" class="form-control" th:id="districtName" th:value="*{districtName}" >
+                                                <input th:if="${districtName!=null}" class="form-control" th:id="districtName" th:value="*{districtName}" style="margin-top: 10px" >
 
                                                 <select class="form-control"  id="ward" name="ward"  style="margin-top: 10px" th:style="${wardName!=null ? 'display:none;margin-top:10px':'margin-top:10px'}">
                                                     <option value="0"  selected >Chọn Xã/Phường</option>
                                                 </select>
-                                                <input th:if="${wardName!=null}" class="form-control" th:id="wardName" th:value="${wardName}">
+                                                <input th:if="${wardName!=null}" class="form-control" th:id="wardName" th:value="${wardName}" style="margin-top: 10px">
                                             </ul>
                                             <!--end checkboxes-->
                                         </section>
@@ -383,13 +383,13 @@
                         <div class="center" th:if="${!houses.isEmpty()}">
                             <ul class="pagination">
                                 <li class="prev">
-                                    <a th:href="@{/houselist(page=${currentPage-1},status=${status},province=${address.province},district=${add},ward=${ward}, houseName=${houseName}, price=${listPrice}, type=${listType}, service=${listService})}"
+                                    <a th:href="@{/houselist(page=${currentPage-1},status=${status},province=${provinceID},district=${districtID},ward=${wardID}, houseName=${houseName}, price=${listPrice}, type=${listType}, service=${listService})}"
                                        th:if="${currentPage != 1}"><i class="arrow_left"></i></a>
                                 </li>
 
                                 <li th:if="${currentPage > 2}">
                                     <a th:text="1"
-                                       th:href="@{/houselist(page=1,status=${status},province=${province},district=${district},ward=${ward}, houseName=${houseName}, price=${listPrice}, type=${listType}, service=${listService})}">1</a>
+                                       th:href="@{/houselist(page=1,status=${status},province=${provinceID},district=${districtID},ward=${wardID}, houseName=${houseName}, price=${listPrice}, type=${listType}, service=${listService})}">1</a>
                                 </li>
                                 <li th:if="${currentPage > 3}" style="pointer-events: none">
                                     <span style="border: none;background-color: unset">...</span>
@@ -399,7 +399,7 @@
                                     th:unless="${pageIndex < 1 || pageIndex > totalPage}"
                                     th:class="${pageIndex == currentPage ? 'active' : ''}">
                                     <a th:text="${pageIndex}"
-                                       th:href="@{/houselist(page=${pageIndex},status=${status},province=${province},district=${district},ward=${ward}, houseName=${houseName}, price=${listPrice}, type=${listType}, service=${listService})}"
+                                       th:href="@{/houselist(page=${pageIndex},status=${status},province=${provinceID},district=${districtID},ward=${wardID}, houseName=${houseName}, price=${listPrice}, type=${listType}, service=${listService})}"
                                        class="page-number">${pageIndex}</a>
                                 </li>
 
@@ -408,12 +408,12 @@
                                 </li>
                                 <li th:if="${currentPage <= totalPage - 2}">
                                     <a th:text="${totalPage}"
-                                       th:href="@{/houselist(page=${totalPage},status=${status},province=${province},district=${district},ward=${ward}, houseName=${houseName}, price=${listPrice}, type=${listType}, service=${listService})}"
+                                       th:href="@{/houselist(page=${totalPage},status=${status},province=${provinceID},district=${districtID},ward=${wardID}, houseName=${houseName}, price=${listPrice}, type=${listType}, service=${listService})}"
                                        class="page-number">${totalPage}</a>
                                 </li>
 
                                 <li class="next">
-                                    <a th:href="@{/houselist(page=${currentPage+1},status=${status},province=${province},district=${district},ward=${ward}, houseName=${houseName}, price=${listPrice}, type=${listType}, service=${listService})}"
+                                    <a th:href="@{/houselist(page=${currentPage+1},status=${status},province=${provinceID},district=${districtID},ward=${wardID}, houseName=${houseName}, price=${listPrice}, type=${listType}, service=${listService})}"
                                        th:if="${currentPage != totalPage}"><i class="arrow_right"></i></a>
                                 </li>
                             </ul>
