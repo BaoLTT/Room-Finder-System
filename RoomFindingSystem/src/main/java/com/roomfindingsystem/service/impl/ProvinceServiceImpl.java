@@ -25,4 +25,9 @@ public class ProvinceServiceImpl implements ProvinceService {
         List<ProvinceEntity> provinces = provinceRepository.findAll();
         return provinces;
     }
+
+    @Override
+    public ProvinceEntity getProvinceById(int id) {
+        return provinceRepository.getProvinceById(id);
+    }
 }

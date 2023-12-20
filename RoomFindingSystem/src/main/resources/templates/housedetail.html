@@ -296,6 +296,8 @@
                         </div>
                         <!--end filter-->
                         <div class="box">
+                            <h3 th:if="${HouseService.isEmpty()}"><strong> Chưa có dịch vụ</strong></h3>
+                            <h3 th:if="${!HouseService.isEmpty()}"><strong> Dịch vụ trọ:</strong></h3>
                             <div style="margin-top: 10px">
                                 <figure class="location" style="display: inline-block"
                                         th:each="HouseService,itestart : ${HouseService}" th:if="${itestart.index <= 15}">

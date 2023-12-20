@@ -31,4 +31,9 @@ public class WardServiceImpl implements WardService {
     public List<WardEntity> getWardsByDistrictAndProvince(Integer districtId, Integer provinceId) {
         return wardRepository.findByDistrictIdAndProvinceId(districtId, provinceId);
     }
+
+    @Override
+    public WardEntity getWardById(int id) {
+        return wardRepository.getWardById(id);
+    }
 }
