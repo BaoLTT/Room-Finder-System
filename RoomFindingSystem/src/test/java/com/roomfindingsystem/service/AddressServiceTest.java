@@ -57,12 +57,6 @@ class AddressServiceTest {
 
     @Test
     void findbyId() {
-
-
-        // Create an instance of YourService and inject the mock repository
-
-
-        // Create an example AddressEntity and ID
         AddressEntity addressEntity = new AddressEntity();
         addressEntity.setAddressId(1);
         int id = 1;

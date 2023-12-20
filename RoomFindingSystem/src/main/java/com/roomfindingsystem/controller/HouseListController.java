@@ -1,12 +1,10 @@
 package com.roomfindingsystem.controller;
 
-import com.roomfindingsystem.entity.ServiceDetailEntity;
-import com.roomfindingsystem.entity.TypeHouseEntity;
+import com.roomfindingsystem.entity.*;
 import com.roomfindingsystem.repository.ServiceDetailRepository;
-import com.roomfindingsystem.service.HouseService;
+import com.roomfindingsystem.service.*;
 
 import com.roomfindingsystem.dto.HouseTypeVo;
-import com.roomfindingsystem.service.HouseTypeService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +24,7 @@ import java.util.stream.Collectors;
 public class HouseListController {
     private HouseService houseService;
 
+
     public HouseListController(HouseService houseService) {
         this.houseService = houseService;
     }
@@ -33,6 +32,12 @@ public class HouseListController {
     private ServiceDetailRepository serviceDetailRepository;
     @Autowired
     HouseTypeService houseTypeService;
+    @Autowired
+    ProvinceService provinceService;
+    @Autowired
+    DistrictService districtService;
+    @Autowired
+    WardService wardService;
 
 //    @RequestMapping(value="", method = RequestMethod.GET)
 //    public String getAll(ModelMap modelMap){
@@ -58,6 +63,7 @@ public class HouseListController {
         List<TypeHouseEntity> listAllType = new ArrayList<>();
         listAllType = houseTypeService.findAll();
         List<HouseTypeVo>  list = new ArrayList<>();
+
         int totalHouse = 0;
         int pageSize =4;
         int countService = 0;
@@ -158,9 +164,26 @@ public class HouseListController {
         model.addAttribute("totalPage", totalPage);
         model.addAttribute("houses", list);
         model.addAttribute("status", status);
-        model.addAttribute("province", province);
-        model.addAttribute("district", district);
-        model.addAttribute("ward", ward);
+        model.addAttribute("provinceID", province);
+        model.addAttribute("districtID", district);
+        model.addAttribute("wardID", ward);
+        ProvinceEntity ProvinceEntity = new ProvinceEntity();
+        DistrictEntity districtEntity = new DistrictEntity();
+        WardEntity wardEntity = new WardEntity();
+        if(province!=0){
+            ProvinceEntity = provinceService.getProvinceById(province);
+        }
+        if(district!=0){
+            districtEntity = districtService.getDistrictById(district);
+        }
+        if(ward!=0){
+            wardEntity = wardService.getWardById(ward);
+        }
+
+        model.addAttribute("provinceName", ProvinceEntity.getName());
+        model.addAttribute("districtName", districtEntity.getName());
+        model.addAttribute("wardName", wardEntity.getName());
+
 
         model.addAttribute("listAllType", listAllType);
 

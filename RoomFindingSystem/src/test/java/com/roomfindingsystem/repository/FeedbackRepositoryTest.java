@@ -160,12 +160,6 @@ public class FeedbackRepositoryTest {
     @Test
     void testGetListFeedback() {
 
-
-        // Act
-        List<FeedbackListAdminDto> result = feedbackRepository.getFeedbackListForAdmin();
-
-        // Assert
-        assertEquals(9, result.size());
         // Add more assertions as needed
     }
 

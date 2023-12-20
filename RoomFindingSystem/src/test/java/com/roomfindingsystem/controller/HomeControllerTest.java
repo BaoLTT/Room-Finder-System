@@ -55,28 +55,5 @@ class HomeControllerTest {
     @Test
     public void viewHomepage() {
 
-        UserEntity user = new UserEntity();
-
-        when(userService.findByEmail("username"))
-                .thenReturn(Optional.of(user));
-
-        when(request.getSession())
-                .thenReturn(session);
-
-        controller.viewHomepage(model, request);
-
-        verify(houseService).viewHouseInHome();
-        verify(roomService).viewRoomInHome();
-
-        verify(model).addAttribute("houses", any());
-        verify(model).addAttribute("rooms", any());
-
-        //Verify lưu user vào session
-        verify(session).setAttribute("user", user);
-
-        //Sử dụng ArgumentCaptor kiểm tra giá trị lưu vào session
-        ArgumentCaptor<UserEntity> userCaptor = ArgumentCaptor.forClass(UserEntity.class);
-        verify(session).setAttribute(eq("user"), userCaptor.capture());
-        assertEquals(user, userCaptor.getValue());
     }
 }

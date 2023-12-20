@@ -63,6 +63,7 @@ public class HouseManagerServiceImpl implements HouseManagerService {
         housesEntity.setHouseName(house.getHouseName().trim().replaceAll("\\s+", " "));
         housesEntity.setDescription(house.getDescription().trim().replaceAll("\\s+", " "));
         housesEntity.setCreatedDate(createdDate);
+        housesEntity.setStar(house.getStar());
         housesEntity.setCreatedBy(house.getCreatedBy());
         housesEntity.setTypeHouseId(house.getTypeHouseID());
         housesEntity.setStatus(house.getStatus());

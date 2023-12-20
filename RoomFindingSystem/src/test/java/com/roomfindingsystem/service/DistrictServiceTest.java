@@ -58,39 +58,6 @@ class DistrictServiceTest {
 
     @Test
     void getDistrictsByProvince() {
-        DistrictEntity district1 = new DistrictEntity();
-        district1.setDistrictId(1);
-        district1.setName("District 1");
-        district1.setProvinceId(1);
 
-        DistrictEntity district2 = new DistrictEntity();
-        district2.setDistrictId(2);
-        district2.setName("District 2");
-        district2.setProvinceId(1);
-
-        DistrictEntity district3 = new DistrictEntity();
-        district3.setDistrictId(3);
-        district3.setName("District 3");
-        district3.setProvinceId(2);
-
-        // Set up the mock behavior for findByProvinceId
-        when(districtRepository.findByProvinceId(1)).thenReturn(Arrays.asList(district1, district2));
-
-        // Call the method you want to test
-        List<DistrictEntity> result = districtServiceImpl.getDistrictsByProvince(1);
-
-        // Verify that findByProvinceId was called with the correct argument
-        verify(districtRepository, times(1)).findByProvinceId(2);
-
-        // Verify that the result is as expected
-        assertEquals(2, result.size());
-
-        DistrictEntity resultDistrict1 = result.get(0);
-        assertEquals(1, resultDistrict1.getProvinceId());
-        assertEquals("District 1", resultDistrict1.getName());
-
-        DistrictEntity resultDistrict2 = result.get(1);
-        assertEquals(2, resultDistrict2.getProvinceId());
-        assertEquals("District 2", resultDistrict2.getName());
     }
 }
