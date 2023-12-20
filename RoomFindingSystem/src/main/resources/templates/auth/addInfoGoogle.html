@@ -37,18 +37,18 @@
 
                             <div class="form-group">
                                 <label>Hãy chọn vai trò của bạn:</label>
-                                <input class="form-control" type="text"
+                                <input class="form-control" type="text" hidden=""
                                        th:field="*{firstName}"/>
-                                <input class="form-control" type="text"
+                                <input class="form-control" type="text" hidden=""
                                        th:field="*{lastName}"/>
-                                <input class="form-control" type="text"
+                                <input class="form-control" type="text" hidden=""
                                        th:field="*{email}"/>
-                                <input class="form-control" type="text"
+                                <input class="form-control" type="text" hidden=""
                                        th:field="*{imageLink}"/>
-                                <input class="form-control" type="text"
+                                <input class="form-control" type="text" hidden=""
                                        th:field="*{userStatusId}"/>
-                                <input class="form-control" type="text"
-                                       th:field="*{facebookId}"/></br>
+                                <input class="form-control" type="text" hidden=""
+                                       th:field="*{gmailId}"/></br>
                                 <select th:field="*{roleId}" class="form-control">
                                     <option th:value="MEMBER" >Người thuê trọ</option>
                                     <option th:value="LANDLORD" >Chủ trọ</option>

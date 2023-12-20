@@ -62,7 +62,6 @@ public class OtpController {
                 }
                 userEntity.setCreatedDate(null);
                 userEntity.setAddressId(1);
-                userEntity.setFacebookId(null);
                 userEntity.setGmailId(null);
                 userEntity.setUserStatusId(1);
                 userEntity.setImageLink("https://storage.cloud.google.com/rfs_bucket/User/user_0.jpg");

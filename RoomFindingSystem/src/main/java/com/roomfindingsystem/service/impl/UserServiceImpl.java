@@ -183,7 +183,6 @@ public class UserServiceImpl implements UserService {
 //        User:
         saveUser.setUserId(user.getUserId());
         saveUser.setCreatedDate(user.getCreatedDate());
-        saveUser.setFacebookId(user.getFacebookId());
         saveUser.setGmailId(user.getGmailId());
         saveUser.setPassword(user.getPassword());
 
