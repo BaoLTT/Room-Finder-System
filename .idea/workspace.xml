@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+
     <list default="true" id="1e0562a2-7ad5-40d8-bd96-2e66b43cd15f" name="Changes" comment="update list room trong house detail">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/UserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/application.properties" afterDir="false" />
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,10 +64,12 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+
     "com.google.cloudcode.ide_session_index": "20231220_0000",
     "dart.analysis.tool.window.visible": "false",
     "git-widget-placeholder": "BaoLTT",
     "last_opened_file_path": "/Users/nguyenhuubinh/Documents/DATN/Room-Finding-System/RoomFindingSystem/src/main/resources/static/assets/img",
+
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
@@ -256,7 +260,14 @@
       <workItem from="1702811103840" duration="10964000" />
       <workItem from="1702878002671" duration="2027000" />
       <workItem from="1702688317691" duration="11552000" />
-      <workItem from="1702707411626" duration="5805000" />
+      <workItem from="1702707411626" duration="16604000" />
+      <workItem from="1702755080750" duration="5028000" />
+      <workItem from="1702776893773" duration="600000" />
+      <workItem from="1702805196153" duration="898000" />
+      <workItem from="1702932583299" duration="1468000" />
+      <workItem from="1702949792216" duration="426000" />
+      <workItem from="1702959399861" duration="606000" />
+      <workItem from="1702980727294" duration="1217000" />
     </task>
     <task id="LOCAL-00002" summary="update lai">
       <option name="closed" value="true" />
@@ -466,7 +477,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702640727169</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="update tinh so ngay trong">
+      <option name="closed" value="true" />
+      <created>1702740784849</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1702740784850</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -484,7 +503,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update lai phan house detail 2" />
     <MESSAGE value="update lai phan header" />
     <MESSAGE value="nối 1 số đường link" />
     <MESSAGE value="them slider detail" />
@@ -509,7 +527,8 @@
     <MESSAGE value="validate register" />
     <MESSAGE value="update list status room trong admin dashboard" />
     <MESSAGE value="update list room trong house detail" />
-    <option name="LAST_COMMIT_MESSAGE" value="update list room trong house detail" />
+    <MESSAGE value="update tinh so ngay trong" />
+    <option name="LAST_COMMIT_MESSAGE" value="update tinh so ngay trong" />
   </component>
   <component name="com.github.evgenys91.machinet.common.dslhistory.DslHistoryState">
     <option name="historyDtoById">
