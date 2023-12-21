@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -196,12 +197,17 @@ public class RoomServiceImpl implements RoomService {
         RoomEntity saveRoom = new RoomEntity();
         List<RoomImagesEntity> roomImagesEntities = roomImageRepository.getImageByRoomId(roomDto.getRoomId());
         int i = roomImagesEntities.size() + 1;
+        long timestamp = System.currentTimeMillis();
+
+        // Chuyển định dạng thời gian thành chuỗi
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss");
+        String formattedTimestamp = dateFormat.format(new Date(timestamp));
         for (MultipartFile file : files) {
             if (!file.isEmpty()) {
                 RoomImagesEntity roomImagesEntity = new RoomImagesEntity();
                 byte[] imageBytes = file.getBytes();
-                gcsService.uploadImage("rfs_bucket", "Room/room_" + i + "_" + room.getRoomid() + ".jpg", imageBytes);
-                roomImagesEntity.setImageLink("/rfs_bucket/Room/" + "room_" + i + "_" + room.getRoomid() + ".jpg");
+                gcsService.uploadImage("rfs_bucket", "Room/room_" + formattedTimestamp + "_" + room.getRoomid() + ".jpg", imageBytes);
+                roomImagesEntity.setImageLink("/rfs_bucket/Room/" + "room_" + formattedTimestamp + "_" + room.getRoomid() + ".jpg");
                 i++;
                 roomImagesEntity.setRoomId(roomDto.getRoomId());
                 roomImagesEntity.setCreatedDate(LocalDate.now());
@@ -297,14 +303,17 @@ public class RoomServiceImpl implements RoomService {
                 serviceRoomRepository.save(serviceRoomEntity);
             }
         }
-        int i = 1;
+        long timestamp = System.currentTimeMillis();
+
+        // Chuyển định dạng thời gian thành chuỗi
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss");
+        String formattedTimestamp = dateFormat.format(new Date(timestamp));
         for (MultipartFile file : files) {
             if (!file.isEmpty()) {
                 RoomImagesEntity roomImagesEntity = new RoomImagesEntity();
                 byte[] imageBytes = file.getBytes();
-                gcsService.uploadImage("rfs_bucket", "Room/room_" + i + "_" + saveRoom.getRoomid() + ".jpg", imageBytes);
-                roomImagesEntity.setImageLink("/rfs_bucket/Room/" + "room_" + i + "_" + saveRoom.getRoomid() + ".jpg");
-                i++;
+                gcsService.uploadImage("rfs_bucket", "Room/room_" + formattedTimestamp + "_" + saveRoom.getRoomid() + ".jpg", imageBytes);
+                roomImagesEntity.setImageLink("/rfs_bucket/Room/" + "room_" + formattedTimestamp + "_" + saveRoom.getRoomid() + ".jpg");
                 roomImagesEntity.setRoomId(saveRoom.getRoomid());
                 roomImagesEntity.setCreatedDate(LocalDate.now());
                 roomImagesEntity.setLastModifiedDate(LocalDate.now());
@@ -343,14 +352,17 @@ public class RoomServiceImpl implements RoomService {
                 serviceRoomRepository.save(serviceRoomEntity);
             }
         }
-        int i = 1;
+        long timestamp = System.currentTimeMillis();
+
+        // Chuyển định dạng thời gian thành chuỗi
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss");
+        String formattedTimestamp = dateFormat.format(new Date(timestamp));
         for (MultipartFile file : files) {
             if (!file.isEmpty()) {
                 RoomImagesEntity roomImagesEntity = new RoomImagesEntity();
                 byte[] imageBytes = file.getBytes();
-                gcsService.uploadImage("rfs_bucket", "Room/room_" + i + "_" + saveRoom.getRoomid() + ".jpg", imageBytes);
-                roomImagesEntity.setImageLink("/rfs_bucket/Room/" + "room_" + i + "_" + saveRoom.getRoomid() + ".jpg");
-                i++;
+                gcsService.uploadImage("rfs_bucket", "Room/room_" + formattedTimestamp + "_" + saveRoom.getRoomid() + ".jpg", imageBytes);
+                roomImagesEntity.setImageLink("/rfs_bucket/Room/" + "room_" + formattedTimestamp + "_" + saveRoom.getRoomid() + ".jpg");
                 roomImagesEntity.setRoomId(saveRoom.getRoomid());
                 roomImagesEntity.setCreatedDate(LocalDate.now());
                 roomImagesEntity.setLastModifiedDate(LocalDate.now());
