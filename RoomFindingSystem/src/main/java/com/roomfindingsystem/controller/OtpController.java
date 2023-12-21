@@ -70,7 +70,7 @@ public class OtpController {
                 model.addAttribute("request",request);
                 return "redirect:/login";
             }
-            model.addAttribute("mess","OTP is not correct! Please check your email.");
+            model.addAttribute("mess","Bạn đã nhập sai mã OTP. Vui lòng kiểm tra lại mã OTP trong email của bạn");
             return "otpConfirm";
 
 
@@ -108,7 +108,7 @@ public class OtpController {
                 //
                 return "confirmNewPassword";
             }
-            model.addAttribute("mess","OTP is not correct! Please check your email.");
+            model.addAttribute("mess","Bạn đã nhập sai mã OTP. Vui lòng kiểm tra lại mã OTP trong email của bạn");
             return "confirmOtpRecover";
 
         } catch (Exception exception) {
