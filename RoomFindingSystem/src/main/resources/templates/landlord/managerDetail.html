@@ -131,11 +131,7 @@
                                 <h2>Địa chỉ</h2>
                                 <aside class="step">2</aside>
                             </div>
-                            <div class="form-group">
-                                <label >Địa chỉ cụ thể<em>*</em></label>
-                                <input type="text" class="form-control"  placeholder="Address Detail..." id="inputField2"  oninput="removeWhitespace2(this)"
-                                       pattern="^[a-zA-Z0-9xyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđÁÂĐ ]+$" required="" th:field="*{addressDetail}">
-                            </div>
+
                             <input type="hidden" name="addressid" th:field="*{address}">
                             <div class="form-group">
                                 <label for="province">Tỉnh</label>
@@ -159,6 +155,11 @@
                                     <option value="0" selected>Chọn xã</option>
                                 </select>
                                 <input class="form-control" th:id="wardName" th:field="*{ward}">
+                            </div>
+                            <div class="form-group">
+                                <label >Địa chỉ cụ thể<em>*</em></label>
+                                <input type="text" class="form-control"  placeholder="Address Detail..." id="inputField2"  oninput="removeWhitespace2(this)"
+                                       pattern="^[a-zA-Z0-9xyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđÁÂĐ ]+$" required="" th:field="*{addressDetail}">
                             </div>
                         </div>
                     </div>

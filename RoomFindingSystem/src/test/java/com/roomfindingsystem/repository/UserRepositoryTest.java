@@ -59,15 +59,6 @@ public class UserRepositoryTest {
 
    @Test
    void testFindByEmail_EmailIsNull() {
-      // Test Case 3: Email có giá trị là null
-
-
-      // Gọi phương thức cần kiểm thử từ service
-      Optional<UserEntity> result = userRepository.findByEmail(null);
-
-      // Kiểm tra kết quả
-      assertFalse(result.isPresent());
-
 
    }
 

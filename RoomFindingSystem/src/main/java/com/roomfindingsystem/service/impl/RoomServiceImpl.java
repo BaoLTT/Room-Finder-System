@@ -157,6 +157,7 @@ public class RoomServiceImpl implements RoomService {
         RoomDto roomDto = modelMapper.map(roomEntity, RoomDto.class);
         roomDto.setTypeName(roomTypeRepository.findById(roomEntity.getRoomType()).get().getTypeName());
         roomDto.setTypeId(roomEntity.getRoomType());
+        roomDto.setFloor(roomEntity.getFloor());
         if (roomEntity.getStatusid() == 1) {
             roomDto.setStatus("ACTIVE");
         } else {
@@ -210,6 +211,7 @@ public class RoomServiceImpl implements RoomService {
         }
         saveRoom.setRoomid(room.getRoomid());
         saveRoom.setArea(roomDto.getArea());
+        saveRoom.setFloor(roomDto.getFloor());
         saveRoom.setCreatedDate(room.getCreatedDate());
         saveRoom.setCreatedBy(room.getCreatedBy());
         saveRoom.setDescription(roomDto.getDescription());
@@ -269,6 +271,7 @@ public class RoomServiceImpl implements RoomService {
         RoomEntity saveRoom = new RoomEntity();
         saveRoom.setArea(roomDto.getArea());
         saveRoom.setCreatedDate(LocalDate.now());
+        saveRoom.setFloor(roomDto.getFloor());
         saveRoom.setCreatedBy(roomDto.getCreatedBy());
         saveRoom.setDescription(roomDto.getDescription());
         saveRoom.setHouseid(roomDto.getHouseId());
@@ -316,6 +319,7 @@ public class RoomServiceImpl implements RoomService {
         saveRoom.setArea(roomDto.getArea());
         saveRoom.setCreatedDate(LocalDate.now());
         saveRoom.setCreatedBy(roomDto.getCreatedBy());
+        saveRoom.setFloor(roomDto.getFloor());
         saveRoom.setDescription(roomDto.getDescription());
         saveRoom.setHouseid(roomDto.getHouseId());
         saveRoom.setLastModifiedBy(roomDto.getLastModifiedBy());
@@ -504,22 +508,22 @@ public class RoomServiceImpl implements RoomService {
                 int typeId = (int) cellType.getNumericCellValue();
                 room.setRoomType(typeId);
 
-                Cell cellArea = row.getCell(2);
+                Cell cellFloor = row.getCell(2);
+                Integer floor =(int) cellFloor.getNumericCellValue();
+                room.setFloor(floor);
+
+                Cell cellArea = row.getCell(3);
                 Double area = cellArea.getNumericCellValue();
                 room.setArea(area);
 
-                Cell cellPrice = row.getCell(3);
+                Cell cellPrice = row.getCell(4);
                 Integer price = (int) cellPrice.getNumericCellValue();
                 room.setPrice(price);
-
-                Cell cellHouse = row.getCell(4);
-                String houseName = cellHouse.getStringCellValue();
-                Integer houseId = houseRepository.findHousesEntityByHouseName(houseName);
-                room.setHouseid(houseId);
 
                 Cell cellDesc = row.getCell(5);
                 room.setDescription(cellDesc.getStringCellValue());
                 room.setStatusId(1);
+                room.setHouseid(roomDto.getHouseId());
                 room.setCreatedBy(roomDto.getCreatedBy());
                 room.setLastModifiedBy(roomDto.getLastModifiedBy());
                 room.setCreatedDate(LocalDate.now());
@@ -532,7 +536,7 @@ public class RoomServiceImpl implements RoomService {
 
                 roomRepository.save(room);
 
-                RoomEntity roomEntity = roomRepository.getRoomByHouseIdAndName(cellName.getStringCellValue(), houseId);
+                RoomEntity roomEntity = roomRepository.getRoomByHouseIdAndName(cellName.getStringCellValue(), roomDto.getHouseId());
                 for (String service : services) {
                     service = service.trim();
                     ServiceDetailEntity serviceDetailEntity = serviceDetailRepository.findByServiceName(service).get();

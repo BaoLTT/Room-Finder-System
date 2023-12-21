@@ -121,7 +121,8 @@ public class AdminManageHouseController {
         model.addAttribute("listTypeNotUse",listTypeNotUse);
         model.addAttribute("user", user);
         model.addAttribute("key_map", gcsService.getMapKey());
-
+        int success =1;
+        model.addAttribute("success",success);
         return "admin/house-manager-detail";
     }
     @PostMapping("/house-manager/update")
@@ -140,7 +141,6 @@ public class AdminManageHouseController {
         UserEntity user = userService.findByEmail(email).get();
         house.setLastModifiedBy(user.getUserId());
         houseManagerService.updateHouse(house,house.getHouseID(),service,files);
-
 
 
 
@@ -184,6 +184,7 @@ public class AdminManageHouseController {
         int addressID = addressService.insertAddress(address);
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         UserEntity user = userService.findByEmail(email).get();
+        house.setStar(0.0);
         house.setCreatedBy(user.getUserId());
         house.setLastModifiedBy(user.getUserId());
         house.setStatus(1);

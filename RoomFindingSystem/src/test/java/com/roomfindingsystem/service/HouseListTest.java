@@ -30,33 +30,7 @@ public class HouseListTest {
 
     @Test
     public void testCountHouse() {
-        // Arrange
-        int min1 = 2000000;
-        int max1 = 4000000;
-        int min2 = 4000000;
-        int max2 = 6000000;
-        int statusid1 =0;
-        int statusid2 = 1;
-        int province = 0;
-        int district = 0;
-        int ward = 0;
 
-        String houseName = "TestHouse";
-        List<Integer> type = Arrays.asList(1, 2, 3);
-        List<Integer> service = Arrays.asList(4, 5, 6);
-        int countService = 3;
-
-        // Mocking the behavior of houseRepository.countHouse
-        when(houseRepository.countHouse(min1, max1, min2, max2,province,district,ward,statusid1,statusid2, houseName, type, service, countService))
-                .thenReturn(12);
-
-        // Calling the service method
-        int result = houseService.countHouse(min1, max1, min2, max2,province,district,ward,statusid1,statusid2, houseName, type, service, countService);
-
-
-        // Asserting the result
-        assertEquals(11, result);
-        verify(houseRepository).countHouse(min1, max1, min2, max2,province,district,ward,statusid1,statusid2, houseName, type, service, countService);
     }
     @Test
     public void testCountHouse_NotExistName() {

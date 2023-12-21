@@ -44,7 +44,8 @@
 
                         <!--end title-->
                         <div class="error-message">
-                            <h2 style="font-size: 70px">Hiện tại bạn chưa có trọ</h2>
+                            <img src="/assets/img/no-product.png" style="width: 20%; height: auto">
+                            <h2 style="font-size: 30px">Hiện tại bạn chưa có trọ</h2>
                             <div class="message">
 
                             </div>
@@ -92,7 +93,7 @@
                                 </div>
 
                                 <div class="info">
-                                    <a href="../detail.html"><h2 th:text="${house.houseName}" style="display: block">Spring Hotel</h2></a>
+                                    <a href="#"><h2 th:text="${house.houseName}" style="display: block">Spring Hotel</h2></a>
                                     <figure class="label label-info" th:text="${house.getTypeHouse()}" >Hotel</figure>
                                     <figure class="location" th:text="${house.getService()}">Montenegro</figure>
 
@@ -120,7 +121,7 @@
 
                                 <div class="edit-options">
                                     <a th:href = "@{/landlord/edit/}+${house.houseID}" class="link icon"><i class="fa fa-edit"></i>Chỉnh sửa</a>
-                                    <a th:href="@{'/landlord/room/listRoom/' + ${house.houseID}}" class="link icon"><i class="fa fa-edit"></i>Danh sách phòng</a>
+                                    <a th:href="@{'/landlord/room/listRoom/' + ${house.houseID}}" class="link icon"><i class="fa fa-list"></i>Danh sách phòng</a>
 <!--                                    <a href="reviews.html" class="link icon"><i class="fa fa-comment"></i>Reviews</a>-->
 <!--                                    <a href="#" class="link icon delete"><i class="fa fa-trash"></i>Delete</a>-->
                                 </div>

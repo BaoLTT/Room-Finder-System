@@ -30,4 +30,9 @@ public class DistrictServiceImpl implements DistrictService {
         System.out.println(districtRepository.findByProvinceId(provinceId));
         return districtRepository.findByProvinceId(provinceId);
     }
+
+    @Override
+    public DistrictEntity getDistrictById(int id) {
+        return districtRepository.getDistrictById(id) ;
+    }
 }

@@ -3,6 +3,8 @@ package com.roomfindingsystem.controller.admin;
 import com.roomfindingsystem.dto.RoomDto;
 import com.roomfindingsystem.dto.ServiceDto;
 import com.roomfindingsystem.entity.HousesEntity;
+import com.roomfindingsystem.entity.ServiceDetailEntity;
+import com.roomfindingsystem.entity.TypeHouseEntity;
 import com.roomfindingsystem.entity.UserEntity;
 import com.roomfindingsystem.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +31,8 @@ public class AdminManageRoomController {
     UserService userService;
     @Autowired
     HouseService houseService;
+    @Autowired
+    HouseTypeService houseTypeService;
 
     @GetMapping("/listRoom/{id}")
     public String getListRoomPage(@PathVariable("id") Integer id,Model model) {
@@ -47,6 +51,7 @@ public class AdminManageRoomController {
         model.addAttribute("houseid", roomDto.getHouseId());
         model.addAttribute("room", roomDto);
         model.addAttribute("types", roomTypeService.findAll());
+        model.addAttribute("listServiceNotUse",serviceDetailService.getServiceNotUse());
         model.addAttribute("listService", serviceDetailService.getServiceExceptHouseService(roomDto.getHouseId()));
         model.addAttribute("listChecked", roomDto.getServices());
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -84,6 +89,8 @@ public class AdminManageRoomController {
         model.addAttribute("room", roomDto);
         HousesEntity house = houseService.getHouseById(id);
         model.addAttribute("house", house);
+        model.addAttribute("listServiceNotUse",serviceDetailService.getServiceNotUse());
+
         model.addAttribute("services", serviceDetailService.getServiceExceptHouseService(id));
         model.addAttribute("types", roomTypeService.findAll());
         return "admin/insert-room";

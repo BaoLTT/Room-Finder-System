@@ -71,8 +71,8 @@
                                 <tr>
                                     <th>Phòng</th>
                                     <th>Diện tích</th>
+                                    <th>Tầng</th>
                                     <th>Loại phòng</th>
-                                    <th>Dịch vụ</th>
                                     <th>Giá</th>
                                     <th>Trọ</th>
                                     <th>Tình trạng</th>
@@ -84,14 +84,16 @@
                                     <td th:text="${room.roomName}">
                                     </td>
 
-                                    <td th:text="${room.area}">
+                                    <td th:text="${room.area+' m2'}">
+                                    </td>
+
+                                    <td th:text="${room.floor}">
                                     </td>
 
                                     <td th:text="${room.typeName}">
                                     </td>
 
-                                    <td th:text="${room.services}">
-                                    </td>
+
 
                                     <td class="price-info"
                                         th:with="formattedPrice=${#numbers.formatDecimal(room.price, 0, 'COMMA', 0, 'POINT')}">

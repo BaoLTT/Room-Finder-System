@@ -75,7 +75,7 @@ public class HouseServiceImpl implements HouseService {
             }
             List<HouseServiceDto> listService = new ArrayList<>();
             String service1 = (tuple.get("Service_Name", String.class));
-            if (service1.isEmpty()) {
+            if (service1 ==null) {
                 houseTypeVo.setService(null);
             } else {
                 services = Arrays.asList(service1.split(","));

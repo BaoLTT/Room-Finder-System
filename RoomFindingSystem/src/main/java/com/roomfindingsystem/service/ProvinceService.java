@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface ProvinceService {
     List<ProvinceEntity> getAll();
+
+    ProvinceEntity getProvinceById(int id);
 }

@@ -288,14 +288,16 @@
                             </div>
                             <!--end collapse-->
                             <div class="form-group center">
-                                <button type="submit" class="btn btn-primary btn-rounded form-control" style="border-radius: 5px">Liên Hệ
-                                </button>
+<!--                                <button type="submit" class="btn btn-primary btn-rounded form-control" style="border-radius: 5px">Liên Hệ-->
+<!--                                </button>-->
                             </div>
                             </form>
                             <!--end form-filter-->
                         </div>
                         <!--end filter-->
                         <div class="box">
+                            <h3 th:if="${HouseService.isEmpty()}"><strong> Chưa có dịch vụ</strong></h3>
+                            <h3 th:if="${!HouseService.isEmpty()}"><strong> Dịch vụ trọ:</strong></h3>
                             <div style="margin-top: 10px">
                                 <figure class="location" style="display: inline-block"
                                         th:each="HouseService,itestart : ${HouseService}" th:if="${itestart.index <= 15}">
@@ -477,11 +479,13 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <div class="comment-title">
-                                                <h4>Gửi báo cáo</h4>
-                                            </div>
+
                                             <form class="labels-uppercase clearfix" th:object="${reportEntity}"
                                                   th:action="@{/report}" method="post">
+                                                <div class="comment-title">
+                                                    <h4 th:if="${reportEntity.getTitle()==null}">Gửi báo cáo</h4>
+                                                    <h4 th:if="${reportEntity.getTitle()!=null}">Chỉnh sửa báo cáo</h4>
+                                                </div>
                                                 <div class="review write">
                                                     <div class="comment" style="margin-top: 10px">
 
@@ -514,7 +518,7 @@
                                                 <input type="hidden" th:field="*{houseid}">
                                                 <div class="modal-footer" style="border-top: 0px">
                                                     <!--                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
-                                                    <a th:href="@{deleteReport(houseId=*{houseid})}">
+                                                    <a th:href="@{/deleteReport(houseId=${houseId})}" th:if="${reportEntity.getTitle()!=null}">
                                                         <button type="button" class="btn btn-secondary">Xóa</button>
                                                     </a>
                                                     <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
@@ -638,25 +642,25 @@
                             <!--end col-md-8-->
                             <div class="col-md-0">
                                 <div class="sidebar">
-<!--                                    <aside class="box">-->
-<!--                                        <h3><strong> Loại nhà trọ:</strong></h3>-->
-<!--                                        <dl th:text="${HousesEntity.typeName}">-->
+                                    <!--                                    <aside class="box">-->
+                                    <!--                                        <h3><strong> Loại nhà trọ:</strong></h3>-->
+                                    <!--                                        <dl th:text="${HousesEntity.typeName}">-->
 
-<!--                                        </dl>-->
-<!--                                    </aside>-->
-<!--                                    <aside class="box">-->
-<!--                                        <h3><strong> Địa Chỉ Nhà Trọ:</strong></h3>-->
-<!--                                        <dl th:text="${HousesEntity.addressDetail+', '+HousesEntity.ward+','+HousesEntity.district+', '+HousesEntity.province}">-->
-<!--                                        </dl>-->
-<!--&lt;!&ndash;                                        <dl th:text="${HousesEntity.addressDetail}"></dl>&ndash;&gt;-->
-<!--&lt;!&ndash;                                        <p>Xã: </p>&ndash;&gt;-->
-<!--&lt;!&ndash;                                        <dl th:text="${HousesEntity.ward}"></dl>&ndash;&gt;-->
-<!--&lt;!&ndash;                                        <p>Huyện: </p>&ndash;&gt;-->
-<!--&lt;!&ndash;                                        <dl th:text="${HousesEntity.district}"></dl>&ndash;&gt;-->
-<!--&lt;!&ndash;                                        <p>(Thành Phố / Tỉnh)</p>&ndash;&gt;-->
-<!--&lt;!&ndash;                                        <dl th:text="${HousesEntity.province}">&ndash;&gt;-->
-<!--&lt;!&ndash;                                        </dl>&ndash;&gt;-->
-<!--                                    </aside>-->
+                                    <!--                                        </dl>-->
+                                    <!--                                    </aside>-->
+                                    <!--                                    <aside class="box">-->
+                                    <!--                                        <h3><strong> Địa Chỉ Nhà Trọ:</strong></h3>-->
+                                    <!--                                        <dl th:text="${HousesEntity.addressDetail+', '+HousesEntity.ward+','+HousesEntity.district+', '+HousesEntity.province}">-->
+                                    <!--                                        </dl>-->
+                                    <!--&lt;!&ndash;                                        <dl th:text="${HousesEntity.addressDetail}"></dl>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;                                        <p>Xã: </p>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;                                        <dl th:text="${HousesEntity.ward}"></dl>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;                                        <p>Huyện: </p>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;                                        <dl th:text="${HousesEntity.district}"></dl>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;                                        <p>(Thành Phố / Tỉnh)</p>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;                                        <dl th:text="${HousesEntity.province}">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;                                        </dl>&ndash;&gt;-->
+                                    <!--                                    </aside>-->
 
                                 </div>
                                 <!--end sidebar-->
@@ -665,9 +669,9 @@
                         </div>
                         <!--end row-->
                         <section>
-<!--                            <div><h2 style="display: inline-block ">Tại sao chọn</h2>  <strong><u><h2-->
-<!--                                    style="display: inline-block " th:text="${HousesEntity.houseName}"></h2>-->
-<!--                            </u></strong></div>-->
+                            <!--                            <div><h2 style="display: inline-block ">Tại sao chọn</h2>  <strong><u><h2-->
+                            <!--                                    style="display: inline-block " th:text="${HousesEntity.houseName}"></h2>-->
+                            <!--                            </u></strong></div>-->
 
                             <!--end row-->
                         </section>
@@ -718,12 +722,12 @@
                                                    th:href="@{'/house/' + ${room.houseName} + '/room/' + ${room.roomId}}"
                                                    th:text="${room.roomName}"
                                                    th:data-price="${room.price+'VNĐ'}">
-                                                   </a>
+                                                </a>
                                                 <a th:if="${room.status == 0}" class="room-button" style="background-color: #E26A6A;"
                                                    th:href="@{'/house/' + ${room.houseName} + '/room/' + ${room.roomId}}"
                                                    th:text="${room.roomName}"
                                                    th:data-price="${room.price+'VNĐ'}">
-                                                   </a>
+                                                </a>
                                             </li>
                                         </ul>
                                     </th:block>
@@ -762,9 +766,9 @@
 
 
                             </div>
-                            <div class="filter-container">
+                            <div class="filter-container" th:if="${feedbacks.size()!=0}">
                                 <span style="margin-right: 10px">Lọc theo sao:</span>
-                                <form th:action="@{/detail#reviews}" th:method="get" id="filterForm">
+                                <form th:action="@{'/house/' + ${houseName} + '#reviews'}" th:method="get" id="filterForm">
                                     <select name="star" class="framed" onchange="submitForm()" style="width: 70px">
                                         <option value="0">Tất cả</option>
                                         <option value="1" th:selected="${star==1}">1 sao</option>
@@ -781,6 +785,10 @@
 
 
                             <div class="reviews">
+                                <div th:if="${feedbacks.size()==0}" style="text-align: center;">
+                                    <img src="/assets/img/no-product.png" style="width: 50%; height: auto">
+                                    <h2>Hiện tại đang chưa có đánh giá</h2>
+                                </div>
 
                                 <div th:each="feedback: ${feedbacks}">
                                     <div class="review">
@@ -861,9 +869,10 @@
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title"
-                                                    id="exampleModalLabel">Chỉnh sửa đánh
-                                                    giá</h5>
+<!--                                                <h5 class="modal-title"  th:if="${feedbackEntity != null}">Chỉnh sửa đánh giá</h5>-->
+                                                <h5 class="modal-title"  th:if="${feedbackEntity.getStar()==0}">Viết đánh giá</h5>
+                                                <h5 class="modal-title"  th:if="${feedbackEntity.getStar()!=0}">Chỉnh sửa đánh giá</h5>
+
                                                 <button type="button" class="close"
                                                         data-dismiss="modal"
                                                         aria-label="Close">
@@ -936,6 +945,11 @@
                                                                 <span onclick="gfg(5, 1)"
                                                                       class="star">★</span>
                                                             </div>
+                                                            <input type="text"
+                                                                   class="form-control"
+                                                                   name="houseId"
+                                                                   hidden
+                                                                   th:value="${houseId}">
 
                                                             <!--end form-group-->
                                                             <div class="form-group pull-right">
@@ -943,13 +957,14 @@
                                                                         class="btn btn-primary btn-rounded">
                                                                     Gửi đánh giá
                                                                 </button>
-                                                                <a th:href="@{deleteHouseCmt(houseId=*{houseId})}">
+                                                                <a th:href="@{/deleteHouseCmt(houseId=${houseId})}" th:if="${feedbackEntity.getStar()!=0}">
                                                                     <button class="btn btn-primary btn-rounded"
                                                                             type="button"
                                                                             style="background-color: red">
                                                                         Xóa
                                                                     </button>
                                                                 </a>
+
                                                             </div>
 
                                                             <!--end form-group-->
@@ -1278,7 +1293,7 @@
 
 
 
-            calculateAndDisplayRoute(destinationCoordinates);
+        calculateAndDisplayRoute(destinationCoordinates);
 
 
 

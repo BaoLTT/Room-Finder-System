@@ -101,11 +101,7 @@
                                     <h2>Địa chỉ</h2>
                                     <aside class="step">2</aside>
                                 </div>
-                                <div class="form-group">
-                                    <label >Địa chỉ cụ thể<em>*</em></label>
-                                    <input type="text" class="form-control"  name="addressDetail" placeholder="Địa chỉ cụ thể..." required="" id="inputField2"  oninput="removeWhitespace2(this)"
-                                           pattern="^[a-zA-Z0-9xyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđÁÂĐ ]+$" th:filed="*{addressDetail}">
-                                </div>
+
 
                                 <div class="form-group">
                                         <label for="province">Tỉnh</label>
@@ -129,6 +125,11 @@
                                         </select>
 
                                 </div>
+                                <div class="form-group">
+                                    <label >Địa chỉ cụ thể<em>*</em></label>
+                                    <input type="text" class="form-control"  name="addressDetail" placeholder="Địa chỉ cụ thể..." required="" id="inputField2"  oninput="removeWhitespace2(this)"
+                                           pattern="^[a-zA-Z0-9xyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđÁÂĐ ]+$" th:filed="*{addressDetail}">
+                                </div>
                             </div>
                         </div>
                         <!--end row-->
@@ -143,6 +144,7 @@
                                 <div id="map-item">
 
                                 </div>
+
                                 <label>Vĩ độ</label>
                                 <input  id="latitude" name="latitude"
                                        th:field="*{latitude}">

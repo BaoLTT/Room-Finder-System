@@ -118,23 +118,36 @@
                                             <input type="text" class="form-control" required
                                                    placeholder="P101" th:field="*{roomName}"/>
                                         </div>
-                                        <div class="form-group">
-                                            <label>Diện tích</label>
-                                            <div>
-                                                <input type="number" id="area" class="form-control" required
-                                                       placeholder="20" th:field="*{area}"/>
-                                            </div>
-                                        </div>
+
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Tên trọ</label>
                                             <input readonly class="form-control" th:value="${house.houseName}"/>
                                         </div>
+
+                                    </div>
+                                    <div class="col-md-4">
                                         <div class="form-group">
-                                            <label>Giá</label>
+                                            <label>Diện tích (m2)</label>
+                                            <div>
+                                                <input type="number" id="area" class="form-control" required
+                                                       placeholder="20" th:field="*{area}"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Giá (VND)</label>
                                             <input type="number" class="form-control" required
-                                                   placeholder="2.000.000" th:field="*{price}"/>
+                                                placeholder="2.000.000" th:field="*{price}"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Tầng</label>
+                                            <input type="number" class="form-control" required
+                                                   placeholder="1" th:field="*{floor}"/>
                                         </div>
                                     </div>
                                     <div class="col-md-8">
@@ -196,6 +209,10 @@
                                                 id="houseService" style="border-radius: 5px"
                                         >Thêm dịch vụ
                                         </button>
+                                        <button type="button" class="btn btn-danger waves-effect waves-light"
+                                                id="deletehouseService" style="border-radius: 5px"
+                                        >Xóa dịch vụ
+                                        </button>
                                     </div>
                                 </div>
                                 <!-- Pictures -->
@@ -214,7 +231,7 @@
                                 <div class="form-group mb-0">
                                     <div>
                                         <button type="submit" class="btn btn-gradient waves-effect waves-light"
-                                                style="border-radius: 5px">
+                                                style="border-radius: 5px" >
                                             Lưu thông tin
                                         </button>
                                         <button type="reset" class="btn btn-danger waves-effect ml-1"
@@ -337,6 +354,57 @@
                 </form>
             </div>
 
+            <div id="deleteService" style="display: none">
+                <form th:action="@{/admin/house-manager/deleteService}" method="post">
+                    <div class="swal2-container swal2-center swal2-fade swal2-shown" style="overflow-y: auto;">
+                        <div aria-labelledby="swal2-title" aria-describedby="swal2-content"
+                             class="swal2-popup swal2-modal swal2-show" tabindex="-1" role="dialog" aria-live="assertive"
+                             aria-modal="true" style="display: flex;">
+                            <h2 th:if="${listServiceNotUse.isEmpty()}"  class="swal2-title" style="display: flex;">Không có dịch vụ nào được xóa</h2>
+                            <div  class="swal2-header" th:if="${!listServiceNotUse.isEmpty()}">
+                                <ul class="swal2-progress-steps" style="display: none;"></ul>
+                                <div class="swal2-icon swal2-error" style="display: none;"><span class="swal2-x-mark"><span
+                                        class="swal2-x-mark-line-left"></span><span
+                                        class="swal2-x-mark-line-right"></span></span>
+                                </div>
+                                <div class="swal2-icon swal2-question" style="display: none;"></div>
+                                <div class="swal2-icon swal2-warning" style="display: none;"></div>
+                                <div class="swal2-icon swal2-info" style="display: none;"></div>
+                                <div class="swal2-icon swal2-success" style="display: none;">
+                                    <div class="swal2-success-circular-line-left"></div>
+                                    <span class="swal2-success-line-tip"></span> <span
+                                        class="swal2-success-line-long"></span>
+                                    <div class="swal2-success-ring"></div>
+                                    <div class="swal2-success-fix"></div>
+                                    <div class="swal2-success-circular-line-right"></div>
+                                </div>
+                                <img class="swal2-image" style="display: none;">
+                                <h2 class="swal2-title" style="display: flex;">Chọn dịch vụ xóa</h2>
+                                <button type="button" class="swal2-close" aria-label="Close this dialog"
+                                        style="display: none;">
+                                    ×
+                                </button>
+                                <input name="houseID" th:value="${houseid}" type="hidden">
+                                <select class="form-control selectpicker" name="deleteService" >
+                                    <option th:each="service : ${listServiceNotUse}" th:value="${service.getServiceId()}" th:utext="${service.getServiceName()}"/>
+                                </select>
+                            </div>
+
+                            <div class="swal2-actions" style="display: flex;">
+                                <button th:if="${!listServiceNotUse.isEmpty()}" type="submit" class="swal2-confirm swal2-styled" aria-label=""
+                                        style="display: inline-block; border-left-color: rgb(48, 133, 214); border-right-color: rgb(48, 133, 214);">
+                                    Xóa
+                                </button>
+                                <button type="button" class="swal2-cancel swal2-styled" aria-label="" onclick="closeInput()"
+                                        style="display: inline-block;">Đóng
+                                </button>
+                            </div>
+                            <div class="swal2-footer" style="display: none;"></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
             <div id="inputRoom" style="display: none">
                 <form th:action="@{importRooms}" method="post" enctype="multipart/form-data" class="my-form">
                     <div class="swal2-container swal2-center swal2-fade swal2-shown" style="overflow-y: auto;">
@@ -413,7 +481,9 @@
         var overlay = document.getElementById('overlay');
         var inputService = document.getElementById('inputService');
         var inputRoom = document.getElementById('inputRoom');
+        var deleteService = document.getElementById('deleteService');
 
+        deleteService.style.display= 'none'
         inputService.style.display = 'none';
         inputRoom.style.display = 'none';
         overlay.style.display = 'none';
@@ -434,6 +504,14 @@
         var overlay = document.getElementById('overlay');
 
         inputRoom.style.display = 'block';
+        overlay.style.display = 'block';
+    });
+    document.getElementById('deletehouseService').addEventListener('click', function () {
+        // Hiển thị khối div và làm mờ phần đằng sau khi click vào nút "Click me"
+        var deleteService = document.getElementById('deleteService');
+        var overlay = document.getElementById('overlay');
+
+        deleteService.style.display = 'block';
         overlay.style.display = 'block';
     });
 </script>
