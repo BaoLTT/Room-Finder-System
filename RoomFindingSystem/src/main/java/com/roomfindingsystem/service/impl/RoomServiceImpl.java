@@ -157,6 +157,7 @@ public class RoomServiceImpl implements RoomService {
         RoomDto roomDto = modelMapper.map(roomEntity, RoomDto.class);
         roomDto.setTypeName(roomTypeRepository.findById(roomEntity.getRoomType()).get().getTypeName());
         roomDto.setTypeId(roomEntity.getRoomType());
+        roomDto.setFloor(roomEntity.getFloor());
         if (roomEntity.getStatusid() == 1) {
             roomDto.setStatus("ACTIVE");
         } else {

@@ -139,7 +139,7 @@ public class RoomEntity {
     public void setRoomType(Integer roomType) {
         this.roomType = roomType;
     }
-    public Integer getFloor(Integer floor) {
+    public Integer getFloor() {
         return this.floor;
     }
 
