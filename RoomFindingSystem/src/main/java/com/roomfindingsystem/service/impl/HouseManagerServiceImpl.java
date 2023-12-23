@@ -16,7 +16,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Service("houseManagerService")
@@ -87,13 +89,19 @@ public class HouseManagerServiceImpl implements HouseManagerService {
             }
         }
 
+        long timestamp = System.currentTimeMillis();
+
+        // Chuyển định dạng thời gian thành chuỗi
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss");
+        String formattedTimestamp = dateFormat.format(new Date(timestamp));
+
         int i = 1;
         for (MultipartFile file : files) {
             if (!file.isEmpty()) {
                 HouseImagesEntity houseImagesEntity = new HouseImagesEntity();
                 byte[] imageBytes = file.getBytes();
-                gcsService.uploadImage("rfs_bucket", "House/house_" + i + "_"+housesEntity.getHouseId()+".jpg", imageBytes);
-                houseImagesEntity.setImageLink("/rfs_bucket/House/"+"house_"+i + "_"+housesEntity.getHouseId()+".jpg");
+                gcsService.uploadImage("rfs_bucket", "House/house_" + formattedTimestamp + "_"+housesEntity.getHouseId()+".jpg", imageBytes);
+                houseImagesEntity.setImageLink("/rfs_bucket/House/"+"house_"+formattedTimestamp + "_"+housesEntity.getHouseId()+".jpg");
                 i++;
                 houseImagesEntity.setHouseId(housesEntity.getHouseId());
                 houseImagesEntity.setCreatedDate(LocalDate.now());
@@ -130,14 +138,17 @@ public class HouseManagerServiceImpl implements HouseManagerService {
 
             }
         }
-        int i = houseImagesEntity.size() + 2;
+        long timestamp = System.currentTimeMillis();
+
+        // Chuyển định dạng thời gian thành chuỗi
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss");
+        String formattedTimestamp = dateFormat.format(new Date(timestamp));
         for (MultipartFile file : files) {
             if (!file.isEmpty()) {
                 HouseImagesEntity houseImages = new HouseImagesEntity();
                 byte[] imageBytes = file.getBytes();
-                gcsService.uploadImage("rfs_bucket", "House/house_" + i + "_"+houseID+".jpg", imageBytes);
-                houseImages.setImageLink("/rfs_bucket/House/"+"house_"+i + "_"+houseID+".jpg");
-                i++;
+                gcsService.uploadImage("rfs_bucket", "House/house_" + formattedTimestamp + "_"+houseID+".jpg", imageBytes);
+                houseImages.setImageLink("/rfs_bucket/House/"+"house_"+formattedTimestamp + "_"+houseID+".jpg");
                 houseImages.setHouseId(houseID);
                 houseImages.setCreatedDate(LocalDate.now());
                 houseImageRepository.save(houseImages);

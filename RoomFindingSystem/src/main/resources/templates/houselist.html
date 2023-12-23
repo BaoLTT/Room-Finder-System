@@ -281,8 +281,18 @@
                                 </div>
 
 
+                                <div th:if="${houses.listImage.size()<=1}" >
+                                    <a th:href="@{/house/}+${houses.houseName}+'?id='+${houses.houseID}" class="wrapper">
+                                        <div class="gallery">
+                                            <img style="width: 273px; height: 208px;" th:each="image, iterStat : ${houses.listImage}" th:src="'https://storage.googleapis.com'+${image.imageLink}"  alt="Ảnh">
+                                        </div>
+                                    </a>
+                                    <!--end map-item-->
+                                    <div class="owl-navigation"></div>
+                                    <!--end owl-navigation-->
+                                </div>
 
-                                <div class="image" >
+                                <div class="image" th:if="${houses.listImage.size()>1}">
                                     <a th:href="@{/house/}+${houses.houseName}+'?id='+${houses.houseID}" class="wrapper">
                                         <div class="gallery">
                                             <img style="width: 273px; height: 208px;" th:each="image, iterStat : ${houses.listImage}" th:src="'https://storage.googleapis.com'+${image.imageLink}"  alt="Ảnh">
@@ -435,6 +445,8 @@
     <div th:replace="~{footer :: footerSection}"></div>
     <!--end page-footer-->
 </div>
+
+
 <!--end page-wrapper-->
 <a href="#page-header" class="to-top scroll" data-show-after-scroll="600"><i class="arrow_up"></i></a>
 <script>

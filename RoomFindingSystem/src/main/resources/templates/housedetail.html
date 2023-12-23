@@ -562,7 +562,17 @@
                                 <div class="item big equal-height" data-map-latitude="48.87" data-map-longitude="2.29"
                                      data-id="1">
                                     <div class="item-wrapper">
-                                        <div class="image" style="height: 500px;">
+                                        <div th:if="${HousesImages.size()<=1}" style="height: 500px;">
+                                            <a class="wrapper">
+                                                <div class="gallery">
+                                                    <img style="width:100%;height:100% "
+                                                         th:each="HousesImages : ${HousesImages}"
+                                                         th:src="'https://storage.googleapis.com'+${HousesImages.houseImagesEntities}" alt="">
+                                                </div>
+                                            </a>
+                                            <!--end owl-navigation-->
+                                        </div>
+                                        <div class="image" th:if="${HousesImages.size()>1}"  style="height: 500px;">
                                             <a class="wrapper">
                                                 <div class="gallery">
                                                     <img style="width:100%;height:100% "
