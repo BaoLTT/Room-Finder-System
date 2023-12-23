@@ -100,8 +100,8 @@ public class HouseManagerServiceImpl implements HouseManagerService {
             if (!file.isEmpty()) {
                 HouseImagesEntity houseImagesEntity = new HouseImagesEntity();
                 byte[] imageBytes = file.getBytes();
-                gcsService.uploadImage("rfs_bucket", "House/house_" + formattedTimestamp + "_"+housesEntity.getHouseId()+".jpg", imageBytes);
-                houseImagesEntity.setImageLink("/rfs_bucket/House/"+"house_"+formattedTimestamp + "_"+housesEntity.getHouseId()+".jpg");
+                gcsService.uploadImage("rfs_bucket", "House/house_" + formattedTimestamp+"_"+ i + "_"+housesEntity.getHouseId()+".jpg", imageBytes);
+                houseImagesEntity.setImageLink("/rfs_bucket/House/"+"house_"+formattedTimestamp+"_"+ i + "_"+housesEntity.getHouseId()+".jpg");
                 i++;
                 houseImagesEntity.setHouseId(housesEntity.getHouseId());
                 houseImagesEntity.setCreatedDate(LocalDate.now());
@@ -143,12 +143,14 @@ public class HouseManagerServiceImpl implements HouseManagerService {
         // Chuyển định dạng thời gian thành chuỗi
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss");
         String formattedTimestamp = dateFormat.format(new Date(timestamp));
+        int i = houseImagesEntity.size() + 2;
         for (MultipartFile file : files) {
             if (!file.isEmpty()) {
                 HouseImagesEntity houseImages = new HouseImagesEntity();
                 byte[] imageBytes = file.getBytes();
-                gcsService.uploadImage("rfs_bucket", "House/house_" + formattedTimestamp + "_"+houseID+".jpg", imageBytes);
-                houseImages.setImageLink("/rfs_bucket/House/"+"house_"+formattedTimestamp + "_"+houseID+".jpg");
+                gcsService.uploadImage("rfs_bucket", "House/house_" + formattedTimestamp+"_"+ i + "_"+houseID+".jpg", imageBytes);
+                houseImages.setImageLink("/rfs_bucket/House/"+"house_"+formattedTimestamp+"_"+ i + "_"+houseID+".jpg");
+                i++;
                 houseImages.setHouseId(houseID);
                 houseImages.setCreatedDate(LocalDate.now());
                 houseImageRepository.save(houseImages);
