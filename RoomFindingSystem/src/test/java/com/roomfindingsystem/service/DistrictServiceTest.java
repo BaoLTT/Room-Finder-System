@@ -58,6 +58,26 @@ class DistrictServiceTest {
 
     @Test
     void getDistrictsByProvince() {
+        // Mocking data
+        Integer provinceId = 1;
+        DistrictEntity district1 = new DistrictEntity();
+        district1.setDistrictId(1);
+        district1.setName("District 1");
 
+        DistrictEntity district2 = new DistrictEntity();
+        district2.setDistrictId(2);
+        district2.setName("District 2");
+
+        // Mocking repository behavior
+        when(districtRepository.findByProvinceId(provinceId))
+                .thenReturn(Arrays.asList(district1, district2));
+
+        // Call the method you want to test
+        List<DistrictEntity> result = districtServiceImpl.getDistrictsByProvince(provinceId);
+
+        // Verify the result
+        assertEquals(2, result.size());
+        assertEquals("District 1", result.get(0).getName());
+        assertEquals("District 2", result.get(1).getName());
     }
 }

@@ -121,15 +121,18 @@ public class AdminManageUserServiceImpl implements AdminManageUserService {
         }
         userRepository.save(saveUser);
 
-        if (!file.isEmpty()) {
-            //        Handle Image
-            byte[] imageBytes = file.getBytes();
-            gcsService.uploadImage("rfs_bucket", "User/user_" + saveUser.getUserId() + ".jpg", imageBytes);
-            saveUser.setImageLink("/rfs_bucket/User/" + "user_" + saveUser.getUserId() + ".jpg");
-            userRepository.save(saveUser);
-        }else {
-            saveUser.setImageLink("/rfs_bucket/User/user_0.jpg");
-            userRepository.save(saveUser);
+        if(file!=null){
+            if (!file.isEmpty()) {
+                //        Handle Image
+                byte[] imageBytes = file.getBytes();
+                gcsService.uploadImage("rfs_bucket", "User/user_" + saveUser.getUserId() + ".jpg", imageBytes);
+                saveUser.setImageLink("/rfs_bucket/User/" + "user_" + saveUser.getUserId() + ".jpg");
+                userRepository.save(saveUser);
+            }else {
+                saveUser.setImageLink("/rfs_bucket/User/user_0.jpg");
+                userRepository.save(saveUser);
+            }
         }
+
     }
 }
