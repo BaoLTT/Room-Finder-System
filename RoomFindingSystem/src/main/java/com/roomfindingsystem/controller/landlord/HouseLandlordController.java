@@ -108,7 +108,7 @@ public class HouseLandlordController {
         house.setUserID(user.getUserId());
         house.setCreatedBy(user.getUserId());
         house.setLastModifiedBy(user.getUserId());
-        house.setStatus(1);
+        house.setStatus(2);
 
 
 
