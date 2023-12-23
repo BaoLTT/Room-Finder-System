@@ -187,7 +187,7 @@ public class AdminManageHouseController {
         house.setStar(0.0);
         house.setCreatedBy(user.getUserId());
         house.setLastModifiedBy(user.getUserId());
-        house.setStatus(1);
+        house.setStatus(2);
 
         //Set mặc định là đang xử lý
         houseManagerService.insertHouse(house,addressID,files);
