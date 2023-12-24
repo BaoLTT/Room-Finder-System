@@ -9,6 +9,7 @@ import com.roomfindingsystem.entity.ServiceHouseEntity;
 import com.roomfindingsystem.repository.HouseImageRepository;
 import com.roomfindingsystem.repository.HouseManagerRepository;
 import com.roomfindingsystem.repository.ServiceHouseRepository;
+import com.roomfindingsystem.service.HouseLandlordService;
 import com.roomfindingsystem.service.HouseManagerService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,8 @@ public class HouseManagerServiceImpl implements HouseManagerService {
     GcsService gcsService;
     @Autowired
     HouseImageRepository houseImageRepository;
-
+    @Autowired
+    private HouseLandlordService houseLandlordService;
 
     @Override
     public List<HouseManagerTypeVo> findHouseManager() {
@@ -106,6 +108,14 @@ public class HouseManagerServiceImpl implements HouseManagerService {
                 houseImagesEntity.setHouseId(housesEntity.getHouseId());
                 houseImagesEntity.setCreatedDate(LocalDate.now());
                 houseImageRepository.save(houseImagesEntity);
+            }else{
+                    // If files are null or empty, set a default image
+                    HouseImagesEntity defaultImage = new HouseImagesEntity();
+                    defaultImage.setImageLink("/rfs_bucket/House/housenull.jpg");
+                    defaultImage.setHouseId(housesEntity.getHouseId());
+                    defaultImage.setCreatedDate(LocalDate.now());
+                    houseImageRepository.save(defaultImage);
+
             }
         }
     }
@@ -154,8 +164,20 @@ public class HouseManagerServiceImpl implements HouseManagerService {
                 houseImages.setHouseId(houseID);
                 houseImages.setCreatedDate(LocalDate.now());
                 houseImageRepository.save(houseImages);
+            }else{
+                HouseLandlordVo  houseImage = houseLandlordService.findHouseByID(houses.getHouseID());
+                    if (houseImage.getListImage() == null ) {
+                        HouseImagesEntity defaultImage = new HouseImagesEntity();
+                        defaultImage.setImageLink("/rfs_bucket/House/housenull.jpg");
+                        defaultImage.setHouseId(houses.getHouseID());
+                        defaultImage.setCreatedDate(LocalDate.now());
+                        houseImageRepository.save(defaultImage);
+                    }
             }
+
         }
+
+
     }
 
 }

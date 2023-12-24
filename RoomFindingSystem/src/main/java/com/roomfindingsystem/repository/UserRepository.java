@@ -20,7 +20,10 @@ import java.util.Optional;
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity,Integer> {
     public UserEntity save(UserEntity user);
+    @Query("SELECT u FROM UserEntity u WHERE u.email = ?1 AND u.userStatusId =1")
     Optional<UserEntity> findByEmail(String email);
+    @Query("SELECT u FROM UserEntity u WHERE u.phone = ?1 AND u.userStatusId =1")
+    Optional<UserEntity> findByPhone(String phone);
     public UserDto save(UserDto userDto);
     @Query("SELECT u FROM UserEntity u " +
             "JOIN HousesEntity h " +

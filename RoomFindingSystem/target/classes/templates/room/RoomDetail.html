@@ -66,7 +66,7 @@
                                 <h1 th:text="${room.getRoomName()}"></h1>
                                 <h1>-</h1>
                                 <h1 th:text="${house.getHouseName()}"></h1>
-                                <a th:if="${session.user!=null}"><a th:if="${session.user.roleId=='STAFF'}" th:href="@{/admin/room/updateRoom/}+${room.roomid}" class="btn btn-primary btn-rounded scroll" style="border-radius: 5px;margin-left: 0">Chỉnh sủa phòng</a></a>
+                                <a th:if="${session.user!=null}"><a th:if="${session.user.roleId=='STAFF' || session.user.roleId=='ADMIN'}"  th:href="@{/admin/room/updateRoom/}+${room.roomid}" class="btn btn-primary btn-rounded scroll" style="border-radius: 5px;margin-left: 0">Chỉnh sửa phòng</a></a>
 
                                 <!--                                <h3><a href="#">Adress</a></h3>-->
                             </div>
@@ -74,7 +74,7 @@
                         <!--end title-->
 <!--                        Add vong lap-->
                         <div style="background-color: #FFFFFF; box-shadow:inherit; box-shadow:5px 5px 7px grey; border-radius: 10px">
-                            <div class="row" style="border-bottom: 1px solid darkgrey">
+                            <div class="row" >
                                 <div class="col-md-6" >
                                     <div class="w3-content w3-display-container" style="background-color: darkgrey; border-radius: 10px">
                                         <div th:each="image: ${roomImages}" th:if="${roomImages.size()!=0}">
@@ -97,7 +97,7 @@
                                 <!--slider-->
 
 
-                                <div class="col-md-6">
+                                <div class="col-md-6" style="border-bottom: 1px solid darkgrey;margin-left: -15px">
                                     <div style="padding: 30px; background-color: #FFFFFF; border-radius: 10px">
                                         <h2 style="font-weight: bold">Thông tin:</h2>
                                         <table style="width: 100%; " >
@@ -119,6 +119,12 @@
                                                     Chủ nhà trọ: <span th:text="${user.firstName}"></span><span> </span><span th:text="${user.lastName}"></span>
                                                 </td>
                                                 <td style="width: 50%"><iconify-icon icon="ph:phone-light"></iconify-icon> Liên hệ: <span th:text="${user.getPhone()}"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <iconify-icon icon="material-symbols:floor"></iconify-icon>
+                                                    Vị trí: Tầng <span th:text="${room.getFloor()}"></span>
+                                                </td>
                                             </tr>
                                         </table>
 

@@ -197,7 +197,7 @@
                         <div class="file-upload-previews">
                             <div class="MultiFile-label"  id="imageContainer" th:each="image, iterStat : ${house.listImage}">
                                 <a class="MultiFile-remove" th:href="@{'/landlord/deleteImage/' + ${house.houseID} + '/' + ${image.imageId}}">x</a>
-                                <span class="MultiFile-label" title="File selected: abc.png">
+                                <span class="MultiFile-label">
                                     <img th:src="'https://storage.googleapis.com'+${image.imageLink}" alt="Ảnh" id="imagePreview" style="width: 100px;height: 100px">
                                 </span>
                             </div>
@@ -608,5 +608,19 @@
         document.getElementById('longitude').value = location.lng();
     }
 </script>
+<script>
+    // Chờ cho trang web tải hoàn toàn
+    window.onload = function() {
+        // Chờ một khoảng thời gian ngắn sau khi trang tải xong
+        setTimeout(function() {
+            // Tìm nút "OK" trong thông báo và nhấn nó
+            var okButton = document.querySelector('#map-item button.dismissButton');
 
+            // Nếu nút "OK" tồn tại, nhấn nó
+            if (okButton) {
+                okButton.click();
+            }
+        }, 1000); // Thời gian chờ (1000 milliseconds = 1 giây), bạn có thể điều chỉnh nếu cần
+    };
+</script>
 </body>

@@ -109,6 +109,8 @@
             top: 0;
         }
 
+
+
     </style>
     <style>
         .room-list {
@@ -122,6 +124,10 @@
             margin-right: 10px;
             margin-bottom: 10px;
         }
+
+
+
+
 
         /*.room-button {*/
         /*    padding: 5px 10px; !* Giảm padding để làm cho button nhỏ lại *!*/
@@ -199,7 +205,7 @@
             <ol class="breadcrumb">
                 <li><a th:href="@{/}">Trang chủ</a></li>
 
-                <li><a th:href="@{houselist}">Danh sách trọ</a></li>
+                <li><a th:href="@{/houselist}">Danh sách trọ</a></li>
                 <li class="active">Chi Tiết</li>
             </ol>
             <!--end breadcrumb-->
@@ -236,52 +242,7 @@
                                         <!--end checkboxes-->
 
                                     </section>
-                                    <!--end section-->
-                                    <!--                                        <section>-->
-                                    <!--                                            <h3>Property Type </h3>-->
-                                    <!--                                            <ul class="checkboxes">-->
-                                    <!--                                                <li><label><input type="checkbox" name="hotel">Apartmets<span>67</span></label>-->
-                                    <!--                                                </li>-->
-                                    <!--                                                <li><label><input type="checkbox" name="apartment">Hotels<span>31</span></label>-->
-                                    <!--                                                </li>-->
-                                    <!--                                                <li><label><input type="checkbox"-->
-                                    <!--                                                                  name="breakfast-only">Boats<span>68</span></label>-->
-                                    <!--                                                </li>-->
-                                    <!--                                                <li><label><input type="checkbox"-->
-                                    <!--                                                                  name="spa-wellness">Villas<span>52</span></label></li>-->
-                                    <!--                                            </ul>-->
-                                    <!--                                            <div class="collapse" id="all-property-types">-->
-                                    <!--                                                <ul class="checkboxes">-->
-                                    <!--                                                    <li><label><input type="checkbox" name="ski-center">Ski Center<span>67</span></label>-->
-                                    <!--                                                    </li>-->
-                                    <!--                                                    <li><label><input type="checkbox"-->
-                                    <!--                                                                      name="cottage">Cottage<span>31</span></label></li>-->
-                                    <!--                                                    <li><label><input type="checkbox"-->
-                                    <!--                                                                      name="hostel">Hostel<span>68</span></label></li>-->
-                                    <!--                                                    <li><label><input type="checkbox"-->
-                                    <!--                                                                      name="boat">Boat<span>52</span></label></li>-->
-                                    <!--                                                </ul>-->
-                                    <!--                                            </div>-->
-                                    <!--                                            &lt;!&ndash;end checkboxes&ndash;&gt;-->
-                                    <!--                                            <a href="#all-property-types" class="link" data-toggle="collapse"-->
-                                    <!--                                               aria-expanded="false" aria-controls="all-property-types">Show all</a>-->
-                                    <!--                                        </section>-->
-                                    <!--end section-->
-                                    <!--                                        <section>-->
-                                    <!--                                            <h3>Property Facility</h3>-->
-                                    <!--                                            <ul class="checkboxes no-bottom-margin">-->
-                                    <!--                                                <li><label><input type="checkbox"-->
-                                    <!--                                                                  name="wi-fi">Wi-fi<span>12</span></label></li>-->
-                                    <!--                                                <li><label><input type="checkbox" name="free-parking">Free Parking<span>48</span></label>-->
-                                    <!--                                                </li>-->
-                                    <!--                                                <li><label><input type="checkbox" name="airport">Airport-->
-                                    <!--                                                    Shuttle<span>36</span></label></li>-->
-                                    <!--                                                <li><label><input type="checkbox" name="family-rooms">Family Rooms<span>56</span></label>-->
-                                    <!--                                                </li>-->
-                                    <!--                                            </ul>-->
-                                    <!--                                            &lt;!&ndash;end checkboxes&ndash;&gt;-->
-                                    <!--                                        </section>-->
-                                    <!--end section-->
+
                                 </div>
 
                                 <!--end filter-advanced-search-->
@@ -373,9 +334,7 @@
                                     <span th:text="${HouseService.getServiceName()}+', '"></span>
                                 </div>
                             </div>
-                            <!--                            <h2>Weather in Destination</h2>-->
-                            <!--                            <div id="weather" class="weather weather-detail"></div>-->
-                            <!--end weather-->
+
                         </div>
                         <!--end box-->
                         <aside class="box">
@@ -430,7 +389,7 @@
                             <div class="right">
 
 
-                                <a th:if="${session.user!=null}"><a th:if="${session.user.roleId=='STAFF'}" th:href="@{/admin/house-manager/detail/}+${HousesEntity.houseId}" class="btn btn-primary" style="border-radius: 5px;float: left;margin-left: 0">Chỉnh sủa trọ</a></a>
+                                <a th:if="${session.user!=null}"><a th:if="${session.user.roleId=='STAFF' || session.user.roleId=='ADMIN'}" th:href="@{/admin/house-manager/detail/}+${HousesEntity.houseId}" class="btn btn-primary" style="border-radius: 5px;float: left;margin-left: 0">Chỉnh sủa trọ</a></a>
 
                                 <a href="#map" class="icon scroll"><i class="fa fa-map-marker"></i>Tìm Trên Bản Đồ</a>
                                 <a href="#availability" class="btn btn-primary btn-rounded scroll" style="border-radius: 5px">Danh sách phòng</a>
@@ -755,8 +714,8 @@
                                 <div style="display: flex; align-items: center;">
 
                                     <!-- Khối đầu tiên -->
-                                    <div style="display: flex; align-items: center;">
-                                        <a class="room-button1" style="background-color: #488f3e;"></a>
+                                    <div style="display: flex; align-items: center">
+                                        <a class="room-button1" style="background-color: #488f3e;cursor: auto"></a>
                                         <a>Còn trống</a>
                                     </div>
 
@@ -765,7 +724,7 @@
 
                                     <!-- Khối thứ hai -->
                                     <div style="display: flex; align-items: center;">
-                                        <a class="room-button1" style="background-color: #E26A6A;"></a>
+                                        <a class="room-button1" style="background-color: #E26A6A;cursor: auto"></a>
                                         <a>Hết phòng</a>
                                     </div>
 
@@ -1189,6 +1148,7 @@
 </script>
 
 <script>
+
     function submitForm() {
         // Khi giá trị của dropdown thay đổi, tự động gửi form
         document.getElementById("filterForm").submit();
@@ -1392,6 +1352,24 @@
 
 
 </script>
+<script>
+    // Chờ cho trang web tải hoàn toàn
+    window.onload = function() {
+        // Chờ một khoảng thời gian ngắn sau khi trang tải xong
+        setTimeout(function() {
+            // Tìm nút "OK" trong thông báo và nhấn nó
+            var okButton = document.querySelector('#map-item button.dismissButton');
+
+            // Nếu nút "OK" tồn tại, nhấn nó
+            if (okButton) {
+                okButton.click();
+            }
+        }, 1000); // Thời gian chờ (1000 milliseconds = 1 giây), bạn có thể điều chỉnh nếu cần
+    };
+
+</script>
+
+
 
 
 <script th:src="@{/assets_admin/js/vendor.min.js}"></script>
@@ -1417,5 +1395,7 @@
 
 <!-- App js -->
 <script th:src="@{/assets_admin/js/app.min.js}"></script>
+
+
 
 </body>
