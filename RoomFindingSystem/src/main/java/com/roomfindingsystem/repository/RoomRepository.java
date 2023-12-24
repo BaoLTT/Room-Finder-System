@@ -9,8 +9,10 @@ import com.roomfindingsystem.entity.ServiceDetailEntity;
 
 
 import jakarta.persistence.Tuple;
+import jakarta.transaction.Transactional;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -43,6 +45,12 @@ public interface RoomRepository extends JpaRepository<RoomEntity, Integer> {
             "JOIN ServiceRoomEntity rs ON s.serviceId = rs.serviceId\n" +
             "WHERE rs.roomId = :roomId")
     List<ServiceDetailEntity> getServiceByRoomId(int roomId);
+
+    @Transactional
+    @Modifying
+    @Query(value = "DELETE FROM `room_finding_system`.`room`\n" +
+            "WHERE room.houseid = ?1 ;",nativeQuery = true)
+    void deleteByHouseId(int houseid);
 
 
 

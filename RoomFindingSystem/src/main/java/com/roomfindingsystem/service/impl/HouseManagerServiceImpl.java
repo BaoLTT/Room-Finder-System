@@ -2,13 +2,9 @@ package com.roomfindingsystem.service.impl;
 
 import com.roomfindingsystem.dto.HouseLandlordVo;
 import com.roomfindingsystem.dto.HouseManagerTypeVo;
-import com.roomfindingsystem.entity.HouseImagesEntity;
-import com.roomfindingsystem.entity.HousesEntity;
-import com.roomfindingsystem.entity.RoomImagesEntity;
-import com.roomfindingsystem.entity.ServiceHouseEntity;
-import com.roomfindingsystem.repository.HouseImageRepository;
-import com.roomfindingsystem.repository.HouseManagerRepository;
-import com.roomfindingsystem.repository.ServiceHouseRepository;
+import com.roomfindingsystem.dto.RoomDto;
+import com.roomfindingsystem.entity.*;
+import com.roomfindingsystem.repository.*;
 import com.roomfindingsystem.service.HouseLandlordService;
 import com.roomfindingsystem.service.HouseManagerService;
 import jakarta.transaction.Transactional;
@@ -38,6 +34,18 @@ public class HouseManagerServiceImpl implements HouseManagerService {
     HouseImageRepository houseImageRepository;
     @Autowired
     private HouseLandlordService houseLandlordService;
+    @Autowired
+    AddressRepository addressRepository;
+    @Autowired
+    FavouriteRepository favouriteRepository;
+    @Autowired
+    FeedbackRepository feedbackRepository;
+    @Autowired
+    RoomRepository roomRepository;
+    @Autowired
+    RoomImageRepository roomImageRepository;
+    @Autowired
+    ServiceRoomRepository serviceRoomRepository;
 
     @Override
     public List<HouseManagerTypeVo> findHouseManager() {
@@ -49,7 +57,20 @@ public class HouseManagerServiceImpl implements HouseManagerService {
         if ( houseManagerRepository.findById(id).isEmpty()) {
             System.err.println("House with id: "+ id +" not found!");
         }
+        HouseManagerTypeVo house = houseManagerRepository.findHouseById(id);
+        List<RoomDto> roomDtos = roomRepository.findRoomsInHouse(id);
+        for(int i =0;i<roomDtos.size();i++){
+            roomImageRepository.deleteByRoomId(roomDtos.get(i).getRoomId());
+            serviceRoomRepository.deleteByRoomId(roomDtos.get(i).getRoomId());
+        }
+
+        roomRepository.deleteByHouseId(id);
+        feedbackRepository.deleteByHouseId(id);
+        favouriteRepository.deleteFavouriteEntitiesByHouseId(id);
+        houseImageRepository.deleteByHouseId(id);
+        serviceHouseRepository.deleteByHouseId(id);
         houseManagerRepository.deleteById(id);
+        addressRepository.deleteById(house.getAddress());
         return true;
     }
 
