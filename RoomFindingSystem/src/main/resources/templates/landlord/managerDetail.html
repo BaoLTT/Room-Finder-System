@@ -76,7 +76,7 @@
                                 <div class="form-group">
                                     <label >Tên trọ<em>*</em></label>
                                     <input type="text" class="form-control"  name="houseName" placeholder="Tên trọ..." id="inputField"  oninput="removeWhitespace(this)"
-                                           pattern="^[a-zA-Z0-9xyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđÁÂĐ ]+$" required="" th:field="*{houseName}">
+                                           pattern="^[a-zA-Z0-9aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆgGhHiIìÌỉỈĩĨíÍịỊkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTuUùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVxXyYỳỲỷỶỹỸýÝỵỴ ]+$" required="" th:field="*{houseName}">
                                 </div>
                                 <!--end form-group-->
                             </div>
@@ -115,10 +115,11 @@
                                 </div>
                                 <div class="form-group" style="float: left;width: inherit">
                                     <label>Tình trạng</label>
-<!--                                    <input type="text" th:if="${house.status==2}"  th:field="*{status}" readonly th:value="${house.status==2 ? 'Đang xử lý' : house.status}" th:readonly="${house.status==2}" style="padding: 10px">-->
+<!--                                        <input type="text" th:if="${house.status==2}"  th:field="*{status}" readonly th:value="${house.status==2 ? 'Đang xử lý' : house.status}" th:readonly="${house.status==2}" style="padding: 10px">-->
                                     <select class="form-control" th:field="*{status}">
-                                        <option value="1" th:selected="${house.status == 1}" >HOẠT ĐỘNG</option>
-                                        <option value="0" th:selected="${house.status == 0}">NGƯNG HOẠT ĐỘNG</option>
+                                        <option value="2" th:if="${house.status==2}"  th:selected="${house.status == 2}">ĐANG XỬ LÝ</option>
+                                        <option value="1" th:if="${house.status==0 || house.status==1}" th:selected="${house.status == 1}" >HOẠT ĐỘNG</option>
+                                        <option value="0" th:if="${house.status==0 || house.status==1}" th:selected="${house.status == 0}">NGƯNG HOẠT ĐỘNG</option>
                                     </select>
                                 </div>
                             </div>
@@ -159,7 +160,7 @@
                             <div class="form-group">
                                 <label >Địa chỉ cụ thể<em>*</em></label>
                                 <input type="text" class="form-control"  placeholder="Address Detail..." id="inputField2"  oninput="removeWhitespace2(this)"
-                                       pattern="^[a-zA-Z0-9xyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđÁÂĐ ]+$" required="" th:field="*{addressDetail}">
+                                       pattern="^[a-zA-Z0-9aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆgGhHiIìÌỉỈĩĨíÍịỊkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTuUùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVxXyYỳỲỷỶỹỸýÝỵỴ ]+$" required="" th:field="*{addressDetail}">
                             </div>
                         </div>
                     </div>
@@ -196,7 +197,7 @@
                         <div class="file-upload-previews">
                             <div class="MultiFile-label"  id="imageContainer" th:each="image, iterStat : ${house.listImage}">
                                 <a class="MultiFile-remove" th:href="@{'/landlord/deleteImage/' + ${house.houseID} + '/' + ${image.imageId}}">x</a>
-                                <span class="MultiFile-label" title="File selected: abc.png">
+                                <span class="MultiFile-label">
                                     <img th:src="'https://storage.googleapis.com'+${image.imageLink}" alt="Ảnh" id="imagePreview" style="width: 100px;height: 100px">
                                 </span>
                             </div>

@@ -100,6 +100,8 @@
                                                 <div class="col-md ">
                                                     <label>Tình trạng</label>
                                                     <select class="form-control" th:field="*{status}">
+                                                        <option value="2" th:selected="${house.status == 2}">ĐANG XỬ LÝ
+                                                        </option>
                                                         <option value="1" th:selected="${house.status == 1}">HOẠT ĐỘNG
                                                         </option>
                                                         <option value="0" th:selected="${house.status == 0}">NGƯNG HOẠT

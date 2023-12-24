@@ -385,7 +385,7 @@
                             <div class="right">
 
 
-                                <a th:if="${session.user!=null}"><a th:if="${session.user.roleId=='STAFF'}" th:href="@{/admin/house-manager/detail/}+${HousesEntity.houseId}" class="btn btn-primary" style="border-radius: 5px;float: left;margin-left: 0">Chỉnh sủa trọ</a></a>
+                                <a th:if="${session.user!=null}"><a th:if="${session.user.roleId=='STAFF' || session.user.roleId=='ADMIN'}" th:href="@{/admin/house-manager/detail/}+${HousesEntity.houseId}" class="btn btn-primary" style="border-radius: 5px;float: left;margin-left: 0">Chỉnh sủa trọ</a></a>
 
                                 <a href="#map" class="icon scroll"><i class="fa fa-map-marker"></i>Tìm Trên Bản Đồ</a>
                                 <a href="#availability" class="btn btn-primary btn-rounded scroll" style="border-radius: 5px">Danh sách phòng</a>
@@ -517,7 +517,17 @@
                                 <div class="item big equal-height" data-map-latitude="48.87" data-map-longitude="2.29"
                                      data-id="1">
                                     <div class="item-wrapper">
-                                        <div class="image" style="height: 500px;">
+                                        <div th:if="${HousesImages.size()<=1}" style="height: 500px;">
+                                            <a class="wrapper">
+                                                <div class="gallery">
+                                                    <img style="width:100%;height:100% "
+                                                         th:each="HousesImages : ${HousesImages}"
+                                                         th:src="'https://storage.googleapis.com'+${HousesImages.houseImagesEntities}" alt="">
+                                                </div>
+                                            </a>
+                                            <!--end owl-navigation-->
+                                        </div>
+                                        <div class="image" th:if="${HousesImages.size()>1}"  style="height: 500px;">
                                             <a class="wrapper">
                                                 <div class="gallery">
                                                     <img style="width:100%;height:100% "
@@ -575,10 +585,9 @@
                                 <!--                                                                <section id="map">-->
                                 <!--                                                                    <h2>Map</h2>-->
                                 <!--                                                                    <div id="map-item" class="map height-300 box"></div>-->
-                                <div id="map"
-                                     th:if="${houseLocation.latitude == null || houseLocation.longitude== null }">
+                                <div th:if="${houseLocation.latitude == null || houseLocation.longitude== null }">
                                     <h2>Map</h2>
-                                    <span>Nhà trọ chưa cập nhật vị trí trên google map</span>
+                                    <span>Nhà trọ chưa cập nhật vị trí trên Google Map</span>
                                 </div>
                                 <div th:if="${houseLocation.latitude != null && houseLocation.longitude != null }">
                                     <section id="map">
@@ -586,12 +595,22 @@
                                         <div id="map-item" class="map height-300 box"></div>
                                         <input id="latitude" type="hidden" th:value="${houseLocation.latitude}">
                                         <input id="longitude" type="hidden" th:value="${houseLocation.longitude}">
-                                        <button type="button" class="btn btn-primary btn-rounded scroll" style="margin-top: 20px;border-radius: 5px;"
+                                        <div>
+                                            <label for="locationType">Lấy vị trí từ:</label>
+                                            <select id="locationType">
+                                                <option value="current">Vị trí hiện tại</option>
+                                                <option value="fixed">Vị trí cố định</option>
+                                            </select>
+                                        </div>
+                                        <button type="button" class="btn btn-primary btn-rounded scroll" style="margin-top: 20px; border-radius: 5px;"
                                                 onclick="showDirections()">Chỉ đường
                                         </button>
 
+                                        <!-- Thêm phần tử để chứa thông tin quãng đường và thời gian -->
+                                        <div id="directions-info"></div>
                                     </section>
                                 </div>
+
 
                             </div>
                             <!--end col-md-8-->
@@ -691,8 +710,8 @@
                                 <div style="display: flex; align-items: center;">
 
                                     <!-- Khối đầu tiên -->
-                                    <div style="display: flex; align-items: center;">
-                                        <a class="room-button1" style="background-color: #488f3e;"></a>
+                                    <div style="display: flex; align-items: center">
+                                        <a class="room-button1" style="background-color: #488f3e;cursor: auto"></a>
                                         <a>Còn trống</a>
                                     </div>
 
@@ -701,7 +720,7 @@
 
                                     <!-- Khối thứ hai -->
                                     <div style="display: flex; align-items: center;">
-                                        <a class="room-button1" style="background-color: #E26A6A;"></a>
+                                        <a class="room-button1" style="background-color: #E26A6A;cursor: auto"></a>
                                         <a>Hết phòng</a>
                                     </div>
 
@@ -1213,6 +1232,7 @@
     var marker;
     var directionsRenderer;
     var directionsService;
+    var currentDirections; // Lưu trữ thông tin về đường đi hiện tại
 
 
     function initMap() {
@@ -1236,7 +1256,6 @@
     }
 
     function showDirections() {
-
         directionsService = new google.maps.DirectionsService();
         directionsRenderer = new google.maps.DirectionsRenderer({
             map: map
@@ -1247,22 +1266,27 @@
 
         var destinationCoordinates = {lat: latitude, lng: longitude};
 
-
+        // Xóa đường đi hiện tại nếu có
+        clearCurrentDirections();
 
         calculateAndDisplayRoute(destinationCoordinates);
-
-
-
     }
-
     function calculateAndDisplayRoute(destination) {
-
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function(position) {
-                var origin = {
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude
-                };
+                var locationType = document.getElementById('locationType').value;
+                var origin;
+                if (locationType === 'current') {
+                    origin = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+                } else if (locationType === 'fixed') {
+                    origin = {
+                        lat: 21.012905257236497,
+                        lng: 105.52743491123319
+                    };
+                }
 
                 var request = {
                     origin: origin,
@@ -1272,6 +1296,10 @@
 
                 directionsService.route(request, function(result, status) {
                     if (status === 'OK') {
+                        // Lưu trữ đường đi hiện tại
+                        currentDirections = result;
+
+                        // Hiển thị đường đi trên bản đồ
                         directionsRenderer.setDirections(result);
 
                         // Lấy thông tin thời gian và quãng đường từ kết quả API
@@ -1295,9 +1323,22 @@
         }
     }
 
+
+    function clearCurrentDirections() {
+        if (currentDirections) {
+            // Xóa đường đi hiện tại trên bản đồ
+            currentDirections.setMap(null);
+            // Reset thông tin về đường đi hiện tại
+            currentDirections = null;
+            // Xóa thông tin trên bảng thông tin
+            document.getElementById('directions-info').innerHTML = '';
+        }
+    }
+
     function showRouteInfo(duration, distance) {
-        var infoContainer = document.createElement('div');
+        var infoContainer = document.getElementById('directions-info');
         infoContainer.innerHTML = '<strong>Thời gian đi:</strong> ' + duration + '<br><strong>Quãng đường:</strong> ' + distance;
+        infoContainer.style.display = 'block'; // Hiển thị phần tử thông tin
 
         // Thêm thông tin vào bản đồ
         map.controls[google.maps.ControlPosition.TOP_LEFT].push(infoContainer);
@@ -1317,22 +1358,15 @@
 </script>
 
 <script>
-    // Chờ cho trang web tải hoàn toàn
-    // Chờ cho trang web tải hoàn toàn
-    window.onload = function() {
-        // Chờ một khoảng thời gian ngắn sau khi trang tải xong
-        setTimeout(function() {
-            // Tìm nút "OK" trong thông báo và nhấn nó
-            var okButton = document.querySelector('#map-item button.dismissButton');
-
-            // Nếu nút "OK" tồn tại, nhấn nó
-            if (okButton) {
-                okButton.click();
-            }
-        }, 1000); // Thời gian chờ (1000 milliseconds = 1 giây), bạn có thể điều chỉnh nếu cần
-    };
-
+    window.addEventListener('load', function() {
+        var elementToRemove = document.querySelector('div[style*="background-color: white"]');
+        if (elementToRemove) {
+            elementToRemove.parentNode.removeChild(elementToRemove);
+        }
+    });
 </script>
+
+
 
 
 <script th:src="@{/assets_admin/js/vendor.min.js}"></script>
