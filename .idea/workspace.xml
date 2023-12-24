@@ -7,8 +7,7 @@
 
     <list default="true" id="1e0562a2-7ad5-40d8-bd96-2e66b43cd15f" name="Changes" comment="update list room trong house detail">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/java/com/roomfindingsystem/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/admin/header_admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/admin/header_admin.html" afterDir="false" />
 
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -53,6 +52,7 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "DefaultHtmlFileTemplate": "HTML File",
@@ -64,12 +64,10 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-
     "com.google.cloudcode.ide_session_index": "20231220_0000",
     "dart.analysis.tool.window.visible": "false",
     "git-widget-placeholder": "BaoLTT",
     "last_opened_file_path": "/Users/nguyenhuubinh/Documents/DATN/Room-Finding-System/RoomFindingSystem/src/main/resources/static/assets/img",
-
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
@@ -80,13 +78,14 @@
     "show.migrate.to.gradle.popup": "false",
     "spring.configuration.checksum": "cba14e4d5d8ebaea272e92fbdfce9e02",
     "vue.rearranger.settings.migration": "true"
+
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Intellij project\Room-Finding-System-BaoLTT\RoomFindingSystem\src\main\resources\templates\admin" />
@@ -101,8 +100,8 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.Main">
-    <configuration name="HouseLandlordRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.UserRepositoryTest">
+    <configuration name="FavouriteRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RoomFindingSystem" />
       <extension name="coverage">
         <pattern>
@@ -111,13 +110,13 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.roomfindingsystem.repository" />
-      <option name="MAIN_CLASS_NAME" value="com.roomfindingsystem.repository.HouseLandlordRepositoryTest" />
+      <option name="MAIN_CLASS_NAME" value="com.roomfindingsystem.repository.FavouriteRepositoryTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="HouseLandlordRepositoryTest.testFindAllHouse" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="UserRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RoomFindingSystem" />
       <extension name="coverage">
         <pattern>
@@ -126,14 +125,13 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.roomfindingsystem.repository" />
-      <option name="MAIN_CLASS_NAME" value="com.roomfindingsystem.repository.HouseLandlordRepositoryTest" />
-      <option name="METHOD_NAME" value="testFindAllHouse" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="MAIN_CLASS_NAME" value="com.roomfindingsystem.repository.UserRepositoryTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="HouseRepositoryTest.testFindAllDetailWithValidHouseId" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="UserRepositoryTest.testFindByEmail_EmailIsNull" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RoomFindingSystem" />
       <extension name="coverage">
         <pattern>
@@ -142,14 +140,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.roomfindingsystem.repository" />
-      <option name="MAIN_CLASS_NAME" value="com.roomfindingsystem.repository.HouseRepositoryTest" />
-      <option name="METHOD_NAME" value="testFindAllDetailWithValidHouseId" />
+      <option name="MAIN_CLASS_NAME" value="com.roomfindingsystem.repository.UserRepositoryTest" />
+      <option name="METHOD_NAME" value="testFindByEmail_EmailIsNull" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="HouseRepositoryTest.testFindAllHouse" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="UserRepositoryTest.testSaveUser_Success" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RoomFindingSystem" />
       <extension name="coverage">
         <pattern>
@@ -158,34 +156,28 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.roomfindingsystem.repository" />
-      <option name="MAIN_CLASS_NAME" value="com.roomfindingsystem.repository.HouseRepositoryTest" />
-      <option name="METHOD_NAME" value="testFindAllHouse" />
+      <option name="MAIN_CLASS_NAME" value="com.roomfindingsystem.repository.UserRepositoryTest" />
+      <option name="METHOD_NAME" value="testSaveUser_Success" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+    <configuration name="java in RoomFindingSystem" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RoomFindingSystem" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.roomfindingsystem.Main" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.roomfindingsystem.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/RoomFindingSystem/src/test/java" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.Main" />
-        <item itemvalue="JUnit.HouseRepositoryTest.testFindAllHouse" />
-        <item itemvalue="JUnit.HouseRepositoryTest.testFindAllDetailWithValidHouseId" />
-        <item itemvalue="JUnit.HouseLandlordRepositoryTest.testFindAllHouse" />
-        <item itemvalue="JUnit.HouseLandlordRepositoryTest" />
+        <item itemvalue="JUnit.UserRepositoryTest" />
+        <item itemvalue="JUnit.FavouriteRepositoryTest" />
+        <item itemvalue="JUnit.java in RoomFindingSystem" />
+        <item itemvalue="JUnit.UserRepositoryTest.testSaveUser_Success" />
+        <item itemvalue="JUnit.UserRepositoryTest.testFindByEmail_EmailIsNull" />
       </list>
     </recent_temporary>
   </component>
@@ -268,6 +260,9 @@
       <workItem from="1702949792216" duration="426000" />
       <workItem from="1702959399861" duration="606000" />
       <workItem from="1702980727294" duration="1217000" />
+      <workItem from="1703195444223" duration="15924000" />
+      <workItem from="1703282198788" duration="29636000" />
+      <workItem from="1703319224686" duration="454000" />
     </task>
     <task id="LOCAL-00002" summary="update lai">
       <option name="closed" value="true" />
@@ -503,7 +498,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update lai phan header" />
     <MESSAGE value="nối 1 số đường link" />
     <MESSAGE value="them slider detail" />
     <MESSAGE value="chinh phan homepage" />
@@ -528,7 +522,32 @@
     <MESSAGE value="update list status room trong admin dashboard" />
     <MESSAGE value="update list room trong house detail" />
     <MESSAGE value="update tinh so ngay trong" />
-    <option name="LAST_COMMIT_MESSAGE" value="update tinh so ngay trong" />
+    <MESSAGE value="update chu cai hoa thuong" />
+    <option name="LAST_COMMIT_MESSAGE" value="update chu cai hoa thuong" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/roomfindingsystem/repository/NewsRepositoryTest.java</url>
+          <line>34</line>
+          <properties class="com.roomfindingsystem.repository.NewsRepositoryTest" method="getNewsEntitiesByNewsid">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/roomfindingsystem/service/FavouriteServiceTest.java</url>
+          <line>31</line>
+          <properties class="com.roomfindingsystem.service.FavouriteServiceTest" method="addToFavourite">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.github.evgenys91.machinet.common.dslhistory.DslHistoryState">
     <option name="historyDtoById">

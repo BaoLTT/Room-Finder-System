@@ -24,7 +24,7 @@ public interface HouseLandlordRepository extends JpaRepository<HousesEntity,Inte
             "    w.name AS ward_name, \n" +
             "    d.name AS district_name, \n" +
             "    p.name AS province_name,\n" +
-            "\ta.wardid AS wardID ,\n" +
+            "    a.wardid AS wardID ,\n" +
             "    a.districtid AS districtID,\n" +
             "    a.provinceid AS provinceID,\n" +
             "    u1.first_name AS last_modified_byFirstName,\n" +
@@ -72,7 +72,7 @@ public interface HouseLandlordRepository extends JpaRepository<HousesEntity,Inte
             "    w.name AS ward_name, \n" +
             "    d.name AS district_name, \n" +
             "    p.name AS province_name,\n" +
-            "\ta.wardid AS wardID ,\n" +
+            "    a.wardid AS wardID ,\n" +
             "    a.districtid AS districtID,\n" +
             "    a.provinceid AS provinceID,\n" +
             "    u1.first_name AS last_modified_byFirstName,\n" +
@@ -120,7 +120,7 @@ public interface HouseLandlordRepository extends JpaRepository<HousesEntity,Inte
             "    w.name AS ward_name, \n" +
             "    d.name AS district_name, \n" +
             "    p.name AS province_name,\n" +
-            "\ta.wardid AS wardID ,\n" +
+            "    a.wardid AS wardID ,\n" +
             "    a.districtid AS districtID,\n" +
             "    a.provinceid AS provinceID,\n" +
             "    u1.first_name AS last_modified_byFirstName,\n" +
@@ -149,6 +149,7 @@ public interface HouseLandlordRepository extends JpaRepository<HousesEntity,Inte
             "LEFT JOIN province p ON a.provinceid = p.provinceid \n" +
             "LEFT JOIN district d ON a.districtid = d.districtid \n" +
             "LEFT JOIN ward w ON a.wardid = w.wardid \n" +
-            "GROUP BY h.houseid, h.house_name, t.type_name, a.address_details, ward_name, district_name, province_name, h.last_modified_date ",nativeQuery = true)
+            "GROUP BY h.houseid, h.house_name, t.type_name, a.address_details, ward_name, district_name, province_name, h.last_modified_date \n"+
+            " ORDER BY h.status DESC " ,nativeQuery = true)
     List<Tuple> getAllHouse();
 }

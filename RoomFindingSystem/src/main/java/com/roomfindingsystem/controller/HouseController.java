@@ -81,7 +81,7 @@ public class HouseController {
 //        houseDto.ifPresent(user -> model.addAttribute("HousesEntity", user));
             // get Image
             List<HouseImageLink> listsImage = houseService.getImageById(houseId);
-            System.out.println(listsImage.toString());
+
             model.addAttribute("HousesImages", listsImage);
             List<Boolean> statuss = new ArrayList<>();
             statuss.add(true);

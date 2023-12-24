@@ -70,7 +70,7 @@ public class CheckOTPTest {
         // Assert
         verify(userService, never()).saveUser(any(UserEntity.class));
         assertEquals("otpConfirm", result);
-        verify(model, times(1)).addAttribute("mess", "OTP is not correct! Please check your email.");
+        verify(model, times(1)).addAttribute("mess", "Bạn đã nhập sai mã OTP. Vui lòng kiểm tra lại mã OTP trong email của bạn");
 
     }
 
