@@ -26,7 +26,7 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public Optional<AddressEntity> findbyId(Integer addresID) {
-        return addressRepository.findById(addresID);
+    public Optional<AddressEntity> findbyId(Integer addressID) {
+        return addressRepository.findById(addressID);
     }
 }
