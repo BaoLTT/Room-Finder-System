@@ -21,6 +21,7 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<UserEntity,Integer> {
     public UserEntity save(UserEntity user);
     Optional<UserEntity> findByEmail(String email);
+    Optional<UserEntity> findByPhone(String phone);
     public UserDto save(UserDto userDto);
     @Query("SELECT u FROM UserEntity u " +
             "JOIN HousesEntity h " +
