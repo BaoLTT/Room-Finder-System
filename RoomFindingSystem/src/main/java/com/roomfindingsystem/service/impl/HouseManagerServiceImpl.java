@@ -108,14 +108,6 @@ public class HouseManagerServiceImpl implements HouseManagerService {
                 houseImagesEntity.setHouseId(housesEntity.getHouseId());
                 houseImagesEntity.setCreatedDate(LocalDate.now());
                 houseImageRepository.save(houseImagesEntity);
-            }else{
-                    // If files are null or empty, set a default image
-                    HouseImagesEntity defaultImage = new HouseImagesEntity();
-                    defaultImage.setImageLink("/rfs_bucket/House/housenull.jpg");
-                    defaultImage.setHouseId(housesEntity.getHouseId());
-                    defaultImage.setCreatedDate(LocalDate.now());
-                    houseImageRepository.save(defaultImage);
-
             }
         }
     }
@@ -164,15 +156,6 @@ public class HouseManagerServiceImpl implements HouseManagerService {
                 houseImages.setHouseId(houseID);
                 houseImages.setCreatedDate(LocalDate.now());
                 houseImageRepository.save(houseImages);
-            }else{
-                HouseLandlordVo  houseImage = houseLandlordService.findHouseByID(houses.getHouseID());
-                    if (houseImage.getListImage() == null ) {
-                        HouseImagesEntity defaultImage = new HouseImagesEntity();
-                        defaultImage.setImageLink("/rfs_bucket/House/housenull.jpg");
-                        defaultImage.setHouseId(houses.getHouseID());
-                        defaultImage.setCreatedDate(LocalDate.now());
-                        houseImageRepository.save(defaultImage);
-                    }
             }
 
         }
