@@ -109,6 +109,8 @@
             top: 0;
         }
 
+
+
     </style>
     <style>
         .room-list {
@@ -236,52 +238,7 @@
                                         <!--end checkboxes-->
 
                                     </section>
-                                    <!--end section-->
-                                    <!--                                        <section>-->
-                                    <!--                                            <h3>Property Type </h3>-->
-                                    <!--                                            <ul class="checkboxes">-->
-                                    <!--                                                <li><label><input type="checkbox" name="hotel">Apartmets<span>67</span></label>-->
-                                    <!--                                                </li>-->
-                                    <!--                                                <li><label><input type="checkbox" name="apartment">Hotels<span>31</span></label>-->
-                                    <!--                                                </li>-->
-                                    <!--                                                <li><label><input type="checkbox"-->
-                                    <!--                                                                  name="breakfast-only">Boats<span>68</span></label>-->
-                                    <!--                                                </li>-->
-                                    <!--                                                <li><label><input type="checkbox"-->
-                                    <!--                                                                  name="spa-wellness">Villas<span>52</span></label></li>-->
-                                    <!--                                            </ul>-->
-                                    <!--                                            <div class="collapse" id="all-property-types">-->
-                                    <!--                                                <ul class="checkboxes">-->
-                                    <!--                                                    <li><label><input type="checkbox" name="ski-center">Ski Center<span>67</span></label>-->
-                                    <!--                                                    </li>-->
-                                    <!--                                                    <li><label><input type="checkbox"-->
-                                    <!--                                                                      name="cottage">Cottage<span>31</span></label></li>-->
-                                    <!--                                                    <li><label><input type="checkbox"-->
-                                    <!--                                                                      name="hostel">Hostel<span>68</span></label></li>-->
-                                    <!--                                                    <li><label><input type="checkbox"-->
-                                    <!--                                                                      name="boat">Boat<span>52</span></label></li>-->
-                                    <!--                                                </ul>-->
-                                    <!--                                            </div>-->
-                                    <!--                                            &lt;!&ndash;end checkboxes&ndash;&gt;-->
-                                    <!--                                            <a href="#all-property-types" class="link" data-toggle="collapse"-->
-                                    <!--                                               aria-expanded="false" aria-controls="all-property-types">Show all</a>-->
-                                    <!--                                        </section>-->
-                                    <!--end section-->
-                                    <!--                                        <section>-->
-                                    <!--                                            <h3>Property Facility</h3>-->
-                                    <!--                                            <ul class="checkboxes no-bottom-margin">-->
-                                    <!--                                                <li><label><input type="checkbox"-->
-                                    <!--                                                                  name="wi-fi">Wi-fi<span>12</span></label></li>-->
-                                    <!--                                                <li><label><input type="checkbox" name="free-parking">Free Parking<span>48</span></label>-->
-                                    <!--                                                </li>-->
-                                    <!--                                                <li><label><input type="checkbox" name="airport">Airport-->
-                                    <!--                                                    Shuttle<span>36</span></label></li>-->
-                                    <!--                                                <li><label><input type="checkbox" name="family-rooms">Family Rooms<span>56</span></label>-->
-                                    <!--                                                </li>-->
-                                    <!--                                            </ul>-->
-                                    <!--                                            &lt;!&ndash;end checkboxes&ndash;&gt;-->
-                                    <!--                                        </section>-->
-                                    <!--end section-->
+
                                 </div>
 
                                 <!--end filter-advanced-search-->
@@ -373,9 +330,7 @@
                                     <span th:text="${HouseService.getServiceName()}+', '"></span>
                                 </div>
                             </div>
-                            <!--                            <h2>Weather in Destination</h2>-->
-                            <!--                            <div id="weather" class="weather weather-detail"></div>-->
-                            <!--end weather-->
+
                         </div>
                         <!--end box-->
                         <aside class="box">
@@ -1189,6 +1144,7 @@
 </script>
 
 <script>
+
     function submitForm() {
         // Khi giá trị của dropdown thay đổi, tự động gửi form
         document.getElementById("filterForm").submit();
@@ -1400,6 +1356,26 @@
         }
     });
 </script>
+
+
+<script>
+    // Chờ cho trang web tải hoàn toàn
+    // Chờ cho trang web tải hoàn toàn
+    window.onload = function() {
+        // Chờ một khoảng thời gian ngắn sau khi trang tải xong
+        setTimeout(function() {
+            // Tìm nút "OK" trong thông báo và nhấn nó
+            var okButton = document.querySelector('#map-item button.dismissButton');
+
+            // Nếu nút "OK" tồn tại, nhấn nó
+            if (okButton) {
+                okButton.click();
+            }
+        }, 1000); // Thời gian chờ (1000 milliseconds = 1 giây), bạn có thể điều chỉnh nếu cần
+    };
+
+</script>
+
 
 
 <script th:src="@{/assets_admin/js/vendor.min.js}"></script>

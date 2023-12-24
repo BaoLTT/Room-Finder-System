@@ -47,12 +47,12 @@ public class AuthController {
 //        return "login";
     }
 
-    @RequestMapping("/ok")
-    public String dinhvan(Model model){
-//        final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
-//        model.addAttribute("currentUserName", currentUserName);
-        return "test";
-    }
+//    @RequestMapping("/ok")
+//    public String dinhvan(Model model){
+////        final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
+////        model.addAttribute("currentUserName", currentUserName);
+//        return "test";
+//    }
 
 
     @Autowired
