@@ -100,6 +100,8 @@
                                                 <div class="col-md ">
                                                     <label>Tình trạng</label>
                                                     <select class="form-control" th:field="*{status}">
+                                                        <option value="2" th:selected="${house.status == 2}">ĐANG XỬ LÝ
+                                                        </option>
                                                         <option value="1" th:selected="${house.status == 1}">HOẠT ĐỘNG
                                                         </option>
                                                         <option value="0" th:selected="${house.status == 0}">NGƯNG HOẠT
@@ -273,7 +275,7 @@
                                                         <input type="file" name="file"
                                                                class="file-upload-input with-preview" multiple
                                                                title="Click to add files" maxlength="10"
-                                                               accept="gif|jpg|png">
+                                                               accept=".jpg, .png, .jpeg">
                                                         <span>Nhấn để thêm ảnh</span>
                                                     </div>
                                                 </div>

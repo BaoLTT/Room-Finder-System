@@ -164,8 +164,8 @@
                         </div>
                         <div class="file-upload-previews"></div>
                         <div class="file-upload">
-                            <input type="file" name="file" class="file-upload-input with-preview" multiple title="Click to add files" maxlength="10" accept="gif|jpg|png" required>
-                            <span>Nhấn để thêm ảnh</span>
+                            <input type="file" id="file" name="file" class="file-upload-input with-preview" multiple title="Click to add files" maxlength="10" accept="gif|jpg|png">
+                            <span onclick="checkFiles()">Nhấn để thêm ảnh</span>
                         </div>
                     </section>
                     <section id="facilities">
@@ -190,7 +190,7 @@
                     <hr>
                     <section>
                         <div class="form-group center">
-                            <button type="submit" class="btn btn-primary btn-rounded" style="border-radius: 5px;font-size: 20px">Thêm trọ</button>
+                            <button type="submit" id="submitButton" class="btn btn-primary btn-rounded" style="border-radius: 5px;font-size: 20px">Thêm trọ</button>
                         </div>
                     </section>
                     <section>
@@ -249,6 +249,19 @@
 
 
 
+</script>
+
+<script>
+    function checkFiles() {
+        var fileInput = document.getElementById('file');
+
+        if (!fileInput || !fileInput.files || fileInput.files.length === 0) {
+            alert('Vui lòng chọn ít nhất một file.');
+        } else {
+            alert('Đã chọn ' + fileInput.files.length + ' file.');
+            // Thêm mã xử lý của bạn tại đây nếu có
+        }
+    }
 </script>
 <script>
     function removeWhitespace(inputField) {
@@ -401,5 +414,20 @@
         document.getElementById('latitude').value = location.lat();
         document.getElementById('longitude').value = location.lng();
     }
+</script>
+<script>
+    // Chờ cho trang web tải hoàn toàn
+    window.onload = function() {
+        // Chờ một khoảng thời gian ngắn sau khi trang tải xong
+        setTimeout(function() {
+            // Tìm nút "OK" trong thông báo và nhấn nó
+            var okButton = document.querySelector('#map-item button.dismissButton');
+
+            // Nếu nút "OK" tồn tại, nhấn nó
+            if (okButton) {
+                okButton.click();
+            }
+        }, 1000); // Thời gian chờ (1000 milliseconds = 1 giây), bạn có thể điều chỉnh nếu cần
+    };
 </script>
 </body>

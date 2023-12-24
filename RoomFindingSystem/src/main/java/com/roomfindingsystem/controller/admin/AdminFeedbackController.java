@@ -29,32 +29,42 @@ public class AdminFeedbackController {
     public String getAllFeedback(@RequestParam(name = "star", required = false, defaultValue = "0") int star,
                               @RequestParam(name = "status", required = false, defaultValue = "true, false") List<Boolean> status,
                               ModelMap model) {
+        try{
+            String email = SecurityContextHolder.getContext().getAuthentication().getName();
+            UserEntity user = userService.findByEmail(email).get();
+            List<FeedbackDtoAdmin> feedbacks;
 
-        String email = SecurityContextHolder.getContext().getAuthentication().getName();
-        UserEntity user = userService.findByEmail(email).get();
-        List<FeedbackDtoAdmin> feedbacks;
+
+            //nghia code
+            if (star==0){
+                feedbacks = feedbackService.getFeedback(status);
+            } else {
+                feedbacks = feedbackService.getFeedbackByStar(star, status);
+            }
 
 
-        //nghia code
-        if (star==0){
-            feedbacks = feedbackService.getFeedback(status);
-        } else {
-            feedbacks = feedbackService.getFeedbackByStar(star, status);
+
+            model.addAttribute("user", user);
+            model.addAttribute("feedbacks", feedbacks);
+            model.addAttribute("star", star);
+            model.addAttribute("status", status);
+        }catch (Exception e) {
+            // Xử lý lỗi ở đây, ví dụ:
+            e.printStackTrace(); // In lỗi ra console
+
+            // Thêm thông báo lỗi cho người dùng thông qua Model
+            model.addAttribute("error", "Có lỗi xảy ra khi cập nhật statusUpdateDate.");
+
+            // Trả về trang dashboard với thông báo lỗi
+            return "404Admin";
         }
 
-
-
-        model.addAttribute("user", user);
-        model.addAttribute("feedbacks", feedbacks);
-        model.addAttribute("star", star);
-        model.addAttribute("status", status);
         return "admin/feedback-manager";
 
     }
 
     @GetMapping("/updateTrue")
-    public String getTrue(@RequestParam(name = "fid", required = false) int fid,
-                                 ModelMap model) {
+    public String getTrue(@RequestParam(name = "fid", required = false) int fid, ModelMap model) {
         feedbackService.updateStatusToTrue(fid);
         return "redirect:/admin/feedback"  ;
 

@@ -206,8 +206,8 @@ public class RoomServiceImpl implements RoomService {
             if (!file.isEmpty()) {
                 RoomImagesEntity roomImagesEntity = new RoomImagesEntity();
                 byte[] imageBytes = file.getBytes();
-                gcsService.uploadImage("rfs_bucket", "Room/room_" + formattedTimestamp + "_" + room.getRoomid() + ".jpg", imageBytes);
-                roomImagesEntity.setImageLink("/rfs_bucket/Room/" + "room_" + formattedTimestamp + "_" + room.getRoomid() + ".jpg");
+                gcsService.uploadImage("rfs_bucket", "Room/room_" + formattedTimestamp+"_"+ i + "_" + room.getRoomid() + ".jpg", imageBytes);
+                roomImagesEntity.setImageLink("/rfs_bucket/Room/" + "room_" + formattedTimestamp+"_"+ i + "_" + room.getRoomid() + ".jpg");
                 i++;
                 roomImagesEntity.setRoomId(roomDto.getRoomId());
                 roomImagesEntity.setCreatedDate(LocalDate.now());
@@ -308,12 +308,14 @@ public class RoomServiceImpl implements RoomService {
         // Chuyển định dạng thời gian thành chuỗi
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss");
         String formattedTimestamp = dateFormat.format(new Date(timestamp));
+        int i = 1;
         for (MultipartFile file : files) {
             if (!file.isEmpty()) {
                 RoomImagesEntity roomImagesEntity = new RoomImagesEntity();
                 byte[] imageBytes = file.getBytes();
-                gcsService.uploadImage("rfs_bucket", "Room/room_" + formattedTimestamp + "_" + saveRoom.getRoomid() + ".jpg", imageBytes);
-                roomImagesEntity.setImageLink("/rfs_bucket/Room/" + "room_" + formattedTimestamp + "_" + saveRoom.getRoomid() + ".jpg");
+                gcsService.uploadImage("rfs_bucket", "Room/room_" + formattedTimestamp+"_"+ i + "_" + saveRoom.getRoomid() + ".jpg", imageBytes);
+                roomImagesEntity.setImageLink("/rfs_bucket/Room/" + "room_" + formattedTimestamp+"_"+ i + "_" + saveRoom.getRoomid() + ".jpg");
+                i++;
                 roomImagesEntity.setRoomId(saveRoom.getRoomid());
                 roomImagesEntity.setCreatedDate(LocalDate.now());
                 roomImagesEntity.setLastModifiedDate(LocalDate.now());
@@ -357,12 +359,13 @@ public class RoomServiceImpl implements RoomService {
         // Chuyển định dạng thời gian thành chuỗi
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss");
         String formattedTimestamp = dateFormat.format(new Date(timestamp));
+        int i = 1;
         for (MultipartFile file : files) {
             if (!file.isEmpty()) {
                 RoomImagesEntity roomImagesEntity = new RoomImagesEntity();
                 byte[] imageBytes = file.getBytes();
-                gcsService.uploadImage("rfs_bucket", "Room/room_" + formattedTimestamp + "_" + saveRoom.getRoomid() + ".jpg", imageBytes);
-                roomImagesEntity.setImageLink("/rfs_bucket/Room/" + "room_" + formattedTimestamp + "_" + saveRoom.getRoomid() + ".jpg");
+                gcsService.uploadImage("rfs_bucket", "Room/room_" + formattedTimestamp+"_"+ i + "_" + saveRoom.getRoomid() + ".jpg", imageBytes);
+                roomImagesEntity.setImageLink("/rfs_bucket/Room/" + "room_" + formattedTimestamp+"_"+ i + "_" + saveRoom.getRoomid() + ".jpg");
                 roomImagesEntity.setRoomId(saveRoom.getRoomid());
                 roomImagesEntity.setCreatedDate(LocalDate.now());
                 roomImagesEntity.setLastModifiedDate(LocalDate.now());
@@ -372,8 +375,8 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public int countRoom(int min1, int max1, int min2, int max2, int min3, int max3,  String roomName, List<Integer> type) {
-        return roomRepository.countRoom(min1, max1, min2, max2, min3, max3, roomName, type);
+    public int countRoom(int min1, int max1, int min2, int max2, int min3, int max3,  String roomName, List<Integer> type, List<Integer> floor) {
+        return roomRepository.countRoom(min1, max1, min2, max2, min3, max3, roomName, type, floor);
     }
 
 
@@ -460,8 +463,8 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public List<RoomDtoN> findRoom1(int min1, int max1, int min2, int max2, int min3, int max3, String roomName, List<Integer> type, int pageIndex, int pageSize) {
-        List<Tuple> tuples = roomRepository.getRoomList(min1, max1, min2, max2, min3, max3, roomName, type, pageIndex, pageSize);
+    public List<RoomDtoN> findRoom1(int min1, int max1, int min2, int max2, int min3, int max3, String roomName, List<Integer> type, int pageIndex, int pageSize, List<Integer> floor) {
+        List<Tuple> tuples = roomRepository.getRoomList(min1, max1, min2, max2, min3, max3, roomName, type, pageIndex, pageSize, floor);
         List<RoomDtoN> roomDtos = new ArrayList<>();
         List<String> imageLinks;
         for (Tuple tuple : tuples) {
@@ -472,6 +475,7 @@ public class RoomServiceImpl implements RoomService {
             roomDto.setPrice(tuple.get("price", Integer.class));
             roomDto.setRoomType(tuple.get("type_name", String.class));
             String imageLink = (tuple.get("images", String.class));
+            roomDto.setFloor(tuple.get("floor", Integer.class).toString());
             if (imageLink == null) {
                 List<HouseImagesEntity> houseImagesEntities = roomRepository.getImageHouseByRoomId(roomDto.getRoomId());
                 roomDto.setRoomImages(houseImagesEntities.get(0).getImageLink());
@@ -484,6 +488,9 @@ public class RoomServiceImpl implements RoomService {
             roomDtos.add(roomDto);
         }
         return roomDtos;
+    }
+    public List<String> findAllDistinctFloors(){
+        return roomRepository.findAllDistinctFloors();
     }
 
     @Override
