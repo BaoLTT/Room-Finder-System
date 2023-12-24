@@ -299,6 +299,24 @@
                                             <!--end checkboxes-->
 <!--                                            <a href="#all-property-types" class="link" data-toggle="collapse" aria-expanded="false" aria-controls="all-property-types">Show all</a>-->
                                         </section>
+                                        <section>
+                                            <h3>Tầng</h3>
+                                            <ul class="checkboxes">
+                                                <div th:each="floorItem: ${listAllFloor}">
+                                                    <li>
+                                                        <label>
+                                                            <input type="checkbox" name="floor" th:value="${floorItem}" th:checked="${#arrays.contains(floor, floorItem)}" th:text="${floorItem}">
+                                                        </label>
+                                                    </li>
+                                                </div>
+                                            </ul>
+
+
+
+
+                                            <!--end checkboxes-->
+                                            <!--                                            <a href="#all-property-types" class="link" data-toggle="collapse" aria-expanded="false" aria-controls="all-property-types">Show all</a>-->
+                                        </section>
 
                                     </div>
                                     <!--end filter-advanced-search-->
