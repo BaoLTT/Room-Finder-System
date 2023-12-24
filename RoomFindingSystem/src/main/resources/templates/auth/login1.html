@@ -51,6 +51,11 @@
                                 <button class="btn btn-gradient btn-block" type="submit"> Đăng nhập
                                 </button>
                             </div>
+                            <!-- Thêm mã thông báo lỗi -->
+                            <div th:if="${param.error}" class="alert alert-danger" role="alert" style="text-align: center">
+                                Tài khoản hoặc mật khẩu không đúng.
+                            </div>
+
 
 
                         </form>
