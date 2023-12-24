@@ -67,6 +67,11 @@ public interface FeedbackRepository extends JpaRepository<FeedbackEntity,Integer
 
     @Transactional
     @Modifying
+    @Query("DELETE FROM FeedbackEntity f WHERE f.houseId = :houseId")
+    void deleteByHouseId(int houseId);
+
+    @Transactional
+    @Modifying
     @Query("UPDATE FeedbackEntity f SET f.status = false WHERE f.feedbackId = :feedbackId")
     void updateStatusToFalse(int feedbackId);
 

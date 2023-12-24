@@ -28,4 +28,8 @@ public interface AddressRepository extends CrudRepository<AddressEntity, Integer
             "WHERE addressid = ?5 ;",nativeQuery = true)
     void updateAddress(String addressDetails, Integer districtme, Integer province, Integer Ward, Integer id);
 
+
+
+
+
 }

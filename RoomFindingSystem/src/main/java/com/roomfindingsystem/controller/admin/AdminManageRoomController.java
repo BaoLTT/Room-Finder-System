@@ -180,7 +180,7 @@ public class AdminManageRoomController {
 
     @PostMapping("/importRooms")
     public String importRoom(@RequestParam("fileExcel") MultipartFile fileExcel) {
-        
+
         RoomDto roomDto = new RoomDto();
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         UserEntity user = userService.findByEmail(email).get();
@@ -193,7 +193,14 @@ public class AdminManageRoomController {
 
     @GetMapping("deleteImage/{roomId}/{imageId}")
     public String deleteImage(@PathVariable Integer roomId, @PathVariable Integer imageId) {
-        roomService.deleteRoomImage(imageId);
+        try{
+            roomService.deleteRoomImage(imageId);
+        }catch (Exception e) {
+            // Xử lý lỗi ở đây, ví dụ:
+            e.printStackTrace(); // In lỗi ra console
+            return "404Admin";
+        }
+
         return "redirect:/admin/room/updateRoom/" + roomId;
     }
 }
