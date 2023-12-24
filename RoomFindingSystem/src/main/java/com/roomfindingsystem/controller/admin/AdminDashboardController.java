@@ -39,36 +39,47 @@ public class  AdminDashboardController {
 
     @GetMapping("/dashboard")
     public String getDashboard(Model model, HttpServletRequest request){
-        String email = SecurityContextHolder.getContext().getAuthentication().getName();
-        UserEntity user = userService.findByEmail(email).get();
+        try{
+            String email = SecurityContextHolder.getContext().getAuthentication().getName();
+            UserEntity user = userService.findByEmail(email).get();
 
-        //         Lưu user vào session
+            //         Lưu user vào session
 
-        HttpSession session = request.getSession();
-        session.setAttribute("user", user);
+            HttpSession session = request.getSession();
+            session.setAttribute("user", user);
 
 //        if(!user.getRoleId().equals("ADMIN") && !user.getRoleId().equals("SUPER_ADMIN")){
 //            return "redirect:/login";
 //        }
-        model.addAttribute("numberOfHouses", houseService.countHousesInAdmin());
-        model.addAttribute("numberOfUsers", userService.countUserInAdmin());
-        model.addAttribute("numberOfNews", newsService.countNews());
-        model.addAttribute("numberOfReports", reportService.countReports());
-        model.addAttribute("numberOfEmptyRooms", roomService.countEmptyRoom());
-        model.addAttribute("numberOfRooms", roomService.countEmptyRoom()+roomService.countInhabitedRoom());
-        model.addAttribute("roomStatusDto", roomService.getRoomStatusInAdminDashboard());
+            model.addAttribute("numberOfHouses", houseService.countHousesInAdmin());
+            model.addAttribute("numberOfUsers", userService.countUserInAdmin());
+            model.addAttribute("numberOfNews", newsService.countNews());
+            model.addAttribute("numberOfReports", reportService.countReports());
+            model.addAttribute("numberOfEmptyRooms", roomService.countEmptyRoom());
+            model.addAttribute("numberOfRooms", roomService.countEmptyRoom()+roomService.countInhabitedRoom());
+            model.addAttribute("roomStatusDto", roomService.getRoomStatusInAdminDashboard());
 
-        List<Integer> statusList = new ArrayList<>();
-        statusList.add(1);  statusList.add(0);
+            List<Integer> statusList = new ArrayList<>();
+            statusList.add(1);  statusList.add(0);
 
-        model.addAttribute("statusList", statusList);
+            model.addAttribute("statusList", statusList);
+        }catch (Exception e) {
+            // Xử lý lỗi ở đây, ví dụ:
+            e.printStackTrace(); // In lỗi ra console
+
+            // Thêm thông báo lỗi cho người dùng thông qua Model
+            model.addAttribute("error", "Có lỗi xảy ra khi cập nhật statusUpdateDate.");
+
+            // Trả về trang dashboard với thông báo lỗi
+            return "404Admin";
+        }
+
 
         return "admin/adminDashboard";
     }
 
     @PostMapping("/updateStatusDate")
-    public String updateStatusDate(@RequestParam int roomId, @RequestParam String status,
-                                   Model model) {
+    public String updateStatusDate(@RequestParam int roomId, @RequestParam String status, Model model) {
         try {
             int statusId = 1;
             if(Objects.equals(status, "Còn trống")) {
