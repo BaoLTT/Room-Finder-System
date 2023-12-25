@@ -27,7 +27,11 @@ public class DistrictServiceImpl implements DistrictService {
     }
     @Override
     public List<DistrictEntity> getDistrictsByProvince(Integer provinceId) {
-        System.out.println(districtRepository.findByProvinceId(provinceId));
         return districtRepository.findByProvinceId(provinceId);
+    }
+
+    @Override
+    public DistrictEntity getDistrictById(int id) {
+        return districtRepository.getDistrictById(id) ;
     }
 }

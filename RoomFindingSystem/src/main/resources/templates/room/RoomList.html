@@ -247,17 +247,19 @@
                                             <ul class="checkboxes">
                                                 <li>
                                                     <label>
-                                                        <input type="checkbox" name="price" value="1" th:checked="${#arrays.contains(price, '1')}">Dưới 2 triệu
+                                                        <input type="checkbox" name="price" value="1" th:checked="${#arrays.contains(price, '1')}">Dưới
+                                                        2,000,000 VND
                                                     </label>
                                                 </li>
                                                 <li>
                                                     <label>
-                                                        <input type="checkbox" name="price" value="2" th:checked="${#arrays.contains(price, '2')}">Từ 2 triệu đến 4 Triệu
+                                                        <input type="checkbox" name="price" value="2" th:checked="${#arrays.contains(price, '2')}">2,000,000
+                                                        - 4,000,000 VND
                                                     </label>
                                                 </li>
                                                 <li>
                                                     <label>
-                                                        <input type="checkbox" name="price" value="3" th:checked="${#arrays.contains(price, '3')}">Trên 4 triệu
+                                                        <input type="checkbox" name="price" value="3" th:checked="${#arrays.contains(price, '3')}">Trên 4,000,000 VND
                                                     </label>
                                                 </li>
                                             </ul>
@@ -297,6 +299,24 @@
                                             <!--end checkboxes-->
 <!--                                            <a href="#all-property-types" class="link" data-toggle="collapse" aria-expanded="false" aria-controls="all-property-types">Show all</a>-->
                                         </section>
+                                        <section>
+                                            <h3>Tầng</h3>
+                                            <ul class="checkboxes">
+                                                <div th:each="floorItem: ${listAllFloor}">
+                                                    <li>
+                                                        <label>
+                                                            <input type="checkbox" name="floor" th:value="${floorItem}" th:checked="${#arrays.contains(floor, floorItem)}" th:text="${floorItem}">
+                                                        </label>
+                                                    </li>
+                                                </div>
+                                            </ul>
+
+
+
+
+                                            <!--end checkboxes-->
+                                            <!--                                            <a href="#all-property-types" class="link" data-toggle="collapse" aria-expanded="false" aria-controls="all-property-types">Show all</a>-->
+                                        </section>
 
                                     </div>
                                     <!--end filter-advanced-search-->
@@ -317,6 +337,34 @@
                         <div class="title">
                             <h1>Danh sách phòng trọ</h1>
 
+                        </div>
+                        <div th:if="${rooms.isEmpty()}" class="item list listNull">
+                            <div class="main-content">
+
+                                <!--end title-->
+                                <div class="error-message">
+                                    <img src="/assets/img/housefind.png">
+                                    <div class="message">
+                                        <h3>Không có kết quả phù hợp</h3>
+                                    </div>
+                                </div>
+                                <!--end error-message-->
+                                <form class="labels-uppercase">
+                                    <div class="row">
+                                        <div class="col-md-4 col-md-offset-2">
+                                            <div class="row">
+                                                <div class="col-md-10">
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <button th:href="@{/roomlist}" class="btn btn-primary ">Quay lại</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                         <!--end title-->
                         <div class="row">

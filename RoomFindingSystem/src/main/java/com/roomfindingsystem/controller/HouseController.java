@@ -20,8 +20,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.net.URLEncoder;
 import java.sql.Date;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
@@ -59,10 +61,10 @@ public class HouseController {
     }
 
     @RequestMapping(value = "house/{housename}", method = RequestMethod.GET)
-    public String getAllHouse(@RequestParam(name = "page", required = false, defaultValue = "1") int page,
-            @RequestParam(name = "id", required = false, defaultValue = "1") int houseId,
-                              @RequestParam(name = "star", required = false, defaultValue = "0") int star,
-                              ModelMap model, HttpServletRequest request) {
+    public String getAllHouse(
+            @RequestParam(name = "id", required = false) int houseId,
+            @RequestParam(name = "star", required = false, defaultValue = "0") int star,
+            ModelMap model, HttpServletRequest request) {
 
         try {
             List<HouseDto> houseDto = houseService.getHouseDetail(houseId);
@@ -70,6 +72,8 @@ public class HouseController {
 
 
             model.addAttribute("HousesEntity", houseDto);
+            model.addAttribute("houseId", houseDto.get(0).getHouseId());
+            model.addAttribute("houseName", houseDto.get(0).getHouseName());
 
 
             List<ServiceDto> listService= houseService.getServiceById(houseId);
@@ -77,7 +81,7 @@ public class HouseController {
 //        houseDto.ifPresent(user -> model.addAttribute("HousesEntity", user));
             // get Image
             List<HouseImageLink> listsImage = houseService.getImageById(houseId);
-            System.out.println(listsImage.toString());
+
             model.addAttribute("HousesImages", listsImage);
             List<Boolean> statuss = new ArrayList<>();
             statuss.add(true);
@@ -202,7 +206,7 @@ public class HouseController {
 
     // add feedback
     @PostMapping(value="detail")
-    public String addFeedback(@Valid @ModelAttribute("feedback") FeedbackEntity feedbackEntity, BindingResult bindingResult){
+    public String addFeedback(@Valid @ModelAttribute("feedback") FeedbackEntity feedbackEntity, BindingResult bindingResult) throws UnsupportedEncodingException {
 
         feedbackEntity.setCreatedDate(currentDate);
         feedbackEntity.setStatus(true);
@@ -227,7 +231,10 @@ public class HouseController {
         double avg = (double)sum / (double)feedbackDtoList.size();
         double roundedAvg = round(avg, 1);
         houseService.updateStar(roundedAvg, houseId);
-        return "redirect:/detail?id=" + houseId + "#reviews";
+        List<HouseDto> houseDto = houseService.getHouseDetail(houseId);
+        String houseName = houseDto.get(0).getHouseName();
+        String encodedHouseName = URLEncoder.encode(houseName, "UTF-8");
+        return "redirect:/house/"+encodedHouseName+"?id=" + houseId + "#reviews";
     }
     public static double round(double value, int places) {
         if (places < 0) throw new IllegalArgumentException();
@@ -238,27 +245,34 @@ public class HouseController {
     }
 
     @GetMapping(value = "deleteHouseCmt")
-    public String deleteComment(@RequestParam("houseId") int houseId){
+    public String deleteComment(@RequestParam("houseId") Optional<Integer> houseId) throws UnsupportedEncodingException {
         String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
-        System.out.println(houseId);
-        System.out.println("houseId");
         UserEntity user = userService.findByEmail(currentUserName).get();
-        feedbackService.deleteByHouseIdAndMemberId(houseId, user.getUserId());
+        int houseid = houseId.get();
+        feedbackService.deleteByHouseIdAndMemberId(houseid, user.getUserId());
         int sum =0;
         List<Boolean> statuss = new ArrayList<>();
         statuss.add(true);
-        List<FeedbackDto> feedbackDtoList = feedbackService.getFeedbackByHouseId(houseId, statuss);
-        for(int i=0; i<feedbackDtoList.size(); i++){
-            sum+=feedbackDtoList.get(i).getStar();
+        List<FeedbackDto> feedbackDtoList = feedbackService.getFeedbackByHouseId(houseid, statuss);
+        if(feedbackDtoList.size()!=0){
+            for(int i=0; i<feedbackDtoList.size(); i++){
+                sum+=feedbackDtoList.get(i).getStar();
+            }
+            double avg = (double)sum / (double)feedbackDtoList.size();
+            double roundedAvg = round(avg, 1);
+            houseService.updateStar(roundedAvg, houseid);
+        }else{
+            houseService.updateStar(0, houseid);
         }
-        double avg = (double)sum / (double)feedbackDtoList.size();
-        double roundedAvg = round(avg, 1);
-        houseService.updateStar(roundedAvg, houseId);
-        return "redirect:/detail?id=" + houseId + "#reviews";
+
+        List<HouseDto> houseDto = houseService.getHouseDetail(houseid);
+        String houseName = houseDto.get(0).getHouseName();
+        String encodedHouseName = URLEncoder.encode(houseName, "UTF-8");
+        return "redirect:/house/"+encodedHouseName+"?id=" + houseid + "#reviews";
     }
 
     @PostMapping(value="report")
-    public String addReport(@Valid @ModelAttribute("report") ReportEntity reportEntity, BindingResult bindingResult){
+    public String addReport(@Valid @ModelAttribute("report") ReportEntity reportEntity, BindingResult bindingResult) throws UnsupportedEncodingException {
 
         reportEntity.setCreatedDate(currentDate.plusDays(1));
         int houseId = reportEntity.getHouseid();
@@ -279,14 +293,21 @@ public class HouseController {
 //            reportEntity.setReportid(reportService.getReportEntityByUid(houseId, reportEntity.getUserid()).get(0).getReportid());
 //            reportService.save(reportEntity);
 //        }
-        return "redirect:/detail?id=" + houseId;
+        List<HouseDto> houseDto = houseService.getHouseDetail(houseId);
+        String houseName = houseDto.get(0).getHouseName();
+        String encodedHouseName = URLEncoder.encode(houseName, "UTF-8");
+        return "redirect:/house/"+encodedHouseName+"?id=" + houseId;
     }
 
     @GetMapping(value = "deleteReport")
-    public String deleteReport(@RequestParam("houseId") int houseId){
+    public String deleteReport(@RequestParam("houseId") Optional<Integer> houseId) throws UnsupportedEncodingException {
         String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
         UserEntity user = userService.findByEmail(currentUserName).get();
-        reportService.deleteByHouseIdAndMemberId(houseId, user.getUserId());
-        return "redirect:/detail?id=" + houseId;
+        int houseid = houseId.get();
+        reportService.deleteByHouseIdAndMemberId(houseid, user.getUserId());
+        List<HouseDto> houseDto = houseService.getHouseDetail(houseid);
+        String houseName = houseDto.get(0).getHouseName();
+        String encodedHouseName = URLEncoder.encode(houseName, "UTF-8");
+        return "redirect:/house/"+encodedHouseName+"?id=" + houseid;
     }
 }

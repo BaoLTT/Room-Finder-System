@@ -26,8 +26,11 @@ public class RoomListController {
     public String list(@RequestParam(name = "page", required = false, defaultValue = "1") Integer pageIndex,
                        @RequestParam(name = "roomName",required = false , defaultValue = "") String roomName,
                        @RequestParam(name = "price", required = false, defaultValue = "") List<String> price,
+                       @RequestParam(name = "floor", required = false,defaultValue = "") List<String> floor,
                        @RequestParam(name = "type", required = false,defaultValue = "") List<String> type, HttpServletRequest request, Model model){
         List<Integer> listType = new ArrayList<>();
+        List<Integer> listFloor = new ArrayList<>();
+        List<String> listAllFloor = roomService.findAllDistinctFloors();
         List<Integer> listPrice = new ArrayList<>();
         if(type.size()==0){
             listType.add(1);
@@ -36,6 +39,16 @@ public class RoomListController {
         }else {
             for(String type1: type){
                 listType.add(Integer.parseInt(type1));
+            }
+        }
+
+        if(floor.size()==0){
+            for(String floorItem: listAllFloor){
+                listFloor.add(Integer.parseInt(floorItem));
+            }
+        }else {
+            for(String floor1: floor){
+                listFloor.add(Integer.parseInt(floor1));
             }
         }
 
@@ -66,13 +79,14 @@ public class RoomListController {
         }
 
 
-        roomList = (roomService.findRoom1(min1, max1, min2, max2, min3, max3, roomName, listType, offset, pageSize));
-        totalRoom = roomService.countRoom(min1, max1, min2, max2, min3, max3, roomName, listType);
+        roomList = (roomService.findRoom1(min1, max1, min2, max2, min3, max3, roomName, listType, offset, pageSize, listFloor));
+        totalRoom = roomService.countRoom(min1, max1, min2, max2, min3, max3, roomName, listType, listFloor);
         if(totalRoom<=pageSize){
             totalPage=0;
         }else{
             totalPage = (int) Math.ceil((double) totalRoom / pageSize);
         }
+
 
         model.addAttribute("roomName",roomName);
         model.addAttribute("currentPage",pageIndex);
@@ -81,6 +95,9 @@ public class RoomListController {
         model.addAttribute("price", price);
         model.addAttribute("type", type);
         model.addAttribute("request",request);
+        model.addAttribute("listAllFloor",listAllFloor);
+        model.addAttribute("floor",floor);
+
 
         return"room/RoomList";
 

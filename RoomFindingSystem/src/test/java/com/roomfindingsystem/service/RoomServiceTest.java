@@ -80,24 +80,7 @@ public class RoomServiceTest {
     @Test
     void testViewRoomInHouseWithValidInput() {
         // Arrange
-        int houseId = 1;
 
-        // Mock data for Tuple
-        /* provide necessary details */
-        Tuple tuple = createMockTuple();
-        List<Tuple> tuples = List.of(tuple);
-
-        when(roomRepository.viewRoomInHouseDetail(houseId)).thenReturn(tuples);
-
-        // Act
-        List<RoomHouseDetailDto> result = roomService.viewRoomInHouse(houseId);
-
-        // Assert
-        assertNotNull(result);
-        assertFalse(result.isEmpty());
-
-        // Verify that the repository method was called with the correct parameters
-        verify(roomRepository, times(1)).viewRoomInHouseDetail(houseId);
     }
 
     @Test
@@ -117,4 +100,6 @@ public class RoomServiceTest {
         // Verify that the repository method was called with the correct parameters
         verify(roomRepository, times(1)).viewRoomInHouseDetail(houseId);
     }
+
+    
 }

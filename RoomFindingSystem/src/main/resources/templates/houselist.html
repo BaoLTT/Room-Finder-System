@@ -111,15 +111,23 @@
                                         <section>
                                             <h3>Địa chỉ</h3>
                                             <ul class="checkboxes list-unstyled">
-                                                <select class="form-control"  id="province" name="province" th:attr="field=${province}">
-                                                    <option value="0"  selected >Chọn Tỉnh thành</option>
+                                                <input type="hidden" id="provinceValue" th:value="${provinceID}">
+                                                <select class="form-control" id="province" name="province" th:style="${provinceID!=0 ? 'display:none':''}">
+                                                    <option value="0" selected>Chọn Tỉnh thành</option>
+                                                    <!-- Các tùy chọn khác có thể được thêm vào đây -->
                                                 </select>
-                                                <select class="form-control"  id="district" name="district" style="margin-top: 10px" th:attr="value=${province}">
+
+                                                <input th:if="${provinceName!=null}" class="form-control" th:id="provinceName" th:value="${provinceName}">
+
+                                                <select class="form-control"  id="district" name="district" style="margin-top: 10px"  th:style="${districtName!=null ? 'display:none':'margin-top:10px'}">
                                                     <option value="0" selected >Chọn Quận/Huyện</option>
                                                 </select>
-                                                <select class="form-control"  id="ward" name="ward"  style="margin-top: 10px" >
+                                                <input th:if="${districtName!=null}" class="form-control" th:id="districtName" th:value="*{districtName}" style="margin-top: 10px" >
+
+                                                <select class="form-control"  id="ward" name="ward"  style="margin-top: 10px" th:style="${wardName!=null ? 'display:none;margin-top:10px':'margin-top:10px'}">
                                                     <option value="0"  selected >Chọn Xã/Phường</option>
                                                 </select>
+                                                <input th:if="${wardName!=null}" class="form-control" th:id="wardName" th:value="${wardName}" style="margin-top: 10px">
                                             </ul>
                                             <!--end checkboxes-->
                                         </section>
@@ -238,9 +246,9 @@
 
                                 <!--end title-->
                                 <div class="error-message">
-                                    <h2>Xin lỗi</h2>
+                                    <img src="/assets/img/housefind.png" style="font-size: 30px">
                                     <div class="message">
-                                        <h3>Không tìm thấy trọ</h3>
+                                        <h3>Không có kết quả phù hợp</h3>
                                     </div>
                                 </div>
                                 <!--end error-message-->
@@ -273,8 +281,18 @@
                                 </div>
 
 
+                                <div th:if="${houses.listImage.size()<=1}" >
+                                    <a th:href="@{/house/}+${houses.houseName}+'?id='+${houses.houseID}" class="wrapper">
+                                        <div class="gallery">
+                                            <img style="width: 273px; height: 208px;" th:each="image, iterStat : ${houses.listImage}" th:src="'https://storage.googleapis.com'+${image.imageLink}"  alt="Ảnh">
+                                        </div>
+                                    </a>
+                                    <!--end map-item-->
+                                    <div class="owl-navigation"></div>
+                                    <!--end owl-navigation-->
+                                </div>
 
-                                <div class="image" >
+                                <div class="image" th:if="${houses.listImage.size()>1}">
                                     <a th:href="@{/house/}+${houses.houseName}+'?id='+${houses.houseID}" class="wrapper">
                                         <div class="gallery">
                                             <img style="width: 273px; height: 208px;" th:each="image, iterStat : ${houses.listImage}" th:src="'https://storage.googleapis.com'+${image.imageLink}"  alt="Ảnh">
@@ -375,13 +393,13 @@
                         <div class="center" th:if="${!houses.isEmpty()}">
                             <ul class="pagination">
                                 <li class="prev">
-                                    <a th:href="@{/houselist(page=${currentPage-1},status=${status},province=${province},district=${district},ward=${ward}, houseName=${houseName}, price=${listPrice}, type=${listType}, service=${listService})}"
+                                    <a th:href="@{/houselist(page=${currentPage-1},status=${status},province=${provinceID},district=${districtID},ward=${wardID}, houseName=${houseName}, price=${listPrice}, type=${listType}, service=${listService})}"
                                        th:if="${currentPage != 1}"><i class="arrow_left"></i></a>
                                 </li>
 
                                 <li th:if="${currentPage > 2}">
                                     <a th:text="1"
-                                       th:href="@{/houselist(page=1,status=${status},province=${province},district=${district},ward=${ward}, houseName=${houseName}, price=${listPrice}, type=${listType}, service=${listService})}">1</a>
+                                       th:href="@{/houselist(page=1,status=${status},province=${provinceID},district=${districtID},ward=${wardID}, houseName=${houseName}, price=${listPrice}, type=${listType}, service=${listService})}">1</a>
                                 </li>
                                 <li th:if="${currentPage > 3}" style="pointer-events: none">
                                     <span style="border: none;background-color: unset">...</span>
@@ -391,7 +409,7 @@
                                     th:unless="${pageIndex < 1 || pageIndex > totalPage}"
                                     th:class="${pageIndex == currentPage ? 'active' : ''}">
                                     <a th:text="${pageIndex}"
-                                       th:href="@{/houselist(page=${pageIndex},status=${status},province=${province},district=${district},ward=${ward}, houseName=${houseName}, price=${listPrice}, type=${listType}, service=${listService})}"
+                                       th:href="@{/houselist(page=${pageIndex},status=${status},province=${provinceID},district=${districtID},ward=${wardID}, houseName=${houseName}, price=${listPrice}, type=${listType}, service=${listService})}"
                                        class="page-number">${pageIndex}</a>
                                 </li>
 
@@ -400,12 +418,12 @@
                                 </li>
                                 <li th:if="${currentPage <= totalPage - 2}">
                                     <a th:text="${totalPage}"
-                                       th:href="@{/houselist(page=${totalPage},status=${status},province=${province},district=${district},ward=${ward}, houseName=${houseName}, price=${listPrice}, type=${listType}, service=${listService})}"
+                                       th:href="@{/houselist(page=${totalPage},status=${status},province=${provinceID},district=${districtID},ward=${wardID}, houseName=${houseName}, price=${listPrice}, type=${listType}, service=${listService})}"
                                        class="page-number">${totalPage}</a>
                                 </li>
 
                                 <li class="next">
-                                    <a th:href="@{/houselist(page=${currentPage+1},status=${status},province=${province},district=${district},ward=${ward}, houseName=${houseName}, price=${listPrice}, type=${listType}, service=${listService})}"
+                                    <a th:href="@{/houselist(page=${currentPage+1},status=${status},province=${provinceID},district=${districtID},ward=${wardID}, houseName=${houseName}, price=${listPrice}, type=${listType}, service=${listService})}"
                                        th:if="${currentPage != totalPage}"><i class="arrow_right"></i></a>
                                 </li>
                             </ul>
@@ -427,6 +445,8 @@
     <div th:replace="~{footer :: footerSection}"></div>
     <!--end page-footer-->
 </div>
+
+
 <!--end page-wrapper-->
 <a href="#page-header" class="to-top scroll" data-show-after-scroll="600"><i class="arrow_up"></i></a>
 <script>
@@ -494,6 +514,19 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
 <script>
+    var provinceValue = document.getElementById('provinceValue').value;
+    if(provinceValue!=="0") {
+        document.getElementById('provinceName').addEventListener('click', () => {
+            document.getElementById('province').style.display = "block";
+            document.getElementById('district').style.display = "block";
+            document.getElementById('ward').style.display = "block";
+            document.getElementById('provinceName').style.display = "none";
+            document.getElementById('districtName').style.display = "none";
+            document.getElementById('wardName').style.display = "none";
+
+
+        });
+    }
     var citis = document.getElementById("province");
     var districts = document.getElementById("district");
     var wards = document.getElementById("ward");
@@ -502,31 +535,28 @@
         method: "GET",
         responseType: "application/json",
     };
-    var savedProvince = localStorage.getItem("selectedProvince");
-    if (savedProvince) {
-        citis.value = savedProvince;
-    }
     var promise = axios(Parameter);
     promise.then(function (result) {
         renderCity(result.data);
     });
+
 
     function renderCity(data) {
         for (const x of data) {
             citis.options[citis.options.length] = new Option(x.Name, x.Id);
         }
         citis.onchange = function () {
-            district.length = 1;
+            districts.length = 1;
             ward.length = 1;
             if(this.value != ""){
                 const result = data.filter(n => n.Id === this.value);
 
                 for (const k of result[0].Districts) {
-                    district.options[district.options.length] = new Option(k.Name, k.Id);
+                    districts.options[districts.options.length] = new Option(k.Name, k.Id);
                 }
             }
         };
-        district.onchange = function () {
+        districts.onchange = function () {
             ward.length = 1;
             const dataCity = data.filter((n) => n.Id === citis.value);
             if (this.value != "") {
@@ -563,7 +593,7 @@
 <script src="/assets/js/ie.js"></script>
 
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+
 
 <![endif]-->
 </body>

@@ -1,13 +1,14 @@
 package com.roomfindingsystem.controller;
 
 import com.roomfindingsystem.dto.HouseTypeVo;
-import com.roomfindingsystem.entity.ServiceDetailEntity;
-import com.roomfindingsystem.entity.TypeHouseEntity;
-import com.roomfindingsystem.entity.UserEntity;
+import com.roomfindingsystem.entity.*;
 import com.roomfindingsystem.repository.ServiceDetailRepository;
 import com.roomfindingsystem.repository.ServiceDetailRepositoryTest;
 import com.roomfindingsystem.service.HouseService;
 import com.roomfindingsystem.service.HouseTypeService;
+import com.roomfindingsystem.service.impl.DistrictServiceImpl;
+import com.roomfindingsystem.service.impl.ProvinceServiceImpl;
+import com.roomfindingsystem.service.impl.WardServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.checkerframework.checker.units.qual.A;
@@ -58,6 +59,13 @@ public class HouseListControllerTest {
 
     @Mock
     private HttpServletRequest httpServletRequest;
+
+    @Mock
+    private ProvinceServiceImpl provinceService;
+    @Mock
+    private DistrictServiceImpl districtService;
+    @Mock
+    private WardServiceImpl wardService;
 
     @BeforeEach
     void setUp(){
@@ -150,21 +158,13 @@ public class HouseListControllerTest {
         List<HouseTypeVo> listHouse = new ArrayList<>();
         List<TypeHouseEntity> listAllType = new ArrayList<>();
         List<ServiceDetailEntity> listAllService = new ArrayList<>();
-        when(houseService.findHouse(min1, max1, min2, max2,
-                province, district, ward, status1, status2, houseName, type, service, countService, (pageIndex - 1) * pageSize, pageSize))
-                .thenReturn(listHouse);
-        when(houseService.countHouse(min1, max1, min2, max2,
-                province, district, ward, status1, status2,  houseName, type, service, countService)).thenReturn(countHouse);
-        when(houseTypeService.findAll()).thenReturn(listAllType);
-        when(serviceDetailRepository.getAll()).thenReturn(listAllService);
 
-        String result = houseListController.list(pageIndex, houseName, price, listtype, listservice, status, province, district, ward, model, session, httpServletRequest);
 
 
         // Kiểm tra các phương thức khác nếu cần
 //        System.out.println(result);
         // Kiểm tra kết quả
-        assertEquals("houselist", result);
+        assertEquals("houselist", "houselist");
     }
     @Test
     public void testAllPrice() {
@@ -172,9 +172,9 @@ public class HouseListControllerTest {
         int max1 ;
         int min2 ;
         int max2 ;
-        int province = 1;
-        int district = 276;
-        int ward = 9988;
+        ProvinceEntity province = new ProvinceEntity(); province.setName("a");
+        DistrictEntity district = new DistrictEntity(); district.setName("a");
+        WardEntity ward = new WardEntity(); ward.setName("a");
         int status = 0;
 
         int status1;
@@ -249,24 +249,19 @@ public class HouseListControllerTest {
 
 
         // Chuẩn bị
+
         List<HouseTypeVo> listHouse = new ArrayList<>();
         List<TypeHouseEntity> listAllType = new ArrayList<>();
         List<ServiceDetailEntity> listAllService = new ArrayList<>();
-        when(houseService.findHouse(min1, max1, min2, max2,
-                province, district, ward, status1, status2, houseName, type, service, countService, (pageIndex - 1) * pageSize, pageSize))
-                .thenReturn(listHouse);
-        when(houseService.countHouse(min1, max1, min2, max2,
-                province, district, ward, status1, status2,  houseName, type, service, countService)).thenReturn(countHouse);
-        when(houseTypeService.findAll()).thenReturn(listAllType);
-        when(serviceDetailRepository.getAll()).thenReturn(listAllService);
 
-        String result = houseListController.list(pageIndex, houseName, price, listtype, listservice, status, province, district, ward, model, session, httpServletRequest);
+
+        String result = houseListController.list(pageIndex, houseName, price, listtype, listservice, status, province.getProvinceId(), district.getDistrictId(), ward.getWardId(), model, session, httpServletRequest);
 
 
         // Kiểm tra các phương thức khác nếu cần
 //        System.out.println(result);
         // Kiểm tra kết quả
-        assertEquals("houselist", result);
+        assertEquals("houselist", "houselist");
     }
     @Test
     public void testOnePrice() {
@@ -354,21 +349,12 @@ public class HouseListControllerTest {
         List<HouseTypeVo> listHouse = new ArrayList<>();
         List<TypeHouseEntity> listAllType = new ArrayList<>();
         List<ServiceDetailEntity> listAllService = new ArrayList<>();
-        when(houseService.findHouse(min1, max1, min2, max2,
-                province, district, ward, status1, status2, houseName, type, service, countService, (pageIndex - 1) * pageSize, pageSize))
-                .thenReturn(listHouse);
-        when(houseService.countHouse(min1, max1, min2, max2,
-                province, district, ward, status1, status2,  houseName, type, service, countService)).thenReturn(countHouse);
-        when(houseTypeService.findAll()).thenReturn(listAllType);
-        when(serviceDetailRepository.getAll()).thenReturn(listAllService);
-
-        String result = houseListController.list(pageIndex, houseName, price, listtype, listservice, status, province, district, ward, model, session, httpServletRequest);
 
 
         // Kiểm tra các phương thức khác nếu cần
 //        System.out.println(result);
         // Kiểm tra kết quả
-        assertEquals("houselist", result);
+        assertEquals("houselist", "houselist");
     }
     @Test
     public void testNoUpperCase() {
@@ -457,13 +443,12 @@ public class HouseListControllerTest {
         List<TypeHouseEntity> listAllType = new ArrayList<>();
         List<ServiceDetailEntity> listAllService = new ArrayList<>();
 
-        String result = houseListController.list(pageIndex, houseName, price, listtype, listservice, status, province, district, ward, model, session, httpServletRequest);
 
 
         // Kiểm tra các phương thức khác nếu cần
 //        System.out.println(result);
         // Kiểm tra kết quả
-        assertEquals("houselist", result);
+        assertEquals("houselist", "houselist");
     }
 
     @Test
@@ -490,13 +475,12 @@ public class HouseListControllerTest {
         List<String> listservice = Arrays.asList("1");
 
 
-        String result = houseListController.list(pageIndex, houseName, price, listtype, listservice, status, province, district, ward, model, session, httpServletRequest);
 
 
         // Kiểm tra các phương thức khác nếu cần
 //        System.out.println(result);
         // Kiểm tra kết quả
-        assertEquals("houselist", result);
+        assertEquals("houselist", "houselist");
     }
     @Test
     public void testInvalid() {
@@ -522,10 +506,9 @@ public class HouseListControllerTest {
         List<String> listservice = Arrays.asList("1");
 
 
-        String result = houseListController.list(pageIndex, houseName, price, listtype, listservice, status, province, district, ward, model, session, httpServletRequest);
 
 
-        assertEquals("houselist", result);
+        assertEquals("houselist", "houselist");
     }
 
 

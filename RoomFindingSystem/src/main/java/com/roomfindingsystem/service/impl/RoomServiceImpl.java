@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -157,6 +158,7 @@ public class RoomServiceImpl implements RoomService {
         RoomDto roomDto = modelMapper.map(roomEntity, RoomDto.class);
         roomDto.setTypeName(roomTypeRepository.findById(roomEntity.getRoomType()).get().getTypeName());
         roomDto.setTypeId(roomEntity.getRoomType());
+        roomDto.setFloor(roomEntity.getFloor());
         if (roomEntity.getStatusid() == 1) {
             roomDto.setStatus("ACTIVE");
         } else {
@@ -195,12 +197,17 @@ public class RoomServiceImpl implements RoomService {
         RoomEntity saveRoom = new RoomEntity();
         List<RoomImagesEntity> roomImagesEntities = roomImageRepository.getImageByRoomId(roomDto.getRoomId());
         int i = roomImagesEntities.size() + 1;
+        long timestamp = System.currentTimeMillis();
+
+        // Chuyển định dạng thời gian thành chuỗi
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss");
+        String formattedTimestamp = dateFormat.format(new Date(timestamp));
         for (MultipartFile file : files) {
             if (!file.isEmpty()) {
                 RoomImagesEntity roomImagesEntity = new RoomImagesEntity();
                 byte[] imageBytes = file.getBytes();
-                gcsService.uploadImage("rfs_bucket", "Room/room_" + i + "_" + room.getRoomid() + ".jpg", imageBytes);
-                roomImagesEntity.setImageLink("/rfs_bucket/Room/" + "room_" + i + "_" + room.getRoomid() + ".jpg");
+                gcsService.uploadImage("rfs_bucket", "Room/room_" + formattedTimestamp+"_"+ i + "_" + room.getRoomid() + ".jpg", imageBytes);
+                roomImagesEntity.setImageLink("/rfs_bucket/Room/" + "room_" + formattedTimestamp+"_"+ i + "_" + room.getRoomid() + ".jpg");
                 i++;
                 roomImagesEntity.setRoomId(roomDto.getRoomId());
                 roomImagesEntity.setCreatedDate(LocalDate.now());
@@ -210,6 +217,7 @@ public class RoomServiceImpl implements RoomService {
         }
         saveRoom.setRoomid(room.getRoomid());
         saveRoom.setArea(roomDto.getArea());
+        saveRoom.setFloor(roomDto.getFloor());
         saveRoom.setCreatedDate(room.getCreatedDate());
         saveRoom.setCreatedBy(room.getCreatedBy());
         saveRoom.setDescription(roomDto.getDescription());
@@ -269,6 +277,7 @@ public class RoomServiceImpl implements RoomService {
         RoomEntity saveRoom = new RoomEntity();
         saveRoom.setArea(roomDto.getArea());
         saveRoom.setCreatedDate(LocalDate.now());
+        saveRoom.setFloor(roomDto.getFloor());
         saveRoom.setCreatedBy(roomDto.getCreatedBy());
         saveRoom.setDescription(roomDto.getDescription());
         saveRoom.setHouseid(roomDto.getHouseId());
@@ -294,13 +303,18 @@ public class RoomServiceImpl implements RoomService {
                 serviceRoomRepository.save(serviceRoomEntity);
             }
         }
+        long timestamp = System.currentTimeMillis();
+
+        // Chuyển định dạng thời gian thành chuỗi
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss");
+        String formattedTimestamp = dateFormat.format(new Date(timestamp));
         int i = 1;
         for (MultipartFile file : files) {
             if (!file.isEmpty()) {
                 RoomImagesEntity roomImagesEntity = new RoomImagesEntity();
                 byte[] imageBytes = file.getBytes();
-                gcsService.uploadImage("rfs_bucket", "Room/room_" + i + "_" + saveRoom.getRoomid() + ".jpg", imageBytes);
-                roomImagesEntity.setImageLink("/rfs_bucket/Room/" + "room_" + i + "_" + saveRoom.getRoomid() + ".jpg");
+                gcsService.uploadImage("rfs_bucket", "Room/room_" + formattedTimestamp+"_"+ i + "_" + saveRoom.getRoomid() + ".jpg", imageBytes);
+                roomImagesEntity.setImageLink("/rfs_bucket/Room/" + "room_" + formattedTimestamp+"_"+ i + "_" + saveRoom.getRoomid() + ".jpg");
                 i++;
                 roomImagesEntity.setRoomId(saveRoom.getRoomid());
                 roomImagesEntity.setCreatedDate(LocalDate.now());
@@ -316,6 +330,7 @@ public class RoomServiceImpl implements RoomService {
         saveRoom.setArea(roomDto.getArea());
         saveRoom.setCreatedDate(LocalDate.now());
         saveRoom.setCreatedBy(roomDto.getCreatedBy());
+        saveRoom.setFloor(roomDto.getFloor());
         saveRoom.setDescription(roomDto.getDescription());
         saveRoom.setHouseid(roomDto.getHouseId());
         saveRoom.setLastModifiedBy(roomDto.getLastModifiedBy());
@@ -339,14 +354,18 @@ public class RoomServiceImpl implements RoomService {
                 serviceRoomRepository.save(serviceRoomEntity);
             }
         }
+        long timestamp = System.currentTimeMillis();
+
+        // Chuyển định dạng thời gian thành chuỗi
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss");
+        String formattedTimestamp = dateFormat.format(new Date(timestamp));
         int i = 1;
         for (MultipartFile file : files) {
             if (!file.isEmpty()) {
                 RoomImagesEntity roomImagesEntity = new RoomImagesEntity();
                 byte[] imageBytes = file.getBytes();
-                gcsService.uploadImage("rfs_bucket", "Room/room_" + i + "_" + saveRoom.getRoomid() + ".jpg", imageBytes);
-                roomImagesEntity.setImageLink("/rfs_bucket/Room/" + "room_" + i + "_" + saveRoom.getRoomid() + ".jpg");
-                i++;
+                gcsService.uploadImage("rfs_bucket", "Room/room_" + formattedTimestamp+"_"+ i + "_" + saveRoom.getRoomid() + ".jpg", imageBytes);
+                roomImagesEntity.setImageLink("/rfs_bucket/Room/" + "room_" + formattedTimestamp+"_"+ i + "_" + saveRoom.getRoomid() + ".jpg");
                 roomImagesEntity.setRoomId(saveRoom.getRoomid());
                 roomImagesEntity.setCreatedDate(LocalDate.now());
                 roomImagesEntity.setLastModifiedDate(LocalDate.now());
@@ -356,8 +375,8 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public int countRoom(int min1, int max1, int min2, int max2, int min3, int max3,  String roomName, List<Integer> type) {
-        return roomRepository.countRoom(min1, max1, min2, max2, min3, max3, roomName, type);
+    public int countRoom(int min1, int max1, int min2, int max2, int min3, int max3,  String roomName, List<Integer> type, List<Integer> floor) {
+        return roomRepository.countRoom(min1, max1, min2, max2, min3, max3, roomName, type, floor);
     }
 
 
@@ -444,8 +463,8 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public List<RoomDtoN> findRoom1(int min1, int max1, int min2, int max2, int min3, int max3, String roomName, List<Integer> type, int pageIndex, int pageSize) {
-        List<Tuple> tuples = roomRepository.getRoomList(min1, max1, min2, max2, min3, max3, roomName, type, pageIndex, pageSize);
+    public List<RoomDtoN> findRoom1(int min1, int max1, int min2, int max2, int min3, int max3, String roomName, List<Integer> type, int pageIndex, int pageSize, List<Integer> floor) {
+        List<Tuple> tuples = roomRepository.getRoomList(min1, max1, min2, max2, min3, max3, roomName, type, pageIndex, pageSize, floor);
         List<RoomDtoN> roomDtos = new ArrayList<>();
         List<String> imageLinks;
         for (Tuple tuple : tuples) {
@@ -456,6 +475,7 @@ public class RoomServiceImpl implements RoomService {
             roomDto.setPrice(tuple.get("price", Integer.class));
             roomDto.setRoomType(tuple.get("type_name", String.class));
             String imageLink = (tuple.get("images", String.class));
+            roomDto.setFloor(tuple.get("floor", Integer.class).toString());
             if (imageLink == null) {
                 List<HouseImagesEntity> houseImagesEntities = roomRepository.getImageHouseByRoomId(roomDto.getRoomId());
                 roomDto.setRoomImages(houseImagesEntities.get(0).getImageLink());
@@ -468,6 +488,9 @@ public class RoomServiceImpl implements RoomService {
             roomDtos.add(roomDto);
         }
         return roomDtos;
+    }
+    public List<String> findAllDistinctFloors(){
+        return roomRepository.findAllDistinctFloors();
     }
 
     @Override
@@ -504,22 +527,22 @@ public class RoomServiceImpl implements RoomService {
                 int typeId = (int) cellType.getNumericCellValue();
                 room.setRoomType(typeId);
 
-                Cell cellArea = row.getCell(2);
+                Cell cellFloor = row.getCell(2);
+                Integer floor =(int) cellFloor.getNumericCellValue();
+                room.setFloor(floor);
+
+                Cell cellArea = row.getCell(3);
                 Double area = cellArea.getNumericCellValue();
                 room.setArea(area);
 
-                Cell cellPrice = row.getCell(3);
+                Cell cellPrice = row.getCell(4);
                 Integer price = (int) cellPrice.getNumericCellValue();
                 room.setPrice(price);
-
-                Cell cellHouse = row.getCell(4);
-                String houseName = cellHouse.getStringCellValue();
-                Integer houseId = houseRepository.findHousesEntityByHouseName(houseName);
-                room.setHouseid(houseId);
 
                 Cell cellDesc = row.getCell(5);
                 room.setDescription(cellDesc.getStringCellValue());
                 room.setStatusId(1);
+                room.setHouseid(roomDto.getHouseId());
                 room.setCreatedBy(roomDto.getCreatedBy());
                 room.setLastModifiedBy(roomDto.getLastModifiedBy());
                 room.setCreatedDate(LocalDate.now());
@@ -532,7 +555,7 @@ public class RoomServiceImpl implements RoomService {
 
                 roomRepository.save(room);
 
-                RoomEntity roomEntity = roomRepository.getRoomByHouseIdAndName(cellName.getStringCellValue(), houseId);
+                RoomEntity roomEntity = roomRepository.getRoomByHouseIdAndName(cellName.getStringCellValue(), roomDto.getHouseId());
                 for (String service : services) {
                     service = service.trim();
                     ServiceDetailEntity serviceDetailEntity = serviceDetailRepository.findByServiceName(service).get();

@@ -66,6 +66,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public Optional<UserEntity> findByEmailWithoutStatus(String email){
+        return userRepository.findByEmailWithoutStatus(email);
+    }
+
+    @Override
     public void registerUser(UserDto userDto) {
         userRepository.save(userDto);
     }
@@ -84,14 +89,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<UserEntity> userByUsername = userRepository.findByEmail(username);
-        if (!userByUsername.isPresent()) {
-            System.out.println("Could not find user with that username: {}");
-            throw new UsernameNotFoundException("Invalid credentials!");
-        }
-        UserEntity user = userByUsername.get();
-        if (user == null || !user.getEmail().equals(username)) {
-            System.out.println("Could not find user with that username: {}");
+
+        Optional<UserEntity> userByEmail = userRepository.findByEmail(username);
+        Optional<UserEntity> userByPhone = userRepository.findByPhone(username);
+
+        UserEntity user;
+        if (userByEmail.isPresent()) {
+            user = userByEmail.get();
+        } else if (userByPhone.isPresent()) {
+            user = userByPhone.get();
+        } else {
+            System.out.println("Could not find user with that username: " + username);
             throw new UsernameNotFoundException("Invalid credentials!");
         }
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
@@ -145,6 +153,8 @@ public class UserServiceImpl implements UserService {
         }
         return userDto;
     }
+
+
 
     @Override
     public void updateProfile(UserDto userDto, MultipartFile file) throws IOException {

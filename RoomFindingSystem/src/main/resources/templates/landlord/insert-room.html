@@ -62,39 +62,48 @@
                         <div class="card-box">
                             <h4 class="page-title">Thêm phòng mới</h4>
                             <div class="d-flex justify-content-end">
-                                <button type="button" class="btn btn-gradient waves-effect waves-light" id="houseRoom"
+                                <button type="button" class="btn btn-primary waves-effect waves-light" id="houseRoom"
                                         style="border-radius: 5px">Thêm nhiều phòng</button>
                             </div>
                             <form class="parsley-examples" action="#" th:action="@{'/landlord/room/save/'+ ${houseId}}"
                                   th:object="${room}" method="post" enctype="multipart/form-data">
                                 <input type="hidden" th:field="*{roomId}">
                                 <div class="row">
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <div class="form-group">
                                             <label>Phòng</label>
                                             <input type="text" class="form-control" required
                                                    placeholder="P101" th:field="*{roomName}"/>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <div class="form-group">
-                                            <label>Diện tích</label>
+                                            <label>Diện tích (m2)</label>
                                             <div>
                                                 <input type="number" id="area" class="form-control" required
                                                        placeholder="20" th:field="*{area}"/>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <div class="form-group">
-                                            <label>Giá</label>
+                                            <label>Giá (VND)</label>
                                             <div>
                                                 <input type="number" class="form-control" required
                                                        placeholder="2.000.000" th:field="*{price}"/>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-8">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Tầng</label>
+                                            <div>
+                                                <input type="number" class="form-control" required
+                                                       placeholder="1" th:field="*{floor}"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-9">
                                         <div class="form-group">
                                             <label>Mô tả chi tiết</label>
                                             <textarea type="text" class="form-control" rows="5"
@@ -102,7 +111,7 @@
                                                       th:field="*{description}"></textarea>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <div class="form-group">
                                             <label>Loại phòng</label>
                                             <div>
@@ -160,11 +169,11 @@
                                 </div>
                                 <div class="form-group mb-0">
                                     <div>
-                                        <button type="submit" class="btn btn-gradient waves-effect waves-light">
+                                        <button type="submit" class="btn btn-primary waves-effect waves-light">
                                             Lưu thông tin
                                         </button>
                                         <button type="reset" class="btn btn-light waves-effect ml-1">
-                                            <a th:href="@{'/landlord/room/listRoom/' + ${houseId}}">Danh sách
+                                            <a th:href="@{'/landlord/room/listRoom/' + ${houseId}}" style="color: #488f3e">Danh sách
                                                 phòng</a>
                                         </button>
                                     </div>
@@ -207,6 +216,7 @@
                                     style="display: none;">
                                 ×
                             </button>
+                            <input type="hidden" name="houseID" th:value="${id}">
                             <div class="row">
                                 <div class="col-12 mb-2 mt-4">
                                     <input class="form-control filestyle" name="fileExcel" type="file" id="fileExcel"
@@ -219,9 +229,9 @@
                             </div>
                         </div>
 
-                        <div class="swal2-actions" style="display: flex;">
-                            <button type="submit" class="swal2-confirm swal2-styled" aria-label=""
-                                    style="display: inline-block; border-left-color: rgb(48, 133, 214); border-right-color: rgb(48, 133, 214);">
+                        <div class="swal2-actions" style="display: flex ">
+                            <button type="submit" class="swal2-confirm btn-primary swal2-styled" aria-label=""
+                                    style="display: inline-block; background-color:#488f3e;">
                                 Thêm
                             </button>
                             <button type="button" class="swal2-cancel swal2-styled" aria-label=""

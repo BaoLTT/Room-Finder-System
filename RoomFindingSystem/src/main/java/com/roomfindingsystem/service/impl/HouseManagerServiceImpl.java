@@ -2,13 +2,10 @@ package com.roomfindingsystem.service.impl;
 
 import com.roomfindingsystem.dto.HouseLandlordVo;
 import com.roomfindingsystem.dto.HouseManagerTypeVo;
-import com.roomfindingsystem.entity.HouseImagesEntity;
-import com.roomfindingsystem.entity.HousesEntity;
-import com.roomfindingsystem.entity.RoomImagesEntity;
-import com.roomfindingsystem.entity.ServiceHouseEntity;
-import com.roomfindingsystem.repository.HouseImageRepository;
-import com.roomfindingsystem.repository.HouseManagerRepository;
-import com.roomfindingsystem.repository.ServiceHouseRepository;
+import com.roomfindingsystem.dto.RoomDto;
+import com.roomfindingsystem.entity.*;
+import com.roomfindingsystem.repository.*;
+import com.roomfindingsystem.service.HouseLandlordService;
 import com.roomfindingsystem.service.HouseManagerService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +13,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Service("houseManagerService")
@@ -33,7 +32,20 @@ public class HouseManagerServiceImpl implements HouseManagerService {
     GcsService gcsService;
     @Autowired
     HouseImageRepository houseImageRepository;
-
+    @Autowired
+    private HouseLandlordService houseLandlordService;
+    @Autowired
+    AddressRepository addressRepository;
+    @Autowired
+    FavouriteRepository favouriteRepository;
+    @Autowired
+    FeedbackRepository feedbackRepository;
+    @Autowired
+    RoomRepository roomRepository;
+    @Autowired
+    RoomImageRepository roomImageRepository;
+    @Autowired
+    ServiceRoomRepository serviceRoomRepository;
 
     @Override
     public List<HouseManagerTypeVo> findHouseManager() {
@@ -45,7 +57,20 @@ public class HouseManagerServiceImpl implements HouseManagerService {
         if ( houseManagerRepository.findById(id).isEmpty()) {
             System.err.println("House with id: "+ id +" not found!");
         }
+        HouseManagerTypeVo house = houseManagerRepository.findHouseById(id);
+        List<RoomDto> roomDtos = roomRepository.findRoomsInHouse(id);
+        for(int i =0;i<roomDtos.size();i++){
+            roomImageRepository.deleteByRoomId(roomDtos.get(i).getRoomId());
+            serviceRoomRepository.deleteByRoomId(roomDtos.get(i).getRoomId());
+        }
+
+        roomRepository.deleteByHouseId(id);
+        feedbackRepository.deleteByHouseId(id);
+        favouriteRepository.deleteFavouriteEntitiesByHouseId(id);
+        houseImageRepository.deleteByHouseId(id);
+        serviceHouseRepository.deleteByHouseId(id);
         houseManagerRepository.deleteById(id);
+        addressRepository.deleteById(house.getAddress());
         return true;
     }
 
@@ -63,6 +88,7 @@ public class HouseManagerServiceImpl implements HouseManagerService {
         housesEntity.setHouseName(house.getHouseName().trim().replaceAll("\\s+", " "));
         housesEntity.setDescription(house.getDescription().trim().replaceAll("\\s+", " "));
         housesEntity.setCreatedDate(createdDate);
+        housesEntity.setStar(house.getStar());
         housesEntity.setCreatedBy(house.getCreatedBy());
         housesEntity.setTypeHouseId(house.getTypeHouseID());
         housesEntity.setStatus(house.getStatus());
@@ -86,13 +112,19 @@ public class HouseManagerServiceImpl implements HouseManagerService {
             }
         }
 
+        long timestamp = System.currentTimeMillis();
+
+        // Chuyển định dạng thời gian thành chuỗi
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss");
+        String formattedTimestamp = dateFormat.format(new Date(timestamp));
+
         int i = 1;
         for (MultipartFile file : files) {
             if (!file.isEmpty()) {
                 HouseImagesEntity houseImagesEntity = new HouseImagesEntity();
                 byte[] imageBytes = file.getBytes();
-                gcsService.uploadImage("rfs_bucket", "House/house_" + i + "_"+housesEntity.getHouseId()+".jpg", imageBytes);
-                houseImagesEntity.setImageLink("/rfs_bucket/House/"+"house_"+i + "_"+housesEntity.getHouseId()+".jpg");
+                gcsService.uploadImage("rfs_bucket", "House/house_" + formattedTimestamp+"_"+ i + "_"+housesEntity.getHouseId()+".jpg", imageBytes);
+                houseImagesEntity.setImageLink("/rfs_bucket/House/"+"house_"+formattedTimestamp+"_"+ i + "_"+housesEntity.getHouseId()+".jpg");
                 i++;
                 houseImagesEntity.setHouseId(housesEntity.getHouseId());
                 houseImagesEntity.setCreatedDate(LocalDate.now());
@@ -129,19 +161,27 @@ public class HouseManagerServiceImpl implements HouseManagerService {
 
             }
         }
+        long timestamp = System.currentTimeMillis();
+
+        // Chuyển định dạng thời gian thành chuỗi
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss");
+        String formattedTimestamp = dateFormat.format(new Date(timestamp));
         int i = houseImagesEntity.size() + 2;
         for (MultipartFile file : files) {
             if (!file.isEmpty()) {
                 HouseImagesEntity houseImages = new HouseImagesEntity();
                 byte[] imageBytes = file.getBytes();
-                gcsService.uploadImage("rfs_bucket", "House/house_" + i + "_"+houseID+".jpg", imageBytes);
-                houseImages.setImageLink("/rfs_bucket/House/"+"house_"+i + "_"+houseID+".jpg");
+                gcsService.uploadImage("rfs_bucket", "House/house_" + formattedTimestamp+"_"+ i + "_"+houseID+".jpg", imageBytes);
+                houseImages.setImageLink("/rfs_bucket/House/"+"house_"+formattedTimestamp+"_"+ i + "_"+houseID+".jpg");
                 i++;
                 houseImages.setHouseId(houseID);
                 houseImages.setCreatedDate(LocalDate.now());
                 houseImageRepository.save(houseImages);
             }
+
         }
+
+
     }
 
 }

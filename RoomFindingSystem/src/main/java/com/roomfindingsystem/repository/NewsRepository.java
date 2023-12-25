@@ -15,7 +15,7 @@ public interface NewsRepository extends JpaRepository<NewsEntity, Integer> {
     @Query("select n from NewsEntity n")
     List<NewsEntity> findAllInAdmin();
     @Query
-    NewsEntity getNewsEntitiesByNewsid(int sliderId);
+    NewsEntity getNewsEntitiesByNewsid(int newsId);
 //    @Query
 //    SliderEntity save();
     @Query("select count(*) from NewsEntity ")

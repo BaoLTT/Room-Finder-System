@@ -9,8 +9,10 @@ import com.roomfindingsystem.entity.ServiceDetailEntity;
 
 
 import jakarta.persistence.Tuple;
+import jakarta.transaction.Transactional;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -29,6 +31,9 @@ public interface RoomRepository extends JpaRepository<RoomEntity, Integer> {
     @Query("SELECT r FROM RoomEntity r WHERE r.roomId = :roomId")
     RoomEntity getRoomById(int roomId);
 
+    @Query("SELECT DISTINCT r.floor FROM RoomEntity r ORDER BY r.floor ASC")
+    List<String> findAllDistinctFloors();
+
     @Query("SELECT i FROM RoomImagesEntity i WHERE i.roomId = :roomId")
     List<RoomImagesEntity> getImageByRoomId(int roomId);
 
@@ -40,6 +45,12 @@ public interface RoomRepository extends JpaRepository<RoomEntity, Integer> {
             "JOIN ServiceRoomEntity rs ON s.serviceId = rs.serviceId\n" +
             "WHERE rs.roomId = :roomId")
     List<ServiceDetailEntity> getServiceByRoomId(int roomId);
+
+    @Transactional
+    @Modifying
+    @Query(value = "DELETE FROM `room_finding_system`.`room`\n" +
+            "WHERE room.houseid = ?1 ;",nativeQuery = true)
+    void deleteByHouseId(int houseid);
 
 
 
@@ -90,18 +101,18 @@ public interface RoomRepository extends JpaRepository<RoomEntity, Integer> {
     String getRoomNameById(String id);
 
     @Query(value = "select r.roomid, r.room_name,h.house_name,r.price,rt.type_name,\n" +
-            "            (select group_concat(i.image_link) from room_images i where i.roomid=r.roomid) as images from room r join houses h \n" +
+            "            (select group_concat(i.image_link) from room_images i where i.roomid=r.roomid) as images, r.floor from room r join houses h \n" +
             "            on r.houseid=h.houseid join room_type rt on rt.typeid = r.room_type where r.statusid=1 \n" +
-            "            and ((r.price BETWEEN ?1 AND ?2) or (r.price BETWEEN ?3 AND ?4) or (r.price BETWEEN ?5 AND ?6)) AND (r.room_name like '%' ?7 '%' or h.house_name like '%' ?7 '%') and r.room_type IN ?8 \n" +
-            "            GROUP BY r.roomid, r.room_name, h.house_name, r.price, rt.type_name LIMIT ?10 OFFSET ?9", nativeQuery = true)
-    List<Tuple> getRoomList(int min1, int max1, int min2, int max2, int min3, int max3, String roomName, List<Integer> type, int pageIndex, int pageSize);
+            "            and ((r.price BETWEEN ?1 AND ?2) or (r.price BETWEEN ?3 AND ?4) or (r.price BETWEEN ?5 AND ?6)) AND (r.room_name like '%' ?7 '%' or h.house_name like '%' ?7 '%') and r.room_type IN ?8 and r.floor IN ?11 \n" +
+            "            GROUP BY r.roomid, r.room_name, h.house_name, r.price, rt.type_name, r.floor LIMIT ?10 OFFSET ?9", nativeQuery = true)
+    List<Tuple> getRoomList(int min1, int max1, int min2, int max2, int min3, int max3, String roomName, List<Integer> type, int pageIndex, int pageSize, List<Integer> floor);
 
     @Query(value = "SELECT COUNT(*) from (select r.roomid, r.room_name,h.house_name,r.price,rt.type_name, " +
-            "                        (select group_concat(i.image_link) from room_images i where i.roomid=r.roomid) as images from room r join houses h \n" +
+            "                        (select group_concat(i.image_link) from room_images i where i.roomid=r.roomid) as images, r.floor from room r join houses h \n" +
             "                        on r.houseid=h.houseid join room_type rt on rt.typeid = r.room_type where r.statusid=1 \n" +
-            "                        and ((r.price BETWEEN ?1 AND ?2) or (r.price BETWEEN ?3 AND ?4) or (r.price BETWEEN ?5 AND ?6)) AND (r.room_name like '%' ?7 '%' or h.house_name like '%' ?7 '%') and r.room_type IN ?8 \n" +
-            "                        GROUP BY r.roomid, r.room_name, h.house_name, r.price, rt.type_name) as subquery",nativeQuery = true)
-    int countRoom(int min1, int max1, int min2, int max2, int min3, int max3, String roomName, List<Integer> type);
+            "                        and ((r.price BETWEEN ?1 AND ?2) or (r.price BETWEEN ?3 AND ?4) or (r.price BETWEEN ?5 AND ?6)) AND (r.room_name like '%' ?7 '%' or h.house_name like '%' ?7 '%') and r.room_type IN ?8 and r.floor IN ?9 \n" +
+            "                        GROUP BY r.roomid, r.room_name, h.house_name, r.price, rt.type_name, r.floor) as subquery",nativeQuery = true)
+    int countRoom(int min1, int max1, int min2, int max2, int min3, int max3, String roomName, List<Integer> type, List<Integer> floor);
 
 
 
@@ -113,7 +124,7 @@ public interface RoomRepository extends JpaRepository<RoomEntity, Integer> {
             "WHERE h.houseId = :houseId and r.roomName = :name")
     RoomEntity getRoomByHouseIdAndName(String name, Integer houseId);
 
-    @Query("select new com.roomfindingsystem.dto.RoomDto(r.roomId, r.roomName, t.typeName, r.description, r.price, h.houseName, r.area, case when r.statusId = 1 then 'ACTIVE' else 'INACTIVE' end) " +
+    @Query("select new com.roomfindingsystem.dto.RoomDto(r.roomId, r.roomName,r.floor, t.typeName, r.description, r.price, h.houseName, r.area, case when r.statusId = 1 then 'ACTIVE' else 'INACTIVE' end) " +
             "from RoomEntity r " +
             "join HousesEntity h on r.houseId = h.houseId " +
             "left join RoomTypeEntity t on t.typeId = r.roomType ")
@@ -138,11 +149,11 @@ public interface RoomRepository extends JpaRepository<RoomEntity, Integer> {
 
 
 
-    @Query("select new com.roomfindingsystem.dto.RoomDto(r.roomId, r.roomName, t.typeName, r.description, r.price, h.houseName, r.area, case when r.statusId = 1 then 'ACTIVE' else 'INACTIVE' end) " +
+    @Query("select new com.roomfindingsystem.dto.RoomDto(r.roomId, r.roomName,r.floor, t.typeName, r.description, r.price, h.houseName, r.area, case when r.statusId = 1 then 'ACTIVE' else 'INACTIVE' end) " +
             "from RoomEntity r " +
             "join HousesEntity h on r.houseId = h.houseId " +
             "left join RoomTypeEntity t on t.typeId = r.roomType "+
-            "WHERE h.houseId = :houseId")
+            "WHERE h.houseId = ?1 ")
     List<RoomDto> findRoomsInHouse(int houseId);
 
     @Query("select count(*) from RoomEntity r where r.houseId = ?1")

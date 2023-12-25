@@ -59,16 +59,10 @@ public class UserRepositoryTest {
 
    @Test
    void testFindByEmail_EmailIsNull() {
-      // Test Case 3: Email có giá trị là null
-
-
-      // Gọi phương thức cần kiểm thử từ service
       Optional<UserEntity> result = userRepository.findByEmail(null);
 
       // Kiểm tra kết quả
-      assertFalse(result.isPresent());
-
-
+      assertEquals(Optional.empty(), result);
    }
 
    @Test
@@ -121,13 +115,31 @@ public class UserRepositoryTest {
    public void testSaveUser_Success() {
       // Arrange
       UserEntity user = new UserEntity();
-      user.setFirstName("Le"); user.setLastName("Kaka");
+      user.setFirstName("Le");
+      user.setLastName("Kaka");
+
+      // Act
       UserEntity userToSave = userRepository.save(user);
 
-      UserEntity savedUser = userRepository.findById(userToSave.getUserId()).orElse(null);
-      assertNotNull(savedUser);
-      // Kiểm tra các thông tin khác của user nếu cần
-      assertEquals(userToSave.getLastName(), savedUser.getLastName());
+      try {
+         // Assert
+         assertNotNull(userToSave.getUserId());
+
+         // Kiểm tra các thông tin khác của user nếu cần
+         assertEquals(user.getFirstName(), userToSave.getFirstName());
+         assertEquals(user.getLastName(), userToSave.getLastName());
+
+         // Act - Lấy thông tin user sau khi đã lưu vào cơ sở dữ liệu
+         UserEntity savedUser = userRepository.findById(userToSave.getUserId()).orElse(null);
+         assertNotNull(savedUser);
+         assertEquals(userToSave.getLastName(), savedUser.getLastName());
+
+      } finally {
+         // Clean up - Xóa user sau khi kiểm thử
+         if (userToSave != null) {
+            userRepository.deleteById(userToSave.getUserId());
+         }
+      }
    }
 
    //getUserForChangePass
