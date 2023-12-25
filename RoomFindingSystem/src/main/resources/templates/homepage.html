@@ -455,7 +455,7 @@
                                                    th:text="${' '+feedback.lastName+' '+feedback.firstName}"></i></div>
                             <p th:text="${feedback.content}">
                             </p>
-                            <a th:href="@{/detail?id=}+${feedback.houseId}+'#reviews'" class="link icon">Xem chi tiết<i class="arrow_right"></i></a>
+                            <a th:href="@{/house/housename?id=}+${feedback.houseId}+'#reviews'" class="link icon">Xem chi tiết<i class="arrow_right"></i></a>
                         </div>
                         <!--end review-->
                     </div>
