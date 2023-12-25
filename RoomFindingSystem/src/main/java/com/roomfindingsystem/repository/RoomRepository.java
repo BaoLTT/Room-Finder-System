@@ -130,19 +130,22 @@ public interface RoomRepository extends JpaRepository<RoomEntity, Integer> {
             "left join RoomTypeEntity t on t.typeId = r.roomType ")
     List<RoomDto> findRoomsDetail();
 
-    @Query(value = "SELECT r.roomid, r.room_name, h.house_name, t.type_name, r.price, (SELECT GROUP_CONCAT(i.image_link) FROM room_images i WHERE i.roomid = r.roomid) AS Image_Link, a.address_details, w.name AS ward_name, d.name AS district_name, p.name AS province_name, r.area\n" +
-            "FROM room r\n" +
-            "LEFT JOIN room_type t ON r.room_type = t.typeid\n" +
-            "LEFT JOIN houses h ON r.houseid = h.houseid\n" +
-            "LEFT JOIN address a ON h.addressid = a.addressid\n" +
-            "LEFT JOIN province p ON a.provinceid = p.provinceid\n" +
-            "LEFT JOIN district d ON a.districtid = d.districtid\n" +
-            "LEFT JOIN ward w ON a.wardid = w.wardid\n" +
-            "WHERE r.statusid = 1\n" +
-            "GROUP BY r.roomid, r.room_name, h.house_name, t.type_name, r.price, a.address_details, r.area\n" +
-            "ORDER BY ABS(r.price - :targetPrice) ASC\n" +
+    @Query(value = "SELECT r.roomid, r.room_name, h.house_name, t.type_name, r.price, " +
+            "(SELECT GROUP_CONCAT(i.image_link) FROM room_images i WHERE i.roomid = r.roomid) AS Image_Link, " +
+            "a.address_details, w.name AS ward_name, d.name AS district_name, p.name AS province_name, r.area " +
+            "FROM room r " +
+            "LEFT JOIN room_type t ON r.room_type = t.typeid " +
+            "LEFT JOIN houses h ON r.houseid = h.houseid " +
+            "LEFT JOIN address a ON h.addressid = a.addressid " +
+            "LEFT JOIN province p ON a.provinceid = p.provinceid " +
+            "LEFT JOIN district d ON a.districtid = d.districtid " +
+            "LEFT JOIN ward w ON a.wardid = w.wardid " +
+            "WHERE r.statusid = 1 AND r.roomid != :roomId " +
+            "GROUP BY r.roomid, r.room_name, h.house_name, t.type_name, r.price, a.address_details, r.area " +
+            "ORDER BY ABS(r.price - :targetPrice) ASC " +
             "LIMIT 4 OFFSET 0", nativeQuery = true)
-    List<Tuple> findRoomsNearPrice(@Param("targetPrice") BigDecimal targetPrice);
+    List<Tuple> findRoomsNearPrice(@Param("targetPrice") BigDecimal targetPrice, @Param("roomId") int roomId);
+
 
     @Query
     RoomEntity findRoomEntityByRoomNameAndHouseId(String roomName, int houseId);

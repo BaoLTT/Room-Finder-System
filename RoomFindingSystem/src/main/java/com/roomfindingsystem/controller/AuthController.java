@@ -56,6 +56,7 @@ public class AuthController {
     private UserService userService;
     @Autowired
     GcsService gcsService;
+    LocalDate currentDate = LocalDate.now();
 
     @RequestMapping("/login-google")
     public String loginGoogle(HttpServletRequest request, Model model) throws Exception {
@@ -146,6 +147,7 @@ public class AuthController {
 
     @PostMapping("/loginAfterAddInfo")
     public String AddInfo(Model model, @Valid @ModelAttribute("newUser") UserEntity newUser, HttpServletRequest request) throws IOException {
+        newUser.setCreatedDate(currentDate.plusDays(1));
         userService.save(newUser);
         System.out.println("ok");
 
