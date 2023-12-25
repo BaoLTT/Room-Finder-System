@@ -57,8 +57,12 @@
                                     <span>Admin</span>
                                 </a>
                                 </br>
-                                <a th:href="@{/profile}" class="dropdown-item notify-item">
+                                <a th:if="${session.user.roleId=='STAFF' || session.user.roleId == 'ADMIN'}" th:href="@{/admin/profile}" class="dropdown-item notify-item">
+                                    <span>Thông tin cá nhân</span>
+                                    </br>
+                                </a>
 
+                                <a th:if="${session.user.roleId=='MEMBER' || session.user.roleId == 'LANDLORD'}" th:href="@{/profile}" class="dropdown-item notify-item">
                                     <span>Thông tin cá nhân</span>
                                 </a>
                                 <br>
