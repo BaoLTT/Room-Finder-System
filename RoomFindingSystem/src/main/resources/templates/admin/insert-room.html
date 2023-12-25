@@ -117,6 +117,7 @@
                                             <label>Phòng</label>
                                             <input type="text" class="form-control" required
                                                    placeholder="P101" th:field="*{roomName}"/>
+                                            <p th:if="${error ne null}" style="color: red;" th:text="${error}"></p>
                                         </div>
 
                                     </div>

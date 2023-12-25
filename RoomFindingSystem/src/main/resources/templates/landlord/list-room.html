@@ -70,7 +70,7 @@
             <!-- Start Content-->
             <div class="main-content">
                 <ol class="breadcrumb">
-                    <li><a th:href="@{/landlord/listHouse}">Quản lý phòng trọ</a></li>
+                    <li><a th:href="@{/landlord/listHouse}">Quản lý nhà trọ</a></li>
                     <li style="margin-left: 5px;">/ Danh sách phòng</li>
                 </ol>
                 <div class="row">
@@ -79,13 +79,14 @@
 
                             <h4 class="page-title">Danh sách phòng</h4>
                             <div class="d-flex justify-content-end">
-                                <button class="btn btn-primary mb-1 "><a
-                                        th:href="@{'/landlord/room/insertRoom/'+ ${houseId}}"
-                                        style="color: white">Thêm phòng mới</a>
-                                </button>
+
                             </div>
-                            <div class="d-flex justify-content-end">
-                                <button class="btn btn-primary mb-1 "><a
+                            <div class="d-flex justify-content-end" style="position: relative">
+                                <button class="btn btn-primary mb-1 " style="position: absolute;left: 0;border-radius: 5px"><a
+                                        th:href="@{/landlord/listHouse}"
+                                        style="color: white">Quản lý nhà trọ</a>
+                                </button>
+                                <button class="btn btn-primary mb-1 " style="border-radius: 5px"><a
                                         th:href="@{'/landlord/room/insertRoom/'+ ${houseId}}"
                                         style="color: white">Thêm phòng mới</a>
                                 </button>
