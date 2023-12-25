@@ -109,7 +109,7 @@ public class AdminManageHouseController {
             e.printStackTrace(); // In lỗi ra console
 
             // Trả về trang dashboard với thông báo lỗi
-            return "404";
+            return "404Admin";
         }
 
         return "redirect:" + referer;
@@ -136,7 +136,7 @@ public class AdminManageHouseController {
         }catch (Exception e) {
             // Xử lý lỗi ở đây, ví dụ:
             e.printStackTrace(); // In lỗi ra console
-            return "404";
+            return "404Admin";
         }
         return "redirect:" + referer;
     }
@@ -204,7 +204,7 @@ public class AdminManageHouseController {
             model.addAttribute("error", "Có lỗi xảy ra .");
 
             // Trả về trang dashboard với thông báo lỗi
-            return "404Admin";
+            return "redirect:/admin/house-manager";
         }
         return "redirect:/admin/house-manager";
     }
@@ -271,7 +271,7 @@ public class AdminManageHouseController {
             model.addAttribute("error", "Có lỗi xảy ra.");
 
             // Trả về trang dashboard với thông báo lỗi
-            return "404Admin";
+            return "redirect:/admin/house-manager";
         }
         return  "redirect:/admin/house-manager";
     }
@@ -292,7 +292,7 @@ public class AdminManageHouseController {
         }catch (Exception e) {
             // Xử lý lỗi ở đây, ví dụ:
             e.printStackTrace(); // In lỗi ra console
-            return "404Admin";
+            return "redirect:/admin/house-manager";
         }
 
         return "redirect:/admin/house-manager";

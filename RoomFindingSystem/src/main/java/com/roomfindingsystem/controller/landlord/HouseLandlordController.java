@@ -101,7 +101,6 @@ public class HouseLandlordController {
             System.out.println(user.getRoleId());
             List<TypeHouseEntity> listType = houseTypeService.findAll();
             List<ServiceDetailEntity> listService = serviceDetailService.getAllService();
-
             HouseLandlordVo  house = houseLandlordService.findHouseByID(houseid);
             List<String> listChecked = house.getService();
             System.out.println(listChecked);
@@ -110,10 +109,16 @@ public class HouseLandlordController {
             model.addAttribute("listChecked",listChecked);
             model.addAttribute("listService",listService);
             model.addAttribute("request",request);
-
-
             model.addAttribute("key_map", gcsService.getMapKey());
             model.addAttribute("houseLocation", houseService.getHouseById(houseid));
+//            if(house.getListImage()!=null){
+//                for(int i=0;i<house.getListImage().size();i++){
+//                    if(house.getListImage().get(i).getImageLink().equals("/rfs_bucket/House/housenull.jpg")){
+//                        houseImageRepository.deleteByHouseId(houseid);
+//                    }
+//                }
+//            }
+
         }catch (Exception e) {
             // Xử lý lỗi ở đây, ví dụ:
             e.printStackTrace(); // In lỗi ra console
