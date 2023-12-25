@@ -79,11 +79,16 @@ public class RoomLandlordController {
         model.addAttribute("services", serviceDetailService.getServiceExceptHouseService(id));
         model.addAttribute("types", roomTypeService.findAll());
         model.addAttribute("request",request);
+        List<RoomDto> roomDtos = roomService.getRoomsInHouse(id);
+        model.addAttribute("exitRoom", roomDtos);
         return "landlord/insert-room";
     }
 
     @PostMapping("/save/{houseId}")
-    public String save(@PathVariable("houseId") Integer id,@ModelAttribute(name = "room") RoomDto roomDto, @RequestParam("file") MultipartFile[] files) throws IOException {
+    public String save(@PathVariable("houseId") Integer id,@ModelAttribute(name = "room") RoomDto roomDto, @RequestParam("file") MultipartFile[] files,Model model) throws IOException {
+
+
+
 
             List<ServiceDto> serviceDtos = new ArrayList<>();
             List<String> selects = roomDto.getServiceNames();
@@ -122,6 +127,15 @@ public class RoomLandlordController {
     public String deleteImage(@PathVariable Integer roomId, @PathVariable Integer imageId) {
         roomService.deleteRoomImage(imageId);
         return "redirect:/landlord/room/updateRoom/" + roomId;
+    }
+
+    private boolean isDuplicateRoomName(List<RoomDto> existingRooms, String newRoomName) {
+        for (RoomDto existingRoom : existingRooms) {
+            if (existingRoom.getRoomName().equalsIgnoreCase(newRoomName)) {
+                return true; // Tìm thấy tên phòng trùng lặp
+            }
+        }
+        return false; // Không tìm thấy tên phòng trùng lặp
     }
 }
 
