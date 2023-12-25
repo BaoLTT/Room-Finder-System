@@ -66,6 +66,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public Optional<UserEntity> findByEmailWithoutStatus(String email){
+        return userRepository.findByEmailWithoutStatus(email);
+    }
+
+    @Override
     public void registerUser(UserDto userDto) {
         userRepository.save(userDto);
     }
@@ -148,6 +153,8 @@ public class UserServiceImpl implements UserService {
         }
         return userDto;
     }
+
+
 
     @Override
     public void updateProfile(UserDto userDto, MultipartFile file) throws IOException {

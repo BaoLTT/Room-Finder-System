@@ -116,8 +116,8 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public List<RoomHomeDto> viewRoomNearPrice(int price) {
-        List<Tuple> tuples = roomRepository.findRoomsNearPrice(BigDecimal.valueOf(price));
+    public List<RoomHomeDto> viewRoomNearPrice(int price, int id) {
+        List<Tuple> tuples = roomRepository.findRoomsNearPrice(BigDecimal.valueOf(price), id);
         List<RoomHomeDto> roomHomeDtos = new ArrayList<>();
         List<String> imageLinks;
 

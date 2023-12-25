@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1aeaa8f5-7027-4444-9af9-db8ebb94afd4" name="Changes" comment="update test">
+
+    <list default="true" id="3984fc9b-ab5d-4d61-81f8-049b67f3fab8" name="Changes" comment="update list room trong house detail">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/housedetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/housedetail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/homepage.html" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/main/resources/templates/homepage.html" afterDir="false" />
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,10 +18,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 5
-}</component>
-  <component name="ProjectId" id="2a0MhGq7OEnAv9dRUd5mxoT4BGy" />
+
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
@@ -27,26 +26,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;BaoLTT&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;cba14e4d5d8ebaea272e92fbdfce9e02&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "dart.analysis.tool.window.visible": "false"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="Main" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+
       <module name="RoomFindingSystem" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.roomfindingsystem.Main" />
       <extension name="coverage">
@@ -65,27 +53,11 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="1aeaa8f5-7027-4444-9af9-db8ebb94afd4" name="Changes" comment="update test" />
-      <created>1703451165312</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1703451165312</updated>
-      <workItem from="1703451170666" duration="409000" />
-      <workItem from="1703469751253" duration="1571000" />
-      <workItem from="1703480663357" duration="3152000" />
-    </task>
+
     <servers />
   </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="update test" />
-    <option name="LAST_COMMIT_MESSAGE" value="update test" />
-  </component>
+
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Room_Finding_System$UserControllerTest.ic" NAME="UserControllerTest Coverage Results" MODIFIED="1700300286928" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>com.roomfindingsystem.controller.*</FILTER>

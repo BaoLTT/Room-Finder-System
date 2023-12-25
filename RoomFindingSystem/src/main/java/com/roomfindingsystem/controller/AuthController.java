@@ -10,8 +10,10 @@ import com.roomfindingsystem.service.UserService;
 
 
 import com.roomfindingsystem.service.impl.GcsService;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
+import org.apache.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -44,15 +46,7 @@ public class AuthController {
     @GetMapping("/login")
     public String showLogin(){
         return "auth/login1";
-//        return "login";
     }
-
-//    @RequestMapping("/ok")
-//    public String dinhvan(Model model){
-////        final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
-////        model.addAttribute("currentUserName", currentUserName);
-//        return "test";
-//    }
 
 
     @Autowired
@@ -62,6 +56,7 @@ public class AuthController {
     private UserService userService;
     @Autowired
     GcsService gcsService;
+    LocalDate currentDate = LocalDate.now();
 
     @RequestMapping("/login-google")
     public String loginGoogle(HttpServletRequest request, Model model) throws Exception {
@@ -80,10 +75,11 @@ public class AuthController {
 
 //         Kiểm tra xem tài khoản Google đã tồn tại trong bảng user chưa
         Optional<UserEntity> existingUser = userService.findByEmail(googlePojo.getEmail()); // Thay thế bằng phương thức phù hợp của userService
+        Optional<UserEntity> existingUserS = userService.findByEmailWithoutStatus(googlePojo.getEmail());
 //        System.out.println(existingUser.isEmpty()); ///1
 
 //        TODO cật nhật thông tin ở đoạn này...
-        if (existingUser.isEmpty()) {
+        if (existingUserS.isEmpty()) {
             // Nếu tài khoản Google chưa có, thêm tài khoản mới vào bảng user
             UserEntity newUser = new UserEntity();
             newUser.setEmail(googlePojo.getEmail());
@@ -102,6 +98,10 @@ public class AuthController {
 
 //            userService.save(newUser);
             return "auth/addInfoGoogle";
+        }
+
+        if(existingUserS.get().getUserStatusId()==0){
+            return "redirect:/login?error";
         }
 
 
@@ -137,6 +137,8 @@ public class AuthController {
         return "403";
     }
 
+
+
     @GetMapping("/logout")
     public String logoutPage() {
         SecurityContextHolder.getContext().setAuthentication(null); // Đăng xuất người dùng
@@ -145,6 +147,7 @@ public class AuthController {
 
     @PostMapping("/loginAfterAddInfo")
     public String AddInfo(Model model, @Valid @ModelAttribute("newUser") UserEntity newUser, HttpServletRequest request) throws IOException {
+        newUser.setCreatedDate(currentDate.plusDays(1));
         userService.save(newUser);
         System.out.println("ok");
 

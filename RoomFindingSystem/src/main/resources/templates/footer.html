@@ -21,9 +21,9 @@
       <div class="copyright pull-left">Room Finding System</div>
       <div class="footer-nav pull-right">
         <a th:href="@{/}">Trang chủ</a>
-        <a th:if="${session.user != null and session.user.getRoleId() == 'LANDLORD'}" th:href="@{/manager}" >Quản lý phòng trọ</a>
+        <a th:if="${session.user != null and session.user.getRoleId() == 'LANDLORD'}" th:href="@{/landlord/listHouse}" >Quản lý phòng trọ</a>
         <a th:href="@{/houselist}">Danh sách nhà trọ</a>
-        <a th:href="@{/RoomList/1}">Danh sách phòng trọ</a>
+        <a th:href="@{/roomlist}">Danh sách phòng trọ</a>
 
       </div>
     </div>

@@ -87,6 +87,7 @@ public class RoomListController {
             totalPage = (int) Math.ceil((double) totalRoom / pageSize);
         }
 
+
         model.addAttribute("roomName",roomName);
         model.addAttribute("currentPage",pageIndex);
         model.addAttribute("totalPage", totalPage);

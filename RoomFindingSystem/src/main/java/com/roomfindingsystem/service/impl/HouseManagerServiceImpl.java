@@ -2,13 +2,9 @@ package com.roomfindingsystem.service.impl;
 
 import com.roomfindingsystem.dto.HouseLandlordVo;
 import com.roomfindingsystem.dto.HouseManagerTypeVo;
-import com.roomfindingsystem.entity.HouseImagesEntity;
-import com.roomfindingsystem.entity.HousesEntity;
-import com.roomfindingsystem.entity.RoomImagesEntity;
-import com.roomfindingsystem.entity.ServiceHouseEntity;
-import com.roomfindingsystem.repository.HouseImageRepository;
-import com.roomfindingsystem.repository.HouseManagerRepository;
-import com.roomfindingsystem.repository.ServiceHouseRepository;
+import com.roomfindingsystem.dto.RoomDto;
+import com.roomfindingsystem.entity.*;
+import com.roomfindingsystem.repository.*;
 import com.roomfindingsystem.service.HouseLandlordService;
 import com.roomfindingsystem.service.HouseManagerService;
 import jakarta.transaction.Transactional;
@@ -38,6 +34,18 @@ public class HouseManagerServiceImpl implements HouseManagerService {
     HouseImageRepository houseImageRepository;
     @Autowired
     private HouseLandlordService houseLandlordService;
+    @Autowired
+    AddressRepository addressRepository;
+    @Autowired
+    FavouriteRepository favouriteRepository;
+    @Autowired
+    FeedbackRepository feedbackRepository;
+    @Autowired
+    RoomRepository roomRepository;
+    @Autowired
+    RoomImageRepository roomImageRepository;
+    @Autowired
+    ServiceRoomRepository serviceRoomRepository;
 
     @Override
     public List<HouseManagerTypeVo> findHouseManager() {
@@ -49,7 +57,20 @@ public class HouseManagerServiceImpl implements HouseManagerService {
         if ( houseManagerRepository.findById(id).isEmpty()) {
             System.err.println("House with id: "+ id +" not found!");
         }
+        HouseManagerTypeVo house = houseManagerRepository.findHouseById(id);
+        List<RoomDto> roomDtos = roomRepository.findRoomsInHouse(id);
+        for(int i =0;i<roomDtos.size();i++){
+            roomImageRepository.deleteByRoomId(roomDtos.get(i).getRoomId());
+            serviceRoomRepository.deleteByRoomId(roomDtos.get(i).getRoomId());
+        }
+
+        roomRepository.deleteByHouseId(id);
+        feedbackRepository.deleteByHouseId(id);
+        favouriteRepository.deleteFavouriteEntitiesByHouseId(id);
+        houseImageRepository.deleteByHouseId(id);
+        serviceHouseRepository.deleteByHouseId(id);
         houseManagerRepository.deleteById(id);
+        addressRepository.deleteById(house.getAddress());
         return true;
     }
 
@@ -109,13 +130,12 @@ public class HouseManagerServiceImpl implements HouseManagerService {
                 houseImagesEntity.setCreatedDate(LocalDate.now());
                 houseImageRepository.save(houseImagesEntity);
             }else{
-                    // If files are null or empty, set a default image
-                    HouseImagesEntity defaultImage = new HouseImagesEntity();
-                    defaultImage.setImageLink("/rfs_bucket/House/housenull.jpg");
-                    defaultImage.setHouseId(housesEntity.getHouseId());
-                    defaultImage.setCreatedDate(LocalDate.now());
-                    houseImageRepository.save(defaultImage);
-
+                // If files are null or empty, set a default image
+                HouseImagesEntity defaultImage = new HouseImagesEntity();
+                defaultImage.setImageLink("/rfs_bucket/House/housenull.jpg");
+                defaultImage.setHouseId(housesEntity.getHouseId());
+                defaultImage.setCreatedDate(LocalDate.now());
+                houseImageRepository.save(defaultImage);
             }
         }
     }
@@ -136,6 +156,11 @@ public class HouseManagerServiceImpl implements HouseManagerService {
     public void updateHouse(HouseLandlordVo houses, int houseID,List<Integer> service,MultipartFile[] files) throws IOException {
         LocalDate localDate = LocalDate.now();
         List<HouseImagesEntity> houseImagesEntity = houseImageRepository.getImageByHouseId(houseID);
+        for(int i=0;i<houseImagesEntity.size();i++){
+            if(houseImagesEntity.get(i).getImageLink().equals("/rfs_bucket/House/housenull.jpg")){
+                houseImageRepository.deleteByHouseId(houseID);
+            }
+        }
         houseManagerRepository.updateHouse(houses.getHouseName().trim().replaceAll("\\s+", " "), houses.getTypeHouseID(),houses.getDescription().trim().replaceAll("\\s+", " "),houses.getLastModifiedBy(),localDate,houses.getStatus(),houseID, houses.getLatitude(), houses.getLongitude());
         serviceHouseRepository.deleteByHouseId(houseID);
         if(!service.contains(0)){
@@ -156,6 +181,7 @@ public class HouseManagerServiceImpl implements HouseManagerService {
         int i = houseImagesEntity.size() + 2;
         for (MultipartFile file : files) {
             if (!file.isEmpty()) {
+
                 HouseImagesEntity houseImages = new HouseImagesEntity();
                 byte[] imageBytes = file.getBytes();
                 gcsService.uploadImage("rfs_bucket", "House/house_" + formattedTimestamp+"_"+ i + "_"+houseID+".jpg", imageBytes);
@@ -166,13 +192,14 @@ public class HouseManagerServiceImpl implements HouseManagerService {
                 houseImageRepository.save(houseImages);
             }else{
                 HouseLandlordVo  houseImage = houseLandlordService.findHouseByID(houses.getHouseID());
-                    if (houseImage.getListImage() == null ) {
-                        HouseImagesEntity defaultImage = new HouseImagesEntity();
-                        defaultImage.setImageLink("/rfs_bucket/House/housenull.jpg");
-                        defaultImage.setHouseId(houses.getHouseID());
-                        defaultImage.setCreatedDate(LocalDate.now());
-                        houseImageRepository.save(defaultImage);
-                    }
+                if (houseImage.getListImage() == null ) {
+                    HouseImagesEntity defaultImage = new HouseImagesEntity();
+                    defaultImage.setImageLink("/rfs_bucket/House/housenull.jpg");
+                    defaultImage.setHouseId(houses.getHouseID());
+                    defaultImage.setCreatedDate(LocalDate.now());
+                    houseImageRepository.save(defaultImage);
+                }
+
             }
 
         }
