@@ -99,6 +99,10 @@ public class AuthController {
             return "auth/addInfoGoogle";
         }
 
+        if(existingUserS.get().getUserStatusId()==0){
+            return "redirect:/login?error";
+        }
+
 
         UserDetails userDetail = googleUtils.buildUser(googlePojo);
         List<GrantedAuthority> authorities = new ArrayList<>(userDetail.getAuthorities());
