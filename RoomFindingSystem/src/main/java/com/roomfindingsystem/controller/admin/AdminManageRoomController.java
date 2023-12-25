@@ -179,13 +179,14 @@ public class AdminManageRoomController {
     }
 
     @PostMapping("/importRooms")
-    public String importRoom(@RequestParam("fileExcel") MultipartFile fileExcel) {
+    public String importRoom(@PathVariable("houseId") Integer id,@RequestParam("fileExcel") MultipartFile fileExcel) {
 
         RoomDto roomDto = new RoomDto();
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         UserEntity user = userService.findByEmail(email).get();
         roomDto.setCreatedBy(user.getUserId());
         roomDto.setLastModifiedBy(user.getUserId());
+        roomDto.setHouseId(id);
         roomService.importRooms(roomDto,fileExcel);
 
         return "redirect:/admin/room/listRoom";
