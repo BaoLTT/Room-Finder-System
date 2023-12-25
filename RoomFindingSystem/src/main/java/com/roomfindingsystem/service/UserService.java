@@ -20,6 +20,8 @@ public interface UserService extends UserDetailsService {
 
     Optional<UserEntity> findByEmail(String email);
 
+    Optional<UserEntity> findByEmailWithoutStatus(String email);
+
     void registerUser(UserDto userDto);
 
     UserEntity getUserByRoomId(int roomId);
