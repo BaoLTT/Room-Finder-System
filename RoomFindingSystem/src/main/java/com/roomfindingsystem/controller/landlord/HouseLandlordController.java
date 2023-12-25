@@ -111,14 +111,6 @@ public class HouseLandlordController {
             model.addAttribute("request",request);
             model.addAttribute("key_map", gcsService.getMapKey());
             model.addAttribute("houseLocation", houseService.getHouseById(houseid));
-//            if(house.getListImage()!=null){
-//                for(int i=0;i<house.getListImage().size();i++){
-//                    if(house.getListImage().get(i).getImageLink().equals("/rfs_bucket/House/housenull.jpg")){
-//                        houseImageRepository.deleteByHouseId(houseid);
-//                    }
-//                }
-//            }
-
         }catch (Exception e) {
             // Xử lý lỗi ở đây, ví dụ:
             e.printStackTrace(); // In lỗi ra console

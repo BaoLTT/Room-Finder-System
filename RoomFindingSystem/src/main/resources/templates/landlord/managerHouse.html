@@ -95,9 +95,13 @@
                                 <div class="info">
                                     <a href="#"><h2 th:text="${house.houseName}" style="display: block">Spring Hotel</h2></a>
                                     <figure class="label label-info" th:text="${house.getTypeHouse()}" >Hotel</figure>
-                                    <figure class="location" th:text="${house.getService()}">Montenegro</figure>
+                                    <figure th:if="${house.getService().isEmpty()}" class="location">Chưa có dịch vụ</figure>
+                                    <figure th:if="${!house.getService().isEmpty()}"class="location" th:text="${house.getService()}">Montenegro</figure>
 
-                                    <div class="meta">
+                                    <div class="meta" th:if="${house.getCount_room()==0}">
+                                        <span><i class="fa fa-bed" ></i><h>Chưa có phòng</h></span>
+                                        </div>
+                                    <div class="meta"th:if="${house.getCount_room()!=0}">
                                         <span><i class="fa fa-bed" ></i><h th:text="${house.getCount_room()}"></h></span>
                                         <span class="price-info" th:with="formattedPrice=${#numbers.formatDecimal(house.price, 0, 'COMMA', 0, 'POINT')}">Từ <span class="price" th:text="${formattedPrice + ' VND'}">$32</span><span class="appendix">/Tháng</span></span>
                                     </div>
