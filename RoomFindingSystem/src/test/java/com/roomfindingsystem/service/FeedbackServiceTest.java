@@ -1,6 +1,7 @@
 package com.roomfindingsystem.service;
 
 import com.roomfindingsystem.dto.FeedbackDto;
+import com.roomfindingsystem.dto.FeedbackDtoAdmin;
 import com.roomfindingsystem.dto.FeedbackListAdminDto;
 import com.roomfindingsystem.entity.FeedbackEntity;
 import com.roomfindingsystem.repository.FeedbackRepository;
@@ -195,9 +196,10 @@ public class FeedbackServiceTest {
     //test
     @Test
     void testGetListFeedback() {
+
         // Arrange
         List<FeedbackListAdminDto> expectedFeedbackList = Arrays.asList(
-                new FeedbackListAdminDto(/* your data here */),
+                new FeedbackListAdminDto(),
                 new FeedbackListAdminDto(/* your data here */)
                 // Add more sample FeedbackListAdminDto objects as needed
         );
@@ -212,4 +214,65 @@ public class FeedbackServiceTest {
         assertEquals(expectedFeedbackList, result);
         // Add more assertions as needed
     }
+
+    @Test
+    void testGetFeedback() {
+        List<Boolean> status = Arrays.asList(false);
+        // Arrange
+        List<FeedbackDtoAdmin> expectedFeedbackList = Arrays.asList(
+                new FeedbackDtoAdmin()
+                // Add more sample FeedbackListAdminDto objects as needed
+        );
+
+        // Mock the behavior of feedbackRepository.getFeedbackListForAdmin()
+        when(feedbackRepository.findFeedbackDtos(status)).thenReturn(expectedFeedbackList);
+
+        // Act
+        List<FeedbackDtoAdmin> result = feedbackService.getFeedback(status);
+
+        // Assert
+        assertEquals(expectedFeedbackList, result);
+        // Add more assertions as needed
+    }
+
+    @Test
+    void testGetFeedback1() {
+        List<Boolean> status = Arrays.asList(true);
+        // Arrange
+        List<FeedbackDtoAdmin> expectedFeedbackList = Arrays.asList(
+                new FeedbackDtoAdmin()
+                // Add more sample FeedbackListAdminDto objects as needed
+        );
+
+        // Mock the behavior of feedbackRepository.getFeedbackListForAdmin()
+        when(feedbackRepository.findFeedbackDtos(status)).thenReturn(expectedFeedbackList);
+
+        // Act
+        List<FeedbackDtoAdmin> result = feedbackService.getFeedback(status);
+
+        // Assert
+        assertEquals(expectedFeedbackList, result);
+        // Add more assertions as needed
+    }
+
+    @Test
+    void testGetFeedback2() {
+        List<Boolean> status = Arrays.asList(false,true);
+        // Arrange
+        List<FeedbackDtoAdmin> expectedFeedbackList = Arrays.asList(
+                new FeedbackDtoAdmin()
+                // Add more sample FeedbackListAdminDto objects as needed
+        );
+
+        // Mock the behavior of feedbackRepository.getFeedbackListForAdmin()
+        when(feedbackRepository.findFeedbackDtos(status)).thenReturn(expectedFeedbackList);
+
+        // Act
+        List<FeedbackDtoAdmin> result = feedbackService.getFeedback(status);
+
+        // Assert
+        assertEquals(expectedFeedbackList, result);
+        // Add more assertions as needed
+    }
+
 }
