@@ -7,6 +7,7 @@
     <list default="true" id="3984fc9b-ab5d-4d61-81f8-049b67f3fab8" name="Changes" comment="update list room trong house detail">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/roomfindingsystem/service/RoomServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/roomfindingsystem/service/RoomServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/roomfindingsystem/service/RoomTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/roomfindingsystem/service/RoomTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,23 +30,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "com.google.cloudcode.ide_session_index": "20231226_0000",
-    "dart.analysis.tool.window.visible": "false",
-    "show.migrate.to.gradle.popup": "false",
-    "spring.configuration.checksum": "cba14e4d5d8ebaea272e92fbdfce9e02"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.google.cloudcode.ide_session_index&quot;: &quot;20231226_0000&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;cba14e4d5d8ebaea272e92fbdfce9e02&quot;
   }
-}]]></component>
-  <component name="RunManager" selected="JUnit.RoomServiceTest">
-    <configuration name="RoomServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+}</component>
+  <component name="RunManager" selected="JUnit.RoomServiceTest.testGetRoominHouseValidNull">
+    <configuration name="RoomServiceTest.testDeleteRoomImage" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RoomFindingSystem" />
       <extension name="coverage">
         <pattern>
@@ -55,28 +56,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.roomfindingsystem.service" />
       <option name="MAIN_CLASS_NAME" value="com.roomfindingsystem.service.RoomServiceTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="RoomServiceTest.testCount2RoomByIdValid" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="RoomFindingSystem" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.roomfindingsystem.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.roomfindingsystem.service" />
-      <option name="MAIN_CLASS_NAME" value="com.roomfindingsystem.service.RoomServiceTest" />
-      <option name="METHOD_NAME" value="testCount2RoomByIdValid" />
+      <option name="METHOD_NAME" value="testDeleteRoomImage" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RoomServiceTest.testCount2RoomByRoomnameNoValid" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="RoomServiceTest.testDeleteRoomImageNoValid" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RoomFindingSystem" />
       <extension name="coverage">
         <pattern>
@@ -86,13 +72,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.roomfindingsystem.service" />
       <option name="MAIN_CLASS_NAME" value="com.roomfindingsystem.service.RoomServiceTest" />
-      <option name="METHOD_NAME" value="testCount2RoomByRoomnameNoValid" />
+      <option name="METHOD_NAME" value="testDeleteRoomImageNoValid" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RoomServiceTest.testCount2RoomByRoomnameValid" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="RoomServiceTest.testDeleteRoomImageValidNull" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RoomFindingSystem" />
       <extension name="coverage">
         <pattern>
@@ -102,13 +88,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.roomfindingsystem.service" />
       <option name="MAIN_CLASS_NAME" value="com.roomfindingsystem.service.RoomServiceTest" />
-      <option name="METHOD_NAME" value="testCount2RoomByRoomnameValid" />
+      <option name="METHOD_NAME" value="testDeleteRoomImageValidNull" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RoomServiceTest.testCount2RoomByStatusValid" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="RoomServiceTest.testGetRoominHouseValidNull" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RoomFindingSystem" />
       <extension name="coverage">
         <pattern>
@@ -118,7 +104,23 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.roomfindingsystem.service" />
       <option name="MAIN_CLASS_NAME" value="com.roomfindingsystem.service.RoomServiceTest" />
-      <option name="METHOD_NAME" value="testCount2RoomByStatusValid" />
+      <option name="METHOD_NAME" value="testGetRoominHouseValidNull" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RoomServiceTest.testGetRoominHousevslid" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="RoomFindingSystem" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.roomfindingsystem.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.roomfindingsystem.service" />
+      <option name="MAIN_CLASS_NAME" value="com.roomfindingsystem.service.RoomServiceTest" />
+      <option name="METHOD_NAME" value="testGetRoominHousevslid" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -126,11 +128,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.RoomServiceTest" />
-        <item itemvalue="JUnit.RoomServiceTest.testCount2RoomByRoomnameValid" />
-        <item itemvalue="JUnit.RoomServiceTest.testCount2RoomByRoomnameNoValid" />
-        <item itemvalue="JUnit.RoomServiceTest.testCount2RoomByStatusValid" />
-        <item itemvalue="JUnit.RoomServiceTest.testCount2RoomByIdValid" />
+        <item itemvalue="JUnit.RoomServiceTest.testGetRoominHouseValidNull" />
+        <item itemvalue="JUnit.RoomServiceTest.testGetRoominHousevslid" />
+        <item itemvalue="JUnit.RoomServiceTest.testDeleteRoomImageValidNull" />
+        <item itemvalue="JUnit.RoomServiceTest.testDeleteRoomImageNoValid" />
+        <item itemvalue="JUnit.RoomServiceTest.testDeleteRoomImage" />
       </list>
     </recent_temporary>
   </component>

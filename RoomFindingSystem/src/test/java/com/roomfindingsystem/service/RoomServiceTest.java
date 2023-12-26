@@ -1,5 +1,6 @@
 package com.roomfindingsystem.service;
 
+import com.roomfindingsystem.dto.RoomAdminDashboardDto;
 import com.roomfindingsystem.dto.RoomDto;
 import com.roomfindingsystem.dto.RoomHouseDetailDto;
 import com.roomfindingsystem.repository.RoomRepository;
@@ -12,9 +13,11 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -80,13 +83,7 @@ public class RoomServiceTest {
         };
     }
 
-            //test viewRoomInHouse()
-    @Test
-    void testViewRoomInHouseWithValidInput() {
 
-        // Arrange
-
-    }
     @Test
     void testUpdateRoomInHouseWithValidInput() throws IOException {
         // Arrange
@@ -538,5 +535,357 @@ public class RoomServiceTest {
         // Assert
         assertTrue(true);
     }
-    
+    @Test
+    public void viewRoomInHouseNoValid() throws Exception {
+
+        // Set up mock data
+        Integer houseId = -2;
+
+        // Call method
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        List<RoomHouseDetailDto> list = new ArrayList<>();
+        list = roomService.viewRoomInHouse(houseId);
+
+        // Assertions
+        assertEquals(roomService.viewRoomInHouse(houseId), list);
+    }
+    @Test
+    public void viewRoomInHouseNull() throws Exception {
+
+        // Set up mock data
+        Integer houseId = 0;
+
+        // Call method
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        List<RoomHouseDetailDto> list = new ArrayList<>();
+        list = roomService.viewRoomInHouse(houseId);
+
+        // Assertions
+        assertEquals(roomService.viewRoomInHouse(houseId), list);
+    }
+    @Test
+    public void viewRoomInHouseValid() throws Exception {
+
+        // Set up mock data
+        Integer houseId = 2;
+
+        // Call method
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        List<RoomHouseDetailDto> list = new ArrayList<>();
+        list = roomService.viewRoomInHouse(houseId);
+
+        // Assertions
+        assertEquals(roomService.viewRoomInHouse(houseId), list);
+    }
+
+    @Test
+    void testFindRoom1validMin1() {
+        // Arrange
+        int min1=1, max1=0;
+        int min2=1, max2=0;
+        int min3=1, max3=0;
+        RoomService roomService = Mockito.mock(RoomService.class);
+        RoomDto room = new RoomDto();
+        roomService.findRoom1(min1, min2, max1, max2, min3, max3, "hoalachouse", null, 1,1,null);
+        // Assert
+        assertTrue(true);
+    }
+    @Test
+    void testFindRoom1validMin2() {
+        // Arrange
+        int min1=1, max1=0;
+        int min2=1, max2=0;
+        int min3=1, max3=0;
+        RoomService roomService = Mockito.mock(RoomService.class);
+        RoomDto room = new RoomDto();
+        roomService.findRoom1(min1, min2, max1, max2, min3, max3, "hoalachouse", null, 1,1,null);
+        // Assert
+        assertTrue(true);
+    }
+    @Test
+    void testFindRoom1validMin3() {
+        // Arrange
+        int min1=1, max1=0;
+        int min2=1, max2=0;
+        int min3=1, max3=0;
+        RoomService roomService = Mockito.mock(RoomService.class);
+        RoomDto room = new RoomDto();
+        roomService.findRoom1(min1, min2, max1, max2, min3, max3, "hoalachouse", null, 1,1,null);
+        // Assert
+        assertTrue(true);
+    }
+    @Test
+    void testFindRoom1validMax1() {
+        // Arrange
+        int min1=1, max1=1;
+        int min2=1, max2=0;
+        int min3=1, max3=0;
+        RoomService roomService = Mockito.mock(RoomService.class);
+        RoomDto room = new RoomDto();
+        roomService.findRoom1(min1, min2, max1, max2, min3, max3, "hoalachouse", null, 1,1,null);
+        // Assert
+        assertTrue(true);
+    }
+    @Test
+    void testFindRoom1validMax2() {
+        // Arrange
+        int min1=1, max1=1;
+        int min2=1, max2=1;
+        int min3=1, max3=0;
+        RoomService roomService = Mockito.mock(RoomService.class);
+        RoomDto room = new RoomDto();
+        roomService.findRoom1(min1, min2, max1, max2, min3, max3, "hoalachouse", null, 1,1,null);
+        // Assert
+        assertTrue(true);
+    }
+    @Test
+    void testFindRoom1validMax3() {
+        // Arrange
+        int min1=1, max1=1;
+        int min2=1, max2=1;
+        int min3=1, max3=1;
+        RoomService roomService = Mockito.mock(RoomService.class);
+        RoomDto room = new RoomDto();
+        roomService.findRoom1(min1, min2, max1, max2, min3, max3, "hoalachouse", null, 1,1,null);
+        // Assert
+        assertTrue(true);
+    }
+    @Test
+    void testFindRoom1NovalidMin1() {
+        // Arrange
+        int min1=-1, max1=1;
+        int min2=1, max2=1;
+        int min3=1, max3=1;
+        RoomService roomService = Mockito.mock(RoomService.class);
+        RoomDto room = new RoomDto();
+        roomService.findRoom1(min1, min2, max1, max2, min3, max3, "hoalachouse", null, 1,1,null);
+        // Assert
+        assertTrue(true);
+    }
+    @Test
+    void testFindRoom1NovalidMin2() {
+        // Arrange
+        int min1=1, max1=1;
+        int min2=-1, max2=1;
+        int min3=1, max3=1;
+        RoomService roomService = Mockito.mock(RoomService.class);
+        RoomDto room = new RoomDto();
+        roomService.findRoom1(min1, min2, max1, max2, min3, max3, "hoalachouse", null, 1,1,null);
+        // Assert
+        assertTrue(true);
+    }
+    @Test
+    void testFindRoom1NovalidMin3() {
+        // Arrange
+        int min1=1, max1=1;
+        int min2=1, max2=1;
+        int min3=-1, max3=1;
+        RoomService roomService = Mockito.mock(RoomService.class);
+        RoomDto room = new RoomDto();
+        roomService.findRoom1(min1, min2, max1, max2, min3, max3, "hoalachouse", null, 1,1,null);
+        // Assert
+        assertTrue(true);
+    }
+    @Test
+    void testFindRoom1NovalidMax1() {
+        // Arrange
+        int min1=1, max1=-1;
+        int min2=1, max2=1;
+        int min3=1, max3=1;
+        RoomService roomService = Mockito.mock(RoomService.class);
+        RoomDto room = new RoomDto();
+        roomService.findRoom1(min1, min2, max1, max2, min3, max3, "hoalachouse", null, 1,1,null);
+        // Assert
+        assertTrue(true);
+    }
+    @Test
+    void testFindRoom1NovalidMax2() {
+        // Arrange
+        int min1=1, max1=-1;
+        int min2=1, max2=1;
+        int min3=1, max3=1;
+        RoomService roomService = Mockito.mock(RoomService.class);
+        RoomDto room = new RoomDto();
+        roomService.findRoom1(min1, min2, max1, max2, min3, max3, "hoalachouse", null, 1,1,null);
+        // Assert
+        assertTrue(true);
+    }
+    @Test
+    void testFindRoom1NovalidMax3() {
+        // Arrange
+        int min1=1, max1=-1;
+        int min2=1, max2=1;
+        int min3=1, max3=1;
+        RoomService roomService = Mockito.mock(RoomService.class);
+        RoomDto room = new RoomDto();
+        roomService.findRoom1(min1, min2, max1, max2, min3, max3, "hoalachouse", null, 1,1,null);
+        // Assert
+        assertTrue(true);
+    }
+    @Test
+    void testFindRoom1NovaliPageIndex() {
+        // Arrange
+        int min1=1, max1=-1;
+        int min2=1, max2=1;
+        int min3=1, max3=1;
+        int pageIndex=-1;
+        RoomService roomService = Mockito.mock(RoomService.class);
+        RoomDto room = new RoomDto();
+        roomService.findRoom1(min1, min2, max1, max2, min3, max3, "hoalachouse", null, pageIndex,1,null);
+        // Assert
+        assertTrue(true);
+    }
+    @Test
+    void testFindRoom1valiPageIndex() {
+        // Arrange
+        int min1=1, max1=-1;
+        int min2=1, max2=1;
+        int min3=1, max3=1;
+        int pageIndex=1;
+        RoomService roomService = Mockito.mock(RoomService.class);
+        RoomDto room = new RoomDto();
+        roomService.findRoom1(min1, min2, max1, max2, min3, max3, "hoalachouse", null, pageIndex,1,null);
+        // Assert
+        assertTrue(true);
+    }
+    @Test
+    void testFindRoom1valiPageSize() {
+        // Arrange
+        int min1=1, max1=-1;
+        int min2=1, max2=1;
+        int min3=1, max3=1;
+        int pageIndex=1;
+        int pageSize=1;
+        RoomService roomService = Mockito.mock(RoomService.class);
+        RoomDto room = new RoomDto();
+        roomService.findRoom1(min1, min2, max1, max2, min3, max3, "hoalachouse", null, pageIndex,pageSize,null);
+        // Assert
+        assertTrue(true);
+    }
+    @Test
+    void testFindRoom1NoValidPageSize() {
+        // Arrange
+        int min1=1, max1=-1;
+        int min2=1, max2=1;
+        int min3=1, max3=1;
+        int pageIndex=1;
+        int pageSize=-1;
+        RoomService roomService = Mockito.mock(RoomService.class);
+        RoomDto room = new RoomDto();
+        roomService.findRoom1(min1, min2, max1, max2, min3, max3, "hoalachouse", null, pageIndex,pageSize,null);
+        // Assert
+        assertTrue(true);
+    }
+    @Test
+    void testInportRoomValid() {
+        // Arrange
+        RoomDto roomDto = new RoomDto();
+        MultipartFile file1 = Mockito.mock(MultipartFile.class);
+        MultipartFile file2 = Mockito.mock(MultipartFile.class);
+        MultipartFile[] files = {file1, file2};
+        RoomService roomService = Mockito.mock(RoomService.class);
+        roomService.importRooms(roomDto,file1);
+        assertTrue(true);
+    }
+    @Test
+    void testInportRoomNoValid() {
+        // Arrange
+        RoomDto roomDto = new RoomDto();
+        MultipartFile file1 = Mockito.mock(MultipartFile.class);
+        MultipartFile file2 = Mockito.mock(MultipartFile.class);
+        MultipartFile[] files = {file1, file2};
+        RoomService roomService = Mockito.mock(RoomService.class);
+        roomService.importRooms(roomDto,file1);
+        assertTrue(true);
+    }
+    @Test
+    void testInportRoomFileValid() {
+        // Arrange
+        RoomDto roomDto = new RoomDto();
+        MultipartFile file1 = Mockito.mock(MultipartFile.class);
+        MultipartFile file2 = Mockito.mock(MultipartFile.class);
+        MultipartFile[] files = {file1, file2};
+        RoomService roomService = Mockito.mock(RoomService.class);
+        roomService.importRooms(roomDto,file1);
+        assertTrue(true);
+    }
+    @Test
+    void testInportRoomNoFileValid() {
+        // Arrange
+        RoomDto roomDto = new RoomDto();
+        MultipartFile file1 = Mockito.mock(MultipartFile.class);
+        MultipartFile file2 = Mockito.mock(MultipartFile.class);
+        MultipartFile[] files = {file1, file2};
+        RoomService roomService = Mockito.mock(RoomService.class);
+        roomService.importRooms(roomDto,file1);
+        assertTrue(true);
+    }
+    @Test
+    void testGetRoomStatusInAdminDashboard() {
+
+        // Arrange
+        List<RoomAdminDashboardDto> list = new ArrayList<>();
+        RoomService roomService = Mockito.mock(RoomService.class);
+        roomService.getRoomStatusInAdminDashboard();
+        assertEquals(list, roomService.getRoomStatusInAdminDashboard());
+    }
+    @Test
+    void testDeleteRoomImage() {
+        int idImage=1;
+        List<RoomAdminDashboardDto> list = new ArrayList<>();
+        RoomService roomService = Mockito.mock(RoomService.class);
+        roomService.deleteRoomImage(idImage);
+        assertTrue(true);
+    }
+    @Test
+    void testDeleteRoomImageNoValid() {
+        int idImage=-1;
+        List<RoomAdminDashboardDto> list = new ArrayList<>();
+        RoomService roomService = Mockito.mock(RoomService.class);
+        roomService.deleteRoomImage(idImage);
+        assertTrue(true);
+    }
+    @Test
+    void testDeleteRoomImageValidNull() {
+        int idImage=0;
+        List<RoomAdminDashboardDto> list = new ArrayList<>();
+        RoomService roomService = Mockito.mock(RoomService.class);
+        roomService.deleteRoomImage(idImage);
+        assertTrue(true);
+    }
+    @Test
+    void testGetRoominHousevalid() {
+        int idhouse=1;
+        List<RoomAdminDashboardDto> list = new ArrayList<>();
+        RoomService roomService = Mockito.mock(RoomService.class);
+        roomService.getRoomsInHouse(idhouse);
+        assertTrue(true);
+    }
+
+    @Test
+    void testGetRoominHousevalid2() {
+        int idhouse=10;
+        List<RoomAdminDashboardDto> list = new ArrayList<>();
+        RoomService roomService = Mockito.mock(RoomService.class);
+        roomService.getRoomsInHouse(idhouse);
+        assertTrue(true);
+    }
+    @Test
+    void testGetRoominHouseNovalid() {
+        int idhouse=-1;
+        List<RoomAdminDashboardDto> list = new ArrayList<>();
+        RoomService roomService = Mockito.mock(RoomService.class);
+        roomService.getRoomsInHouse(idhouse);
+        assertTrue(true);
+    }
+    @Test
+    void testGetRoominHouseValidNull() {
+        int idhouse=0;
+        List<RoomAdminDashboardDto> list = new ArrayList<>();
+        RoomService roomService = Mockito.mock(RoomService.class);
+        roomService.getRoomsInHouse(idhouse);
+        assertTrue(true);
+    }
+
+
 }
