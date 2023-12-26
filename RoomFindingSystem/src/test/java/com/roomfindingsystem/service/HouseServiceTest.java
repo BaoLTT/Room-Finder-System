@@ -15,6 +15,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.dao.EmptyResultDataAccessException;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -296,6 +297,417 @@ public class HouseServiceTest {
         verify(houseRepository, times(1)).getHousesEntitiesByHouseId(id);
     }
 
+    @Test
+    void testFindHouse() {
+
+        // Set up test data
+        int min1 = 1000000;
+        int max1 = 2000000;
+        int min2 = 2;
+        int max2 = 3;
+        int province = 1;
+        int district = 2;
+        int ward = 3;
+        int status1 = 0;
+        int status2 = 0;
+        String houseName = "Test House";
+        List<Integer> type = Arrays.asList(1, 2, 3);
+        List<Integer> service = Arrays.asList(4, 5, 6);
+        int countService = 3;
+        int pageIndex = 1;
+        int pageSize = 10;
+
+        // Act
+        List<Tuple> result = houseRepository.findHouse(min1, max1, min2, max2, province, district, ward, status1, status2, houseName, type, service, countService, pageIndex, pageSize);
+
+        // Assert
+        assertNotNull(result);}
+    @Test
+    void testFindHouse1() {
+
+        // Set up test data
+        int min1 = 1000000;
+        int max1 = 2000000;
+        int min2 = 2;
+        int max2 = 3;
+        int province = 1;
+        int district = 2;
+        int ward = 3;
+        int status1 = 0;
+        int status2 = 0;
+        String houseName = "";
+        List<Integer> type = Arrays.asList(1, 2, 3);
+        List<Integer> service = Arrays.asList(4, 5, 6);
+        int countService = 3;
+        int pageIndex = 1;
+        int pageSize = 10;
+
+        // Act
+        List<Tuple> result = houseRepository.findHouse(min1, max1, min2, max2, province, district, ward, status1, status2, houseName, type, service, countService, pageIndex, pageSize);
+
+        // Assert
+        assertNotNull(result);}
+
+    @Test
+    void testFindHouse2() {
+
+        // Set up test data
+        int min1 = 1000000;
+        int max1 = 2000000;
+        int min2 = 2;
+        int max2 = 3;
+        int province = 1;
+        int district = 2;
+        int ward = 3;
+        int status1 = 1;
+        int status2 = 1;
+        String houseName = "house";
+        List<Integer> type = Arrays.asList(1, 2, 3);
+        List<Integer> service = Arrays.asList(4, 5, 6);
+        int countService = 3;
+        int pageIndex = 1;
+        int pageSize = 10;
+
+        // Act
+        List<Tuple> result = houseRepository.findHouse(min1, max1, min2, max2, province, district, ward, status1, status2, houseName, type, service, countService, pageIndex, pageSize);
+
+        // Assert
+        assertNotNull(result);}
+
+    @Test
+    void testFindHouse3() {
+
+        // Set up test data
+        int min1 = 1000000;
+        int max1 = 2000000;
+        int min2 = 2;
+        int max2 = 3;
+        int province = 1;
+        int district = 2;
+        int ward = 3;
+        int status1 = 1;
+        int status2 = 1;
+        String houseName = "";
+        List<Integer> type = Arrays.asList(1, 2, 3);
+        List<Integer> service = Arrays.asList(4, 5, 6);
+        int countService = 3;
+        int pageIndex = 1;
+        int pageSize = 10;
+
+        // Act
+        List<Tuple> result = houseRepository.findHouse(min1, max1, min2, max2, province, district, ward, status1, status2, houseName, type, service, countService, pageIndex, pageSize);
+
+        // Assert
+        assertNotNull(result);}
+
+    @Test
+    void testFindHouse4() {
+
+        // Set up test data
+        int min1 = 1000000;
+        int max1 = 2000000;
+        int min2 = -2;
+        int max2 = -3;
+        int province = 1;
+        int district = 2;
+        int ward = 3;
+        int status1 = 0;
+        int status2 = 0;
+        String houseName = "house";
+        List<Integer> type = Arrays.asList(1, 2, 3);
+        List<Integer> service = Arrays.asList(4, 5, 6);
+        int countService = 3;
+        int pageIndex = 1;
+        int pageSize = 10;
+
+        // Act
+        List<Tuple> result = houseRepository.findHouse(min1, max1, min2, max2, province, district, ward, status1, status2, houseName, type, service, countService, pageIndex, pageSize);
+
+        // Assert
+        assertNotNull(result);}
+
+    @Test
+    void testFindHouse5() {
+
+        // Set up test data
+        int min1 = 1000000;
+        int max1 = 2000000;
+        int min2 = -2;
+        int max2 = -2;
+        int province = 1;
+        int district = 2;
+        int ward = 3;
+        int status1 = 0;
+        int status2 = 0;
+        String houseName = "";
+        List<Integer> type = Arrays.asList(1, 2, 3);
+        List<Integer> service = Arrays.asList(4, 5, 6);
+        int countService = 3;
+        int pageIndex = 1;
+        int pageSize = 10;
+
+        // Act
+        List<Tuple> result = houseRepository.findHouse(min1, max1, min2, max2, province, district, ward, status1, status2, houseName, type, service, countService, pageIndex, pageSize);
+
+        // Assert
+        assertNotNull(result);}
+    @Test
+    void testFindHouse6() {
+
+        // Set up test data
+        int min1 = 1000000;
+        int max1 = 2000000;
+        int min2 = -2;
+        int max2 = -2;
+        int province = 1;
+        int district = 2;
+        int ward = 3;
+        int status1 = 1;
+        int status2 = 1;
+        String houseName = "house";
+        List<Integer> type = Arrays.asList(1, 2, 3);
+        List<Integer> service = Arrays.asList(4, 5, 6);
+        int countService = 3;
+        int pageIndex = 1;
+        int pageSize = 10;
+
+        // Act
+        List<Tuple> result = houseRepository.findHouse(min1, max1, min2, max2, province, district, ward, status1, status2, houseName, type, service, countService, pageIndex, pageSize);
+
+        // Assert
+        assertNotNull(result);}
+    @Test
+    void testFindHouse7() {
+
+        // Set up test data
+        int min1 = 1000000;
+        int max1 = 2000000;
+        int min2 = -2;
+        int max2 = -2;
+        int province = 1;
+        int district = 2;
+        int ward = 3;
+        int status1 = 1;
+        int status2 = 1;
+        String houseName = "";
+        List<Integer> type = Arrays.asList(1, 2, 3);
+        List<Integer> service = Arrays.asList(4, 5, 6);
+        int countService = 3;
+        int pageIndex = 1;
+        int pageSize = 10;
+
+        // Act
+        List<Tuple> result = houseRepository.findHouse(min1, max1, min2, max2, province, district, ward, status1, status2, houseName, type, service, countService, pageIndex, pageSize);
+
+        // Assert
+        assertNotNull(result);}
+    @Test
+    void testFindHouse8() {
+
+        // Set up test data
+        int min1 = -2;
+        int max1 = -3;
+        int min2 = 2000000;
+        int max2 = 2000000;
+        int province = 1;
+        int district = 2;
+        int ward = 3;
+        int status1 = 0;
+        int status2 = 0;
+        String houseName = "house";
+        List<Integer> type = Arrays.asList(1, 2, 3);
+        List<Integer> service = Arrays.asList(4, 5, 6);
+        int countService = 3;
+        int pageIndex = 1;
+        int pageSize = 10;
+
+        // Act
+        List<Tuple> result = houseRepository.findHouse(min1, max1, min2, max2, province, district, ward, status1, status2, houseName, type, service, countService, pageIndex, pageSize);
+
+        // Assert
+        assertNotNull(result);}
+
+    @Test
+    void testFindHouse9() {
+
+        // Set up test data
+        int min1 = -2;
+        int max1 = -3;
+        int min2 = 2000000;
+        int max2 = 2000000;
+        int province = 1;
+        int district = 2;
+        int ward = 3;
+        int status1 = 0;
+        int status2 = 0;
+        String houseName = "";
+        List<Integer> type = Arrays.asList(1, 2, 3);
+        List<Integer> service = Arrays.asList(4, 5, 6);
+        int countService = 3;
+        int pageIndex = 1;
+        int pageSize = 10;
+
+        // Act
+        List<Tuple> result = houseRepository.findHouse(min1, max1, min2, max2, province, district, ward, status1, status2, houseName, type, service, countService, pageIndex, pageSize);
+
+        // Assert
+        assertNotNull(result);}
+
+    @Test
+    void testFindHouse10() {
+
+        // Set up test data
+        int min1 = -2;
+        int max1 = -3;
+        int min2 = 2000000;
+        int max2 = 2000000;
+        int province = 1;
+        int district = 2;
+        int ward = 3;
+        int status1 = 1;
+        int status2 = 1;
+        String houseName = "house";
+        List<Integer> type = Arrays.asList(1, 2, 3);
+        List<Integer> service = Arrays.asList(4, 5, 6);
+        int countService = 3;
+        int pageIndex = 1;
+        int pageSize = 10;
+
+        // Act
+        List<Tuple> result = houseRepository.findHouse(min1, max1, min2, max2, province, district, ward, status1, status2, houseName, type, service, countService, pageIndex, pageSize);
+
+        // Assert
+        assertNotNull(result);}
+
+    @Test
+    void testFindHouse11() {
+
+        // Set up test data
+        int min1 = -2;
+        int max1 = -3;
+        int min2 = 2000000;
+        int max2 = 2000000;
+        int province = 1;
+        int district = 2;
+        int ward = 3;
+        int status1 = 1;
+        int status2 = 1;
+        String houseName = "";
+        List<Integer> type = Arrays.asList(1, 2, 3);
+        List<Integer> service = Arrays.asList(4, 5, 6);
+        int countService = 3;
+        int pageIndex = 1;
+        int pageSize = 10;
+
+        // Act
+        List<Tuple> result = houseRepository.findHouse(min1, max1, min2, max2, province, district, ward, status1, status2, houseName, type, service, countService, pageIndex, pageSize);
+
+        // Assert
+        assertNotNull(result);}
+
+    @Test
+    void testFindHouse12() {
+
+        // Set up test data
+        int min1 = -2;
+        int max1 = -3;
+        int min2 = -2;
+        int max2 = -3;
+        int province = 1;
+        int district = 2;
+        int ward = 3;
+        int status1 = 0;
+        int status2 = 0;
+        String houseName = "house";
+        List<Integer> type = Arrays.asList(1, 2, 3);
+        List<Integer> service = Arrays.asList(4, 5, 6);
+        int countService = 3;
+        int pageIndex = 1;
+        int pageSize = 10;
+
+        // Act
+        List<Tuple> result = houseRepository.findHouse(min1, max1, min2, max2, province, district, ward, status1, status2, houseName, type, service, countService, pageIndex, pageSize);
+
+        // Assert
+        assertNotNull(result);}
+
+    @Test
+    void testFindHouse13() {
+
+        // Set up test data
+        int min1 = -2;
+        int max1 = -3;
+        int min2 = -2;
+        int max2 = -3;
+        int province = 1;
+        int district = 2;
+        int ward = 3;
+        int status1 = 0;
+        int status2 = 0;
+        String houseName = "";
+        List<Integer> type = Arrays.asList(1, 2, 3);
+        List<Integer> service = Arrays.asList(4, 5, 6);
+        int countService = 3;
+        int pageIndex = 1;
+        int pageSize = 10;
+
+        // Act
+        List<Tuple> result = houseRepository.findHouse(min1, max1, min2, max2, province, district, ward, status1, status2, houseName, type, service, countService, pageIndex, pageSize);
+
+        // Assert
+        assertNotNull(result);}
+
+    @Test
+    void testFindHouse14() {
+
+        // Set up test data
+        int min1 = -2;
+        int max1 = -3;
+        int min2 = -2;
+        int max2 = -3;
+        int province = 1;
+        int district = 2;
+        int ward = 3;
+        int status1 = 1;
+        int status2 = 1;
+        String houseName = "house";
+        List<Integer> type = Arrays.asList(1, 2, 3);
+        List<Integer> service = Arrays.asList(4, 5, 6);
+        int countService = 3;
+        int pageIndex = 1;
+        int pageSize = 10;
+
+        // Act
+        List<Tuple> result = houseRepository.findHouse(min1, max1, min2, max2, province, district, ward, status1, status2, houseName, type, service, countService, pageIndex, pageSize);
+
+        // Assert
+        assertNotNull(result);}
+
+    @Test
+    void testFindHouse15() {
+
+        // Set up test data
+        int min1 = -2;
+        int max1 = -3;
+        int min2 = -2;
+        int max2 = -3;
+        int province = 1;
+        int district = 2;
+        int ward = 3;
+        int status1 = 1;
+        int status2 = 1;
+        String houseName = "";
+        List<Integer> type = Arrays.asList(1, 2, 3);
+        List<Integer> service = Arrays.asList(4, 5, 6);
+        int countService = 3;
+        int pageIndex = 1;
+        int pageSize = 10;
+
+        // Act
+        List<Tuple> result = houseRepository.findHouse(min1, max1, min2, max2, province, district, ward, status1, status2, houseName, type, service, countService, pageIndex, pageSize);
+
+        // Assert
+        assertNotNull(result);}
 
     @Test
     void testCountHouse() {
@@ -307,7 +719,47 @@ public class HouseServiceTest {
         int province = 1;
         int district = 276;
         int ward = 9988;
-        int status1 = 1;
+        int status1 = 0;
+        int status2 = 0;
+        String houseName = "house";
+        List<Integer> type = new ArrayList<>();
+        type.add(1);
+        type.add(2);
+        type.add(3);
+        type.add(4);
+        List<Integer> service = new ArrayList<>();
+        service.add(1);
+        int countService = 1;
+
+        int countHouse = 1;
+
+        when(houseRepository.countHouse(min1, max1, min2, max2,
+                province, district, ward, status1, status2,  houseName, type, service, countService)).thenReturn(countHouse);
+
+        // Act
+        int result = houseService.countHouse(min1, max1, min2, max2,
+                province, district, ward, status1, status2,  houseName, type, service, countService);
+
+        // Assert
+        assertNotNull(result);
+        assertEquals(countHouse, result);
+
+        // Verify that the repository method was called with the correct parameter
+        verify(houseRepository, times(1)).countHouse(min1, max1, min2, max2,
+                province, district, ward, status1, status2,  houseName, type, service, countService);
+    }
+
+    @Test
+    void testCountHouse1() {
+        // Arrange
+        int min1 = 0; // Assuming id with no data
+        int max1 = 2000000;
+        int min2 = 2000000;
+        int max2 = 4000000;
+        int province = 1;
+        int district = 276;
+        int ward = 9988;
+        int status1 = 0;
         int status2 = 0;
         String houseName = "";
         List<Integer> type = new ArrayList<>();
@@ -741,5 +1193,565 @@ public class HouseServiceTest {
 
 
 
+
+    @Test
+    void testCountHouse2() {
+        // Arrange
+        int min1 = 0; // Assuming id with no data
+        int max1 = 2000000;
+        int min2 = 2000000;
+        int max2 = 4000000;
+        int province = 1;
+        int district = 276;
+        int ward = 9988;
+        int status1 = 1;
+        int status2 = 1;
+        String houseName = "house";
+        List<Integer> type = new ArrayList<>();
+        type.add(1);
+        type.add(2);
+        type.add(3);
+        type.add(4);
+        List<Integer> service = new ArrayList<>();
+        service.add(1);
+        int countService = 1;
+
+        int countHouse = 1;
+
+        when(houseRepository.countHouse(min1, max1, min2, max2,
+                province, district, ward, status1, status2,  houseName, type, service, countService)).thenReturn(countHouse);
+
+        // Act
+        int result = houseService.countHouse(min1, max1, min2, max2,
+                province, district, ward, status1, status2,  houseName, type, service, countService);
+
+        // Assert
+        assertNotNull(result);
+        assertEquals(countHouse, result);
+
+        // Verify that the repository method was called with the correct parameter
+        verify(houseRepository, times(1)).countHouse(min1, max1, min2, max2,
+                province, district, ward, status1, status2,  houseName, type, service, countService);
+    }
+
+    @Test
+    void testCountHouse3() {
+        // Arrange
+        int min1 = 0; // Assuming id with no data
+        int max1 = 2000000;
+        int min2 = 2000000;
+        int max2 = 4000000;
+        int province = 1;
+        int district = 276;
+        int ward = 9988;
+        int status1 = 1;
+        int status2 = 1;
+        String houseName = "";
+        List<Integer> type = new ArrayList<>();
+        type.add(1);
+        type.add(2);
+        type.add(3);
+        type.add(4);
+        List<Integer> service = new ArrayList<>();
+        service.add(1);
+        int countService = 1;
+
+        int countHouse = 1;
+
+        when(houseRepository.countHouse(min1, max1, min2, max2,
+                province, district, ward, status1, status2,  houseName, type, service, countService)).thenReturn(countHouse);
+
+        // Act
+        int result = houseService.countHouse(min1, max1, min2, max2,
+                province, district, ward, status1, status2,  houseName, type, service, countService);
+
+        // Assert
+        assertNotNull(result);
+        assertEquals(countHouse, result);
+
+        // Verify that the repository method was called with the correct parameter
+        verify(houseRepository, times(1)).countHouse(min1, max1, min2, max2,
+                province, district, ward, status1, status2,  houseName, type, service, countService);
+    }
+
+    @Test
+    void testCountHouse4() {
+        // Arrange
+        int min1 = 0; // Assuming id with no data
+        int max1 = -2;
+        int min2 = 0;
+        int max2 = -2;
+        int province = 1;
+        int district = 276;
+        int ward = 9988;
+        int status1 = 0;
+        int status2 = 0;
+        String houseName = "house";
+        List<Integer> type = new ArrayList<>();
+        type.add(1);
+        type.add(2);
+        type.add(3);
+        type.add(4);
+        List<Integer> service = new ArrayList<>();
+        service.add(1);
+        int countService = 1;
+
+        int countHouse = 1;
+
+        when(houseRepository.countHouse(min1, max1, min2, max2,
+                province, district, ward, status1, status2,  houseName, type, service, countService)).thenReturn(countHouse);
+
+        // Act
+        int result = houseService.countHouse(min1, max1, min2, max2,
+                province, district, ward, status1, status2,  houseName, type, service, countService);
+
+        // Assert
+        assertNotNull(result);
+        assertEquals(countHouse, result);
+
+        // Verify that the repository method was called with the correct parameter
+        verify(houseRepository, times(1)).countHouse(min1, max1, min2, max2,
+                province, district, ward, status1, status2,  houseName, type, service, countService);
+    }
+
+    @Test
+    void testCountHouse5() {
+        // Arrange
+        int min1 = 0; // Assuming id with no data
+        int max1 = -2;
+        int min2 = 0;
+        int max2 = -2;
+        int province = 1;
+        int district = 276;
+        int ward = 9988;
+        int status1 = 0;
+        int status2 = 0;
+        String houseName = "";
+        List<Integer> type = new ArrayList<>();
+        type.add(1);
+        type.add(2);
+        type.add(3);
+        type.add(4);
+        List<Integer> service = new ArrayList<>();
+        service.add(1);
+        int countService = 1;
+
+        int countHouse = 1;
+
+        when(houseRepository.countHouse(min1, max1, min2, max2,
+                province, district, ward, status1, status2,  houseName, type, service, countService)).thenReturn(countHouse);
+
+        // Act
+        int result = houseService.countHouse(min1, max1, min2, max2,
+                province, district, ward, status1, status2,  houseName, type, service, countService);
+
+        // Assert
+        assertNotNull(result);
+        assertEquals(countHouse, result);
+
+        // Verify that the repository method was called with the correct parameter
+        verify(houseRepository, times(1)).countHouse(min1, max1, min2, max2,
+                province, district, ward, status1, status2,  houseName, type, service, countService);
+    }
+
+    @Test
+    void testCountHouse6() {
+        // Arrange
+        int min1 = 0; // Assuming id with no data
+        int max1 = -2;
+        int min2 = 0;
+        int max2 = -2;
+        int province = 1;
+        int district = 276;
+        int ward = 9988;
+        int status1 = 1;
+        int status2 = 1;
+        String houseName = "house";
+        List<Integer> type = new ArrayList<>();
+        type.add(1);
+        type.add(2);
+        type.add(3);
+        type.add(4);
+        List<Integer> service = new ArrayList<>();
+        service.add(1);
+        int countService = 1;
+
+        int countHouse = 1;
+
+        when(houseRepository.countHouse(min1, max1, min2, max2,
+                province, district, ward, status1, status2,  houseName, type, service, countService)).thenReturn(countHouse);
+
+        // Act
+        int result = houseService.countHouse(min1, max1, min2, max2,
+                province, district, ward, status1, status2,  houseName, type, service, countService);
+
+        // Assert
+        assertNotNull(result);
+        assertEquals(countHouse, result);
+
+        // Verify that the repository method was called with the correct parameter
+        verify(houseRepository, times(1)).countHouse(min1, max1, min2, max2,
+                province, district, ward, status1, status2,  houseName, type, service, countService);
+    }
+
+    @Test
+    void testCountHouse7() {
+        // Arrange
+        int min1 = 0; // Assuming id with no data
+        int max1 = -2;
+        int min2 = 0;
+        int max2 = -2;
+        int province = 1;
+        int district = 276;
+        int ward = 9988;
+        int status1 = 1;
+        int status2 = 1;
+        String houseName = "";
+        List<Integer> type = new ArrayList<>();
+        type.add(1);
+        type.add(2);
+        type.add(3);
+        type.add(4);
+        List<Integer> service = new ArrayList<>();
+        service.add(1);
+        int countService = 1;
+
+        int countHouse = 1;
+
+        when(houseRepository.countHouse(min1, max1, min2, max2,
+                province, district, ward, status1, status2,  houseName, type, service, countService)).thenReturn(countHouse);
+
+        // Act
+        int result = houseService.countHouse(min1, max1, min2, max2,
+                province, district, ward, status1, status2,  houseName, type, service, countService);
+
+        // Assert
+        assertNotNull(result);
+        assertEquals(countHouse, result);
+
+        // Verify that the repository method was called with the correct parameter
+        verify(houseRepository, times(1)).countHouse(min1, max1, min2, max2,
+                province, district, ward, status1, status2,  houseName, type, service, countService);
+    }
+
+    @Test
+    void testCountHouse8() {
+        // Arrange
+        int min1 = -2; // Assuming id with no data
+        int max1 = 0;
+        int min2 = -2;
+        int max2 = 0;
+        int province = 1;
+        int district = 276;
+        int ward = 9988;
+        int status1 = 0;
+        int status2 = 0;
+        String houseName = "house";
+        List<Integer> type = new ArrayList<>();
+        type.add(1);
+        type.add(2);
+        type.add(3);
+        type.add(4);
+        List<Integer> service = new ArrayList<>();
+        service.add(1);
+        int countService = 1;
+
+        int countHouse = 1;
+
+        when(houseRepository.countHouse(min1, max1, min2, max2,
+                province, district, ward, status1, status2,  houseName, type, service, countService)).thenReturn(countHouse);
+
+        // Act
+        int result = houseService.countHouse(min1, max1, min2, max2,
+                province, district, ward, status1, status2,  houseName, type, service, countService);
+
+        // Assert
+        assertNotNull(result);
+        assertEquals(countHouse, result);
+
+        // Verify that the repository method was called with the correct parameter
+        verify(houseRepository, times(1)).countHouse(min1, max1, min2, max2,
+                province, district, ward, status1, status2,  houseName, type, service, countService);
+    }
+
+    @Test
+    void testCountHouse9() {
+        // Arrange
+        int min1 = -2; // Assuming id with no data
+        int max1 = 0;
+        int min2 = -2;
+        int max2 = 0;
+        int province = 1;
+        int district = 276;
+        int ward = 9988;
+        int status1 = 0;
+        int status2 = 0;
+        String houseName = "";
+        List<Integer> type = new ArrayList<>();
+        type.add(1);
+        type.add(2);
+        type.add(3);
+        type.add(4);
+        List<Integer> service = new ArrayList<>();
+        service.add(1);
+        int countService = 1;
+
+        int countHouse = 1;
+
+        when(houseRepository.countHouse(min1, max1, min2, max2,
+                province, district, ward, status1, status2,  houseName, type, service, countService)).thenReturn(countHouse);
+
+        // Act
+        int result = houseService.countHouse(min1, max1, min2, max2,
+                province, district, ward, status1, status2,  houseName, type, service, countService);
+
+        // Assert
+        assertNotNull(result);
+        assertEquals(countHouse, result);
+
+        // Verify that the repository method was called with the correct parameter
+        verify(houseRepository, times(1)).countHouse(min1, max1, min2, max2,
+                province, district, ward, status1, status2,  houseName, type, service, countService);
+    }
+
+    @Test
+    void testCountHouse10() {
+        // Arrange
+        int min1 = -2; // Assuming id with no data
+        int max1 = 0;
+        int min2 = -2;
+        int max2 = 0;
+        int province = 1;
+        int district = 276;
+        int ward = 9988;
+        int status1 = 1;
+        int status2 = 1;
+        String houseName = "house";
+        List<Integer> type = new ArrayList<>();
+        type.add(1);
+        type.add(2);
+        type.add(3);
+        type.add(4);
+        List<Integer> service = new ArrayList<>();
+        service.add(1);
+        int countService = 1;
+
+        int countHouse = 1;
+
+        when(houseRepository.countHouse(min1, max1, min2, max2,
+                province, district, ward, status1, status2,  houseName, type, service, countService)).thenReturn(countHouse);
+
+        // Act
+        int result = houseService.countHouse(min1, max1, min2, max2,
+                province, district, ward, status1, status2,  houseName, type, service, countService);
+
+        // Assert
+        assertNotNull(result);
+        assertEquals(countHouse, result);
+
+        // Verify that the repository method was called with the correct parameter
+        verify(houseRepository, times(1)).countHouse(min1, max1, min2, max2,
+                province, district, ward, status1, status2,  houseName, type, service, countService);
+    }
+
+    @Test
+    void testCountHouse11() {
+        // Arrange
+        int min1 = -2; // Assuming id with no data
+        int max1 = 0;
+        int min2 = -2;
+        int max2 = 0;
+        int province = 1;
+        int district = 276;
+        int ward = 9988;
+        int status1 = 1;
+        int status2 = 1;
+        String houseName = "";
+        List<Integer> type = new ArrayList<>();
+        type.add(1);
+        type.add(2);
+        type.add(3);
+        type.add(4);
+        List<Integer> service = new ArrayList<>();
+        service.add(1);
+        int countService = 1;
+
+        int countHouse = 1;
+
+        when(houseRepository.countHouse(min1, max1, min2, max2,
+                province, district, ward, status1, status2,  houseName, type, service, countService)).thenReturn(countHouse);
+
+        // Act
+        int result = houseService.countHouse(min1, max1, min2, max2,
+                province, district, ward, status1, status2,  houseName, type, service, countService);
+
+        // Assert
+        assertNotNull(result);
+        assertEquals(countHouse, result);
+
+        // Verify that the repository method was called with the correct parameter
+        verify(houseRepository, times(1)).countHouse(min1, max1, min2, max2,
+                province, district, ward, status1, status2,  houseName, type, service, countService);
+    }
+
+    @Test
+    void testCountHouse12() {
+        // Arrange
+        int min1 = -2; // Assuming id with no data
+        int max1 = -2;
+        int min2 = -2;
+        int max2 = -2;
+        int province = 1;
+        int district = 276;
+        int ward = 9988;
+        int status1 = 0;
+        int status2 = 0;
+        String houseName = "house";
+        List<Integer> type = new ArrayList<>();
+        type.add(1);
+        type.add(2);
+        type.add(3);
+        type.add(4);
+        List<Integer> service = new ArrayList<>();
+        service.add(1);
+        int countService = 1;
+
+        int countHouse = 1;
+
+        when(houseRepository.countHouse(min1, max1, min2, max2,
+                province, district, ward, status1, status2,  houseName, type, service, countService)).thenReturn(countHouse);
+
+        // Act
+        int result = houseService.countHouse(min1, max1, min2, max2,
+                province, district, ward, status1, status2,  houseName, type, service, countService);
+
+        // Assert
+        assertNotNull(result);
+        assertEquals(countHouse, result);
+
+        // Verify that the repository method was called with the correct parameter
+        verify(houseRepository, times(1)).countHouse(min1, max1, min2, max2,
+                province, district, ward, status1, status2,  houseName, type, service, countService);
+    }
+
+    @Test
+    void testCountHouse13() {
+        // Arrange
+        int min1 = -2; // Assuming id with no data
+        int max1 = -2;
+        int min2 = -2;
+        int max2 = -2;
+        int province = 1;
+        int district = 276;
+        int ward = 9988;
+        int status1 = 0;
+        int status2 = 0;
+        String houseName = "";
+        List<Integer> type = new ArrayList<>();
+        type.add(1);
+        type.add(2);
+        type.add(3);
+        type.add(4);
+        List<Integer> service = new ArrayList<>();
+        service.add(1);
+        int countService = 1;
+
+        int countHouse = 1;
+
+        when(houseRepository.countHouse(min1, max1, min2, max2,
+                province, district, ward, status1, status2,  houseName, type, service, countService)).thenReturn(countHouse);
+
+        // Act
+        int result = houseService.countHouse(min1, max1, min2, max2,
+                province, district, ward, status1, status2,  houseName, type, service, countService);
+
+        // Assert
+        assertNotNull(result);
+        assertEquals(countHouse, result);
+
+        // Verify that the repository method was called with the correct parameter
+        verify(houseRepository, times(1)).countHouse(min1, max1, min2, max2,
+                province, district, ward, status1, status2,  houseName, type, service, countService);
+    }
+
+    @Test
+    void testCountHouse14() {
+        // Arrange
+        int min1 = -2; // Assuming id with no data
+        int max1 = -2;
+        int min2 = -2;
+        int max2 = -2;
+        int province = 1;
+        int district = 276;
+        int ward = 9988;
+        int status1 = 1;
+        int status2 = 1;
+        String houseName = "house";
+        List<Integer> type = new ArrayList<>();
+        type.add(1);
+        type.add(2);
+        type.add(3);
+        type.add(4);
+        List<Integer> service = new ArrayList<>();
+        service.add(1);
+        int countService = 1;
+
+        int countHouse = 1;
+
+        when(houseRepository.countHouse(min1, max1, min2, max2,
+                province, district, ward, status1, status2,  houseName, type, service, countService)).thenReturn(countHouse);
+
+        // Act
+        int result = houseService.countHouse(min1, max1, min2, max2,
+                province, district, ward, status1, status2,  houseName, type, service, countService);
+
+        // Assert
+        assertNotNull(result);
+        assertEquals(countHouse, result);
+
+        // Verify that the repository method was called with the correct parameter
+        verify(houseRepository, times(1)).countHouse(min1, max1, min2, max2,
+                province, district, ward, status1, status2,  houseName, type, service, countService);
+    }
+
+    @Test
+    void testCountHouse15() {
+        // Arrange
+        int min1 = -2; // Assuming id with no data
+        int max1 = -2;
+        int min2 = -2;
+        int max2 = -2;
+        int province = 1;
+        int district = 276;
+        int ward = 9988;
+        int status1 = 1;
+        int status2 = 1;
+        String houseName = "";
+        List<Integer> type = new ArrayList<>();
+        type.add(1);
+        type.add(2);
+        type.add(3);
+        type.add(4);
+        List<Integer> service = new ArrayList<>();
+        service.add(1);
+        int countService = 1;
+
+        int countHouse = 1;
+
+        when(houseRepository.countHouse(min1, max1, min2, max2,
+                province, district, ward, status1, status2,  houseName, type, service, countService)).thenReturn(countHouse);
+
+        // Act
+        int result = houseService.countHouse(min1, max1, min2, max2,
+                province, district, ward, status1, status2,  houseName, type, service, countService);
+
+        // Assert
+        assertNotNull(result);
+        assertEquals(countHouse, result);
+
+        // Verify that the repository method was called with the correct parameter
+        verify(houseRepository, times(1)).countHouse(min1, max1, min2, max2,
+                province, district, ward, status1, status2,  houseName, type, service, countService);
+    }
 
 }

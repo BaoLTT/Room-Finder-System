@@ -84,6 +84,8 @@ public class HouseLandlordController {
         List<ServiceDetailEntity> listService = serviceDetailService.getAllService();
         house.setLatitude(21.0130252);
         house.setLongitude(105.5239285);
+        List<HouseLandlordVo> houseList = houseLandlordService.getAllHouse();
+        model.addAttribute("exithouse",houseList);
         model.addAttribute("house",house);
         model.addAttribute("listType",listType);
         model.addAttribute("listService",listService);
@@ -101,7 +103,6 @@ public class HouseLandlordController {
             System.out.println(user.getRoleId());
             List<TypeHouseEntity> listType = houseTypeService.findAll();
             List<ServiceDetailEntity> listService = serviceDetailService.getAllService();
-
             HouseLandlordVo  house = houseLandlordService.findHouseByID(houseid);
             List<String> listChecked = house.getService();
             System.out.println(listChecked);
@@ -110,8 +111,6 @@ public class HouseLandlordController {
             model.addAttribute("listChecked",listChecked);
             model.addAttribute("listService",listService);
             model.addAttribute("request",request);
-
-
             model.addAttribute("key_map", gcsService.getMapKey());
             model.addAttribute("houseLocation", houseService.getHouseById(houseid));
         }catch (Exception e) {

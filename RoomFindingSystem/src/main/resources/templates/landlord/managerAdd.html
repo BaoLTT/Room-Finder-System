@@ -64,7 +64,7 @@
                             <div class="col-md-7">
                                 <div class="form-group">
                                     <label>Tên trọ<em>*</em></label>
-                                    <input type="text" class="form-control"  name="houseName" placeholder="Tên trọ..." required="" id="inputField"  oninput="removeWhitespace(this)"
+                                    <input type="text" class="form-control"  name="houseName" placeholder="Tên trọ..." required="" id="inputField"  oninput="removeWhitespace(this)" onchange="resetCustomValidity(this)"
                                            pattern="^[a-zA-Z0-9aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆgGhHiIìÌỉỈĩĨíÍịỊkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTuUùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVxXyYỳỲỷỶỹỸýÝỵỴ ]+$" th:field="*{houseName}">
                                 </div>
                                 <!--end form-group-->
@@ -160,7 +160,7 @@
                     <section id="gallery">
                         <div class="title">
                             <h2>Ảnh</h2>
-                            <aside class="step">3</aside>
+                            <aside class="step">4</aside>
                         </div>
                         <div class="file-upload-previews"></div>
                         <div class="file-upload">
@@ -171,7 +171,7 @@
                     <section id="facilities">
                         <div class="title">
                             <h2>Dịch vụ</h2>
-                            <aside class="step">4</aside>
+                            <aside class="step">5</aside>
                         </div>
                         <div class="row" style="margin-top: -20px">
                             <div class="col-md-12">
@@ -210,7 +210,22 @@
 </div>
 <!--end page-wrapper-->
 <a href="#page-header" class="to-top scroll" data-show-after-scroll="600"><i class="arrow_up"></i></a>
-
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var exithouse = /*[[${exithouse}]]*/ [];
+    /*]]>*/
+    function resetCustomValidity(input) {
+        var nameHouse = input.value.toLowerCase();
+        for (var i = 0; i < exithouse.length; i++) {
+            if (exithouse[i].houseName.toLowerCase() === nameHouse) {
+                nameHouse.setCustomValidity("Tên đã trùng lặp.");
+                break;
+            } else {
+                nameHouse.setCustomValidity("");
+            }
+        }
+    }
+</script>
 <script>
     function validateForm() {
         var selectedProvince = citis.value;

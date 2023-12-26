@@ -129,6 +129,13 @@ public class HouseManagerServiceImpl implements HouseManagerService {
                 houseImagesEntity.setHouseId(housesEntity.getHouseId());
                 houseImagesEntity.setCreatedDate(LocalDate.now());
                 houseImageRepository.save(houseImagesEntity);
+            }else{
+                // If files are null or empty, set a default image
+                HouseImagesEntity defaultImage = new HouseImagesEntity();
+                defaultImage.setImageLink("/rfs_bucket/House/housenull.jpg");
+                defaultImage.setHouseId(housesEntity.getHouseId());
+                defaultImage.setCreatedDate(LocalDate.now());
+                houseImageRepository.save(defaultImage);
             }
         }
     }
@@ -149,6 +156,11 @@ public class HouseManagerServiceImpl implements HouseManagerService {
     public void updateHouse(HouseLandlordVo houses, int houseID,List<Integer> service,MultipartFile[] files) throws IOException {
         LocalDate localDate = LocalDate.now();
         List<HouseImagesEntity> houseImagesEntity = houseImageRepository.getImageByHouseId(houseID);
+        for(int i=0;i<houseImagesEntity.size();i++){
+            if(houseImagesEntity.get(i).getImageLink().equals("/rfs_bucket/House/housenull.jpg")){
+                houseImageRepository.deleteByHouseId(houseID);
+            }
+        }
         houseManagerRepository.updateHouse(houses.getHouseName().trim().replaceAll("\\s+", " "), houses.getTypeHouseID(),houses.getDescription().trim().replaceAll("\\s+", " "),houses.getLastModifiedBy(),localDate,houses.getStatus(),houseID, houses.getLatitude(), houses.getLongitude());
         serviceHouseRepository.deleteByHouseId(houseID);
         if(!service.contains(0)){
@@ -169,6 +181,7 @@ public class HouseManagerServiceImpl implements HouseManagerService {
         int i = houseImagesEntity.size() + 2;
         for (MultipartFile file : files) {
             if (!file.isEmpty()) {
+
                 HouseImagesEntity houseImages = new HouseImagesEntity();
                 byte[] imageBytes = file.getBytes();
                 gcsService.uploadImage("rfs_bucket", "House/house_" + formattedTimestamp+"_"+ i + "_"+houseID+".jpg", imageBytes);
@@ -177,6 +190,16 @@ public class HouseManagerServiceImpl implements HouseManagerService {
                 houseImages.setHouseId(houseID);
                 houseImages.setCreatedDate(LocalDate.now());
                 houseImageRepository.save(houseImages);
+            }else{
+                HouseLandlordVo  houseImage = houseLandlordService.findHouseByID(houses.getHouseID());
+                if (houseImage.getListImage() == null ) {
+                    HouseImagesEntity defaultImage = new HouseImagesEntity();
+                    defaultImage.setImageLink("/rfs_bucket/House/housenull.jpg");
+                    defaultImage.setHouseId(houses.getHouseID());
+                    defaultImage.setCreatedDate(LocalDate.now());
+                    houseImageRepository.save(defaultImage);
+                }
+
             }
 
         }

@@ -86,7 +86,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-md-2 col-md-form-label">Tên trọ<em>*</em></label>
+                                                <label class="col-md-2 col-md-form-label">Tên trọ<em style="color: red">*</em></label>
                                                 <div class="col-md-10">
                                                     <input type="text" name="houseName" class="form-control"
                                                            placeholder="Tên trọ..." required id="inputField"
@@ -139,7 +139,7 @@
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-md-2 col-md-form-label">Địa chỉ cụ
-                                                    thể<em>*</em></label>
+                                                    thể<em style="color: red">*</em></label>
                                                 <div class="col-md-10">
                                                     <input type="text" name="addressDetail" class="form-control"
                                                            placeholder="Địa chỉ cụ thể..." id="inputField2"
@@ -152,7 +152,7 @@
                                                 <label class="col-md-2 col-md-form-label">Địa chỉ </label>
                                                 <input type="hidden" name="addressid" th:field="*{address}">
                                                 <div class="col-md">
-                                                    <label for="province">Tỉnh</label>
+                                                    <label for="province">Tỉnh<em style="color: red">*</em></label>
                                                     <select class="form-control" name="province" id="province"
                                                             style="display: none;" th:field="*{provinceID}" onchange="resetCustomValidity(this)">
                                                         <option value="0" selected>Chọn tỉnh thành</option>
@@ -164,7 +164,7 @@
                                                 </div>
 
                                                 <div class="col-md">
-                                                    <label for="district">Quận/Huyện</label>
+                                                    <label for="district">Quận/Huyện<em style="color: red">*</em></label>
                                                     <select class="form-control" id="district" name="district"
                                                             style="display: none;" th:field="*{districtID}" onchange="resetCustomValidity(this)">
                                                         <option value="0" selected>Chọn huyện</option>
@@ -175,7 +175,7 @@
 
                                                 </div>
                                                 <div class="col-md">
-                                                    <label for="ward">Xã/Phường</label>
+                                                    <label for="ward">Xã/Phường<em style="color: red">*</em></label>
                                                     <select class="form-control" name="ward" id="ward"
                                                             style="display: none;" th:field="*{wardID}" onchange="resetCustomValidity(this)">
                                                         <option value="0" selected>Chọn xã</option>
