@@ -1,6 +1,7 @@
 package com.roomfindingsystem.service;
 
 import com.roomfindingsystem.dto.RoomDto;
+import com.roomfindingsystem.dto.RoomHouseDetailDto;
 import com.roomfindingsystem.entity.RoomEntity;
 import com.roomfindingsystem.entity.UserEntity;
 import com.roomfindingsystem.repository.*;
@@ -19,6 +20,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
 import org.springframework.mock.web.MockHttpServletRequest;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -147,6 +149,7 @@ public class RoomTest {
         // Assertions
         assertEquals(null, modelAndView);
     }
+
 
 
 
