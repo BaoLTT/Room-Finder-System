@@ -64,9 +64,60 @@ class NewsServiceTest {
     }
 
     @Test
-    void getNewsById() {
+    void getNewsById1() {
         // Test data
         int newsId = 1;
+        NewsEntity expectedNewsEntity = new NewsEntity();
+        // Populate expectedNewsEntity with data, adjust as needed
+
+        // Mock the behavior of newsRepository.getNewsEntitiesByNewsid(newsId)
+        when(newsRepository.getNewsEntitiesByNewsid(newsId)).thenReturn(expectedNewsEntity);
+
+        // Call the method from yourService
+        NewsEntity result = newsService.getNewsById(newsId);
+
+
+        assertEquals(expectedNewsEntity, result);
+    }
+
+    @Test
+    void getNewsById2() {
+        // Test data
+        int newsId = 100;
+        NewsEntity expectedNewsEntity = new NewsEntity();
+        // Populate expectedNewsEntity with data, adjust as needed
+
+        // Mock the behavior of newsRepository.getNewsEntitiesByNewsid(newsId)
+        when(newsRepository.getNewsEntitiesByNewsid(newsId)).thenReturn(expectedNewsEntity);
+
+        // Call the method from yourService
+        NewsEntity result = newsService.getNewsById(newsId);
+
+
+        assertEquals(expectedNewsEntity, result);
+    }
+
+    @Test
+    void getNewsById3() {
+        // Test data
+        int newsId = 0;
+        NewsEntity expectedNewsEntity = new NewsEntity();
+        // Populate expectedNewsEntity with data, adjust as needed
+
+        // Mock the behavior of newsRepository.getNewsEntitiesByNewsid(newsId)
+        when(newsRepository.getNewsEntitiesByNewsid(newsId)).thenReturn(expectedNewsEntity);
+
+        // Call the method from yourService
+        NewsEntity result = newsService.getNewsById(newsId);
+
+
+        assertEquals(expectedNewsEntity, result);
+    }
+
+    @Test
+    void getNewsById4() {
+        // Test data
+        int newsId = -1;
         NewsEntity expectedNewsEntity = new NewsEntity();
         // Populate expectedNewsEntity with data, adjust as needed
 
@@ -107,10 +158,54 @@ class NewsServiceTest {
 
         // Test data
         NewsEntity inputNewsEntity = new NewsEntity();
+
         // Populate inputNewsEntity with data, adjust as needed
         NewsEntity expectedSavedNewsEntity = new NewsEntity();
-        // Populate expectedSavedNewsEntity with data, adjust as needed
 
+        // Mock the behavior of newsRepository.save(newsEntity)
+        when(newsRepository.save(inputNewsEntity)).thenReturn(expectedSavedNewsEntity);
+
+        // Call the method from yourService
+        NewsEntity result = newsService.save(inputNewsEntity);
+
+        // Verify that save was called once with the correct argument
+        verify(newsRepository).save(inputNewsEntity);
+
+        // Assert the result
+        assertEquals(expectedSavedNewsEntity, result);
+    }
+
+    @Test
+    void update2() {
+
+        // Test data
+        NewsEntity inputNewsEntity = new NewsEntity();
+
+        // Populate inputNewsEntity with data, adjust as needed
+        NewsEntity expectedSavedNewsEntity = new NewsEntity();
+
+        // Mock the behavior of newsRepository.save(newsEntity)
+        when(newsRepository.save(inputNewsEntity)).thenReturn(expectedSavedNewsEntity);
+
+        // Call the method from yourService
+        NewsEntity result = newsService.save(inputNewsEntity);
+
+        // Verify that save was called once with the correct argument
+        verify(newsRepository).save(inputNewsEntity);
+
+        // Assert the result
+        assertEquals(expectedSavedNewsEntity, result);
+    }
+
+    @Test
+    void update3() {
+
+        // Test data
+        NewsEntity inputNewsEntity = new NewsEntity();
+
+        // Populate inputNewsEntity with data, adjust as needed
+        NewsEntity expectedSavedNewsEntity = new NewsEntity();
+        expectedSavedNewsEntity = null;
         // Mock the behavior of newsRepository.save(newsEntity)
         when(newsRepository.save(inputNewsEntity)).thenReturn(expectedSavedNewsEntity);
 
@@ -129,7 +224,38 @@ class NewsServiceTest {
         // Test data
         int newsIdToDelete = 1; // Assuming this ID exists in your repository
 
+        // Call the method from yourService
+        newsService.deleteById(newsIdToDelete);
 
+        // Verify that deleteById was called once with the correct argument
+        verify(newsRepository).deleteById(newsIdToDelete);
+    }
+    @Test
+    void deleteById2() {
+        // Test data
+        int newsIdToDelete = 200; // Assuming this ID exists in your repository
+
+        // Call the method from yourService
+        newsService.deleteById(newsIdToDelete);
+
+        // Verify that deleteById was called once with the correct argument
+        verify(newsRepository).deleteById(newsIdToDelete);
+    }
+    @Test
+    void deleteById3() {
+        // Test data
+        int newsIdToDelete = -1; // Assuming this ID exists in your repository
+
+        // Call the method from yourService
+        newsService.deleteById(newsIdToDelete);
+
+        // Verify that deleteById was called once with the correct argument
+        verify(newsRepository).deleteById(newsIdToDelete);
+    }
+    @Test
+    void deleteById4() {
+        // Test data
+        int newsIdToDelete = 0; // Assuming this ID exists in your repository
 
         // Call the method from yourService
         newsService.deleteById(newsIdToDelete);

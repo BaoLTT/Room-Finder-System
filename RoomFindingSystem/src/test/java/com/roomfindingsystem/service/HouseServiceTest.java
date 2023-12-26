@@ -32,13 +32,15 @@ public class HouseServiceTest {
 
     @InjectMocks
     private HouseServiceImpl houseService;
+
     @Test
     void testFindAllDetailWithValidHouseId() {
         // Arrange
         int houseId = 1;
 
         // Mock data for HouseDto
-        HouseDto houseDto = new HouseDto(); houseDto.setHouseName("TONY HOUSE");
+        HouseDto houseDto = new HouseDto();
+        houseDto.setHouseName("TONY HOUSE");
         List<HouseDto> houseDtoList = Collections.singletonList(houseDto);
 
         when(houseRepository.findAllDetail(houseId)).thenReturn(houseDtoList);
@@ -53,8 +55,6 @@ public class HouseServiceTest {
         // Verify that the repository method was called with the correct parameter
         verify(houseRepository).findAllDetail(houseId);
     }
-
-
 
     @Test
     void testFindAllDetailWithInvalid() {
@@ -114,7 +114,8 @@ public class HouseServiceTest {
         int id = 1;
 
         // Mock data for ServiceDto
-        ServiceDto serviceDto = new ServiceDto(); serviceDto.setServiceId(1);
+        ServiceDto serviceDto = new ServiceDto();
+        serviceDto.setServiceId(1);
         List<ServiceDto> serviceDtoList = Collections.singletonList(serviceDto);
 
         when(houseRepository.getServiceById(id)).thenReturn(serviceDtoList);
@@ -129,13 +130,15 @@ public class HouseServiceTest {
         // Verify that the repository method was called with the correct parameter
         verify(houseRepository).getServiceById(id);
     }
+
     @Test
     void testGetServiceByIdWithValidId2() {
         // Arrange
         int id = 2;
 
         // Mock data for ServiceDto
-        ServiceDto serviceDto = new ServiceDto(); serviceDto.setServiceId(1);
+        ServiceDto serviceDto = new ServiceDto();
+        serviceDto.setServiceId(1);
         List<ServiceDto> serviceDtoList = Collections.singletonList(serviceDto);
 
         when(houseRepository.getServiceById(id)).thenReturn(serviceDtoList);
@@ -192,7 +195,8 @@ public class HouseServiceTest {
         int id = 1;
 
         // Mock data for HouseImageLink
-        HouseImageLink imageLink = new HouseImageLink(); imageLink.setHouseImagesEntities("/rfs_bucket/House/house_2_1.jpg");
+        HouseImageLink imageLink = new HouseImageLink();
+        imageLink.setHouseImagesEntities("/rfs_bucket/House/house_2_1.jpg");
         List<HouseImageLink> imageLinkList = Collections.singletonList(imageLink);
 
         when(houseRepository.getByHouseImageid(id)).thenReturn(imageLinkList);
@@ -224,6 +228,7 @@ public class HouseServiceTest {
         // Verify that the repository method was called with the correct parameter
         verify(houseRepository, times(1)).getByHouseImageid(id);
     }
+
     @Test
     void testGetImageByIdWithEmptyResult2() {
         // Arrange
@@ -298,30 +303,84 @@ public class HouseServiceTest {
     }
 
     @Test
-    void testFindHouse() {
+    public void testGetHouseById1() {
 
-        // Set up test data
-        int min1 = 1000000;
-        int max1 = 2000000;
-        int min2 = 2;
-        int max2 = 3;
-        int province = 1;
-        int district = 2;
-        int ward = 3;
-        int status1 = 0;
-        int status2 = 0;
-        String houseName = "Test House";
-        List<Integer> type = Arrays.asList(1, 2, 3);
-        List<Integer> service = Arrays.asList(4, 5, 6);
-        int countService = 3;
-        int pageIndex = 1;
-        int pageSize = 10;
+        // Create a HousesEntity object with an expected ID
+        HousesEntity expectedHouse = new HousesEntity();
+        expectedHouse.setHouseId(1); // Set the expected ID value
 
-        // Act
-        List<Tuple> result = houseRepository.findHouse(min1, max1, min2, max2, province, district, ward, status1, status2, houseName, type, service, countService, pageIndex, pageSize);
+        // Set up the behavior for houseRepository.getHousesEntitiesByHouseId
+        when(houseRepository.getHousesEntitiesByHouseId(1)).thenReturn(expectedHouse);
 
-        // Assert
-        assertNotNull(result);}
+        // Call the method to be tested
+        HousesEntity result = houseService.getHouseById(1);
+
+        // Check the result
+        assertEquals(expectedHouse, result);
+
+        // Verify that houseRepository.getHousesEntitiesByHouseId was called with the correct parameter
+        verify(houseRepository, times(1)).getHousesEntitiesByHouseId(1);
+    }
+
+    @Test
+    public void testGetHouseById2() {
+
+        // Create a HousesEntity object with an expected ID
+        HousesEntity expectedHouse = new HousesEntity();
+        expectedHouse.setHouseId(153); // Set the expected ID value
+
+        // Set up the behavior for houseRepository.getHousesEntitiesByHouseId
+        when(houseRepository.getHousesEntitiesByHouseId(153)).thenReturn(expectedHouse);
+
+        // Call the method to be tested
+        HousesEntity result = houseService.getHouseById(153);
+
+        // Check the result
+        assertEquals(expectedHouse, result);
+
+        // Verify that houseRepository.getHousesEntitiesByHouseId was called with the correct parameter
+        verify(houseRepository, times(1)).getHousesEntitiesByHouseId(153);
+    }
+
+    @Test
+    public void testGetHouseById3() {
+
+        // Create a HousesEntity object with an expected ID
+        HousesEntity expectedHouse = new HousesEntity();
+        expectedHouse.setHouseId(-1); // Set the expected ID value
+
+        // Set up the behavior for houseRepository.getHousesEntitiesByHouseId
+        when(houseRepository.getHousesEntitiesByHouseId(-1)).thenReturn(expectedHouse);
+
+        // Call the method to be tested
+        HousesEntity result = houseService.getHouseById(-1);
+
+        // Check the result
+        assertEquals(expectedHouse, result);
+
+        // Verify that houseRepository.getHousesEntitiesByHouseId was called with the correct parameter
+        verify(houseRepository, times(1)).getHousesEntitiesByHouseId(-1);
+    }
+    @Test
+    public void testGetHouseById4() {
+
+        // Create a HousesEntity object with an expected ID
+        HousesEntity expectedHouse = new HousesEntity();
+        expectedHouse.setHouseId(0); // Set the expected ID value
+
+        // Set up the behavior for houseRepository.getHousesEntitiesByHouseId
+        when(houseRepository.getHousesEntitiesByHouseId(0)).thenReturn(expectedHouse);
+
+        // Call the method to be tested
+        HousesEntity result = houseService.getHouseById(0);
+
+        // Check the result
+        assertEquals(expectedHouse, result);
+
+        // Verify that houseRepository.getHousesEntitiesByHouseId was called with the correct parameter
+        verify(houseRepository, times(1)).getHousesEntitiesByHouseId(0);
+    }
+
     @Test
     void testFindHouse1() {
 
@@ -346,7 +405,8 @@ public class HouseServiceTest {
         List<Tuple> result = houseRepository.findHouse(min1, max1, min2, max2, province, district, ward, status1, status2, houseName, type, service, countService, pageIndex, pageSize);
 
         // Assert
-        assertNotNull(result);}
+        assertNotNull(result);
+    }
 
     @Test
     void testFindHouse2() {
@@ -372,7 +432,8 @@ public class HouseServiceTest {
         List<Tuple> result = houseRepository.findHouse(min1, max1, min2, max2, province, district, ward, status1, status2, houseName, type, service, countService, pageIndex, pageSize);
 
         // Assert
-        assertNotNull(result);}
+        assertNotNull(result);
+    }
 
     @Test
     void testFindHouse3() {
@@ -398,7 +459,8 @@ public class HouseServiceTest {
         List<Tuple> result = houseRepository.findHouse(min1, max1, min2, max2, province, district, ward, status1, status2, houseName, type, service, countService, pageIndex, pageSize);
 
         // Assert
-        assertNotNull(result);}
+        assertNotNull(result);
+    }
 
     @Test
     void testFindHouse4() {
@@ -424,7 +486,8 @@ public class HouseServiceTest {
         List<Tuple> result = houseRepository.findHouse(min1, max1, min2, max2, province, district, ward, status1, status2, houseName, type, service, countService, pageIndex, pageSize);
 
         // Assert
-        assertNotNull(result);}
+        assertNotNull(result);
+    }
 
     @Test
     void testFindHouse5() {
@@ -450,7 +513,9 @@ public class HouseServiceTest {
         List<Tuple> result = houseRepository.findHouse(min1, max1, min2, max2, province, district, ward, status1, status2, houseName, type, service, countService, pageIndex, pageSize);
 
         // Assert
-        assertNotNull(result);}
+        assertNotNull(result);
+    }
+
     @Test
     void testFindHouse6() {
 
@@ -475,7 +540,9 @@ public class HouseServiceTest {
         List<Tuple> result = houseRepository.findHouse(min1, max1, min2, max2, province, district, ward, status1, status2, houseName, type, service, countService, pageIndex, pageSize);
 
         // Assert
-        assertNotNull(result);}
+        assertNotNull(result);
+    }
+
     @Test
     void testFindHouse7() {
 
@@ -500,7 +567,9 @@ public class HouseServiceTest {
         List<Tuple> result = houseRepository.findHouse(min1, max1, min2, max2, province, district, ward, status1, status2, houseName, type, service, countService, pageIndex, pageSize);
 
         // Assert
-        assertNotNull(result);}
+        assertNotNull(result);
+    }
+
     @Test
     void testFindHouse8() {
 
@@ -525,7 +594,8 @@ public class HouseServiceTest {
         List<Tuple> result = houseRepository.findHouse(min1, max1, min2, max2, province, district, ward, status1, status2, houseName, type, service, countService, pageIndex, pageSize);
 
         // Assert
-        assertNotNull(result);}
+        assertNotNull(result);
+    }
 
     @Test
     void testFindHouse9() {
@@ -551,7 +621,8 @@ public class HouseServiceTest {
         List<Tuple> result = houseRepository.findHouse(min1, max1, min2, max2, province, district, ward, status1, status2, houseName, type, service, countService, pageIndex, pageSize);
 
         // Assert
-        assertNotNull(result);}
+        assertNotNull(result);
+    }
 
     @Test
     void testFindHouse10() {
@@ -577,7 +648,8 @@ public class HouseServiceTest {
         List<Tuple> result = houseRepository.findHouse(min1, max1, min2, max2, province, district, ward, status1, status2, houseName, type, service, countService, pageIndex, pageSize);
 
         // Assert
-        assertNotNull(result);}
+        assertNotNull(result);
+    }
 
     @Test
     void testFindHouse11() {
@@ -603,7 +675,8 @@ public class HouseServiceTest {
         List<Tuple> result = houseRepository.findHouse(min1, max1, min2, max2, province, district, ward, status1, status2, houseName, type, service, countService, pageIndex, pageSize);
 
         // Assert
-        assertNotNull(result);}
+        assertNotNull(result);
+    }
 
     @Test
     void testFindHouse12() {
@@ -629,7 +702,8 @@ public class HouseServiceTest {
         List<Tuple> result = houseRepository.findHouse(min1, max1, min2, max2, province, district, ward, status1, status2, houseName, type, service, countService, pageIndex, pageSize);
 
         // Assert
-        assertNotNull(result);}
+        assertNotNull(result);
+    }
 
     @Test
     void testFindHouse13() {
@@ -655,7 +729,8 @@ public class HouseServiceTest {
         List<Tuple> result = houseRepository.findHouse(min1, max1, min2, max2, province, district, ward, status1, status2, houseName, type, service, countService, pageIndex, pageSize);
 
         // Assert
-        assertNotNull(result);}
+        assertNotNull(result);
+    }
 
     @Test
     void testFindHouse14() {
@@ -681,7 +756,8 @@ public class HouseServiceTest {
         List<Tuple> result = houseRepository.findHouse(min1, max1, min2, max2, province, district, ward, status1, status2, houseName, type, service, countService, pageIndex, pageSize);
 
         // Assert
-        assertNotNull(result);}
+        assertNotNull(result);
+    }
 
     @Test
     void testFindHouse15() {
@@ -707,8 +783,8 @@ public class HouseServiceTest {
         List<Tuple> result = houseRepository.findHouse(min1, max1, min2, max2, province, district, ward, status1, status2, houseName, type, service, countService, pageIndex, pageSize);
 
         // Assert
-        assertNotNull(result);}
-
+        assertNotNull(result);
+    }
     @Test
     void testCountHouse() {
         // Arrange
@@ -734,11 +810,11 @@ public class HouseServiceTest {
         int countHouse = 1;
 
         when(houseRepository.countHouse(min1, max1, min2, max2,
-                province, district, ward, status1, status2,  houseName, type, service, countService)).thenReturn(countHouse);
+                province, district, ward, status1, status2, houseName, type, service, countService)).thenReturn(countHouse);
 
         // Act
         int result = houseService.countHouse(min1, max1, min2, max2,
-                province, district, ward, status1, status2,  houseName, type, service, countService);
+                province, district, ward, status1, status2, houseName, type, service, countService);
 
         // Assert
         assertNotNull(result);
@@ -746,7 +822,7 @@ public class HouseServiceTest {
 
         // Verify that the repository method was called with the correct parameter
         verify(houseRepository, times(1)).countHouse(min1, max1, min2, max2,
-                province, district, ward, status1, status2,  houseName, type, service, countService);
+                province, district, ward, status1, status2, houseName, type, service, countService);
     }
 
     @Test
@@ -774,11 +850,11 @@ public class HouseServiceTest {
         int countHouse = 1;
 
         when(houseRepository.countHouse(min1, max1, min2, max2,
-                province, district, ward, status1, status2,  houseName, type, service, countService)).thenReturn(countHouse);
+                province, district, ward, status1, status2, houseName, type, service, countService)).thenReturn(countHouse);
 
         // Act
         int result = houseService.countHouse(min1, max1, min2, max2,
-                province, district, ward, status1, status2,  houseName, type, service, countService);
+                province, district, ward, status1, status2, houseName, type, service, countService);
 
         // Assert
         assertNotNull(result);
@@ -786,12 +862,13 @@ public class HouseServiceTest {
 
         // Verify that the repository method was called with the correct parameter
         verify(houseRepository, times(1)).countHouse(min1, max1, min2, max2,
-                province, district, ward, status1, status2,  houseName, type, service, countService);
+                province, district, ward, status1, status2, houseName, type, service, countService);
     }
 
     @Test
     void testgetAllHouse() {
-        HousesEntity housesEntity = new HousesEntity(); housesEntity.setHouseName("TONY HOUSE");
+        HousesEntity housesEntity = new HousesEntity();
+        housesEntity.setHouseName("TONY HOUSE");
         List<HousesEntity> houseDtoList = Collections.singletonList(housesEntity);
         when(houseRepository.findAll()).thenReturn(houseDtoList);
 
@@ -829,6 +906,7 @@ public class HouseServiceTest {
         // Verify that the repository method was called with the correct parameter
         verify(houseRepository).viewHouseInHomeInFavourite(id);
     }
+
     @Test
     void testViewHouseInHomeInFavouriteValid2() {
         int id = 2;
@@ -858,6 +936,7 @@ public class HouseServiceTest {
         // Verify that the repository method was called with the correct parameter
         verify(houseRepository).viewHouseInHomeInFavourite(id);
     }
+
     @Test
     void testViewHouseInHomeInFavouriteZero() {
         int id = 0;
@@ -967,7 +1046,7 @@ public class HouseServiceTest {
         when(houseRepository.findHouseByMemberId(id)).thenReturn(housesEntities);
 
         // Act
-        List <HousesEntity> result = houseService.getHouseIdByUserId(id);
+        List<HousesEntity> result = houseService.getHouseIdByUserId(id);
 
         // Assert
         assertNotNull(result);
@@ -988,7 +1067,7 @@ public class HouseServiceTest {
         when(houseRepository.findHouseByMemberId(id)).thenReturn(null);
 
         // Act
-        List <HousesEntity> result = houseService.getHouseIdByUserId(id);
+        List<HousesEntity> result = houseService.getHouseIdByUserId(id);
 
         // Assert
         assertNull(result);
@@ -1008,7 +1087,7 @@ public class HouseServiceTest {
         when(houseRepository.findHouseByMemberId(id)).thenReturn(null);
 
         // Act
-        List <HousesEntity> result = houseService.getHouseIdByUserId(id);
+        List<HousesEntity> result = houseService.getHouseIdByUserId(id);
 
         // Assert
         assertNull(result);
@@ -1028,7 +1107,7 @@ public class HouseServiceTest {
         when(houseRepository.findHouseByMemberId(id)).thenReturn(null);
 
         // Act
-        List <HousesEntity> result = houseService.getHouseIdByUserId(id);
+        List<HousesEntity> result = houseService.getHouseIdByUserId(id);
 
         // Assert
         assertNull(result);
@@ -1039,7 +1118,7 @@ public class HouseServiceTest {
 
     @Test
     void testCountHouseInAdmin() {
-        int a=1;
+        int a = 1;
         when(houseRepository.countHouses()).thenReturn(a);
 
         // Act
@@ -1052,8 +1131,8 @@ public class HouseServiceTest {
 
     @Test
     void testUpdateStarValid() {
-        int star =1;
-        int houseId =1;
+        int star = 1;
+        int houseId = 1;
 
         // Call the method with input value 1
         houseService.updateStar(star, houseId);
@@ -1065,41 +1144,42 @@ public class HouseServiceTest {
     @Test
     void testUpdateStarInValid1() {
         HouseRepository houseRepository = mock(HouseRepository.class);
-        int star =-1;
-        int houseId =1;
+        int star = -1;
+        int houseId = 1;
 
         // Call the method with input value 1
         houseService.updateStar(star, houseId);
 
         // Verify that updateStatusToTrue is called with the correct argument
-        verify(houseRepository,  never()).updateStarHouse(star, houseId);
+        verify(houseRepository, never()).updateStarHouse(star, houseId);
     }
 
     @Test
     void testUpdateStarInValid2() {
         HouseRepository houseRepository = mock(HouseRepository.class);
-        int star =1;
-        int houseId =-1;
+        int star = 1;
+        int houseId = -1;
 
         // Call the method with input value 1
         houseService.updateStar(star, houseId);
 
         // Verify that updateStatusToTrue is called with the correct argument
-        verify(houseRepository,  never()).updateStarHouse(star, houseId);
+        verify(houseRepository, never()).updateStarHouse(star, houseId);
     }
 
     @Test
     void testUpdateStarInValid3() {
         HouseRepository houseRepository = mock(HouseRepository.class);
-        int star =-1;
-        int houseId =-1;
+        int star = -1;
+        int houseId = -1;
 
         // Call the method with input value 1
         houseService.updateStar(star, houseId);
 
         // Verify that updateStatusToTrue is called with the correct argument
-        verify(houseRepository,  never()).updateStarHouse(star, houseId);
+        verify(houseRepository, never()).updateStarHouse(star, houseId);
     }
+
     @Test
     void testFindHouseById() {
         int id = 1;
@@ -1186,14 +1266,6 @@ public class HouseServiceTest {
     }
 
 
-
-
-
-
-
-
-
-
     @Test
     void testCountHouse2() {
         // Arrange
@@ -1219,11 +1291,11 @@ public class HouseServiceTest {
         int countHouse = 1;
 
         when(houseRepository.countHouse(min1, max1, min2, max2,
-                province, district, ward, status1, status2,  houseName, type, service, countService)).thenReturn(countHouse);
+                province, district, ward, status1, status2, houseName, type, service, countService)).thenReturn(countHouse);
 
         // Act
         int result = houseService.countHouse(min1, max1, min2, max2,
-                province, district, ward, status1, status2,  houseName, type, service, countService);
+                province, district, ward, status1, status2, houseName, type, service, countService);
 
         // Assert
         assertNotNull(result);
@@ -1231,7 +1303,7 @@ public class HouseServiceTest {
 
         // Verify that the repository method was called with the correct parameter
         verify(houseRepository, times(1)).countHouse(min1, max1, min2, max2,
-                province, district, ward, status1, status2,  houseName, type, service, countService);
+                province, district, ward, status1, status2, houseName, type, service, countService);
     }
 
     @Test
@@ -1259,11 +1331,11 @@ public class HouseServiceTest {
         int countHouse = 1;
 
         when(houseRepository.countHouse(min1, max1, min2, max2,
-                province, district, ward, status1, status2,  houseName, type, service, countService)).thenReturn(countHouse);
+                province, district, ward, status1, status2, houseName, type, service, countService)).thenReturn(countHouse);
 
         // Act
         int result = houseService.countHouse(min1, max1, min2, max2,
-                province, district, ward, status1, status2,  houseName, type, service, countService);
+                province, district, ward, status1, status2, houseName, type, service, countService);
 
         // Assert
         assertNotNull(result);
@@ -1271,7 +1343,7 @@ public class HouseServiceTest {
 
         // Verify that the repository method was called with the correct parameter
         verify(houseRepository, times(1)).countHouse(min1, max1, min2, max2,
-                province, district, ward, status1, status2,  houseName, type, service, countService);
+                province, district, ward, status1, status2, houseName, type, service, countService);
     }
 
     @Test
@@ -1299,11 +1371,11 @@ public class HouseServiceTest {
         int countHouse = 1;
 
         when(houseRepository.countHouse(min1, max1, min2, max2,
-                province, district, ward, status1, status2,  houseName, type, service, countService)).thenReturn(countHouse);
+                province, district, ward, status1, status2, houseName, type, service, countService)).thenReturn(countHouse);
 
         // Act
         int result = houseService.countHouse(min1, max1, min2, max2,
-                province, district, ward, status1, status2,  houseName, type, service, countService);
+                province, district, ward, status1, status2, houseName, type, service, countService);
 
         // Assert
         assertNotNull(result);
@@ -1311,7 +1383,7 @@ public class HouseServiceTest {
 
         // Verify that the repository method was called with the correct parameter
         verify(houseRepository, times(1)).countHouse(min1, max1, min2, max2,
-                province, district, ward, status1, status2,  houseName, type, service, countService);
+                province, district, ward, status1, status2, houseName, type, service, countService);
     }
 
     @Test
@@ -1339,11 +1411,11 @@ public class HouseServiceTest {
         int countHouse = 1;
 
         when(houseRepository.countHouse(min1, max1, min2, max2,
-                province, district, ward, status1, status2,  houseName, type, service, countService)).thenReturn(countHouse);
+                province, district, ward, status1, status2, houseName, type, service, countService)).thenReturn(countHouse);
 
         // Act
         int result = houseService.countHouse(min1, max1, min2, max2,
-                province, district, ward, status1, status2,  houseName, type, service, countService);
+                province, district, ward, status1, status2, houseName, type, service, countService);
 
         // Assert
         assertNotNull(result);
@@ -1351,7 +1423,7 @@ public class HouseServiceTest {
 
         // Verify that the repository method was called with the correct parameter
         verify(houseRepository, times(1)).countHouse(min1, max1, min2, max2,
-                province, district, ward, status1, status2,  houseName, type, service, countService);
+                province, district, ward, status1, status2, houseName, type, service, countService);
     }
 
     @Test
@@ -1379,11 +1451,11 @@ public class HouseServiceTest {
         int countHouse = 1;
 
         when(houseRepository.countHouse(min1, max1, min2, max2,
-                province, district, ward, status1, status2,  houseName, type, service, countService)).thenReturn(countHouse);
+                province, district, ward, status1, status2, houseName, type, service, countService)).thenReturn(countHouse);
 
         // Act
         int result = houseService.countHouse(min1, max1, min2, max2,
-                province, district, ward, status1, status2,  houseName, type, service, countService);
+                province, district, ward, status1, status2, houseName, type, service, countService);
 
         // Assert
         assertNotNull(result);
@@ -1391,7 +1463,7 @@ public class HouseServiceTest {
 
         // Verify that the repository method was called with the correct parameter
         verify(houseRepository, times(1)).countHouse(min1, max1, min2, max2,
-                province, district, ward, status1, status2,  houseName, type, service, countService);
+                province, district, ward, status1, status2, houseName, type, service, countService);
     }
 
     @Test
@@ -1419,11 +1491,11 @@ public class HouseServiceTest {
         int countHouse = 1;
 
         when(houseRepository.countHouse(min1, max1, min2, max2,
-                province, district, ward, status1, status2,  houseName, type, service, countService)).thenReturn(countHouse);
+                province, district, ward, status1, status2, houseName, type, service, countService)).thenReturn(countHouse);
 
         // Act
         int result = houseService.countHouse(min1, max1, min2, max2,
-                province, district, ward, status1, status2,  houseName, type, service, countService);
+                province, district, ward, status1, status2, houseName, type, service, countService);
 
         // Assert
         assertNotNull(result);
@@ -1431,7 +1503,7 @@ public class HouseServiceTest {
 
         // Verify that the repository method was called with the correct parameter
         verify(houseRepository, times(1)).countHouse(min1, max1, min2, max2,
-                province, district, ward, status1, status2,  houseName, type, service, countService);
+                province, district, ward, status1, status2, houseName, type, service, countService);
     }
 
     @Test
@@ -1459,11 +1531,11 @@ public class HouseServiceTest {
         int countHouse = 1;
 
         when(houseRepository.countHouse(min1, max1, min2, max2,
-                province, district, ward, status1, status2,  houseName, type, service, countService)).thenReturn(countHouse);
+                province, district, ward, status1, status2, houseName, type, service, countService)).thenReturn(countHouse);
 
         // Act
         int result = houseService.countHouse(min1, max1, min2, max2,
-                province, district, ward, status1, status2,  houseName, type, service, countService);
+                province, district, ward, status1, status2, houseName, type, service, countService);
 
         // Assert
         assertNotNull(result);
@@ -1471,7 +1543,7 @@ public class HouseServiceTest {
 
         // Verify that the repository method was called with the correct parameter
         verify(houseRepository, times(1)).countHouse(min1, max1, min2, max2,
-                province, district, ward, status1, status2,  houseName, type, service, countService);
+                province, district, ward, status1, status2, houseName, type, service, countService);
     }
 
     @Test
@@ -1499,11 +1571,11 @@ public class HouseServiceTest {
         int countHouse = 1;
 
         when(houseRepository.countHouse(min1, max1, min2, max2,
-                province, district, ward, status1, status2,  houseName, type, service, countService)).thenReturn(countHouse);
+                province, district, ward, status1, status2, houseName, type, service, countService)).thenReturn(countHouse);
 
         // Act
         int result = houseService.countHouse(min1, max1, min2, max2,
-                province, district, ward, status1, status2,  houseName, type, service, countService);
+                province, district, ward, status1, status2, houseName, type, service, countService);
 
         // Assert
         assertNotNull(result);
@@ -1511,7 +1583,7 @@ public class HouseServiceTest {
 
         // Verify that the repository method was called with the correct parameter
         verify(houseRepository, times(1)).countHouse(min1, max1, min2, max2,
-                province, district, ward, status1, status2,  houseName, type, service, countService);
+                province, district, ward, status1, status2, houseName, type, service, countService);
     }
 
     @Test
@@ -1539,11 +1611,11 @@ public class HouseServiceTest {
         int countHouse = 1;
 
         when(houseRepository.countHouse(min1, max1, min2, max2,
-                province, district, ward, status1, status2,  houseName, type, service, countService)).thenReturn(countHouse);
+                province, district, ward, status1, status2, houseName, type, service, countService)).thenReturn(countHouse);
 
         // Act
         int result = houseService.countHouse(min1, max1, min2, max2,
-                province, district, ward, status1, status2,  houseName, type, service, countService);
+                province, district, ward, status1, status2, houseName, type, service, countService);
 
         // Assert
         assertNotNull(result);
@@ -1551,7 +1623,7 @@ public class HouseServiceTest {
 
         // Verify that the repository method was called with the correct parameter
         verify(houseRepository, times(1)).countHouse(min1, max1, min2, max2,
-                province, district, ward, status1, status2,  houseName, type, service, countService);
+                province, district, ward, status1, status2, houseName, type, service, countService);
     }
 
     @Test
@@ -1579,11 +1651,11 @@ public class HouseServiceTest {
         int countHouse = 1;
 
         when(houseRepository.countHouse(min1, max1, min2, max2,
-                province, district, ward, status1, status2,  houseName, type, service, countService)).thenReturn(countHouse);
+                province, district, ward, status1, status2, houseName, type, service, countService)).thenReturn(countHouse);
 
         // Act
         int result = houseService.countHouse(min1, max1, min2, max2,
-                province, district, ward, status1, status2,  houseName, type, service, countService);
+                province, district, ward, status1, status2, houseName, type, service, countService);
 
         // Assert
         assertNotNull(result);
@@ -1591,7 +1663,7 @@ public class HouseServiceTest {
 
         // Verify that the repository method was called with the correct parameter
         verify(houseRepository, times(1)).countHouse(min1, max1, min2, max2,
-                province, district, ward, status1, status2,  houseName, type, service, countService);
+                province, district, ward, status1, status2, houseName, type, service, countService);
     }
 
     @Test
@@ -1619,11 +1691,11 @@ public class HouseServiceTest {
         int countHouse = 1;
 
         when(houseRepository.countHouse(min1, max1, min2, max2,
-                province, district, ward, status1, status2,  houseName, type, service, countService)).thenReturn(countHouse);
+                province, district, ward, status1, status2, houseName, type, service, countService)).thenReturn(countHouse);
 
         // Act
         int result = houseService.countHouse(min1, max1, min2, max2,
-                province, district, ward, status1, status2,  houseName, type, service, countService);
+                province, district, ward, status1, status2, houseName, type, service, countService);
 
         // Assert
         assertNotNull(result);
@@ -1631,7 +1703,7 @@ public class HouseServiceTest {
 
         // Verify that the repository method was called with the correct parameter
         verify(houseRepository, times(1)).countHouse(min1, max1, min2, max2,
-                province, district, ward, status1, status2,  houseName, type, service, countService);
+                province, district, ward, status1, status2, houseName, type, service, countService);
     }
 
     @Test
@@ -1659,11 +1731,11 @@ public class HouseServiceTest {
         int countHouse = 1;
 
         when(houseRepository.countHouse(min1, max1, min2, max2,
-                province, district, ward, status1, status2,  houseName, type, service, countService)).thenReturn(countHouse);
+                province, district, ward, status1, status2, houseName, type, service, countService)).thenReturn(countHouse);
 
         // Act
         int result = houseService.countHouse(min1, max1, min2, max2,
-                province, district, ward, status1, status2,  houseName, type, service, countService);
+                province, district, ward, status1, status2, houseName, type, service, countService);
 
         // Assert
         assertNotNull(result);
@@ -1671,7 +1743,7 @@ public class HouseServiceTest {
 
         // Verify that the repository method was called with the correct parameter
         verify(houseRepository, times(1)).countHouse(min1, max1, min2, max2,
-                province, district, ward, status1, status2,  houseName, type, service, countService);
+                province, district, ward, status1, status2, houseName, type, service, countService);
     }
 
     @Test
@@ -1699,11 +1771,11 @@ public class HouseServiceTest {
         int countHouse = 1;
 
         when(houseRepository.countHouse(min1, max1, min2, max2,
-                province, district, ward, status1, status2,  houseName, type, service, countService)).thenReturn(countHouse);
+                province, district, ward, status1, status2, houseName, type, service, countService)).thenReturn(countHouse);
 
         // Act
         int result = houseService.countHouse(min1, max1, min2, max2,
-                province, district, ward, status1, status2,  houseName, type, service, countService);
+                province, district, ward, status1, status2, houseName, type, service, countService);
 
         // Assert
         assertNotNull(result);
@@ -1711,7 +1783,7 @@ public class HouseServiceTest {
 
         // Verify that the repository method was called with the correct parameter
         verify(houseRepository, times(1)).countHouse(min1, max1, min2, max2,
-                province, district, ward, status1, status2,  houseName, type, service, countService);
+                province, district, ward, status1, status2, houseName, type, service, countService);
     }
 
     @Test
@@ -1739,11 +1811,11 @@ public class HouseServiceTest {
         int countHouse = 1;
 
         when(houseRepository.countHouse(min1, max1, min2, max2,
-                province, district, ward, status1, status2,  houseName, type, service, countService)).thenReturn(countHouse);
+                province, district, ward, status1, status2, houseName, type, service, countService)).thenReturn(countHouse);
 
         // Act
         int result = houseService.countHouse(min1, max1, min2, max2,
-                province, district, ward, status1, status2,  houseName, type, service, countService);
+                province, district, ward, status1, status2, houseName, type, service, countService);
 
         // Assert
         assertNotNull(result);
@@ -1751,7 +1823,7 @@ public class HouseServiceTest {
 
         // Verify that the repository method was called with the correct parameter
         verify(houseRepository, times(1)).countHouse(min1, max1, min2, max2,
-                province, district, ward, status1, status2,  houseName, type, service, countService);
+                province, district, ward, status1, status2, houseName, type, service, countService);
     }
 
 }

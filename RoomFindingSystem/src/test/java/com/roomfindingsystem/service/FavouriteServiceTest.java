@@ -38,9 +38,18 @@ class FavouriteServiceTest {
         FavouriteEntity favourite = favouriteService.addToFavourite(favouriteEntity);
 
         assertEquals(1, favourite.getUserId());
-
     }
+    @Test
+    void addToFavourite2() {
+        FavouriteEntity favouriteEntity = new FavouriteEntity();
+        favouriteEntity.setUserId(-1);
 
+        when(favouriteRepository.save(favouriteEntity)).thenReturn(favouriteEntity);
+
+        FavouriteEntity favourite = favouriteService.addToFavourite(favouriteEntity);
+
+        assertEquals(-1, favourite.getUserId());
+    }
     @Test
     void getListFavourite() {
         List<FavouriteDto> list1 = new ArrayList<>();

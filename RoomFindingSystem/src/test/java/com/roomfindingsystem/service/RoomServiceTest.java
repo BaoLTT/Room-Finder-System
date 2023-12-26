@@ -3,11 +3,9 @@ package com.roomfindingsystem.service;
 import com.roomfindingsystem.dto.RoomAdminDashboardDto;
 import com.roomfindingsystem.dto.RoomDto;
 import com.roomfindingsystem.dto.RoomHouseDetailDto;
-
 import com.roomfindingsystem.entity.RoomEntity;
-
+import com.roomfindingsystem.entity.RoomImagesEntity;
 import com.roomfindingsystem.entity.ServiceDetailEntity;
-
 import com.roomfindingsystem.repository.RoomRepository;
 import com.roomfindingsystem.service.impl.RoomHistoryServiceImpl;
 import com.roomfindingsystem.service.impl.RoomServiceImpl;
@@ -22,10 +20,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.web.multipart.MultipartFile;
-
-
 import java.time.LocalDate;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -345,6 +340,58 @@ public class RoomServiceTest {
     }
 
     @Test
+    public void getRoomById() throws Exception {
+
+        // Set up mock data
+        Integer roomId = 2;
+        RoomDto roomDto = new RoomDto();
+
+
+        // Call method
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        RoomEntity modelAndView = roomService.getRoomById(roomId);
+
+        // Assertions
+        assertEquals(null, modelAndView);
+
+    }
+
+    @Test
+    public void getRoomById2() throws Exception {
+
+        // Set up mock data
+        Integer roomId = 0;
+        RoomDto roomDto = new RoomDto();
+
+
+        // Call method
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        RoomEntity modelAndView = roomService.getRoomById(roomId);
+
+        // Assertions
+        assertEquals(null, modelAndView);
+
+    }
+
+    @Test
+    public void getRoomById3() throws Exception {
+
+        // Set up mock data
+        Integer roomId = -1;
+        RoomDto roomDto = new RoomDto();
+
+
+        // Call method
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        RoomEntity modelAndView = roomService.getRoomById(roomId);
+
+        // Assertions
+        assertEquals(null, modelAndView);
+
+    }
+
+
+    @Test
     void testUpdateStatusDate1() {
         // Arrange
         int houseId = 273; // Assuming houseId with no room data
@@ -454,7 +501,7 @@ public class RoomServiceTest {
 
 
 
-    
+
     @Test
     void testCountRoomByIdNull() {
         // Arrange
