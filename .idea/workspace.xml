@@ -7,7 +7,8 @@
     <list default="true" id="3984fc9b-ab5d-4d61-81f8-049b67f3fab8" name="Changes" comment="update list room trong house detail">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/roomfindingsystem/service/RoomServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/roomfindingsystem/service/RoomServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/roomfindingsystem/service/RoomTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/roomfindingsystem/service/RoomTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/roomfindingsystem/service/RoomTypeServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/roomfindingsystem/service/RoomTypeServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/roomfindingsystem/service/ServiceDetailServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/roomfindingsystem/service/ServiceDetailServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,8 +46,8 @@
     &quot;spring.configuration.checksum&quot;: &quot;cba14e4d5d8ebaea272e92fbdfce9e02&quot;
   }
 }</component>
-  <component name="RunManager" selected="JUnit.RoomServiceTest.testGetRoominHouseValidNull">
-    <configuration name="RoomServiceTest.testDeleteRoomImage" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.service in RoomFindingSystem">
+    <configuration name="ServiceDetailServiceTest.deleteNullValid" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RoomFindingSystem" />
       <extension name="coverage">
         <pattern>
@@ -55,14 +56,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.roomfindingsystem.service" />
-      <option name="MAIN_CLASS_NAME" value="com.roomfindingsystem.service.RoomServiceTest" />
-      <option name="METHOD_NAME" value="testDeleteRoomImage" />
+      <option name="MAIN_CLASS_NAME" value="com.roomfindingsystem.service.ServiceDetailServiceTest" />
+      <option name="METHOD_NAME" value="deleteNullValid" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RoomServiceTest.testDeleteRoomImageNoValid" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ServiceDetailServiceTest.getServiceExceptHouseServiceNullValid" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RoomFindingSystem" />
       <extension name="coverage">
         <pattern>
@@ -71,14 +72,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.roomfindingsystem.service" />
-      <option name="MAIN_CLASS_NAME" value="com.roomfindingsystem.service.RoomServiceTest" />
-      <option name="METHOD_NAME" value="testDeleteRoomImageNoValid" />
+      <option name="MAIN_CLASS_NAME" value="com.roomfindingsystem.service.ServiceDetailServiceTest" />
+      <option name="METHOD_NAME" value="getServiceExceptHouseServiceNullValid" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RoomServiceTest.testDeleteRoomImageValidNull" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ServiceDetailServiceTest.getServiceExceptHouseServiceValid" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RoomFindingSystem" />
       <extension name="coverage">
         <pattern>
@@ -87,14 +88,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.roomfindingsystem.service" />
-      <option name="MAIN_CLASS_NAME" value="com.roomfindingsystem.service.RoomServiceTest" />
-      <option name="METHOD_NAME" value="testDeleteRoomImageValidNull" />
+      <option name="MAIN_CLASS_NAME" value="com.roomfindingsystem.service.ServiceDetailServiceTest" />
+      <option name="METHOD_NAME" value="getServiceExceptHouseServiceValid" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RoomServiceTest.testGetRoominHouseValidNull" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="UserServiceTest.testSaveUser_UnSuccess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RoomFindingSystem" />
       <extension name="coverage">
         <pattern>
@@ -103,36 +104,28 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.roomfindingsystem.service" />
-      <option name="MAIN_CLASS_NAME" value="com.roomfindingsystem.service.RoomServiceTest" />
-      <option name="METHOD_NAME" value="testGetRoominHouseValidNull" />
+      <option name="MAIN_CLASS_NAME" value="com.roomfindingsystem.service.UserServiceTest" />
+      <option name="METHOD_NAME" value="testSaveUser_UnSuccess" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RoomServiceTest.testGetRoominHousevslid" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="service in RoomFindingSystem" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RoomFindingSystem" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.roomfindingsystem.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.roomfindingsystem.service" />
-      <option name="MAIN_CLASS_NAME" value="com.roomfindingsystem.service.RoomServiceTest" />
-      <option name="METHOD_NAME" value="testGetRoominHousevslid" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/roomfindingsystem/service" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.RoomServiceTest.testGetRoominHouseValidNull" />
-        <item itemvalue="JUnit.RoomServiceTest.testGetRoominHousevslid" />
-        <item itemvalue="JUnit.RoomServiceTest.testDeleteRoomImageValidNull" />
-        <item itemvalue="JUnit.RoomServiceTest.testDeleteRoomImageNoValid" />
-        <item itemvalue="JUnit.RoomServiceTest.testDeleteRoomImage" />
+        <item itemvalue="JUnit.service in RoomFindingSystem" />
+        <item itemvalue="JUnit.UserServiceTest.testSaveUser_UnSuccess" />
+        <item itemvalue="JUnit.ServiceDetailServiceTest.getServiceExceptHouseServiceNullValid" />
+        <item itemvalue="JUnit.ServiceDetailServiceTest.getServiceExceptHouseServiceValid" />
+        <item itemvalue="JUnit.ServiceDetailServiceTest.deleteNullValid" />
       </list>
     </recent_temporary>
   </component>

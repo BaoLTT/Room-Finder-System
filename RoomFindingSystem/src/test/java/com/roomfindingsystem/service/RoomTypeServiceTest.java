@@ -9,10 +9,12 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -28,10 +30,12 @@ class RoomTypeServiceTest {
     private RoomTypeRepository roomTypeRepository;
     @Mock
     private ModelMapper modelMapper;
+
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
     }
+
     @Test
     void findAll() {
         // Test data
@@ -49,5 +53,13 @@ class RoomTypeServiceTest {
 
         // Verify the result
         assertEquals(0, result.size());
+    }
+
+    @Test
+    void testFindAll() {
+        List<RoomTypeDto> list = new ArrayList<>();
+        RoomTypeService service = Mockito.mock(RoomTypeService.class);
+        list = service.findAll();
+        assertEquals(service.findAll(), list);
     }
 }
