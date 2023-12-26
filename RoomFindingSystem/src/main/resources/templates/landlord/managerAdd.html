@@ -63,8 +63,8 @@
                         <div class="row">
                             <div class="col-md-7">
                                 <div class="form-group">
-                                    <label>Tên trọ<em>*</em></label>
-                                    <input type="text" class="form-control"  name="houseName" placeholder="Tên trọ..." required="" id="inputField"  oninput="removeWhitespace(this)" onchange="resetCustomValidity(this)"
+                                    <label>Tên trọ<em style="color: red">*</em></label>
+                                    <input type="text" class="form-control"  name="houseName" placeholder="Tên trọ..." required="" id="inputField"   onchange="resetCustomValidity(this)"
                                            pattern="^[a-zA-Z0-9aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆgGhHiIìÌỉỈĩĨíÍịỊkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTuUùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVxXyYỳỲỷỶỹỸýÝỵỴ ]+$" th:field="*{houseName}">
                                 </div>
                                 <!--end form-group-->
@@ -85,7 +85,7 @@
                         <div class="row">
                             <div class="col-md-7">
                                 <div class="form-group">
-                                    <label for="form-submit-description">Ghi chú<em>*</em></label>
+                                    <label for="form-submit-description">Ghi chú</label>
                                     <textarea class="form-control" id="form-submit-description" rows="5" name="description" placeholder="Ghi chú..." th:field="*{description}" >
                                     </textarea>
                                 </div>
@@ -104,7 +104,7 @@
 
 
                                 <div class="form-group">
-                                        <label for="province">Tỉnh</label>
+                                        <label for="province">Tỉnh<em style="color: red">*</em></label>
                                         <select class="form-control" name="province" id="province" th:field="*{provinceID}" onchange="resetCustomValidity(this)">
                                             <option value="0" selected >Chọn tỉnh thành</option>
                                         </select>
@@ -112,21 +112,21 @@
 
                                 </div>
                                 <div class="form-group">
-                                        <label for="district">Huyện</label>
+                                        <label for="district">Huyện<em style="color: red">*</em></label>
                                         <select class="form-control" id="district" name="district" th:field="*{districtID}" onchange="resetCustomValidity(this)">
                                             <option value="0" selected>Chọn huyện</option>
                                         </select>
 
                                 </div>
                                 <div class="form-group">
-                                        <label for="ward">Xã/Phường</label>
+                                        <label for="ward">Xã/Phường<em style="color: red">*</em></label>
                                         <select class="form-control" name="ward" id="ward" th:field="*{wardID}" onchange="resetCustomValidity(this)">
                                             <option value="0" selected>Chọn xã</option>
                                         </select>
 
                                 </div>
                                 <div class="form-group">
-                                    <label >Địa chỉ cụ thể<em>*</em></label>
+                                    <label >Địa chỉ cụ thể<em style="color: red">*</em></label>
                                     <input type="text" class="form-control"  name="addressDetail" placeholder="Địa chỉ cụ thể..." required="" id="inputField2"  oninput="removeWhitespace2(this)"
                                            pattern="^[a-zA-Z0-9aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆgGhHiIìÌỉỈĩĨíÍịỊkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTuUùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVxXyYỳỲỷỶỹỸýÝỵỴ ]+$" th:filed="*{addressDetail}">
                                 </div>
@@ -215,9 +215,16 @@
     var exithouse = /*[[${exithouse}]]*/ [];
     /*]]>*/
     function resetCustomValidity(input) {
-        var nameHouse = input.value.toLowerCase();
+        var nameHouse = input;
+        if (nameHouse.value.trim() === '') {
+            // Set custom validity để hiển thị thông báo lỗi
+            nameHouse.setCustomValidity('Vui lòng nhập tên.');
+        } else {
+            // Reset custom validity nếu không có lỗi
+            nameHouse.setCustomValidity('');
+        }
         for (var i = 0; i < exithouse.length; i++) {
-            if (exithouse[i].houseName.toLowerCase() === nameHouse) {
+            if (exithouse[i].houseName.toUpperCase().trim() === nameHouse.value.toUpperCase().trim()) {
                 nameHouse.setCustomValidity("Tên đã trùng lặp.");
                 break;
             } else {

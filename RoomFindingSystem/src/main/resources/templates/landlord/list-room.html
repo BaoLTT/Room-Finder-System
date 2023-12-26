@@ -131,7 +131,7 @@
                                     </td>
 
                                     <td>
-                                        <a th:href="@{'/landlord/room/updateRoom/' + ${room.roomId}}"
+                                        <a th:href="@{'/landlord/room/updateRoom/'+ ${houseId}+'/' + ${room.roomId}}"
                                            style="border-radius: 5px;padding: 5px;color: #f9bc0b"><i class="fa fa-edit"></i></a>
 
                                         <a th:href="@{'/landlord/room/deleteRoom/' + ${houseId}+'/' +${room.roomId}}"

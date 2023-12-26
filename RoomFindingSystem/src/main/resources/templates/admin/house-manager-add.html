@@ -93,19 +93,11 @@
                                             <div class="form-group row">
                                                 <label class="col-md-2 col-md-form-label" >Tên trọ<em style="color: red">*</em></label>
                                                 <div class="col-md-10">
-                                                    <input type="text" required  name="houseName" class="form-control" id="inputField"  oninput="removeWhitespace(this)"
+                                                    <input type="text" required  name="houseName" class="form-control" id="inputField"  oninput="removeWhitespace(this)" onchange="resetCustomValidity(this)"
                                                            pattern="^[a-zA-Z0-9xyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđÁÂĐ ]+$" th:field="*{houseName}">
                                                 </div>
                                             </div>
-                                            <div class="form-group row">
-                                                <label class="col-md-2 col-md-form-label">Địa chỉ cụ thể<em style="color: red">*</em></label>
-                                                <div class="col-md-10">
 
-                                                    <input type="text" required class="form-control" name="addressDetail" id="inputField2"  oninput="removeWhitespace2(this)"
-                                                           pattern="^[a-zA-Z0-9xyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđÁÂĐ ]+$"
-                                                           th:field="*{addressDetail}">
-                                                </div>
-                                            </div>
                                             <div class="form-group row">
                                                 <label class="col-md-2 col-md-form-label">Địa chỉ</label>
                                                 <div class="col-md" >
@@ -126,6 +118,16 @@
                                                     <select class="form-control"  id="ward" name="ward" th:field="*{wardID}" onchange="resetCustomValidity(this)">
                                                         <option value="0"  selected >Chọn xã/phường</option>
                                                     </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-md-2 col-md-form-label">Địa chỉ cụ thể<em style="color: red">*</em></label>
+                                                <div class="col-md-10">
+
+                                                    <input type="text" required class="form-control" name="addressDetail" id="inputField2"  oninput="removeWhitespace2(this)"
+                                                           pattern="^[a-zA-Z0-9xyỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđÁÂĐ ]+$"
+                                                           th:field="*{addressDetail}">
                                                 </div>
                                             </div>
 
@@ -462,7 +464,22 @@
 
 </div>
 <!-- ... (các trường khác) ... -->
-
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var exithouse = /*[[${exithouse}]]*/ [];
+    /*]]>*/
+    function resetCustomValidity(input) {
+        var nameHouse = input;
+        for (var i = 0; i < exithouse.length; i++) {
+            if (exithouse[i].houseName.toUpperCase().trim() === nameHouse.value.toUpperCase().trim()) {
+                nameHouse.setCustomValidity("Tên đã trùng lặp.");
+                break;
+            } else {
+                nameHouse.setCustomValidity("");
+            }
+        }
+    }
+</script>
 <!-- ... (các trường khác) ... -->
 
 <script>
@@ -731,7 +748,21 @@
         document.getElementById('longitude').value = location.lng();
     }
 </script>
+<script>
+    // Chờ cho trang web tải hoàn toàn
+    window.onload = function() {
+        // Chờ một khoảng thời gian ngắn sau khi trang tải xong
+        setTimeout(function() {
+            // Tìm nút "OK" trong thông báo và nhấn nó
+            var okButton = document.querySelector('#map-item button.dismissButton');
 
+            // Nếu nút "OK" tồn tại, nhấn nó
+            if (okButton) {
+                okButton.click();
+            }
+        }, 1000); // Thời gian chờ (1000 milliseconds = 1 giây), bạn có thể điều chỉnh nếu cần
+    };
+</script>
 
 </body>
 </html>

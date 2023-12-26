@@ -108,7 +108,7 @@
                                     </td>
 
                                     <td>
-                                        <a th:href="@{'/admin/room/updateRoom/' + ${room.roomId}}" style="border-radius: 5px;padding: 5px;color: #f9bc0b"><i class="fa fa-edit"></i></a>
+                                        <a th:href="@{'/admin/room/updateRoom/'+${houseId}+'/' + ${room.roomId}}" style="border-radius: 5px;padding: 5px;color: #f9bc0b"><i class="fa fa-edit"></i></a>
                                         <a th:href="@{'/admin/room/deleteRoom/' + ${room.roomId}+'/'+${houseId}}" style="border-radius: 5px;padding: 5px;color: #f36270;background-color: unset"><i class="fas fa-trash"></i></a>
                                     </td>
                                 </tr>

@@ -106,6 +106,8 @@ public class HouseLandlordController {
             HouseLandlordVo  house = houseLandlordService.findHouseByID(houseid);
             List<String> listChecked = house.getService();
             System.out.println(listChecked);
+            List<HouseLandlordVo> houseList = houseLandlordService.getAllHouse();
+            model.addAttribute("exithouse",houseList);
             model.addAttribute("house",house);
             model.addAttribute("listType",listType);
             model.addAttribute("listChecked",listChecked);

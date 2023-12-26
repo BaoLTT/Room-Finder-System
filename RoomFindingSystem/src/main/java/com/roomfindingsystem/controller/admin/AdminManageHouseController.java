@@ -155,6 +155,8 @@ public class AdminManageHouseController {
             List<ServiceDetailEntity> listServiceNotUse = serviceDetailService.getServiceNotUse();
             List<TypeHouseEntity> listTypeNotUse = houseTypeService.findTypeNotUse();
 
+            List<HouseLandlordVo> houseList = houseLandlordService.getAllHouse();
+            model.addAttribute("exithouse",houseList);
             model.addAttribute("house",house);
             model.addAttribute("houseID",house.getHouseID());
             model.addAttribute("listType",listType);
@@ -222,6 +224,8 @@ public class AdminManageHouseController {
             List<ServiceDetailEntity> listServiceNotUse = serviceDetailService.getServiceNotUse();
             List<TypeHouseEntity> listTypeNotUse = houseTypeService.findTypeNotUse();
 
+            List<HouseLandlordVo> houseList = houseLandlordService.getAllHouse();
+            model.addAttribute("exithouse",houseList);
             model.addAttribute("listUser",listUser);
             model.addAttribute("listType",listType);
             model.addAttribute("listService",listService);
