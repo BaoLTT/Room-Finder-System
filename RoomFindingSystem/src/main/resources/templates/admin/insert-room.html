@@ -114,8 +114,8 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Phòng</label>
-                                            <input type="text" class="form-control" required
+                                            <label>Phòng<em style="color: red">*</em></label>
+                                            <input type="text" class="form-control" required onchange="resetCustomValidity(this)"
                                                    placeholder="P101" th:field="*{roomName}"/>
                                             <p th:if="${error ne null}" style="color: red;" th:text="${error}"></p>
                                         </div>
@@ -130,7 +130,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label>Diện tích (m2)</label>
+                                            <label>Diện tích (m2)<em style="color: red">*</em></label>
                                             <div>
                                                 <input type="number" id="area" class="form-control" required
                                                        placeholder="20" th:field="*{area}"/>
@@ -139,14 +139,14 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label>Giá (VND)</label>
+                                            <label>Giá (VND)<em style="color: red">*</em></label>
                                             <input type="number" class="form-control" required
                                                 placeholder="2.000.000" th:field="*{price}"/>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label>Tầng</label>
+                                            <label>Tầng<em style="color: red">*</em></label>
                                             <input type="number" class="form-control" required
                                                    placeholder="1" th:field="*{floor}"/>
                                         </div>
@@ -477,7 +477,22 @@
 
     </div>
 </div>
-
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var exitRoomList = /*[[${exitRoom}]]*/ [];
+    /*]]>*/
+    function resetCustomValidity(input) {
+        var nameRoom = input;
+        for (var i = 0; i < exitRoomList.length; i++) {
+            if (exitRoomList[i].roomName.toUpperCase().trim() === nameRoom.value.toUpperCase().trim()) {
+                nameRoom.setCustomValidity("Tên đã trùng lặp.");
+                break;
+            } else {
+                nameRoom.setCustomValidity("");
+            }
+        }
+    }
+</script>
 <script>
     function closeInput() {
         // Ẩn khối div và làm mờ phần đằng sau khi nhấn nút Close

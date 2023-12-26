@@ -38,11 +38,14 @@ public class RoomLandlordController {
         return "landlord/list-room";
     }
 
-    @GetMapping("/updateRoom/{id}")
-    public String getFormUpdateRoom(@PathVariable("id") Integer id, Model model, HttpServletRequest request){
+    @GetMapping("/updateRoom/{houseid}/{id}")
+    public String getFormUpdateRoom(@PathVariable("id") Integer id,@PathVariable("houseid") Integer houseid, Model model, HttpServletRequest request){
         RoomDto roomDto = roomService.findById(id);
         model.addAttribute("room", roomDto);
         model.addAttribute("types", roomTypeService.findAll());
+        List<RoomDto> roomDtos = roomService.getRoomsInHouse(houseid);
+        model.addAttribute("exitRoom", roomDtos);
+        model.addAttribute("houseid", houseid);
         model.addAttribute("listService",serviceDetailService.getServiceExceptHouseService(roomDto.getHouseId()));
         model.addAttribute("listChecked", roomDto.getServiceNames());
         model.addAttribute("request",request);
@@ -50,7 +53,7 @@ public class RoomLandlordController {
     }
 
     @PostMapping("/update")
-    public String update(@ModelAttribute(name = "room") RoomDto roomDto, @RequestParam("file") MultipartFile[] files) throws IOException {
+    public String update(@ModelAttribute(name = "room") RoomDto roomDto,@ModelAttribute(name = "houseid") String houseid, @RequestParam("file") MultipartFile[] files) throws IOException {
         List<ServiceDto> serviceDtos = new ArrayList<>();
         List<String> selects = roomDto.getServiceNames();
         if (selects!=null) {
@@ -63,7 +66,7 @@ public class RoomLandlordController {
         }
         roomDto.setServiceDtos(serviceDtos);
         roomService.update(roomDto, files);
-        return "redirect:/landlord/room/updateRoom/" + roomDto.getRoomId();
+        return "redirect:/landlord/room/listRoom/" + houseid;
     }
 
     @GetMapping("/deleteRoom/{houseId}/{id}")

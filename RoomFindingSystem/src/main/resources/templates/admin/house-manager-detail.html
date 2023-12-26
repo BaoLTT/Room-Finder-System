@@ -90,7 +90,7 @@
                                                 <div class="col-md-10">
                                                     <input type="text" name="houseName" class="form-control"
                                                            placeholder="Tên trọ..." required id="inputField"
-                                                           oninput="removeWhitespace(this)"
+                                                           oninput="removeWhitespace(this)" onchange="resetCustomValidity(this)"
                                                            pattern="^[0-9aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆgGhHiIìÌỉỈĩĨíÍịỊkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTuUùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVxXyYỳỲỷỶỹỸýÝỵỴ ]+$"
                                                            th:field="*{houseName}">
                                                 </div>
@@ -137,17 +137,7 @@
                                                            th:value="*{created_firstName+' '+created_lastName}">
                                                 </div>
                                             </div>
-                                            <div class="form-group row">
-                                                <label class="col-md-2 col-md-form-label">Địa chỉ cụ
-                                                    thể<em style="color: red">*</em></label>
-                                                <div class="col-md-10">
-                                                    <input type="text" name="addressDetail" class="form-control"
-                                                           placeholder="Địa chỉ cụ thể..." id="inputField2"
-                                                           oninput="removeWhitespace2(this)"
-                                                           pattern="^[0-99aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆgGhHiIìÌỉỈĩĨíÍịỊkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTuUùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVxXyYỳỲỷỶỹỸýÝỵỴ ]+$"
-                                                           th:field="*{addressDetail}">
-                                                </div>
-                                            </div>
+
                                             <div class="form-group row">
                                                 <label class="col-md-2 col-md-form-label">Địa chỉ </label>
                                                 <input type="hidden" name="addressid" th:field="*{address}">
@@ -185,6 +175,17 @@
                                                 </div>
 
 
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-md-2 col-md-form-label">Địa chỉ cụ
+                                                    thể<em style="color: red">*</em></label>
+                                                <div class="col-md-10">
+                                                    <input type="text" name="addressDetail" class="form-control"
+                                                           placeholder="Địa chỉ cụ thể..." id="inputField2"
+                                                           oninput="removeWhitespace2(this)"
+                                                           pattern="^[0-99aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆgGhHiIìÌỉỈĩĨíÍịỊkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTuUùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVxXyYỳỲỷỶỹỸýÝỵỴ ]+$"
+                                                           th:field="*{addressDetail}">
+                                                </div>
                                             </div>
 
                                             <div class="form-group row">
@@ -671,6 +672,22 @@
 
     }
 </script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var exithouse = /*[[${exithouse}]]*/ [];
+    /*]]>*/
+    function resetCustomValidity(input) {
+        var nameHouse = input;
+        for (var i = 0; i < exithouse.length; i++) {
+            if (exithouse[i].houseName.toUpperCase().trim() === nameHouse.value.toUpperCase().trim()) {
+                nameHouse.setCustomValidity("Tên đã trùng lặp.");
+                break;
+            } else {
+                nameHouse.setCustomValidity("");
+            }
+        }
+    }
+</script>
 <!-- /Right-bar -->
 <script>
 
@@ -858,6 +875,20 @@
         document.getElementById('longitude').value = location.lng();
     }
 </script>
+<script>
+    // Chờ cho trang web tải hoàn toàn
+    window.onload = function() {
+        // Chờ một khoảng thời gian ngắn sau khi trang tải xong
+        setTimeout(function() {
+            // Tìm nút "OK" trong thông báo và nhấn nó
+            var okButton = document.querySelector('#map-item button.dismissButton');
 
+            // Nếu nút "OK" tồn tại, nhấn nó
+            if (okButton) {
+                okButton.click();
+            }
+        }, 1000); // Thời gian chờ (1000 milliseconds = 1 giây), bạn có thể điều chỉnh nếu cần
+    };
+</script>
 </body>
 </html>

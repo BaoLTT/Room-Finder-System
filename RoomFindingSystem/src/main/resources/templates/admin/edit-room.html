@@ -70,18 +70,20 @@
                             <form class="parsley-examples" action="#" id="myForm" th:action="@{/admin/room/update}"
                                   th:object="${room}" method="post" enctype="multipart/form-data"><input type="hidden"
                                                                                                          th:field="*{roomId}">
+                                <input type="hidden" name="houseid"
+                                       th:value="${houseid}">
                                 <div class="row">
                                     <div class="col-md-3">
                                         <div class="form-group">
-                                            <label>Phòng</label>
-                                            <input type="text" class="form-control" required
+                                            <label>Phòng<em style="color: red">*</em></label>
+                                            <input type="text" class="form-control" required onchange="resetCustomValidity(this)"
                                                    placeholder="P101" th:field="*{roomName}"/>
 
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
-                                            <label>Diện tích (m2)</label>
+                                            <label>Diện tích (m2)<em style="color: red">*</em></label>
                                             <div>
                                                 <input type="number" id="area" class="form-control" required
                                                        placeholder="20" th:field="*{area}"/>
@@ -90,7 +92,7 @@
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
-                                            <label>Giá (VND)</label>
+                                            <label>Giá (VND)<em style="color: red">*</em></label>
                                             <div>
                                                 <input type="number" class="form-control" required
                                                        placeholder="2.000.000" th:field="*{price}"/>
@@ -99,7 +101,7 @@
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
-                                            <label>Tầng</label>
+                                            <label>Tầng<em style="color: red">*</em></label>
                                             <div>
                                                 <input type="number" class="form-control" required
                                                        placeholder="1" th:field="*{floor}"/>
@@ -385,7 +387,23 @@
 
 </div>
 <!-- END wrapper -->
-
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var exitRoomList = /*[[${exitRoom}]]*/ [];
+    /*]]>*/
+    function resetCustomValidity(input) {
+        var nameRoom = input;
+        for (var i = 0; i < exitRoomList.length; i++) {
+            if (exitRoomList[i].roomName.toUpperCase().trim() === nameRoom.value.toUpperCase().trim()) {
+                console.log(exitRoomList[i].roomName.toUpperCase());
+                nameRoom.setCustomValidity("Tên đã trùng lặp.");
+                break;
+            } else {
+                nameRoom.setCustomValidity("");
+            }
+        }
+    }
+</script>
 <!-- /Right-bar -->
 <script>
 
