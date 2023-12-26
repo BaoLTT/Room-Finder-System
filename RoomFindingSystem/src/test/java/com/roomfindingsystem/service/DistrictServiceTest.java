@@ -5,6 +5,7 @@ import com.roomfindingsystem.repository.DistrictRepository;
 import com.roomfindingsystem.repository.UserRepository;
 import com.roomfindingsystem.service.impl.AdminManageUserServiceImpl;
 import com.roomfindingsystem.service.impl.DistrictServiceImpl;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -24,7 +25,7 @@ class DistrictServiceTest {
     @Mock
     ModelMapper modelMapper;
     @InjectMocks
-    DistrictServiceImpl districtServiceImpl;
+    DistrictServiceImpl districtService;
     @Test
     void getAll() {
         DistrictEntity district1 = new DistrictEntity();
@@ -39,7 +40,7 @@ class DistrictServiceTest {
         when(districtRepository.findAll()).thenReturn(Arrays.asList(district1, district2));
 
         // Call the method you want to test
-        List<DistrictEntity> result = districtServiceImpl.getAll();
+        List<DistrictEntity> result = districtService.getAll();
 
         // Verify that findAll was called
         verify(districtRepository, times(1)).findAll();
@@ -73,11 +74,106 @@ class DistrictServiceTest {
                 .thenReturn(Arrays.asList(district1, district2));
 
         // Call the method you want to test
-        List<DistrictEntity> result = districtServiceImpl.getDistrictsByProvince(provinceId);
+        List<DistrictEntity> result = districtService.getDistrictsByProvince(provinceId);
 
         // Verify the result
         assertEquals(2, result.size());
         assertEquals("District 1", result.get(0).getName());
         assertEquals("District 2", result.get(1).getName());
+    }
+
+    //getDistricById
+    @Test
+    void testGetDistrictById_WithValidId() {
+        // Arrange
+        int validDistrictId = 1;  
+
+        DistrictEntity mockedDistrictEntity = new DistrictEntity();
+        mockedDistrictEntity.setDistrictId(validDistrictId);
+        mockedDistrictEntity.setName("A");
+
+
+        when(districtRepository.getDistrictById(validDistrictId)).thenReturn(mockedDistrictEntity);
+
+        // Act
+        DistrictEntity resultDistrict = districtService.getDistrictById(validDistrictId);
+
+        // Assert
+        assertEquals(mockedDistrictEntity, resultDistrict);
+
+        // Verify that the repository method was called with the correct argument
+        verify(districtRepository).getDistrictById(validDistrictId);
+
+        // Verify that there were no other interactions with the repository
+        verifyNoMoreInteractions(districtRepository);
+    }
+
+    @Test
+    void testGetDistrictById_WithValidId2() {
+        // Arrange
+        int validDistrictId = 2;
+
+        DistrictEntity mockedDistrictEntity = new DistrictEntity();
+        mockedDistrictEntity.setDistrictId(validDistrictId);
+        mockedDistrictEntity.setName("A");
+
+
+        when(districtRepository.getDistrictById(validDistrictId)).thenReturn(mockedDistrictEntity);
+
+        // Act
+        DistrictEntity resultDistrict = districtService.getDistrictById(validDistrictId);
+
+        // Assert
+        assertEquals(mockedDistrictEntity, resultDistrict);
+
+        // Verify that the repository method was called with the correct argument
+        verify(districtRepository).getDistrictById(validDistrictId);
+
+        // Verify that there were no other interactions with the repository
+        verifyNoMoreInteractions(districtRepository);
+    }
+
+    @Test
+    void testGetDistrictById_WithInvalidId() {
+        // Arrange
+        int invalidDistrictId = 100000;  // Giả sử districtId là một giá trị không hợp lệ
+
+        // Mô phỏng hành vi của districtRepository khi không tìm thấy DistrictEntity
+        when(districtRepository.getDistrictById(invalidDistrictId)).thenReturn(null);
+
+        // Act
+        DistrictEntity resultDistrict = districtService.getDistrictById(invalidDistrictId);
+
+        // Assert
+        // Kiểm tra xem kết quả có phải là null hay không
+        assertNull(resultDistrict);
+
+        // Verify that the repository method was called with the correct argument
+        verify(districtRepository).getDistrictById(invalidDistrictId);
+
+        // Verify that there were no other interactions with the repository
+        verifyNoMoreInteractions(districtRepository);
+    }
+
+    @Test
+    void testGetDistrictById_WithInvalidId2() {
+        // Arrange
+        int invalidDistrictId = 0;  // Giả sử districtId là một giá trị không hợp lệ
+
+        // Mô phỏng hành vi của districtRepository khi không tìm thấy DistrictEntity
+        when(districtRepository.getDistrictById(invalidDistrictId)).thenReturn(null);
+
+        // Act
+        DistrictEntity resultDistrict = districtService.getDistrictById(invalidDistrictId);
+
+        // Assert
+        // Kiểm tra xem kết quả có phải là null hay không
+        assertNull(resultDistrict);
+
+        // Verify that the repository method was called with the correct argument
+        verify(districtRepository).getDistrictById(invalidDistrictId);
+
+        // Verify that there were no other interactions with the repository
+        verifyNoMoreInteractions(districtRepository);
     }
 }

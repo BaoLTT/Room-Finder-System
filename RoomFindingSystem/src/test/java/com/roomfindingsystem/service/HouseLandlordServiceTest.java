@@ -5,13 +5,16 @@ import com.roomfindingsystem.repository.HouseImageRepository;
 import com.roomfindingsystem.repository.HouseLandlordRepository;
 import com.roomfindingsystem.service.impl.HouseLandlordServiceImpl;
 import jakarta.persistence.Tuple;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +30,11 @@ class HouseLandlordServiceTest {
     HouseLandlordRepository houseLandlordRepository;
     @Mock
     HouseImageRepository houseImageRepository;
+
+    @BeforeEach
+    void setUp() {
+        MockitoAnnotations.openMocks(this);
+    }
     @Test
     void findHouseByUser() {
         // Mocking data
@@ -75,7 +83,67 @@ class HouseLandlordServiceTest {
         verify(houseImageRepository).deleteById(imageId);
     }
 
+
+
+    //getListHouseLandlordVo
     @Test
-    void findHouseByID() {
+    void testGetListHouseLandlordVo_WithValidData() {
+        // Arrange
+        List<Tuple> validTuples = new ArrayList<>(); // You can use your method to create valid tuples
+
+
     }
+
+    @Test
+    void testGetListHouseLandlordVo_WithInvalidData() {
+        // Arrange
+        List<Tuple> invalidTuples = null; // or Collections.emptyList() for an empty list
+
+        // Mock the behavior of your repository to return the list of tuples
+//        when(houseLandlordRepository.getAllHouse()).thenReturn(invalidTuples);
+
+        // Act
+//        List<HouseLandlordVo> result = houseLandlordService.getListHouseLandlordVo(invalidTuples);
+
+
+//        assertNotNull(result);
+//        assertTrue(result.isEmpty());
+
+    }
+
+    @Test
+    public void testGetHouseLandlordVo_WithInvalidTuple() {
+        // Arrange
+        int houseId = 1;
+//        when(houseLandlordRepository.findHouseByID(houseId)).thenReturn(null); // Simulating an invalid Tuple
+//
+//        // Act
+//        HouseLandlordVo result = houseLandlordService.findHouseByID(houseId);
+//
+//        // Assert
+//        assertNull(result); // Adjust the assertion based on your expected behavior
+    }
+
+    @Test
+    public void testGetHouseLandlordVo_WithValidTuple() {
+        // Arrange
+        int houseId = 1;
+        Tuple tuple = null;
+        // Set up the mock Tuple
+//        when(tuple.get("HouseID", Integer.class)).thenReturn(123); // Adjust values based on your needs
+//        when(tuple.get("status", Integer.class)).thenReturn(1);
+//        // ... continue setting up other values ...
+//
+//        // Act
+//        HouseLandlordVo result = houseLandlordService.getHouseLandlordVo(tuple, houseId);
+//
+//        // Assert
+//        assertNotNull(result);
+//
+//        assertEquals(123, result.getHouseID()); // Adjust based on your expected values
+//        assertEquals(1, result.getStatus());
+
+    }
+
+
 }

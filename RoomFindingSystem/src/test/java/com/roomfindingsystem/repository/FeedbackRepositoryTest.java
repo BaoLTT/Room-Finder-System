@@ -163,5 +163,124 @@ public class FeedbackRepositoryTest {
         // Add more assertions as needed
     }
 
+    //test getFeedbackByHouseId
+    @Test
+    void getFeedbackByHouseId(){
+        int houseId = 1 ;
+        List<Boolean> status = Arrays.asList(true);
+
+
+        // Act
+        List<FeedbackDto> actualFeedbackList = feedbackRepository.findFeedbackDtosByHouseId(houseId,status);
+
+        // Assert
+
+        assertEquals(5, actualFeedbackList.size());
+
+
+    }
+
+    @Test
+    void getFeedbackByHouseId1(){
+        int houseId = 1 ;
+        List<Boolean> status = Arrays.asList(false);
+
+
+        // Act
+        List<FeedbackDto> actualFeedbackList = feedbackRepository.findFeedbackDtosByHouseId(houseId,status);
+
+        // Assert
+
+        assertEquals(0, actualFeedbackList.size());
+
+    }
+
+    @Test
+    void getFeedbackByHouseId2(){
+        int houseId = 1 ;
+        List<Boolean> status = Arrays.asList(true,false);
+
+
+        // Act
+        List<FeedbackDto> actualFeedbackList = feedbackRepository.findFeedbackDtosByHouseId(houseId,status);
+
+        // Assert
+
+        assertEquals(5, actualFeedbackList.size());
+
+    }
+
+    @Test
+    void getFeedbackByHouseId3(){
+        // Arrange
+        int invalidHouseId = -1;
+        List<Boolean> status = Collections.singletonList(true);
+        // Act
+        List<FeedbackDto> resultFeedbackList = feedbackRepository.findFeedbackDtosByHouseId(invalidHouseId, status);
+        // Assert
+        // Kiểm tra xem kết quả trả về có phải là null hay không
+        assertTrue(resultFeedbackList.isEmpty());
+
+
+    }
+
+    @Test
+    void getFeedbackByHouseId4(){
+        // Arrange
+        int invalidHouseId = -1;
+        List<Boolean> status = Collections.singletonList(false);
+        // Act
+        List<FeedbackDto> resultFeedbackList = feedbackRepository.findFeedbackDtosByHouseId(invalidHouseId, status);
+        // Assert
+        // Kiểm tra xem kết quả trả về có phải là null hay không
+        assertTrue(resultFeedbackList.isEmpty());
+
+
+    }
+
+    @Test
+    void getFeedbackByHouseId5(){
+        // Arrange
+        int invalidHouseId = -1;
+        List<Boolean> status = Arrays.asList(true,false);
+        // Act
+        List<FeedbackDto> resultFeedbackList = feedbackRepository.findFeedbackDtosByHouseId(invalidHouseId, status);
+        // Assert
+        // Kiểm tra xem kết quả trả về có phải là null hay không
+        assertTrue(resultFeedbackList.isEmpty());
+
+
+    }
+
+    @Test
+    void getFeedbackByHouseId6(){
+        // Arrange
+        int invalidHouseId = 0;
+        List<Boolean> status = Collections.singletonList(true);
+        // Act
+        List<FeedbackDto> resultFeedbackList = feedbackRepository.findFeedbackDtosByHouseId(invalidHouseId, status);
+        // Assert
+        // Kiểm tra xem kết quả trả về có phải là null hay không
+        assertTrue(resultFeedbackList.isEmpty());
+
+
+    }
+
+    @Test
+    void getFeedbackByHouseId7(){
+        // Arrange
+        int invalidHouseId = 0;
+        List<Boolean> status = Collections.singletonList(false);
+        // Act
+        List<FeedbackDto> resultFeedbackList = feedbackRepository.findFeedbackDtosByHouseId(invalidHouseId, status);
+
+        // Assert
+        // Kiểm tra xem kết quả trả về có phải là null hay không
+        assertTrue(resultFeedbackList.isEmpty());
+
+
+    }
+
+
 
 }

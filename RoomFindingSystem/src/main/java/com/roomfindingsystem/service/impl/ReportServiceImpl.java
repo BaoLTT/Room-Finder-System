@@ -43,6 +43,7 @@ public class ReportServiceImpl implements ReportService {
     @Override
 
     public ReportEntity save(ReportEntity reportEntity) {
+        if(reportEntity==null) return null;
         return reportRepository.save(reportEntity);
     }
 

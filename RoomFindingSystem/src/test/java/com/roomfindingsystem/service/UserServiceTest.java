@@ -1,14 +1,21 @@
 package com.roomfindingsystem.service;
 
-import com.roomfindingsystem.entity.UserEntity;
-import com.roomfindingsystem.repository.UserRepository;
+import com.roomfindingsystem.dto.UserDto;
+import com.roomfindingsystem.entity.*;
+import com.roomfindingsystem.repository.*;
 import com.roomfindingsystem.service.impl.UserServiceImpl;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.modelmapper.ModelMapper;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -20,6 +27,22 @@ public class UserServiceTest {
     UserRepository userRepository;
     @InjectMocks
     UserServiceImpl userService;
+
+    @Mock
+    ModelMapper modelMapper;
+
+    @Mock
+    AddressRepository addressRepository;
+    @Mock
+    ProvinceRepository provinceRepository;
+    @Mock
+    DistrictRepository districtRepository;
+    @Mock
+    WardRepository wardRepository;
+//    @BeforeEach
+//    void setUp() {
+//        MockitoAnnotations.openMocks(this);
+//    }
 
     //Test findByEmail()
     @Test
@@ -44,16 +67,16 @@ public class UserServiceTest {
     @Test
     void testFindByEmail_EmailDoesNotExist() {
         // Giả định UserRepository trả về Optional rỗng khi gọi findByEmail
-        when(userRepository.findByEmail("nonexistent@example.com")).thenReturn(Optional.empty());
+        when(userRepository.findByEmail("abc@gmail.com")).thenReturn(Optional.empty());
 
         // Gọi phương thức cần kiểm thử từ service
-        Optional<UserEntity> result = userService.findByEmail("nonexistent@example.com");
+        Optional<UserEntity> result = userService.findByEmail("abc@gmail.com");
 
         // Kiểm tra kết quả
         assertFalse(result.isPresent());
 
         // Đảm bảo rằng phương thức findByEmail đã được gọi với đúng tham số
-        verify(userRepository).findByEmail("nonexistent@example.com");
+        verify(userRepository).findByEmail("abc@gmail.com");
     }
 
     @Test
@@ -87,8 +110,42 @@ public class UserServiceTest {
     }
 
     @Test
-    void testFindByEmail_EmailExceedsMaxLength() {
+    void testFindByEmail_EmailLength254() {
         // Test Case 5: Email có độ dài vượt quá giới hạn
+        String longEmail = "a".repeat(254); // Giả sử giới hạn là 255 ký tự
+
+        when(userRepository.findByEmail(longEmail)).thenReturn(Optional.empty());
+
+        // Gọi phương thức cần kiểm thử từ service
+        Optional<UserEntity> result = userService.findByEmail(longEmail);
+
+        // Kiểm tra kết quả
+        assertFalse(result.isPresent());
+
+        // Đảm bảo rằng phương thức findByEmail đã được gọi với đúng tham số
+        verify(userRepository).findByEmail(longEmail);
+    }
+
+    @Test
+    void testFindByEmail_EmailLength255() {
+        // Test Case 6: Email có độ dài vượt quá giới hạn
+        String longEmail = "a".repeat(255); // Giả sử giới hạn là 255 ký tự
+
+        when(userRepository.findByEmail(longEmail)).thenReturn(Optional.empty());
+
+        // Gọi phương thức cần kiểm thử từ service
+        Optional<UserEntity> result = userService.findByEmail(longEmail);
+
+        // Kiểm tra kết quả
+        assertFalse(result.isPresent());
+
+        // Đảm bảo rằng phương thức findByEmail đã được gọi với đúng tham số
+        verify(userRepository).findByEmail(longEmail);
+    }
+
+    @Test
+    void testFindByEmail_EmailExceedsMaxLength() {
+        // Test Case 7: Email có độ dài vượt quá giới hạn
         String longEmail = "a".repeat(256); // Giả sử giới hạn là 255 ký tự
 
         when(userRepository.findByEmail(longEmail)).thenReturn(Optional.empty());
@@ -105,7 +162,7 @@ public class UserServiceTest {
 
     @Test
     void testFindByEmail_InvalidEmailFormat() {
-        // Test Case 6: Email có định dạng không hợp lệ
+        // Test Case 8: Email có định dạng không hợp lệ
         String invalidEmail = "invalid-email";
 
         when(userRepository.findByEmail(invalidEmail)).thenReturn(Optional.empty());
@@ -120,11 +177,107 @@ public class UserServiceTest {
         verify(userRepository).findByEmail(invalidEmail);
     }
 
-    //test 7
+    //test
     @Test
     void testFindByEmail_EmailCaseInsensitive() {
+        //test case 9:
+        String originalEmail = "baoltthe153367@fpt.edu.vn";
+        UserEntity userEntity = new UserEntity();
+        userEntity.setEmail(originalEmail); userEntity.setUserId(4);
+        when(userRepository.findByEmail("baoltthe153367@fpt.edu.vn")).thenReturn(Optional.of(userEntity));
+
+        String uppercaseEmail = "BAOLTTHE153367@FPT.EDU.VN";
+        Optional<UserEntity> result = userService.findByEmail(uppercaseEmail.toLowerCase());
+        assertEquals(4, result.get().getUserId());
+    }
+
+
+    //registerUser
+    @Test
+    void testRegisterUser_ValidInput(){
+        UserDto userDto = new UserDto("a","0123456","a@gmail.com","123456","Bao","1");
+        userService.registerUser(userDto);
+        verify(userRepository, times(1)).save(userDto);
 
     }
+
+    @Test
+    void testRegisterUser_InValidInput(){
+        UserDto userDto = new UserDto();
+        userDto = null;
+        userService.registerUser(userDto);
+        verify(userRepository, never()).save(userDto);
+    }
+
+
+    //LoadUserByUsername
+    @Test
+    void testLoadUserByUsername_WithEmail() {
+        String username = "thaibaoa3k45@gmail.com";
+        UserEntity userEntity = new UserEntity();
+        userEntity.setEmail(username);
+        userEntity.setPassword("password");
+        userEntity.setRoleId("Member");
+
+        when(userRepository.findByEmail(username)).thenReturn(Optional.of(userEntity));
+
+        UserDetails userDetails = userService.loadUserByUsername(username);
+
+        assertNotNull(userDetails);
+        assertEquals(username, userDetails.getUsername());
+        assertEquals("password", userDetails.getPassword());
+        assertTrue(userDetails.isEnabled());
+
+    }
+
+    @Test
+    void testLoadUserByUsername_WithEmptyUsername() {
+        String emptyUsername = "";
+        assertThrows(UsernameNotFoundException.class, () -> userService.loadUserByUsername(emptyUsername));
+
+    }
+
+    @Test
+    void testLoadUserByUsername_WithNullUsername() {
+        String emptyUsername = "";
+        assertThrows(UsernameNotFoundException.class, () -> userService.loadUserByUsername(emptyUsername));
+
+    }
+
+
+    //findById
+    @Test
+    void testFindById_WithValidId() {
+        int userId = 3;
+        UserEntity userEntity = new UserEntity();
+        userEntity.setUserId(userId);
+
+
+
+        assertEquals(3,userEntity.getUserId());
+
+    }
+
+    @Test
+    void testFindById_WithNonExistingUser() {
+        // Arrange
+        int userId = 100000;
+
+        when(userRepository.findById(userId)).thenReturn(Optional.empty());
+
+        // Act
+        UserDto result = userService.findById(userId);
+
+        // Assert
+        assertNull(result);
+
+        // Verify that userRepository.findById() was called with the correct userId
+        verify(userRepository, times(1)).findById(userId);
+
+        // Verify that other repository methods were not called
+        verifyNoInteractions(addressRepository, provinceRepository, districtRepository, wardRepository);
+    }
+
 
     //save
     @Test
@@ -139,6 +292,10 @@ public class UserServiceTest {
         // Assert
         verify(userRepository, times(1)).save(userToSave);
     }
+
+
+
+
 
     //getUserForChangePass()
     @Test

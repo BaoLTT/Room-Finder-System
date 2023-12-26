@@ -32,4 +32,13 @@ public class UserDto {
     private String addressDetails;
     private String role;
     private String status;
+
+    public UserDto(String firstName, String phone, String email, String password, String lastName, String status) {
+        this.firstName = firstName;
+        this.phone = phone;
+        this.email = email;
+        this.password = password;
+        this.lastName = lastName;
+        this.status = status;
+    }
 }

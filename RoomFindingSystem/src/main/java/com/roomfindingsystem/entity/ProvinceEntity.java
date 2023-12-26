@@ -52,6 +52,8 @@ public class ProvinceEntity {
         return provinceId == that.provinceId && Objects.equals(name, that.name) && Objects.equals(code, that.code);
     }
 
+
+
     @Override
     public int hashCode() {
         return Objects.hash(provinceId, name, code);

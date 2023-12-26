@@ -60,4 +60,5 @@ class FavouriteRepositoryTest {
 
         assertEquals(111,optional.get().getFavouriteId());
     }
+
 }

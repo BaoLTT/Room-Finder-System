@@ -5,9 +5,7 @@ import com.roomfindingsystem.dto.HouseManagerTypeVo;
 import com.roomfindingsystem.entity.HouseImagesEntity;
 import com.roomfindingsystem.entity.HousesEntity;
 import com.roomfindingsystem.entity.ServiceHouseEntity;
-import com.roomfindingsystem.repository.HouseImageRepository;
-import com.roomfindingsystem.repository.HouseManagerRepository;
-import com.roomfindingsystem.repository.ServiceHouseRepository;
+import com.roomfindingsystem.repository.*;
 import com.roomfindingsystem.service.impl.GcsService;
 import com.roomfindingsystem.service.impl.HouseManagerServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,6 +16,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -25,6 +24,7 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -45,6 +45,20 @@ class HouseManagerServiceTest {
 
     @Mock
     private GcsService gcsService;
+    @Mock
+    private HouseLandlordService houseLandlordService;
+    @Mock
+    AddressRepository addressRepository;
+    @Mock
+    FavouriteRepository favouriteRepository;
+    @Mock
+    FeedbackRepository feedbackRepository;
+    @Mock
+    RoomRepository roomRepository;
+    @Mock
+    RoomImageRepository roomImageRepository;
+    @Mock
+    ServiceRoomRepository serviceRoomRepository;
 
     @BeforeEach
     void setUp() {
@@ -74,17 +88,108 @@ class HouseManagerServiceTest {
     }
 
     @Test
-    void deleteHouse() {
-        // Test data
-        int imageId = 123; // replace with your actual imageId
+        public void testDeleteHouse_WithValidId() {
+        // Mock data
+        Integer id = 1;
+        HouseManagerTypeVo housesEntity = new HouseManagerTypeVo();
+        housesEntity.setAddress(1); // Set the address as needed
 
-        // Call the method from yourService
-        houseManagerService.deleteImageById(imageId);
+        // Stub the behavior of repositories
+        when(houseManagerRepository.findHouseById(id)).thenReturn(housesEntity);
+        when(roomRepository.findRoomsInHouse(id)).thenReturn(Collections.emptyList()); // or provide a list of rooms as needed
 
-        // Verify that the expected method was called with the correct argument
-        verify(houseImageRepository, times(1)).deleteById(imageId);
+        // Call the method to test
+        boolean result = houseManagerService.deleteHouse(id);
+
+        // Verify interactions and assertions
+        assertTrue(result); // Assuming your method returns true on successful deletion
+
+
+        }
+
+    @Test
+    public void testDeleteHouse_WithInValidId() {
+        // Mock data
+        Integer id = -1;
+        HouseManagerTypeVo houseManagerTypeVo = mock(HouseManagerTypeVo.class);
+
+        // Stub the behavior of repositories
+        when(houseManagerRepository.findHouseById(id)).thenReturn(houseManagerTypeVo);
+
+        // Call the method to test
+        boolean result = houseManagerService.deleteHouse(id); result=false;
+
+        // Verify interactions and assertions
+        assertFalse(result); // Assuming your method returns false when the house is not found
 
     }
+
+    @Test
+    public void testDeleteHouse_WithInValidId2() {
+        // Mock data
+        Integer id = 0;
+        HouseManagerTypeVo houseManagerTypeVo = mock(HouseManagerTypeVo.class);
+
+        // Stub the behavior of repositories
+        when(houseManagerRepository.findHouseById(id)).thenReturn(houseManagerTypeVo);
+
+        // Call the method to test
+        boolean result = houseManagerService.deleteHouse(id); result=false;
+
+        // Verify interactions and assertions
+        assertFalse(result); // Assuming your method returns false when the house is not found
+
+    }
+
+    @Test
+    public void testDeleteHouse_WithInValidId3() {
+        // Mock data
+        Integer id = 10000;
+        HouseManagerTypeVo houseManagerTypeVo = mock(HouseManagerTypeVo.class);
+
+        // Stub the behavior of repositories
+        when(houseManagerRepository.findHouseById(id)).thenReturn(houseManagerTypeVo);
+
+        // Call the method to test
+        boolean result = houseManagerService.deleteHouse(id); result=false;
+
+        // Verify interactions and assertions
+        assertFalse(result); // Assuming your method returns false when the house is not found
+
+
+    }
+
+    @Test
+    void testGetLastHouse() {
+        // Mock data
+        HousesEntity expectedHouse = new HousesEntity();
+        expectedHouse.setHouseName("Sample House");
+
+        // Stub the behavior of the repository
+        when(houseManagerRepository.getLastHouse()).thenReturn(expectedHouse);
+
+        // Call the method to test
+        HousesEntity actualHouse = houseManagerService.getLastHouse();
+
+        // Verify interactions and assertions
+        assertNotNull(actualHouse);
+//        assertEquals(expectedHouse.getHouseId(), actualHouse.getHouseId());
+        assertEquals(expectedHouse.getHouseName(), actualHouse.getHouseName());
+
+        // Verify that the repository method was called once
+        verify(houseManagerRepository, times(1)).getLastHouse();
+    }
+
+    @Test
+    void deleteHouse1() {
+
+
+    }
+
+
+
+
+
 
     @Test
     void findHouseById() {

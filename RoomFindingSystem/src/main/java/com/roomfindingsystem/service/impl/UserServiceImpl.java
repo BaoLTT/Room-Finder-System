@@ -72,6 +72,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void registerUser(UserDto userDto) {
+        if(userDto==null) {
+            return ;
+        }
         userRepository.save(userDto);
     }
 
@@ -112,7 +115,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDto findById(int id) {
         Optional<UserEntity> optionalUser = userRepository.findById(id);
-        UserEntity user = optionalUser.get();
+        UserEntity user ;
+        if (optionalUser.isPresent()) {
+            user = optionalUser.get();
+        } else {
+            return null;
+        }
         UserDto userDto = modelMapper.map(user, UserDto.class);
 
         if(user.getAddressId()!=0){

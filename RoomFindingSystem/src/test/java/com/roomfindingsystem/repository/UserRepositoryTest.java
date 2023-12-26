@@ -1,6 +1,7 @@
 package com.roomfindingsystem.repository;
 
 
+import com.roomfindingsystem.dto.UserDto;
 import com.roomfindingsystem.entity.UserEntity;
 import com.roomfindingsystem.repository.UserRepository;
 
@@ -27,34 +28,35 @@ public class UserRepositoryTest {
 
    @Test
    void testFindByEmailWhenEmailExists() {
-      // Arrange
+      // 1
       String emailToFind = "baoltthe153367@fpt.edu.vn";
       UserEntity userEntity = new UserEntity();
 //      userEntity.setEmail(emailToFind);
       userEntity.setUserId(4);
 
-      // Act
+
       Optional<UserEntity> result = userRepository.findByEmail(emailToFind);
 
 
-      // Assert
+
       assertTrue(result.isPresent());
-//      assertEquals(emailToFind, result.get().getEmail());
+
       assertEquals(4, result.get().getUserId());
-      // Add more assertions based on your business logic and expectations
+
    }
 
 
    @Test
    void testFindByEmailWhenEmailDoesNotExist() {
-      // Arrange
-      String nonExistentEmail = "nonexistent@example.com";
+      // 2
+      String nonExistentEmail = "abc@gmail.com";
 
-      // Act
+
       Optional<UserEntity> result = userRepository.findByEmail(nonExistentEmail);
 
-      // Assert
+
       assertFalse(result.isPresent());
+
    }
 
    @Test
@@ -79,8 +81,38 @@ public class UserRepositoryTest {
    }
 
    @Test
+   void testFindByEmail_EmailLength254() {
+      // Test Case 5
+      String longEmail = "a".repeat(254); // Giả sử giới hạn là 255 ký tự
+
+
+      // Gọi phương thức cần kiểm thử từ service
+      Optional<UserEntity> result = userRepository.findByEmail(longEmail);
+
+      // Kiểm tra kết quả
+      assertFalse(result.isPresent());
+
+
+   }
+
+   @Test
+   void testFindByEmail_EmailLength255() {
+      // Test Case 6:
+      String longEmail = "a".repeat(255);
+
+
+      // Gọi phương thức cần kiểm thử từ service
+      Optional<UserEntity> result = userRepository.findByEmail(longEmail);
+
+      // Kiểm tra kết quả
+      assertFalse(result.isPresent());
+
+
+   }
+
+   @Test
    void testFindByEmail_EmailExceedsMaxLength() {
-      // Test Case 5: Email có độ dài vượt quá giới hạn
+      // Test Case 7: Email có độ dài vượt quá giới hạn
       String longEmail = "a".repeat(256); // Giả sử giới hạn là 255 ký tự
 
 
@@ -94,8 +126,23 @@ public class UserRepositoryTest {
    }
 
    @Test
+   void testFindByEmail_Invalid() {
+      // Test Case 8:
+      String longEmail = "invalid"; // Giả sử giới hạn là 255 ký tự
+
+
+      // Gọi phương thức cần kiểm thử từ service
+      Optional<UserEntity> result = userRepository.findByEmail(longEmail);
+
+      // Kiểm tra kết quả
+      assertFalse(result.isPresent());
+
+
+   }
+
+   @Test
    void testFindByEmail_EmailCaseInsensitive() {
-      // Test Case 7: Email tồn tại nhưng với ký tự hoa/thường khác nhau
+      // Test Case 9: Email tồn tại nhưng với ký tự hoa/thường khác nhau
       String originalEmail = "baoltthe153367@fpt.edu.vn";
       UserEntity userEntity = new UserEntity();
       userEntity.setEmail(originalEmail);
@@ -106,9 +153,18 @@ public class UserRepositoryTest {
       Optional<UserEntity> result = userRepository.findByEmail(uppercaseEmail);
 
       assertTrue(result.isPresent());
-      assertEquals(originalEmail, result.get().getEmail());
+      assertEquals(4, result.get().getUserId());
 
    }
+
+
+
+   //registerUser
+
+
+
+
+
 
    //save()
    @Test
