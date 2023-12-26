@@ -72,7 +72,7 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label>Phòng<em style="color: red">*</em></label>
-                                            <input type="text" class="form-control" id="nameRoom" required  onchange="resetCustomValidity(this)"
+                                            <input type="text" class="form-control" id="nameRoom" required   onchange="resetCustomValidity(this)" oninput="removeWhitespace(this)"
                                                    placeholder="P101" th:field="*{roomName}"/>
 
                                         </div>
@@ -81,7 +81,7 @@
                                         <div class="form-group">
                                             <label>Diện tích (m2)<em style="color: red">*</em></label>
                                             <div>
-                                                <input type="number" id="area" class="form-control" required
+                                                <input type="number" id="area" class="form-control" required oninput="removeinputnumber(this)"
                                                        placeholder="20" th:field="*{area}"/>
                                             </div>
                                         </div>
@@ -90,7 +90,7 @@
                                         <div class="form-group">
                                             <label>Giá (VND)<em style="color: red">*</em></label>
                                             <div>
-                                                <input type="number" class="form-control" required
+                                                <input type="number" class="form-control" required oninput="removeinputnumber(this)"
                                                        placeholder="2.000.000" th:field="*{price}"/>
                                             </div>
                                         </div>
@@ -99,7 +99,7 @@
                                         <div class="form-group">
                                             <label>Tầng<em style="color: red">*</em></label>
                                             <div>
-                                                <input type="number" class="form-control" required
+                                                <input type="number" class="form-control" required oninput="removeinputnumber(this)"
                                                        placeholder="1" th:field="*{floor}"/>
                                             </div>
                                         </div>
@@ -266,7 +266,35 @@
         }
     }
 </script>
+<script>
+    function removeWhitespace(inputField) {
+        var inputValue = inputField.value.trim();
 
+        // Kiểm tra nếu giá trị là khoảng trắng
+        if (inputValue === '') {
+            // Set custom validity để hiển thị thông báo lỗi
+            inputField.setCustomValidity('Vui lòng nhập tên phòng.');
+        } else {
+            // Reset custom validity nếu không có lỗi
+            inputField.setCustomValidity('');
+        }
+
+    }
+
+    function removeinputnumber(inputField) {
+        var inputValue = inputField.value;
+
+        // Kiểm tra nếu giá trị là khoảng trắng
+        if (inputValue <0) {
+            // Set custom validity để hiển thị thông báo lỗi
+            inputField.setCustomValidity('Vui lòng nhập > 0.');
+        } else {
+            // Reset custom validity nếu không có lỗi
+            inputField.setCustomValidity('');
+        }
+
+    }
+</script>
 <script>
     function closeInput() {
         // Ẩn khối div và làm mờ phần đằng sau khi nhấn nút Close

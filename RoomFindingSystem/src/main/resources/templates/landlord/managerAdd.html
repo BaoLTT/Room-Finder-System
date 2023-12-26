@@ -64,7 +64,7 @@
                             <div class="col-md-7">
                                 <div class="form-group">
                                     <label>Tên trọ<em style="color: red">*</em></label>
-                                    <input type="text" class="form-control"  name="houseName" placeholder="Tên trọ..." required="" id="inputField"  oninput="removeWhitespace(this)" onchange="resetCustomValidity(this)"
+                                    <input type="text" class="form-control"  name="houseName" placeholder="Tên trọ..." required="" id="inputField"   onchange="resetCustomValidity(this)"
                                            pattern="^[a-zA-Z0-9aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆgGhHiIìÌỉỈĩĨíÍịỊkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTuUùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVxXyYỳỲỷỶỹỸýÝỵỴ ]+$" th:field="*{houseName}">
                                 </div>
                                 <!--end form-group-->
@@ -216,6 +216,13 @@
     /*]]>*/
     function resetCustomValidity(input) {
         var nameHouse = input;
+        if (nameHouse.value.trim() === '') {
+            // Set custom validity để hiển thị thông báo lỗi
+            nameHouse.setCustomValidity('Vui lòng nhập tên.');
+        } else {
+            // Reset custom validity nếu không có lỗi
+            nameHouse.setCustomValidity('');
+        }
         for (var i = 0; i < exithouse.length; i++) {
             if (exithouse[i].houseName.toUpperCase().trim() === nameHouse.value.toUpperCase().trim()) {
                 nameHouse.setCustomValidity("Tên đã trùng lặp.");

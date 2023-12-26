@@ -132,14 +132,7 @@ public class RoomLandlordController {
         return "redirect:/landlord/room/updateRoom/" + roomId;
     }
 
-    private boolean isDuplicateRoomName(List<RoomDto> existingRooms, String newRoomName) {
-        for (RoomDto existingRoom : existingRooms) {
-            if (existingRoom.getRoomName().equalsIgnoreCase(newRoomName)) {
-                return true; // Tìm thấy tên phòng trùng lặp
-            }
-        }
-        return false; // Không tìm thấy tên phòng trùng lặp
-    }
+
 }
 
 

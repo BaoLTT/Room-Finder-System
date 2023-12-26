@@ -75,7 +75,7 @@
                                         <div class="form-group">
                                             <label>Diện tích (m2)<em style="color: red">*</em></label>
                                             <div>
-                                                <input type="number" id="area" class="form-control" required
+                                                <input type="number" id="area" class="form-control" required oninput="removeinputnumber(this)"
                                                        placeholder="20" th:field="*{area}"/>
                                             </div>
                                         </div>
@@ -84,7 +84,7 @@
                                         <div class="form-group">
                                             <label>Giá (VND)<em style="color: red">*</em></label>
                                             <div>
-                                                <input type="number" class="form-control" required
+                                                <input type="number" class="form-control" required oninput="removeinputnumber(this)"
                                                        placeholder="2.000.000" th:field="*{price}"/>
                                             </div>
                                         </div>
@@ -93,7 +93,7 @@
                                         <div class="form-group">
                                             <label>Tầng<em style="color: red">*</em></label>
                                             <div>
-                                                <input type="number" class="form-control" required
+                                                <input type="number" class="form-control" required oninput="removeinputnumber(this)"
                                                        placeholder="1" th:field="*{floor}"/>
                                             </div>
                                         </div>
@@ -225,6 +225,19 @@
                 nameRoom.setCustomValidity("");
             }
         }
+    }
+    function removeinputnumber(inputField) {
+        var inputValue = inputField.value;
+
+        // Kiểm tra nếu giá trị là khoảng trắng
+        if (inputValue <0) {
+            // Set custom validity để hiển thị thông báo lỗi
+            inputField.setCustomValidity('Vui lòng nhập > 0.');
+        } else {
+            // Reset custom validity nếu không có lỗi
+            inputField.setCustomValidity('');
+        }
+
     }
 </script>
 <div class="rightbar-overlay"></div>
