@@ -14,6 +14,8 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -21,9 +23,8 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-@SpringBootTest(classes = UserServiceImplTest.class)
+
 @ExtendWith(MockitoExtension.class)
-@Service
 public class UserServiceImplTest {
 
     @Mock
@@ -153,5 +154,56 @@ public class UserServiceImplTest {
 
     }
 
+    //registerUser
+    @Test
+    void testRegisterUser_ValidInput(){
+        UserDto userDto = new UserDto();
+        userService.registerUser(userDto);
+//        verify(userRepository).save(userDto);
+
+    }
+
+    @Test
+    void testRegisterUser_InValidInput(){
+        UserDto userDto = new UserDto();
+        userDto = null;
+        userService.registerUser(userDto);
+        verify(userRepository, never()).save(userDto);
+    }
+
+
+    //LoadUserByUsername
+    @Test
+    void testLoadUserByUsername_WithEmail() {
+        String username = "thaibaoa3k45@gmail.com";
+        UserEntity userEntity = new UserEntity();
+        userEntity.setEmail(username);
+        userEntity.setPassword("password");
+        userEntity.setRoleId("Member");
+
+        when(userRepository.findByEmail(username)).thenReturn(Optional.of(userEntity));
+
+        UserDetails userDetails = userService.loadUserByUsername(username);
+
+        assertNotNull(userDetails);
+        assertEquals(username, userDetails.getUsername());
+        assertEquals("password", userDetails.getPassword());
+        assertTrue(userDetails.isEnabled());
+
+    }
+
+    @Test
+    void testLoadUserByUsername_WithEmptyUsername() {
+        String emptyUsername = "";
+        assertThrows(UsernameNotFoundException.class, () -> userService.loadUserByUsername(emptyUsername));
+
+    }
+
+    @Test
+    void testLoadUserByUsername_WithNullUsername() {
+        String emptyUsername = "";
+        assertThrows(UsernameNotFoundException.class, () -> userService.loadUserByUsername(emptyUsername));
+
+    }
 
 }

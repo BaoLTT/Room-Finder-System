@@ -3,6 +3,7 @@ package com.roomfindingsystem.service;
 import com.roomfindingsystem.dto.RoomAdminDashboardDto;
 import com.roomfindingsystem.dto.RoomDto;
 import com.roomfindingsystem.dto.RoomHouseDetailDto;
+import com.roomfindingsystem.entity.ServiceDetailEntity;
 import com.roomfindingsystem.repository.RoomRepository;
 import com.roomfindingsystem.service.impl.RoomServiceImpl;
 import jakarta.persistence.Tuple;
@@ -18,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -964,5 +966,41 @@ public class RoomServiceTest {
         assertEquals(0, count);
     }
 
+    @Test
+    void testGetAll() {
+        // Mock data
+        List<RoomDto> mockRoomDtos = Arrays.asList(
+                new RoomDto(1, "Room 1"),
+                new RoomDto(2, "Room 2")
+                // Add more rooms as needed
+        );
 
+        List<ServiceDetailEntity> mockServiceDetails = Arrays.asList(
+                new ServiceDetailEntity(1, "Service 1"),
+                new ServiceDetailEntity(2, "Service 2")
+                // Add more services as needed
+        );
+
+        // Stub the behavior of the repository methods
+        when(roomRepository.findRoomsDetail()).thenReturn(mockRoomDtos);
+        when(roomRepository.getServiceByRoomId(anyInt())).thenReturn(mockServiceDetails);
+
+        // Call the method to test
+        List<RoomDto> result = roomService.getAll();
+
+        // Verify that the repository methods were called
+        verify(roomRepository, times(1)).findRoomsDetail();
+        verify(roomRepository, times(mockRoomDtos.size())).getServiceByRoomId(anyInt());
+
+        // Assert that the result is as expected
+        assertEquals(mockRoomDtos.size(), result.size());
+
+        // You may need to customize this assertion based on your actual logic
+        // For example, check that services are set correctly for each room
+        for (int i = 0; i < mockRoomDtos.size(); i++) {
+            assertEquals(mockRoomDtos.get(i).getRoomId(), result.get(i).getRoomId());
+            assertEquals(mockRoomDtos.get(i).getRoomName(), result.get(i).getRoomName());
+            assertEquals("Service 1, Service 2", result.get(i).getServices());
+        }
+    }
 }
