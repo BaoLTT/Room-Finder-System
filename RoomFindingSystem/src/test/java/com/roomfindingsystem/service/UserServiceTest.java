@@ -157,6 +157,18 @@ public class UserServiceTest {
         assertEquals(userEntity.getPassword(), result);
         verify(userRepository, times(1)).getUserEntitiesByUserId(email);
     }
+    @Test
+    public void testSaveUser_UnSuccess() {
+        // Arrange
+        UserEntity userToSave = new UserEntity();
+        when(userRepository.save(userToSave)).thenReturn(userToSave);
+
+        // Act
+        userService.saveUser(userToSave);
+
+        // Assert
+        verify(userRepository, times(1)).save(userToSave);
+    }
 
     @Test
     void testGetUserForChangePass_InvalidEmail() {
