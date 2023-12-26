@@ -1,5 +1,6 @@
 package com.roomfindingsystem.service;
 
+import com.roomfindingsystem.dto.ReportListDto;
 import com.roomfindingsystem.entity.ReportEntity;
 import com.roomfindingsystem.repository.ReportRepository;
 import com.roomfindingsystem.service.impl.ReportServiceImpl;
@@ -9,6 +10,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -67,4 +69,640 @@ public class ReportServiceTest {
         verify(reportRepository, times(1)).getReportEntityByUid(houseId, userId);
     }
 
+    @Test
+    public void testCountReports() {
+        // Create a mock for the reportRepository
+        ReportRepository reportRepository = mock(ReportRepository.class);
+
+        // Set up the behavior for reportRepository.countReports
+        when(reportRepository.countReports()).thenReturn(5); // Set the expected count value
+
+        // Create an instance of the service under test
+        reportService  = new ReportServiceImpl(reportRepository);
+
+        // Call the method to be tested
+        int result = reportService.countReports();
+
+        // Check the result
+        assertEquals(5, result); // Adjust the expected count value as needed
+
+        // Verify that reportRepository.countReports was called
+        verify(reportRepository, times(1)).countReports();
+    }
+
+    @Test
+    public void testCountProcessingReports() {
+        // Create a mock for the reportRepository
+        ReportRepository reportRepository = mock(ReportRepository.class);
+
+        // Set up the behavior for reportRepository.countReports
+        when(reportRepository.countProcessingReports()).thenReturn(5); // Set the expected count value
+
+        // Create an instance of the service under test
+        reportService  = new ReportServiceImpl(reportRepository);
+
+        // Call the method to be tested
+        int result = reportService.countProcessingReports();
+
+        // Check the result
+        assertEquals(5, result); // Adjust the expected count value as needed
+
+        // Verify that reportRepository.countReports was called
+        verify(reportRepository, times(1)).countProcessingReports();
+    }
+
+    @Test
+    public void testCountProcessedReports() {
+        // Create a mock for the reportRepository
+        ReportRepository reportRepository = mock(ReportRepository.class);
+
+        // Set up the behavior for reportRepository.countReports
+        when(reportRepository.countProcessedReports()).thenReturn(5); // Set the expected count value
+
+        // Create an instance of the service under test
+        reportService  = new ReportServiceImpl(reportRepository);
+
+        // Call the method to be tested
+        int result = reportService.countProcessedReports();
+
+        // Check the result
+        assertEquals(5, result); // Adjust the expected count value as needed
+
+        // Verify that reportRepository.countReports was called
+        verify(reportRepository, times(1)).countProcessedReports();
+    }
+
+    @Test
+    public void testGetReportEntityByUid1() {
+        // Create a mock for the reportRepository
+        ReportRepository reportRepository = mock(ReportRepository.class);
+
+        // Create some dummy data for the expected result
+        ReportEntity report1 = new ReportEntity();
+        report1.setReportid(1);
+
+        ReportEntity report2 = new ReportEntity();
+        report2.setReportid(2);
+
+        List<ReportEntity> expectedReports = Arrays.asList(report1, report2);
+
+        // Set up the behavior for reportRepository.getReportEntityByUid
+        when(reportRepository.getReportEntityByUid(1, 5)).thenReturn(expectedReports);
+
+        // Create an instance of the service under test
+        reportService = new ReportServiceImpl(reportRepository);
+
+        // Call the method to be tested
+        List<ReportEntity> result = reportService.getReportEntityByUid(1, 5);
+
+        // Check the result
+        assertEquals(expectedReports, result);
+
+        // Verify that reportRepository.getReportEntityByUid was called with the correct parameters
+        verify(reportRepository, times(1)).getReportEntityByUid(1, 5);
+    }
+
+    @Test
+    public void testGetReportEntityByUid2() {
+        // Create a mock for the reportRepository
+        ReportRepository reportRepository = mock(ReportRepository.class);
+
+        // Create some dummy data for the expected result
+        ReportEntity report1 = new ReportEntity();
+        report1.setReportid(1);
+
+        ReportEntity report2 = new ReportEntity();
+        report2.setReportid(2);
+
+        List<ReportEntity> expectedReports = Arrays.asList(report1, report2);
+
+        // Set up the behavior for reportRepository.getReportEntityByUid
+        when(reportRepository.getReportEntityByUid(-1, 5)).thenReturn(expectedReports);
+
+        // Create an instance of the service under test
+        reportService = new ReportServiceImpl(reportRepository);
+
+        // Call the method to be tested
+        List<ReportEntity> result = reportService.getReportEntityByUid(-1, 5);
+
+        // Check the result
+        assertEquals(expectedReports, result);
+
+        // Verify that reportRepository.getReportEntityByUid was called with the correct parameters
+        verify(reportRepository, times(1)).getReportEntityByUid(-1, 5);
+    }
+
+    @Test
+    public void testGetReportEntityByUid3() {
+        // Create a mock for the reportRepository
+        ReportRepository reportRepository = mock(ReportRepository.class);
+
+        // Create some dummy data for the expected result
+        ReportEntity report1 = new ReportEntity();
+        report1.setReportid(1);
+
+        ReportEntity report2 = new ReportEntity();
+        report2.setReportid(2);
+
+        List<ReportEntity> expectedReports = Arrays.asList(report1, report2);
+
+        // Set up the behavior for reportRepository.getReportEntityByUid
+        when(reportRepository.getReportEntityByUid(1, -1)).thenReturn(expectedReports);
+
+        // Create an instance of the service under test
+        reportService = new ReportServiceImpl(reportRepository);
+
+        // Call the method to be tested
+        List<ReportEntity> result = reportService.getReportEntityByUid(1, -1);
+
+        // Check the result
+        assertEquals(expectedReports, result);
+
+        // Verify that reportRepository.getReportEntityByUid was called with the correct parameters
+        verify(reportRepository, times(1)).getReportEntityByUid(1, -1);
+    }
+
+    @Test
+    public void testGetReportEntityByUid4() {
+        // Create a mock for the reportRepository
+        ReportRepository reportRepository = mock(ReportRepository.class);
+
+        // Create some dummy data for the expected result
+        ReportEntity report1 = new ReportEntity();
+        report1.setReportid(1);
+
+        ReportEntity report2 = new ReportEntity();
+        report2.setReportid(2);
+
+        List<ReportEntity> expectedReports = Arrays.asList(report1, report2);
+
+        // Set up the behavior for reportRepository.getReportEntityByUid
+        when(reportRepository.getReportEntityByUid(-1, -1)).thenReturn(expectedReports);
+
+        // Create an instance of the service under test
+        reportService = new ReportServiceImpl(reportRepository);
+
+        // Call the method to be tested
+        List<ReportEntity> result = reportService.getReportEntityByUid(-1, -1);
+
+        // Check the result
+        assertEquals(expectedReports, result);
+
+        // Verify that reportRepository.getReportEntityByUid was called with the correct parameters
+        verify(reportRepository, times(1)).getReportEntityByUid(-1, -1);
+    }
+
+    @Test
+    public void testDeleteByHouseIdAndMemberId() {
+        // Create a mock for the reportRepository
+        ReportRepository reportRepository = mock(ReportRepository.class);
+
+        // Create an instance of the service under test
+        reportService = new ReportServiceImpl(reportRepository);
+
+        // Call the method to be tested
+        reportService.deleteByHouseIdAndMemberId(1, 1);
+
+        // Verify that reportRepository.deleteByHouseIdAndMemberId was called with the correct parameters
+        verify(reportRepository, times(1)).deleteByHouseIdAndMemberId(1, 1);
+    }
+
+    @Test
+    public void testDeleteByHouseIdAndMemberId2() {
+        // Create a mock for the reportRepository
+        ReportRepository reportRepository = mock(ReportRepository.class);
+
+        // Create an instance of the service under test
+        reportService = new ReportServiceImpl(reportRepository);
+
+        // Call the method to be tested
+        reportService.deleteByHouseIdAndMemberId(-1, 1);
+
+        // Verify that reportRepository.deleteByHouseIdAndMemberId was called with the correct parameters
+        verify(reportRepository, times(1)).deleteByHouseIdAndMemberId(-1, 1);
+    }
+
+    @Test
+    public void testDeleteByHouseIdAndMemberId3() {
+        // Create a mock for the reportRepository
+        ReportRepository reportRepository = mock(ReportRepository.class);
+
+        // Create an instance of the service under test
+        reportService = new ReportServiceImpl(reportRepository);
+
+        // Call the method to be tested
+        reportService.deleteByHouseIdAndMemberId(1, -1);
+
+        // Verify that reportRepository.deleteByHouseIdAndMemberId was called with the correct parameters
+        verify(reportRepository, times(1)).deleteByHouseIdAndMemberId(1, -1);
+    }
+
+    @Test
+    public void testDeleteByHouseIdAndMemberId4() {
+        // Create a mock for the reportRepository
+        ReportRepository reportRepository = mock(ReportRepository.class);
+
+        // Create an instance of the service under test
+        reportService = new ReportServiceImpl(reportRepository);
+
+        // Call the method to be tested
+        reportService.deleteByHouseIdAndMemberId(-1, -1);
+
+        // Verify that reportRepository.deleteByHouseIdAndMemberId was called with the correct parameters
+        verify(reportRepository, times(1)).deleteByHouseIdAndMemberId(-1, -1);
+    }
+
+    @Test
+    public void testGetAllReport() {
+        // Create a mock for the reportRepository
+        ReportRepository reportRepository = mock(ReportRepository.class);
+
+        // Create some dummy data for the expected result
+        ReportListDto report1 = new ReportListDto();
+        report1.setReportId(1);
+
+        ReportListDto report2 = new ReportListDto();
+        report2.setReportId(2);
+
+        List<ReportListDto> expectedReports = Arrays.asList(report1, report2);
+
+        // Set up the behavior for reportRepository.findAllReport
+        when(reportRepository.findAllReport()).thenReturn(expectedReports);
+
+        // Create an instance of the service under test
+        reportService = new ReportServiceImpl(reportRepository);
+
+        // Call the method to be tested
+        List<ReportListDto> result = reportService.getAllReport();
+
+        // Check the result
+        assertEquals(expectedReports, result);
+
+        // Verify that reportRepository.findAllReport was called
+        verify(reportRepository, times(1)).findAllReport();
+    }
+
+    @Test
+    public void testUpdateStatusProcessed() {
+        // Create a mock for the reportRepository
+        ReportRepository reportRepository = mock(ReportRepository.class);
+
+        // Create an instance of the service under test
+        reportService = new ReportServiceImpl(reportRepository);
+
+        // Define the ID for testing
+        int reportId = 1;
+
+        // Set up the behavior for reportRepository.updateStatusReportProcessed
+        when(reportRepository.updateStatusReportProcessed(reportId)).thenReturn(1); // Assuming 1 row is affected
+
+        // Call the method to be tested
+        int affectedRows = reportService.updateStatusProcessed(reportId);
+
+        // Verify that reportRepository.updateStatusReportProcessed was called with the correct parameter
+        verify(reportRepository, times(1)).updateStatusReportProcessed(reportId);
+
+        // Check the result, assuming the repository method returns the number of affected rows
+        assertEquals(1, affectedRows);
+    }
+
+    @Test
+    public void testUpdateStatusProcessed2() {
+        // Create a mock for the reportRepository
+        ReportRepository reportRepository = mock(ReportRepository.class);
+
+        // Create an instance of the service under test
+        reportService = new ReportServiceImpl(reportRepository);
+
+        // Define the ID for testing
+        int reportId = -1;
+
+        // Set up the behavior for reportRepository.updateStatusReportProcessed
+        when(reportRepository.updateStatusReportProcessed(reportId)).thenReturn(1); // Assuming 1 row is affected
+
+        // Call the method to be tested
+        int affectedRows = reportService.updateStatusProcessed(reportId);
+
+        // Verify that reportRepository.updateStatusReportProcessed was called with the correct parameter
+        verify(reportRepository, times(1)).updateStatusReportProcessed(reportId);
+
+        // Check the result, assuming the repository method returns the number of affected rows
+        assertEquals(1, affectedRows);
+    }
+
+    @Test
+    public void testUpdateStatusProcessed3() {
+        // Create a mock for the reportRepository
+        ReportRepository reportRepository = mock(ReportRepository.class);
+
+        // Create an instance of the service under test
+        reportService = new ReportServiceImpl(reportRepository);
+
+        // Define the ID for testing
+        int reportId = 0;
+
+        // Set up the behavior for reportRepository.updateStatusReportProcessed
+        when(reportRepository.updateStatusReportProcessed(reportId)).thenReturn(1); // Assuming 1 row is affected
+
+        // Call the method to be tested
+        int affectedRows = reportService.updateStatusProcessed(reportId);
+
+        // Verify that reportRepository.updateStatusReportProcessed was called with the correct parameter
+        verify(reportRepository, times(1)).updateStatusReportProcessed(reportId);
+
+        // Check the result, assuming the repository method returns the number of affected rows
+        assertEquals(1, affectedRows);
+    }
+
+    @Test
+    public void testUpdateStatusHandle() {
+        // Create a mock for the reportRepository
+        ReportRepository reportRepository = mock(ReportRepository.class);
+
+        // Create an instance of the service under test
+        reportService = new ReportServiceImpl(reportRepository);
+
+        // Define the ID for testing
+        int reportId = 1;
+
+        // Set up the behavior for reportRepository.updateStatusReportProcessed
+        when(reportRepository.updateStatusReportHandle(reportId)).thenReturn(1); // Assuming 1 row is affected
+
+        // Call the method to be tested
+        int affectedRows = reportService.updateStatusHandle(reportId);
+
+        // Verify that reportRepository.updateStatusReportProcessed was called with the correct parameter
+        verify(reportRepository, times(1)).updateStatusReportHandle(reportId);
+
+        // Check the result, assuming the repository method returns the number of affected rows
+        assertEquals(1, affectedRows);
+    }
+
+    @Test
+    public void testUpdateStatusHandle2() {
+        // Create a mock for the reportRepository
+        ReportRepository reportRepository = mock(ReportRepository.class);
+
+        // Create an instance of the service under test
+        reportService = new ReportServiceImpl(reportRepository);
+
+        // Define the ID for testing
+        int reportId = -1;
+
+        // Set up the behavior for reportRepository.updateStatusReportProcessed
+        when(reportRepository.updateStatusReportHandle(reportId)).thenReturn(1); // Assuming 1 row is affected
+
+        // Call the method to be tested
+        int affectedRows = reportService.updateStatusHandle(reportId);
+
+        // Verify that reportRepository.updateStatusReportProcessed was called with the correct parameter
+        verify(reportRepository, times(1)).updateStatusReportHandle(reportId);
+
+        // Check the result, assuming the repository method returns the number of affected rows
+        assertEquals(1, affectedRows);
+    }
+    @Test
+    public void testUpdateStatusHandle3() {
+        // Create a mock for the reportRepository
+        ReportRepository reportRepository = mock(ReportRepository.class);
+
+        // Create an instance of the service under test
+        reportService = new ReportServiceImpl(reportRepository);
+
+        // Define the ID for testing
+        int reportId = 0;
+
+        // Set up the behavior for reportRepository.updateStatusReportProcessed
+        when(reportRepository.updateStatusReportHandle(reportId)).thenReturn(1); // Assuming 1 row is affected
+
+        // Call the method to be tested
+        int affectedRows = reportService.updateStatusHandle(reportId);
+
+        // Verify that reportRepository.updateStatusReportProcessed was called with the correct parameter
+        verify(reportRepository, times(1)).updateStatusReportHandle(reportId);
+
+        // Check the result, assuming the repository method returns the number of affected rows
+        assertEquals(1, affectedRows);
+    }
+
+    @Test
+    public void testUpdateStatusWaiting() {
+        // Create a mock for the reportRepository
+        ReportRepository reportRepository = mock(ReportRepository.class);
+
+        // Create an instance of the service under test
+        reportService = new ReportServiceImpl(reportRepository);
+
+        // Define the ID for testing
+        int reportId = 1;
+
+        // Set up the behavior for reportRepository.updateStatusReportWaiting
+        when(reportRepository.updateStatusReportWaiting(reportId)).thenReturn(1); // Assuming 1 row is affected
+
+        // Call the method to be tested
+        int affectedRows = reportService.updateStatusWaiting(reportId);
+
+        // Verify that reportRepository.updateStatusReportWaiting was called with the correct parameter
+        verify(reportRepository, times(1)).updateStatusReportWaiting(reportId);
+
+        // Check the result, assuming the repository method returns the number of affected rows
+        assertEquals(1, affectedRows);
+    }
+
+    @Test
+    public void testUpdateStatusWaiting2() {
+        // Create a mock for the reportRepository
+        ReportRepository reportRepository = mock(ReportRepository.class);
+
+        // Create an instance of the service under test
+        reportService = new ReportServiceImpl(reportRepository);
+
+        // Define the ID for testing
+        int reportId = -1;
+
+        // Set up the behavior for reportRepository.updateStatusReportWaiting
+        when(reportRepository.updateStatusReportWaiting(reportId)).thenReturn(1); // Assuming 1 row is affected
+
+        // Call the method to be tested
+        int affectedRows = reportService.updateStatusWaiting(reportId);
+
+        // Verify that reportRepository.updateStatusReportWaiting was called with the correct parameter
+        verify(reportRepository, times(1)).updateStatusReportWaiting(reportId);
+
+        // Check the result, assuming the repository method returns the number of affected rows
+        assertEquals(1, affectedRows);
+    }
+
+    @Test
+    public void testUpdateStatusWaiting3() {
+        // Create a mock for the reportRepository
+        ReportRepository reportRepository = mock(ReportRepository.class);
+
+        // Create an instance of the service under test
+        reportService = new ReportServiceImpl(reportRepository);
+
+        // Define the ID for testing
+        int reportId = 0;
+
+        // Set up the behavior for reportRepository.updateStatusReportWaiting
+        when(reportRepository.updateStatusReportWaiting(reportId)).thenReturn(1); // Assuming 1 row is affected
+
+        // Call the method to be tested
+        int affectedRows = reportService.updateStatusWaiting(reportId);
+
+        // Verify that reportRepository.updateStatusReportWaiting was called with the correct parameter
+        verify(reportRepository, times(1)).updateStatusReportWaiting(reportId);
+
+        // Check the result, assuming the repository method returns the number of affected rows
+        assertEquals(1, affectedRows);
+    }
+
+    @Test
+    public void testUpdateSolve() {
+        // Create a mock for the reportRepository
+        ReportRepository reportRepository = mock(ReportRepository.class);
+
+        // Create an instance of the service under test
+        reportService = new ReportServiceImpl(reportRepository);
+
+        // Define the parameters for testing
+        LocalDate solveDate = LocalDate.now();
+        int reportId = 1;
+
+        // Set up the behavior for reportRepository.updateProcessedDate
+        when(reportRepository.updateProcessedDate(solveDate, reportId)).thenReturn(1); // Assuming 1 row is affected
+
+        // Call the method to be tested
+        int affectedRows = reportService.updateSolve(solveDate, reportId);
+
+        // Verify that reportRepository.updateProcessedDate was called with the correct parameters
+        verify(reportRepository, times(1)).updateProcessedDate(solveDate, reportId);
+
+        // Check the result, assuming the repository method returns the number of affected rows
+        assertEquals(1, affectedRows);
+    }
+    @Test
+    public void testUpdateSolve2() {
+        // Create a mock for the reportRepository
+        ReportRepository reportRepository = mock(ReportRepository.class);
+
+        // Create an instance of the service under test
+        reportService = new ReportServiceImpl(reportRepository);
+
+        // Define the parameters for testing
+        LocalDate solveDate = LocalDate.now();
+        int reportId = -1;
+
+        // Set up the behavior for reportRepository.updateProcessedDate
+        when(reportRepository.updateProcessedDate(solveDate, reportId)).thenReturn(1); // Assuming 1 row is affected
+
+        // Call the method to be tested
+        int affectedRows = reportService.updateSolve(solveDate, reportId);
+
+        // Verify that reportRepository.updateProcessedDate was called with the correct parameters
+        verify(reportRepository, times(1)).updateProcessedDate(solveDate, reportId);
+
+        // Check the result, assuming the repository method returns the number of affected rows
+        assertEquals(1, affectedRows);
+    }
+    @Test
+    public void testUpdateSolve3() {
+        // Create a mock for the reportRepository
+        ReportRepository reportRepository = mock(ReportRepository.class);
+
+        // Create an instance of the service under test
+        reportService = new ReportServiceImpl(reportRepository);
+
+        // Define the parameters for testing
+        LocalDate solveDate = LocalDate.now();
+        int reportId = 0;
+
+        // Set up the behavior for reportRepository.updateProcessedDate
+        when(reportRepository.updateProcessedDate(solveDate, reportId)).thenReturn(1); // Assuming 1 row is affected
+
+        // Call the method to be tested
+        int affectedRows = reportService.updateSolve(solveDate, reportId);
+
+        // Verify that reportRepository.updateProcessedDate was called with the correct parameters
+        verify(reportRepository, times(1)).updateProcessedDate(solveDate, reportId);
+
+        // Check the result, assuming the repository method returns the number of affected rows
+        assertEquals(1, affectedRows);
+    }
+
+    @Test
+    public void testUpdateSolve4() {
+        // Create a mock for the reportRepository
+        ReportRepository reportRepository = mock(ReportRepository.class);
+
+        // Create an instance of the service under test
+        reportService = new ReportServiceImpl(reportRepository);
+
+        // Define the parameters for testing
+        LocalDate solveDate = LocalDate.of(2100, 2, 2);
+        int reportId = 1;
+
+        // Set up the behavior for reportRepository.updateProcessedDate
+        when(reportRepository.updateProcessedDate(solveDate, reportId)).thenReturn(1); // Assuming 1 row is affected
+
+        // Call the method to be tested
+        int affectedRows = reportService.updateSolve(solveDate, reportId);
+
+        // Verify that reportRepository.updateProcessedDate was called with the correct parameters
+        verify(reportRepository, times(1)).updateProcessedDate(solveDate, reportId);
+
+        // Check the result, assuming the repository method returns the number of affected rows
+        assertEquals(1, affectedRows);
+    }
+
+    @Test
+    public void testUpdateSolve5() {
+        // Create a mock for the reportRepository
+        ReportRepository reportRepository = mock(ReportRepository.class);
+
+        // Create an instance of the service under test
+        reportService = new ReportServiceImpl(reportRepository);
+
+        // Define the parameters for testing
+        LocalDate solveDate = LocalDate.of(2100, 2, 2);
+        int reportId = -1;
+
+        // Set up the behavior for reportRepository.updateProcessedDate
+        when(reportRepository.updateProcessedDate(solveDate, reportId)).thenReturn(1); // Assuming 1 row is affected
+
+        // Call the method to be tested
+        int affectedRows = reportService.updateSolve(solveDate, reportId);
+
+        // Verify that reportRepository.updateProcessedDate was called with the correct parameters
+        verify(reportRepository, times(1)).updateProcessedDate(solveDate, reportId);
+
+        // Check the result, assuming the repository method returns the number of affected rows
+        assertEquals(1, affectedRows);
+    }
+
+    @Test
+    public void testUpdateSolve6() {
+        // Create a mock for the reportRepository
+        ReportRepository reportRepository = mock(ReportRepository.class);
+
+        // Create an instance of the service under test
+        reportService = new ReportServiceImpl(reportRepository);
+
+        // Define the parameters for testing
+        LocalDate solveDate = LocalDate.of(2100, 2, 2);
+        int reportId = 0;
+
+        // Set up the behavior for reportRepository.updateProcessedDate
+        when(reportRepository.updateProcessedDate(solveDate, reportId)).thenReturn(1); // Assuming 1 row is affected
+
+        // Call the method to be tested
+        int affectedRows = reportService.updateSolve(solveDate, reportId);
+
+        // Verify that reportRepository.updateProcessedDate was called with the correct parameters
+        verify(reportRepository, times(1)).updateProcessedDate(solveDate, reportId);
+
+        // Check the result, assuming the repository method returns the number of affected rows
+        assertEquals(1, affectedRows);
+    }
 }
+

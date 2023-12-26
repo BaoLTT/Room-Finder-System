@@ -1,6 +1,9 @@
 package com.roomfindingsystem.service;
 
+import com.roomfindingsystem.dto.RoomDto;
 import com.roomfindingsystem.dto.RoomHouseDetailDto;
+import com.roomfindingsystem.entity.RoomEntity;
+import com.roomfindingsystem.entity.RoomImagesEntity;
 import com.roomfindingsystem.repository.RoomRepository;
 import com.roomfindingsystem.service.impl.RoomServiceImpl;
 import jakarta.persistence.Tuple;
@@ -10,7 +13,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.mock.web.MockHttpServletRequest;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -101,5 +106,56 @@ public class RoomServiceTest {
         verify(roomRepository, times(1)).viewRoomInHouseDetail(houseId);
     }
 
-    
+    @Test
+    public void getRoomById() throws Exception {
+
+        // Set up mock data
+        Integer roomId = 2;
+        RoomDto roomDto = new RoomDto();
+
+
+        // Call method
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        RoomEntity modelAndView = roomService.getRoomById(roomId);
+
+        // Assertions
+        assertEquals(null, modelAndView);
+
+    }
+
+    @Test
+    public void getRoomById2() throws Exception {
+
+        // Set up mock data
+        Integer roomId = 0;
+        RoomDto roomDto = new RoomDto();
+
+
+        // Call method
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        RoomEntity modelAndView = roomService.getRoomById(roomId);
+
+        // Assertions
+        assertEquals(null, modelAndView);
+
+    }
+
+    @Test
+    public void getRoomById3() throws Exception {
+
+        // Set up mock data
+        Integer roomId = -1;
+        RoomDto roomDto = new RoomDto();
+
+
+        // Call method
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        RoomEntity modelAndView = roomService.getRoomById(roomId);
+
+        // Assertions
+        assertEquals(null, modelAndView);
+
+    }
+
+
 }

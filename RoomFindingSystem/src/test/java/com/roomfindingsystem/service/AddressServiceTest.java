@@ -74,4 +74,64 @@ class AddressServiceTest {
         assertTrue(result.isPresent());
         assertEquals(addressEntity, result.get());
     }
+
+    @Test
+    void findbyId2() {
+        AddressEntity addressEntity = new AddressEntity();
+        addressEntity.setAddressId(2);
+        int id = 2;
+
+        // Set up the mock behavior
+        when(addressRepository.findById(id)).thenReturn(Optional.of(addressEntity));
+
+        // Call the method you want to test
+        Optional<AddressEntity> result = addressService.findbyId(id);
+
+        // Verify that the findById method was called with the correct argument
+        verify(addressRepository, times(1)).findById(id);
+
+        // Verify that the result is as expected
+        assertTrue(result.isPresent());
+        assertEquals(addressEntity, result.get());
+    }
+
+    @Test
+    void findbyId3() {
+        AddressEntity addressEntity = new AddressEntity();
+        addressEntity.setAddressId(0);
+        int id = 0;
+
+        // Set up the mock behavior
+        when(addressRepository.findById(id)).thenReturn(Optional.of(addressEntity));
+
+        // Call the method you want to test
+        Optional<AddressEntity> result = addressService.findbyId(id);
+
+        // Verify that the findById method was called with the correct argument
+        verify(addressRepository, times(1)).findById(id);
+
+        // Verify that the result is as expected
+        assertTrue(result.isPresent());
+        assertEquals(addressEntity, result.get());
+    }
+
+    @Test
+    void findbyId4() {
+        AddressEntity addressEntity = new AddressEntity();
+        addressEntity.setAddressId(-1);
+        int id = -1;
+
+        // Set up the mock behavior
+        when(addressRepository.findById(id)).thenReturn(Optional.of(addressEntity));
+
+        // Call the method you want to test
+        Optional<AddressEntity> result = addressService.findbyId(id);
+
+        // Verify that the findById method was called with the correct argument
+        verify(addressRepository, times(1)).findById(id);
+
+        // Verify that the result is as expected
+        assertTrue(result.isPresent());
+        assertEquals(addressEntity, result.get());
+    }
 }

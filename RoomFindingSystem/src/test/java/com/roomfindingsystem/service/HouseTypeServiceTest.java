@@ -75,24 +75,72 @@ class HouseTypeServiceTest {
     }
 
     @Test
-    void deleteType() {
+    void deleteType1() {
         // Test data
-        Integer typeIdToDelete = 123; // replace with your actual type ID
+        Integer typeIdToDelete = 1; // replace with your actual type ID
 
         // Call the method from yourService
         houseTypeService.deleteType(typeIdToDelete);
 
         // Verify that the deleteById method was called with the correct argument
         verify(houseTypeRepository, times(1)).deleteById(typeIdToDelete);
+    }
+    @Test
+    void deleteType2() {
+        // Test data
+        Integer typeIdToDelete = 5; // replace with your actual type ID
 
+        // Call the method from yourService
+        houseTypeService.deleteType(typeIdToDelete);
+
+        // Verify that the deleteById method was called with the correct argument
+        verify(houseTypeRepository, times(1)).deleteById(typeIdToDelete);
     }
 
     @Test
-    void addType() {
+    void deleteType3() {
+        // Test data
+        Integer typeIdToDelete = 0; // replace with your actual type ID
+
+        // Call the method from yourService
+        houseTypeService.deleteType(typeIdToDelete);
+
+        // Verify that the deleteById method was called with the correct argument
+        verify(houseTypeRepository, times(1)).deleteById(typeIdToDelete);
+    }
+
+    @Test
+    void deleteType4() {
+        // Test data
+        Integer typeIdToDelete = -1; // replace with your actual type ID
+
+        // Call the method from yourService
+        houseTypeService.deleteType(typeIdToDelete);
+
+        // Verify that the deleteById method was called with the correct argument
+        verify(houseTypeRepository, times(1)).deleteById(typeIdToDelete);
+    }
+
+    @Test
+    void addType1() {
 
         // Test data
         TypeHouseEntity typeHouseEntity = new TypeHouseEntity(); // replace with your actual TypeHouseEntity object
 
+        // Call the method from yourService
+        houseTypeService.addType(typeHouseEntity);
+
+        // Verify that the save method was called with the correct argument
+        verify(houseTypeRepository, times(1)).save(typeHouseEntity);
+
+    }
+
+    @Test
+    void addType2() {
+
+        // Test data
+        TypeHouseEntity typeHouseEntity = new TypeHouseEntity(); // replace with your actual TypeHouseEntity object
+        typeHouseEntity = null;
         // Call the method from yourService
         houseTypeService.addType(typeHouseEntity);
 

@@ -31,13 +31,15 @@ public class HouseServiceTest {
 
     @InjectMocks
     private HouseServiceImpl houseService;
+
     @Test
     void testFindAllDetailWithValidHouseId() {
         // Arrange
         int houseId = 1;
 
         // Mock data for HouseDto
-        HouseDto houseDto = new HouseDto(); houseDto.setHouseName("TONY HOUSE");
+        HouseDto houseDto = new HouseDto();
+        houseDto.setHouseName("TONY HOUSE");
         List<HouseDto> houseDtoList = Collections.singletonList(houseDto);
 
         when(houseRepository.findAllDetail(houseId)).thenReturn(houseDtoList);
@@ -77,7 +79,8 @@ public class HouseServiceTest {
         int id = 1;
 
         // Mock data for ServiceDto
-        ServiceDto serviceDto = new ServiceDto(); serviceDto.setServiceId(1);
+        ServiceDto serviceDto = new ServiceDto();
+        serviceDto.setServiceId(1);
         List<ServiceDto> serviceDtoList = Collections.singletonList(serviceDto);
 
         when(houseRepository.getServiceById(id)).thenReturn(serviceDtoList);
@@ -117,7 +120,8 @@ public class HouseServiceTest {
         int id = 1;
 
         // Mock data for HouseImageLink
-        HouseImageLink imageLink = new HouseImageLink(); imageLink.setHouseImagesEntities("/rfs_bucket/House/house_2_1.jpg");
+        HouseImageLink imageLink = new HouseImageLink();
+        imageLink.setHouseImagesEntities("/rfs_bucket/House/house_2_1.jpg");
         List<HouseImageLink> imageLinkList = Collections.singletonList(imageLink);
 
         when(houseRepository.getByHouseImageid(id)).thenReturn(imageLinkList);
@@ -190,8 +194,82 @@ public class HouseServiceTest {
     }
 
     @Test
-    void testFindHouse() {
+    public void testGetHouseById1() {
 
+        // Create a HousesEntity object with an expected ID
+        HousesEntity expectedHouse = new HousesEntity();
+        expectedHouse.setHouseId(1); // Set the expected ID value
+
+        // Set up the behavior for houseRepository.getHousesEntitiesByHouseId
+        when(houseRepository.getHousesEntitiesByHouseId(1)).thenReturn(expectedHouse);
+
+        // Call the method to be tested
+        HousesEntity result = houseService.getHouseById(1);
+
+        // Check the result
+        assertEquals(expectedHouse, result);
+
+        // Verify that houseRepository.getHousesEntitiesByHouseId was called with the correct parameter
+        verify(houseRepository, times(1)).getHousesEntitiesByHouseId(1);
+    }
+
+    @Test
+    public void testGetHouseById2() {
+
+        // Create a HousesEntity object with an expected ID
+        HousesEntity expectedHouse = new HousesEntity();
+        expectedHouse.setHouseId(153); // Set the expected ID value
+
+        // Set up the behavior for houseRepository.getHousesEntitiesByHouseId
+        when(houseRepository.getHousesEntitiesByHouseId(153)).thenReturn(expectedHouse);
+
+        // Call the method to be tested
+        HousesEntity result = houseService.getHouseById(153);
+
+        // Check the result
+        assertEquals(expectedHouse, result);
+
+        // Verify that houseRepository.getHousesEntitiesByHouseId was called with the correct parameter
+        verify(houseRepository, times(1)).getHousesEntitiesByHouseId(153);
+    }
+
+    @Test
+    public void testGetHouseById3() {
+
+        // Create a HousesEntity object with an expected ID
+        HousesEntity expectedHouse = new HousesEntity();
+        expectedHouse.setHouseId(-1); // Set the expected ID value
+
+        // Set up the behavior for houseRepository.getHousesEntitiesByHouseId
+        when(houseRepository.getHousesEntitiesByHouseId(-1)).thenReturn(expectedHouse);
+
+        // Call the method to be tested
+        HousesEntity result = houseService.getHouseById(-1);
+
+        // Check the result
+        assertEquals(expectedHouse, result);
+
+        // Verify that houseRepository.getHousesEntitiesByHouseId was called with the correct parameter
+        verify(houseRepository, times(1)).getHousesEntitiesByHouseId(-1);
+    }
+    @Test
+    public void testGetHouseById4() {
+
+        // Create a HousesEntity object with an expected ID
+        HousesEntity expectedHouse = new HousesEntity();
+        expectedHouse.setHouseId(0); // Set the expected ID value
+
+        // Set up the behavior for houseRepository.getHousesEntitiesByHouseId
+        when(houseRepository.getHousesEntitiesByHouseId(0)).thenReturn(expectedHouse);
+
+        // Call the method to be tested
+        HousesEntity result = houseService.getHouseById(0);
+
+        // Check the result
+        assertEquals(expectedHouse, result);
+
+        // Verify that houseRepository.getHousesEntitiesByHouseId was called with the correct parameter
+        verify(houseRepository, times(1)).getHousesEntitiesByHouseId(0);
     }
     @Test
     void testCountHouse() {
@@ -218,11 +296,11 @@ public class HouseServiceTest {
         int countHouse = 1;
 
         when(houseRepository.countHouse(min1, max1, min2, max2,
-                province, district, ward, status1, status2,  houseName, type, service, countService)).thenReturn(countHouse);
+                province, district, ward, status1, status2, houseName, type, service, countService)).thenReturn(countHouse);
 
         // Act
         int result = houseService.countHouse(min1, max1, min2, max2,
-                province, district, ward, status1, status2,  houseName, type, service, countService);
+                province, district, ward, status1, status2, houseName, type, service, countService);
 
         // Assert
         assertNotNull(result);
@@ -230,7 +308,7 @@ public class HouseServiceTest {
 
         // Verify that the repository method was called with the correct parameter
         verify(houseRepository, times(1)).countHouse(min1, max1, min2, max2,
-                province, district, ward, status1, status2,  houseName, type, service, countService);
+                province, district, ward, status1, status2, houseName, type, service, countService);
     }
 
 }

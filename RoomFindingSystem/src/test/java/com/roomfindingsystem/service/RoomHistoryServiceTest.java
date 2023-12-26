@@ -61,7 +61,7 @@ class RoomHistoryServiceTest {
     @Test
     void addRoomHistory() {
         // Test data
-        String roomName = "SampleRoom";
+        String roomName = "P101";
         int houseId = 1;
 
         // Mock the behavior of roomRepository.findRoomEntityByRoomNameAndHouseId()
@@ -80,6 +80,115 @@ class RoomHistoryServiceTest {
         verify(roomHistoryRepository).save(new RoomHistoriesEntity(1, 1, LocalDate.now()));
     }
 
+    @Test
+    void addRoomHistory2() {
+        // Test data
+        String roomName = "";
+        int houseId = 1;
+
+        // Mock the behavior of roomRepository.findRoomEntityByRoomNameAndHouseId()
+        RoomEntity room = new RoomEntity();
+        room.setRoomid(1);
+        room.setStatusId(1);
+        when(roomRepository.findRoomEntityByRoomNameAndHouseId(roomName, houseId)).thenReturn(room);
+
+        // Call the method from yourService
+        roomHistoryService.addRoomHistory(roomName, houseId);
+
+        // Verify that findRoomEntityByRoomNameAndHouseId was called once
+        verify(roomRepository).findRoomEntityByRoomNameAndHouseId(roomName, houseId);
+
+        // Verify that save was called once on roomHistoryRepository
+        verify(roomHistoryRepository).save(new RoomHistoriesEntity(1, 1, LocalDate.now()));
+    }
+
+    @Test
+    void addRoomHistory3() {
+        // Test data
+        String roomName = null;
+        int houseId = 1;
+
+        // Mock the behavior of roomRepository.findRoomEntityByRoomNameAndHouseId()
+        RoomEntity room = new RoomEntity();
+        room.setRoomid(1);
+        room.setStatusId(1);
+        when(roomRepository.findRoomEntityByRoomNameAndHouseId(roomName, houseId)).thenReturn(room);
+
+        // Call the method from yourService
+        roomHistoryService.addRoomHistory(roomName, houseId);
+
+        // Verify that findRoomEntityByRoomNameAndHouseId was called once
+        verify(roomRepository).findRoomEntityByRoomNameAndHouseId(roomName, houseId);
+
+        // Verify that save was called once on roomHistoryRepository
+        verify(roomHistoryRepository).save(new RoomHistoriesEntity(1, 1, LocalDate.now()));
+    }
+
+    @Test
+    void addRoomHistory4() {
+        // Test data
+        String roomName = "P101";
+        int houseId = -1;
+
+        // Mock the behavior of roomRepository.findRoomEntityByRoomNameAndHouseId()
+        RoomEntity room = new RoomEntity();
+        room.setRoomid(1);
+        room.setStatusId(1);
+        when(roomRepository.findRoomEntityByRoomNameAndHouseId(roomName, houseId)).thenReturn(room);
+
+        // Call the method from yourService
+        roomHistoryService.addRoomHistory(roomName, houseId);
+
+        // Verify that findRoomEntityByRoomNameAndHouseId was called once
+        verify(roomRepository).findRoomEntityByRoomNameAndHouseId(roomName, houseId);
+
+        // Verify that save was called once on roomHistoryRepository
+        verify(roomHistoryRepository).save(new RoomHistoriesEntity(1, 1, LocalDate.now()));
+    }
+
+    @Test
+    void addRoomHistory5() {
+        // Test data
+        String roomName = "";
+        int houseId = -1;
+
+        // Mock the behavior of roomRepository.findRoomEntityByRoomNameAndHouseId()
+        RoomEntity room = new RoomEntity();
+        room.setRoomid(1);
+        room.setStatusId(1);
+        when(roomRepository.findRoomEntityByRoomNameAndHouseId(roomName, houseId)).thenReturn(room);
+
+        // Call the method from yourService
+        roomHistoryService.addRoomHistory(roomName, houseId);
+
+        // Verify that findRoomEntityByRoomNameAndHouseId was called once
+        verify(roomRepository).findRoomEntityByRoomNameAndHouseId(roomName, houseId);
+
+        // Verify that save was called once on roomHistoryRepository
+        verify(roomHistoryRepository).save(new RoomHistoriesEntity(1, 1, LocalDate.now()));
+    }
+
+    @Test
+    void addRoomHistory6() {
+        // Test data
+        String roomName = null;
+        int houseId = -1;
+
+        // Mock the behavior of roomRepository.findRoomEntityByRoomNameAndHouseId()
+        RoomEntity room = new RoomEntity();
+        room.setRoomid(1);
+        room.setStatusId(1);
+        when(roomRepository.findRoomEntityByRoomNameAndHouseId(roomName, houseId)).thenReturn(room);
+
+        // Call the method from yourService
+        roomHistoryService.addRoomHistory(roomName, houseId);
+
+        // Verify that findRoomEntityByRoomNameAndHouseId was called once
+        verify(roomRepository).findRoomEntityByRoomNameAndHouseId(roomName, houseId);
+
+        // Verify that save was called once on roomHistoryRepository
+        verify(roomHistoryRepository).save(new RoomHistoriesEntity(1, 1, LocalDate.now()));
+    }
     @Test
     void countEmptyRoomDay() {
 
