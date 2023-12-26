@@ -46,16 +46,19 @@ public class AdminManageRoomController {
         return "admin/list-room";
     }
 
-    @GetMapping("/updateRoom/{id}")
-    public String getFormUpdateRoom(@PathVariable("id") Integer id, Model model) {
+    @GetMapping("/updateRoom/{houseid}/{id}")
+    public String getFormUpdateRoom(@PathVariable("id") Integer id,@PathVariable("houseid") Integer houseid, Model model) {
         try{
             RoomDto roomDto = roomService.findById(id);
             model.addAttribute("houseid", roomDto.getHouseId());
             model.addAttribute("room", roomDto);
+            model.addAttribute("houseid", houseid);
             model.addAttribute("types", roomTypeService.findAll());
             model.addAttribute("listServiceNotUse",serviceDetailService.getServiceNotUse());
             model.addAttribute("listService", serviceDetailService.getServiceExceptHouseService(roomDto.getHouseId()));
             model.addAttribute("listChecked", roomDto.getServices());
+            List<RoomDto> roomDtos = roomService.getRoomsInHouse(houseid);
+            model.addAttribute("exitRoom", roomDtos);
             String email = SecurityContextHolder.getContext().getAuthentication().getName();
             UserEntity user = userService.findByEmail(email).get();
             model.addAttribute("user", user);
@@ -73,7 +76,7 @@ public class AdminManageRoomController {
     }
 
     @PostMapping("/update")
-    public String update(@ModelAttribute(name = "room") RoomDto roomDto, @RequestParam("file") MultipartFile[] files) throws IOException {
+    public String update(@ModelAttribute(name = "room") RoomDto roomDto,@ModelAttribute(name = "houseid") String houseid, @RequestParam("file") MultipartFile[] files) throws IOException {
         try{
             List<ServiceDto> serviceDtos = new ArrayList<>();
             List<String> selects = roomDto.getServiceNames();
@@ -95,7 +98,7 @@ public class AdminManageRoomController {
             return "404Admin";
         }
 
-        return "redirect:/admin/room/updateRoom/" + roomDto.getRoomId();
+        return "redirect:/admin/room/listRoom/" + houseid;
     }
 
     @GetMapping("/deleteRoom/{id}/{houseid}")
@@ -120,7 +123,8 @@ public class AdminManageRoomController {
             model.addAttribute("house", house);
             model.addAttribute("id", id);
             model.addAttribute("listServiceNotUse",serviceDetailService.getServiceNotUse());
-
+            List<RoomDto> roomDtos = roomService.getRoomsInHouse(id);
+            model.addAttribute("exitRoom", roomDtos);
             model.addAttribute("services", serviceDetailService.getServiceExceptHouseService(id));
             model.addAttribute("types", roomTypeService.findAll());
         }catch (Exception e) {

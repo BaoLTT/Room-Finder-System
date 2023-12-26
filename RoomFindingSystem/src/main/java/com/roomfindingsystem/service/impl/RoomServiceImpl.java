@@ -550,20 +550,32 @@ public class RoomServiceImpl implements RoomService {
 
                 Cell cellServices = row.getCell(6);
                 String serviceString = cellServices.getStringCellValue();
-                String[] services = serviceString.split(",");
+                List<String> services = List.of(serviceString.split(","));
 
-
+                System.out.println(services.size());
                 roomRepository.save(room);
 
                 RoomEntity roomEntity = roomRepository.getRoomByHouseIdAndName(cellName.getStringCellValue(), roomDto.getHouseId());
+                System.out.println(19);
                 for (String service : services) {
                     service = service.trim();
+                    System.out.println(service);
+                    System.out.println(21);
                     ServiceDetailEntity serviceDetailEntity = serviceDetailRepository.findByServiceName(service).get();
                     ServiceRoomEntity serviceRoomEntity = new ServiceRoomEntity();
                     serviceRoomEntity.setServiceId(serviceDetailEntity.getServiceId());
                     serviceRoomEntity.setRoomId(roomEntity.getRoomid());
                     serviceRoomRepository.save(serviceRoomEntity);
                 }
+//                for (String service : services) {
+//                    service = service.trim();
+//                    System.out.println(service);
+//                    ServiceDetailEntity serviceDetailEntity = serviceDetailRepository.findByServiceName(service).get();
+//                    ServiceRoomEntity serviceRoomEntity = new ServiceRoomEntity();
+//                    serviceRoomEntity.setServiceId(serviceDetailEntity.getServiceId());
+//                    serviceRoomEntity.setRoomId(roomEntity.getRoomid());
+//                    serviceRoomRepository.save(serviceRoomEntity);
+//                }
             } catch (Exception ex) {
             }
         }

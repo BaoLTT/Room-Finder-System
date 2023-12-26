@@ -76,7 +76,7 @@
                                     <th>Tầng</th>
                                     <th>Loại phòng</th>
                                     <th>Giá</th>
-                                    <th>Trọ</th>
+                                    <th>Dịch vụ</th>
                                     <th>Tình trạng</th>
                                     <th>Hành động</th>
                                 </tr>
@@ -101,14 +101,14 @@
                                         th:with="formattedPrice=${#numbers.formatDecimal(room.price, 0, 'COMMA', 0, 'POINT')}">
                                         <span class="price" th:text="${formattedPrice + ' VND'}"></span></td>
 
-                                    <td th:text="${room.houseName}">
+                                    <td th:text="${room.services}">
                                     </td>
 
                                     <td th:text="${room.status == 'ACTIVE' ? 'Còn trống' : (room.status == 'INACTIVE' ? 'Hết phòng': '') }">
                                     </td>
 
                                     <td>
-                                        <a th:href="@{'/admin/room/updateRoom/' + ${room.roomId}}" style="border-radius: 5px;padding: 5px;color: #f9bc0b"><i class="fa fa-edit"></i></a>
+                                        <a th:href="@{'/admin/room/updateRoom/'+${houseId}+'/' + ${room.roomId}}" style="border-radius: 5px;padding: 5px;color: #f9bc0b"><i class="fa fa-edit"></i></a>
                                         <a th:href="@{'/admin/room/deleteRoom/' + ${room.roomId}+'/'+${houseId}}" style="border-radius: 5px;padding: 5px;color: #f36270;background-color: unset"><i class="fas fa-trash"></i></a>
                                     </td>
                                 </tr>
