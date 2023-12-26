@@ -1,4 +1,4 @@
 package com.roomfindingsystem.service;
 
-public class WardService {
+public class WardServiceTest {
 }
