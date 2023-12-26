@@ -51,6 +51,40 @@ class FavouriteServiceTest {
 
         assertEquals(1, list2.size());
     }
+    @Test
+    void getListFavourite1() {
+        List<FavouriteDto> list1 = new ArrayList<>();
+        list1.add(new FavouriteDto());
+        when(favouriteRepository.findAllFavourite(230)).thenReturn(list1);
+
+        List<FavouriteDto> list2 = favouriteService.getListFavourite(230);
+
+        assertEquals(1, list2.size());
+    }
+
+    @Test
+    void getListFavourite2() {
+        List<FavouriteDto> list1 = new ArrayList<>();
+        List<FavouriteDto> list = new ArrayList<>();
+        list1.add(new FavouriteDto());
+        when(favouriteRepository.findAllFavourite(-1)).thenReturn(list);
+
+        List<FavouriteDto> list2 = favouriteService.getListFavourite(-1);
+
+        assertEquals(0, list2.size());
+    }
+
+    @Test
+    void getListFavourite3() {
+        List<FavouriteDto> list1 = new ArrayList<>();
+        List<FavouriteDto> list = new ArrayList<>();
+        list1.add(new FavouriteDto());
+        when(favouriteRepository.findAllFavourite(0)).thenReturn(list);
+
+        List<FavouriteDto> list2 = favouriteService.getListFavourite(0);
+
+        assertEquals(0, list2.size());
+    }
 
     @Test
     void removeItemFavourite() {
@@ -68,7 +102,168 @@ class FavouriteServiceTest {
     void getAllByHouseId() {
         // Mocking data
         int userId = 1;
-        int houseId = 2;
+        int houseId = 1;
+
+        FavouriteEntity mockFavouriteEntity = new FavouriteEntity();
+        // Set properties for mockFavouriteEntity if needed
+        mockFavouriteEntity.setFavouriteId(1);
+        mockFavouriteEntity.setHouseId(1);
+
+        // Mocking repository behavior
+        when(favouriteRepository.getAllByHouseId(userId, houseId))
+                .thenReturn(Optional.of(mockFavouriteEntity));
+
+        // Call the method you want to test
+        Optional<FavouriteEntity> result = favouriteService.getAllByHouseId(userId, houseId);
+
+        // Verify that getAllByHouseId was called with the correct arguments
+        verify(favouriteRepository).getAllByHouseId(userId, houseId);
+
+        // Verify the result
+        assertEquals(mockFavouriteEntity, result.orElse(null));
+    }
+
+    @Test
+    void getAllByHouseId1() {
+        // Mocking data
+        int userId = 1;
+        int houseId = -1;
+
+        FavouriteEntity mockFavouriteEntity = new FavouriteEntity();
+        // Set properties for mockFavouriteEntity if needed
+
+        // Mocking repository behavior
+        when(favouriteRepository.getAllByHouseId(userId, houseId))
+                .thenReturn(Optional.of(mockFavouriteEntity));
+
+        // Call the method you want to test
+        Optional<FavouriteEntity> result = favouriteService.getAllByHouseId(userId, houseId);
+
+        // Verify that getAllByHouseId was called with the correct arguments
+        verify(favouriteRepository).getAllByHouseId(userId, houseId);
+
+        // Verify the result
+        assertEquals(mockFavouriteEntity, result.orElse(null));
+    }
+    @Test
+    void getAllByHouseId2() {
+        // Mocking data
+        int userId = 1;
+        int houseId = 0;
+
+        FavouriteEntity mockFavouriteEntity = new FavouriteEntity();
+        // Set properties for mockFavouriteEntity if needed
+
+        // Mocking repository behavior
+        when(favouriteRepository.getAllByHouseId(userId, houseId))
+                .thenReturn(Optional.of(mockFavouriteEntity));
+
+        // Call the method you want to test
+        Optional<FavouriteEntity> result = favouriteService.getAllByHouseId(userId, houseId);
+
+        // Verify that getAllByHouseId was called with the correct arguments
+        verify(favouriteRepository).getAllByHouseId(userId, houseId);
+
+        // Verify the result
+        assertEquals(mockFavouriteEntity, result.orElse(null));
+    }
+
+    @Test
+    void getAllByHouseId3() {
+        // Mocking data
+        int userId = -1;
+        int houseId = 1;
+
+        FavouriteEntity mockFavouriteEntity = new FavouriteEntity();
+        // Set properties for mockFavouriteEntity if needed
+
+        // Mocking repository behavior
+        when(favouriteRepository.getAllByHouseId(userId, houseId))
+                .thenReturn(Optional.of(mockFavouriteEntity));
+
+        // Call the method you want to test
+        Optional<FavouriteEntity> result = favouriteService.getAllByHouseId(userId, houseId);
+
+        // Verify that getAllByHouseId was called with the correct arguments
+        verify(favouriteRepository).getAllByHouseId(userId, houseId);
+
+        // Verify the result
+        assertEquals(mockFavouriteEntity, result.orElse(null));
+    }
+
+    @Test
+    void getAllByHouseId4() {
+        // Mocking data
+        int userId = 1;
+        int houseId = 0;
+
+        FavouriteEntity mockFavouriteEntity = new FavouriteEntity();
+        // Set properties for mockFavouriteEntity if needed
+
+        // Mocking repository behavior
+        when(favouriteRepository.getAllByHouseId(userId, houseId))
+                .thenReturn(Optional.of(mockFavouriteEntity));
+
+        // Call the method you want to test
+        Optional<FavouriteEntity> result = favouriteService.getAllByHouseId(userId, houseId);
+
+        // Verify that getAllByHouseId was called with the correct arguments
+        verify(favouriteRepository).getAllByHouseId(userId, houseId);
+
+        // Verify the result
+        assertEquals(mockFavouriteEntity, result.orElse(null));
+    }
+    @Test
+    void getAllByHouseId5() {
+        // Mocking data
+        int userId = -1;
+        int houseId = 0;
+
+        FavouriteEntity mockFavouriteEntity = new FavouriteEntity();
+        // Set properties for mockFavouriteEntity if needed
+
+        // Mocking repository behavior
+        when(favouriteRepository.getAllByHouseId(userId, houseId))
+                .thenReturn(Optional.of(mockFavouriteEntity));
+
+        // Call the method you want to test
+        Optional<FavouriteEntity> result = favouriteService.getAllByHouseId(userId, houseId);
+
+        // Verify that getAllByHouseId was called with the correct arguments
+        verify(favouriteRepository).getAllByHouseId(userId, houseId);
+
+        // Verify the result
+        assertEquals(mockFavouriteEntity, result.orElse(null));
+    }
+
+    @Test
+    void getAllByHouseId6() {
+        // Mocking data
+        int userId = 0;
+        int houseId = 1;
+
+        FavouriteEntity mockFavouriteEntity = new FavouriteEntity();
+        // Set properties for mockFavouriteEntity if needed
+
+        // Mocking repository behavior
+        when(favouriteRepository.getAllByHouseId(userId, houseId))
+                .thenReturn(Optional.of(mockFavouriteEntity));
+
+        // Call the method you want to test
+        Optional<FavouriteEntity> result = favouriteService.getAllByHouseId(userId, houseId);
+
+        // Verify that getAllByHouseId was called with the correct arguments
+        verify(favouriteRepository).getAllByHouseId(userId, houseId);
+
+        // Verify the result
+        assertEquals(mockFavouriteEntity, result.orElse(null));
+    }
+
+    @Test
+    void getAllByHouseId7() {
+        // Mocking data
+        int userId = 0;
+        int houseId = -1;
 
         FavouriteEntity mockFavouriteEntity = new FavouriteEntity();
         // Set properties for mockFavouriteEntity if needed

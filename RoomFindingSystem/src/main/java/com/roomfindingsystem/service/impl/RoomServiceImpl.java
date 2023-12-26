@@ -294,7 +294,7 @@ public class RoomServiceImpl implements RoomService {
 
 
         roomRepository.save(saveRoom);
-        roomHistoryService.addRoomHistory(saveRoom.getRoomName(), saveRoom.getHouseid());
+//        roomHistoryService.addRoomHistory(saveRoom.getRoomName(), saveRoom.getHouseid());
         if (roomDto.getServiceDtos() != null) {
             for (ServiceDto serviceDto : roomDto.getServiceDtos()) {
                 ServiceRoomEntity serviceRoomEntity = new ServiceRoomEntity();

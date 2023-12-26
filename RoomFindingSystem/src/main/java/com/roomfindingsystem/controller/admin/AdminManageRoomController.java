@@ -36,23 +36,12 @@ public class AdminManageRoomController {
 
     @GetMapping("/listRoom/{id}")
     public String getListRoomPage(@PathVariable("id") Integer id,Model model) {
-        try{
             List<RoomDto> roomDtos = roomService.getRoomsInHouse(id);
             String email = SecurityContextHolder.getContext().getAuthentication().getName();
             UserEntity user = userService.findByEmail(email).get();
             model.addAttribute("houseId", id);
             model.addAttribute("rooms", roomDtos);
             model.addAttribute("user", user);
-        }catch (Exception e) {
-            // Xử lý lỗi ở đây, ví dụ:
-            e.printStackTrace(); // In lỗi ra console
-
-            // Thêm thông báo lỗi cho người dùng thông qua Model
-            model.addAttribute("error", "Có lỗi xảy ra.");
-
-            // Trả về trang dashboard với thông báo lỗi
-            return "404Admin";
-        }
 
         return "admin/list-room";
     }
@@ -129,6 +118,7 @@ public class AdminManageRoomController {
             model.addAttribute("room", roomDto);
             HousesEntity house = houseService.getHouseById(id);
             model.addAttribute("house", house);
+            model.addAttribute("id", id);
             model.addAttribute("listServiceNotUse",serviceDetailService.getServiceNotUse());
 
             model.addAttribute("services", serviceDetailService.getServiceExceptHouseService(id));
@@ -178,9 +168,8 @@ public class AdminManageRoomController {
         return "redirect:/admin/room/listRoom/"+houseid;
     }
 
-    @PostMapping("/importRooms")
+    @PostMapping("/importRooms/{houseId}")
     public String importRoom(@PathVariable("houseId") Integer id,@RequestParam("fileExcel") MultipartFile fileExcel) {
-
         RoomDto roomDto = new RoomDto();
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         UserEntity user = userService.findByEmail(email).get();
@@ -189,7 +178,7 @@ public class AdminManageRoomController {
         roomDto.setHouseId(id);
         roomService.importRooms(roomDto,fileExcel);
 
-        return "redirect:/admin/room/listRoom";
+        return "redirect:/admin/room/listRoom/"+id;
     }
 
     @GetMapping("deleteImage/{roomId}/{imageId}")

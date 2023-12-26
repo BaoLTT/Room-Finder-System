@@ -117,6 +117,7 @@
                                             <label>Phòng</label>
                                             <input type="text" class="form-control" required
                                                    placeholder="P101" th:field="*{roomName}"/>
+                                            <p th:if="${error ne null}" style="color: red;" th:text="${error}"></p>
                                         </div>
 
                                     </div>
@@ -223,7 +224,7 @@
                                         <div class="file-upload">
                                             <input type="file" name="file" class="file-upload-input with-preview"
                                                    multiple title="Click to add files" maxlength="10"
-                                                   accept="gif|jpg|png">
+                                                   accept=".jpg, .png, .jpeg">
                                             <span>Nhấn để thêm ảnh</span>
                                         </div>
                                     </div>
@@ -384,7 +385,7 @@
                                         style="display: none;">
                                     ×
                                 </button>
-                                <input name="houseID" th:value="${houseid}" type="hidden">
+
                                 <select class="form-control selectpicker" name="deleteService" >
                                     <option th:each="service : ${listServiceNotUse}" th:value="${service.getServiceId()}" th:utext="${service.getServiceName()}"/>
                                 </select>
@@ -406,7 +407,7 @@
             </div>
 
             <div id="inputRoom" style="display: none">
-                <form th:action="@{importRooms}" method="post" enctype="multipart/form-data" class="my-form">
+                <form th:action="@{'/admin/room/importRooms/'+ ${id}}" method="post" enctype="multipart/form-data" class="my-form">
                     <div class="swal2-container swal2-center swal2-fade swal2-shown" style="overflow-y: auto;">
                         <div aria-labelledby="swal2-title" aria-describedby="swal2-content"
                              class="swal2-popup swal2-modal swal2-show" tabindex="-1" role="dialog"
@@ -438,7 +439,7 @@
                                 </button>
                                 <div class="row">
                                     <div class="col-12 mb-2 mt-4">
-                                        <input type="hidden" name="houseID" th:value="${house.houseId}">
+
                                         <input class="form-control filestyle" name="fileExcel" type="file" id="fileExcel" required
                                                accept=".xlsx, .xls" data-btnclass="btn-primary"/>
                                     </div>
@@ -476,6 +477,7 @@
 
     </div>
 </div>
+
 <script>
     function closeInput() {
         // Ẩn khối div và làm mờ phần đằng sau khi nhấn nút Close
