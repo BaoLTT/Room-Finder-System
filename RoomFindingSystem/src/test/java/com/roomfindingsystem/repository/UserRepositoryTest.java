@@ -184,4 +184,19 @@ public class UserRepositoryTest {
       assertNull(result);
 //        verify(userRepository, never()).getUserEntitiesByUserId(email);
    }
+
+   @Test
+   public void testRecoverPassword_ValidCredentials() {
+      // Arrange
+      String validPassword = "123456";
+      String validEmail = "thaibaoa3k45@gmail.com";
+
+
+      // Act
+      int result = userRepository.updatePassword(validPassword, validEmail);
+
+      // Assert
+      assertEquals(1, result);
+
+   }
 }

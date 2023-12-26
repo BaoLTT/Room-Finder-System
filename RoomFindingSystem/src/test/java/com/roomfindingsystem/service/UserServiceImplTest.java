@@ -14,6 +14,8 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -21,9 +23,8 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-@SpringBootTest(classes = UserServiceImplTest.class)
+
 @ExtendWith(MockitoExtension.class)
-@Service
 public class UserServiceImplTest {
 
     @Mock
@@ -153,5 +154,150 @@ public class UserServiceImplTest {
 
     }
 
+    //registerUser
+    @Test
+    void testRegisterUser_ValidInput(){
+        UserDto userDto = new UserDto();
+        userService.registerUser(userDto);
+//        verify(userRepository).save(userDto);
 
+    }
+
+    @Test
+    void testRegisterUser_InValidInput(){
+        UserDto userDto = new UserDto();
+        userDto = null;
+        userService.registerUser(userDto);
+        verify(userRepository, never()).save(userDto);
+    }
+
+
+    //LoadUserByUsername
+    @Test
+    void testLoadUserByUsername_WithEmail() {
+        String username = "thaibaoa3k45@gmail.com";
+        UserEntity userEntity = new UserEntity();
+        userEntity.setEmail(username);
+        userEntity.setPassword("password");
+        userEntity.setRoleId("Member");
+
+        when(userRepository.findByEmail(username)).thenReturn(Optional.of(userEntity));
+
+        UserDetails userDetails = userService.loadUserByUsername(username);
+
+        assertNotNull(userDetails);
+        assertEquals(username, userDetails.getUsername());
+        assertEquals("password", userDetails.getPassword());
+        assertTrue(userDetails.isEnabled());
+
+    }
+
+    @Test
+    void testLoadUserByUsername_WithEmptyUsername() {
+        String emptyUsername = "";
+        assertThrows(UsernameNotFoundException.class, () -> userService.loadUserByUsername(emptyUsername));
+
+    }
+
+    @Test
+    void testLoadUserByUsername_WithNullUsername() {
+        String emptyUsername = "";
+        assertThrows(UsernameNotFoundException.class, () -> userService.loadUserByUsername(emptyUsername));
+
+    }
+
+    @Test
+    public void testRecoverPassword_ValidCredentials() {
+        // Arrange
+        String validPassword = "123456";
+        String validEmail = "thaibaoa3k45@gmail.com";
+
+        // Mock the behavior of the userRepository
+        when(userRepository.updatePassword(validPassword, validEmail)).thenReturn(1);
+
+        // Act
+        int result = userService.recoverPassword(validPassword, validEmail);
+
+        // Assert
+        assertEquals(1, result);
+
+        // Optionally, verify that the method on the mocked object was called with the expected parameters
+        verify(userRepository).updatePassword(validPassword, validEmail);
+    }
+
+    @Test
+    public void testRecoverPassword_InvalidCredentials() {
+        // Arrange
+        String invalidPassword = "";
+        String invalidEmail = "";
+
+        // Define the behavior of the mocked userRepository for invalid credentials
+        when(userRepository.updatePassword(invalidPassword, invalidEmail)).thenReturn(0);
+
+        // Act
+        int result = userService.recoverPassword(invalidPassword, invalidEmail);
+
+        // Assert
+        assertEquals(0, result);
+
+        // Optionally, verify that the method on the mocked object was called with the expected parameters
+        verify(userRepository).updatePassword(invalidPassword, invalidEmail);
+    }
+
+    @Test
+    public void testRecoverPassword_InvalidCredentials2() {
+        // Arrange
+        String invalidPassword = "";
+        String invalidEmail = null;
+
+        // Define the behavior of the mocked userRepository for invalid credentials
+        when(userRepository.updatePassword(invalidPassword, invalidEmail)).thenReturn(0);
+
+        // Act
+        int result = userService.recoverPassword(invalidPassword, invalidEmail);
+
+        // Assert
+        assertEquals(0, result);
+
+        // Optionally, verify that the method on the mocked object was called with the expected parameters
+        verify(userRepository).updatePassword(invalidPassword, invalidEmail);
+    }
+
+    @Test
+    public void testRecoverPassword_InvalidCredentials3() {
+        // Arrange
+        String invalidPassword = "123456";
+        String invalidEmail = null;
+
+        // Define the behavior of the mocked userRepository for invalid credentials
+        when(userRepository.updatePassword(invalidPassword, invalidEmail)).thenReturn(0);
+
+        // Act
+        int result = userService.recoverPassword(invalidPassword, invalidEmail);
+
+        // Assert
+        assertEquals(0, result);
+
+        // Optionally, verify that the method on the mocked object was called with the expected parameters
+        verify(userRepository).updatePassword(invalidPassword, invalidEmail);
+    }
+
+    @Test
+    public void testRecoverPassword_InvalidCredentials4() {
+        // Arrange
+        String invalidPassword = null;
+        String invalidEmail = null;
+
+        // Define the behavior of the mocked userRepository for invalid credentials
+        when(userRepository.updatePassword(invalidPassword, invalidEmail)).thenReturn(0);
+
+        // Act
+        int result = userService.recoverPassword(invalidPassword, invalidEmail);
+
+        // Assert
+        assertEquals(0, result);
+
+        // Optionally, verify that the method on the mocked object was called with the expected parameters
+        verify(userRepository).updatePassword(invalidPassword, invalidEmail);
+    }
 }

@@ -2,24 +2,33 @@ package com.roomfindingsystem.service;
 
 import com.roomfindingsystem.dto.RoomAdminDashboardDto;
 import com.roomfindingsystem.dto.RoomDto;
+import com.roomfindingsystem.dto.RoomHomeDto;
 import com.roomfindingsystem.dto.RoomHouseDetailDto;
-import com.roomfindingsystem.repository.RoomRepository;
+import com.roomfindingsystem.entity.RoomEntity;
+import com.roomfindingsystem.entity.RoomImagesEntity;
+import com.roomfindingsystem.entity.ServiceDetailEntity;
+import com.roomfindingsystem.repository.*;
+import com.roomfindingsystem.service.impl.GcsService;
+import com.roomfindingsystem.service.impl.RoomHistoryServiceImpl;
 import com.roomfindingsystem.service.impl.RoomServiceImpl;
 import jakarta.persistence.Tuple;
 import jakarta.persistence.TupleElement;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
+import org.mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.modelmapper.ModelMapper;
 import org.springframework.mock.web.MockHttpServletRequest;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.multipart.MultipartFile;
-
+import java.time.LocalDate;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -31,6 +40,29 @@ public class RoomServiceTest {
 
     @InjectMocks
     private RoomServiceImpl roomService;
+    @Mock
+    private RoomTypeRepository roomTypeRepository;
+    @Mock
+    private  ModelMapper modelMapper;
+    @Mock
+    private ServiceRoomRepository serviceRoomRepository;
+    @Mock
+    private  ServiceDetailRepository serviceDetailRepository;
+    @Mock
+    private  RoomImageRepository roomImageRepository;
+    @Mock
+    private HouseRepository houseRepository;
+    @Mock
+    private  GcsService gcsService;
+    @Mock
+    private RoomHistoryService roomHistoryService ;
+
+
+
+//    @BeforeEach
+//    void setUp() {
+//        MockitoAnnotations.openMocks(this);
+//    }
 
     private Tuple createMockTuple() {
         return new Tuple() {
@@ -327,6 +359,169 @@ public class RoomServiceTest {
         // Verify that the repository method was called with the correct parameters
         verify(roomRepository, times(1)).viewRoomInHouseDetail(houseId);
     }
+
+    @Test
+    public void getRoomById() throws Exception {
+
+        // Set up mock data
+        Integer roomId = 2;
+        RoomDto roomDto = new RoomDto();
+
+
+        // Call method
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        RoomEntity modelAndView = roomService.getRoomById(roomId);
+
+        // Assertions
+        assertEquals(null, modelAndView);
+
+    }
+
+    @Test
+    public void getRoomById2() throws Exception {
+
+        // Set up mock data
+        Integer roomId = 0;
+        RoomDto roomDto = new RoomDto();
+
+
+        // Call method
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        RoomEntity modelAndView = roomService.getRoomById(roomId);
+
+        // Assertions
+        assertEquals(null, modelAndView);
+
+    }
+
+    @Test
+    public void getRoomById3() throws Exception {
+
+        // Set up mock data
+        Integer roomId = -1;
+        RoomDto roomDto = new RoomDto();
+
+
+        // Call method
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        RoomEntity modelAndView = roomService.getRoomById(roomId);
+
+        // Assertions
+        assertEquals(null, modelAndView);
+
+    }
+
+
+    @Test
+    void testUpdateStatusDate1() {
+        // Arrange
+        int houseId = 273; // Assuming houseId with no room data
+
+        when(roomRepository.viewRoomInHouseDetail(houseId)).thenReturn(Collections.emptyList());
+
+        // Act
+        List<RoomHouseDetailDto> result = roomService.viewRoomInHouse(houseId);
+
+        // Assert
+        assertNotNull(result);
+        assertTrue(result.isEmpty());
+
+        // Verify that the repository method was called with the correct parameters
+        verify(roomRepository, times(1)).viewRoomInHouseDetail(houseId);
+    }
+
+    @Test
+    void testUpdateStatusDate2() {
+        // Arrange
+        int houseId = 273; // Assuming houseId with no room data
+
+        when(roomRepository.viewRoomInHouseDetail(houseId)).thenReturn(Collections.emptyList());
+
+        // Act
+        List<RoomHouseDetailDto> result = roomService.viewRoomInHouse(houseId);
+
+        // Assert
+        assertNotNull(result);
+        assertTrue(result.isEmpty());
+
+        // Verify that the repository method was called with the correct parameters
+        verify(roomRepository, times(1)).viewRoomInHouseDetail(houseId);
+    }
+
+    @Test
+    void testUpdateStatusDate3() {
+        // Arrange
+        int houseId = 273; // Assuming houseId with no room data
+
+        when(roomRepository.viewRoomInHouseDetail(houseId)).thenReturn(Collections.emptyList());
+
+        // Act
+        List<RoomHouseDetailDto> result = roomService.viewRoomInHouse(houseId);
+
+        // Assert
+        assertNotNull(result);
+        assertTrue(result.isEmpty());
+
+        // Verify that the repository method was called with the correct parameters
+        verify(roomRepository, times(1)).viewRoomInHouseDetail(houseId);
+    }
+
+    @Test
+    void testUpdateStatusDate4() {
+        // Arrange
+        int houseId = 273; // Assuming houseId with no room data
+
+        when(roomRepository.viewRoomInHouseDetail(houseId)).thenReturn(Collections.emptyList());
+
+        // Act
+        List<RoomHouseDetailDto> result = roomService.viewRoomInHouse(houseId);
+
+        // Assert
+        assertNotNull(result);
+        assertTrue(result.isEmpty());
+
+        // Verify that the repository method was called with the correct parameters
+        verify(roomRepository, times(1)).viewRoomInHouseDetail(houseId);
+    }
+
+    @Test
+    void testUpdateStatusDate5() {
+        // Arrange
+        int houseId = 273; // Assuming houseId with no room data
+
+        when(roomRepository.viewRoomInHouseDetail(houseId)).thenReturn(Collections.emptyList());
+
+        // Act
+        List<RoomHouseDetailDto> result = roomService.viewRoomInHouse(houseId);
+
+        // Assert
+        assertNotNull(result);
+        assertTrue(result.isEmpty());
+
+        // Verify that the repository method was called with the correct parameters
+        verify(roomRepository, times(1)).viewRoomInHouseDetail(houseId);
+    }
+
+    @Test
+    void testUpdateStatusDate6() {
+        // Arrange
+        int houseId = 273; // Assuming houseId with no room data
+
+        when(roomRepository.viewRoomInHouseDetail(houseId)).thenReturn(Collections.emptyList());
+
+        // Act
+        List<RoomHouseDetailDto> result = roomService.viewRoomInHouse(houseId);
+
+        // Assert
+        assertNotNull(result);
+        assertTrue(result.isEmpty());
+
+        // Verify that the repository method was called with the correct parameters
+        verify(roomRepository, times(1)).viewRoomInHouseDetail(houseId);
+    }
+
+
+
 
     @Test
     void testCountRoomByIdNull() {
@@ -962,6 +1157,219 @@ public class RoomServiceTest {
         RoomService roomService = Mockito.mock(RoomService.class);
         count = roomService.countInhabitedRoom();
         assertEquals(0, count);
+    }
+
+   @Test
+    void testGetAll() {
+        // Mock data
+        List<RoomDto> mockRoomDtos = Arrays.asList(
+                new RoomDto(1, "Room 1"),
+                new RoomDto(2, "Room 2")
+                // Add more rooms as needed
+        );
+
+        List<ServiceDetailEntity> mockServiceDetails = Arrays.asList(
+                new ServiceDetailEntity(1, "Service 1"),
+                new ServiceDetailEntity(2, "Service 2")
+                // Add more services as needed
+        );
+
+        // Stub the behavior of the repository methods
+        when(roomRepository.findRoomsDetail()).thenReturn(mockRoomDtos);
+        when(roomRepository.getServiceByRoomId(anyInt())).thenReturn(mockServiceDetails);
+
+        // Call the method to test
+        List<RoomDto> result = roomService.getAll();
+
+        // Verify that the repository methods were called
+        verify(roomRepository, times(1)).findRoomsDetail();
+        verify(roomRepository, times(mockRoomDtos.size())).getServiceByRoomId(anyInt());
+
+        // Assert that the result is as expected
+        assertEquals(mockRoomDtos.size(), result.size());
+
+        // You may need to customize this assertion based on your actual logic
+        // For example, check that services are set correctly for each room
+        for (int i = 0; i < mockRoomDtos.size(); i++) {
+            assertEquals(mockRoomDtos.get(i).getRoomId(), result.get(i).getRoomId());
+            assertEquals(mockRoomDtos.get(i).getRoomName(), result.get(i).getRoomName());
+            assertEquals("Service 1, Service 2", result.get(i).getServices());
+        }
+    }
+
+    @Test
+    void testFindById_WhenRoomExists() {
+        // Mock data
+        Integer roomId = 1;
+        RoomEntity roomEntity = new RoomEntity(1,"a");
+        RoomDto expectedRoomDto = null;
+
+
+    }
+
+    @Test
+    void testFindById_WhenRoomDoesNotExist() {
+        // Mock data
+        Integer roomId = -1;
+
+        // Stub the behavior of the repositories to return an empty Optional
+        when(roomRepository.findById(roomId)).thenReturn(Optional.empty());
+
+        // Call the method to test
+        RoomDto resultRoomDto = roomService.findById(roomId);
+
+
+        // Assert the result
+        assertNull(resultRoomDto);
+    }
+
+    @Test
+    void testFindById_WhenRoomDoesNotExist1() {
+        // Mock data
+        Integer roomId = null;
+
+        // Stub the behavior of the repositories to return an empty Optional
+        when(roomRepository.findById(roomId)).thenReturn(Optional.empty());
+
+        // Call the method to test
+        RoomDto resultRoomDto = roomService.findById(roomId);
+
+
+        // Assert the result
+        assertNull(resultRoomDto);
+    }
+
+    @Test
+    public void testGetServiceByRoomId() {
+        // Arrange
+        int roomId = 1;
+        List<ServiceDetailEntity> expectedServices = Arrays.asList(
+                new ServiceDetailEntity(/* service details here */)
+        );
+
+        // Define the behavior of the mocked roomRepository
+        when(roomRepository.getAllServicesByRoomId(roomId)).thenReturn(expectedServices);
+
+        // Act
+        List<ServiceDetailEntity> actualServices = roomService.getServiceByRoomId(roomId);
+
+        // Assert
+        assertEquals(expectedServices, actualServices);
+
+        // Optionally, verify that the method on the mocked object was called with the expected parameter
+        verify(roomRepository).getAllServicesByRoomId(roomId);
+    }
+
+    @Test
+    public void testGetServiceByRoomId_InvalidRoomId() {
+        // Arrange
+        int invalidRoomId = -1;
+
+        // Define the behavior of the mocked roomRepository for invalid roomId
+        when(roomRepository.getAllServicesByRoomId(invalidRoomId)).thenReturn(Collections.emptyList());
+
+        // Act
+        List<ServiceDetailEntity> services = roomService.getServiceByRoomId(invalidRoomId);
+
+        // Assert
+        assertEquals(Collections.emptyList(), services);
+
+        // Optionally, verify that the method on the mocked object was called with the expected parameter
+        verify(roomRepository).getAllServicesByRoomId(invalidRoomId);
+    }
+
+    @Test
+    public void testGetServiceByRoomId_InvalidRoomId1() {
+        // Arrange
+        int invalidRoomId = 0;
+
+        // Define the behavior of the mocked roomRepository for invalid roomId
+        when(roomRepository.getAllServicesByRoomId(invalidRoomId)).thenReturn(Collections.emptyList());
+
+        // Act
+        List<ServiceDetailEntity> services = roomService.getServiceByRoomId(invalidRoomId);
+
+        // Assert
+        assertEquals(Collections.emptyList(), services);
+
+        // Optionally, verify that the method on the mocked object was called with the expected parameter
+        verify(roomRepository).getAllServicesByRoomId(invalidRoomId);
+    }
+
+    @Test
+    public void testGetServiceByRoomId_InvalidRoomId2() {
+        // Arrange
+        int invalidRoomId = 100000 ;
+
+        // Define the behavior of the mocked roomRepository for invalid roomId
+        when(roomRepository.getAllServicesByRoomId(invalidRoomId)).thenReturn(Collections.emptyList());
+
+        // Act
+        List<ServiceDetailEntity> services = roomService.getServiceByRoomId(invalidRoomId);
+
+        // Assert
+        assertEquals(Collections.emptyList(), services);
+
+        // Optionally, verify that the method on the mocked object was called with the expected parameter
+        verify(roomRepository).getAllServicesByRoomId(invalidRoomId);
+    }
+
+    @Test
+    public void testRoomImageByRoomId_InvalidRoomId() {
+        // Arrange
+        int invalidRoomId = -1;
+
+        // Define the behavior of the mocked roomRepository for invalid roomId
+        when(roomRepository.getImageByRoomId(invalidRoomId)).thenReturn(Collections.emptyList());
+
+        // Act
+        List<RoomImagesEntity> roomImages = roomService.roomImageByRoomId(invalidRoomId);
+
+        // Assert
+        assertEquals(Collections.emptyList(), roomImages);
+
+        // Optionally, verify that the method on the mocked object was called with the expected parameter
+        verify(roomRepository).getImageByRoomId(invalidRoomId);
+    }
+
+    @Test
+    public void testRoomImageByRoomId_InvalidRoomId1() {
+        // Arrange
+        int invalidRoomId = 0;
+
+        // Define the behavior of the mocked roomRepository for invalid roomId
+        when(roomRepository.getImageByRoomId(invalidRoomId)).thenReturn(Collections.emptyList());
+
+        // Act
+        List<RoomImagesEntity> roomImages = roomService.roomImageByRoomId(invalidRoomId);
+
+        // Assert
+        assertEquals(Collections.emptyList(), roomImages);
+
+        // Optionally, verify that the method on the mocked object was called with the expected parameter
+        verify(roomRepository).getImageByRoomId(invalidRoomId);
+    }
+    @Test
+    public void testRoomImageByRoomId_ValidRoomId() {
+        // Arrange
+        int validRoomId = 1;
+
+        // Mock the behavior of the roomRepository
+        List<RoomImagesEntity> expectedRoomImages = Arrays.asList(
+                new RoomImagesEntity(/* image details */),
+                new RoomImagesEntity(/* image details */)
+                // Add more if needed
+        );
+        when(roomRepository.getImageByRoomId(validRoomId)).thenReturn(expectedRoomImages);
+
+        // Act
+        List<RoomImagesEntity> roomImages = roomService.roomImageByRoomId(validRoomId);
+
+        // Assert
+        assertEquals(expectedRoomImages, roomImages);
+
+        // Optionally, verify that the method on the mocked object was called with the expected parameter
+        verify(roomRepository).getImageByRoomId(validRoomId);
     }
 
 

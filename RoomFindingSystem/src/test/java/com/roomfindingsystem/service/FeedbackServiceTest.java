@@ -511,6 +511,33 @@ public class FeedbackServiceTest {
         assertTrue(feedbackList.isEmpty());
     }
 
+    @Test
+    void testGetListFeedbackForLandLordWithZero() {
+        // Arrange
+        int nonExistentCreatedBy = 0;
+        when(feedbackRepository.getFeedbackListForLandLord(nonExistentCreatedBy)).thenReturn(Collections.emptyList());
+
+        // Act
+        List<FeedbackListAdminDto> feedbackList = feedbackService.getListFeedbackForLandLord(nonExistentCreatedBy);
+
+        // Assert
+        assertNotNull(feedbackList);
+        assertTrue(feedbackList.isEmpty());
+    }
+    @Test
+    void testGetListFeedbackForLandLordWith200() {
+        // Arrange
+        int nonExistentCreatedBy = 200;
+        when(feedbackRepository.getFeedbackListForLandLord(nonExistentCreatedBy)).thenReturn(Collections.emptyList());
+
+        // Act
+        List<FeedbackListAdminDto> feedbackList = feedbackService.getListFeedbackForLandLord(nonExistentCreatedBy);
+
+        // Assert
+        assertNotNull(feedbackList);
+        assertTrue(feedbackList.isEmpty());
+    }
+
     //test
     @Test
     void testGetListFeedback() {
@@ -534,6 +561,227 @@ public class FeedbackServiceTest {
     }
 
     @Test
+    void testDeleteWithNormalCase() {
+        int memberId = 1;
+        int houseId = 1;
+
+        feedbackService.deleteByHouseIdAndMemberId(houseId, memberId);
+
+        // Assert
+        verify(feedbackRepository, times(1)).deleteByHouseIdAndMemberId(houseId, memberId);
+        // Add more assertions as needed
+    }
+    @Test
+    void testDeleteWithMemberId0() {
+        int memberId = 0;
+        int houseId = 1;
+        FeedbackRepository feedbackRepository = mock(FeedbackRepository.class);
+
+        // Act
+        feedbackService.deleteByHouseIdAndMemberId(houseId, memberId);
+
+        // Assert
+        verify(feedbackRepository, never()).deleteByHouseIdAndMemberId(houseId, memberId);
+        // Add more assertions as needed
+    }
+    @Test
+    void testDeleteWithMemberIdNegative() {
+
+        FeedbackRepository feedbackRepository = mock(FeedbackRepository.class);
+
+        // Create an instance of the class containing the deleteByHouseIdAndMemberId method
+
+        // Call the method with input values -1, -1
+        feedbackService.deleteByHouseIdAndMemberId(1, -1);
+
+        // Verify that deleteByHouseIdAndMemberId is called with the correct arguments
+        verify(feedbackRepository, never()).deleteByHouseIdAndMemberId(1, -1);
+    }
+    @Test
+    void testDeleteWithHouseIdZero() {
+        FeedbackRepository feedbackRepository = mock(FeedbackRepository.class);
+
+        // Create an instance of the class containing the deleteByHouseIdAndMemberId method
+
+        // Call the method with input values -1, -1
+        feedbackService.deleteByHouseIdAndMemberId(0, 1);
+
+        // Verify that deleteByHouseIdAndMemberId is called with the correct arguments
+        verify(feedbackRepository, never()).deleteByHouseIdAndMemberId(0, 1);
+    }
+
+    @Test
+    public void testDeleteByHouseIdAndMemberId() {
+        // Mock feedbackRepository
+        FeedbackRepository feedbackRepository = mock(FeedbackRepository.class);
+
+        // Create an instance of the class containing the deleteByHouseIdAndMemberId method
+
+        // Call the method with input values -1, -1
+        feedbackService.deleteByHouseIdAndMemberId(-1, -1);
+
+        // Verify that deleteByHouseIdAndMemberId is called with the correct arguments
+        verify(feedbackRepository, never()).deleteByHouseIdAndMemberId(-1, -1);
+    }
+
+    @Test
+    void testDeleteWith00() {
+        FeedbackRepository feedbackRepository = mock(FeedbackRepository.class);
+
+        // Create an instance of the class containing the deleteByHouseIdAndMemberId method
+
+        // Call the method with input values -1, -1
+        feedbackService.deleteByHouseIdAndMemberId(0, 0);
+
+        // Verify that deleteByHouseIdAndMemberId is called with the correct arguments
+        verify(feedbackRepository, never()).deleteByHouseIdAndMemberId(0, 0);
+
+    }
+    @Test
+    void testDeleteWithzeroandnegative() {
+        FeedbackRepository feedbackRepository = mock(FeedbackRepository.class);
+
+        // Create an instance of the class containing the deleteByHouseIdAndMemberId method
+
+        // Call the method with input values -1, -1
+        feedbackService.deleteByHouseIdAndMemberId(0, -1);
+
+        // Verify that deleteByHouseIdAndMemberId is called with the correct arguments
+        verify(feedbackRepository, never()).deleteByHouseIdAndMemberId(0, -1);
+
+    }
+    @Test
+    void testDeleteWithoneandnegative() {
+        FeedbackRepository feedbackRepository = mock(FeedbackRepository.class);
+
+        // Create an instance of the class containing the deleteByHouseIdAndMemberId method
+
+        // Call the method with input values -1, -1
+        feedbackService.deleteByHouseIdAndMemberId(-1, 1);
+
+        // Verify that deleteByHouseIdAndMemberId is called with the correct arguments
+        verify(feedbackRepository, never()).deleteByHouseIdAndMemberId(-1, 1);
+
+    }
+    @Test
+    void testDeleteWithnegazero() {
+        FeedbackRepository feedbackRepository = mock(FeedbackRepository.class);
+
+        // Create an instance of the class containing the deleteByHouseIdAndMemberId method
+
+        // Call the method with input values -1, -1
+        feedbackService.deleteByHouseIdAndMemberId(-1, 0);
+
+        // Verify that deleteByHouseIdAndMemberId is called with the correct arguments
+        verify(feedbackRepository, never()).deleteByHouseIdAndMemberId(-1, 0);
+
+    }
+
+    @Test
+    void testUpdateStatusTrueNormal() {
+
+        // Call the method with input value 1
+        feedbackService.updateStatusToTrue(1);
+
+        // Verify that updateStatusToTrue is called with the correct argument
+        verify(feedbackRepository, times(1)).updateStatusToTrue(1);
+    }
+
+    @Test
+    void testUpdateStatus200000() {
+        FeedbackRepository feedbackRepository = mock(FeedbackRepository.class);
+
+        // Call the method with input value 1
+        feedbackService.updateStatusToTrue(200000);
+
+        // Verify that updateStatusToTrue is called with the correct argument
+        verify(feedbackRepository, never()).updateStatusToTrue(200000);
+    }
+
+    @Test
+    void testUpdateStatus0() {
+        FeedbackRepository feedbackRepository = mock(FeedbackRepository.class);
+
+        // Call the method with input value 1
+        feedbackService.updateStatusToTrue(0);
+
+        // Verify that updateStatusToTrue is called with the correct argument
+        verify(feedbackRepository, never()).updateStatusToTrue(0);
+    }
+
+    @Test
+    void testUpdateStatusnegative() {
+        FeedbackRepository feedbackRepository = mock(FeedbackRepository.class);
+
+        // Call the method with input value 1
+        feedbackService.updateStatusToTrue(-1);
+
+        // Verify that updateStatusToTrue is called with the correct argument
+        verify(feedbackRepository, never()).updateStatusToTrue(-1);
+    }
+
+    @Test
+    void testUpdateStatusFail() {
+
+        // Call the method with input value 1
+        feedbackService.updateStatusToFalse(1);
+
+        // Verify that updateStatusToTrue is called with the correct argument
+        verify(feedbackRepository, times(1)).updateStatusToFalse(1);
+    }
+    @Test
+    void testUpdateStatusFail200000() {
+        FeedbackRepository feedbackRepository = mock(FeedbackRepository.class);
+        // Call the method with input value 1
+        feedbackService.updateStatusToFalse(200000);
+
+        // Verify that updateStatusToTrue is called with the correct argument
+        verify(feedbackRepository, never()).updateStatusToFalse(200000);
+    }
+
+    @Test
+    void testUpdateStatusFail0() {
+        FeedbackRepository feedbackRepository = mock(FeedbackRepository.class);
+        // Call the method with input value 1
+        feedbackService.updateStatusToFalse(0);
+
+        // Verify that updateStatusToTrue is called with the correct argument
+        verify(feedbackRepository, never()).updateStatusToFalse(0);
+    }
+
+    @Test
+    void testUpdateStatusFailNega() {
+        FeedbackRepository feedbackRepository = mock(FeedbackRepository.class);
+        // Call the method with input value 1
+        feedbackService.updateStatusToFalse(-1);
+
+        // Verify that updateStatusToTrue is called with the correct argument
+        verify(feedbackRepository, never()).updateStatusToFalse(-1);
+    }
+
+
+
+
+
+
+
+
+
+
+
+//    @Test
+//    void testDeleteWithMemberId0() {
+//        int memberId = 0;
+//        int houseId = 1;
+//
+//        // Act
+//        feedbackService.deleteByHouseIdAndMemberId(houseId, memberId);
+//
+//        // Assert
+//        verify(feedbackRepository, never()).deleteByHouseIdAndMemberId(anyInt(), anyInt());
+//        // Add more assertions as needed
+//    }
+
     void testGetFeedback() {
         List<Boolean> status = Arrays.asList(false);
         // Arrange
@@ -592,5 +840,363 @@ public class FeedbackServiceTest {
         assertEquals(expectedFeedbackList, result);
         // Add more assertions as needed
     }
+
+
+    //getFeedbackByStar
+    @Test
+    void testGetFeedbackByStar() {
+        // Arrange
+        int star = 5;
+        List<Boolean> status = Arrays.asList(true);
+
+        // Mô phỏng dữ liệu trả về từ repository
+        List<FeedbackDtoAdmin> expectedFeedbackList = Arrays.asList(
+                new FeedbackDtoAdmin(/* dữ liệu phản hồi 1 */),
+                new FeedbackDtoAdmin(/* dữ liệu phản hồi 2 */)
+                // Thêm các phần tử khác nếu cần
+        );
+        when(feedbackRepository.findFeedbackDtosByStar(star, status)).thenReturn(expectedFeedbackList);
+
+        // Act
+        List<FeedbackDtoAdmin> actualFeedbackList = feedbackService.getFeedbackByStar(star, status);
+
+        // Assert
+        // Kiểm tra xem kết quả thực tế có trùng với kết quả mong đợi không
+        assertEquals(expectedFeedbackList, actualFeedbackList);
+
+        // Verify that the repository method was called with the correct parameters
+        verify(feedbackRepository, times(1)).findFeedbackDtosByStar(star, status);
+
+        // Verify that no other interactions with feedbackRepository occurred
+        verifyNoMoreInteractions(feedbackRepository);
+    }
+
+    @Test
+    void testGetFeedbackByStar1() {
+        // Arrange
+        int star = 5;
+        List<Boolean> status = Arrays.asList(false);
+
+
+        List<FeedbackDtoAdmin> expectedFeedbackList = Arrays.asList(
+                new FeedbackDtoAdmin(),
+                new FeedbackDtoAdmin()
+        );
+        when(feedbackRepository.findFeedbackDtosByStar(star, status)).thenReturn(expectedFeedbackList);
+
+        // Act
+        List<FeedbackDtoAdmin> actualFeedbackList = feedbackService.getFeedbackByStar(star, status);
+
+        // Assert
+
+        assertEquals(expectedFeedbackList, actualFeedbackList);
+
+        // Verify that the repository method was called with the correct parameters
+        verify(feedbackRepository, times(1)).findFeedbackDtosByStar(star, status);
+
+        // Verify that no other interactions with feedbackRepository occurred
+        verifyNoMoreInteractions(feedbackRepository);
+    }
+
+    @Test
+    void testGetFeedbackByStar2() {
+        // Arrange
+        int star = 5;
+        List<Boolean> status = Arrays.asList(true, false);
+
+
+        List<FeedbackDtoAdmin> expectedFeedbackList = Arrays.asList(
+                new FeedbackDtoAdmin(),
+                new FeedbackDtoAdmin()
+        );
+        when(feedbackRepository.findFeedbackDtosByStar(star, status)).thenReturn(expectedFeedbackList);
+
+        // Act
+        List<FeedbackDtoAdmin> actualFeedbackList = feedbackService.getFeedbackByStar(star, status);
+
+        // Assert
+
+        assertEquals(expectedFeedbackList, actualFeedbackList);
+
+        // Verify that the repository method was called with the correct parameters
+        verify(feedbackRepository, times(1)).findFeedbackDtosByStar(star, status);
+
+        // Verify that no other interactions with feedbackRepository occurred
+        verifyNoMoreInteractions(feedbackRepository);
+    }
+
+    @Test
+    void testGetFeedbackByStar3() {
+        // Arrange
+        int star = 3 ;
+        List<Boolean> status = Arrays.asList(true);
+
+
+        List<FeedbackDtoAdmin> expectedFeedbackList = Arrays.asList(
+                new FeedbackDtoAdmin(),
+                new FeedbackDtoAdmin()
+        );
+        when(feedbackRepository.findFeedbackDtosByStar(star, status)).thenReturn(expectedFeedbackList);
+
+        // Act
+        List<FeedbackDtoAdmin> actualFeedbackList = feedbackService.getFeedbackByStar(star, status);
+
+        // Assert
+
+        assertEquals(expectedFeedbackList, actualFeedbackList);
+
+        // Verify that the repository method was called with the correct parameters
+        verify(feedbackRepository, times(1)).findFeedbackDtosByStar(star, status);
+
+        // Verify that no other interactions with feedbackRepository occurred
+        verifyNoMoreInteractions(feedbackRepository);
+    }
+
+    @Test
+    void testGetFeedbackByStar4() {
+        // Arrange
+        int star = 3 ;
+        List<Boolean> status = Arrays.asList(false);
+
+
+        List<FeedbackDtoAdmin> expectedFeedbackList = Arrays.asList(
+                new FeedbackDtoAdmin(),
+                new FeedbackDtoAdmin()
+        );
+        when(feedbackRepository.findFeedbackDtosByStar(star, status)).thenReturn(expectedFeedbackList);
+
+        // Act
+        List<FeedbackDtoAdmin> actualFeedbackList = feedbackService.getFeedbackByStar(star, status);
+
+        // Assert
+
+        assertEquals(expectedFeedbackList, actualFeedbackList);
+
+        // Verify that the repository method was called with the correct parameters
+        verify(feedbackRepository, times(1)).findFeedbackDtosByStar(star, status);
+
+        // Verify that no other interactions with feedbackRepository occurred
+        verifyNoMoreInteractions(feedbackRepository);
+    }
+
+    @Test
+    void testGetFeedbackByStar5() {
+        // Arrange
+        int star = 3 ;
+        List<Boolean> status = Arrays.asList(true,false);
+
+
+        List<FeedbackDtoAdmin> expectedFeedbackList = Arrays.asList(
+                new FeedbackDtoAdmin(),
+                new FeedbackDtoAdmin()
+        );
+        when(feedbackRepository.findFeedbackDtosByStar(star, status)).thenReturn(expectedFeedbackList);
+
+        // Act
+        List<FeedbackDtoAdmin> actualFeedbackList = feedbackService.getFeedbackByStar(star, status);
+
+        // Assert
+
+        assertEquals(expectedFeedbackList, actualFeedbackList);
+
+        // Verify that the repository method was called with the correct parameters
+        verify(feedbackRepository, times(1)).findFeedbackDtosByStar(star, status);
+
+        // Verify that no other interactions with feedbackRepository occurred
+        verifyNoMoreInteractions(feedbackRepository);
+    }
+
+    //saveFeedback
+    @Test
+    void testSaveFeedback() {
+        // Arrange
+        FeedbackEntity inputFeedbackEntity = new FeedbackEntity(); inputFeedbackEntity.setFeedbackId(1);
+
+
+        FeedbackEntity expectedSavedFeedbackEntity = new FeedbackEntity(); expectedSavedFeedbackEntity.setFeedbackId(1);
+        when(feedbackRepository.save(inputFeedbackEntity)).thenReturn(expectedSavedFeedbackEntity);
+
+        // Act
+        FeedbackEntity actualSavedFeedbackEntity = feedbackService.save(inputFeedbackEntity);
+
+        // Assert
+        assertEquals(expectedSavedFeedbackEntity, actualSavedFeedbackEntity);
+
+        // Verify that the repository method was called with the correct parameters
+        verify(feedbackRepository, times(1)).save(inputFeedbackEntity);
+
+        // Verify that no other interactions with feedbackRepository occurred
+        verifyNoMoreInteractions(feedbackRepository);
+    }
+
+    @Test
+    void testSaveInvalidFeedback() {
+        // Arrange
+        FeedbackEntity invalidFeedbackEntity = new FeedbackEntity(); invalidFeedbackEntity = null;
+
+        // Act
+        FeedbackEntity savedFeedbackEntity = feedbackService.save(invalidFeedbackEntity);
+
+        // Assert
+        assertNull(savedFeedbackEntity);
+
+        // Verify that the repository method was not called
+        verify(feedbackRepository, never()).save(any(FeedbackEntity.class));
+
+    }
+
+    //test getFeedbackByHouseId
+    @Test
+    void getFeedbackByHouseId(){
+        int houseId = 1 ;
+        List<Boolean> status = Arrays.asList(true);
+
+
+        List<FeedbackDto> expectedFeedbackList = Arrays.asList(
+                new FeedbackDto(), new FeedbackDto()
+        );
+        when(feedbackRepository.findFeedbackDtosByHouseId(houseId, status)).thenReturn(expectedFeedbackList);
+
+        // Act
+        List<FeedbackDto> actualFeedbackList = feedbackService.getFeedbackByHouseId(houseId, status);
+
+        // Assert
+
+        assertEquals(expectedFeedbackList, actualFeedbackList);
+
+        // Verify that the repository method was called with the correct parameters
+        verify(feedbackRepository, times(1)).findFeedbackDtosByHouseId(houseId, status);
+
+        // Verify that no other interactions with feedbackRepository occurred
+        verifyNoMoreInteractions(feedbackRepository);
+    }
+
+    @Test
+    void getFeedbackByHouseId1(){
+        int houseId = 1 ;
+        List<Boolean> status = Arrays.asList(false);
+
+
+        List<FeedbackDto> expectedFeedbackList = Arrays.asList(
+                new FeedbackDto(), new FeedbackDto()
+        );
+        when(feedbackRepository.findFeedbackDtosByHouseId(houseId, status)).thenReturn(expectedFeedbackList);
+
+        // Act
+        List<FeedbackDto> actualFeedbackList = feedbackService.getFeedbackByHouseId(houseId, status);
+
+        // Assert
+
+        assertEquals(expectedFeedbackList, actualFeedbackList);
+
+        // Verify that the repository method was called with the correct parameters
+        verify(feedbackRepository, times(1)).findFeedbackDtosByHouseId(houseId, status);
+
+        // Verify that no other interactions with feedbackRepository occurred
+        verifyNoMoreInteractions(feedbackRepository);
+    }
+
+    @Test
+    void getFeedbackByHouseId2(){
+        int houseId = 1 ;
+        List<Boolean> status = Arrays.asList(true,false);
+
+
+        List<FeedbackDto> expectedFeedbackList = Arrays.asList(
+                new FeedbackDto(), new FeedbackDto()
+        );
+        when(feedbackRepository.findFeedbackDtosByHouseId(houseId, status)).thenReturn(expectedFeedbackList);
+
+        // Act
+        List<FeedbackDto> actualFeedbackList = feedbackService.getFeedbackByHouseId(houseId, status);
+
+        // Assert
+
+        assertEquals(expectedFeedbackList, actualFeedbackList);
+
+        // Verify that the repository method was called with the correct parameters
+        verify(feedbackRepository, times(1)).findFeedbackDtosByHouseId(houseId, status);
+
+        // Verify that no other interactions with feedbackRepository occurred
+        verifyNoMoreInteractions(feedbackRepository);
+    }
+
+    @Test
+    void getFeedbackByHouseId3(){
+        // Arrange
+        int invalidHouseId = -1;
+        List<Boolean> status = Collections.singletonList(true);
+        // Act
+        List<FeedbackDto> resultFeedbackList = feedbackService.getFeedbackByHouseId(invalidHouseId, status);
+
+        // Assert
+        // Kiểm tra xem kết quả trả về có phải là null hay không
+        assertTrue(resultFeedbackList.isEmpty());
+
+
+    }
+
+    @Test
+    void getFeedbackByHouseId4(){
+        // Arrange
+        int invalidHouseId = -1;
+        List<Boolean> status = Collections.singletonList(false);
+        // Act
+        List<FeedbackDto> resultFeedbackList = feedbackService.getFeedbackByHouseId(invalidHouseId, status);
+
+        // Assert
+        // Kiểm tra xem kết quả trả về có phải là null hay không
+        assertTrue(resultFeedbackList.isEmpty());
+
+
+    }
+
+    @Test
+    void getFeedbackByHouseId5(){
+        // Arrange
+        int invalidHouseId = -1;
+        List<Boolean> status = Arrays.asList(true,false);
+        // Act
+        List<FeedbackDto> resultFeedbackList = feedbackService.getFeedbackByHouseId(invalidHouseId, status);
+
+        // Assert
+        // Kiểm tra xem kết quả trả về có phải là null hay không
+        assertTrue(resultFeedbackList.isEmpty());
+
+
+    }
+
+    @Test
+    void getFeedbackByHouseId6(){
+        // Arrange
+        int invalidHouseId = 0;
+        List<Boolean> status = Collections.singletonList(true);
+        // Act
+        List<FeedbackDto> resultFeedbackList = feedbackService.getFeedbackByHouseId(invalidHouseId, status);
+
+        // Assert
+        // Kiểm tra xem kết quả trả về có phải là null hay không
+        assertTrue(resultFeedbackList.isEmpty());
+
+
+    }
+
+    @Test
+    void getFeedbackByHouseId7(){
+        // Arrange
+        int invalidHouseId = 0;
+        List<Boolean> status = Collections.singletonList(false);
+        // Act
+        List<FeedbackDto> resultFeedbackList = feedbackService.getFeedbackByHouseId(invalidHouseId, status);
+
+        // Assert
+        // Kiểm tra xem kết quả trả về có phải là null hay không
+        assertTrue(resultFeedbackList.isEmpty());
+
+
+    }
+
+
+
 
 }

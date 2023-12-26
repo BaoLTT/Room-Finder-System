@@ -72,6 +72,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void registerUser(UserDto userDto) {
+        if(userDto==null) {
+            return ;
+        }
         userRepository.save(userDto);
     }
 
