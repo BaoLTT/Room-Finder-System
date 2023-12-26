@@ -40,7 +40,7 @@ public class RoomServiceImpl implements RoomService {
     private final RoomImageRepository roomImageRepository;
     private final HouseRepository houseRepository;
     private final GcsService gcsService;
-    private final RoomHistoryService roomHistoryService;
+    private final RoomHistoryService roomHistoryService ;
 
     @Override
     public RoomEntity getRoomById(int roomId) {

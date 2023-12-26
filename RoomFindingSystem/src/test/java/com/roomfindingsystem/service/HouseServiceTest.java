@@ -1,10 +1,8 @@
 package com.roomfindingsystem.service;
 
-import com.roomfindingsystem.dto.HouseDto;
-import com.roomfindingsystem.dto.HouseImageLink;
-import com.roomfindingsystem.dto.HouseTypeVo;
-import com.roomfindingsystem.dto.ServiceDto;
+import com.roomfindingsystem.dto.*;
 import com.roomfindingsystem.entity.HousesEntity;
+import com.roomfindingsystem.repository.FeedbackRepository;
 import com.roomfindingsystem.repository.HouseRepository;
 import com.roomfindingsystem.service.impl.HouseServiceImpl;
 import jakarta.persistence.Tuple;
@@ -14,10 +12,12 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.dao.EmptyResultDataAccessException;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -53,10 +53,46 @@ public class HouseServiceTest {
         verify(houseRepository).findAllDetail(houseId);
     }
 
+
+
     @Test
-    void testFindAllDetailWithEmptyResult() {
+    void testFindAllDetailWithInvalid() {
         // Arrange
         int houseId = 20000; // Assuming id with no details
+
+        when(houseRepository.findAllDetail(houseId)).thenReturn(Collections.emptyList());
+
+        // Act
+        List<HouseDto> result = houseService.getHouseDetail(houseId);
+
+        // Assert
+        assertTrue(result.isEmpty());
+
+        // Verify that the repository method was called with the correct parameter
+        verify(houseRepository).findAllDetail(houseId);
+    }
+
+    @Test
+    void testFindAllDetailWithZero() {
+        // Arrange
+        int houseId = 0; // Assuming id with no details
+
+        when(houseRepository.findAllDetail(houseId)).thenReturn(Collections.emptyList());
+
+        // Act
+        List<HouseDto> result = houseService.getHouseDetail(houseId);
+
+        // Assert
+        assertTrue(result.isEmpty());
+
+        // Verify that the repository method was called with the correct parameter
+        verify(houseRepository).findAllDetail(houseId);
+    }
+
+    @Test
+    void testFindAllDetailWithNegative() {
+        // Arrange
+        int houseId = -1; // Assuming id with no details
 
         when(houseRepository.findAllDetail(houseId)).thenReturn(Collections.emptyList());
 
@@ -92,11 +128,49 @@ public class HouseServiceTest {
         // Verify that the repository method was called with the correct parameter
         verify(houseRepository).getServiceById(id);
     }
+    @Test
+    void testGetServiceByIdWithValidId2() {
+        // Arrange
+        int id = 2;
+
+        // Mock data for ServiceDto
+        ServiceDto serviceDto = new ServiceDto(); serviceDto.setServiceId(1);
+        List<ServiceDto> serviceDtoList = Collections.singletonList(serviceDto);
+
+        when(houseRepository.getServiceById(id)).thenReturn(serviceDtoList);
+
+        // Act
+        List<ServiceDto> result = houseService.getServiceById(id);
+
+        // Assert
+        assertFalse(result.isEmpty());
+        assertEquals(serviceDto.getServiceId(), result.get(0).getServiceId()); // Assuming you expect a single DTO in the result
+
+        // Verify that the repository method was called with the correct parameter
+        verify(houseRepository).getServiceById(id);
+    }
 
     @Test
     void testGetServiceByIdWithEmptyResult() {
         // Arrange
-        int id = 273; // Assuming id with no services
+        int id = -1; // Assuming id with no services
+
+        when(houseRepository.getServiceById(id)).thenReturn(Collections.emptyList());
+
+        // Act
+        List<ServiceDto> result = houseService.getServiceById(id);
+
+        // Assert
+        assertTrue(result.isEmpty());
+
+        // Verify that the repository method was called with the correct parameter
+        verify(houseRepository, times(1)).getServiceById(id);
+    }
+
+    @Test
+    void testGetServiceByIdWithEmptyResult2() {
+        // Arrange
+        int id = 0; // Assuming id with no services
 
         when(houseRepository.getServiceById(id)).thenReturn(Collections.emptyList());
 
@@ -136,7 +210,40 @@ public class HouseServiceTest {
     @Test
     void testGetImageByIdWithEmptyResult() {
         // Arrange
-        int id = 273; // Assuming id with no images
+        int id = 2;
+
+        when(houseRepository.getByHouseImageid(id)).thenReturn(Collections.emptyList());
+
+        // Act
+        List<HouseImageLink> result = houseService.getImageById(id);
+
+        // Assert
+        assertTrue(result.isEmpty());
+
+        // Verify that the repository method was called with the correct parameter
+        verify(houseRepository, times(1)).getByHouseImageid(id);
+    }
+    @Test
+    void testGetImageByIdWithEmptyResult2() {
+        // Arrange
+        int id = -1;
+
+        when(houseRepository.getByHouseImageid(id)).thenReturn(Collections.emptyList());
+
+        // Act
+        List<HouseImageLink> result = houseService.getImageById(id);
+
+        // Assert
+        assertTrue(result.isEmpty());
+
+        // Verify that the repository method was called with the correct parameter
+        verify(houseRepository, times(1)).getByHouseImageid(id);
+    }
+
+    @Test
+    void testGetImageByIdWithEmptyResult3() {
+        // Arrange
+        int id = 0;
 
         when(houseRepository.getByHouseImageid(id)).thenReturn(Collections.emptyList());
 
@@ -189,10 +296,7 @@ public class HouseServiceTest {
         verify(houseRepository, times(1)).getHousesEntitiesByHouseId(id);
     }
 
-    @Test
-    void testFindHouse() {
 
-    }
     @Test
     void testCountHouse() {
         // Arrange
@@ -232,5 +336,410 @@ public class HouseServiceTest {
         verify(houseRepository, times(1)).countHouse(min1, max1, min2, max2,
                 province, district, ward, status1, status2,  houseName, type, service, countService);
     }
+
+    @Test
+    void testgetAllHouse() {
+        HousesEntity housesEntity = new HousesEntity(); housesEntity.setHouseName("TONY HOUSE");
+        List<HousesEntity> houseDtoList = Collections.singletonList(housesEntity);
+        when(houseRepository.findAll()).thenReturn(houseDtoList);
+
+        // Act
+        List<HousesEntity> result = houseService.getAllHouse();
+
+        // Assert
+        assertFalse(result.isEmpty());
+
+        // Verify that the repository method was called with the correct parameter
+        verify(houseRepository).findAll();
+    }
+
+    @Test
+    void testViewHouseInHome() {
+        List<Tuple> houseDtoList = new ArrayList<>();
+        when(houseRepository.viewHouseInHome()).thenReturn(houseDtoList);
+
+        // Act
+        List<HouseHomeDto> result = houseService.viewHouseInHome();
+
+        // Verify that the repository method was called with the correct parameter
+        verify(houseRepository).viewHouseInHome();
+    }
+
+    @Test
+    void testViewHouseInHomeInFavouriteValid() {
+        int id = 1;
+        List<Tuple> houseList = new ArrayList<>();
+        when(houseRepository.viewHouseInHomeInFavourite(id)).thenReturn(houseList);
+
+        // Act
+        List<HouseFavouriteDto> result = houseService.viewHouseInHomeInFavourite(id);
+
+        // Verify that the repository method was called with the correct parameter
+        verify(houseRepository).viewHouseInHomeInFavourite(id);
+    }
+    @Test
+    void testViewHouseInHomeInFavouriteValid2() {
+        int id = 2;
+        List<Tuple> houseList = new ArrayList<>();
+        when(houseRepository.viewHouseInHomeInFavourite(id)).thenReturn(houseList);
+
+        // Act
+        List<HouseFavouriteDto> result = houseService.viewHouseInHomeInFavourite(id);
+
+        // Verify that the repository method was called with the correct parameter
+        verify(houseRepository).viewHouseInHomeInFavourite(id);
+    }
+
+    @Test
+    void testViewHouseInHomeInFavouriteInValid() {
+        int id = -1;
+        when(houseRepository.viewHouseInHomeInFavourite(id)).thenReturn(null);
+
+        // Act
+        try {
+            List<HouseFavouriteDto> result = houseService.viewHouseInHomeInFavourite(id);
+        } catch (Exception e) {
+            // Kiểm tra xem ngoại lệ có phải là NullPointerException hay không
+            assertTrue(e instanceof NullPointerException);
+        }
+
+        // Verify that the repository method was called with the correct parameter
+        verify(houseRepository).viewHouseInHomeInFavourite(id);
+    }
+    @Test
+    void testViewHouseInHomeInFavouriteZero() {
+        int id = 0;
+        when(houseRepository.viewHouseInHomeInFavourite(id)).thenReturn(null);
+
+        // Act
+        try {
+            List<HouseFavouriteDto> result = houseService.viewHouseInHomeInFavourite(id);
+        } catch (Exception e) {
+            // Kiểm tra xem ngoại lệ có phải là NullPointerException hay không
+            assertTrue(e instanceof NullPointerException);
+        }
+
+        // Verify that the repository method was called with the correct parameter
+        verify(houseRepository).viewHouseInHomeInFavourite(id);
+    }
+
+    @Test
+    void testGetHouseByRoomIdWithValidId() {
+        // Arrange
+        int id = 1;
+
+        // Mock data for HousesEntity
+        HousesEntity housesEntity = new HousesEntity(/* provide necessary details */);
+
+        when(houseRepository.findHouseByRoomId(id)).thenReturn(housesEntity);
+
+        // Act
+        HousesEntity result = houseService.getHouseByRoomId(id);
+
+        // Assert
+        assertNotNull(result);
+        assertEquals(housesEntity, result);
+
+        // Verify that the repository method was called with the correct parameter
+        verify(houseRepository, times(1)).findHouseByRoomId(id);
+    }
+
+    @Test
+    void testGetHouseByRoomIdWithInValidId1() {
+        // Arrange
+        int id = 20;
+
+        // Mock data for HousesEntity
+        HousesEntity housesEntity = new HousesEntity(/* provide necessary details */);
+
+        when(houseRepository.findHouseByRoomId(id)).thenReturn(null);
+
+        // Act
+        HousesEntity result = houseService.getHouseByRoomId(id);
+
+        // Assert
+        assertNull(result);
+
+        // Verify that the repository method was called with the correct parameter
+        verify(houseRepository, times(1)).findHouseByRoomId(id);
+    }
+
+    @Test
+    void testGetHouseByRoomIdWithInValidId2() {
+        // Arrange
+        int id = -1;
+
+        // Mock data for HousesEntity
+        HousesEntity housesEntity = new HousesEntity(/* provide necessary details */);
+
+        when(houseRepository.findHouseByRoomId(id)).thenReturn(null);
+
+        // Act
+        HousesEntity result = houseService.getHouseByRoomId(id);
+
+        // Assert
+        assertNull(result);
+
+        // Verify that the repository method was called with the correct parameter
+        verify(houseRepository, times(1)).findHouseByRoomId(id);
+    }
+
+    @Test
+    void testGetHouseByRoomIdWithInValidId3() {
+        // Arrange
+        int id = 0;
+
+        // Mock data for HousesEntity
+        HousesEntity housesEntity = new HousesEntity(/* provide necessary details */);
+
+        when(houseRepository.findHouseByRoomId(id)).thenReturn(null);
+
+        // Act
+        HousesEntity result = houseService.getHouseByRoomId(id);
+
+        // Assert
+        assertNull(result);
+
+        // Verify that the repository method was called with the correct parameter
+        verify(houseRepository, times(1)).findHouseByRoomId(id);
+    }
+
+    @Test
+    void testGetHouseIdByUserIdWithValid() {
+        // Arrange
+        int id = 1;
+
+        // Mock data for HousesEntity
+        List<HousesEntity> housesEntities = new ArrayList<>();
+
+        when(houseRepository.findHouseByMemberId(id)).thenReturn(housesEntities);
+
+        // Act
+        List <HousesEntity> result = houseService.getHouseIdByUserId(id);
+
+        // Assert
+        assertNotNull(result);
+
+        // Verify that the repository method was called with the correct parameter
+        verify(houseRepository, times(1)).findHouseByMemberId(id);
+    }
+
+
+    @Test
+    void testGetHouseIdByUserIdWithInValid1() {
+        // Arrange
+        int id = 20;
+
+        // Mock data for HousesEntity
+        List<HousesEntity> housesEntities = new ArrayList<>();
+
+        when(houseRepository.findHouseByMemberId(id)).thenReturn(null);
+
+        // Act
+        List <HousesEntity> result = houseService.getHouseIdByUserId(id);
+
+        // Assert
+        assertNull(result);
+
+        // Verify that the repository method was called with the correct parameter
+        verify(houseRepository, times(1)).findHouseByMemberId(id);
+    }
+
+    @Test
+    void testGetHouseIdByUserIdWithInValid2() {
+        // Arrange
+        int id = -1;
+
+        // Mock data for HousesEntity
+        List<HousesEntity> housesEntities = new ArrayList<>();
+
+        when(houseRepository.findHouseByMemberId(id)).thenReturn(null);
+
+        // Act
+        List <HousesEntity> result = houseService.getHouseIdByUserId(id);
+
+        // Assert
+        assertNull(result);
+
+        // Verify that the repository method was called with the correct parameter
+        verify(houseRepository, times(1)).findHouseByMemberId(id);
+    }
+
+    @Test
+    void testGetHouseIdByUserIdWithInValid3() {
+        // Arrange
+        int id = 0;
+
+        // Mock data for HousesEntity
+        List<HousesEntity> housesEntities = new ArrayList<>();
+
+        when(houseRepository.findHouseByMemberId(id)).thenReturn(null);
+
+        // Act
+        List <HousesEntity> result = houseService.getHouseIdByUserId(id);
+
+        // Assert
+        assertNull(result);
+
+        // Verify that the repository method was called with the correct parameter
+        verify(houseRepository, times(1)).findHouseByMemberId(id);
+    }
+
+    @Test
+    void testCountHouseInAdmin() {
+        int a=1;
+        when(houseRepository.countHouses()).thenReturn(a);
+
+        // Act
+        int result = houseService.countHousesInAdmin();
+        assertEquals(1, result);
+
+        // Verify that the repository method was called with the correct parameter
+        verify(houseRepository).countHouses();
+    }
+
+    @Test
+    void testUpdateStarValid() {
+        int star =1;
+        int houseId =1;
+
+        // Call the method with input value 1
+        houseService.updateStar(star, houseId);
+
+        // Verify that updateStatusToTrue is called with the correct argument
+        verify(houseRepository, times(1)).updateStarHouse(star, houseId);
+    }
+
+    @Test
+    void testUpdateStarInValid1() {
+        HouseRepository houseRepository = mock(HouseRepository.class);
+        int star =-1;
+        int houseId =1;
+
+        // Call the method with input value 1
+        houseService.updateStar(star, houseId);
+
+        // Verify that updateStatusToTrue is called with the correct argument
+        verify(houseRepository,  never()).updateStarHouse(star, houseId);
+    }
+
+    @Test
+    void testUpdateStarInValid2() {
+        HouseRepository houseRepository = mock(HouseRepository.class);
+        int star =1;
+        int houseId =-1;
+
+        // Call the method with input value 1
+        houseService.updateStar(star, houseId);
+
+        // Verify that updateStatusToTrue is called with the correct argument
+        verify(houseRepository,  never()).updateStarHouse(star, houseId);
+    }
+
+    @Test
+    void testUpdateStarInValid3() {
+        HouseRepository houseRepository = mock(HouseRepository.class);
+        int star =-1;
+        int houseId =-1;
+
+        // Call the method with input value 1
+        houseService.updateStar(star, houseId);
+
+        // Verify that updateStatusToTrue is called with the correct argument
+        verify(houseRepository,  never()).updateStarHouse(star, houseId);
+    }
+    @Test
+    void testFindHouseById() {
+        int id = 1;
+        HousesEntity housesEntity = new HousesEntity();
+
+        // Mock data for HousesEntity
+        Optional<HousesEntity> housesEntityOptional = Optional.ofNullable(housesEntity);
+
+
+        when(houseRepository.findById(id)).thenReturn(housesEntityOptional);
+
+        // Act
+        Optional<HousesEntity> result = houseService.findHouseById(id);
+
+        // Assert
+        assertNotNull(result);
+        assertEquals(housesEntityOptional, result);
+
+        // Verify that the repository method was called with the correct parameter
+        verify(houseRepository, times(1)).findById(id);
+    }
+
+    @Test
+    void testFindHouseByIdInvalid1() {
+        int id = 200;
+        HousesEntity housesEntity = new HousesEntity();
+
+        // Mock data for HousesEntity
+        Optional<HousesEntity> housesEntityOptional = null;
+
+
+        when(houseRepository.findById(id)).thenReturn(housesEntityOptional);
+
+        // Act
+        Optional<HousesEntity> result = houseService.findHouseById(id);
+
+        // Assert
+        assertNull(result);
+
+        // Verify that the repository method was called with the correct parameter
+        verify(houseRepository, times(1)).findById(id);
+    }
+
+    @Test
+    void testFindHouseByIdInvalid2() {
+        int id = 0;
+        HousesEntity housesEntity = new HousesEntity();
+
+        // Mock data for HousesEntity
+        Optional<HousesEntity> housesEntityOptional = null;
+
+
+        when(houseRepository.findById(id)).thenReturn(housesEntityOptional);
+
+        // Act
+        Optional<HousesEntity> result = houseService.findHouseById(id);
+
+        // Assert
+        assertNull(result);
+
+        // Verify that the repository method was called with the correct parameter
+        verify(houseRepository, times(1)).findById(id);
+    }
+
+    @Test
+    void testFindHouseByIdInvalid3() {
+        int id = -1;
+        HousesEntity housesEntity = new HousesEntity();
+
+        // Mock data for HousesEntity
+        Optional<HousesEntity> housesEntityOptional = null;
+
+
+        when(houseRepository.findById(id)).thenReturn(housesEntityOptional);
+
+        // Act
+        Optional<HousesEntity> result = houseService.findHouseById(id);
+
+        // Assert
+        assertNull(result);
+
+        // Verify that the repository method was called with the correct parameter
+        verify(houseRepository, times(1)).findById(id);
+    }
+
+
+
+
+
+
+
+
+
 
 }
