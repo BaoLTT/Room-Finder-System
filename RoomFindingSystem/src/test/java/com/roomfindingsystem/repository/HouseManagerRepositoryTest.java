@@ -43,9 +43,9 @@ class HouseManagerRepositoryTest {
     @Test
     @Transactional
     void updateHouse() {
-        houseManagerRepository.updateHouse("a", 1, "Khong co gi", 1, null, null, 344, null, null);
+        houseManagerRepository.updateHouse("a", 1, "Khong co gi", 1, null, 1, 357, null, null);
 
-        HouseManagerTypeVo houseManagerTypeVo = houseManagerRepository.findHouseById(344);
+        HouseManagerTypeVo houseManagerTypeVo = houseManagerRepository.findHouseById(357);
 
         assertNotNull(houseManagerTypeVo);
         assertEquals("a", houseManagerTypeVo.getHouseName() );

@@ -38,7 +38,7 @@ public class HouseLandlordServiceImpl implements HouseLandlordService {
     @Override
     public HouseLandlordVo findHouseByID(int houseid) {
         Tuple tuples = houseLandlordRepository.findHouseByID(houseid);
-        return getHouseLandlordVo(tuples);
+        return  getHouseLandlordVo(tuples,houseid);
     }
     public List<HouseLandlordVo> getListHouseLandlordVo(List<Tuple> tuples) {
         List<HouseLandlordVo> houseLandlord1 = new ArrayList<>();
@@ -128,7 +128,7 @@ public class HouseLandlordServiceImpl implements HouseLandlordService {
         return houseLandlord1;
     }
 
-    public HouseLandlordVo getHouseLandlordVo(Tuple tuple) {
+    public HouseLandlordVo getHouseLandlordVo(Tuple tuple,int houseid) {
         List<String> imageLinks ;
         List<String> services;
         List<String> imageIds;
@@ -164,7 +164,7 @@ public class HouseLandlordServiceImpl implements HouseLandlordService {
             List<HouseImageDto> listHouseImage = new ArrayList<>();
             String imageLink = (tuple.get("Image_Link", String.class));
             String imageId  = (tuple.get("Image_Id",String.class));
-            if(imageLink == null)
+            if(imageLink == null || imageLink.equals("/rfs_bucket/House/housenull.jpg"))
             {houseLandlordVo.setListImage(null);}
             else {
                 imageLinks = Arrays.asList(imageLink.split(","));

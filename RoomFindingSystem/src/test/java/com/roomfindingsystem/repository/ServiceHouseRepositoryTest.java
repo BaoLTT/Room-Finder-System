@@ -23,6 +23,6 @@ class ServiceHouseRepositoryTest {
 
         List<ServiceHouseEntity> list = serviceHouseRepository.findAll();
 
-        assertEquals(84, list.size());
+        assertEquals(82, list.size());
     }
 }

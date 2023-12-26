@@ -40,7 +40,7 @@ public class RoomServiceImpl implements RoomService {
     private final RoomImageRepository roomImageRepository;
     private final HouseRepository houseRepository;
     private final GcsService gcsService;
-    private final RoomHistoryService roomHistoryService;
+    private final RoomHistoryService roomHistoryService ;
 
     @Override
     public RoomEntity getRoomById(int roomId) {
@@ -116,8 +116,8 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public List<RoomHomeDto> viewRoomNearPrice(int price) {
-        List<Tuple> tuples = roomRepository.findRoomsNearPrice(BigDecimal.valueOf(price));
+    public List<RoomHomeDto> viewRoomNearPrice(int price, int id) {
+        List<Tuple> tuples = roomRepository.findRoomsNearPrice(BigDecimal.valueOf(price), id);
         List<RoomHomeDto> roomHomeDtos = new ArrayList<>();
         List<String> imageLinks;
 
@@ -294,7 +294,7 @@ public class RoomServiceImpl implements RoomService {
 
 
         roomRepository.save(saveRoom);
-        roomHistoryService.addRoomHistory(saveRoom.getRoomName(), saveRoom.getHouseid());
+//        roomHistoryService.addRoomHistory(saveRoom.getRoomName(), saveRoom.getHouseid());
         if (roomDto.getServiceDtos() != null) {
             for (ServiceDto serviceDto : roomDto.getServiceDtos()) {
                 ServiceRoomEntity serviceRoomEntity = new ServiceRoomEntity();

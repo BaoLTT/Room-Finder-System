@@ -29,7 +29,7 @@ public interface RoomService {
     int countRoom(int houseId);
     List<RoomHomeDto> viewRoomInHome();
 
-    List<RoomHomeDto> viewRoomNearPrice(int price);
+    List<RoomHomeDto> viewRoomNearPrice(int price, int id);
 
     RoomDto findById(Integer id);
 
