@@ -206,4 +206,98 @@ public class UserServiceImplTest {
 
     }
 
+    @Test
+    public void testRecoverPassword_ValidCredentials() {
+        // Arrange
+        String validPassword = "123456";
+        String validEmail = "thaibaoa3k45@gmail.com";
+
+        // Mock the behavior of the userRepository
+        when(userRepository.updatePassword(validPassword, validEmail)).thenReturn(1);
+
+        // Act
+        int result = userService.recoverPassword(validPassword, validEmail);
+
+        // Assert
+        assertEquals(1, result);
+
+        // Optionally, verify that the method on the mocked object was called with the expected parameters
+        verify(userRepository).updatePassword(validPassword, validEmail);
+    }
+
+    @Test
+    public void testRecoverPassword_InvalidCredentials() {
+        // Arrange
+        String invalidPassword = "";
+        String invalidEmail = "";
+
+        // Define the behavior of the mocked userRepository for invalid credentials
+        when(userRepository.updatePassword(invalidPassword, invalidEmail)).thenReturn(0);
+
+        // Act
+        int result = userService.recoverPassword(invalidPassword, invalidEmail);
+
+        // Assert
+        assertEquals(0, result);
+
+        // Optionally, verify that the method on the mocked object was called with the expected parameters
+        verify(userRepository).updatePassword(invalidPassword, invalidEmail);
+    }
+
+    @Test
+    public void testRecoverPassword_InvalidCredentials2() {
+        // Arrange
+        String invalidPassword = "";
+        String invalidEmail = null;
+
+        // Define the behavior of the mocked userRepository for invalid credentials
+        when(userRepository.updatePassword(invalidPassword, invalidEmail)).thenReturn(0);
+
+        // Act
+        int result = userService.recoverPassword(invalidPassword, invalidEmail);
+
+        // Assert
+        assertEquals(0, result);
+
+        // Optionally, verify that the method on the mocked object was called with the expected parameters
+        verify(userRepository).updatePassword(invalidPassword, invalidEmail);
+    }
+
+    @Test
+    public void testRecoverPassword_InvalidCredentials3() {
+        // Arrange
+        String invalidPassword = "123456";
+        String invalidEmail = null;
+
+        // Define the behavior of the mocked userRepository for invalid credentials
+        when(userRepository.updatePassword(invalidPassword, invalidEmail)).thenReturn(0);
+
+        // Act
+        int result = userService.recoverPassword(invalidPassword, invalidEmail);
+
+        // Assert
+        assertEquals(0, result);
+
+        // Optionally, verify that the method on the mocked object was called with the expected parameters
+        verify(userRepository).updatePassword(invalidPassword, invalidEmail);
+    }
+
+    @Test
+    public void testRecoverPassword_InvalidCredentials4() {
+        // Arrange
+        String invalidPassword = null;
+        String invalidEmail = null;
+
+        // Define the behavior of the mocked userRepository for invalid credentials
+        when(userRepository.updatePassword(invalidPassword, invalidEmail)).thenReturn(0);
+
+        // Act
+        int result = userService.recoverPassword(invalidPassword, invalidEmail);
+
+        // Assert
+        assertEquals(0, result);
+
+        // Optionally, verify that the method on the mocked object was called with the expected parameters
+        verify(userRepository).updatePassword(invalidPassword, invalidEmail);
+    }
 }

@@ -5,10 +5,7 @@ import com.roomfindingsystem.dto.HouseManagerTypeVo;
 import com.roomfindingsystem.entity.HouseImagesEntity;
 import com.roomfindingsystem.entity.HousesEntity;
 import com.roomfindingsystem.entity.ServiceHouseEntity;
-import com.roomfindingsystem.repository.HouseImageRepository;
-import com.roomfindingsystem.repository.HouseManagerRepository;
-import com.roomfindingsystem.repository.RoomRepository;
-import com.roomfindingsystem.repository.ServiceHouseRepository;
+import com.roomfindingsystem.repository.*;
 import com.roomfindingsystem.service.impl.GcsService;
 import com.roomfindingsystem.service.impl.HouseManagerServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
@@ -19,6 +16,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -48,6 +46,18 @@ class HouseManagerServiceTest {
     private GcsService gcsService;
     @Mock
     RoomRepository roomRepository;
+    @Mock
+    RoomImageRepository roomImageRepository;
+    @Mock
+    ServiceRoomRepository serviceRoomRepository;
+    @Mock
+    private HouseLandlordService houseLandlordService;
+    @Mock
+    AddressRepository addressRepository;
+    @Mock
+    FavouriteRepository favouriteRepository;
+    @Mock
+    FeedbackRepository feedbackRepository;
 
     @BeforeEach
     void setUp() {
@@ -354,5 +364,461 @@ class HouseManagerServiceTest {
         verify(houseManagerRepository, times(1)).getLastHouse();
     }
 
+    @Test
+    void testUpdateHouse1() throws IOException {
+        // Mock data
+        HouseLandlordVo houses = new HouseLandlordVo(); houses.setHouseName("abc"); houses.setDescription("abc");
+        List<Integer> service = Arrays.asList(1, 2); // Example service IDs
+        MultipartFile[] files = {/* initialize with mock MultipartFile objects */};
+
+        List<HouseImagesEntity> mockHouseImages = Arrays.asList(
+                new HouseImagesEntity(1, "/rfs_bucket/House/house1.jpg"),
+                new HouseImagesEntity(2, "/rfs_bucket/House/house2.jpg")
+                // Add more mock images as needed
+        );
+
+        // Stub the behavior of the repositories and services
+        when(houseImageRepository.getImageByHouseId(anyInt())).thenReturn(mockHouseImages);
+
+
+
+        // Call the method to test
+        houseManagerService.updateHouse(houses, 1, service, files);
+
+        // Verify that the repositories and services were called as expected
+
+        verify(serviceHouseRepository, times(service.size())).save(any(ServiceHouseEntity.class));
+
+        verify(houseImageRepository, times(files.length)).save(any(HouseImagesEntity.class));
+        verify(gcsService, times(files.length)).uploadImage(anyString(), anyString(), any(byte[].class));
+    }
+
+    @Test
+    void testUpdateHouse2() throws IOException {
+        // Mock data
+        HouseLandlordVo houses = new HouseLandlordVo(); houses.setHouseName("abc"); houses.setDescription("abc");
+        int houseID = -1; // Invalid house ID
+        List<Integer> service = Arrays.asList(1); // Example service IDs
+        MultipartFile[] files = {/* initialize with mock MultipartFile objects */};
+
+        // Stub the behavior of the repositories and services
+        when(houseImageRepository.getImageByHouseId(houseID)).thenReturn(Collections.emptyList());
+
+        // Call the method to test
+        houseManagerService.updateHouse(houses, houseID, service, files);
+
+        // Verify that certain methods were not called
+
+        verify(houseImageRepository, never()).deleteByHouseId(anyInt());
+        verify(houseImageRepository, never()).save(any(HouseImagesEntity.class));
+        verify(gcsService, never()).uploadImage(anyString(), anyString(), any(byte[].class));
+    }
+
+
+    @Test
+    void testUpdateHouse3() throws IOException {
+        // Mock data
+        HouseLandlordVo houses = new HouseLandlordVo(); houses.setHouseName("abc"); houses.setDescription("abc");
+        List<Integer> service = Arrays.asList(1, 2); // Example service IDs
+        MultipartFile[] files = {/* initialize with mock MultipartFile objects */};
+
+        List<HouseImagesEntity> mockHouseImages = Arrays.asList(
+                new HouseImagesEntity(1, "/rfs_bucket/House/house1.jpg"),
+                new HouseImagesEntity(2, "/rfs_bucket/House/house2.jpg")
+                // Add more mock images as needed
+        );
+
+        // Stub the behavior of the repositories and services
+        when(houseImageRepository.getImageByHouseId(anyInt())).thenReturn(mockHouseImages);
+
+
+
+        // Call the method to test
+        houseManagerService.updateHouse(houses, 1, service, files);
+
+        // Verify that the repositories and services were called as expected
+
+        verify(serviceHouseRepository, times(service.size())).save(any(ServiceHouseEntity.class));
+
+        verify(houseImageRepository, times(files.length)).save(any(HouseImagesEntity.class));
+        verify(gcsService, times(files.length)).uploadImage(anyString(), anyString(), any(byte[].class));
+    }
+
+    @Test
+    void testUpdateHouse4() throws IOException {
+        // Mock data
+        HouseLandlordVo houses = new HouseLandlordVo(); houses.setHouseName("abc"); houses.setDescription("abc");
+        List<Integer> service = Arrays.asList(1, 2); // Example service IDs
+        MultipartFile[] files = {/* initialize with mock MultipartFile objects */};
+
+        List<HouseImagesEntity> mockHouseImages = Arrays.asList(
+                new HouseImagesEntity(1, "/rfs_bucket/House/house1.jpg"),
+                new HouseImagesEntity(2, "/rfs_bucket/House/house2.jpg")
+                // Add more mock images as needed
+        );
+
+        // Stub the behavior of the repositories and services
+        when(houseImageRepository.getImageByHouseId(anyInt())).thenReturn(mockHouseImages);
+
+
+
+        // Call the method to test
+        houseManagerService.updateHouse(houses, 1, service, files);
+
+        // Verify that the repositories and services were called as expected
+
+        verify(serviceHouseRepository, times(service.size())).save(any(ServiceHouseEntity.class));
+
+        verify(houseImageRepository, times(files.length)).save(any(HouseImagesEntity.class));
+        verify(gcsService, times(files.length)).uploadImage(anyString(), anyString(), any(byte[].class));
+    }
+
+    @Test
+    void testUpdateHouse5() throws IOException {
+        // Mock data
+        HouseLandlordVo houses = new HouseLandlordVo(); houses.setHouseName("abc"); houses.setDescription("abc");
+        List<Integer> service = Arrays.asList(1, 2); // Example service IDs
+        MultipartFile[] files = {/* initialize with mock MultipartFile objects */};
+
+        List<HouseImagesEntity> mockHouseImages = Arrays.asList(
+                new HouseImagesEntity(1, "/rfs_bucket/House/house1.jpg"),
+                new HouseImagesEntity(2, "/rfs_bucket/House/house2.jpg")
+                // Add more mock images as needed
+        );
+
+        // Stub the behavior of the repositories and services
+        when(houseImageRepository.getImageByHouseId(anyInt())).thenReturn(mockHouseImages);
+
+
+
+        // Call the method to test
+        houseManagerService.updateHouse(houses, 1, service, files);
+
+        // Verify that the repositories and services were called as expected
+
+        verify(serviceHouseRepository, times(service.size())).save(any(ServiceHouseEntity.class));
+
+        verify(houseImageRepository, times(files.length)).save(any(HouseImagesEntity.class));
+        verify(gcsService, times(files.length)).uploadImage(anyString(), anyString(), any(byte[].class));
+    }
+
+    @Test
+    void testUpdateHouse6() throws IOException {
+        // Mock data
+        HouseLandlordVo houses = new HouseLandlordVo(); houses.setHouseName("abc"); houses.setDescription("abc");
+        List<Integer> service = Arrays.asList(1, 2); // Example service IDs
+        MultipartFile[] files = {/* initialize with mock MultipartFile objects */};
+
+        List<HouseImagesEntity> mockHouseImages = Arrays.asList(
+                new HouseImagesEntity(1, "/rfs_bucket/House/house1.jpg"),
+                new HouseImagesEntity(2, "/rfs_bucket/House/house2.jpg")
+                // Add more mock images as needed
+        );
+
+        // Stub the behavior of the repositories and services
+        when(houseImageRepository.getImageByHouseId(anyInt())).thenReturn(mockHouseImages);
+
+
+
+        // Call the method to test
+        houseManagerService.updateHouse(houses, 1, service, files);
+
+        // Verify that the repositories and services were called as expected
+
+        verify(serviceHouseRepository, times(service.size())).save(any(ServiceHouseEntity.class));
+
+        verify(houseImageRepository, times(files.length)).save(any(HouseImagesEntity.class));
+        verify(gcsService, times(files.length)).uploadImage(anyString(), anyString(), any(byte[].class));
+    }
+
+    @Test
+    void testUpdateHouse7() throws IOException {
+        // Mock data
+        HouseLandlordVo houses = new HouseLandlordVo(); houses.setHouseName("abc"); houses.setDescription("abc");
+        List<Integer> service = Arrays.asList(1, 2); // Example service IDs
+        MultipartFile[] files = {/* initialize with mock MultipartFile objects */};
+
+        List<HouseImagesEntity> mockHouseImages = Arrays.asList(
+                new HouseImagesEntity(1, "/rfs_bucket/House/house1.jpg"),
+                new HouseImagesEntity(2, "/rfs_bucket/House/house2.jpg")
+                // Add more mock images as needed
+        );
+
+        // Stub the behavior of the repositories and services
+        when(houseImageRepository.getImageByHouseId(anyInt())).thenReturn(mockHouseImages);
+
+
+
+        // Call the method to test
+        houseManagerService.updateHouse(houses, 1, service, files);
+
+        // Verify that the repositories and services were called as expected
+
+        verify(serviceHouseRepository, times(service.size())).save(any(ServiceHouseEntity.class));
+
+        verify(houseImageRepository, times(files.length)).save(any(HouseImagesEntity.class));
+        verify(gcsService, times(files.length)).uploadImage(anyString(), anyString(), any(byte[].class));
+    }
+
+    @Test
+    void testUpdateHouse8() throws IOException {
+        // Mock data
+        HouseLandlordVo houses = new HouseLandlordVo(); houses.setHouseName("abc"); houses.setDescription("abc");
+        List<Integer> service = Arrays.asList(1, 2); // Example service IDs
+        MultipartFile[] files = {/* initialize with mock MultipartFile objects */};
+
+        List<HouseImagesEntity> mockHouseImages = Arrays.asList(
+                new HouseImagesEntity(1, "/rfs_bucket/House/house1.jpg"),
+                new HouseImagesEntity(2, "/rfs_bucket/House/house2.jpg")
+                // Add more mock images as needed
+        );
+
+        // Stub the behavior of the repositories and services
+        when(houseImageRepository.getImageByHouseId(anyInt())).thenReturn(mockHouseImages);
+
+
+
+        // Call the method to test
+        houseManagerService.updateHouse(houses, 1, service, files);
+
+        // Verify that the repositories and services were called as expected
+
+        verify(serviceHouseRepository, times(service.size())).save(any(ServiceHouseEntity.class));
+
+        verify(houseImageRepository, times(files.length)).save(any(HouseImagesEntity.class));
+        verify(gcsService, times(files.length)).uploadImage(anyString(), anyString(), any(byte[].class));
+    }
+
+    @Test
+    void testUpdateHouse9() throws IOException {
+        // Mock data
+        HouseLandlordVo houses = new HouseLandlordVo(); houses.setHouseName("abc"); houses.setDescription("abc");
+        List<Integer> service = Arrays.asList(1, 2); // Example service IDs
+        MultipartFile[] files = {/* initialize with mock MultipartFile objects */};
+
+        List<HouseImagesEntity> mockHouseImages = Arrays.asList(
+                new HouseImagesEntity(1, "/rfs_bucket/House/house1.jpg"),
+                new HouseImagesEntity(2, "/rfs_bucket/House/house2.jpg")
+                // Add more mock images as needed
+        );
+
+        // Stub the behavior of the repositories and services
+        when(houseImageRepository.getImageByHouseId(anyInt())).thenReturn(mockHouseImages);
+
+
+
+        // Call the method to test
+        houseManagerService.updateHouse(houses, 1, service, files);
+
+        // Verify that the repositories and services were called as expected
+
+        verify(serviceHouseRepository, times(service.size())).save(any(ServiceHouseEntity.class));
+
+        verify(houseImageRepository, times(files.length)).save(any(HouseImagesEntity.class));
+        verify(gcsService, times(files.length)).uploadImage(anyString(), anyString(), any(byte[].class));
+    }
+
+    @Test
+    void testUpdateHouse10() throws IOException {
+        // Mock data
+        HouseLandlordVo houses = new HouseLandlordVo(); houses.setHouseName("abc"); houses.setDescription("abc");
+        List<Integer> service = Arrays.asList(1, 2); // Example service IDs
+        MultipartFile[] files = {/* initialize with mock MultipartFile objects */};
+
+        List<HouseImagesEntity> mockHouseImages = Arrays.asList(
+                new HouseImagesEntity(1, "/rfs_bucket/House/house1.jpg"),
+                new HouseImagesEntity(2, "/rfs_bucket/House/house2.jpg")
+                // Add more mock images as needed
+        );
+
+        // Stub the behavior of the repositories and services
+        when(houseImageRepository.getImageByHouseId(anyInt())).thenReturn(mockHouseImages);
+
+
+
+        // Call the method to test
+        houseManagerService.updateHouse(houses, 1, service, files);
+
+        // Verify that the repositories and services were called as expected
+
+        verify(serviceHouseRepository, times(service.size())).save(any(ServiceHouseEntity.class));
+
+        verify(houseImageRepository, times(files.length)).save(any(HouseImagesEntity.class));
+        verify(gcsService, times(files.length)).uploadImage(anyString(), anyString(), any(byte[].class));
+    }
+
+    @Test
+    void testUpdateHouse11() throws IOException {
+        // Mock data
+        HouseLandlordVo houses = new HouseLandlordVo(); houses.setHouseName("abc"); houses.setDescription("abc");
+        List<Integer> service = Arrays.asList(1, 2); // Example service IDs
+        MultipartFile[] files = {/* initialize with mock MultipartFile objects */};
+
+        List<HouseImagesEntity> mockHouseImages = Arrays.asList(
+                new HouseImagesEntity(1, "/rfs_bucket/House/house1.jpg"),
+                new HouseImagesEntity(2, "/rfs_bucket/House/house2.jpg")
+                // Add more mock images as needed
+        );
+
+        // Stub the behavior of the repositories and services
+        when(houseImageRepository.getImageByHouseId(anyInt())).thenReturn(mockHouseImages);
+
+
+
+        // Call the method to test
+        houseManagerService.updateHouse(houses, 1, service, files);
+
+        // Verify that the repositories and services were called as expected
+
+        verify(serviceHouseRepository, times(service.size())).save(any(ServiceHouseEntity.class));
+
+        verify(houseImageRepository, times(files.length)).save(any(HouseImagesEntity.class));
+        verify(gcsService, times(files.length)).uploadImage(anyString(), anyString(), any(byte[].class));
+    }
+
+    @Test
+    void testUpdateHouse12() throws IOException {
+        // Mock data
+        HouseLandlordVo houses = new HouseLandlordVo(); houses.setHouseName("abc"); houses.setDescription("abc");
+        List<Integer> service = Arrays.asList(1, 2); // Example service IDs
+        MultipartFile[] files = {/* initialize with mock MultipartFile objects */};
+
+        List<HouseImagesEntity> mockHouseImages = Arrays.asList(
+                new HouseImagesEntity(1, "/rfs_bucket/House/house1.jpg"),
+                new HouseImagesEntity(2, "/rfs_bucket/House/house2.jpg")
+                // Add more mock images as needed
+        );
+
+        // Stub the behavior of the repositories and services
+        when(houseImageRepository.getImageByHouseId(anyInt())).thenReturn(mockHouseImages);
+
+
+
+        // Call the method to test
+        houseManagerService.updateHouse(houses, 1, service, files);
+
+        // Verify that the repositories and services were called as expected
+
+        verify(serviceHouseRepository, times(service.size())).save(any(ServiceHouseEntity.class));
+
+        verify(houseImageRepository, times(files.length)).save(any(HouseImagesEntity.class));
+        verify(gcsService, times(files.length)).uploadImage(anyString(), anyString(), any(byte[].class));
+    }
+
+    @Test
+    void testUpdateHouse13() throws IOException {
+        // Mock data
+        HouseLandlordVo houses = new HouseLandlordVo(); houses.setHouseName("abc"); houses.setDescription("abc");
+        List<Integer> service = Arrays.asList(1, 2); // Example service IDs
+        MultipartFile[] files = {/* initialize with mock MultipartFile objects */};
+
+        List<HouseImagesEntity> mockHouseImages = Arrays.asList(
+                new HouseImagesEntity(1, "/rfs_bucket/House/house1.jpg"),
+                new HouseImagesEntity(2, "/rfs_bucket/House/house2.jpg")
+                // Add more mock images as needed
+        );
+
+        // Stub the behavior of the repositories and services
+        when(houseImageRepository.getImageByHouseId(anyInt())).thenReturn(mockHouseImages);
+
+
+
+        // Call the method to test
+        houseManagerService.updateHouse(houses, 1, service, files);
+
+        // Verify that the repositories and services were called as expected
+
+        verify(serviceHouseRepository, times(service.size())).save(any(ServiceHouseEntity.class));
+
+        verify(houseImageRepository, times(files.length)).save(any(HouseImagesEntity.class));
+        verify(gcsService, times(files.length)).uploadImage(anyString(), anyString(), any(byte[].class));
+    }
+
+    @Test
+    void testUpdateHouse14() throws IOException {
+        // Mock data
+        HouseLandlordVo houses = new HouseLandlordVo(); houses.setHouseName("abc"); houses.setDescription("abc");
+        List<Integer> service = Arrays.asList(1, 2); // Example service IDs
+        MultipartFile[] files = {/* initialize with mock MultipartFile objects */};
+
+        List<HouseImagesEntity> mockHouseImages = Arrays.asList(
+                new HouseImagesEntity(1, "/rfs_bucket/House/house1.jpg"),
+                new HouseImagesEntity(2, "/rfs_bucket/House/house2.jpg")
+                // Add more mock images as needed
+        );
+
+        // Stub the behavior of the repositories and services
+        when(houseImageRepository.getImageByHouseId(anyInt())).thenReturn(mockHouseImages);
+
+
+
+        // Call the method to test
+        houseManagerService.updateHouse(houses, 1, service, files);
+
+        // Verify that the repositories and services were called as expected
+
+        verify(serviceHouseRepository, times(service.size())).save(any(ServiceHouseEntity.class));
+
+        verify(houseImageRepository, times(files.length)).save(any(HouseImagesEntity.class));
+        verify(gcsService, times(files.length)).uploadImage(anyString(), anyString(), any(byte[].class));
+    }
+
+    @Test
+    void testUpdateHouse15() throws IOException {
+        // Mock data
+        HouseLandlordVo houses = new HouseLandlordVo(); houses.setHouseName("abc"); houses.setDescription("abc");
+        List<Integer> service = Arrays.asList(1, 2); // Example service IDs
+        MultipartFile[] files = {/* initialize with mock MultipartFile objects */};
+
+        List<HouseImagesEntity> mockHouseImages = Arrays.asList(
+                new HouseImagesEntity(1, "/rfs_bucket/House/house1.jpg"),
+                new HouseImagesEntity(2, "/rfs_bucket/House/house2.jpg")
+                // Add more mock images as needed
+        );
+
+        // Stub the behavior of the repositories and services
+        when(houseImageRepository.getImageByHouseId(anyInt())).thenReturn(mockHouseImages);
+
+
+
+        // Call the method to test
+        houseManagerService.updateHouse(houses, 1, service, files);
+
+        // Verify that the repositories and services were called as expected
+
+        verify(serviceHouseRepository, times(service.size())).save(any(ServiceHouseEntity.class));
+
+        verify(houseImageRepository, times(files.length)).save(any(HouseImagesEntity.class));
+        verify(gcsService, times(files.length)).uploadImage(anyString(), anyString(), any(byte[].class));
+    }
+
+    @Test
+    void testUpdateHouse16() throws IOException {
+        // Mock data
+        HouseLandlordVo houses = new HouseLandlordVo(); houses.setHouseName("abc"); houses.setDescription("abc");
+        List<Integer> service = Arrays.asList(1, 2); // Example service IDs
+        MultipartFile[] files = {};
+
+        List<HouseImagesEntity> mockHouseImages = Arrays.asList(
+                new HouseImagesEntity(1, "/rfs_bucket/House/house1.jpg"),
+                new HouseImagesEntity(2, "/rfs_bucket/House/house2.jpg")
+                // Add more mock images as needed
+        );
+
+        // Stub the behavior of the repositories and services
+        when(houseImageRepository.getImageByHouseId(anyInt())).thenReturn(mockHouseImages);
+
+
+
+        // Call the method to test
+        houseManagerService.updateHouse(houses, 1, service, files);
+
+        // Verify that the repositories and services were called as expected
+
+        verify(serviceHouseRepository, times(service.size())).save(any(ServiceHouseEntity.class));
+
+        verify(houseImageRepository, times(files.length)).save(any(HouseImagesEntity.class));
+        verify(gcsService, times(files.length)).uploadImage(anyString(), anyString(), any(byte[].class));
+    }
 
 }

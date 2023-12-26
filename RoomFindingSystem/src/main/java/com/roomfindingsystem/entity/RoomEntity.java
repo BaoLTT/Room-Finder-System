@@ -1,11 +1,15 @@
 package com.roomfindingsystem.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "room", schema = "room_finding_system", catalog = "")
 public class RoomEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -169,6 +173,11 @@ public class RoomEntity {
         if (o == null || getClass() != o.getClass()) return false;
         RoomEntity that = (RoomEntity) o;
         return roomId == that.roomId && Objects.equals(area, that.area) && Objects.equals(createdBy, that.createdBy) && Objects.equals(createdDate, that.createdDate) && Objects.equals(description, that.description) && Objects.equals(houseId, that.houseId) && Objects.equals(lastModifiedBy, that.lastModifiedBy) && Objects.equals(lastModifiedDate, that.lastModifiedDate) && Objects.equals(price, that.price) && Objects.equals(roomName, that.roomName) && Objects.equals(roomType, that.roomType) && Objects.equals(statusId, that.statusId) && Objects.equals(statusUpdateDate, that.statusUpdateDate);
+    }
+
+    public RoomEntity(int roomId, String roomName) {
+        this.roomId = roomId;
+        this.roomName = roomName;
     }
 
     @Override

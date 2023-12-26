@@ -30,10 +30,10 @@ class ProvinceServiceTest {
     @Mock
     private ModelMapper modelMapper;
 
-    @BeforeEach
-    void setUp() {
-        MockitoAnnotations.openMocks(this);
-    }
+//    @BeforeEach
+//    void setUp() {
+//        MockitoAnnotations.openMocks(this);
+//    }
     @Test
     void testGetAllProvinces() {
         // Mock data
