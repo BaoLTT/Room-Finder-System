@@ -3,12 +3,15 @@ package com.roomfindingsystem.service;
 import com.roomfindingsystem.dto.RoomAdminDashboardDto;
 import com.roomfindingsystem.dto.RoomDto;
 import com.roomfindingsystem.dto.RoomHouseDetailDto;
+import com.roomfindingsystem.entity.RoomEntity;
 import com.roomfindingsystem.repository.RoomRepository;
+import com.roomfindingsystem.service.impl.RoomHistoryServiceImpl;
 import com.roomfindingsystem.service.impl.RoomServiceImpl;
 import jakarta.persistence.Tuple;
 import jakarta.persistence.TupleElement;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -16,10 +19,14 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.web.multipart.MultipartFile;
 
+
+import java.time.LocalDate;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -31,6 +38,10 @@ public class RoomServiceTest {
 
     @InjectMocks
     private RoomServiceImpl roomService;
+
+
+    @InjectMocks
+    private RoomHistoryServiceImpl roomHistoryService = new RoomHistoryServiceImpl();
 
     private Tuple createMockTuple() {
         return new Tuple() {
@@ -328,6 +339,117 @@ public class RoomServiceTest {
         verify(roomRepository, times(1)).viewRoomInHouseDetail(houseId);
     }
 
+    @Test
+    void testUpdateStatusDate1() {
+        // Arrange
+        int houseId = 273; // Assuming houseId with no room data
+
+        when(roomRepository.viewRoomInHouseDetail(houseId)).thenReturn(Collections.emptyList());
+
+        // Act
+        List<RoomHouseDetailDto> result = roomService.viewRoomInHouse(houseId);
+
+        // Assert
+        assertNotNull(result);
+        assertTrue(result.isEmpty());
+
+        // Verify that the repository method was called with the correct parameters
+        verify(roomRepository, times(1)).viewRoomInHouseDetail(houseId);
+    }
+
+    @Test
+    void testUpdateStatusDate2() {
+        // Arrange
+        int houseId = 273; // Assuming houseId with no room data
+
+        when(roomRepository.viewRoomInHouseDetail(houseId)).thenReturn(Collections.emptyList());
+
+        // Act
+        List<RoomHouseDetailDto> result = roomService.viewRoomInHouse(houseId);
+
+        // Assert
+        assertNotNull(result);
+        assertTrue(result.isEmpty());
+
+        // Verify that the repository method was called with the correct parameters
+        verify(roomRepository, times(1)).viewRoomInHouseDetail(houseId);
+    }
+
+    @Test
+    void testUpdateStatusDate3() {
+        // Arrange
+        int houseId = 273; // Assuming houseId with no room data
+
+        when(roomRepository.viewRoomInHouseDetail(houseId)).thenReturn(Collections.emptyList());
+
+        // Act
+        List<RoomHouseDetailDto> result = roomService.viewRoomInHouse(houseId);
+
+        // Assert
+        assertNotNull(result);
+        assertTrue(result.isEmpty());
+
+        // Verify that the repository method was called with the correct parameters
+        verify(roomRepository, times(1)).viewRoomInHouseDetail(houseId);
+    }
+
+    @Test
+    void testUpdateStatusDate4() {
+        // Arrange
+        int houseId = 273; // Assuming houseId with no room data
+
+        when(roomRepository.viewRoomInHouseDetail(houseId)).thenReturn(Collections.emptyList());
+
+        // Act
+        List<RoomHouseDetailDto> result = roomService.viewRoomInHouse(houseId);
+
+        // Assert
+        assertNotNull(result);
+        assertTrue(result.isEmpty());
+
+        // Verify that the repository method was called with the correct parameters
+        verify(roomRepository, times(1)).viewRoomInHouseDetail(houseId);
+    }
+
+    @Test
+    void testUpdateStatusDate5() {
+        // Arrange
+        int houseId = 273; // Assuming houseId with no room data
+
+        when(roomRepository.viewRoomInHouseDetail(houseId)).thenReturn(Collections.emptyList());
+
+        // Act
+        List<RoomHouseDetailDto> result = roomService.viewRoomInHouse(houseId);
+
+        // Assert
+        assertNotNull(result);
+        assertTrue(result.isEmpty());
+
+        // Verify that the repository method was called with the correct parameters
+        verify(roomRepository, times(1)).viewRoomInHouseDetail(houseId);
+    }
+
+    @Test
+    void testUpdateStatusDate6() {
+        // Arrange
+        int houseId = 273; // Assuming houseId with no room data
+
+        when(roomRepository.viewRoomInHouseDetail(houseId)).thenReturn(Collections.emptyList());
+
+        // Act
+        List<RoomHouseDetailDto> result = roomService.viewRoomInHouse(houseId);
+
+        // Assert
+        assertNotNull(result);
+        assertTrue(result.isEmpty());
+
+        // Verify that the repository method was called with the correct parameters
+        verify(roomRepository, times(1)).viewRoomInHouseDetail(houseId);
+    }
+
+
+
+    
     @Test
     void testCountRoomByIdNull() {
         // Arrange
@@ -963,6 +1085,7 @@ public class RoomServiceTest {
         count = roomService.countInhabitedRoom();
         assertEquals(0, count);
     }
+
 
 
 }

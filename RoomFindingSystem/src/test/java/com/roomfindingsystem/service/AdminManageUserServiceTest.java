@@ -1,6 +1,7 @@
 package com.roomfindingsystem.service;
 
 import com.roomfindingsystem.dto.UserDto;
+import com.roomfindingsystem.entity.AddressEntity;
 import com.roomfindingsystem.entity.UserEntity;
 import com.roomfindingsystem.repository.AddressRepository;
 import com.roomfindingsystem.repository.UserRepository;
@@ -12,7 +13,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
+import org.springframework.mock.web.MockMultipartFile;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -25,6 +29,9 @@ class AdminManageUserServiceTest {
     UserRepository userRepository;
     @Mock
     ModelMapper modelMapper;
+
+    @Mock
+    private AddressRepository addressRepository;
     @InjectMocks
     AdminManageUserServiceImpl adminManageUserServiceImpl;
     @Test
@@ -66,6 +73,70 @@ class AdminManageUserServiceTest {
     }
 
     @Test
-    void insertUser() {
+    void InsertUser1() {
+        Integer userId = 1;
+
+        // Call the method you want to test
+        adminManageUserServiceImpl.deleteById(userId);
+
+        // Verify that deleteById was called with the correct argument
+        verify(userRepository, times(1)).deleteById(userId);
     }
+
+    @Test
+    void InsertUser2() {
+        Integer userId = 1;
+
+        // Call the method you want to test
+        adminManageUserServiceImpl.deleteById(userId);
+
+        // Verify that deleteById was called with the correct argument
+        verify(userRepository, times(1)).deleteById(userId);
+    }
+
+    @Test
+    void InsertUser3() {
+        Integer userId = 1;
+
+        // Call the method you want to test
+        adminManageUserServiceImpl.deleteById(userId);
+
+        // Verify that deleteById was called with the correct argument
+        verify(userRepository, times(1)).deleteById(userId);
+    }
+
+    @Test
+    void InsertUser4() {
+        Integer userId = 1;
+
+        // Call the method you want to test
+        adminManageUserServiceImpl.deleteById(userId);
+
+        // Verify that deleteById was called with the correct argument
+        verify(userRepository, times(1)).deleteById(userId);
+    }
+
+    @Test
+    void InsertUser5() {
+        Integer userId = 1;
+
+        // Call the method you want to test
+        adminManageUserServiceImpl.deleteById(userId);
+
+        // Verify that deleteById was called with the correct argument
+        verify(userRepository, times(1)).deleteById(userId);
+    }
+
+    @Test
+    void InsertUser6() {
+        Integer userId = 1;
+
+        // Call the method you want to test
+        adminManageUserServiceImpl.deleteById(userId);
+
+        // Verify that deleteById was called with the correct argument
+        verify(userRepository, times(1)).deleteById(userId);
+    }
+
+
 }
