@@ -90,9 +90,9 @@ class HouseManagerServiceTest {
     }
 
     @Test
-    void findHouseById() {
+    void findHouseById1() {
         // Test data
-        int houseId = 123; // replace with your actual houseId
+        int houseId = 1; // replace with your actual houseId
         HouseManagerTypeVo expectedHouse = new HouseManagerTypeVo(); // replace with your actual return type
         // Mock the repository method
         when(houseManagerRepository.findHouseById(houseId)).thenReturn(expectedHouse);
@@ -105,6 +105,60 @@ class HouseManagerServiceTest {
 
         // Assert the result
         assertEquals(expectedHouse, result); // Assuming you are comparing the result with the expectedHouse
+    }
+
+    @Test
+    void findHouseById200() {
+        // Test data
+        int houseId = 200; // replace with your actual houseId
+        HouseManagerTypeVo expectedHouse = null; // replace with your actual return type
+        // Mock the repository method
+        when(houseManagerRepository.findHouseById(houseId)).thenReturn(expectedHouse);
+
+        // Call the method from yourService
+        HouseManagerTypeVo result = houseManagerService.findHouseById(houseId);
+
+        // Verify that the expected method was called with the correct argument
+        Mockito.verify(houseManagerRepository, Mockito.times(1)).findHouseById(houseId);
+
+        // Assert the result
+        assertNull(result); // Assuming you are comparing the result with the expectedHouse
+    }
+
+    @Test
+    void findHouseById0() {
+        // Test data
+        int houseId = 0; // replace with your actual houseId
+        HouseManagerTypeVo expectedHouse = null; // replace with your actual return type
+        // Mock the repository method
+        when(houseManagerRepository.findHouseById(houseId)).thenReturn(expectedHouse);
+
+        // Call the method from yourService
+        HouseManagerTypeVo result = houseManagerService.findHouseById(houseId);
+
+        // Verify that the expected method was called with the correct argument
+        Mockito.verify(houseManagerRepository, Mockito.times(1)).findHouseById(houseId);
+
+        // Assert the result
+        assertNull(result); // Assuming you are comparing the result with the expectedHouse
+    }
+
+    @Test
+    void findHouseByIdNegative() {
+        // Test data
+        int houseId = -1; // replace with your actual houseId
+        HouseManagerTypeVo expectedHouse = null; // replace with your actual return type
+        // Mock the repository method
+        when(houseManagerRepository.findHouseById(houseId)).thenReturn(expectedHouse);
+
+        // Call the method from yourService
+        HouseManagerTypeVo result = houseManagerService.findHouseById(houseId);
+
+        // Verify that the expected method was called with the correct argument
+        Mockito.verify(houseManagerRepository, Mockito.times(1)).findHouseById(houseId);
+
+        // Assert the result
+        assertNull(result); // Assuming you are comparing the result with the expectedHouse
     }
 
     @Test

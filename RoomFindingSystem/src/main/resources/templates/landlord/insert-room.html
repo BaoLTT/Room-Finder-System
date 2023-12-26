@@ -255,9 +255,9 @@
     var exitRoomList = /*[[${exitRoom}]]*/ [];
     /*]]>*/
     function resetCustomValidity(input) {
-        var nameRoom = input;
+        var nameRoom = input.value.toUpperCase();
         for (var i = 0; i < exitRoomList.length; i++) {
-            if (exitRoomList[i].roomName === nameRoom.value) {
+            if (exitRoomList[i].roomName.toUpperCase() === nameRoom) {
                 nameRoom.setCustomValidity("Tên đã trùng lặp.");
                 break;
             } else {
