@@ -84,6 +84,8 @@ public class HouseLandlordController {
         List<ServiceDetailEntity> listService = serviceDetailService.getAllService();
         house.setLatitude(21.0130252);
         house.setLongitude(105.5239285);
+        List<HouseLandlordVo> houseList = houseLandlordService.getAllHouse();
+        model.addAttribute("exithouse",houseList);
         model.addAttribute("house",house);
         model.addAttribute("listType",listType);
         model.addAttribute("listService",listService);
