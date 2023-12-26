@@ -1,12 +1,16 @@
 package com.roomfindingsystem.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @jakarta.persistence.Table(name = "service_detail", schema = "room_finding_system", catalog = "")
 public class ServiceDetailEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -64,6 +68,11 @@ public class ServiceDetailEntity {
         if (o == null || getClass() != o.getClass()) return false;
         ServiceDetailEntity that = (ServiceDetailEntity) o;
         return serviceId == that.serviceId && Objects.equals(serviceName, that.serviceName) && Objects.equals(description, that.description) && Objects.equals(createDate, that.createDate);
+    }
+
+    public ServiceDetailEntity(int serviceId, String serviceName) {
+        this.serviceId = serviceId;
+        this.serviceName = serviceName;
     }
 
     @Override

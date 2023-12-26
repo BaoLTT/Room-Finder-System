@@ -842,4 +842,361 @@ public class FeedbackServiceTest {
     }
 
 
+    //getFeedbackByStar
+    @Test
+    void testGetFeedbackByStar() {
+        // Arrange
+        int star = 5;
+        List<Boolean> status = Arrays.asList(true);
+
+        // Mô phỏng dữ liệu trả về từ repository
+        List<FeedbackDtoAdmin> expectedFeedbackList = Arrays.asList(
+                new FeedbackDtoAdmin(/* dữ liệu phản hồi 1 */),
+                new FeedbackDtoAdmin(/* dữ liệu phản hồi 2 */)
+                // Thêm các phần tử khác nếu cần
+        );
+        when(feedbackRepository.findFeedbackDtosByStar(star, status)).thenReturn(expectedFeedbackList);
+
+        // Act
+        List<FeedbackDtoAdmin> actualFeedbackList = feedbackService.getFeedbackByStar(star, status);
+
+        // Assert
+        // Kiểm tra xem kết quả thực tế có trùng với kết quả mong đợi không
+        assertEquals(expectedFeedbackList, actualFeedbackList);
+
+        // Verify that the repository method was called with the correct parameters
+        verify(feedbackRepository, times(1)).findFeedbackDtosByStar(star, status);
+
+        // Verify that no other interactions with feedbackRepository occurred
+        verifyNoMoreInteractions(feedbackRepository);
+    }
+
+    @Test
+    void testGetFeedbackByStar1() {
+        // Arrange
+        int star = 5;
+        List<Boolean> status = Arrays.asList(false);
+
+
+        List<FeedbackDtoAdmin> expectedFeedbackList = Arrays.asList(
+                new FeedbackDtoAdmin(),
+                new FeedbackDtoAdmin()
+        );
+        when(feedbackRepository.findFeedbackDtosByStar(star, status)).thenReturn(expectedFeedbackList);
+
+        // Act
+        List<FeedbackDtoAdmin> actualFeedbackList = feedbackService.getFeedbackByStar(star, status);
+
+        // Assert
+
+        assertEquals(expectedFeedbackList, actualFeedbackList);
+
+        // Verify that the repository method was called with the correct parameters
+        verify(feedbackRepository, times(1)).findFeedbackDtosByStar(star, status);
+
+        // Verify that no other interactions with feedbackRepository occurred
+        verifyNoMoreInteractions(feedbackRepository);
+    }
+
+    @Test
+    void testGetFeedbackByStar2() {
+        // Arrange
+        int star = 5;
+        List<Boolean> status = Arrays.asList(true, false);
+
+
+        List<FeedbackDtoAdmin> expectedFeedbackList = Arrays.asList(
+                new FeedbackDtoAdmin(),
+                new FeedbackDtoAdmin()
+        );
+        when(feedbackRepository.findFeedbackDtosByStar(star, status)).thenReturn(expectedFeedbackList);
+
+        // Act
+        List<FeedbackDtoAdmin> actualFeedbackList = feedbackService.getFeedbackByStar(star, status);
+
+        // Assert
+
+        assertEquals(expectedFeedbackList, actualFeedbackList);
+
+        // Verify that the repository method was called with the correct parameters
+        verify(feedbackRepository, times(1)).findFeedbackDtosByStar(star, status);
+
+        // Verify that no other interactions with feedbackRepository occurred
+        verifyNoMoreInteractions(feedbackRepository);
+    }
+
+    @Test
+    void testGetFeedbackByStar3() {
+        // Arrange
+        int star = 3 ;
+        List<Boolean> status = Arrays.asList(true);
+
+
+        List<FeedbackDtoAdmin> expectedFeedbackList = Arrays.asList(
+                new FeedbackDtoAdmin(),
+                new FeedbackDtoAdmin()
+        );
+        when(feedbackRepository.findFeedbackDtosByStar(star, status)).thenReturn(expectedFeedbackList);
+
+        // Act
+        List<FeedbackDtoAdmin> actualFeedbackList = feedbackService.getFeedbackByStar(star, status);
+
+        // Assert
+
+        assertEquals(expectedFeedbackList, actualFeedbackList);
+
+        // Verify that the repository method was called with the correct parameters
+        verify(feedbackRepository, times(1)).findFeedbackDtosByStar(star, status);
+
+        // Verify that no other interactions with feedbackRepository occurred
+        verifyNoMoreInteractions(feedbackRepository);
+    }
+
+    @Test
+    void testGetFeedbackByStar4() {
+        // Arrange
+        int star = 3 ;
+        List<Boolean> status = Arrays.asList(false);
+
+
+        List<FeedbackDtoAdmin> expectedFeedbackList = Arrays.asList(
+                new FeedbackDtoAdmin(),
+                new FeedbackDtoAdmin()
+        );
+        when(feedbackRepository.findFeedbackDtosByStar(star, status)).thenReturn(expectedFeedbackList);
+
+        // Act
+        List<FeedbackDtoAdmin> actualFeedbackList = feedbackService.getFeedbackByStar(star, status);
+
+        // Assert
+
+        assertEquals(expectedFeedbackList, actualFeedbackList);
+
+        // Verify that the repository method was called with the correct parameters
+        verify(feedbackRepository, times(1)).findFeedbackDtosByStar(star, status);
+
+        // Verify that no other interactions with feedbackRepository occurred
+        verifyNoMoreInteractions(feedbackRepository);
+    }
+
+    @Test
+    void testGetFeedbackByStar5() {
+        // Arrange
+        int star = 3 ;
+        List<Boolean> status = Arrays.asList(true,false);
+
+
+        List<FeedbackDtoAdmin> expectedFeedbackList = Arrays.asList(
+                new FeedbackDtoAdmin(),
+                new FeedbackDtoAdmin()
+        );
+        when(feedbackRepository.findFeedbackDtosByStar(star, status)).thenReturn(expectedFeedbackList);
+
+        // Act
+        List<FeedbackDtoAdmin> actualFeedbackList = feedbackService.getFeedbackByStar(star, status);
+
+        // Assert
+
+        assertEquals(expectedFeedbackList, actualFeedbackList);
+
+        // Verify that the repository method was called with the correct parameters
+        verify(feedbackRepository, times(1)).findFeedbackDtosByStar(star, status);
+
+        // Verify that no other interactions with feedbackRepository occurred
+        verifyNoMoreInteractions(feedbackRepository);
+    }
+
+    //saveFeedback
+    @Test
+    void testSaveFeedback() {
+        // Arrange
+        FeedbackEntity inputFeedbackEntity = new FeedbackEntity(); inputFeedbackEntity.setFeedbackId(1);
+
+
+        FeedbackEntity expectedSavedFeedbackEntity = new FeedbackEntity(); expectedSavedFeedbackEntity.setFeedbackId(1);
+        when(feedbackRepository.save(inputFeedbackEntity)).thenReturn(expectedSavedFeedbackEntity);
+
+        // Act
+        FeedbackEntity actualSavedFeedbackEntity = feedbackService.save(inputFeedbackEntity);
+
+        // Assert
+        assertEquals(expectedSavedFeedbackEntity, actualSavedFeedbackEntity);
+
+        // Verify that the repository method was called with the correct parameters
+        verify(feedbackRepository, times(1)).save(inputFeedbackEntity);
+
+        // Verify that no other interactions with feedbackRepository occurred
+        verifyNoMoreInteractions(feedbackRepository);
+    }
+
+    @Test
+    void testSaveInvalidFeedback() {
+        // Arrange
+        FeedbackEntity invalidFeedbackEntity = new FeedbackEntity(); invalidFeedbackEntity = null;
+
+        // Act
+        FeedbackEntity savedFeedbackEntity = feedbackService.save(invalidFeedbackEntity);
+
+        // Assert
+        assertNull(savedFeedbackEntity);
+
+        // Verify that the repository method was not called
+        verify(feedbackRepository, never()).save(any(FeedbackEntity.class));
+
+    }
+
+    //test getFeedbackByHouseId
+    @Test
+    void getFeedbackByHouseId(){
+        int houseId = 1 ;
+        List<Boolean> status = Arrays.asList(true);
+
+
+        List<FeedbackDto> expectedFeedbackList = Arrays.asList(
+                new FeedbackDto(), new FeedbackDto()
+        );
+        when(feedbackRepository.findFeedbackDtosByHouseId(houseId, status)).thenReturn(expectedFeedbackList);
+
+        // Act
+        List<FeedbackDto> actualFeedbackList = feedbackService.getFeedbackByHouseId(houseId, status);
+
+        // Assert
+
+        assertEquals(expectedFeedbackList, actualFeedbackList);
+
+        // Verify that the repository method was called with the correct parameters
+        verify(feedbackRepository, times(1)).findFeedbackDtosByHouseId(houseId, status);
+
+        // Verify that no other interactions with feedbackRepository occurred
+        verifyNoMoreInteractions(feedbackRepository);
+    }
+
+    @Test
+    void getFeedbackByHouseId1(){
+        int houseId = 1 ;
+        List<Boolean> status = Arrays.asList(false);
+
+
+        List<FeedbackDto> expectedFeedbackList = Arrays.asList(
+                new FeedbackDto(), new FeedbackDto()
+        );
+        when(feedbackRepository.findFeedbackDtosByHouseId(houseId, status)).thenReturn(expectedFeedbackList);
+
+        // Act
+        List<FeedbackDto> actualFeedbackList = feedbackService.getFeedbackByHouseId(houseId, status);
+
+        // Assert
+
+        assertEquals(expectedFeedbackList, actualFeedbackList);
+
+        // Verify that the repository method was called with the correct parameters
+        verify(feedbackRepository, times(1)).findFeedbackDtosByHouseId(houseId, status);
+
+        // Verify that no other interactions with feedbackRepository occurred
+        verifyNoMoreInteractions(feedbackRepository);
+    }
+
+    @Test
+    void getFeedbackByHouseId2(){
+        int houseId = 1 ;
+        List<Boolean> status = Arrays.asList(true,false);
+
+
+        List<FeedbackDto> expectedFeedbackList = Arrays.asList(
+                new FeedbackDto(), new FeedbackDto()
+        );
+        when(feedbackRepository.findFeedbackDtosByHouseId(houseId, status)).thenReturn(expectedFeedbackList);
+
+        // Act
+        List<FeedbackDto> actualFeedbackList = feedbackService.getFeedbackByHouseId(houseId, status);
+
+        // Assert
+
+        assertEquals(expectedFeedbackList, actualFeedbackList);
+
+        // Verify that the repository method was called with the correct parameters
+        verify(feedbackRepository, times(1)).findFeedbackDtosByHouseId(houseId, status);
+
+        // Verify that no other interactions with feedbackRepository occurred
+        verifyNoMoreInteractions(feedbackRepository);
+    }
+
+    @Test
+    void getFeedbackByHouseId3(){
+        // Arrange
+        int invalidHouseId = -1;
+        List<Boolean> status = Collections.singletonList(true);
+        // Act
+        List<FeedbackDto> resultFeedbackList = feedbackService.getFeedbackByHouseId(invalidHouseId, status);
+
+        // Assert
+        // Kiểm tra xem kết quả trả về có phải là null hay không
+        assertTrue(resultFeedbackList.isEmpty());
+
+
+    }
+
+    @Test
+    void getFeedbackByHouseId4(){
+        // Arrange
+        int invalidHouseId = -1;
+        List<Boolean> status = Collections.singletonList(false);
+        // Act
+        List<FeedbackDto> resultFeedbackList = feedbackService.getFeedbackByHouseId(invalidHouseId, status);
+
+        // Assert
+        // Kiểm tra xem kết quả trả về có phải là null hay không
+        assertTrue(resultFeedbackList.isEmpty());
+
+
+    }
+
+    @Test
+    void getFeedbackByHouseId5(){
+        // Arrange
+        int invalidHouseId = -1;
+        List<Boolean> status = Arrays.asList(true,false);
+        // Act
+        List<FeedbackDto> resultFeedbackList = feedbackService.getFeedbackByHouseId(invalidHouseId, status);
+
+        // Assert
+        // Kiểm tra xem kết quả trả về có phải là null hay không
+        assertTrue(resultFeedbackList.isEmpty());
+
+
+    }
+
+    @Test
+    void getFeedbackByHouseId6(){
+        // Arrange
+        int invalidHouseId = 0;
+        List<Boolean> status = Collections.singletonList(true);
+        // Act
+        List<FeedbackDto> resultFeedbackList = feedbackService.getFeedbackByHouseId(invalidHouseId, status);
+
+        // Assert
+        // Kiểm tra xem kết quả trả về có phải là null hay không
+        assertTrue(resultFeedbackList.isEmpty());
+
+
+    }
+
+    @Test
+    void getFeedbackByHouseId7(){
+        // Arrange
+        int invalidHouseId = 0;
+        List<Boolean> status = Collections.singletonList(false);
+        // Act
+        List<FeedbackDto> resultFeedbackList = feedbackService.getFeedbackByHouseId(invalidHouseId, status);
+
+        // Assert
+        // Kiểm tra xem kết quả trả về có phải là null hay không
+        assertTrue(resultFeedbackList.isEmpty());
+
+
+    }
+
+
+
+
 }

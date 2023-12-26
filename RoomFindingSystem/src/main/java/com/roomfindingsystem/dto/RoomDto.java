@@ -38,4 +38,9 @@ public class RoomDto {
         this.area = area;
         this.status = status;
     }
+
+    public RoomDto(Integer roomId, String roomName) {
+        this.roomId = roomId;
+        this.roomName = roomName;
+    }
 }
