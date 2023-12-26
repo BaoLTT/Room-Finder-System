@@ -4,16 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+
     <list default="true" id="3984fc9b-ab5d-4d61-81f8-049b67f3fab8" name="Changes" comment="update list room trong house detail">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/roomfindingsystem/service/RoomServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/roomfindingsystem/service/RoomServiceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/roomfindingsystem/service/RoomTypeServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/roomfindingsystem/service/RoomTypeServiceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/roomfindingsystem/service/ServiceDetailServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/RoomFindingSystem/src/test/java/com/roomfindingsystem/service/ServiceDetailServiceTest.java" afterDir="false" />
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -23,7 +32,9 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+
   <component name="ProjectId" id="2a2DrcErlohtzB0l3A9TUHI2UoF" />
+
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
@@ -33,6 +44,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+
     &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
     &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
     &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
@@ -48,6 +60,7 @@
 }</component>
   <component name="RunManager" selected="JUnit.service in RoomFindingSystem">
     <configuration name="ServiceDetailServiceTest.deleteNullValid" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+
       <module name="RoomFindingSystem" />
       <extension name="coverage">
         <pattern>
@@ -121,11 +134,13 @@
     </configuration>
     <recent_temporary>
       <list>
+
         <item itemvalue="JUnit.service in RoomFindingSystem" />
         <item itemvalue="JUnit.UserServiceTest.testSaveUser_UnSuccess" />
         <item itemvalue="JUnit.ServiceDetailServiceTest.getServiceExceptHouseServiceNullValid" />
         <item itemvalue="JUnit.ServiceDetailServiceTest.getServiceExceptHouseServiceValid" />
         <item itemvalue="JUnit.ServiceDetailServiceTest.deleteNullValid" />
+
       </list>
     </recent_temporary>
   </component>
@@ -133,6 +148,7 @@
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="3984fc9b-ab5d-4d61-81f8-049b67f3fab8" name="Changes" comment="update list room trong house detail" />
+
       <created>1703507985911</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -148,10 +164,12 @@
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
       <updated>1703519013145</updated>
+
     </task>
     <option name="localTasksCounter" value="2" />
     <servers />
   </component>
+
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -167,6 +185,7 @@
     <MESSAGE value="update review" />
     <MESSAGE value="update list room trong house detail" />
     <option name="LAST_COMMIT_MESSAGE" value="update list room trong house detail" />
+
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Room_Finding_System$UserControllerTest.ic" NAME="UserControllerTest Coverage Results" MODIFIED="1700300286928" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

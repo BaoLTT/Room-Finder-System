@@ -18,8 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class FavouriteServiceTest {
@@ -86,6 +85,8 @@ class FavouriteServiceTest {
         assertEquals(0, list2.size());
     }
 
+
+    //removeItemFavorite
     @Test
     void removeItemFavourite() {
         // Mocking data
@@ -97,6 +98,67 @@ class FavouriteServiceTest {
         // Verify that deleteFavouriteEntitiesByHouseId was called with the correct argument
         verify(favouriteRepository).deleteFavouriteEntitiesByHouseId(houseId);
     }
+
+    @Test
+    void testRemoveItemFavourite_WithNonExistingHouseId() {
+        // Arrange
+        int houseId = 100000;
+
+        // Mô phỏng trường hợp không có dữ liệu với houseId
+        doNothing().when(favouriteRepository).deleteFavouriteEntitiesByHouseId(houseId);
+
+        // Act
+        favouriteService.removeItemFavourite(houseId);
+
+        // Assert
+        // Verify that deleteFavouriteEntitiesByHouseId was called with the correct houseId
+        verify(favouriteRepository, times(1)).deleteFavouriteEntitiesByHouseId(houseId);
+
+        // Verify that no other interactions with favouriteRepository occurred
+        verifyNoMoreInteractions(favouriteRepository);
+    }
+
+    @Test
+    void testRemoveItemFavourite_WithID0() {
+        // Arrange
+        int houseId = 0;
+
+        doNothing().when(favouriteRepository).deleteFavouriteEntitiesByHouseId(houseId);
+
+        // Act
+        favouriteService.removeItemFavourite(houseId);
+
+        // Assert
+        // Verify that deleteFavouriteEntitiesByHouseId was called with the correct houseId
+        verify(favouriteRepository, times(1)).deleteFavouriteEntitiesByHouseId(houseId);
+
+        // Verify that no other interactions with favouriteRepository occurred
+        verifyNoMoreInteractions(favouriteRepository);
+    }
+
+    @Test
+    void testRemoveItemFavourite_With() {
+        // Arrange
+        int houseId = -1;
+
+        // Mô phỏng trường hợp không có dữ liệu với houseId
+        doNothing().when(favouriteRepository).deleteFavouriteEntitiesByHouseId(houseId);
+
+        // Act
+        favouriteService.removeItemFavourite(houseId);
+
+        // Assert
+        // Verify that deleteFavouriteEntitiesByHouseId was called with the correct houseId
+        verify(favouriteRepository, times(1)).deleteFavouriteEntitiesByHouseId(houseId);
+
+        // Verify that no other interactions with favouriteRepository occurred
+        verifyNoMoreInteractions(favouriteRepository);
+    }
+
+
+
+
+
 
     @Test
     void getAllByHouseId() {

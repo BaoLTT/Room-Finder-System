@@ -34,7 +34,6 @@ public class FavouriteServiceImpl implements FavouriteService {
 
     @Override
     public void removeItemFavourite(int houseId) {
-
         favouriteRepository.deleteFavouriteEntitiesByHouseId(houseId);
     }
 
