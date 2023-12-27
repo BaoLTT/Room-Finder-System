@@ -448,14 +448,14 @@
                 <div class="row">
                     <div class="col-md-3 col-sm-3" th:each="feedback : ${feedbacks}">
                         <div class="review-single">
-                            <a th:href="@{/house/}+${house.houseName}+'?id='+${house.houseID}" th:text="${feedback.houseName}"><h3>White Doe Inn</h3></a>
+                            <a th:href="@{/house/}+${feedback.houseName}+'?id='+${feedback.houseId}" th:text="${feedback.houseName}"><h3>White Doe Inn</h3></a>
                             <figure class="location"
                                     th:text="${feedback.addressName+', '+feedback.wardName+', '+feedback.districtName+', '+feedback.provinceName}"></figure>
                             <div class="rating"><i class="fa fa-user"
                                                    th:text="${' '+feedback.lastName+' '+feedback.firstName}"></i></div>
                             <p th:text="${feedback.content}">
                             </p>
-                            <a th:href="@{/house/}+${house.houseName}+'?id='+${house.houseID}+'#reviews'" class="link icon">Xem chi tiết<i class="arrow_right"></i></a>
+                            <a th:href="@{/house/}+${feedback.houseName}+'?id='+${feedback.houseId}+'#reviews'" class="link icon">Xem chi tiết<i class="arrow_right"></i></a>
                         </div>
                         <!--end review-->
                     </div>
